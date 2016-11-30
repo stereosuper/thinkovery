@@ -1,4 +1,11 @@
 <?php
+# BEGIN SecuPress Correct Constants Values
+define( 'DISALLOW_UNFILTERED_HTML', TRUE ); // Added by SecuPress
+define( 'ERRORLOGFILE', '/Applications/MAMP/logs/wp_errorlogfile.log' ); // Added by SecuPress
+define( 'WP_DEBUG_DISPLAY', FALSE ); // Added by SecuPress
+# END SecuPress
+
+
 /**
  * La configuration de base de votre installation WordPress.
  *
@@ -49,14 +56,7 @@ define('DB_COLLATE', '');
  *
  * @since 2.6.0
  */
-define('AUTH_KEY',         '&d+d(B&VsszNH/7#DSVglht_q:t$-KTR}]}OSy]rQIxL%kh|dTG98;#>l,5U!S<7');
-define('SECURE_AUTH_KEY',  'i%>E4xGzu]yw)RK*qs`]O;R)/&uZ)y2(YUQ}H30s*p2{fcih_qP7T(`}jFD8*IBg');
-define('LOGGED_IN_KEY',    'q`.xYqCA-@/zVf*`cJTC3Hzcb6JCbkgS>bD;-t?Bf-$L{1[,uTGC8NhJt[`O<9#m');
-define('NONCE_KEY',        '+f?0N{buKZ[Si]Q ={n^ V1m@|lr.B:P=rv&2tZS;PJm+p>HX1!auWZ|d(2scx3&');
-define('AUTH_SALT',        ')hka2!@QVENYfRKt6 +7o%GO}[iZ30Q^:g~We7mwLFpS@v1D5Nk.tERzotj]1 LF');
-define('SECURE_AUTH_SALT', '8z-u%>|thmz9v(PtoNJ:mXZ:!3{#5<kG;}l}K1AnkjO2]LE)_+$dYJHtZcI-%#sd');
-define('LOGGED_IN_SALT',   'qL8Gvjq,F8#g[;fBUb*u:?EvMOrw ,A#u2Ht{_weN{<9#F*nV[1QG|g&x:mPMc2O');
-define('NONCE_SALT',       'R2`{[enXRI0e.4?&EliBX*yBX|j`Qa,==Xz^8SZQvf}PvD;pk):zq?+/_Y9m|L^=');
+/** SecuPress: if you ever want to add secret keys back here, get new ones at https://api.wordpress.org/secret-key/1.1/salt. */
 /**#@-*/
 
 /**
@@ -82,12 +82,20 @@ $table_prefix  = 'think_';
  *
  * @link https://codex.wordpress.org/Debugging_in_WordPress
  */
-define('WP_DEBUG', true);
 
-define('WP_POST_REVISIONS', 5);
-define('EMPTY_TRASH_DAYS', 10);
-define('WP_AUTO_UPDATE_CORE', true);
-define('DISALLOW_FILE_EDIT', true);
+define( 'WP_POST_REVISIONS', 5 );
+define( 'EMPTY_TRASH_DAYS', 10 );
+define( 'WP_AUTO_UPDATE_CORE', TRUE );
+define( 'DISALLOW_FILE_EDIT', TRUE );
+
+define( 'WP_ALLOW_MULTISITE', TRUE );
+define( 'MULTISITE', TRUE );
+define( 'SUBDOMAIN_INSTALL', FALSE );
+define( 'DOMAIN_CURRENT_SITE', 'localhost' );
+define( 'PATH_CURRENT_SITE', '/' );
+define( 'SITE_ID_CURRENT_SITE', 1 );
+define( 'BLOG_ID_CURRENT_SITE', 1 );
+
 
 /* C’est tout, ne touchez pas à ce qui suit ! */
 
