@@ -26,7 +26,7 @@ if('comments.php' == basename($_SERVER['SCRIPT_FILENAME']))
 		<?php else : ?>
 			<?php if( $user_ID ){ ?>
 				<p>Connecté en tant que
-					<a href='<?php echo get_option('siteurl'); ?>/wp-admin/profile.php'><?php echo $user_identity; ?></a>. 
+					<a href='<?php echo get_option('siteurl'); ?>/wp-admin/profile.php'><?php echo $user_identity; ?></a>.
 					<a href='<?php echo get_option('siteurl'); ?>/wp-login.php?action=logout'>Déconnection</a>
 				</p>
 			<?php } ?>
@@ -38,9 +38,9 @@ if('comments.php' == basename($_SERVER['SCRIPT_FILENAME']))
 			<?php } ?>
 
 			<form action='<?php echo get_option('siteurl'); ?>/wp-comments-post.php' method='post' class='commentform'>
-				
+
 				<?php if( !$user_ID ) : ?>
-					
+
 					<fieldset>
 						<label for='author' <?php if($req) echo "class='required'"; ?>>
 							Votre nom
@@ -58,17 +58,17 @@ if('comments.php' == basename($_SERVER['SCRIPT_FILENAME']))
 							Votre site
 						</label><input type='url' name='url' id='url' value='<?php echo $comment_author_url; ?>' <?php if($req) echo 'required'; ?>>
 						<span></span>
-					</fieldset>					
+					</fieldset>
 
 				<?php endif; ?>
-				
+
 				<fieldset>
 					<label for='comment' <?php if($req) echo "class='required'"; ?>>
 						Votre commentaire
 					</label><textarea name='comment' id='comment' <?php if($req) echo 'required'; ?>></textarea>
 					<span></span>
 				</fieldset>
-				
+
 				<button name='submit' type='submit' class='btn btn-right'>Envoyer</button>
 				<input type='hidden' name='comment_post_ID' value='<?php echo $id; ?>'/>
 
@@ -89,7 +89,7 @@ if('comments.php' == basename($_SERVER['SCRIPT_FILENAME']))
 			<?php foreach($comments as $comment) : ?>
 
 				<li id='comment-<?php comment_ID(); ?>'>
-					
+
 					<div class='img'>
 						<?php echo get_avatar( $comment, 62, '', $comment->comment_author ); ?>
 					</div><div class='content'>

@@ -33,6 +33,7 @@ remove_action( 'wp_head', 'wlwmanifest_link' );
 remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
 remove_action( 'wp_print_styles', 'print_emoji_styles' );
 remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+add_filter( 'emoji_svg_url', '__return_false' );
 
 // remove api rest links
 remove_action( 'wp_head', 'rest_output_link_wp_head' );
@@ -111,12 +112,29 @@ function think_mce_before_init( $styles ){
 }
 add_filter( 'tiny_mce_before_init', 'think_mce_before_init' );
 
+// Add Options Page
+if(function_exists('acf_add_options_page')){
+    $optionsMainPage = acf_add_options_page(array(
+        'position' => 2,
+        'page_title' => 'Theme General Options',
+        'menu_title' => 'Theme Options',
+        'redirect'      => false
+    ));
+
+    acf_add_options_sub_page(array(
+        'page_title'    => 'Footer Settings',
+        'menu_title'    => 'Footer',
+        'parent_slug'   => $optionsMainPage['menu_slug'],
+    ));
+}
+
 /*-----------------------------------------------------------------------------------*/
 /* Menus
 /*-----------------------------------------------------------------------------------*/
 register_nav_menus(
 	array(
 		'primary' => 'Primary Menu',
+        'secondary' => 'Secondary Menu'
 	)
 );
 

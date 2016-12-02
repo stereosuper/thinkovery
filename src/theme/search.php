@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-	<?php if ( have_posts() ) : 
+	<?php if ( have_posts() ) :
 	global $wp_query;
 	$results = $wp_query->found_posts; ?>
 
@@ -10,14 +10,14 @@
 
 			<h2><?php the_title(); ?></h2>
 			<?php the_excerpt(); ?>
-		
+
 		<?php endwhile; ?>
 
 			<?php previous_posts_link('Résultats plus récents'); ?>
 			<?php next_posts_link('Résultats plus anciens'); ?>
-	
+
 	<?php else : ?>
-				
+
 		<h1>La recherche "<?php the_search_query(); ?>" n'a retourné aucun résultat</h1>
 
 	<?php endif; ?>
