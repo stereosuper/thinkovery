@@ -5,8 +5,19 @@
             <p><?php the_field('ctaTxt', 'options') ?></p>
             <a href='<?php the_field('ctaLink', 'options') ?>'><?php the_field('ctaLinkTxt', 'options') ?></a>
 
-            <span class='footer-title'><?php the_field('blogTitle', 'options'); ?></span>
-            <a href='<?php the_field('blogLink', 'options'); ?>'>
+            <span class='footer-title'><?php the_field('blogTitleFooter', 'options'); ?></span>
+            <?php
+                $blogFooter = new WP_Query( array('posts_per_page' => 2) );
+                if( $blogFooter->have_posts() ){ ?>
+                    <ul>
+                        <?php while( $blogFooter->have_posts() ){ $blogFooter->the_post(); ?>
+                            <li><a href='<?php the_permalink(); ?>'><?php the_title(); ?></a></li>
+                        <?php } ?>
+                    </ul>
+                <?php }
+                wp_reset_query();
+            ?>
+            <a href='<?php the_field('blogLink', 'options'); ?>' class='btn'>
                 <?php the_field('blogLinkTxt', 'options'); ?>
             </a>
 

@@ -92,7 +92,7 @@ function think_right_now_custom_post() {
     $post_types = get_post_types(array( '_builtin' => false ) , 'objects' , 'and');
     foreach($post_types as $post_type){
         $cpt_name = $post_type->name;
-        if($cpt_name != 'acf'){
+        if($cpt_name != 'acf-field-group' && $cpt_name != 'acf-field' && $cpt_name != 'secupress_log_err404' && $cpt_name != 'secupress_log_action'){
             $num_posts = wp_count_posts($post_type->name);
             $num = number_format_i18n($num_posts->publish);
             $text = _n($post_type->labels->name, $post_type->labels->name , intval($num_posts->publish));
@@ -115,15 +115,21 @@ add_filter( 'tiny_mce_before_init', 'think_mce_before_init' );
 // Add Options Page
 if(function_exists('acf_add_options_page')){
     $optionsMainPage = acf_add_options_page(array(
-        'position' => 2,
+        'position'   => 2,
         'page_title' => 'Theme General Options',
         'menu_title' => 'Theme Options',
-        'redirect'      => false
+        'redirect'   => false
     ));
 
     acf_add_options_sub_page(array(
         'page_title'    => 'Footer Settings',
         'menu_title'    => 'Footer',
+        'parent_slug'   => $optionsMainPage['menu_slug'],
+    ));
+
+    acf_add_options_sub_page(array(
+        'page_title'    => 'Déclinaisons',
+        'menu_title'    => 'Déclinaisons',
         'parent_slug'   => $optionsMainPage['menu_slug'],
     ));
 }
