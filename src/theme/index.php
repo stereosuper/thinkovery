@@ -2,6 +2,7 @@
 
 	<div class='container'>
 		<h1><?php the_field('blogTitle', 'options'); ?></h1>
+		<?php get_search_form(); ?>
 
 		<?php if ( have_posts() ) : ?>
 

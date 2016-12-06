@@ -1,25 +1,80 @@
 <?php get_header(); ?>
 
-	<?php if ( have_posts() ) :
-	global $wp_query;
-	$results = $wp_query->found_posts; ?>
+	<div class='container'>
 
-		<h1>La recherche "<?php the_search_query(); ?>" a retourné <?php if($results > 1){ echo $results . ' résultats'; }else{ echo '1 résultat'; } ?> </h1>
+		<?php if ( have_posts() ) : ?>
 
-		<?php while ( have_posts() ) : the_post(); ?>
+			<?php global $wp_query; $results = $wp_query->found_posts; ?>
 
-			<h2><?php the_title(); ?></h2>
-			<?php the_excerpt(); ?>
+			<h1>La recherche "<?php the_search_query(); ?>" a retourné <?php if($results > 1){ echo $results . __(' résultats', 'thinkovery'); }else{ echo '1' . __('résultat', 'thinkovery'); } ?></h1>
+			<?php get_search_form(); ?>
 
-		<?php endwhile; ?>
+			<?php while ( have_posts() ) : the_post(); ?>
+				<?php $formatLink = get_post_format() === 'link' ? true : false; ?>
 
-			<?php previous_posts_link('Résultats plus récents'); ?>
-			<?php next_posts_link('Résultats plus anciens'); ?>
+				<div class='post <?php if($formatLink) echo "post-network"; ?>'>
 
-	<?php else : ?>
+					<?php if(!$formatLink){ ?>
 
-		<h1>La recherche "<?php the_search_query(); ?>" n'a retourné aucun résultat</h1>
+						<h2 class='h3'><a href='<?php the_permalink(); ?>'><?php the_title(); ?></a></h2>
+						<time datetime='<?php echo get_the_date('Y-m-d'); ?>'><?php echo get_the_date(); ?></time>
+						<span>
+							<?php $cats = get_the_category(); if($cats){
+								$countCats = count($cats);
+								$i = 0;
+								foreach($cats as $cat){
+									$i ++;
+									echo $cat->cat_name;
+									if($i < $countCats){
+										echo ', ';
+									}
+								}
+							} ?>
+						</span>
+						<?php $nbComments = get_comments_number(); ?>
 
-	<?php endif; ?>
+						<?php if($nbComments > 0){ ?>
+							<a href='<?php the_permalink(); ?>#comments'>
+								<?php echo sprintf( _n('%s comment', '%s comments', $nbComments, 'thinkovery'), number_format_i18n( $nbComments ) ); ?>
+							</a>
+						<?php }else{ ?>
+								<a href='<?php the_permalink(); ?>#leave-comment'><?php _e('Leave a comment', 'thinkovery'); ?>
+						<?php } ?>
+
+						<a href='<?php the_permalink(); ?>'>
+							<?php if( has_post_thumbnail() ){ the_post_thumbnail(); } ?>
+						</a>
+
+						<?php the_excerpt(); ?>
+
+					<?php }else{ ?>
+
+						<a href='<?php the_field('link'); ?>' target='_blank'>
+							<?php if( has_post_thumbnail() ){ the_post_thumbnail(); } ?>
+						</a>
+
+						<?php the_excerpt(); ?>
+
+						<a href='<?php the_field('link'); ?>' target='_blank'>
+							<?php echo __('Find us on', 'thinkovery') . ' ' . get_field('network'); ?>
+						</a>
+
+					<?php } ?>
+
+				</div>
+			<?php endwhile; ?>
+
+			<div class='pagination'>
+				<?php echo paginate_links( array( 'prev_text' => __('Previous page', 'thinkovery'), 'next_text'  => __('Next page', 'thinkovery') ) ); ?>
+			</div>
+
+		<?php else : ?>
+
+			<h1>La recherche "<?php the_search_query(); ?>" n'a retourné aucun résultat</h1>
+
+			<?php get_search_form(); ?>
+
+		<?php endif; ?>
+	</div>
 
 <?php get_footer(); ?>
