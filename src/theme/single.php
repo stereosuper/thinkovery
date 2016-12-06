@@ -26,6 +26,56 @@
 					</ul>
 				</div>
 
+				<?php
+					$currentPost = $post;
+					global $post;
+
+					$categories = get_the_category($post->ID);
+					if($categories){
+						$categoryIds = array();
+						foreach($categories as $cat){
+							$categoryIds[] = $cat->term_id;
+						}
+
+						$relatedQuery = new WP_Query( array(
+							'category__in' => $categoryIds,
+							'post__not_in' => array($post->ID),
+							'posts_per_page'=> 2,
+							'caller_get_posts'=>1
+						) );
+
+						if( $relatedQuery->have_posts() ){
+							echo '<div><h3>' . __('Related Posts', 'thinkovery') . '</h3><ul>';
+							while( $relatedQuery->have_posts() ){ $relatedQuery->the_post(); ?>
+								<li>
+									<a href='<?php the_permalink(); ?>'>
+										<?php the_post_thumbnail(); ?>
+										<h4><?php the_title(); ?></h4>
+										<time datetime='<?php echo get_the_date('Y-m-d'); ?>'><?php echo get_the_date(); ?></time>
+										<span>
+											<?php $cats = get_the_category(); if($cats){
+												$countCats = count($cats);
+												$i = 0;
+												foreach($cats as $cat){
+													$i ++;
+													echo $cat->cat_name;
+													if($i < $countCats){
+														echo ', ';
+													}
+												}
+											} ?>
+										</span>
+									</a>
+								</li>
+							<? }
+							echo '</ul></div>';
+						}
+					}
+
+					$post = $currentPost;
+					wp_reset_query();
+				?>
+
 				<?php comments_template(); ?>
 
 			<?php endwhile; ?>
