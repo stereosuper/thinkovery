@@ -75,11 +75,13 @@ function think_imagelink_setup(){
 }
 add_action( 'admin_init', 'think_imagelink_setup' );
 
-// Enlever les <p> autour des images
-function think_remove_p_around_images($content){
-   return preg_replace('/<p>\s*(<a .*>)?\s*(<img .* \/>)\s*(<\/a>)?\s*<\/p>/iU', '\1\2\3', $content);
+// Enlever les <p> autour des images + ajouter une div class='img'
+function think_around_images($content){
+   $content = preg_replace('/<p>\s*(<a .*>)?\s*(<img .* \/>)\s*(<\/a>)?\s*<\/p>/iU', '\1\2\3', $content);
+   $content = preg_replace( '/(<img([^>]*)>)/i', '<div class="post-img">$1</div>', $content );
+   return $content;
 }
-add_filter( 'the_content', 'think_remove_p_around_images' );
+add_filter( 'the_content', 'think_around_images' );
 
 // Allow svg in media library
 function think_mime_types($mimes){
