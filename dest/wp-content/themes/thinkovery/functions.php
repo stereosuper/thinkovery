@@ -189,6 +189,18 @@ add_action( 'widgets_init', 'think_unregister_default_widgets' );
 
 
 /*-----------------------------------------------------------------------------------*/
+/* Blog
+/*-----------------------------------------------------------------------------------*/
+function think_search_filter($query){
+    if($query->is_search){
+        $query->set('post_type', 'post');
+    }
+    return $query;
+}
+add_filter( 'pre_get_posts', 'think_search_filter' );
+
+
+/*-----------------------------------------------------------------------------------*/
 /* Enqueue Styles and Scripts
 /*-----------------------------------------------------------------------------------*/
 function think_scripts(){
