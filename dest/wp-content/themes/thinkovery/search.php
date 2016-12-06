@@ -7,10 +7,10 @@
 			<?php
 				global $wp_query;
 				$results = $wp_query->found_posts;
-				$displayResults = $results > 1 ? $results . __(' résultats', 'thinkovery') : '1' . __('résultat', 'thinkovery');
+				$displayResults = $results > 1 ? $results . ' ' . __('results', 'thinkovery') : '1 ' . __('result', 'thinkovery');
 			?>
 
-			<h1><?php echo __('La recherche', 'thinkovery') . ' "' . get_search_query() . '" ' . __('a retourné', 'thinkovery') . ' ' . $displayResults; ?></h1>
+			<h1><?php echo __('The search for', 'thinkovery') . ' "' . get_search_query() . '" ' . __('returned', 'thinkovery') . ' ' . $displayResults; ?></h1>
 			<?php get_search_form(); ?>
 
 			<?php while ( have_posts() ) : the_post(); ?>
@@ -74,7 +74,7 @@
 
 		<?php else : ?>
 
-			<h1><?php echo __('La recherche', 'thinkovery') . ' "' . get_search_query() . '" '. __("n'a retourné aucun résultat", 'thinkovery'); ?></h1>
+			<h1><?php echo __('The search for', 'thinkovery') . ' "' . get_search_query() . '" '. __("didn't return any results", 'thinkovery'); ?></h1>
 
 			<?php get_search_form(); ?>
 
