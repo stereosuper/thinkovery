@@ -7,7 +7,18 @@
 
             <span class='footer-title'><?php the_field('blogTitleFooter', 'options'); ?></span>
             <?php
-                $blogFooter = new WP_Query( array('posts_per_page' => 2) );
+                $blogFooter = new WP_Query(
+                    array('posts_per_page' => 2,
+                        'tax_query' => array(
+                            array(
+                                'taxonomy' => 'post_format',
+                                'field'    => 'slug',
+                                'terms'    => array( 'post-format-link' ),
+                                'operator' => 'NOT IN'
+                            ),
+                        ),
+                    )
+                );
                 if( $blogFooter->have_posts() ){ ?>
                     <ul>
                         <?php while( $blogFooter->have_posts() ){ $blogFooter->the_post(); ?>

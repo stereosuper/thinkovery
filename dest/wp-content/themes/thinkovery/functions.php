@@ -12,6 +12,7 @@ add_filter( 'auto_update_plugin', '__return_true' );
 // Theme support
 add_theme_support( 'html5', array('comment-list', 'comment-form', 'search-form', 'gallery', 'caption', 'widgets') );
 add_theme_support( 'post-thumbnails' );
+add_theme_support( 'post-formats', array( 'link' ) );
 
 // Admin bar
 show_admin_bar(false);
