@@ -1,3 +1,19 @@
+<?php
+	if(!session_id()){
+		session_start();
+	}
+
+	$_POST = $_SESSION;
+	global $errorComment;
+	$errorComment = isset($_POST['errorcomment']) ? $_POST['errorcomment'] : false;
+
+	if(!isset($_GET['error'])){
+		if($errorComment){
+			$_POST['errorcomment'] = false;
+		}
+		session_destroy();
+	}
+?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?> class='no-js'>
 	<head>

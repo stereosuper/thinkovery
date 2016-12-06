@@ -191,6 +191,7 @@ add_action( 'widgets_init', 'think_unregister_default_widgets' );
 /*-----------------------------------------------------------------------------------*/
 /* Blog
 /*-----------------------------------------------------------------------------------*/
+// Only posts on search
 function think_search_filter($query){
     if($query->is_search){
         $query->set('post_type', 'post');
@@ -198,6 +199,28 @@ function think_search_filter($query){
     return $query;
 }
 add_filter( 'pre_get_posts', 'think_search_filter' );
+
+// Comments form error
+function think_die_handler($message, $title='', $args=array()){
+    if(empty($_POST['errorcomment'])){
+        $_POST['errorcomment'] = $message;
+    }
+
+    if(!session_id()){
+        session_start();
+    }
+
+    $_SESSION = $_POST;
+    session_write_close();
+
+    $url = strtok(wp_get_referer(), '?');
+    header('Location: ' . $url . '?error=true#commentform');
+    die();
+}
+function get_think_die_handler(){
+    return 'think_die_handler';
+}
+add_filter('wp_die_handler', 'get_think_die_handler');
 
 
 /*-----------------------------------------------------------------------------------*/
