@@ -9,6 +9,10 @@
 				<h1><?php the_title(); ?></h1>
 				<time datetime='<?php echo get_the_date('Y-m-d'); ?>'><?php echo get_the_date(); ?></time>
 
+				<?php if(get_field('intro')){ ?>
+				    <p class='intro'><?php the_field('intro'); ?></p>
+				<?php } ?>
+
 				<?php the_content(); ?>
 
 				<div>
@@ -50,7 +54,7 @@
 								<li>
 									<a href='<?php the_permalink(); ?>'>
 										<?php the_post_thumbnail(); ?>
-										<h4><?php the_title(); ?></h4>
+										<h3><?php the_title(); ?></h3>
 										<time datetime='<?php echo get_the_date('Y-m-d'); ?>'><?php echo get_the_date(); ?></time>
 										<span>
 											<?php $cats = get_the_category(); if($cats){

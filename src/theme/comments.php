@@ -9,7 +9,7 @@
 } ?>
 
 <?php if($comments) : ?>
-	<h3 id='comments'><?php _e('Comments', 'thinkovery'); ?></h3>
+	<h2 id='comments'><?php _e('Comments', 'thinkovery'); ?></h2>
 
 	<ul>
 		<?php foreach($comments as $comment) : ?>
@@ -35,7 +35,7 @@
 
 <?php if('open' == $post->comment_status) : ?>
 
-	<h3 id='leave-comment'><?php _e('Leave a comment', 'thinkovery'); ?></h3>
+	<h2 id='leave-comment'><?php _e('Leave a comment', 'thinkovery'); ?></h2>
 
 	<?php if( get_option('comment_registration') && !$user_ID ) : ?>
 		<p>Vous devez être <a href='<?php echo get_option('siteurl'); ?>/wp-login.php?redirect_to=<?php the_permalink(); ?>'>connecté</a> pour laisser un commentaire.</p>
