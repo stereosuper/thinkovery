@@ -13,7 +13,6 @@ get_header(); ?>
             $count = 0;
             foreach($declisField as $decli){
                 $declis[$count]['mainColor'] = $decli['mainColor'];
-                $declis[$count]['secondaryColor'] = $decli['secondaryColor'];
                 $declis[$count]['title1'] = $decli['title1'];
                 $declis[$count]['title2'] = $decli['title2'];
                 $declis[$count]['txt'] = $decli['txt'];
