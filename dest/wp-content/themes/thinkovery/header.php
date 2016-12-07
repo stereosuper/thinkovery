@@ -25,6 +25,8 @@
 		<link rel='alternate' type='application/rss+xml' title='<?php echo get_bloginfo('sitename') ?> Feed' href='<?php echo get_bloginfo('rss2_url') ?>'>
 
 		<?php wp_head(); ?>
+		<script src='https://use.typekit.net/uhd8avk.js'></script>
+		<script>try{Typekit.load({ async: true });}catch(e){}</script>
 	</head>
 
 	<body <?php body_class(); ?>>

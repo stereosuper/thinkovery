@@ -61,7 +61,27 @@
 }
 
 // Fonts
-// @mixin font($size){
-//     font-family: $font;
-//     font-size: $size;
-// }
+@mixin sofia($size){
+    font-family: $sofia;
+    font-size: $size;
+    font-weight: 400;
+    font-style: normal;
+}
+@mixin sofia-italic($size){
+    font-family: $sofia;
+    font-size: $size;
+    font-weight: 400;
+    font-style: italic;
+}
+@mixin sofia-bold($size){
+    font-family: $sofia;
+    font-size: $size;
+    font-weight: 700;
+    font-style: normal;
+}
+@mixin sofia-bold-italic($size){
+    font-family: $sofia;
+    font-size: $size;
+    font-weight: 700;
+    font-style: italic;
+}
