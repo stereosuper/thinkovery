@@ -3,7 +3,7 @@
 	$colorprimary: map-get($theme, color);
 	$colorsecondary: map-get($theme, color-secondary);
     .theme-#{$color}{
-        h1{
+        .theme-color, h1, #header .current-language-item, a{
         	color: $colorprimary;
         }
         ul{
@@ -26,9 +26,6 @@
                     color: $colorprimary;
                 }
             }
-        }
-        a{
-        	color: $colorprimary;
         }
         .post-img{
             &:before{
