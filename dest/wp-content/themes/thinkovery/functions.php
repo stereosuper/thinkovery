@@ -164,7 +164,7 @@ register_nav_menus(
 
 // Cleanup WP Menu html
 function think_css_attributes_filter($var){
-    return is_array($var) ? array_intersect($var, array('current-menu-item', 'current_page_parent')) : '';
+    return is_array($var) ? array_intersect($var, array('current-menu-item', 'current_page_parent', 'link-contact', 'hide-mb')) : '';
 }
 add_filter( 'nav_menu_css_class', 'think_css_attributes_filter' );
 

@@ -6,14 +6,11 @@
     top: 0;
     background: $black;
     color: #fff;
-    ul{
+    ul, li{
         display: inline-block;
         margin: 0;
-        font-size: 1.6rem;
     }
     li{
-        display: inline-block;
-        margin: 0;
         &:before{
             display: none;
         }
@@ -27,38 +24,123 @@
         display: flex;
         justify-content: space-between;
     }
+    .logo{
+        display: flex;
+        align-items: center;
+    }
 }
 
 .menu-wrapper{
     display: inline-block;
 }
 .menu-main{
+    ul{
+        font-size: 1.6rem;
+    }
     a{
-        padding: 28px 30px 32px;
+        padding: 28px 30px 31px;
     }
 }
 
 .mlp-language-box{
     display: inline-block;
     padding: 0 0 0 30px;
+    ul{
+        font-size: 1.4rem;
+    }
     a{
         position: relative;
-        margin: 0 5px;
-        transform: translate3d(0, 35%, 0);
+        padding: 5px;
+        transform: translate3d(0, 25%, 0);
     }
     .current-language-item{
         font-weight: 700;
         pointer-events: none;
-        transform: translate3d(0, -35%, 0);
+        transform: translate3d(0, -25%, 0);
         &:after{
             content: '';
             width: 15px;
             height: 1px;
             position: absolute;
-            top: 100%;
-            right: -10px;
+            top: 80%;
+            right: -7px;
             background: #fff;
             transform: rotate(-50deg);
+        }
+    }
+}
+
+.logo-svg{
+    width: 150px;
+    fill: #fff;
+}
+
+
+@media (max-width: $desktop){
+    .menu-main{
+        a{
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+    }
+}
+@media (max-width: $desktop-small){
+    #header{
+        padding: 15px 0 0;
+        .container{
+            display: block;
+            text-align: center;
+        }
+        .logo{
+            display: inline-block;
+        }
+        .menu-wrapper{
+            display: block;
+        }
+    }
+
+    .menu-main{
+        ul{
+            font-size: 1.5rem;
+        }
+        a{
+            padding-top: 25px;
+            padding-bottom: 20px;
+        }
+    }
+}
+
+@media (max-width: $tablet){
+    .mlp-language-box{
+        padding: 0;
+        position: absolute;
+        left: $gutter*2;
+        top: 20px;
+    }
+
+    .link-contact{
+        position: absolute;
+        right: $gutter*2;
+        top: 20px;
+        a{
+            padding: 0;
+        }
+    }
+}
+
+@media (max-width: $phone){
+    #header{
+        .menu-main{
+            display: flex;
+            margin: 0 -12px;
+            justify-content: space-between;
+        }
+    }
+
+    .menu-main{
+        a{
+            padding-left: 12px;
+            padding-right: 12px;
         }
     }
 }

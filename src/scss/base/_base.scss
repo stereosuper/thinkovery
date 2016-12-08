@@ -262,3 +262,10 @@ a{
         }
     }
 }
+
+
+@media (max-width: $phone){
+    .hide-mb{
+        display: none !important;
+    }
+}

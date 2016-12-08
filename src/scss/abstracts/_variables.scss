@@ -30,14 +30,23 @@ $theme-blue-secondary: rgb(138, 126, 224);
 $theme-green: rgb(43, 240, 117);
 $theme-green-secondary: rgb(2, 187, 255);
 
+
 // Transitions
 $transition: 0.3s ease-in-out;
+
 
 // Fonts
 $sofia: 'sofia-pro', sans-serif;
 
+
 // Mediaqueries
 $retina: 'only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi)';
+
+$desktop: '1100px';
+$desktop-small: '960px';
+$tablet: '780px';
+$phone: '580px';
+
 
 // Grid
 $col: 100/12*1%;
