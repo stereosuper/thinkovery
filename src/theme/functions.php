@@ -13,6 +13,7 @@ add_filter( 'auto_update_plugin', '__return_true' );
 add_theme_support( 'html5', array('comment-list', 'comment-form', 'search-form', 'gallery', 'caption', 'widgets') );
 add_theme_support( 'post-thumbnails' );
 add_theme_support( 'post-formats', array( 'link' ) );
+add_theme_support('title-tag');
 
 // Admin bar
 show_admin_bar(false);
@@ -67,29 +68,6 @@ function think_remove_top_menus( $wp_admin_bar ){
 }
 add_action( 'admin_bar_menu', 'think_remove_top_menus', 999 );
 
-// Enlever le lien par défaut autour des images
-function think_imagelink_setup(){
-	$image_set = get_option( 'image_default_link_type' );
-    if($image_set !== 'none')
-        update_option('image_default_link_type', 'none');
-}
-add_action( 'admin_init', 'think_imagelink_setup' );
-
-// Enlever les <p> autour des images + ajouter une div class='img'
-function think_around_images($content){
-   $content = preg_replace('/<p>\s*(<a .*>)?\s*(<img .* \/>)\s*(<\/a>)?\s*<\/p>/iU', '\1\2\3', $content);
-   $content = preg_replace( '/(<img([^>]*)>)/i', '<div class="post-img">$1</div>', $content );
-   return $content;
-}
-add_filter( 'the_content', 'think_around_images' );
-
-// Allow svg in media library
-function think_mime_types($mimes){
-    $mimes['svg'] = 'image/svg+xml';
-    return $mimes;
-}
-add_filter( 'upload_mimes', 'think_mime_types' );
-
 // Custom posts in the dashboard
 function think_right_now_custom_post() {
     $post_types = get_post_types(array( '_builtin' => false ) , 'objects' , 'and');
@@ -136,6 +114,43 @@ if(function_exists('acf_add_options_page')){
         'parent_slug'   => $optionsMainPage['menu_slug'],
     ));
 }
+
+
+/*-----------------------------------------------------------------------------------*/
+/* Images
+/*-----------------------------------------------------------------------------------*/
+// Enlever le lien par défaut autour des images
+function think_imagelink_setup(){
+	$image_set = get_option( 'image_default_link_type' );
+    if($image_set !== 'none')
+        update_option('image_default_link_type', 'none');
+}
+add_action( 'admin_init', 'think_imagelink_setup' );
+
+// Enlever les <p> autour des images
+function think_around_images($content){
+   $content = preg_replace('/<p>\s*(<a .*>)?\s*(<img .* \/>)\s*(<\/a>)?\s*<\/p>/iU', '\1\2\3', $content);
+   return $content;
+}
+add_filter( 'the_content', 'think_around_images' );
+
+// Put the align classes on the div class'post-img'
+function image_tag($html, $id, $alt, $title, $align){
+    $html = '<div class="post-img align' . $align . '">' . $html . '</div>';
+    return $html;
+}
+add_filter( 'get_image_tag', 'image_tag', 0, 5 );
+
+// Remove the classes on images
+add_filter( 'get_image_tag_class', '__return_empty_string' );
+
+// Allow svg in media library
+function think_mime_types($mimes){
+    $mimes['svg'] = 'image/svg+xml';
+    return $mimes;
+}
+add_filter( 'upload_mimes', 'think_mime_types' );
+
 
 /*-----------------------------------------------------------------------------------*/
 /* Menus
