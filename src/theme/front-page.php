@@ -7,29 +7,6 @@ get_header(); ?>
 
     <?php if ( have_posts() ) : the_post(); ?>
 
-        <?php
-            $declisField = get_field('decli', 'options');
-            $declis = [];
-            $count = 0;
-            foreach($declisField as $decli){
-                $declis[$count]['mainColor'] = $decli['mainColor'];
-                $declis[$count]['title1'] = $decli['title1'];
-                $declis[$count]['title2'] = $decli['title2'];
-                $declis[$count]['txt'] = $decli['txt'];
-                $declis[$count]['circlePosX'] = $decli['circlePosX'];
-                $declis[$count]['circlePosY'] = $decli['circlePosY'];
-                $declis[$count]['circleWidth'] = $decli['circleWidth'];
-                $declis[$count]['circlePlan'] = $decli['circlePlan'];
-
-                $countImg = 0;
-                foreach($decli['homeImg'] as $img){
-                    $declis[$count]['homeImg'][$countImg] = $img['img'];
-                    $countImg ++;
-                }
-                $count ++;
-            }
-        ?>
-
         <header>
             <div style='background-image:url("<?php echo wp_get_attachment_url($declis[0]['homeImg'][0]); ?>")'>
                 <div class='container'>
