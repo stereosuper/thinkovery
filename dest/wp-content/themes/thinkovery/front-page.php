@@ -8,13 +8,13 @@ get_header(); ?>
     <?php if ( have_posts() ) : the_post(); ?>
 
         <header>
-            <div style='background-image:url("<?php echo wp_get_attachment_url($declis[0]['homeImg'][0]); ?>")'>
+            <div style='background-image:url("<?php echo wp_get_attachment_url($currentDecli['homeImg'][0]); ?>")'>
                 <div class='container'>
-                    <h2><b><?php echo $declis[0]['title1']; ?></b> <b><?php echo $declis[0]['title2']; ?></b></h2>
+                    <h2><b><?php echo $currentDecli['title1']; ?></b> <b><?php echo $currentDecli['title2']; ?></b></h2>
                 </div>
                 <?php
                     $countImg = 0;
-                    foreach($declis[0]['homeImg'] as $img){
+                    foreach($currentDecli['homeImg'] as $img){
                         if($countImg > 0){ ?>
                             <div style="background-image: url('<?php echo wp_get_attachment_url($declis[0]['homeImg'][$countImg]); ?>')"></div>
                         <?php }
@@ -24,7 +24,7 @@ get_header(); ?>
             </div>
 
             <div class='container'>
-                <?php echo $declis[0]['txt']; ?>
+                <?php echo $currentDecli['txt']; ?>
                 <h1><?php the_title(); ?></h1>
                 <a href='<?php the_field('ctaLink'); ?>' class='btn'><?php the_field('ctaTxt'); ?></a>
             </div>
