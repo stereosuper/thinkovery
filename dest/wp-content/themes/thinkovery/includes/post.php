@@ -4,7 +4,7 @@
 
     <?php if(!$formatLink){ ?>
 
-        <h2 class='h3'><a href='<?php the_permalink(); ?>'><?php the_title(); ?></a></h2>
+        <h2><a href='<?php the_permalink(); ?>'><?php the_title(); ?></a></h2>
         <time datetime='<?php echo get_the_date('Y-m-d'); ?>'><?php echo get_the_date(); ?></time>
         <span>
             <?php $cats = get_the_category(); if($cats){
