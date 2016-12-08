@@ -73,6 +73,18 @@
     font-weight: 400;
     font-style: italic;
 }
+@mixin sofia-semi-bold($size){
+    font-family: $sofia;
+    font-size: $size;
+    font-weight: 600;
+    font-style: normal;
+}
+@mixin sofia-semi-bold-italic($size){
+    font-family: $sofia;
+    font-size: $size;
+    font-weight: 600;
+    font-style: italic;
+}
 @mixin sofia-bold($size){
     font-family: $sofia;
     font-size: $size;

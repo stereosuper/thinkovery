@@ -1,16 +1,18 @@
 <?php get_header(); ?>
 
 	<div class='container'>
-        <?php if ( have_posts() ) : the_post(); ?>
+		<div class='container-small'>
+	        <?php if ( have_posts() ) : the_post(); ?>
 
-            <h1><?php the_title(); ?></h1>
-            <?php the_content(); ?>
+	            <h1><?php the_title(); ?></h1>
+	            <?php the_content(); ?>
 
-        <?php else : ?>
+	        <?php else : ?>
 
-            <h1>404</h1>
+	            <h1>404</h1>
 
-        <?php endif; ?>
+	        <?php endif; ?>
+        </div>
     </div>
 
 <?php get_footer(); ?>
