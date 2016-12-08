@@ -10,7 +10,10 @@ get_header(); ?>
         <header>
             <div style='background-image:url("<?php echo wp_get_attachment_url($currentDecli['homeImg'][0]); ?>")'>
                 <div class='container'>
-                    <h2><b><?php echo $currentDecli['title1']; ?></b> <b><?php echo $currentDecli['title2']; ?></b></h2>
+                    <strong>
+                        <span><?php echo $currentDecli['title1']; ?></span>
+                        <span><?php echo $currentDecli['title2']; ?></span>
+                    </strong>
                 </div>
                 <?php
                     $countImg = 0;
@@ -32,11 +35,11 @@ get_header(); ?>
 
         <section class='container'>
             <div>
-                <h3><?php the_field('section1Title1'); ?></h3>
+                <h2><?php the_field('section1Title1'); ?></h2>
                 <?php the_field('section1Txt1'); ?>
                 <?php the_field('section1Video1'); ?>
             </div><div>
-                <h3><?php the_field('section1Title2'); ?></h3>
+                <h2><?php the_field('section1Title2'); ?></h2>
                 <?php the_field('section1Txt2'); ?>
                 <?php the_field('section1Video2'); ?>
             </div>
@@ -44,21 +47,21 @@ get_header(); ?>
 
         <section>
             <div class='container'>
-                <h3><?php the_field('section2Title'); ?></h3>
+                <h2><?php the_field('section2Title'); ?></h2>
                 <?php the_field('section2Txt'); ?>
             </div>
         </section>
 
         <section>
             <div class='container'>
-                <h3><?php the_field('section3Titre'); ?></h3>
+                <h2><?php the_field('section3Titre'); ?></h2>
                 <?php the_field('section3Txt'); ?>
 
-                <h4><?php the_field('researchTitle'); ?></h4>
+                <h3><?php the_field('researchTitle'); ?></h3>
                 <?php the_field('researchTxt'); ?>
             </div>
             <div class='container'>
-                <h4><?php the_field('expTitle'); ?></h4>
+                <h3><?php the_field('expTitle'); ?></h3>
                 <?php the_field('expTxt'); ?>
             </div>
         </section>
