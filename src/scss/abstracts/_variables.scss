@@ -9,26 +9,33 @@ $gray-light: rgb(107, 114, 116);
 
 // Themes
 $themes: (
-    yellow,
-    orange,
-    red,
-    pink,
-    blue,
-    green
+    yellow: (
+		color: rgb(255, 228, 0),
+		color-secondary: rgb(43, 240, 117)
+    ),
+    orange: (
+		color: rgb(255, 120, 0),
+		color-secondary: rgb(255, 228, 0)
+    ),
+    red: (
+		color: rgb(255, 6, 0),
+		color-secondary: rgb(255, 120, 0)
+    ),
+    pink: (
+		color: rgb(240, 43, 140),
+		color-secondary: rgb(255, 6, 0)
+    ),
+    blue: (
+		color: rgb(2, 187, 255),
+		color-secondary: rgb(138, 126, 224)
+    ),
+    green: (
+		color: rgb(43, 240, 117),
+		color-secondary: rgb(2, 187, 255)
+    )
 );
 
-$theme-yellow: rgb(255, 228, 0);
-$theme-yellow-secondary: rgb(43, 240, 117);
-$theme-orange: rgb(255, 120, 0);
-$theme-orange-secondary: rgb(255, 228, 0);
-$theme-red: rgb(255, 6, 0);
-$theme-red-secondary: rgb(255, 120, 0);
-$theme-pink: rgb(240, 43, 140);
-$theme-pink-secondary: rgb(255, 6, 0);
-$theme-blue: rgb(2, 187, 255);
-$theme-blue-secondary: rgb(138, 126, 224);
-$theme-green: rgb(43, 240, 117);
-$theme-green-secondary: rgb(2, 187, 255);
+
 
 
 // Transitions
