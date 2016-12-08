@@ -1,8 +1,39 @@
 /* Theme */
-@each $color in $themes{
+@each $color, $theme in $themes{
+	$colorprimary: map-get($theme, color);
+	$colorsecondary: map-get($theme, color-secondary);
     .theme-#{$color}{
         h1{
-        	//color: $theme-#{$color};
+        	color: $colorprimary;
+        }
+        ul{
+        	> li{
+        		&:before{
+        			border-color: $colorprimary;
+        		}
+        	}
+        }
+        ol{
+            > li{
+                &:before{
+                    color: $colorprimary;
+                }
+            }
+        }
+        blockquote{
+            p{
+                &:before, &:after{
+                    color: $colorprimary;
+                }
+            }
+        }
+        a{
+        	color: $colorprimary;
+        }
+        .post-img{
+            &:before{
+				background-color: $colorprimary;
+            }
         }
     }
 }
