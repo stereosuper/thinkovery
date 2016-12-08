@@ -19,7 +19,6 @@
 	global $currentDecli;
 	if(isset($_COOKIE['think-decli'])){
 		$currentDecli = unserialize(base64_decode($_COOKIE['think-decli']));
-		echo 'HELLO' . $currentDecli;
 	}else{
 		$declisField = get_field('decli', 'options');
 		$declis = [];
