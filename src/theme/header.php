@@ -53,11 +53,13 @@
 
 	<body <?php body_class('theme-'.$declis[0]['mainColor']); ?>>
 
-		<header role='banner'>
+		<header role='banner' id='header'>
 			<nav role='navigation' class='container'>
 				<a href='<?php echo home_url('/'); ?>' title='<?php bloginfo( 'name' ); ?>' rel='home'><?php bloginfo( 'name' ); ?></a>
-				<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu-main' ) ); ?>
-				<?php mlp_show_linked_elements( array('show_current_blog' => true) ); ?>
+				<div class='menu-wrapper'>
+					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu-main' ) ); ?>
+					<?php mlp_show_linked_elements( array('show_current_blog' => true) ); ?>
+				</div>
 			</nav>
 		</header>
 
