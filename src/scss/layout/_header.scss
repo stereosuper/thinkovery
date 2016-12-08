@@ -56,6 +56,7 @@
     .current-language-item{
         font-weight: 700;
         pointer-events: none;
+        cursor: default;
         transform: translate3d(0, -25%, 0);
         &:after{
             content: '';

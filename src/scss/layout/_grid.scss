@@ -4,7 +4,32 @@
     max-width: 1220px;
     padding: 0 $gutter*2;
     margin: 0 auto;
+    &-medium{
+        padding: 0 #{$col};
+    }
     &-small{
-    	padding: 0 calc(#{$col*2});
+    	padding: 0 #{$col*2};
+    }
+}
+
+
+.grid{
+    display: flex;
+    margin: 0 $gutter*-1;
+    justify-content: space-between;
+}
+
+[class*='col-']{
+    padding: 0 $gutter;
+}
+
+.col{
+    .container-medium &{
+        &-2{
+            width: $colMedium*2;
+        }
+        &-7{
+            width: $colMedium*7;
+        }
     }
 }

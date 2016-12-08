@@ -1,0 +1,8 @@
+.social{
+    li{
+        display: inline-block;
+        &:before{
+            display: none;
+        }
+    }
+}

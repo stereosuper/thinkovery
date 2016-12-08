@@ -6,6 +6,8 @@ $white: rgb(255, 255, 255);
 $black: #0d1617;
 $gray: rgb(78, 87, 90);
 $gray-light: rgb(107, 114, 116);
+$gray-superlight: rgb(143, 148, 149);
+$gray-dark: rgb(35, 38, 39);
 
 
 // Themes
@@ -56,4 +58,6 @@ $phone: '580px';
 
 // Grid
 $col: 100/12*1%;
+$colMedium: 100/10*1%;
+
 $gutter: 10px;
