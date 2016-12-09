@@ -8,7 +8,7 @@ get_header(); ?>
     <?php if ( have_posts() ) : the_post(); ?>
 
         <header>
-            <div style='background-image:url("<?php echo wp_get_attachment_url($currentDecli['homeImg'][0]); ?>")'>
+            <div id='bloc-top' style='background-image:url("<?php echo wp_get_attachment_url($currentDecli['homeImg'][0]); ?>")'>
                 <div class='container'>
                     <strong>
                         <span><?php echo $currentDecli['title1']; ?></span>
@@ -25,11 +25,16 @@ get_header(); ?>
                     }
                 ?>
             </div>
-
-            <div class='container'>
-                <?php echo $currentDecli['txt']; ?>
-                <h1><?php the_title(); ?></h1>
-                <a href='<?php the_field('ctaLink'); ?>' class='btn'><?php the_field('ctaTxt'); ?></a>
+            <div id='bloc-revelation'>
+                <div class='container'>
+                    <div class='zone-txt align-right'>
+                        <?php echo $currentDecli['txt']; ?>
+                        <h1><?php the_title(); ?></h1>
+                    </div>
+                    <div class='zone-btn align-center'>
+                        <a href='<?php the_field('ctaLink'); ?>' class='btn'><?php the_field('ctaTxt'); ?><svg class='icon'><use xlink:href='#icon-arrow-right'/></svg></a>
+                    </div>
+                </div>
             </div>
         </header>
 

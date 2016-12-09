@@ -32,5 +32,15 @@
 				background-color: $colorprimary;
             }
         }
+        #bloc-revelation{
+            p{
+                strong{
+                    color: $colorprimary;
+                }
+            }
+        }
+        .btn{
+            background: $colorprimary;
+        }
     }
 }
