@@ -23,3 +23,40 @@
 		font-size: 4.5rem;
 	}
 }
+
+.wrapper-blocs-half{
+	display: flex;
+	justify-content: space-between;
+	padding: 100px 0 140px;
+	.bloc-half{
+		width: calc(50% - #{$gutter});
+		h2, p{
+			max-width: 83.3333%;
+		}
+	}
+}
+
+#more-than-moocs{
+	position: relative;
+	padding: 120px 0 144px;
+	overflow: hidden;
+	&:before, &:after{
+		content: '';
+		display: block;
+		width: 50%;
+		height: 24px;
+		position: absolute;
+		bottom: 0;
+		background: $white;
+	}
+	&:before{
+		left: 0;
+		transform: skewX(45deg);
+		transform-origin: 0 100%;
+	}
+	&:after{
+		right: 0;
+		transform: skewX(-45deg);
+		transform-origin: 0 100%;
+	}
+}

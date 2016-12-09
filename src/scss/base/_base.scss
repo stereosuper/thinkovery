@@ -282,6 +282,11 @@ a{
     }
 }
 
+.bg-black{
+    background: $black;
+    color: $white;
+}
+
 
 @media (max-width: $phone){
     .hide-mb{

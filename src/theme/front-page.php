@@ -38,19 +38,19 @@ get_header(); ?>
             </div>
         </header>
 
-        <section class='container'>
-            <div>
+        <section class='container wrapper-blocs-half'>
+            <div class='bloc-half'>
                 <h2><?php the_field('section1Title1'); ?></h2>
                 <?php the_field('section1Txt1'); ?>
                 <?php the_field('section1Video1'); ?>
-            </div><div>
+            </div><div class='bloc-half'>
                 <h2><?php the_field('section1Title2'); ?></h2>
                 <?php the_field('section1Txt2'); ?>
                 <?php the_field('section1Video2'); ?>
             </div>
         </section>
 
-        <section>
+        <section id='more-than-moocs' class='bg-black'>
             <div class='container'>
                 <h2><?php the_field('section2Title'); ?></h2>
                 <?php the_field('section2Txt'); ?>
