@@ -295,30 +295,6 @@ a{
     color: $white;
 }
 
-.hoop{
-    fill: red;
-    position: relative;
-    
-    /*display: block;
-    width: 166px;
-    height: 166px;
-    border: 22px solid red;
-    border-radius: 50%;
-    overflow: hidden;
-    position: relative;
-    &:before{
-        content: '';
-        display: block;
-        width: 360px;
-        height: 360px;
-        position: absolute;
-        top: -65%;
-        left: 25%;
-        border-radius: 50%;
-    }*/
-}
-
-
 @media (max-width: $phone){
     .hide-mb{
         display: none !important;

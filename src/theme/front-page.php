@@ -55,6 +55,15 @@ get_header(); ?>
                     <?php the_field('section2Txt'); ?>
                 </div>
                 <svg class='icon hoop'><use xlink:href='#icon-hoop'/></svg>
+                <svg class='icon hoop'><use xlink:href='#icon-hoop'/></svg>
+                <svg class='icon hoop'><use xlink:href='#icon-hoop'/></svg>
+                <svg class='icon hoop'><use xlink:href='#icon-hoop'/></svg>
+                <svg class='icon hoop'><use xlink:href='#icon-hoop'/></svg>
+                <svg class='icon hoop'><use xlink:href='#icon-hoop'/></svg>
+                <svg class='icon hoop'><use xlink:href='#icon-hoop'/></svg>
+                <svg class='icon hoop'><use xlink:href='#icon-hoop'/></svg>
+                <svg class='icon hoop'><use xlink:href='#icon-hoop'/></svg>
+                <svg class='icon hoop'><use xlink:href='#icon-hoop'/></svg>
             </div>
         </section>
 
