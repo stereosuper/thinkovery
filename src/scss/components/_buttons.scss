@@ -1,31 +1,41 @@
 /* Buttons */
-a{
-	&.btn{
-		display: inline-block;
-		position: relative;
-		padding: 40px 50px;
-		font-weight: 600;
-		font-size: 2.4rem;
-		box-shadow: none;
-		color: $white;
-		overflow: hidden;
-		z-index: 1;
+
+.btn{
+	display: inline-block;
+	padding: 40px 50px;
+	position: relative;
+	z-index: 1;
+	overflow: hidden;
+	font-weight: 600;
+	font-size: 2.4rem;
+	text-align: center;
+	box-shadow: none;
+	color: $white !important;
+	&:before{
+		content: '';
+		width: 360px;
+		height: 360px;
+		position: absolute;
+		top: -65%;
+		left: 25%;
+		border-radius: 50%;
+		z-index: -1;
+		transition: $transition;
+	}
+	.icon{
+		width: 17px;
+		height: 11px;
+		margin: 0 0 0 14px;
+		fill: $white;
+		transition: $transition;
+	}
+	&:hover, &:focus{
 		&:before{
-			content: '';
-			display: block;
-			width: 360px;
-			height: 360px;
-			position: absolute;
-			top: -65%;
-			left: 25%;
-			border-radius: 50%;
-			z-index: -1;
+		    transform: scale(8);
+		    transition: 0.5s ease-in-out;
 		}
 		.icon{
-			fill: $white;
-			width: 17px;
-			height: 11px;
-			margin-left: 14px;
+			transform: translate3d(10px, 0, 0);
 		}
 	}
 }

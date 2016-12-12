@@ -3,15 +3,8 @@
 	$colorprimary: map-get($theme, color);
 	$colorsecondary: map-get($theme, color-secondary);
     .theme-#{$color}{
-        .theme-color, h1, #header .current-language-item, a{
+        .theme-color, h1, #header .current-language-item, a, h2 > span, h1 > strong{
         	color: $colorprimary;
-        }
-        ul{
-        	> li{
-        		&:before{
-        			border-color: $colorprimary;
-        		}
-        	}
         }
         ol{
             > li{
@@ -27,11 +20,6 @@
                 }
             }
         }
-        .post-img{
-            &:before{
-				background-color: $colorprimary;
-            }
-        }
         #bloc-revelation{
             p{
                 strong{
@@ -39,17 +27,39 @@
                 }
             }
         }
-        a{
-            &.btn{
-                background: $colorprimary;
+        .post-img{
+            &:before{
+				background-color: $colorprimary;
+            }
+        }
+        #logo-o{
+            border-color: $colorprimary;
+        }
+        ul{
+            > li{
                 &:before{
-                    background: radial-gradient(ellipse at center, $colorsecondary 0%, rgba($colorsecondary, 0) 65%);
+                    border-color: $colorprimary;
                 }
             }
         }
-        h2{
-            > span{
-                color: $colorprimary;
+
+        .btn{
+            background: $colorprimary;
+            &:before{
+                background: radial-gradient(ellipse at center, $colorsecondary 0, rgba($colorsecondary, 0) 65%);
+            }
+        }
+
+        a, #header .mlp-language-box a{
+            &:hover, &:focus{
+                color: $colorsecondary;
+            }
+        }
+        a, .logo{
+            &:hover, &:focus{
+                .theme-color{
+                    color: $colorsecondary;
+                }
             }
         }
         .hoop{
