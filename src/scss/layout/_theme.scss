@@ -35,5 +35,25 @@
 				background-color: $colorprimary;
             }
         }
+        #bloc-revelation{
+            p{
+                strong{
+                    color: $colorprimary;
+                }
+            }
+        }
+        a{
+            &.btn{
+                background: $colorprimary;
+                &:before{
+                    background: radial-gradient(ellipse at center, $colorsecondary 0%, rgba($colorsecondary, 0) 65%);
+                }
+            }
+        }
+        h2{
+            > span{
+                color: $colorprimary;
+            }
+        }
     }
 }
