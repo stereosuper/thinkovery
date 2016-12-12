@@ -17,6 +17,7 @@ html{
 
 body{
     font-family: $sofia, sans-serif;
+    font-feature-settings: 'salt', 'liga' 1;
     font-size: 1.6em;
     line-height: 1.2;
     -webkit-font-smoothing: antialiased;
