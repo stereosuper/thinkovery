@@ -20,6 +20,7 @@ $(function(){
 
 
     function showScrollIndic(){
+        header.addClass('on');
         if(!logo.hasClass('on')){
             logo.addClass('on');
             TweenMax.to(logoO, 0.3, {opacity: 1});
@@ -27,6 +28,7 @@ $(function(){
         }
     }
     function hideScrollIndic(){
+        header.removeClass('on');
         if(logo.hasClass('on')){
             logo.removeClass('on');
             TweenMax.to(logoO, 0.3, {opacity: 0});
@@ -45,7 +47,7 @@ $(function(){
 
         myScroll = $(document).scrollTop();
         scrollPercent = (myScroll-10) / (docHeight-windowHeight);
-        scrollProgress = scrollPercent*353;
+        scrollProgress = scrollPercent*227.7;
 
         if(myScroll > 10){
             showScrollIndic();

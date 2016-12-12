@@ -42,6 +42,20 @@
                 }
             }
         }
+        #header{
+            a{
+                &:hover, &:focus{
+                    color: $colorprimary;
+                }
+            }
+        }
+        .menu-main{
+            a{
+                &:before{
+                    border-color: $colorprimary;
+                }
+            }
+        }
 
         .btn{
             background: $colorprimary;
@@ -50,7 +64,7 @@
             }
         }
 
-        a, #header .mlp-language-box a{
+        a{
             &:hover, &:focus{
                 color: $colorsecondary;
             }
