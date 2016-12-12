@@ -67,17 +67,24 @@ get_header(); ?>
             </div>
         </section>
 
-        <section>
+        <section id='digital-learning'>
             <div class='container'>
-                <h2><?php the_field('section3Titre'); ?></h2>
-                <?php the_field('section3Txt'); ?>
-
-                <h3><?php the_field('researchTitle'); ?></h3>
-                <?php the_field('researchTxt'); ?>
+                <div class='container-small'>
+                    <h2><?php the_field('section3Titre'); ?></h2>
+                    <?php the_field('section3Txt'); ?>
+                    <div class='bloc-with-picto'>
+                        <h3><span class='title-picto'></span><?php the_field('researchTitle'); ?></h3>
+                        <?php the_field('researchTxt'); ?>
+                    </div>
+                </div>
             </div>
             <div class='container'>
-                <h3><?php the_field('expTitle'); ?></h3>
-                <?php the_field('expTxt'); ?>
+                <div class='container-small'>
+                    <div class='bloc-with-picto'>
+                        <h3><?php the_field('expTitle'); ?></h3>
+                        <?php the_field('expTxt'); ?>
+                    </div>
+                </div>
             </div>
         </section>
 
