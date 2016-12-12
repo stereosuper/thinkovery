@@ -38,7 +38,7 @@ get_header(); ?>
             </div>
         </header>
 
-        <section class='container wrapper-blocs-half'>
+        <section id='mooc-spoc' class='container wrapper-blocs-half'>
             <div class='bloc-half'>
                 <h2><?php the_field('section1Title1'); ?></h2>
                 <?php the_field('section1Txt1'); ?>
@@ -51,9 +51,12 @@ get_header(); ?>
         </section>
 
         <section id='more-than-moocs' class='bg-black'>
-            <div class='container'>
-                <h2><?php the_field('section2Title'); ?></h2>
-                <?php the_field('section2Txt'); ?>
+            <div class='container wrapper-blocs-half'>
+                <div class='bloc-half align-right'>
+                    <h2><?php the_field('section2Title'); ?></h2>
+                    <?php the_field('section2Txt'); ?>
+                </div>
+                <svg class='icon hoop'><use xlink:href='#icon-hoop'/></svg>
             </div>
         </section>
 

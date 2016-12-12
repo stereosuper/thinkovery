@@ -52,5 +52,8 @@
                 color: $colorprimary;
             }
         }
+        .hoop{
+            fill: url(#gradient-hoop);
+        }
     }
 }

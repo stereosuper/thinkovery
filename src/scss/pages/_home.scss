@@ -27,13 +27,16 @@
 .wrapper-blocs-half{
 	display: flex;
 	justify-content: space-between;
-	padding: 100px 0 140px;
 	.bloc-half{
 		width: calc(50% - #{$gutter});
 		h2, p{
 			max-width: 83.3333%;
 		}
 	}
+}
+
+#mooc-spoc{
+	padding: 100px 0 140px;
 }
 
 #more-than-moocs{
