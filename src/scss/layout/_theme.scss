@@ -6,6 +6,9 @@
         .theme-color, h1, #header .current-language-item, a{
         	color: $colorprimary;
         }
+        #logo-o{
+            border-color: $colorprimary;
+        }
         ul{
         	> li{
         		&:before{
