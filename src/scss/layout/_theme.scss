@@ -50,7 +50,7 @@
             }
         }
 
-        a{
+        a, #header .mlp-language-box a{
             &:hover, &:focus{
                 color: $colorsecondary;
             }
