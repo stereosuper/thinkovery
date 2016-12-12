@@ -149,21 +149,19 @@
     }
 }
 
-.mlp-language-box{
+.lang{
     display: inline-block;
     padding: 0 0 0 30px;
-    ul{
-        font-size: 1.4rem;
-    }
+    font-size: 1.4rem;
     a{
-        position: relative;
         padding: 5px;
         transform: translate3d(0, 25%, 0);
     }
-    .current-language-item{
+    span{
+        display: block;
+        padding: 5px;
+        position: relative;
         font-weight: 700;
-        pointer-events: none;
-        cursor: default;
         transform: translate3d(0, -25%, 0);
         &:after{
             content: '';
@@ -224,7 +222,7 @@
 }
 
 @media (max-width: $tablet){
-    .mlp-language-box{
+    .lang{
         padding: 0;
         position: absolute;
         left: $gutter*2;

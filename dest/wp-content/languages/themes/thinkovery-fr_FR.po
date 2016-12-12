@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Thinkovery\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: Mon Dec 05 2016 15:48:13 GMT+0100 (CET)\n"
-"PO-Revision-Date: Mon Dec 05 2016 15:48:22 GMT+0100 (CET)\n"
+"PO-Revision-Date: Mon Dec 12 2016 17:38:08 GMT+0100 (CET)\n"
 "Last-Translator: adminThink <elisabeth@stereosuper.fr>\n"
 "Language-Team: \n"
 "Language: French (France)\n"
@@ -13,7 +13,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: .\n"
 "X-Poedit-KeywordsList: _:1;gettext:1;dgettext:2;ngettext:1,2;dngettext:2,3;"
 "__:1;_e:1;_c:1;_n:1,2;_n_noop:1,2;_nc:1,2;__ngettext:1,2;__ngettext_noop:1,2;"
 "_x:1,2c;_ex:1,2c;_nx:1,2,4c;_nx_noop:1,2,3c;_n_js:1,2;_nx_js:1,2,3c;"
@@ -22,71 +21,107 @@ msgstr ""
 "X-Loco-Target-Locale: fr_FR\n"
 "X-Generator: Loco - https://localise.biz/"
 
-#: /comments.php:12
-msgid "Comments"
-msgstr "Commentaires"
+#: category.php:17 /index.php:17 /search.php:24
+msgid "Next page"
+msgstr ""
 
-#: /comments.php:38 /index.php:32
+#: category.php:22 /index.php:22
+msgid "No posts yet!"
+msgstr ""
+
+#: comments.php:38 /includes/post.php:29 /includes/posts.php:29
 msgid "Leave a comment"
 msgstr ""
 
-#: /comments.php:61
+#: comments.php:61
 msgid "Name"
 msgstr ""
 
-#: /comments.php:66
+#: comments.php:66
 msgid "Email"
 msgstr ""
 
-#: /comments.php:71
+#: comments.php:71
 msgid "Website"
 msgstr ""
 
-#: /comments.php:78
+#: comments.php:78
 msgid "Comment"
 msgstr ""
 
-#: /comments.php:82
+#: comments.php:82
 msgid "Send"
 msgstr ""
 
-#: /index.php:29
+#. Name of the template
+msgid "Front Page"
+msgstr ""
+
+#: includes/post.php:26 /includes/posts.php:26
 #, php-format
 msgid "%s comment"
 msgid_plural "%s comments"
 msgstr[0] ""
 msgstr[1] ""
 
-#: /index.php:43
-msgid "Previous page"
+#: includes/post.php:47 /includes/posts.php:47
+msgid "Find us on"
 msgstr ""
 
-#: /index.php:43
-msgid "Next page"
+#. Name of the template
+msgid "References"
 msgstr ""
 
-#: /index.php:48
-msgid "No posts yet!"
+#: references.php:21
+msgid "En savoir plus"
 msgstr ""
 
-#: /single.php:16
+#: search.php:10
+msgid "results"
+msgstr ""
+
+#: search.php:10
+msgid "result"
+msgstr ""
+
+#: search.php:13 /search.php:29
+msgid "The search for"
+msgstr ""
+
+#: search.php:13
+msgid "returned"
+msgstr ""
+
+#: search.php:29
+msgid "didn't return any results"
+msgstr ""
+
+#: searchform.php:2 /searchform.php:3
+msgid "Search"
+msgstr ""
+
+#: single.php:21
+msgid "Share on"
+msgstr ""
+
+#: single.php:24
 msgid "Share on Twitter"
 msgstr ""
 
-#: /single.php:19
+#: single.php:27
 msgid "Share on Linkedin"
 msgstr ""
 
-#: /single.php:22
+#: single.php:30
 msgid "Share on Facebook"
+msgstr ""
+
+#: single.php:54
+msgid "Related Posts"
 msgstr ""
 
 #. Name of the template
 msgid "Sitemap"
-msgstr ""
-
-#. Name of the template
-msgid "Template"
 msgstr ""
 
 #. Name of the theme
@@ -104,3 +139,15 @@ msgstr ""
 #. Author URI of the theme
 msgid "http://stereosuper.fr"
 msgstr ""
+
+#: category.php:17 /index.php:17 /search.php:24
+msgid "Previous page"
+msgstr "test"
+
+#: header.php:87 /header.php:88
+msgid "en"
+msgstr "fr"
+
+#: comments.php:12
+msgid "Comments"
+msgstr "Commentaires"

@@ -15,6 +15,11 @@
 		session_destroy();
 	}
 
+	// Lang
+	$lang = __('en', 'thinkovery');
+	$siteUrl = get_site_url('/');
+	$siteUrl .= $lang == 'fr' ? '/?noredirect=fr_FR' : '/en/?noredirect=en_US';
+
 	// Declis
 	global $currentDecli;
 	if(isset($_COOKIE['think-decli'])){
@@ -62,7 +67,7 @@
 
 		<header role='banner' id='header'>
 			<nav role='navigation' class='container'>
-				<a href='<?php echo home_url('/'); ?>' title='<?php bloginfo( 'name' ); ?>' rel='home' class='logo' id='logo'>
+				<a href='<?php echo $siteUrl ?>' title='<?php bloginfo( 'name' ); ?>' rel='home' class='logo' id='logo'>
 					<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 592 123' class='logo-svg' preserveAspectRatio='xMinYMin meet'>
 					  	<title>Thinkovery</title>
 					  	<path d='M29.4 66.2c0 8.2 4 11.8 10 11.8 3.1 0 4.4-.3 7.8-2v17.6c-3.1 1.2-5.1 1.3-9 1.3-16.1 0-27.8-8.5-27.8-27.3V49.8H0V34.1h10.4V14.3h19V34h17.9v15.7H29.4v16.5z'/>
@@ -82,7 +87,20 @@
 				</a>
 				<div class='menu-wrapper'>
 					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu-main' ) ); ?>
-					<?php mlp_show_linked_elements( array('show_current_blog' => true) ); ?>
+
+					<ul class='lang'>
+						<?php if( $lang != 'fr' ){ ?>
+							<li><span>en</span></li>
+							<li>
+								<a rel='alternate' hreflang='fr-FR' href='<?php echo get_site_url('/'); ?>/?noredirect=fr_FR'>fr</a>
+							</li>
+						<?php }else{ ?>
+							<li><span>fr</span></li>
+							<li>
+								<a rel='alternate' hreflang='en-US' href='<?php echo get_site_url('/'); ?>/en/?noredirect=en_US'>en</a>
+							</li>
+						<?php } ?>
+					</ul>
 				</div>
 			</nav>
 		</header>
