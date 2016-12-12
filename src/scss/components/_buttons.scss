@@ -10,7 +10,7 @@
 	font-size: 2.4rem;
 	text-align: center;
 	box-shadow: none;
-	color: $white;
+	color: $white !important;
 	&:before{
 		content: '';
 		width: 360px;
@@ -20,11 +20,22 @@
 		left: 25%;
 		border-radius: 50%;
 		z-index: -1;
+		transition: $transition;
 	}
 	.icon{
 		width: 17px;
 		height: 11px;
 		margin: 0 0 0 14px;
 		fill: $white;
+		transition: $transition;
+	}
+	&:hover, &:focus{
+		&:before{
+		    transform: scale(8);
+		    transition: 0.5s ease-in-out;
+		}
+		.icon{
+			transform: translate3d(10px, 0, 0);
+		}
 	}
 }
