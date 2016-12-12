@@ -55,5 +55,12 @@
                 color: $colorsecondary;
             }
         }
+        a, .logo{
+            &:hover, &:focus{
+                .theme-color{
+                    color: $colorsecondary;
+                }
+            }
+        }
     }
 }
