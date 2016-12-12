@@ -1,18 +1,18 @@
 /******* GÉNÉRAL *******/
 
 ::-moz-selection{
-    background: $black;
+    background: #000;
     color: $white;
     text-shadow: none;
 }
 ::selection{
-    background: $black;
+    background: #000;
     color: $white;
     text-shadow: none;
 }
 
 html{
-    font-size: 62.5%; /* sets the base font to 10px for easier math */
+    font-size: 62.5%;
 }
 
 body{
@@ -25,59 +25,58 @@ body{
 }
 
 h1{
+    margin: 0.55em 0;
     font-size: 8rem;
     font-weight: 700;
-    margin: 0.55em 0;
     letter-spacing: -4px;
 }
 
 h2{
+    margin: 0.5em 0;
     font-size: 4.5rem;
     font-weight: 600;
-    margin: 0.5em 0;
     letter-spacing: -2px;
     > span{
         display: inline-block;
+        position: relative;
+        margin: 0 -0.1em;
+        z-index: 2;
         vertical-align: baseline;
         font-size: 1.25em;
         font-weight: 400;
-        margin: 0 -5px;
-        margin: 0 -0.1em;
-        position: relative;
-        z-index: 2;
         transform: translate(0, 4%);
     }
 }
 
 h3{
+    margin: 1em 0;
     font-size: 3.2rem;
     font-weight: 600;
-    margin: 1em 0;
     color: $gray;
     letter-spacing: -1px;
 }
 
 h4{
+    margin: 2.2em 0;
     font-size: 1.4rem;
     font-weight: 700;
     text-transform: uppercase;
-    margin: 2.2em 0;
     color: $gray-light;
 }
 
 h5{
-    font-size: 2rem;
     margin: 1.67em 0;
+    font-size: 2rem;
 }
 
 h6{
+    margin: 1.5em 0;
     font-size: 1.8rem;
-    margin: 2.33em 0;
 }
 
 p{
-    font-size: 1.8rem;
     margin: 1em 0;
+    font-size: 1.8rem;
     line-height: 1.5;
 }
 
@@ -146,13 +145,12 @@ ol{
         counter-increment: ol-counter;
         &:before{
             content: counter(ol-counter)'.';
-            display: block;
             width: 12.5%;
-            text-align: right;
             position: absolute;
             left: calc(-12.5% - #{$gutter});
             font-weight: 600;
             font-style: italic;
+            text-align: right;
         }
     }
 }
@@ -187,7 +185,6 @@ img{
     }
     &:before{
         content: '';
-        display: block;
         width: 93px;
         height: 7px;
         position: absolute;
