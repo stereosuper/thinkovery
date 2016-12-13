@@ -78,6 +78,34 @@ get_header(); ?>
                     </div>
                 </div>
             </div>
+            <div class='wrapper-slider'>
+                <ul class='slides'>
+                    <li>
+                        <img src='<?php echo get_template_directory_uri(); ?>/img/photo1.jpg'>
+                    </li><!--
+                    --><li>
+                        <img src='<?php echo get_template_directory_uri(); ?>/img/photo2.jpg'>
+                    </li><!--
+                    --><li>
+                        <img src='<?php echo get_template_directory_uri(); ?>/img/photo3.jpg'>
+                    </li><!--
+                    --><li>
+                        <img src='<?php echo get_template_directory_uri(); ?>/img/photo4.jpg'>
+                    </li><!--
+                    --><li>
+                        <img src='<?php echo get_template_directory_uri(); ?>/img/photo5.jpg'>
+                    </li><!--
+                    --><li>
+                        <img src='<?php echo get_template_directory_uri(); ?>/img/photo6.jpg'>
+                    </li><!--
+                    --><li>
+                        <img src='<?php echo get_template_directory_uri(); ?>/img/photo7.jpg'>
+                    </li><!--
+                    --><li>
+                        <img src='<?php echo get_template_directory_uri(); ?>/img/photo8.jpg'>
+                    </li>
+                </ul>
+            </div>
             <div class='container'>
                 <div class='container-small'>
                     <div class='bloc-with-picto'>

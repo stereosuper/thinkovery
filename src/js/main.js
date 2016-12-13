@@ -8,6 +8,8 @@ $(function(){
     window.requestAnimFrame = require('./requestAnimFrame.js');
     var throttle = require('./throttle.js');
 
+    var animSlider = require('./slider.js');
+
     var windowWidth = $(window).outerWidth(), windowHeight = $(window).height(), docHeight = $(document).height();
     var myScroll, scrollPercent, scrollProgress;
 
@@ -41,6 +43,10 @@ $(function(){
             showScrollIndic();
         }
     });
+
+    if($('.wrapper-slider').length){
+        animSlider();
+    }
 
 
     $(document).on('scroll', throttle(function(){
