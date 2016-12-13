@@ -73,7 +73,7 @@ get_header(); ?>
                     <h2><?php the_field('section3Titre'); ?></h2>
                     <?php the_field('section3Txt'); ?>
                     <div class='bloc-with-picto'>
-                        <h3><span class='title-picto'></span><?php the_field('researchTitle'); ?></h3>
+                        <h3><span class='title-picto'><svg class='icon profile'><use xlink:href='#icon-profile'/></svg></span><?php the_field('researchTitle'); ?></h3>
                         <?php the_field('researchTxt'); ?>
                     </div>
                 </div>
@@ -81,7 +81,7 @@ get_header(); ?>
             <div class='container'>
                 <div class='container-small'>
                     <div class='bloc-with-picto'>
-                        <h3><?php the_field('expTitle'); ?></h3>
+                        <h3><span class='title-picto'><svg class='icon star'><use xlink:href='#icon-star'/></svg></span><?php the_field('expTitle'); ?></h3>
                         <?php the_field('expTxt'); ?>
                     </div>
                 </div>
