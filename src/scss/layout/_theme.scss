@@ -42,7 +42,7 @@
                 }
             }
         }
-        #header{
+        #header, #footer ul{
             a{
                 &:hover, &:focus{
                     color: $colorprimary;

@@ -45,13 +45,12 @@
                         <?php wp_nav_menu( array( 'theme_location' => 'secondary', 'container' => false, 'menu_class' => 'menu-footer' ) ); ?>
                         <?php if( have_rows('social', 'options') ): ?>
                             <ul class='social'>
-                                <?php while ( have_rows('social', 'options') ) : the_row(); ?>
-                                    <li>
-                                        <a href='<?php the_sub_field('networkLink'); ?>'>
-                                            <?php the_sub_field('networkLinkTxt'); ?>
-                                        </a>
-                                    </li>
-                                <?php endwhile; ?>
+                                <?php while ( have_rows('social', 'options') ) : the_row(); ?><li>
+                                    <a href='<?php the_sub_field('networkLink'); ?>'>
+                                        <?php the_sub_field('networkLinkTxt'); ?>
+                                         <svg class='icon'><use xlink:href='#icon-<?php the_sub_field('networkSlug'); ?>'/></svg>
+                                    </a>
+                                </li><?php endwhile; ?>
                             </ul>
                         <?php endif; ?>
                     </div>

@@ -296,6 +296,12 @@ a{
     color: $white;
 }
 
+.icon{
+    width: 1.2em;
+    height: 1.2em;
+    fill: currentColor;
+}
+
 @media (max-width: $phone){
     .hide-mb{
         display: none !important;
