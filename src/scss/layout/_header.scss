@@ -4,8 +4,9 @@
     width: 100%;
     position: fixed;
     top: 0;
-    background: $black;
     z-index: 10;
+    overflow: hidden;
+    background: $black;
     transition: $transition;
     &.on{
         transform: translate3d(0, -20px, 0);
@@ -16,6 +17,7 @@
     }
     ul, li{
         display: inline-block;
+        vertical-align: middle;
         margin: 0;
     }
     li{
@@ -71,7 +73,7 @@
             opacity: 0;
             transition: $transition;
         }
-        path{
+        path, g{
             transition: $transition;
         }
         &.on{
@@ -93,7 +95,7 @@
     width: 24px;
     height: 24px;
     position: absolute;
-    top: 1px;
+    top: 0;
     bottom: 0;
     left: 0;
     margin: auto;
@@ -110,46 +112,40 @@
     a{
         padding: 28px 30px 31px;
         position: relative;
-        transition: 0.3s color 0.05s ease-in-out;
-        &:before{
+        overflow: hidden;
+        transition: $transition;
+        &:before, &:after{
             content: '';
-            width: 24px;
-            height: 24px;
             position: absolute;
-            top: 1px;
+            transition: opacity $transition, transform 0.5s ease-in-out;
+            opacity: 0;
+            z-index: -1;
+        }
+        &:before{
+            top: 0;
             bottom: 0;
             left: 0;
             right: 0;
-            margin: auto;
+        }
+        &:after{
+            width: 200px;
+            height: 200px;
+            bottom: -100px;
+            right: -50px;
             border-radius: 50%;
-            border: 2.5px solid;
-            opacity: 0.3;
             transform: scale(0);
-
-            transition: $transition;
         }
         &:hover, &:focus{
-            &:before{
-                //transition: transform 0.35s ease-in-out, opacity 0.15s ease-in-out;
-                animation: hoverMenu 0.45s;
-                // opacity: 0;
-                // transform: scale(6);
+            &:before, &:after{
+                opacity: 1;
+            }
+            &:after{
+                transform: scale(1);
             }
         }
     }
-}
-
-@keyframes hoverMenu{
-    0%{
-        transform: scale(0);
-    }
-    60%{
-        opacity: 0.6;
-        transform: scale(5.4);
-    }
-    100%{
-        opacity: 0;
-        transform: scale(6.4);
+    .icon{
+        display: none;
     }
 }
 
@@ -208,9 +204,32 @@
         }
         .logo{
             display: inline-block;
+            max-width: 155px;
+            .border, #logo-o, &:before, &:after{
+                display: none;
+            }
+            &.on{
+                .logo-o{
+                    transform: none;
+                }
+                g{
+                    &:first-of-type{
+                        transform: translate3d(70%, 0, 0);
+                    }
+                    &:last-of-type{
+                        transform: translate3d(-70%, 0, 0);
+                    }
+                }
+            }
         }
         .menu-wrapper{
             display: block;
+        }
+        &.on{
+            transform: translate3d(0, -50px, 0);
+            .container{
+                transform: translate3d(0, 48px, 0);
+            }
         }
     }
 
@@ -230,15 +249,42 @@
         padding: 0;
         position: absolute;
         left: $gutter*2;
-        top: 20px;
+        bottom: 62px;
+        transition: $transition;
     }
 
     .link-contact{
         position: absolute;
         right: $gutter*2;
-        top: 20px;
+        bottom: 62px;
+        transition: $transition;
         a{
             padding: 0;
+            text-indent: -99em;
+        }
+        .icon{
+            display: block;
+            height: 1.3em;
+            width: 1.3em;
+            float: left;
+            text-indent: 0;
+        }
+    }
+
+    .menu-main{
+        a{
+            &:before, &:after{
+                display: none;
+            }
+        }
+    }
+
+    #header{
+        &.on{
+            .lang, .link-contact{
+                opacity: 0;
+                transform: translate3d(0, -30px, 0);
+            }
         }
     }
 }

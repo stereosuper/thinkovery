@@ -48,7 +48,7 @@
                                 <?php while ( have_rows('social', 'options') ) : the_row(); ?><li>
                                     <a href='<?php the_sub_field('networkLink'); ?>'>
                                         <?php the_sub_field('networkLinkTxt'); ?>
-                                         <svg class='icon'><use xlink:href='#icon-<?php the_sub_field('networkSlug'); ?>'/></svg>
+                                        <svg class='icon'><use xlink:href='#icon-<?php the_sub_field('networkSlug'); ?>'/></svg>
                                     </a>
                                 </li><?php endwhile; ?>
                             </ul>

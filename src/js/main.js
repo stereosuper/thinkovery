@@ -25,16 +25,20 @@ $(function(){
         header.addClass('on');
         if(!logo.hasClass('on')){
             logo.addClass('on');
-            TweenMax.to(logoO, 0.3, {opacity: 1});
-            TweenMax.set(logoO1, {opacity: 0});
+            if(windowWidth > 960){
+                TweenMax.to(logoO, 0.3, {opacity: 1});
+                TweenMax.set(logoO1, {opacity: 0});
+            }
         }
     }
     function hideScrollIndic(){
         header.removeClass('on');
         if(logo.hasClass('on')){
             logo.removeClass('on');
-            TweenMax.to(logoO, 0.3, {opacity: 0});
-            TweenMax.set(logoO1, {opacity: 1});
+            if(windowWidth > 960){
+                TweenMax.to(logoO, 0.3, {opacity: 0});
+                TweenMax.set(logoO1, {opacity: 1});
+            }
         }
     }
 
@@ -57,7 +61,9 @@ $(function(){
 
         if(myScroll > 10){
             showScrollIndic();
-            TweenMax.set(logoO, {x: scrollProgress + 'px'});
+            if(windowWidth > 960){
+                TweenMax.set(logoO, {x: scrollProgress + 'px'});
+            }
         }else{
             hideScrollIndic();
         }

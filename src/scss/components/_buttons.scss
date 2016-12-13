@@ -20,22 +20,22 @@
 		left: 25%;
 		border-radius: 50%;
 		z-index: -1;
-		transition: $transition;
+		transition: 1s ease-in-out;
 	}
 	.icon{
 		width: 17px;
 		height: 11px;
 		margin: 0 0 0 14px;
 		fill: $white;
-		transition: $transition;
+		transition: 0.18s ease-in-out;
 	}
 	&:hover, &:focus{
 		&:before{
-		    transform: scale(8);
-		    transition: 0.5s ease-in-out;
+		    transform: scale(8) translate3d(-15px, -15px, 0);
+		    transition: 3s cubic-bezier(0.18, 0, 0, 0.995);
 		}
 		.icon{
-			transform: translate3d(10px, 0, 0);
+			transform: translate3d(5px, 0, 0);
 		}
 	}
 }
