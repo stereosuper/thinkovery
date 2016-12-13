@@ -159,6 +159,7 @@
 }
 .title-picto{
 	display: block;
+	position: relative;
 	width: 52px;
 	height: 52px;
 	border-width: 5px;
@@ -167,4 +168,18 @@
 	position: absolute;
 	top: -6px;
 	left: calc(-52px - #{$gutter*2});
+	.icon{
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		&.profile{
+			width: 16px;
+			height: 20px;
+		}
+		&.star{
+			width: 20px;
+			height: 20px;
+		}
+	}
 }

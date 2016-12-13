@@ -82,5 +82,10 @@
         .title-picto{
             border-color: $colorprimary;
         }
+        .title-picto{
+            .icon{
+                fill: $colorprimary;
+            }
+        }
     }
 }
