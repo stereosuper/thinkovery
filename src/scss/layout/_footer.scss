@@ -10,8 +10,10 @@
     ul{
         margin: 27px 0 20px;
         font-size: 1.6rem;
-        a{
-            color: #fff;
+        &:not(.social){
+            a{
+                color: #fff;
+            }
         }
     }
     .link-small{
