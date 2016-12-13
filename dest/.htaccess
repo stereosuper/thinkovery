@@ -1,3 +1,130 @@
+# BEGIN WP Rocket v2.8.23
+# Use UTF-8 encoding for anything served text/plain or text/html
+AddDefaultCharset UTF-8
+# Force UTF-8 for a number of file formats
+<IfModule mod_mime.c>
+AddCharset UTF-8 .atom .css .js .json .rss .vtt .xml
+</IfModule>
+
+# FileETag None is not enough for every server.
+<IfModule mod_headers.c>
+Header unset ETag
+</IfModule>
+
+# Since we’re sending far-future expires, we don’t need ETags for static content.
+# developer.yahoo.com/performance/rules.html#etags
+FileETag None
+
+<IfModule mod_alias.c>
+<FilesMatch "\.(html|htm|rtf|rtx|txt|xsd|xsl|xml)$">
+<IfModule mod_headers.c>
+Header set X-Powered-By "WP Rocket/2.8.23"
+Header unset Pragma
+Header append Cache-Control "public"
+Header unset Last-Modified
+</IfModule>
+</FilesMatch>
+
+<FilesMatch "\.(css|htc|js|asf|asx|wax|wmv|wmx|avi|bmp|class|divx|doc|docx|eot|exe|gif|gz|gzip|ico|jpg|jpeg|jpe|json|mdb|mid|midi|mov|qt|mp3|m4a|mp4|m4v|mpeg|mpg|mpe|mpp|otf|odb|odc|odf|odg|odp|ods|odt|ogg|pdf|png|pot|pps|ppt|pptx|ra|ram|svg|svgz|swf|tar|tif|tiff|ttf|ttc|wav|wma|wri|xla|xls|xlsx|xlt|xlw|zip)$">
+<IfModule mod_headers.c>
+Header unset Pragma
+Header append Cache-Control "public"
+</IfModule>
+</FilesMatch>
+</IfModule>
+
+# Expires headers (for better cache control)
+<IfModule mod_expires.c>
+ExpiresActive on
+
+# Perhaps better to whitelist expires rules? Perhaps.
+ExpiresDefault                          "access plus 1 month"
+
+# cache.appcache needs re-requests in FF 3.6 (thanks Remy ~Introducing HTML5)
+ExpiresByType text/cache-manifest       "access plus 0 seconds"
+
+# Your document html
+ExpiresByType text/html                 "access plus 0 seconds"
+
+# Data
+ExpiresByType text/xml                  "access plus 0 seconds"
+ExpiresByType application/xml           "access plus 0 seconds"
+ExpiresByType application/json          "access plus 0 seconds"
+
+# Feed
+ExpiresByType application/rss+xml       "access plus 1 hour"
+ExpiresByType application/atom+xml      "access plus 1 hour"
+
+# Favicon (cannot be renamed)
+ExpiresByType image/x-icon              "access plus 1 week"
+
+# Media: images, video, audio
+ExpiresByType image/gif                 "access plus 1 month"
+ExpiresByType image/png                 "access plus 1 month"
+ExpiresByType image/jpeg                "access plus 1 month"
+ExpiresByType video/ogg                 "access plus 1 month"
+ExpiresByType audio/ogg                 "access plus 1 month"
+ExpiresByType video/mp4                 "access plus 1 month"
+ExpiresByType video/webm                "access plus 1 month"
+
+# HTC files  (css3pie)
+ExpiresByType text/x-component          "access plus 1 month"
+
+# Webfonts
+ExpiresByType application/x-font-ttf    "access plus 1 month"
+ExpiresByType font/opentype             "access plus 1 month"
+ExpiresByType application/x-font-woff   "access plus 1 month"
+ExpiresByType application/x-font-woff2  "access plus 1 month"
+ExpiresByType image/svg+xml             "access plus 1 month"
+ExpiresByType application/vnd.ms-fontobject "access plus 1 month"
+
+# CSS and JavaScript
+ExpiresByType text/css                  "access plus 1 year"
+ExpiresByType application/javascript    "access plus 1 year"
+
+</IfModule>
+
+# Gzip compression
+<IfModule mod_deflate.c>
+# Active compression
+SetOutputFilter DEFLATE
+# Force deflate for mangled headers
+<IfModule mod_setenvif.c>
+<IfModule mod_headers.c>
+SetEnvIfNoCase ^(Accept-EncodXng|X-cept-Encoding|X{15}|~{15}|-{15})$ ^((gzip|deflate)\s*,?\s*)+|[X~-]{4,13}$ HAVE_Accept-Encoding
+RequestHeader append Accept-Encoding "gzip,deflate" env=HAVE_Accept-Encoding
+# Don’t compress images and other uncompressible content
+SetEnvIfNoCase Request_URI \
+\.(?:gif|jpe?g|png|rar|zip|exe|flv|mov|wma|mp3|avi|swf|mp?g|mp4|webm|webp)$ no-gzip dont-vary
+</IfModule>
+</IfModule>
+
+# Compress all output labeled with one of the following MIME-types
+<IfModule mod_filter.c>
+AddOutputFilterByType DEFLATE application/atom+xml \
+		                          application/javascript \
+		                          application/json \
+		                          application/rss+xml \
+		                          application/vnd.ms-fontobject \
+		                          application/x-font-ttf \
+		                          application/xhtml+xml \
+		                          application/xml \
+		                          font/opentype \
+		                          image/svg+xml \
+		                          image/x-icon \
+		                          text/css \
+		                          text/html \
+		                          text/plain \
+		                          text/x-component \
+		                          text/xml
+</IfModule>
+<IfModule mod_headers.c>
+Header append Vary: Accept-Encoding
+</IfModule>
+</IfModule>
+
+# END WP Rocket
+
 # BEGIN SecuPress move_login
 <IfModule mod_rewrite.c>
     RewriteEngine On
@@ -10,7 +137,6 @@
     RewriteRule ^(([_0-9a-zA-Z-]+/)?)postpass/?$ /wp-login.php?action=postpass [QSA,L]
 </IfModule>
 # END SecuPress
-
 # BEGIN SecuPress bad_url_access
 <IfModule mod_rewrite.c>
     RewriteEngine On
@@ -19,13 +145,11 @@
     RewriteRule ^(([_0-9a-zA-Z-]+/)?php\.ini|(([_0-9a-zA-Z-]+/)?)wp-includes/.+\.php|(([_0-9a-zA-Z-]+/)?)wp-admin/(admin-functions|install|menu-header|setup-config|([^/]+/)?menu|upgrade-functions|includes/.+)\.php)$ [R=404,L,NC]
 </IfModule>
 # END SecuPress
-
 # BEGIN SecuPress no_x_powered_by
 <IfModule mod_headers.c>
     Header unset X-Powered-By
 </IfModule>
 # END SecuPress
-
 # BEGIN SecuPress readme_discloses
 <IfModule mod_rewrite.c>
     RewriteEngine On
@@ -33,22 +157,18 @@
     RewriteRule (/|^)(readme|changelog)\.(txt|md|html)$ - [R=404,L,NC]
 </IfModule>
 # END SecuPress
-
 # BEGIN SecuPress directory_index
 <ifModule mod_dir.c>
     DirectoryIndex index.php index.html index.htm index.cgi index.pl index.xhtml
 </IfModule>
 # END SecuPress
-
 # BEGIN WordPress
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteBase /
 RewriteRule ^index\.php$ - [L]
-
 # add a trailing slash to /wp-admin
 RewriteRule ^([_0-9a-zA-Z-]+/)?wp-admin$ $1wp-admin/ [R=301,L]
-
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
@@ -56,63 +176,12 @@ RewriteRule ^([_0-9a-zA-Z-]+/)?(wp-(content|admin|includes).*) $2 [L]
 RewriteRule ^([_0-9a-zA-Z-]+/)?(.*\.php)$ $2 [L]
 RewriteRule . index.php [L]
 </IfModule>
-
 # END WordPress
-
-<ifModule mod_gzip.c>
-mod_gzip_on Yes
-mod_gzip_dechunk Yes
-mod_gzip_item_include file .(html?|txt|css|js|php|pl)$
-mod_gzip_item_include handler ^cgi-script$
-mod_gzip_item_include mime ^text/.*
-mod_gzip_item_include mime ^application/x-javascript.*
-mod_gzip_item_exclude mime ^image/.*
-mod_gzip_item_exclude rspheader ^Content-Encoding:.*gzip.*
-</ifModule>
-
-<IfModule mod_expires.c>
-ExpiresActive On
-ExpiresDefault "access plus 7200 seconds"
-
-ExpiresByType text/css "access plus 604800 seconds"
-
-ExpiresByType text/html "access plus 7200 seconds"
-ExpiresByType application/xml "access plus 7200 seconds"
-ExpiresByType text/xml "access plus 7200 seconds"
-ExpiresByType application/json "access plus 7200 seconds"
-ExpiresByType application/xhtml+xml "access plus 7200 seconds"
-
-ExpiresByType text/javascript "access plus 604800 seconds"
-ExpiresByType application/javascript "access plus 604800 seconds"
-ExpiresByType application/x-javascript "access plus 604800 seconds"
-ExpiresByType application/x-shockwave-flash "access plus 2592000 seconds"
-
-ExpiresByType application/atom+xml "access plus 1 hour"
-ExpiresByType application/rss+xml "access plus 1 hour"
-
-ExpiresByType image/jpg "access plus 1 months"
-ExpiresByType image/jpeg "access plus 1 months"
-ExpiresByType image/png "access plus 1 months"
-ExpiresByType image/gif "access plus 1 months"
-AddType image/x-icon .ico
-ExpiresByType image/ico "access plus 1 months"
-ExpiresByType image/icon "access plus 1 months"
-ExpiresByType image/x-icon "access plus 1 months"
-
-ExpiresByType application/x-font-ttf "access plus 1 month"
-ExpiresByType font/opentype "access plus 1 month"
-ExpiresByType application/x-font-woff "access plus 1 month"
-ExpiresByType image/svg+xml "access plus 1 month"
-ExpiresByType application/x-font-woff2 "access plus 1 month"
-ExpiresByType application/font-woff "access plus 1 month"
-ExpiresByType application/vnd.ms-fontobject "access plus 1 month"
-</IfModule>
 
 # Cache-Control Headers
 <Ifmodule mod_headers.c>
 BrowserMatch MSIE is-msie
 Header set X-UA-Compatible IE=edge env=is-msie
-Header unset ETag
 Header set vary "Accept-Encoding"
 Header append vary "User-Agent"
 Header append Cache-Control "public"
@@ -130,15 +199,11 @@ Header set Cache-Control "max-age=7200, must-revalidate"
 <filesmatch "\.(pl|php|cgi|spl|scgi|fcgi)$">
 Header unset Cache-Control
 </filesmatch>
-
 # disallow site to be in iframe or clickjacking attack
 Header always set X-FRAME-OPTIONS SAMEORIGIN
 # disallow mime-type sniffing
 Header always set X-Content-Type-Options "nosniff"
 </Ifmodule>
-
-# KILL ETAGS
-FileETag none
 
 # protection
 <FilesMatch "\.(htaccess|wp-config.php|install.php|readme.txt|readme.html)$">
@@ -150,7 +215,6 @@ FileETag none
         Deny from all
     </IfModule>
 </FilesMatch>
-
 <IfModule mod_rewrite.c>
     RewriteEngine On
     # Disable PHP in Uploads
@@ -159,7 +223,6 @@ FileETag none
     RewriteCond %{REQUEST_METHOD} ^(TRACE|DELETE|TRACK) [NC]
     RewriteRule ^.* - [F]
 </IfModule>
-
 # Disable XML-RPC
 <files xmlrpc.php>
     <IfModule mod_authz_core.c>
@@ -170,15 +233,9 @@ FileETag none
         Deny from all
     </IfModule>
 </files>
-
-# Use UTF-8 encoding for anything served text/plain or text/html
-AddDefaultCharset utf-8
-
 # addType woff2
 AddType application/x-font-woff2 .woff2
-
 # protection de la lecture des répertoires
 Options -Indexes
-
 # désactiver la signature serveur
 ServerSignature Off
