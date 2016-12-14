@@ -49,6 +49,7 @@
     }
     .btn{
         width: calc(#{$colMedium*4} - #{$gutter*2});
+        max-width: 372px;
         margin: -35px 0;
     }
 }
@@ -91,4 +92,90 @@
     width: (100/5)*2%;
     padding: 0 $gutter;
     float: right;
+}
+
+
+@media (max-width: $desktop-small){
+    #footer{
+        .col{
+            &-2{
+                width: $col*4;
+            }
+            &-7{
+                width: $col*7;
+            }
+        }
+    }
+
+    .footer-top{
+        margin: 0 0 90px;
+        text-align: center;
+        .container-medium{
+            display: block;
+        }
+        p{
+            padding: 0;
+        }
+        .btn{
+            width: 100%;
+            margin: 40px 0 -70px;
+        }
+    }
+
+    .contact-footer{
+        width: 70%;
+    }
+
+    .tel-footer{
+        width: 47.4%;
+    }
+}
+
+@media (max-width: $tablet){
+    #footer{
+        padding: 0 0 100px;
+        position: relative;
+        .grid{
+            display: block;
+        }
+        .col{
+            &-2, &-7{
+                width: 100%;
+            }
+            &-2{
+                margin-top: 5em;
+            }
+        }
+        .link-small{
+            position: absolute;
+            bottom: 30px;
+            left: $gutter*4;
+        }
+    }
+
+    .contact-footer{
+        width: 100%;
+    }
+
+    .tel-footer{
+        width: 50%;
+    }
+}
+
+@media (max-width: $phone){
+    #footer{
+        padding: 0 0 120px;
+    }
+
+    .footer-top{
+        p{
+            font-size: 2rem;
+        }
+    }
+
+    .tel-footer{
+        width: 100%;
+        padding: 0;
+        margin: 10px 0 0;
+    }
 }
