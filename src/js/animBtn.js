@@ -14,13 +14,15 @@ module.exports = function(body){
         btnI.data('x', btnI.position().left + btnI.width() / 2).data('y', btnI.position().top + btnI.height() / 2);
         $(this).data('x', $(this).offset().left).data('y', $(this).offset().top);
         posGradient = getPosGradient(btnI, e.pageX - $(this).data('x'), e.pageY - $(this).data('y'));
-        TweenMax.to(btnI, 0.3, {x: - posGradient[0] + 'px', y: - posGradient[1] + 'px'});
+        TweenMax.to(btnI, 0.1, {x: - posGradient[0] + 'px', y: - posGradient[1] + 'px'});
 
     }).on('mousemove', '.btn, #menu-main a', function(e){
 
         btnI = $(this).find('> i');
         posGradient = getPosGradient(btnI, e.pageX - $(this).data('x'), e.pageY - $(this).data('y'));
-        TweenMax.set(btnI, {x: - posGradient[0] + 'px', y: - posGradient[1] + 'px'});
+        if(!TweenMax.isTweening(btnI)){
+            TweenMax.set(btnI, {x: - posGradient[0] + 'px', y: - posGradient[1] + 'px'});
+        }
 
     }).on('mouseleave', '.btn, #menu-main a', function(){
 
