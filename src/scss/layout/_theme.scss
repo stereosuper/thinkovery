@@ -62,7 +62,7 @@
                 &:before{
                     background: $colorprimary;
                 }
-                &:after{
+                > i:after{
                     background: radial-gradient(ellipse at center, $colorsecondary 0, rgba($colorsecondary, 0) 65%);
                 }
             }

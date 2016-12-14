@@ -50,9 +50,7 @@ $(function(){
     });
 
 
-    if($('.btn').length){
-        animBtn(body);
-    }
+    animBtn(body);
 
 
     if($('.wrapper-sliders').length){
