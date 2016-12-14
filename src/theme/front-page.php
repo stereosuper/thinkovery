@@ -80,7 +80,7 @@ get_header(); ?>
                     </div>
                 </div>
             </div>
-            <div class='wrapper-slider'>
+            <div class='wrapper-sliders'>
                 <div class='slider'>
                     <ul class='slides'>
                         <li>

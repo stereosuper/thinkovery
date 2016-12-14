@@ -4,20 +4,31 @@ var Draggable = require('./libs/gsap/src/uncompressed/utils/Draggable.js');
 var ThrowPropsPlugin = require('./libs/gsap/src/uncompressed/plugins/ThrowPropsPlugin.min.js');
 
 module.exports = function(){
-    var wrapperSlider = $('.wrapper-sliders'), slider = $('.slides'), slides = slider.find('> li'), nbSlides, slideWidth, slideHeight;
+    var wrapperSliders = $('.wrapper-sliders'), sliders = $('.slider'), slider = $('.slides'), slides = slider.find('> li'), nbSlides, slideWidth, slideHeight;
     var halfSlides, halfRight, halfLeft, widthSlider, middleSlider;
     var i, j;
+    var newX;
 
     var windowWidth = $(window).outerWidth();
 
     function updateSlider(){
-        var newX = this.x % widthSlider;
-        if(newX > 0){
-          newX = newX - widthSlider;
+        newX = this.x;
+        if(newX <= 0){
+            // Going right
+            TweenMax.set(sliderCloned, {left: widthSlider+'px'});
+            if(newX < -widthSlider){
+                newX = newX + widthSlider;
+            }
+        }else{
+            // Going left
+            TweenMax.set(sliderCloned, {left: -widthSlider+'px'});
+            if(newX > widthSlider){
+                newX = newX - widthSlider;
+            }
         }
         if (newX !== this.x) {
-          TweenMax.set(slider, {x:newX, overwrite:false});
-          this.x = newX;
+            TweenMax.set(sliders, {x: newX, overwrite: false});
+            this.x = newX;
         }
     }
 
@@ -37,14 +48,15 @@ module.exports = function(){
     }
 
     // Duplicate list
-    slider.clone().appendTo(wrapperSlider);
-    var wrapperSlider = $('.wrapper-sliders'), slider = $('.slides'), slides = slider.find('> li');
+    slider.clone().addClass('cloned').appendTo(sliders);
+    var wrapperSliders = $('.wrapper-sliders'), slider = $('.slides'), slides = slider.find('> li');
+    var sliderCloned = $('.slides.cloned'), originalSlider = $('.slides:not(.cloned)');
 
     // Rearrange list
     widthSlider = nbSlides*slideWidth;
     middleSlider = (widthSlider/2);
     leftSlidesStart = (widthSlider/2) - (halfLeft*slideWidth);
-    TweenMax.set([slider, wrapperSlider], {width: widthSlider+'px'});
+    TweenMax.set([slider, wrapperSliders], {width: widthSlider+'px'});
     slider.each(function(){
         for (i=0; i<halfRight; i++) {
             TweenMax.set($(this).find('>li').eq(i), {left: (middleSlider+(i*slideWidth))+'px'});
@@ -53,13 +65,14 @@ module.exports = function(){
             TweenMax.set($(this).find('>li').eq(halfRight+j), {left: (leftSlidesStart+(j*slideWidth))+'px'});
         }
     });
+    TweenMax.set(sliderCloned, {left: widthSlider+'px'});
 
     // Draggable
-    Draggable.create(slider, {
+    Draggable.create(sliders, {
         type: 'x',
         edgeResistance: 0.65,
         throwProps: true,
-        // bounds: wrapperSlider,
+        // bounds: wrapperSliders,
         onDrag: updateSlider,
         onThrowUpdate: updateSlider,
         snap: {

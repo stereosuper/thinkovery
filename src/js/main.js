@@ -49,11 +49,13 @@ $(function(){
         }
     });
 
+
     if($('.btn').length){
         animBtn(body);
     }
 
-    if($('.wrapper-slider').length){
+
+    if($('.wrapper-sliders').length){
         animSlider();
     }
 
