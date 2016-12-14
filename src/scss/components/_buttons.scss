@@ -38,12 +38,19 @@
 	&:hover, &:focus{
 		i{
 		    &:before{
-		    	transform: scale(1.5) translate3d(-15px, -15px, 0);
+		    	transform: scale(1.5);
 		    	transition: 1s cubic-bezier(0.18, 0, 0, 0.995);
 		    }
 		}
 		.icon{
 			transform: translate3d(5px, 0, 0);
+		}
+	}
+	&:active{
+		i{
+		    &:before{
+		    	transform: scale(5);
+		    }
 		}
 	}
 }
