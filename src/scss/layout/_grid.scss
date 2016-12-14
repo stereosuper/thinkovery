@@ -1,7 +1,11 @@
 /* Grid */
 
 #main{
-    padding: 0 0 130px;
+    padding: 75px 0 130px;
+    overflow: hidden;
+    .home &{
+        padding-top: 0;
+    }
 }
 
 .container{
@@ -34,6 +38,30 @@
         }
         &-7{
             width: $colMedium*7;
+        }
+    }
+}
+
+
+@media (max-width: $desktop){
+    .container{
+        &-medium{
+            padding: 0 $gutter*2;
+        }
+        &-small{
+            padding: 0 #{$col};
+        }
+    }
+}
+
+@media (max-width: $desktop-small){
+    #main{
+        padding-top: 110px;
+    }
+
+    .container{
+        &-small{
+            padding: 0;
         }
     }
 }
