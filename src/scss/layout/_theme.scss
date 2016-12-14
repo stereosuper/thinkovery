@@ -52,7 +52,7 @@
 
         .btn{
             background: $colorprimary;
-            &:before{
+            i:before{
                 background: radial-gradient(ellipse at center, $colorsecondary 0, rgba($colorsecondary, 0) 65%);
             }
         }
