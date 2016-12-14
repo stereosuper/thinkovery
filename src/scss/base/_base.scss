@@ -30,6 +30,7 @@ h1{
     font-size: 8rem;
     font-weight: 700;
     letter-spacing: -4px;
+    line-height: 1;
 }
 
 h2{
@@ -163,22 +164,25 @@ img{
 
 .post-img{
     position: relative;
+    margin: 80px $colSmall*-1;
     &.alignleft{
         float: left;
-        margin: 80px 12.5% 80px -25%;
+        margin-right: $colSmall;
+        margin-left: $colSmall*-2;
         &:before{
             left: 48px;
         }
     }
     &.alignright{
         float: right;
-        margin: 80px -25% 80px 12.5%;
+        margin-right: $colSmall*-2;
+        margin-left: $colSmall;
         &:before{
             right: 48px;
         }
     }
     &.aligncenter{
-        margin: 80px -12.5%;
+        text-align: center;
         &:before{
             left: 50%;
             transform: translate(-50%, 0);
@@ -300,6 +304,51 @@ a{
     width: 1.2em;
     height: 1.2em;
     fill: currentColor;
+}
+
+
+
+@media (max-width: $desktop){
+    .post-img{
+        margin: 60px $colMedium*-1 80px;
+        &.alignleft{
+            margin-right: $colMedium;
+            margin-left: $colMedium*-1;
+        }
+        &.alignright{
+            margin-right: $colMedium*-1;
+            margin-left: $colMedium;
+        }
+    }
+}
+
+@media (max-width: $desktop-small){
+    .post-img{
+        margin: 40px 0 60px;
+        &.alignleft{
+            margin-right: $col;
+            margin-left: 0;
+        }
+        &.alignright{
+            margin-right: 0;
+            margin-left: $col;
+        }
+    }
+}
+
+@media (max-width: $tablet){
+    .post-img{
+        &.alignleft, &.alignright{
+            float: none;
+        }
+        &.alignleft{
+            margin-right: 0;
+        }
+        &.alignright{
+            margin-left: 0;
+            text-align: right;
+        }
+    }
 }
 
 @media (max-width: $phone){

@@ -14,7 +14,7 @@ module.exports = function(){
         header.addClass('on');
         if(!logo.hasClass('on')){
             logo.addClass('on');
-            if(windowWidth > 960){
+            if(windowWidth > 580){
                 TweenMax.to(logoO, 0.3, {opacity: 1});
                 TweenMax.set(logoO1, {opacity: 0});
             }
@@ -24,7 +24,7 @@ module.exports = function(){
         header.removeClass('on');
         if(logo.hasClass('on')){
             logo.removeClass('on');
-            if(windowWidth > 960){
+            if(windowWidth > 580){
                 TweenMax.to(logoO, 0.3, {opacity: 0});
                 TweenMax.set(logoO1, {opacity: 1});
             }
@@ -45,7 +45,7 @@ module.exports = function(){
 
         if(myScroll > 10){
             showScrollIndic();
-            if(windowWidth > 960){
+            if(windowWidth > 580){
                 TweenMax.set(logoO, {x: scrollProgress + 'px'});
             }
         }else{
@@ -60,6 +60,9 @@ module.exports = function(){
         windowWidth = $(window).outerWidth();
         windowHeight = $(window).height();
         docHeight = $(document).height();
+
+        TweenMax.set(logoO, {opacity: 0});
+        TweenMax.set(logoO1, {opacity: 1});
 
     }, 60));
 }

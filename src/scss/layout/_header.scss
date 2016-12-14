@@ -73,7 +73,7 @@
             opacity: 0;
             transition: $transition;
         }
-        path, g{
+        path, g > g{
             transition: $transition;
         }
         &.on{
@@ -212,22 +212,11 @@
         }
         .logo{
             display: inline-block;
-            max-width: 155px;
-            .border, #logo-o, &:before, &:after{
-                display: none;
-            }
-            &.on{
-                .logo-o{
-                    transform: none;
-                }
-                g{
-                    &:first-of-type{
-                        transform: translate3d(70%, 0, 0);
-                    }
-                    &:last-of-type{
-                        transform: translate3d(-70%, 0, 0);
-                    }
-                }
+            //max-width: 155px;
+        }
+        .logo-svg{
+            > g{
+                transform: translateX(170px);
             }
         }
         .menu-wrapper{
@@ -259,7 +248,7 @@
     .lang{
         padding: 0;
         position: absolute;
-        left: $gutter*2;
+        left: ($gutter*2)-5px;
         bottom: 62px;
         transition: $transition;
     }
@@ -270,7 +259,7 @@
         bottom: 62px;
         transition: $transition;
         a{
-            padding: 0;
+            padding: 0 !important;
             text-indent: -99em;
         }
         .icon{
@@ -294,10 +283,36 @@
 
 @media (max-width: $phone){
     #header{
+        .logo{
+            max-width: 125px;
+            height: 26px;
+            .border, #logo-o, &:before, &:after{
+                display: none;
+            }
+            .logo-o{
+                opacity: 1 !important;
+            }
+            &.on{
+                .logo-o{
+                    transform: none;
+                }
+                g > g{
+                    &:first-of-type{
+                        transform: translate3d(70%, 0, 0);
+                    }
+                    &:last-of-type{
+                        transform: translate3d(-70%, 0, 0);
+                    }
+                }
+            }
+        }
+        .logo-svg{
+            > g{
+                transform: none;
+            }
+        }
         .menu-main{
-            display: flex;
             margin: 0 -12px;
-            justify-content: space-between;
         }
     }
 
@@ -305,6 +320,24 @@
         a{
             padding-left: 12px;
             padding-right: 12px;
+        }
+    }
+}
+
+@media (max-width: $phone-small){
+    #header{
+        .menu-main{
+            display: flex;
+            margin: 0 -10px;
+            justify-content: space-between;
+            font-size: 1.4rem;
+        }
+    }
+
+    .menu-main{
+        a{
+            padding-left: 10px;
+            padding-right: 10px;
         }
     }
 }
