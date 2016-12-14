@@ -38,6 +38,7 @@
                         ?>
                         <a href='<?php the_field('blogLink', 'options'); ?>' class='btn-small'>
                             <?php the_field('blogLinkTxt', 'options'); ?>
+                            <svg class='icon'><use xlink:href='#icon-arrow-right'/></svg>
                         </a>
                     </div>
                     <div class='col-2'>
@@ -46,7 +47,7 @@
                         <?php if( have_rows('social', 'options') ): ?>
                             <ul class='social'>
                                 <?php while ( have_rows('social', 'options') ) : the_row(); ?><li>
-                                    <a href='<?php the_sub_field('networkLink'); ?>'>
+                                    <a href='<?php the_sub_field('networkLink'); ?>' target='_blank'>
                                         <?php the_sub_field('networkLinkTxt'); ?>
                                         <svg class='icon'><use xlink:href='#icon-<?php the_sub_field('networkSlug'); ?>'/></svg>
                                     </a>

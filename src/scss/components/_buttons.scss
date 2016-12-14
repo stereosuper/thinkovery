@@ -26,7 +26,6 @@
 		width: 17px;
 		height: 11px;
 		margin: 0 0 0 14px;
-		fill: $white;
 		transition: 0.18s ease-in-out;
 	}
 	&:hover, &:focus{
@@ -36,6 +35,20 @@
 		}
 		.icon{
 			transform: translate3d(5px, 0, 0);
+		}
+	}
+}
+
+.btn-small{
+	font-weight: 600;
+	.icon{
+		width: 10px;
+		margin: 0 0 0 8px;
+		transition: transform 0.15s ease-in-out;
+	}
+	&:hover, &:focus{
+		.icon{
+			transform: translate3d(3px, 0, 0);
 		}
 	}
 }
