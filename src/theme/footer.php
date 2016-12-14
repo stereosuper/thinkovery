@@ -43,7 +43,7 @@
                     </div>
                     <div class='col-2'>
                         <span class='footer-title'><?php the_field('alsoTitle', 'options'); ?></span>
-                        <?php wp_nav_menu( array( 'theme_location' => 'secondary', 'container' => false, 'menu_class' => 'menu-footer' ) ); ?>
+                        <?php wp_nav_menu( array( 'theme_location' => 'secondary', 'container' => false, 'menu_class' => 'menu-footer', 'walker' => new rc_scm_walker ) ); ?>
                         <?php if( have_rows('social', 'options') ): ?>
                             <ul class='social'>
                                 <?php while ( have_rows('social', 'options') ) : the_row(); ?><li>

@@ -65,6 +65,18 @@
             display: none;
         }
     }
+    a{
+        .icon{
+            width: 10px;
+            margin: 0 0 0 8px;
+            transition: transform 0.15s ease-in-out;
+        }
+        &:hover, &:focus{
+            .icon{
+                transform: translate3d(3px, 0, 0);
+            }
+        }
+    }
 }
 
 .contact-footer{
