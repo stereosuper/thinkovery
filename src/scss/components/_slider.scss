@@ -4,8 +4,15 @@
 	width: 100%;
 	height: 300px;
 	position: relative;
-	&#slider-team{
-
+	&#slider-learn-from-best{
+		
+	}
+	&#slider-best-way-learn{
+		.slides{
+			> li{
+				width: 332px;
+			}
+		}
 	}
 	.hoop{
 		position: absolute;
