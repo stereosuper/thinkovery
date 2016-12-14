@@ -2,7 +2,7 @@
 
 .btn{
 	display: inline-block;
-	padding: 40px 50px;
+	padding: 40px $gutter*2;
 	position: relative;
 	z-index: 1;
 	overflow: hidden;
@@ -58,6 +58,16 @@
 	&:hover, &:focus{
 		.icon{
 			transform: translate3d(3px, 0, 0);
+		}
+	}
+}
+
+@media (max-width: $phone){
+	.btn{
+		padding: 30px $gutter*2;
+		font-size: 2rem;
+		> i{
+			top: -80%;
 		}
 	}
 }
