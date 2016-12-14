@@ -47,7 +47,7 @@ module.exports = function(){
             this.x = newX;
         }
         // Rotate svg
-        TweenMax.set(hoopSlider, {rotation: newX, overwrite: false});
+        TweenMax.set(hoopSlider, {rotation: newX/2, overwrite: false});
     }
 
     // Position slides
@@ -97,7 +97,7 @@ module.exports = function(){
         onDrag: updateSlider,
         onThrowUpdate: updateSlider,
         onDragStart: desactivateSlide,
-        onDragEnd: activateSlide,
+        onThrowComplete: activateSlide,
         snap: {
             x: function(endValue) {
                 return Math.round(endValue / slideWidth) * slideWidth;
