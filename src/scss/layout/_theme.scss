@@ -91,6 +91,11 @@
                 fill: $colorprimary;
             }
         }
+        .slide-desc{
+            .slide-title{
+                color: $colorprimary;
+            }
+        }
     }
 
     @media (max-width: $desktop-small){

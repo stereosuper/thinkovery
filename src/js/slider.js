@@ -8,20 +8,36 @@ module.exports = function(){
     var halfSlides, halfRight, halfLeft, widthSlider, middleSlider;
     var i, j;
     var newX;
+    var centerSlider, centerSlide;
 
     var windowWidth = $(window).outerWidth();
+
+    function desactivateSlide(){
+        slides.removeClass('active');
+    }
+
+    function activateSlide(){
+        // activate the centered slide
+        centerSlider = (containerSliders.width())/2;
+        slides.each(function(index){
+            centerSlide = $(this).offset().left + (slideWidth/2);
+            if(centerSlide === centerSlider){
+                $(this).addClass('active');
+            }
+        });
+    }
 
     function updateSlider(){
         newX = this.x;
         if(newX <= 0){
             // Going right
-            TweenMax.set(sliderCloned, {left: widthSlider+'px'});
+            TweenMax.set(sliderCloned, {x: widthSlider+'px'});
             if(newX < -widthSlider){
                 newX = newX + widthSlider;
             }
         }else{
             // Going left
-            TweenMax.set(sliderCloned, {left: -widthSlider+'px'});
+            TweenMax.set(sliderCloned, {x: -widthSlider+'px'});
             if(newX > widthSlider){
                 newX = newX - widthSlider;
             }
@@ -43,7 +59,7 @@ module.exports = function(){
         halfRight = halfSlides;
         halfLeft = halfSlides;
         // Center the middle slide
-        TweenMax.set(wrapperSliders, {x: -(slideWidth/2)+'px'});
+        TweenMax.set(wrapperSliders, {paddingRight: slideWidth+'px'});
     }else{
         halfRight = Math.ceil(halfSlides);
         halfLeft = nbSlides - halfRight;
@@ -67,7 +83,10 @@ module.exports = function(){
             TweenMax.set($(this).find('>li').eq(halfRight+j), {left: (leftSlidesStart+(j*slideWidth))+'px'});
         }
     });
-    TweenMax.set(sliderCloned, {left: widthSlider+'px'});
+    TweenMax.set(sliderCloned, {x: widthSlider+'px'});
+    TweenMax.set(slider, {marginLeft: -(widthSlider/2)+'px'});
+
+    activateSlide();
 
     // Draggable
     Draggable.create(sliders, {
@@ -77,6 +96,8 @@ module.exports = function(){
         // bounds: wrapperSliders,
         onDrag: updateSlider,
         onThrowUpdate: updateSlider,
+        onDragStart: desactivateSlide,
+        onDragEnd: activateSlide,
         snap: {
             x: function(endValue) {
                 return Math.round(endValue / slideWidth) * slideWidth;
