@@ -26,6 +26,7 @@
 	}
 	.btn{
 		width: calc(#{$col*4} - #{$gutter*2});
+		margin: 0 $col 0 0;
 	}
 }
 
