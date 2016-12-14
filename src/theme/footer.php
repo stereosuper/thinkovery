@@ -4,7 +4,7 @@
         <div class='footer-top'>
             <div class='container'>
                 <div class='container-medium'>
-                    <p><?php the_field('ctaTxt', 'options') ?></p>
+                    <p><?php the_field('ctaTxt', 'options'); ?></p>
                     <a href='<?php the_field('ctaLink', 'options'); ?>' class='btn big'><?php the_field('ctaLinkTxt', 'options'); ?><svg class='icon'><use xlink:href='#icon-arrow-right'/></svg></a>
                 </div>
             </div>

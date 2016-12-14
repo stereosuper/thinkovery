@@ -93,7 +93,7 @@
         }
     }
 
-    @media (max-width: $tablet){
+    @media (max-width: $desktop-small){
         .theme-#{$color}{
             #header .menu-main{
                 a{
@@ -102,7 +102,11 @@
                     }
                 }
             }
+        }
+    }
 
+    @media (max-width: $tablet){
+        .theme-#{$color}{
             #header .link-contact a{
                 color: $colorprimary;
                 &:hover, &:focus{
