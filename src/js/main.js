@@ -48,7 +48,7 @@ $(function(){
         }
     });
 
-    if($('.wrapper-slider').length){
+    if($('.wrapper-sliders').length){
         animSlider();
     }
 
