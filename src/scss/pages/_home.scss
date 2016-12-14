@@ -41,7 +41,8 @@
 }
 
 #mooc-spoc{
-	padding: 100px 0 140px;
+	padding-top: 100px;
+	padding-bottom: 140px;
 }
 
 #more-than-moocs{
@@ -69,7 +70,8 @@
 	}
 	.container{
 		position: relative;
-		padding: 120px 0 144px;
+		padding-top: 120px;
+		padding-bottom: 144px;
 	}
 	h2, p{
 		z-index: 2;
@@ -158,8 +160,6 @@
 	}
 }
 .title-picto{
-	display: block;
-	position: relative;
 	width: 52px;
 	height: 52px;
 	border-width: 5px;
