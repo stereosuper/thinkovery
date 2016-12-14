@@ -86,27 +86,135 @@ get_header(); ?>
                         <ul class='slides'>
                             <li>
                                 <img src='<?php echo get_template_directory_uri(); ?>/img/photo1.jpg'>
+                                <div class='slide-desc'>
+                                    <div class='slide-title'>
+                                        Roland Lehoucq
+                                    </div>
+                                    <div class='slide-content'>
+                                        Astrophysicien. Commissariat à l’énergie atomique et aux énergies alternatives
+                                    </div>
+                                </div>
                             </li><!--
                             --><li>
                                 <img src='<?php echo get_template_directory_uri(); ?>/img/photo2.jpg'>
+                                <div class='slide-desc'>
+                                    <div class='slide-title'>
+                                        Roland Lehoucq
+                                    </div>
+                                    <div class='slide-content'>
+                                        Astrophysicien. Commissariat à l’énergie atomique et aux énergies alternatives
+                                    </div>
+                                </div>
                             </li><!--
                             --><li>
                                 <img src='<?php echo get_template_directory_uri(); ?>/img/photo3.jpg'>
+                                <div class='slide-desc'>
+                                    <div class='slide-title'>
+                                        Roland Lehoucq
+                                    </div>
+                                    <div class='slide-content'>
+                                        Astrophysicien. Commissariat à l’énergie atomique et aux énergies alternatives
+                                    </div>
+                                </div>
                             </li><!--
                             --><li>
                                 <img src='<?php echo get_template_directory_uri(); ?>/img/photo4.jpg'>
+                                <div class='slide-desc'>
+                                    <div class='slide-title'>
+                                        Roland Lehoucq
+                                    </div>
+                                    <div class='slide-content'>
+                                        Astrophysicien. Commissariat à l’énergie atomique et aux énergies alternatives
+                                    </div>
+                                </div>
                             </li><!--
                             --><li>
                                 <img src='<?php echo get_template_directory_uri(); ?>/img/photo5.jpg'>
+                                <div class='slide-desc'>
+                                    <div class='slide-title'>
+                                        Roland Lehoucq
+                                    </div>
+                                    <div class='slide-content'>
+                                        Astrophysicien. Commissariat à l’énergie atomique et aux énergies alternatives
+                                    </div>
+                                </div>
                             </li><!--
                             --><li>
                                 <img src='<?php echo get_template_directory_uri(); ?>/img/photo6.jpg'>
+                                <div class='slide-desc'>
+                                    <div class='slide-title'>
+                                        Roland Lehoucq
+                                    </div>
+                                    <div class='slide-content'>
+                                        Astrophysicien. Commissariat à l’énergie atomique et aux énergies alternatives
+                                    </div>
+                                </div>
                             </li><!--
                             --><li>
                                 <img src='<?php echo get_template_directory_uri(); ?>/img/photo7.jpg'>
+                                <div class='slide-desc'>
+                                    <div class='slide-title'>
+                                        Roland Lehoucq
+                                    </div>
+                                    <div class='slide-content'>
+                                        Astrophysicien. Commissariat à l’énergie atomique et aux énergies alternatives
+                                    </div>
+                                </div>
                             </li><!--
                             --><li>
                                 <img src='<?php echo get_template_directory_uri(); ?>/img/photo8.jpg'>
+                                <div class='slide-desc'>
+                                    <div class='slide-title'>
+                                        Roland Lehoucq
+                                    </div>
+                                    <div class='slide-content'>
+                                        Astrophysicien. Commissariat à l’énergie atomique et aux énergies alternatives
+                                    </div>
+                                </div>
+                            </li><!--
+                            --><li>
+                                <img src='<?php echo get_template_directory_uri(); ?>/img/photo5.jpg'>
+                                <div class='slide-desc'>
+                                    <div class='slide-title'>
+                                        Roland Lehoucq
+                                    </div>
+                                    <div class='slide-content'>
+                                        Astrophysicien. Commissariat à l’énergie atomique et aux énergies alternatives
+                                    </div>
+                                </div>
+                            </li><!--
+                            --><li>
+                                <img src='<?php echo get_template_directory_uri(); ?>/img/photo2.jpg'>
+                                <div class='slide-desc'>
+                                    <div class='slide-title'>
+                                        Roland Lehoucq
+                                    </div>
+                                    <div class='slide-content'>
+                                        Astrophysicien. Commissariat à l’énergie atomique et aux énergies alternatives
+                                    </div>
+                                </div>
+                            </li><!--
+                            --><li>
+                                <img src='<?php echo get_template_directory_uri(); ?>/img/photo4.jpg'>
+                                <div class='slide-desc'>
+                                    <div class='slide-title'>
+                                        Roland Lehoucq
+                                    </div>
+                                    <div class='slide-content'>
+                                        Astrophysicien. Commissariat à l’énergie atomique et aux énergies alternatives
+                                    </div>
+                                </div>
+                            </li><!--
+                            --><li>
+                                <img src='<?php echo get_template_directory_uri(); ?>/img/photo7.jpg'>
+                                <div class='slide-desc'>
+                                    <div class='slide-title'>
+                                        Roland Lehoucq
+                                    </div>
+                                    <div class='slide-content'>
+                                        Astrophysicien. Commissariat à l’énergie atomique et aux énergies alternatives
+                                    </div>
+                                </div>
                             </li>
                         </ul>
                     </div>
