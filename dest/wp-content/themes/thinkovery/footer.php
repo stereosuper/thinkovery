@@ -4,7 +4,7 @@
         <div class='footer-top'>
             <div class='container'>
                 <div class='container-medium'>
-                    <p><?php the_field('ctaTxt', 'options') ?></p>
+                    <p><?php the_field('ctaTxt', 'options'); ?></p>
                     <a href='<?php the_field('ctaLink', 'options'); ?>' class='btn big'><?php the_field('ctaLinkTxt', 'options'); ?><svg class='icon'><use xlink:href='#icon-arrow-right'/></svg></a>
                 </div>
             </div>
@@ -38,15 +38,16 @@
                         ?>
                         <a href='<?php the_field('blogLink', 'options'); ?>' class='btn-small'>
                             <?php the_field('blogLinkTxt', 'options'); ?>
+                            <svg class='icon'><use xlink:href='#icon-arrow-right'/></svg>
                         </a>
                     </div>
                     <div class='col-2'>
                         <span class='footer-title'><?php the_field('alsoTitle', 'options'); ?></span>
-                        <?php wp_nav_menu( array( 'theme_location' => 'secondary', 'container' => false, 'menu_class' => 'menu-footer' ) ); ?>
+                        <?php wp_nav_menu( array( 'theme_location' => 'secondary', 'container' => false, 'menu_class' => 'menu-footer', 'walker' => new rc_scm_walker ) ); ?>
                         <?php if( have_rows('social', 'options') ): ?>
                             <ul class='social'>
                                 <?php while ( have_rows('social', 'options') ) : the_row(); ?><li>
-                                    <a href='<?php the_sub_field('networkLink'); ?>'>
+                                    <a href='<?php the_sub_field('networkLink'); ?>' target='_blank'>
                                         <?php the_sub_field('networkLinkTxt'); ?>
                                         <svg class='icon'><use xlink:href='#icon-<?php the_sub_field('networkSlug'); ?>'/></svg>
                                     </a>

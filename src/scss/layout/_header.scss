@@ -131,7 +131,7 @@
             width: 200px;
             height: 200px;
             bottom: -100px;
-            right: -50px;
+            right: -80px;
             border-radius: 50%;
             transform: scale(0);
         }
@@ -240,6 +240,9 @@
         a{
             padding-top: 25px;
             padding-bottom: 20px;
+            &:before, &:after{
+                display: none;
+            }
         }
     }
 }
@@ -268,14 +271,6 @@
             width: 1.3em;
             float: left;
             text-indent: 0;
-        }
-    }
-
-    .menu-main{
-        a{
-            &:before, &:after{
-                display: none;
-            }
         }
     }
 
