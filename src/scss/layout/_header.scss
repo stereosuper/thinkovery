@@ -114,32 +114,40 @@
         position: relative;
         overflow: hidden;
         transition: $transition;
-        &:before, &:after{
+        &:before, > i:after{
             content: '';
             position: absolute;
             transition: opacity $transition, transform 0.5s ease-in-out;
             opacity: 0;
-            z-index: -1;
         }
         &:before{
             top: 0;
             bottom: 0;
             left: 0;
             right: 0;
+            z-index: -1;
         }
-        &:after{
+        > i{
             width: 200px;
             height: 200px;
+            position: absolute;
             bottom: -100px;
             right: -80px;
-            border-radius: 50%;
-            transform: scale(0);
+            z-index: -1;
+            &:after{
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                border-radius: 50%;
+                transform: scale(0);
+            }
         }
         &:hover, &:focus{
-            &:before, &:after{
+            &:before, > i:after{
                 opacity: 1;
             }
-            &:after{
+            > i:after{
                 transform: scale(1);
             }
         }
@@ -240,7 +248,7 @@
         a{
             padding-top: 25px;
             padding-bottom: 20px;
-            &:before, &:after{
+            &:before, i{
                 display: none;
             }
         }

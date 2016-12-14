@@ -31,7 +31,9 @@ get_header(); ?>
                         <?php echo $currentDecli['txt']; ?>
                         <h1><?php the_title(); ?></h1>
                     </div>
-                    <a href='<?php the_field('ctaLink'); ?>' class='btn big'><?php the_field('ctaTxt'); ?><svg class='icon'><use xlink:href='#icon-arrow-right'/></svg></a>
+                    <a href='<?php the_field('ctaLink'); ?>' class='btn'>
+                        <?php the_field('ctaTxt'); ?><svg class='icon'><use xlink:href='#icon-arrow-right'/></svg><i></i>
+                    </a>
                 </div>
             </div>
         </header>

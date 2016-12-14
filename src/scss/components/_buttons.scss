@@ -11,16 +11,23 @@
 	text-align: center;
 	box-shadow: none;
 	color: $white !important;
-	&:before{
-		content: '';
+	> i{
 		width: 360px;
 		height: 360px;
 		position: absolute;
 		top: -65%;
 		left: 25%;
-		border-radius: 50%;
 		z-index: -1;
-		transition: 1s ease-in-out;
+		&:before{
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			border-radius: 50%;
+			transition: 0.4s ease-in-out;
+		}
 	}
 	.icon{
 		width: 17px;
@@ -29,9 +36,11 @@
 		transition: 0.18s ease-in-out;
 	}
 	&:hover, &:focus{
-		&:before{
-		    transform: scale(8) translate3d(-15px, -15px, 0);
-		    transition: 3s cubic-bezier(0.18, 0, 0, 0.995);
+		i{
+		    &:before{
+		    	transform: scale(1.5) translate3d(-15px, -15px, 0);
+		    	transition: 1s cubic-bezier(0.18, 0, 0, 0.995);
+		    }
 		}
 		.icon{
 			transform: translate3d(5px, 0, 0);
