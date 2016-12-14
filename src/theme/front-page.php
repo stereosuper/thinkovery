@@ -219,7 +219,7 @@ get_header(); ?>
                         </ul>
                     </div>
                 </div>
-                <svg class='icon hoop'><use xlink:href='#icon-hoop'/></svg>
+                <svg class='icon hoop'><use xlink:href='#icon-hoop-thin'/></svg>
             </div>
             <div class='container'>
                 <div class='container-small'>
