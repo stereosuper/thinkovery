@@ -1,7 +1,28 @@
 /* Slider */
 
-.wrapper-sliders{
+.container-sliders{
 	height: 185px;
+	width: 100%;
+	position: relative;
+	&#slider-team{
+
+	}
+	.hoop{
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 205px;
+		height: 205px;
+		z-index: 10000;
+		opacity: 0.9;
+		transfom-origin: 50% 50%;
+		pointer-events: none;
+	}
+}
+
+.wrapper-sliders{
+	height: 100%;
 	max-width: 100%;
 	overflow: hidden;
 	position: relative;
@@ -27,8 +48,6 @@
 		position: absolute;
 		top: 0;
 		left: 0;
-		// left: 50%;
-		// transform: translate(-50%, 0);
 	}
 	> li{
 		display: inline-block;

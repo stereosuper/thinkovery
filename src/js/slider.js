@@ -4,7 +4,7 @@ var Draggable = require('./libs/gsap/src/uncompressed/utils/Draggable.js');
 var ThrowPropsPlugin = require('./libs/gsap/src/uncompressed/plugins/ThrowPropsPlugin.min.js');
 
 module.exports = function(){
-    var wrapperSliders = $('.wrapper-sliders'), sliders = $('.slider'), slider = $('.slides'), slides = slider.find('> li'), nbSlides, slideWidth, slideHeight;
+    var containerSliders = $('.container-sliders'), wrapperSliders = $('.wrapper-sliders'), hoopSlider = containerSliders.find('.hoop'), sliders = $('.slider'), slider = $('.slides'), slides = slider.find('> li'), nbSlides, slideWidth, slideHeight;
     var halfSlides, halfRight, halfLeft, widthSlider, middleSlider;
     var i, j;
     var newX;
@@ -30,6 +30,8 @@ module.exports = function(){
             TweenMax.set(sliders, {x: newX, overwrite: false});
             this.x = newX;
         }
+        // Rotate svg
+        TweenMax.set(hoopSlider, {rotation: newX, overwrite: false});
     }
 
     // Position slides
@@ -41,7 +43,7 @@ module.exports = function(){
         halfRight = halfSlides;
         halfLeft = halfSlides;
         // Center the middle slide
-        //TweenMax.set(slider, {marginLeft: -(slideWidth/2)+'px'});
+        TweenMax.set(wrapperSliders, {x: -(slideWidth/2)+'px'});
     }else{
         halfRight = Math.ceil(halfSlides);
         halfLeft = nbSlides - halfRight;
