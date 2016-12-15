@@ -3,23 +3,24 @@
 Template Name: Front Page
 */
 
+echo $currentDecli['baselinePosX'] . $currentDecli['baselinePosY'] . $currentDecli['baselinePlan'];
+
 get_header(); ?>
 
     <?php if ( have_posts() ) : the_post(); ?>
 
         <header>
             <div id='bloc-top' style='background-image:url("<?php echo wp_get_attachment_url($currentDecli['homeImg'][0]); ?>")'>
-                <div class='container'>
-                    <strong>
-                        <span><?php echo $currentDecli['title1']; ?></span>
-                        <span><?php echo $currentDecli['title2']; ?></span>
-                    </strong>
-                </div>
+                <strong style='transform:translate3d(<?php echo $currentDecli['baselinePosX']; ?>px, <?php echo $currentDecli['baselinePosY']; ?>px, 0)' data-x='<?php echo $currentDecli['baselinePosX']; ?>' data-y='<?php echo $currentDecli['baselinePosY']; ?>'>
+                    <span><?php echo $currentDecli['title1']; ?></span><svg class='icon hoop' style='width:<?php echo $currentDecli['circleWidth']; ?>px;height:<?php echo $currentDecli['circleWidth']; ?>px'>
+                        <use xlink:href='#icon-hoop'/>
+                    </svg><span><?php echo $currentDecli['title2']; ?></span>
+                </strong>
                 <?php
                     $countImg = 0;
                     foreach($currentDecli['homeImg'] as $img){
                         if($countImg > 0){ ?>
-                            <div style="background-image: url('<?php echo wp_get_attachment_url($declis[0]['homeImg'][$countImg]); ?>')"></div>
+                            <div style="background-image: url('<?php echo wp_get_attachment_url($currentDecli['homeImg'][$countImg]); ?>')"></div>
                         <?php }
                         $countImg ++;
                     }

@@ -15,16 +15,18 @@
 		session_destroy();
 	}
 
+
 	// Lang
 	$lang = __('en', 'thinkovery');
 	$siteUrl = get_site_url('/');
 	$siteUrl .= $lang == 'fr' ? '/?noredirect=fr_FR' : '/en/?noredirect=en_US';
 
+
 	// Declis
 	global $currentDecli;
-	if(isset($_COOKIE['think-decli'])){
-		$currentDecli = unserialize(base64_decode($_COOKIE['think-decli']));
-	}else{
+	// if(isset($_COOKIE['think-decli'])){
+		// $currentDecli = unserialize(base64_decode($_COOKIE['think-decli']));
+	// }else{
 		$declisField = get_field('decli', 'options');
 		$declis = [];
 		$count = 0;
@@ -33,10 +35,10 @@
 		    $declis[$count]['title1'] = $decli['title1'];
 		    $declis[$count]['title2'] = $decli['title2'];
 		    $declis[$count]['txt'] = $decli['txt'];
-		    $declis[$count]['circlePosX'] = $decli['circlePosX'];
-		    $declis[$count]['circlePosY'] = $decli['circlePosY'];
+		    $declis[$count]['baselinePosX'] = $decli['baselinePosX'];
+		    $declis[$count]['baselinePosY'] = $decli['baselinePosY'];
 		    $declis[$count]['circleWidth'] = $decli['circleWidth'];
-		    $declis[$count]['circlePlan'] = $decli['circlePlan'];
+		    $declis[$count]['baselinePlan'] = $decli['baselinePlan'];
 
 		    $countImg = 0;
 		    foreach($decli['homeImg'] as $img){
@@ -47,8 +49,9 @@
 		}
 		$currentDecli = $declis[0];
 
-		setcookie('think-decli', base64_encode(serialize($currentDecli)), time()+3600*24);
-	}
+		// setcookie('think-decli', base64_encode(serialize($currentDecli)), time()+3600*24);
+	// }
+
 
 	// Theme colors
 	global $themeColors;

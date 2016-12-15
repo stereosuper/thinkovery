@@ -31,14 +31,7 @@ module.exports = function(){
         }
     }
 
-    header.on('mouseenter', hideScrollIndic).on('mouseleave', function(){
-        if(myScroll > 10){
-            showScrollIndic();
-        }
-    });
-
-    $(document).on('scroll', throttle(function(){
-
+    function scrollHandler(){
         myScroll = $(document).scrollTop();
         scrollPercent = (myScroll-10) / (docHeight-windowHeight);
         scrollProgress = scrollPercent*227.7;
@@ -51,18 +44,29 @@ module.exports = function(){
         }else{
             hideScrollIndic();
         }
+    }
 
-    }, 10));
-
-
-    $(window).on('resize', throttle(function(){
-
+    function resizeHandler(){
         windowWidth = $(window).outerWidth();
         windowHeight = $(window).height();
         docHeight = $(document).height();
 
         TweenMax.set(logoO, {opacity: 0});
         TweenMax.set(logoO1, {opacity: 1});
+    }
 
+    header.on('mouseenter', hideScrollIndic).on('mouseleave', function(){
+        if(myScroll > 10){
+            showScrollIndic();
+        }
+    });
+
+    $(document).on('scroll', throttle(function(){
+        requestAnimFrame(scrollHandler);
+    }, 10));
+
+
+    $(window).on('resize', throttle(function(){
+        requestAnimFrame(resizeHandler);
     }, 60));
 }

@@ -3,7 +3,7 @@
 	$colorprimary: map-get($theme, color);
 	$colorsecondary: map-get($theme, color-secondary);
     .theme-#{$color}{
-        .theme-color, h1, .lang span, a, h2 > span, h1 > strong{
+        .theme-color, h1, .lang span, a, h2 > span, h1 > strong, #bloc-top strong > span > span{
         	color: $colorprimary;
         }
         ol{

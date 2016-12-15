@@ -10,7 +10,10 @@ $(function(){
 
     var animHeader = require('./animHeader.js');
     var animBtn = require('./animBtn.js');
+
     var animSlider = require('./slider.js');
+
+    var animMainSlider = require('./sliderMain.js');
 
     // var windowWidth = $(window).outerWidth(), windowHeight = $(window).height(), docHeight = $(document).height();
     // var myScroll = $(document).scrollTop();
@@ -31,11 +34,15 @@ $(function(){
         animSlider();
     }
 
+    // Slider home
+    if($('#bloc-top').length){
+        animMainSlider($('#bloc-top'));
+    }
+
 
     // $(document).on('scroll', throttle(function(){
 
     // }, 10));
-
 
     // $(window).on('resize', throttle(function(){
 
