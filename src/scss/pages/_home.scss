@@ -8,15 +8,36 @@
 	overflow: hidden;
 	font-size: 3.5rem;
 	color: #fff;
+}
+.baseline{
+	position: absolute;
+	top: 0;
+	left: 0;
+	font-weight: 600;
+	white-space: nowrap;
+	transform-origin: 0 0;
+	&.off{
+		span{
+			opacity: 0;
+		}
+	}
 	.icon{
 		margin: 0 25px;
 		opacity: 0.85;
 	}
-	strong{
-		position: absolute;
-		top: 0;
-		left: 0;
-		transform-origin: 0 0;
+}
+.baseline-second{
+	padding: 0 $gutter*2;
+	position: absolute;
+	bottom: 50px;
+	font-size: 1.2em;
+	font-weight: 600;
+	left: 0;
+	right: 0;
+	text-align: center;
+	opacity: 0;
+	&.on{
+		opacity: 1;
 	}
 }
 

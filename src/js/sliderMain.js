@@ -5,11 +5,13 @@ window.requestAnimFrame = require('./requestAnimFrame.js');
 var throttle = require('./throttle.js');
 
 module.exports = function(blocTop){
-    var baseline = blocTop.find('strong');
+    var baseline = blocTop.find('.baseline'), baselineSecond = blocTop.find('.baseline-second');
     var ratioScale, imgW = 1260, imgH = 760, imgRatio = imgH / imgW;
     var finalW, finalH;
     var newX, newY, posX = baseline.data('x'), posY = baseline.data('y');
     var containerH, containerW, containerRatio;
+    var gutter = 20;
+    var header = $('#header');
 
     function setPosBaseline(){
         containerH = blocTop.height();
@@ -33,6 +35,14 @@ module.exports = function(blocTop){
         ratioScale = finalH / imgH;
 
         TweenMax.set(baseline, {scale: ratioScale, x: newX + 'px', y: newY + 'px'});
+
+        if(baseline.offset().left < gutter || baseline.offset().left + baseline.width() + gutter*2 > containerW || baseline.offset().top < header.height()){
+            baseline.addClass('off');
+            baselineSecond.addClass('on');
+        }else{
+            baseline.removeClass('off');
+            baselineSecond.removeClass('on');
+        }
     }
     setPosBaseline();
 
