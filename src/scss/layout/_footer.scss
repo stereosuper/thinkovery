@@ -129,6 +129,12 @@
     .tel-footer{
         width: 47.4%;
     }
+
+    .menu-footer{
+        >li{
+            padding-left: 0;
+        }
+    }
 }
 
 @media (max-width: $tablet){

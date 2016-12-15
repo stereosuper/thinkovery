@@ -44,3 +44,11 @@
         transition: $transition;
     }
 }
+
+@media (max-width: $desktop-small){
+    .social{
+        li{
+            padding-left: 0;
+        }
+    }
+}
