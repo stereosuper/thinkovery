@@ -237,10 +237,10 @@ get_header(); ?>
                                 <img src='<?php echo get_template_directory_uri(); ?>/img/photo1-learn.jpg'>
                                 <div class='slide-desc'>
                                     <div class='slide-title'>
-                                        Roland Lehoucq
+                                        Zup de CO
                                     </div>
                                     <div class='slide-content'>
-                                        Astrophysicien. Commissariat à l’énergie atomique et aux énergies alternatives
+                                        SPOC "Le tuto des tuteurs"
                                     </div>
                                 </div>
                             </li><!--
@@ -248,10 +248,10 @@ get_header(); ?>
                                 <img src='<?php echo get_template_directory_uri(); ?>/img/photo2-learn.jpg'>
                                 <div class='slide-desc'>
                                     <div class='slide-title'>
-                                        Roland Lehoucq
+                                        Zup de CO
                                     </div>
                                     <div class='slide-content'>
-                                        Astrophysicien. Commissariat à l’énergie atomique et aux énergies alternatives
+                                        SPOC "Le tuto des tuteurs"
                                     </div>
                                 </div>
                             </li><!--
@@ -259,10 +259,10 @@ get_header(); ?>
                                 <img src='<?php echo get_template_directory_uri(); ?>/img/photo3-learn.jpg'>
                                 <div class='slide-desc'>
                                     <div class='slide-title'>
-                                        Roland Lehoucq
+                                        Zup de CO
                                     </div>
                                     <div class='slide-content'>
-                                        Astrophysicien. Commissariat à l’énergie atomique et aux énergies alternatives
+                                        SPOC "Le tuto des tuteurs"
                                     </div>
                                 </div>
                             </li><!--
@@ -270,10 +270,10 @@ get_header(); ?>
                                 <img src='<?php echo get_template_directory_uri(); ?>/img/photo4-learn.jpg'>
                                 <div class='slide-desc'>
                                     <div class='slide-title'>
-                                        Roland Lehoucq
+                                        Zup de CO
                                     </div>
                                     <div class='slide-content'>
-                                        Astrophysicien. Commissariat à l’énergie atomique et aux énergies alternatives
+                                        SPOC "Le tuto des tuteurs"
                                     </div>
                                 </div>
                             </li><!--
@@ -281,17 +281,17 @@ get_header(); ?>
                                 <img src='<?php echo get_template_directory_uri(); ?>/img/photo5-learn.jpg'>
                                 <div class='slide-desc'>
                                     <div class='slide-title'>
-                                        Roland Lehoucq
+                                        Zup de CO
                                     </div>
                                     <div class='slide-content'>
-                                        Astrophysicien. Commissariat à l’énergie atomique et aux énergies alternatives
+                                        SPOC "Le tuto des tuteurs"
                                     </div>
                                 </div>
                             </li>
                         </ul>
                     </div>
                 </div>
-                <svg class='icon hoop'><use xlink:href='#icon-hoop-thin'/></svg>
+                <svg class='icon hoop'><use xlink:href='#icon-hoop-very-thin'/></svg>
             </div>
         </section>
 

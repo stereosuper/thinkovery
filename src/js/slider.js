@@ -9,14 +9,12 @@ module.exports = function(){
     var i, j;
     var newX;
     var centerSlider, centerSlide;
-    var sliderTarget, originalSliderTarget, sliderClonedTarget, nbSlidesTarget, slideTargetWidth, widthSliderTarget, slidersTarget, centerSliderTarget, containerSlidersTarget, slidesTarget, slideTargetWidth, hoopSliderTarget;
+    var sliderTarget, originalSliderTarget, sliderClonedTarget, nbSlidesTarget, slideTargetWidth, widthSliderTarget, centerSliderTarget, containerSlidersTarget, slidesTarget, slideTargetWidth, hoopSliderTarget;
 
     var windowWidth = $(window).outerWidth();
 
     function desactivateSlide(){
         sliderTarget = $(this.target);
-        //console.log(this);
-        console.log(sliderTarget);
         sliderTarget.find('.slides > li').removeClass('active');
     }
 
@@ -28,7 +26,7 @@ module.exports = function(){
         slidesTarget = sliderTarget.find('.slides > li');
         slideTargetWidth = slidesTarget.outerWidth();
         slidesTarget.each(function(index){
-            centerSlide = $(this).offset().left + (slideTargetWidth/2);
+            centerSlide = Math.floor($(this).offset().left + (slideTargetWidth/2));
             if(centerSlide === centerSliderTarget){
                 $(this).addClass('active');
             }
@@ -38,7 +36,7 @@ module.exports = function(){
     function activateSlideInitial(containerS, slidesS, slidesWidthS){
         centerSlider = (containerS.width())/2;
         slidesS.each(function(index){
-            centerSlide = $(this).offset().left + (slidesWidthS/2);
+            centerSlide = Math.floor($(this).offset().left + (slidesWidthS/2));
             if(centerSlide === centerSlider){
                 $(this).addClass('active');
             }
@@ -53,7 +51,6 @@ module.exports = function(){
         nbSlidesTarget = originalSliderTarget.find('> li').length;
         slideTargetWidth = originalSliderTarget.find('> li').outerWidth();
         widthSliderTarget = nbSlidesTarget*slideTargetWidth;
-        slidersTarget = sliderTarget.find('.slider');
         hoopSliderTarget = containerSlidersTarget.find('.hoop');
         newX = this.x;
         if(newX <= 0){
@@ -70,11 +67,11 @@ module.exports = function(){
             }
         }
         if (newX !== this.x) {
-            TweenMax.set(slidersTarget, {x: newX, overwrite: false});
+            TweenMax.set(sliderTarget, {x: newX, overwrite: false});
             this.x = newX;
         }
         // Rotate svg
-        TweenMax.set(hoopSlider, {rotation: newX/2, overwrite: false});
+        TweenMax.set(hoopSliderTarget, {rotation: newX/2, overwrite: false});
     }
 
     containerSliders.each(function(index){
