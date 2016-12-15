@@ -39,7 +39,7 @@ h2{
     font-weight: 600;
     letter-spacing: -2px;
 }
-.baseline > span, .baseline-second, h2{
+.baseline > span, .baseline-second > span, h2{
     > span{
         display: inline-block;
         position: relative;

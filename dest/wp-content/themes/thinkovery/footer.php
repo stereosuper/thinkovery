@@ -77,7 +77,7 @@
         </div>
 	</footer>
 
-    <?php global $themeColors; global $currentDecli; ?>
+    <?php global $themeColors, $currentDecli; ?>
 
     <svg style='position:absolute;width:0;height:0;overflow:hidden'>
         <defs>
