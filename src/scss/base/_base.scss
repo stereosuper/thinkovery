@@ -30,7 +30,7 @@ h1{
     font-size: 8rem;
     font-weight: 700;
     letter-spacing: -4px;
-    line-height: 1;
+    line-height: 0.9;
 }
 
 h2{
@@ -336,6 +336,41 @@ a{
             margin-left: $col;
         }
     }
+    h1{
+        font-size: 6rem;
+    }
+    h2{
+        font-size: 3.5rem;
+    }
+    h3{
+        font-size: 2.8rem;
+    }
+    ol{
+        >li{
+            padding-left: 22px;
+            &:before{
+                width: 22px;
+                left: 0;
+                text-align: left;
+            }
+        }
+    }
+    ul{
+        >li{
+            padding-left: 22px;
+            &:before{
+                left: 0;
+            }
+        }
+    }
+    blockquote{
+        padding-left: 22px;
+        p{
+            &:before{
+                left: -22px;
+            }
+        }
+    }
 }
 
 @media (max-width: $tablet){
@@ -351,10 +386,72 @@ a{
             text-align: right;
         }
     }
+    h1{
+        font-size: 5rem;
+    }
+    h2{
+        font-size: 3rem;
+    }
+    h3{
+        font-size: 2.5rem;
+    }
+    p{
+        font-size: 1.6rem;
+    }
+    ol, ul{
+        font-size: 1.6rem;
+    }
+    ul{
+        >li{
+            &:before{
+                top: 7px;
+            }
+        }
+    }
+    blockquote{
+        padding-left: 20px;
+        p{
+            &:before{
+                left: -20px;
+                top: 0;
+            }
+        }
+    }
 }
 
 @media (max-width: $phone){
     .hide-mb{
         display: none !important;
+    }
+    h1{
+        font-size: 4rem;
+    }
+    h2{
+        font-size: 2.5rem;
+    }
+    h3{
+        font-size: 2rem;
+    }
+    p{
+        font-size: 1.4rem;
+    }
+    ol, ul{
+        font-size: 1.4rem;
+    }
+    ul{
+        >li{
+            &:before{
+                top: 5px;
+            }
+        }
+    }
+    blockquote{
+        padding-left: 18px;
+        p{
+            &:before{
+                left: -18px;
+                top: 0;
+            }
+        }
     }
 }

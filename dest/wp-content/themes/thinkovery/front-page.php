@@ -81,7 +81,7 @@ get_header(); ?>
                     </div>
                 </div>
             </div>
-            <div class='container-sliders' id='slider-team'>
+            <div class='container-sliders' id='slider-learn-from-best'>
                 <div class='wrapper-sliders'>
                     <div class='slider'>
                         <ul class='slides'>
@@ -229,6 +229,70 @@ get_header(); ?>
                         <?php the_field('expTxt'); ?>
                     </div>
                 </div>
+            </div>
+            <div class='container-sliders' id='slider-best-way-learn'>
+                <div class='wrapper-sliders'>
+                    <div class='slider'>
+                        <ul class='slides'>
+                            <li>
+                                <img src='<?php echo get_template_directory_uri(); ?>/img/photo1-learn.jpg'>
+                                <div class='slide-desc'>
+                                    <div class='slide-title'>
+                                        Zup de CO
+                                    </div>
+                                    <div class='slide-content'>
+                                        SPOC "Le tuto des tuteurs"
+                                    </div>
+                                </div>
+                            </li><!--
+                            --><li>
+                                <img src='<?php echo get_template_directory_uri(); ?>/img/photo2-learn.jpg'>
+                                <div class='slide-desc'>
+                                    <div class='slide-title'>
+                                        Zup de CO
+                                    </div>
+                                    <div class='slide-content'>
+                                        SPOC "Le tuto des tuteurs"
+                                    </div>
+                                </div>
+                            </li><!--
+                            --><li>
+                                <img src='<?php echo get_template_directory_uri(); ?>/img/photo3-learn.jpg'>
+                                <div class='slide-desc'>
+                                    <div class='slide-title'>
+                                        Zup de CO
+                                    </div>
+                                    <div class='slide-content'>
+                                        SPOC "Le tuto des tuteurs"
+                                    </div>
+                                </div>
+                            </li><!--
+                            --><li>
+                                <img src='<?php echo get_template_directory_uri(); ?>/img/photo4-learn.jpg'>
+                                <div class='slide-desc'>
+                                    <div class='slide-title'>
+                                        Zup de CO
+                                    </div>
+                                    <div class='slide-content'>
+                                        SPOC "Le tuto des tuteurs"
+                                    </div>
+                                </div>
+                            </li><!--
+                            --><li>
+                                <img src='<?php echo get_template_directory_uri(); ?>/img/photo5-learn.jpg'>
+                                <div class='slide-desc'>
+                                    <div class='slide-title'>
+                                        Zup de CO
+                                    </div>
+                                    <div class='slide-content'>
+                                        SPOC "Le tuto des tuteurs"
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <svg class='icon hoop'><use xlink:href='#icon-hoop-very-thin'/></svg>
             </div>
         </section>
 

@@ -242,6 +242,11 @@
             }
         }
     }
+    #header{
+    	li{
+    		padding-left: 0;
+    	}
+    }
 }
 
 @media (max-width: $tablet){

@@ -5,8 +5,24 @@
 	height: 300px;
 	position: relative;
 	z-index: 0;
-	&#slider-team{
-
+	&#slider-learn-from-best{
+	}
+	&#slider-best-way-learn{
+		height: 350px;
+		margin-top: 110px;
+		.slides{
+			> li{
+				width: 332px;
+			}
+		}
+		.hoop{
+			top: -88px;
+			width: 350px;
+			height: 350px;
+		}
+		.slide-desc{
+			padding-top: 95px;
+		}
 	}
 	.hoop{
 		position: absolute;
