@@ -51,11 +51,21 @@ get_header(); ?>
             <div class='bloc-half'>
                 <h2><?php the_field('section1Title1'); ?></h2>
                 <?php the_field('section1Txt1'); ?>
-                <?php the_field('section1Video1'); ?>
+                <div class='wrapper-video'>
+                    <?php the_field('section1Video1'); ?>
+                    <div class='cover-video' style='background-image: url(<?php echo get_template_directory_uri(); ?>/img/cover-video-1.jpg);'>
+                        <svg class='icon hoop'><use xlink:href='#icon-hoop-thin'/></svg>
+                    </div>
+                </div>
             </div><div class='bloc-half'>
                 <h2><?php the_field('section1Title2'); ?></h2>
                 <?php the_field('section1Txt2'); ?>
-                <?php the_field('section1Video2'); ?>
+                <div class='wrapper-video'>
+                    <?php the_field('section1Video2'); ?>
+                    <div class='cover-video' style='background-image: url(<?php echo get_template_directory_uri(); ?>/img/cover-video-2.jpg);'>
+                        <svg class='icon hoop'><use xlink:href='#icon-hoop-thin'/></svg>
+                    </div>
+                </div>
             </div>
         </section>
 
