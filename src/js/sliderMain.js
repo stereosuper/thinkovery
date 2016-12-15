@@ -5,18 +5,24 @@ window.requestAnimFrame = require('./requestAnimFrame.js');
 var throttle = require('./throttle.js');
 
 module.exports = function(blocTop){
-    var baseline = blocTop.find('.baseline'), baselineSecond = blocTop.find('.baseline-second');
+    var currentSlide = blocTop.find('.slide-on');
+    var baseline = currentSlide.find('.baseline'), baselineSecond = currentSlide.find('.baseline-second');
     var ratioScale, imgW = 1260, imgH = 760, imgRatio = imgH / imgW;
     var finalW, finalH;
-    var newX, newY, posX = baseline.data('x'), posY = baseline.data('y');
+    var newX, newY, posX, posY;
     var containerH, containerW, containerRatio;
     var gutter = 20;
     var header = $('#header');
+    var nav = blocTop.find('#slider-home-nav');
+    var slides = blocTop.find('.slide-home'), nbSlides = slides.length;
 
     function setPosBaseline(){
         containerH = blocTop.height();
         containerW = blocTop.width();
         containerRatio = containerH / containerW;
+
+        posX = baseline.data('x');
+        posY = baseline.data('y')
 
         // portrait
         if(containerRatio > imgRatio){
@@ -34,17 +40,69 @@ module.exports = function(blocTop){
 
         ratioScale = finalH / imgH;
 
-        TweenMax.set(baseline, {scale: ratioScale, x: newX + 'px', y: newY + 'px'});
-
-        if(baseline.offset().left < gutter || baseline.offset().left + baseline.width() + gutter*2 > containerW || baseline.offset().top < header.height()){
-            baseline.addClass('off');
-            baselineSecond.addClass('on');
-        }else{
-            baseline.removeClass('off');
-            baselineSecond.removeClass('on');
-        }
+        TweenMax.set(baseline, {scale: ratioScale, left: newX + 'px', top: newY + 'px', onComplete: function(){
+            if(newX < gutter || newX + baseline.width() + gutter*2 > containerW || newY < header.height()){
+                baseline.addClass('off');
+                baselineSecond.addClass('on');
+            }else{
+                baseline.removeClass('off');
+                baselineSecond.removeClass('on');
+            }
+        }});
     }
-    setPosBaseline();
+
+    function animSlide(){
+        baseline.addClass('bs-on');
+        baselineSecond.addClass('bs-on');
+
+        nav.find('.current').html(currentSlide.index('.slide-home') + 1);
+    }
+
+    function changeSlide(){
+        currentSlide.removeClass('slide-on');
+        baseline.removeClass('bs-on');
+        baselineSecond.removeClass('bs-on');
+
+        currentSlide = blocTop.find('.slide-on');
+        baseline = currentSlide.find('.baseline');
+        baselineSecond = currentSlide.find('.baseline-second');
+
+        setPosBaseline();
+        animSlide();
+    }
+
+    function slideNext(){
+        if(currentSlide.next('.slide-home').length){
+            currentSlide.next('.slide-home').addClass('slide-on');
+        }else{
+            slides.eq(0).addClass('slide-on');
+        }
+
+        changeSlide();
+    }
+
+    function slidePrev(){
+        if(currentSlide.prev('.slide-home').length){
+            currentSlide.prev('.slide-home').addClass('slide-on');
+        }else{
+            slides.eq(nbSlides - 1).addClass('slide-on');
+        }
+
+        changeSlide();
+    }
+
+    nav.on('click', '.prev', function(e){
+        e.preventDefault();
+        slidePrev();
+    }).on('click', '.next', function(e){
+        e.preventDefault();
+        slideNext();
+    });
+
+    $(window).on('load', function(){
+        setPosBaseline();
+        animSlide();
+    });
 
     $(window).on('resize', throttle(function(){
         requestAnimFrame(setPosBaseline);

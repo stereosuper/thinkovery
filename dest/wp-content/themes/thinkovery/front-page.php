@@ -3,29 +3,36 @@
 Template Name: Front Page
 */
 
-echo $currentDecli['baselinePosX'] . $currentDecli['baselinePosY'] . $currentDecli['baselinePlan'];
-
 get_header(); ?>
 
     <?php if ( have_posts() ) : the_post(); ?>
 
         <header>
-            <div id='bloc-top' style='background-image:url("<?php echo wp_get_attachment_url($currentDecli['homeImg'][0]); ?>")'>
-                <strong style='transform:translate3d(<?php echo $currentDecli['baselinePosX']; ?>px, <?php echo $currentDecli['baselinePosY']; ?>px, 0)' data-x='<?php echo $currentDecli['baselinePosX']; ?>' data-y='<?php echo $currentDecli['baselinePosY']; ?>' class='baseline'>
-                    <span><?php echo $currentDecli['title1']; ?></span><svg class='icon hoop' style='width:<?php echo $currentDecli['circleWidth']; ?>px;height:<?php echo $currentDecli['circleWidth']; ?>px'>
-                        <use xlink:href='#icon-hoop'/>
-                    </svg><span><?php echo $currentDecli['title2']; ?></span>
-                </strong>
-                <span class='baseline-second'><?php echo $currentDecli['title1']; ?> <?php echo $currentDecli['title2']; ?></span>
-                <?php
-                    $countImg = 0;
-                    foreach($currentDecli['homeImg'] as $img){
-                        if($countImg > 0){ ?>
-                            <div style="background-image: url('<?php echo wp_get_attachment_url($currentDecli['homeImg'][$countImg]); ?>')"></div>
-                        <?php }
-                        $countImg ++;
-                    }
-                ?>
+            <div id='bloc-top'>
+                <?php $count = 0; foreach($declis as $decli){ ?>
+                    <div class='slide-home <?php if($count === 0) echo 'slide-on'; ?>' style='background-image:url("<?php echo wp_get_attachment_url($decli['homeImg'][0]); ?>")'>
+                        <strong style='left:<?php echo $decli['baselinePosX']; ?>px;top:<?php echo $decli['baselinePosY']; ?>' data-x='<?php echo $decli['baselinePosX']; ?>' data-y='<?php echo $decli['baselinePosY']; ?>' class='baseline'>
+                            <span><?php echo $decli['title1']; ?></span><svg class='icon hoop' style='width:<?php echo $decli['circleWidth']; ?>px;height:<?php echo $decli['circleWidth']; ?>px'>
+                                <use xlink:href='#icon-hoop'/>
+                            </svg><span><?php echo $decli['title2']; ?></span>
+                        </strong>
+                        <span class='baseline-second'><span><?php echo $decli['title1']; ?></span> <span><?php echo $decli['title2']; ?></span></span>
+                        <?php
+                            $countImg = 0;
+                            foreach($decli['homeImg'] as $img){
+                                if($countImg > 0){ ?>
+                                    <div style="background-image: url('<?php echo wp_get_attachment_url($currentDecli['homeImg'][$countImg]); ?>')" class='slider-plans'></div>
+                                <?php }
+                                $countImg ++;
+                            }
+                        ?>
+                    </div>
+                <?php $count ++; } ?>
+                <div id='slider-home-nav'>
+                    <button class='prev'>Prev</button>
+                    <span><span class='current'>1</span>/<?php echo $count; ?></span>
+                    <button class='next'>Next</button>
+                </div>
             </div>
             <div id='bloc-revelation'>
                 <div class='container'>

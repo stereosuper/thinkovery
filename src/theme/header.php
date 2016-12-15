@@ -23,7 +23,7 @@
 
 
 	// Declis
-	global $currentDecli;
+	global $currentDecli, $declis;
 	// if(isset($_COOKIE['think-decli'])){
 		// $currentDecli = unserialize(base64_decode($_COOKIE['think-decli']));
 	// }else{

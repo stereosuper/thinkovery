@@ -2,20 +2,64 @@
 #bloc-top{
 	height: 100vh;
 	position: relative;
-	background-size: cover;
-	background-position: 50% 50%;
-	background-repeat: no-repeat;
 	overflow: hidden;
 	font-size: 3.5rem;
 	color: #fff;
 }
-.baseline{
+#slider-home-nav{
+	position: absolute;
+	right: $gutter*2;
+	bottom: $gutter*2;
+	z-index: 10;
+}
+.slide-home{
 	position: absolute;
 	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-size: cover;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	opacity: 0;
+	transition: opacity $transition;
+	&.slide-on{
+		opacity: 1;
+		z-index: 1;
+	}
+}
+.baseline, .baseline-second{
+	position: absolute;
 	left: 0;
 	font-weight: 600;
+	transition: 0.3s opacity $transition;
+	> span, .icon{
+		display: inline-block;
+	}
+	.js &{
+		> span{
+			transition: 5s ease-out;
+			transform: translate3d(-500px, 0, 0);
+		}
+		.icon{
+			transition: 5s ease-out;
+			transform: translate3d(-600px, 0, 0);
+		}
+		&.bs-on{
+			opacity: 1;
+			> span, .icon{
+				transform: translate3d(0, 0, 0);
+			}
+		}
+	}
+}
+.baseline{
+	top: 0;
 	white-space: nowrap;
 	transform-origin: 0 0;
+	.js &{
+		opacity: 0;
+	}
 	&.off{
 		span{
 			opacity: 0;
@@ -28,17 +72,28 @@
 }
 .baseline-second{
 	padding: 0 $gutter*2;
-	position: absolute;
 	bottom: 50px;
 	font-size: 1.2em;
-	font-weight: 600;
-	left: 0;
 	right: 0;
 	text-align: center;
-	opacity: 0;
 	&.on{
-		opacity: 1;
+		span{
+			opacity: 1;
+		}
 	}
+	span{
+		opacity: 0;
+	}
+}
+.slider-plans{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-size: cover;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
 }
 
 #bloc-revelation{
