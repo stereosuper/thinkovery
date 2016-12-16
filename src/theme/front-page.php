@@ -28,10 +28,10 @@ get_header(); ?>
                         ?>
                     </div>
                 <?php $count ++; } ?>
-                <div id='slider-home-nav'>
-                    <button class='prev'>Prev</button>
+                <div id='slider-home-nav' class='theme-color'>
+                    <button class='prev btn-small-back'>Previous<svg class='icon'><use xlink:href='#icon-arrow-left'/></svg></button>
                     <span><span class='current'>1</span>/<?php echo $count; ?></span>
-                    <button class='next'>Next</button>
+                    <button class='next btn-small'>Next<svg class='icon'><use xlink:href='#icon-arrow-right'/></svg></button>
                 </div>
             </div>
             <div id='bloc-revelation'>

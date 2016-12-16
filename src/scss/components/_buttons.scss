@@ -55,16 +55,30 @@
 	}
 }
 
-.btn-small{
+.btn-small, .btn-small-back{
 	font-weight: 600;
 	.icon{
 		width: 10px;
-		margin: 0 0 0 8px;
 		transition: transform 0.15s ease-in-out;
+	}
+}
+.btn-small{
+	.icon{
+		margin: 0 0 0 8px;
 	}
 	&:hover, &:focus{
 		.icon{
 			transform: translate3d(3px, 0, 0);
+		}
+	}
+}
+.btn-small-back{
+	.icon{
+		margin: 0 8px 0 0;
+	}
+	&:hover, &:focus{
+		.icon{
+			transform: translate3d(-3px, 0, 0);
 		}
 	}
 }
