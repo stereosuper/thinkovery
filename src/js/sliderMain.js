@@ -1,10 +1,11 @@
 var $ = require('./libs/jquery/dist/jquery.slim.min.js');
 var TweenMax = require('./libs/gsap/src/uncompressed/TweenMax.js');
+var CustomEase = require('./libs/gsap/src/uncompressed/plugins/CustomEase.js');
 
 window.requestAnimFrame = require('./requestAnimFrame.js');
 var throttle = require('./throttle.js');
 
-module.exports = function(blocTop){
+module.exports = function(body, blocTop, themeColors){
     var currentSlide = blocTop.find('.slide-on');
     var baseline = currentSlide.find('.baseline'), baselineSecond = currentSlide.find('.baseline-second');
     var ratioScale, imgW = 1260, imgH = 760, imgRatio = imgH / imgW;
@@ -15,6 +16,10 @@ module.exports = function(blocTop){
     var header = $('#header');
     var nav = blocTop.find('#slider-home-nav');
     var slides = blocTop.find('.slide-home'), nbSlides = slides.length;
+    var svgHoop = $('#gradient-hoop');
+    var ease = CustomEase.create('custom', 'M0,0,C0,0.5,0.005,0.73,0.11,0.85,0.22,0.975,0.505,1,1,1');
+
+    var tweenToOn = {x: '0px', opacity: 1, ease: ease}, tweenToOff = {x: '500px', opacity: 0, ease: ease};
 
     function setPosBaseline(){
         containerH = blocTop.height();
@@ -22,7 +27,7 @@ module.exports = function(blocTop){
         containerRatio = containerH / containerW;
 
         posX = baseline.data('x');
-        posY = baseline.data('y')
+        posY = baseline.data('y');
 
         // portrait
         if(containerRatio > imgRatio){
@@ -52,16 +57,25 @@ module.exports = function(blocTop){
     }
 
     function animSlide(){
-        baseline.addClass('bs-on');
-        baselineSecond.addClass('bs-on');
+        TweenMax.fromTo(baseline.find('> .icon'), 7, {x: 500-containerW+'px', opacity: 0}, tweenToOn);
+        TweenMax.fromTo([baseline.find('> span'), baselineSecond.find('> span')], 5, {x: -containerW+'px', opacity: 0}, tweenToOn);
+        TweenMax.fromTo(currentSlide.find('.slider-plans'), 5, {x: -containerW+'px', opacity: 0}, tweenToOn);
 
         nav.find('.current').html(currentSlide.index('.slide-home') + 1);
+
+        body.delay(200).queue(function(){
+            $(this).removeClass('theme-'+body.data('theme')).addClass('theme-'+currentSlide.data('color')).dequeue();
+            svgHoop.find('[data-theme-main]').attr('stop-color', themeColors[currentSlide.data('color')][0]);
+            svgHoop.find('[data-theme-second]').attr('stop-color', themeColors[currentSlide.data('color')][1]);
+        });
     }
 
     function changeSlide(){
         currentSlide.removeClass('slide-on');
-        baseline.removeClass('bs-on');
-        baselineSecond.removeClass('bs-on');
+
+        TweenMax.fromTo(baseline.find('> .icon'), 4, {x: '0px'}, tweenToOff);
+        TweenMax.fromTo([baseline.find('> span'), baselineSecond.find('> span')], 2, {x: '0px'}, tweenToOff);
+        TweenMax.fromTo(currentSlide.find('.slider-plans'), 2, {x: '0px'}, tweenToOff);
 
         currentSlide = blocTop.find('.slide-on');
         baseline = currentSlide.find('.baseline');
@@ -100,6 +114,7 @@ module.exports = function(blocTop){
     });
 
     $(window).on('load', function(){
+        blocTop.addClass('loaded');
         setPosBaseline();
         animSlide();
     });

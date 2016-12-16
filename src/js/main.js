@@ -20,6 +20,15 @@ $(function(){
 
     var body = $('body');
 
+    var themeColors = {
+        'yellow': [ 'rgb(255, 228, 0)', 'rgb(43, 240, 117)' ],
+        'orange': [ 'rgb(255, 120, 0)', 'rgb(255, 228, 0)' ],
+        'red':    [ 'rgb(255, 6, 0)', 'rgb(255, 120, 0)' ],
+        'pink':   [ 'rgb(240, 43, 140)', 'rgb(255, 6, 0)' ],
+        'blue':   [ 'rgb(2, 187, 255)', 'rgb(138, 126, 224)' ],
+        'green':  [ 'rgb(43, 240, 117)', 'rgb(2, 187, 255)' ]
+    };
+
 
     // isMobile.any ? body.addClass('is-mobile') : body.addClass('is-desktop');
 
@@ -36,7 +45,7 @@ $(function(){
 
     // Slider home
     if($('#bloc-top').length){
-        animMainSlider($('#bloc-top'));
+        animMainSlider(body, $('#bloc-top'), themeColors);
     }
 
 
