@@ -8,8 +8,9 @@ module.exports = function(){
     var halfSlides, halfRight, halfLeft, widthSlider, middleSlider;
     var i, j;
     var newX;
-    var centerSlider, centerSlide;
+    var centerSlider, centerSlide, slidesSWidth;
     var sliderTarget, originalSliderTarget, sliderClonedTarget, nbSlidesTarget, slideTargetWidth, widthSliderTarget, centerSliderTarget, containerSlidersTarget, slidesTarget, slideTargetWidth, hoopSliderTarget;
+    var errorMargin, maxMargin, minMargin;
 
     var windowWidth = $(window).outerWidth();
 
@@ -25,19 +26,29 @@ module.exports = function(){
         centerSliderTarget = (containerSlidersTarget.width())/2;
         slidesTarget = sliderTarget.find('.slides > li');
         slideTargetWidth = slidesTarget.outerWidth();
+        errorMargin = slideTargetWidth/2;
+        maxMargin = centerSliderTarget+errorMargin;
+        minMargin = centerSliderTarget-errorMargin;
         slidesTarget.each(function(index){
             centerSlide = Math.floor($(this).offset().left + (slideTargetWidth/2));
-            if(centerSlide === centerSliderTarget){
+            if((centerSlide >= minMargin) && (centerSlide <= maxMargin)){
                 $(this).addClass('active');
             }
         });
     }
 
     function activateSlideInitial(containerS, slidesS, slidesWidthS){
-        centerSlider = (containerS.width())/2;
+        centerSlider = (containerS.outerWidth())/2;
+        slidesSWidth = slidesS.outerWidth();
+        errorMargin = slidesSWidth/2;
+        maxMargin = centerSlider+errorMargin;
+        minMargin = centerSlider-errorMargin;
         slidesS.each(function(index){
             centerSlide = Math.floor($(this).offset().left + (slidesWidthS/2));
-            if(centerSlide === centerSlider){
+            // if(centerSlide === centerSlider){
+            //     $(this).addClass('active');
+            // }
+            if((centerSlide >= minMargin) && (centerSlide <= maxMargin)){
                 $(this).addClass('active');
             }
         });

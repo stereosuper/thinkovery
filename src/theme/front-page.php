@@ -51,21 +51,25 @@ get_header(); ?>
             <div class='bloc-half'>
                 <h2><?php the_field('section1Title1'); ?></h2>
                 <?php the_field('section1Txt1'); ?>
-                <div class='wrapper-video'>
-                    <iframe src='<?php the_field('section1Video1'); ?>?enablejsapi=1&html5=1' frameborder='0' allowfullscreen></iframe>
-                    <div class='cover-video' style='background-image: url(<?php echo get_template_directory_uri(); ?>/img/cover-video-1.jpg);'>
-                        <svg class='icon hoop'><use xlink:href='#icon-hoop-thin'/></svg>
+                <?php if(get_field('section1Video1')){ ?>
+                    <div class='wrapper-video'>
+                        <iframe src='<?php the_field('section1Video1'); ?>?enablejsapi=1&html5=1' frameborder='0' allowfullscreen></iframe>
+                        <div class='cover-video' style='background-image:url(<?php echo wp_get_attachment_url(get_field('section1Cover1')); ?>)'>
+                            <svg class='icon hoop'><use xlink:href='#icon-hoop-thin'/></svg>
+                        </div>
                     </div>
-                </div>
+                <?php } ?>
             </div><div class='bloc-half'>
                 <h2><?php the_field('section1Title2'); ?></h2>
                 <?php the_field('section1Txt2'); ?>
-                <div class='wrapper-video'>
-                    <iframe src='<?php the_field('section1Video2'); ?>?enablejsapi=1&html5=1' frameborder='0' allowfullscreen></iframe>
-                    <div class='cover-video' style='background-image: url(<?php echo get_template_directory_uri(); ?>/img/cover-video-1.jpg);'>
-                        <svg class='icon hoop'><use xlink:href='#icon-hoop-thin'/></svg>
+                <?php if(get_field('section1Video2')){ ?>
+                    <div class='wrapper-video'>
+                        <iframe src='<?php the_field('section1Video2'); ?>?enablejsapi=1&html5=1' frameborder='0' allowfullscreen></iframe>
+                        <div class='cover-video' style='background-image:url(<?php echo wp_get_attachment_url(get_field('section1Cover2')); ?>)'>
+                            <svg class='icon hoop'><use xlink:href='#icon-hoop-thin'/></svg>
+                        </div>
                     </div>
-                </div>
+                <?php } ?>
             </div>
         </section>
 
