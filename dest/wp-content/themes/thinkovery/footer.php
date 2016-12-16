@@ -147,7 +147,7 @@
                 <path d='M546.3 96.9c-2.4 5.8-4.1 9.9-10.2 9.9-1.8 0-1.7 0-6.9-.9v15.6c4.4 1.5 7.6 1.5 8.5 1.5 13 0 18.8-5.7 24.7-19.3L592 33h-19l-13.2 33.8L546.6 33h-18.9l22.6 54.9-4 9z'/>
                 <path class='theme-color logo-o' id='logo-o1' d='M315 17.5c-25.3 0-45.9 20.7-45.9 46.1s20.5 46.1 45.9 46.1c25.3 0 45.9-20.7 45.9-46.1S340.3 17.5 315 17.5zm.8 73.4c-15.3 0-27.7-12.6-27.7-28.2s12.4-28.2 27.7-28.2 27.7 12.6 27.7 28.2-12.4 28.2-27.7 28.2z'/>
             </symbol>
-            <radialGradient id='gradient-hoop' cx='95%' cy='95%' fx='95%' fy='95%'>
+            <radialGradient id='gradient-hoop' cx='85%' cy='85%' fx='85%' fy='85%'>
                 <stop offset='0%' stop-color='<?php echo $themeColors[$currentDecli['mainColor']][1]; ?>' data-theme-second=''/>
                 <stop offset='100%' stop-color='<?php echo $themeColors[$currentDecli['mainColor']][0]; ?>' data-theme-main=''/>
             </radialGradient>

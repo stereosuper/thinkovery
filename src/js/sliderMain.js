@@ -64,7 +64,7 @@ module.exports = function(body, blocTop, themeColors){
         nav.find('.current').html(currentSlide.index('.slide-home') + 1);
 
         body.delay(200).queue(function(){
-            $(this).removeClass('theme-'+body.data('theme')).addClass('theme-'+currentSlide.data('color')).dequeue();
+            $(this).removeClass('theme-'+body.data('theme')).addClass('theme-'+currentSlide.data('color')).data('theme', currentSlide.data('color')).dequeue();
             svgHoop.find('[data-theme-main]').attr('stop-color', themeColors[currentSlide.data('color')][0]);
             svgHoop.find('[data-theme-second]').attr('stop-color', themeColors[currentSlide.data('color')][1]);
         });
