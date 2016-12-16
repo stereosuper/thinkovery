@@ -51,14 +51,8 @@ get_header(); ?>
             <div class='bloc-half'>
                 <h2><?php the_field('section1Title1'); ?></h2>
                 <?php the_field('section1Txt1'); ?>
-                <!-- <div class='wrapper-video'>
-                    <?php the_field('section1Video1'); ?>
-                    <div class='cover-video' style='background-image: url(<?php echo get_template_directory_uri(); ?>/img/cover-video-1.jpg);'>
-                        <svg class='icon hoop'><use xlink:href='#icon-hoop-thin'/></svg>
-                    </div>
-                </div> -->
                 <div class='wrapper-video'>
-                    <iframe src="//www.youtube.com/embed/FKWwdQu6_ok?enablejsapi=1&html5=1" frameborder="0" allowfullscreen></iframe>
+                    <iframe src='<?php the_field('section1Video1'); ?>?enablejsapi=1&html5=1' frameborder='0' allowfullscreen></iframe>
                     <div class='cover-video' style='background-image: url(<?php echo get_template_directory_uri(); ?>/img/cover-video-1.jpg);'>
                         <svg class='icon hoop'><use xlink:href='#icon-hoop-thin'/></svg>
                     </div>
@@ -66,14 +60,8 @@ get_header(); ?>
             </div><div class='bloc-half'>
                 <h2><?php the_field('section1Title2'); ?></h2>
                 <?php the_field('section1Txt2'); ?>
-                <!-- <div class='wrapper-video'>
-                    <?php the_field('section1Video2'); ?>
-                    <div class='cover-video' style='background-image: url(<?php echo get_template_directory_uri(); ?>/img/cover-video-2.jpg);'>
-                        <svg class='icon hoop'><use xlink:href='#icon-hoop-thin'/></svg>
-                    </div>
-                </div> -->
                 <div class='wrapper-video'>
-                    <iframe src="//www.youtube.com/embed/FKWwdQu6_ok?enablejsapi=1&html5=1" frameborder="0" allowfullscreen></iframe>
+                    <iframe src='<?php the_field('section1Video2'); ?>?enablejsapi=1&html5=1' frameborder='0' allowfullscreen></iframe>
                     <div class='cover-video' style='background-image: url(<?php echo get_template_directory_uri(); ?>/img/cover-video-1.jpg);'>
                         <svg class='icon hoop'><use xlink:href='#icon-hoop-thin'/></svg>
                     </div>
@@ -103,7 +91,11 @@ get_header(); ?>
         <section id='digital-learning'>
             <div class='container'>
                 <div class='container-small'>
-                    <h2><?php the_field('section3Titre'); ?><svg class='icon logo-in-title'><use xlink:href='#icon-logo-thinkovery'/></svg></h2>
+                    <h2>
+                        <?php the_field('section3Titre'); ?><?php if(get_field('section3displayLogo')){ ?><svg class='icon logo-in-title'>
+                            <use xlink:href='#icon-logo-thinkovery'/>
+                        </svg><?php } ?>
+                    </h2>
                     <?php the_field('section3Txt'); ?>
                     <div class='bloc-with-picto'>
                         <h3><span class='title-picto'><svg class='icon profile'><use xlink:href='#icon-profile'/></svg></span><?php the_field('researchTitle'); ?></h3>

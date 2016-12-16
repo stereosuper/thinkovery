@@ -70,7 +70,8 @@ module.exports = function(body, blocTop, themeColors){
         });
     }
 
-    function changeSlide(){
+    function slide(nextSlide, lastSlide){
+        nextSlide.length ? nextSlide.addClass('slide-on') : lastSlide.addClass('slide-on');
         currentSlide.removeClass('slide-on');
 
         TweenMax.fromTo(baseline.find('> .icon'), 4, {x: '0px'}, tweenToOff);
@@ -85,11 +86,6 @@ module.exports = function(body, blocTop, themeColors){
         animSlide();
     }
 
-    function slide(nextSlide, lastSlide){
-        nextSlide.length ? nextSlide.addClass('slide-on') : lastSlide.addClass('slide-on');
-        changeSlide();
-    }
-
     nav.on('click', '.prev', function(e){
         e.preventDefault();
         slide(currentSlide.prev('.slide-home'), slides.eq(nbSlides - 1));
@@ -100,6 +96,7 @@ module.exports = function(body, blocTop, themeColors){
 
     $(window).on('load', function(){
         blocTop.addClass('loaded');
+
         setPosBaseline();
         animSlide();
     });
