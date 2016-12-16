@@ -57,7 +57,7 @@ module.exports = function(body, blocTop, themeColors){
     }
 
     function animSlide(){
-        TweenMax.fromTo(baseline.find('> .icon'), 6, {x: 500-containerW+'px', opacity: 0}, tweenToOn);
+        TweenMax.fromTo(baseline.find('> .icon'), 6, {x: 500-containerW+'px', opacity: 0}, {x: '0px', opacity: 0.85, ease: ease});
         TweenMax.fromTo([baseline.find('> span'), baselineSecond.find('> span')], 4, {x: -containerW+'px', opacity: 0}, tweenToOn);
         TweenMax.fromTo(currentSlide.find('.slider-plans'), 4, {x: -containerW+'px', opacity: 0}, tweenToOn);
 
