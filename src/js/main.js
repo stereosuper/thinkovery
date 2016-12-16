@@ -15,6 +15,8 @@ $(function(){
 
     var animMainSlider = require('./sliderMain.js');
 
+    var initVideo = require('./initVideo.js');
+
     // var windowWidth = $(window).outerWidth(), windowHeight = $(window).height(), docHeight = $(document).height();
     // var myScroll = $(document).scrollTop();
 
@@ -46,6 +48,10 @@ $(function(){
     // Slider home
     if($('#bloc-top').length){
         animMainSlider(body, $('#bloc-top'), themeColors);
+    }
+
+    if($('.wrapper-video').length){
+        initVideo();
     }
 
 
