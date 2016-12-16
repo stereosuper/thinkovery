@@ -38,7 +38,7 @@
 		    $declis[$count]['baselinePosX'] = $decli['baselinePosX'];
 		    $declis[$count]['baselinePosY'] = $decli['baselinePosY'];
 		    $declis[$count]['circleWidth'] = $decli['circleWidth'];
-		    $declis[$count]['baselinePlan'] = $decli['baselinePlan'];
+		    $declis[$count]['circlePlan'] = $decli['circlePlan'];
 
 		    $countImg = 0;
 		    foreach($decli['homeImg'] as $img){
@@ -79,7 +79,7 @@
 		<script>try{Typekit.load({ async: true });}catch(e){}</script>
 	</head>
 
-	<body <?php body_class('theme-'.$currentDecli['mainColor']); ?>>
+	<body <?php body_class('theme-'.$currentDecli['mainColor']); ?> data-theme='<?php echo $currentDecli['mainColor']; ?>'>
 
 		<header role='banner' id='header'>
 			<nav role='navigation' class='container'>

@@ -154,8 +154,8 @@
                 </g>
             </symbol>
             <radialGradient id='gradient-hoop' cx='95%' cy='95%' fx='95%' fy='95%'>
-                <stop offset='0%' stop-color='<?php echo $themeColors[$currentDecli['mainColor']][1]; ?>'/>
-                <stop offset='100%' stop-color='<?php echo $themeColors[$currentDecli['mainColor']][0]; ?>'/>
+                <stop offset='0%' stop-color='<?php echo $themeColors[$currentDecli['mainColor']][1]; ?>' data-theme-second='<?php echo $currentDecli['mainColor']; ?>'/>
+                <stop offset='100%' stop-color='<?php echo $themeColors[$currentDecli['mainColor']][0]; ?>' data-theme-main='<?php echo $currentDecli['mainColor']; ?>'/>
             </radialGradient>
         </defs>
     </svg>
