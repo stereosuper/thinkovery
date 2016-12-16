@@ -57,9 +57,9 @@ module.exports = function(body, blocTop, themeColors){
     }
 
     function animSlide(){
-        TweenMax.fromTo(baseline.find('> .icon'), 7, {x: 500-containerW+'px', opacity: 0}, tweenToOn);
-        TweenMax.fromTo([baseline.find('> span'), baselineSecond.find('> span')], 5, {x: -containerW+'px', opacity: 0}, tweenToOn);
-        TweenMax.fromTo(currentSlide.find('.slider-plans'), 5, {x: -containerW+'px', opacity: 0}, tweenToOn);
+        TweenMax.fromTo(baseline.find('> .icon'), 6, {x: 500-containerW+'px', opacity: 0}, tweenToOn);
+        TweenMax.fromTo([baseline.find('> span'), baselineSecond.find('> span')], 4, {x: -containerW+'px', opacity: 0}, tweenToOn);
+        TweenMax.fromTo(currentSlide.find('.slider-plans'), 4, {x: -containerW+'px', opacity: 0}, tweenToOn);
 
         nav.find('.current').html(currentSlide.index('.slide-home') + 1);
 
@@ -85,32 +85,17 @@ module.exports = function(body, blocTop, themeColors){
         animSlide();
     }
 
-    function slideNext(){
-        if(currentSlide.next('.slide-home').length){
-            currentSlide.next('.slide-home').addClass('slide-on');
-        }else{
-            slides.eq(0).addClass('slide-on');
-        }
-
-        changeSlide();
-    }
-
-    function slidePrev(){
-        if(currentSlide.prev('.slide-home').length){
-            currentSlide.prev('.slide-home').addClass('slide-on');
-        }else{
-            slides.eq(nbSlides - 1).addClass('slide-on');
-        }
-
+    function slide(nextSlide, lastSlide){
+        nextSlide.length ? nextSlide.addClass('slide-on') : lastSlide.addClass('slide-on');
         changeSlide();
     }
 
     nav.on('click', '.prev', function(e){
         e.preventDefault();
-        slidePrev();
+        slide(currentSlide.prev('.slide-home'), slides.eq(nbSlides - 1));
     }).on('click', '.next', function(e){
         e.preventDefault();
-        slideNext();
+        slide(currentSlide.next('.slide-home'), slides.eq(0));
     });
 
     $(window).on('load', function(){

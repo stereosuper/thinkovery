@@ -24,6 +24,10 @@ input, textarea{
   	}
 }
 
+button{
+    border: 0;
+}
+
 input{
     // hide the symbols of input search
     &[type=search]{
