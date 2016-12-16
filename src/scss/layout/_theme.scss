@@ -53,7 +53,7 @@
         .btn{
             background: $colorprimary;
             i:before{
-                background: radial-gradient(ellipse at center, rgba($colorsecondary, 0.7) 0, rgba($colorsecondary, 0) 65%);
+                background: radial-gradient(ellipse at center, $colorsecondary 0, rgba($colorsecondary, 0) 65%);
             }
         }
 
@@ -63,7 +63,7 @@
                     background: $colorprimary;
                 }
                 > i:after{
-                    background: radial-gradient(ellipse at center, rgba($colorsecondary, 0.7) 0, rgba($colorsecondary, 0) 65%);
+                    background: radial-gradient(ellipse at center, $colorsecondary 0, rgba($colorsecondary, 0) 65%);
                 }
             }
         }
@@ -100,6 +100,22 @@
             .cover-video{
                 &:before{
                     border-left-color: $colorprimary;
+                }
+            }
+        }
+    }
+
+    .theme-yellow{
+        .btn{
+            color: $black!important;
+            i:before{
+                background: radial-gradient(ellipse at center, rgba($colorsecondary, 0.5) 0, rgba($colorsecondary, 0) 65%);
+            }
+        }
+        .menu-main{
+            a{
+                > i:after{
+                    background: radial-gradient(ellipse at center, rgba($colorsecondary, 0.5) 0, rgba($colorsecondary, 0) 65%);
                 }
             }
         }
