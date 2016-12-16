@@ -1,5 +1,5 @@
 <?php
-define('WP_CACHE', false); // Added by WP Rocket
+define('WP_CACHE', true); // Added by WP Rocket
 # BEGIN SecuPress Correct Constants Values
 define( 'DISALLOW_UNFILTERED_HTML', TRUE ); // Added by SecuPress
 define( 'ERRORLOGFILE', '/Applications/MAMP/logs/wp_errorlogfile.log' ); // Added by SecuPress
