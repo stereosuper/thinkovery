@@ -8,15 +8,16 @@ module.exports = function(){
     var firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-    var wrapperVideos = $('.wrapper-video'), players = [], iframeVideo, coverVideos = $('.cover-video'), indexClicked;
+    var wrapperVideos = $('.wrapper-video'), players = [], iframeVideo, coverVideos, indexClicked, wrapperVideoParent;
     
     
 
     global.onYouTubeIframeAPIReady = function() {
-        function onPlayerReady(){
-            coverVideos.on('click', function(){
-                indexClicked = $(this).parents('.wrapper-video').index('.wrapper-video');
-                TweenMax.to($(this), 0.5, {opacity: 0});
+        function onPlayerReady(wrapperVideoParent){
+            wrapperVideoParent.on('click', function(){
+                indexClicked = $(this).index('.wrapper-video');
+                coverVideo = $(this).find('.cover-video');
+                TweenMax.to(coverVideo, 0.5, {opacity: 0});
                 players[indexClicked].playVideo();
             });
         }
@@ -24,7 +25,7 @@ module.exports = function(){
             iframeVideo = $(this).find('iframe').get(0);
             players[index] = new YT.Player(iframeVideo, {
                 events: {
-                    'onReady': onPlayerReady
+                    'onReady': onPlayerReady($(this))
                 }
             });
         });
