@@ -318,6 +318,34 @@
 		padding-top: 50px;
 		padding-bottom: 50px;
 	}
+	#more-than-moocs{
+		.container{
+			padding-top: 50px;
+			padding-bottom: 50px;
+		}
+	}
+	.bloc-with-picto{
+		h3{
+			padding-left: 55px;
+		}
+	}
+	.title-picto{
+		top: -4px;
+		left: 0;
+		width: 45px;
+		height: 45px;
+		border-width: 4px;
+		.icon{
+			&.profile{
+				width: 13px;
+				height: 18px;
+			}
+			&.star{
+				width: 18px;
+				height: 18px;
+			}
+		}
+	}
 }
 
 @media (max-width: $tablet){
@@ -328,9 +356,42 @@
 			&:first-of-type{
 				margin-bottom: 30px;
 			}
+			&.align-right{
+				text-align: left;
+			}
 		}
 	}
-	.wrapper-video{
-		margin-top: 5px;
+	.bloc-with-picto{
+		h3{
+			padding-left: 50px;
+		}
+	}
+	.title-picto{
+		width: 42px;
+		height: 42px;
+		border-width: 3px;
+	}
+}
+
+@media (max-width: $phone){
+	.bloc-with-picto{
+		h3{
+			padding-left: 45px;
+		}
+	}
+	.title-picto{
+		width: 38px;
+		height: 38px;
+		top: -6px;
+		.icon{
+			&.profile{
+				width: 11px;
+				height: 16px;
+			}
+			&.star{
+				width: 16px;
+				height: 16px;
+			}
+		}
 	}
 }

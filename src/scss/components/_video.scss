@@ -45,3 +45,9 @@
         opacity: 0.9;
     }
 }
+
+@media (max-width: $tablet){
+    .wrapper-video{
+        margin-top: 5px;
+    }
+}
