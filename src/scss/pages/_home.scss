@@ -126,7 +126,11 @@
 .wrapper-blocs-half{
 	display: flex;
 	justify-content: space-between;
+	align-items: stretch;
 	.bloc-half{
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
 		width: calc(50% - #{$gutter});
 		h2, p{
 			max-width: 83.3333%;
@@ -276,4 +280,9 @@
 			height: 20px;
 		}
 	}
+}
+.logo-in-title{
+	width: 4.4em;
+	height: 1em;
+	margin-left: 0.25em;
 }

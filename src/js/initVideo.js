@@ -17,7 +17,7 @@ module.exports = function(){
             wrapperVideoParent.on('click', function(){
                 indexClicked = $(this).index('.wrapper-video');
                 coverVideo = $(this).find('.cover-video');
-                TweenMax.to(coverVideo, 0.5, {opacity: 0});
+                TweenMax.to(coverVideo, 0.5, {opacity: 0, display: 'none'});
                 players[indexClicked].playVideo();
             });
         }

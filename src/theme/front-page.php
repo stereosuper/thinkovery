@@ -72,6 +72,12 @@ get_header(); ?>
                         <svg class='icon hoop'><use xlink:href='#icon-hoop-thin'/></svg>
                     </div>
                 </div> -->
+                <div class='wrapper-video'>
+                    <iframe src="//www.youtube.com/embed/FKWwdQu6_ok?enablejsapi=1&html5=1" frameborder="0" allowfullscreen></iframe>
+                    <div class='cover-video' style='background-image: url(<?php echo get_template_directory_uri(); ?>/img/cover-video-1.jpg);'>
+                        <svg class='icon hoop'><use xlink:href='#icon-hoop-thin'/></svg>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -97,7 +103,7 @@ get_header(); ?>
         <section id='digital-learning'>
             <div class='container'>
                 <div class='container-small'>
-                    <h2><?php the_field('section3Titre'); ?></h2>
+                    <h2><?php the_field('section3Titre'); ?><svg class='icon logo-in-title'><use xlink:href='#icon-logo-thinkovery'/></svg></h2>
                     <?php the_field('section3Txt'); ?>
                     <div class='bloc-with-picto'>
                         <h3><span class='title-picto'><svg class='icon profile'><use xlink:href='#icon-profile'/></svg></span><?php the_field('researchTitle'); ?></h3>
