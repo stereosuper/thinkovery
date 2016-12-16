@@ -98,7 +98,7 @@
         }
         .wrapper-video{
             .cover-video{
-                &:before{
+                &:after{
                     border-left-color: $colorprimary;
                 }
             }

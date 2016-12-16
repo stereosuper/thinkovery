@@ -58,7 +58,7 @@ get_header(); ?>
                     </div>
                 </div> -->
                 <div class='wrapper-video'>
-                    <iframe src="//www.youtube.com/embed/FKWwdQu6_ok?enablejsapi=1&html5=1" frameborder="0" allowfullscreen></iframe>
+                    <iframe src="//www.youtube.com/embed/s7cB4tl8bcs?enablejsapi=1&html5=1" frameborder="0" allowfullscreen></iframe>
                     <div class='cover-video' style='background-image: url(<?php echo get_template_directory_uri(); ?>/img/cover-video-1.jpg);'>
                         <svg class='icon hoop'><use xlink:href='#icon-hoop-thin'/></svg>
                     </div>
@@ -73,8 +73,8 @@ get_header(); ?>
                     </div>
                 </div> -->
                 <div class='wrapper-video'>
-                    <iframe src="//www.youtube.com/embed/FKWwdQu6_ok?enablejsapi=1&html5=1" frameborder="0" allowfullscreen></iframe>
-                    <div class='cover-video' style='background-image: url(<?php echo get_template_directory_uri(); ?>/img/cover-video-1.jpg);'>
+                    <iframe src="//www.youtube.com/embed/s7cB4tl8bcs?enablejsapi=1&html5=1" frameborder="0" allowfullscreen></iframe>
+                    <div class='cover-video' style='background-image: url(<?php echo get_template_directory_uri(); ?>/img/cover-video-2.jpg);'>
                         <svg class='icon hoop'><use xlink:href='#icon-hoop-thin'/></svg>
                     </div>
                 </div>
