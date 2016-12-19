@@ -6,34 +6,28 @@
 
         <h2><a href='<?php the_permalink(); ?>'><?php the_title(); ?></a></h2>
         <time datetime='<?php echo get_the_date('Y-m-d'); ?>'><?php echo get_the_date(); ?></time>
-        <span>
-            <?php $cats = get_the_category(); if($cats){
-                $countCats = count($cats);
-                $i = 0;
-                foreach($cats as $cat){
-                    $i ++;
-                    echo '<a href="' . get_category_link($cat->term_id) . '">' . $cat->cat_name . '</a>';
-                    if($i < $countCats){
-                        echo ', ';
-                    }
+        <i><?php _e('in', 'thinkovery'); ?></i>
+        <?php $cats = get_the_category(); if($cats){
+            $countCats = count($cats);
+            $i = 0;
+            foreach($cats as $cat){
+                $i ++;
+                echo '<a href="' . get_category_link($cat->term_id) . '">' . $cat->cat_name . '</a>';
+                if($i < $countCats){
+                    echo ', ';
                 }
-            } ?>
-        </span>
-        <?php $nbComments = get_comments_number(); ?>
-
-        <?php if($nbComments > 0){ ?>
-            <a href='<?php the_permalink(); ?>#comments'>
-                <?php echo sprintf( _n('%s comment', '%s comments', $nbComments, 'thinkovery'), number_format_i18n( $nbComments ) ); ?>
-            </a>
-        <?php }else{ ?>
-                <a href='<?php the_permalink(); ?>#leave-comment'><?php _e('Leave a comment', 'thinkovery'); ?>
-        <?php } ?>
+            }
+        } ?>
 
         <a href='<?php the_permalink(); ?>'>
             <?php if( has_post_thumbnail() ){ the_post_thumbnail(); } ?>
         </a>
 
-        <?php the_excerpt(); ?>
+        <?php if(get_field('intro')){ ?>
+            <p><?php the_field('intro'); ?></p>
+        <?php }else{
+            the_excerpt();
+        } ?>
 
     <?php }else{ ?>
 
