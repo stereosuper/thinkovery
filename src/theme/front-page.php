@@ -29,15 +29,14 @@ get_header(); ?>
                     </div>
                 <?php $count ++; } ?>
                 <div id='slider-home-nav' class='theme-color'>
-                    <button class='prev btn-small-back'>Previous<svg class='icon'><use xlink:href='#icon-arrow-left'/></svg></button>
+                    <button class='prev btn-small-back'><?php _e('Previous', 'Thinkovery'); ?><svg class='icon'><use xlink:href='#icon-arrow-left'/></svg></button>
                     <span><span class='current'>1</span>/<?php echo $count; ?></span>
-                    <button class='next btn-small'>Next<svg class='icon'><use xlink:href='#icon-arrow-right'/></svg></button>
+                    <button class='next btn-small'><?php _e('Next', 'Thinkovery'); ?><svg class='icon'><use xlink:href='#icon-arrow-right'/></svg></button>
                 </div>
             </div>
             <div id='bloc-revelation'>
                 <div class='container'>
                     <div class='zone-txt align-right'>
-                        <?php //echo $currentDecli['txt']; ?>
                         <?php $count = 0; foreach($declis as $decli){ ?>
                             <div class='slide-home-txt <?php if($count === 0) echo 'txt-on'; ?>'>
                                 <?php echo $decli['txt']; ?>
@@ -112,147 +111,26 @@ get_header(); ?>
                     </div>
                 </div>
             </div>
-            <div class='container-sliders' id='slider-learn-from-best'>
-                <div class='wrapper-sliders'>
-                    <div class='slider'>
-                        <ul class='slides'>
-                            <li>
-                                <img src='<?php echo get_template_directory_uri(); ?>/img/photo1.jpg'>
-                                <div class='slide-desc'>
-                                    <div class='slide-title'>
-                                        Roland Lehoucq
+
+            <?php if( have_rows('researcher') ): ?>
+                <div class='container-sliders' id='slider-learn-from-best'>
+                    <div class='wrapper-sliders'>
+                        <div class='slider'>
+                            <ul class='slides'>
+                                <?php while( have_rows('researcher') ){ the_row(); ?><li>
+                                    <?php echo wp_get_attachment_image(get_sub_field('img')); ?>
+                                    <div class='slide-desc'>
+                                        <div class='slide-title'><?php the_sub_field('name'); ?></div>
+                                        <div class='slide-content'><?php the_sub_field('job'); ?></div>
                                     </div>
-                                    <div class='slide-content'>
-                                        Astrophysicien. Commissariat à l’énergie atomique et aux énergies alternatives
-                                    </div>
-                                </div>
-                            </li><!--
-                            --><li>
-                                <img src='<?php echo get_template_directory_uri(); ?>/img/photo2.jpg'>
-                                <div class='slide-desc'>
-                                    <div class='slide-title'>
-                                        Roland Lehoucq
-                                    </div>
-                                    <div class='slide-content'>
-                                        Astrophysicien. Commissariat à l’énergie atomique et aux énergies alternatives
-                                    </div>
-                                </div>
-                            </li><!--
-                            --><li>
-                                <img src='<?php echo get_template_directory_uri(); ?>/img/photo3.jpg'>
-                                <div class='slide-desc'>
-                                    <div class='slide-title'>
-                                        Roland Lehoucq
-                                    </div>
-                                    <div class='slide-content'>
-                                        Astrophysicien. Commissariat à l’énergie atomique et aux énergies alternatives
-                                    </div>
-                                </div>
-                            </li><!--
-                            --><li>
-                                <img src='<?php echo get_template_directory_uri(); ?>/img/photo4.jpg'>
-                                <div class='slide-desc'>
-                                    <div class='slide-title'>
-                                        Roland Lehoucq
-                                    </div>
-                                    <div class='slide-content'>
-                                        Astrophysicien. Commissariat à l’énergie atomique et aux énergies alternatives
-                                    </div>
-                                </div>
-                            </li><!--
-                            --><li>
-                                <img src='<?php echo get_template_directory_uri(); ?>/img/photo5.jpg'>
-                                <div class='slide-desc'>
-                                    <div class='slide-title'>
-                                        Roland Lehoucq
-                                    </div>
-                                    <div class='slide-content'>
-                                        Astrophysicien. Commissariat à l’énergie atomique et aux énergies alternatives
-                                    </div>
-                                </div>
-                            </li><!--
-                            --><li>
-                                <img src='<?php echo get_template_directory_uri(); ?>/img/photo6.jpg'>
-                                <div class='slide-desc'>
-                                    <div class='slide-title'>
-                                        Roland Lehoucq
-                                    </div>
-                                    <div class='slide-content'>
-                                        Astrophysicien. Commissariat à l’énergie atomique et aux énergies alternatives
-                                    </div>
-                                </div>
-                            </li><!--
-                            --><li>
-                                <img src='<?php echo get_template_directory_uri(); ?>/img/photo7.jpg'>
-                                <div class='slide-desc'>
-                                    <div class='slide-title'>
-                                        Roland Lehoucq
-                                    </div>
-                                    <div class='slide-content'>
-                                        Astrophysicien. Commissariat à l’énergie atomique et aux énergies alternatives
-                                    </div>
-                                </div>
-                            </li><!--
-                            --><li>
-                                <img src='<?php echo get_template_directory_uri(); ?>/img/photo8.jpg'>
-                                <div class='slide-desc'>
-                                    <div class='slide-title'>
-                                        Roland Lehoucq
-                                    </div>
-                                    <div class='slide-content'>
-                                        Astrophysicien. Commissariat à l’énergie atomique et aux énergies alternatives
-                                    </div>
-                                </div>
-                            </li><!--
-                            --><li>
-                                <img src='<?php echo get_template_directory_uri(); ?>/img/photo5.jpg'>
-                                <div class='slide-desc'>
-                                    <div class='slide-title'>
-                                        Roland Lehoucq
-                                    </div>
-                                    <div class='slide-content'>
-                                        Astrophysicien. Commissariat à l’énergie atomique et aux énergies alternatives
-                                    </div>
-                                </div>
-                            </li><!--
-                            --><li>
-                                <img src='<?php echo get_template_directory_uri(); ?>/img/photo2.jpg'>
-                                <div class='slide-desc'>
-                                    <div class='slide-title'>
-                                        Roland Lehoucq
-                                    </div>
-                                    <div class='slide-content'>
-                                        Astrophysicien. Commissariat à l’énergie atomique et aux énergies alternatives
-                                    </div>
-                                </div>
-                            </li><!--
-                            --><li>
-                                <img src='<?php echo get_template_directory_uri(); ?>/img/photo4.jpg'>
-                                <div class='slide-desc'>
-                                    <div class='slide-title'>
-                                        Roland Lehoucq
-                                    </div>
-                                    <div class='slide-content'>
-                                        Astrophysicien. Commissariat à l’énergie atomique et aux énergies alternatives
-                                    </div>
-                                </div>
-                            </li><!--
-                            --><li>
-                                <img src='<?php echo get_template_directory_uri(); ?>/img/photo7.jpg'>
-                                <div class='slide-desc'>
-                                    <div class='slide-title'>
-                                        Roland Lehoucq
-                                    </div>
-                                    <div class='slide-content'>
-                                        Astrophysicien. Commissariat à l’énergie atomique et aux énergies alternatives
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
+                                </li><?php } ?>
+                            </ul>
+                        </div>
                     </div>
+                    <svg class='icon hoop'><use xlink:href='#icon-hoop-thin'/></svg>
                 </div>
-                <svg class='icon hoop'><use xlink:href='#icon-hoop-thin'/></svg>
-            </div>
+            <?php endif; ?>
+
             <div class='container'>
                 <div class='container-small'>
                     <div class='bloc-with-picto'>
@@ -261,6 +139,7 @@ get_header(); ?>
                     </div>
                 </div>
             </div>
+
             <div class='container-sliders' id='slider-best-way-learn'>
                 <div class='wrapper-sliders'>
                     <div class='slider'>
