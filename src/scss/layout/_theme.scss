@@ -27,11 +27,20 @@
                 }
             }
         }
+        #header .lang, #footer ul{
+            a{
+                &:hover, &:focus{
+                    color: $colorprimary;
+                }
+            }
+        }
+
         .post-img{
             &:before{
 				background-color: $colorprimary;
             }
         }
+
         #logo-o{
             border-color: $colorprimary;
         }
@@ -39,13 +48,6 @@
             > li{
                 &:before{
                     border-color: $colorprimary;
-                }
-            }
-        }
-        #header .lang, #footer ul{
-            a{
-                &:hover, &:focus{
-                    color: $colorprimary;
                 }
             }
         }
@@ -114,6 +116,9 @@
         }
         .menu-main{
             a{
+                &:hover, &:focus{
+                    color: $black!important;
+                }
                 > i:after{
                     background: radial-gradient(ellipse at center, rgba($colorsecondary, 0.5) 0, rgba($colorsecondary, 0) 65%);
                 }
