@@ -140,70 +140,24 @@ get_header(); ?>
                 </div>
             </div>
 
-            <div class='container-sliders' id='slider-best-way-learn'>
-                <div class='wrapper-sliders'>
-                    <div class='slider'>
-                        <ul class='slides'>
-                            <li>
-                                <img src='<?php echo get_template_directory_uri(); ?>/img/photo1-learn.jpg'>
-                                <div class='slide-desc'>
-                                    <div class='slide-title'>
-                                        Zup de CO
+            <?php if( have_rows('exp') ): ?>
+                <div class='container-sliders' id='slider-best-way-learn'>
+                    <div class='wrapper-sliders'>
+                        <div class='slider'>
+                            <ul class='slides'>
+                                <?php while( have_rows('exp') ){ the_row(); ?><li>
+                                    <?php echo wp_get_attachment_image(get_sub_field('img'), 'medium'); ?>
+                                    <div class='slide-desc'>
+                                        <div class='slide-title'><?php the_sub_field('client'); ?></div>
+                                        <div class='slide-content'><?php the_sub_field('title'); ?></div>
                                     </div>
-                                    <div class='slide-content'>
-                                        SPOC "Le tuto des tuteurs"
-                                    </div>
-                                </div>
-                            </li><!--
-                            --><li>
-                                <img src='<?php echo get_template_directory_uri(); ?>/img/photo2-learn.jpg'>
-                                <div class='slide-desc'>
-                                    <div class='slide-title'>
-                                        Zup de CO
-                                    </div>
-                                    <div class='slide-content'>
-                                        SPOC "Le tuto des tuteurs"
-                                    </div>
-                                </div>
-                            </li><!--
-                            --><li>
-                                <img src='<?php echo get_template_directory_uri(); ?>/img/photo3-learn.jpg'>
-                                <div class='slide-desc'>
-                                    <div class='slide-title'>
-                                        Zup de CO
-                                    </div>
-                                    <div class='slide-content'>
-                                        SPOC "Le tuto des tuteurs"
-                                    </div>
-                                </div>
-                            </li><!--
-                            --><li>
-                                <img src='<?php echo get_template_directory_uri(); ?>/img/photo4-learn.jpg'>
-                                <div class='slide-desc'>
-                                    <div class='slide-title'>
-                                        Zup de CO
-                                    </div>
-                                    <div class='slide-content'>
-                                        SPOC "Le tuto des tuteurs"
-                                    </div>
-                                </div>
-                            </li><!--
-                            --><li>
-                                <img src='<?php echo get_template_directory_uri(); ?>/img/photo5-learn.jpg'>
-                                <div class='slide-desc'>
-                                    <div class='slide-title'>
-                                        Zup de CO
-                                    </div>
-                                    <div class='slide-content'>
-                                        SPOC "Le tuto des tuteurs"
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
+                                </li><?php } ?>
+                            </ul>
+                        </div>
                     </div>
+                    <svg class='icon hoop'><use xlink:href='#icon-hoop-very-thin'/></svg>
                 </div>
-                <svg class='icon hoop'><use xlink:href='#icon-hoop-very-thin'/></svg>
-            </div>
+            <?php endif; ?>
         </section>
 
     <?php else : ?>
