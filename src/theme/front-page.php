@@ -29,9 +29,9 @@ get_header(); ?>
                     </div>
                 <?php $count ++; } ?>
                 <div id='slider-home-nav' class='theme-color'>
-                    <button class='prev btn-small-back'><?php _e('Previous', 'Thinkovery'); ?><svg class='icon'><use xlink:href='#icon-arrow-left'/></svg></button>
+                    <button class='prev btn-small-back'><?php _e('Previous', 'thinkovery'); ?><svg class='icon'><use xlink:href='#icon-arrow-left'/></svg></button>
                     <span><span class='current'>1</span>/<?php echo $count; ?></span>
-                    <button class='next btn-small'><?php _e('Next', 'Thinkovery'); ?><svg class='icon'><use xlink:href='#icon-arrow-right'/></svg></button>
+                    <button class='next btn-small'><?php _e('Next', 'thinkovery'); ?><svg class='icon'><use xlink:href='#icon-arrow-right'/></svg></button>
                 </div>
             </div>
             <div id='bloc-revelation'>
