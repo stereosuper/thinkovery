@@ -95,6 +95,19 @@
 	}
 }
 
+.slide-home-txt{
+	position: absolute;
+	top: 0;
+	right: 20px;
+	z-index: -1;
+	opacity: 0;
+	transition: opacity $transition;
+	&.txt-on{
+		position: static;
+		opacity: 1;
+	}
+}
+
 
 #bloc-revelation{
 	padding: 80px 0 100px;

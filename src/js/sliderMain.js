@@ -6,7 +6,9 @@ window.requestAnimFrame = require('./requestAnimFrame.js');
 var throttle = require('./throttle.js');
 
 module.exports = function(body, blocTop, themeColors){
+    var blocRevel = $('#bloc-revelation');
     var currentSlide = blocTop.find('.slide-on');
+    var currentTxt = blocRevel.find('.txt-on');
     var baseline = currentSlide.find('.baseline'), baselineSecond = currentSlide.find('.baseline-second');
     var ratioScale, imgW = 1260, imgH = 760, imgRatio = imgH / imgW;
     var finalW, finalH;
@@ -15,7 +17,7 @@ module.exports = function(body, blocTop, themeColors){
     var gutter = 20;
     var header = $('#header');
     var nav = blocTop.find('#slider-home-nav');
-    var slides = blocTop.find('.slide-home'), nbSlides = slides.length;
+    var slides = blocTop.find('.slide-home'), nbSlides = slides.length, slidesTxt = blocRevel.find('.slide-home-txt');
     var svgHoop = $('#gradient-hoop');
     var ease = CustomEase.create('custom', 'M0,0,C0,0.5,0.005,0.73,0.11,0.85,0.22,0.975,0.505,1,1,1');
 
@@ -70,9 +72,13 @@ module.exports = function(body, blocTop, themeColors){
         });
     }
 
-    function slide(nextSlide, lastSlide){
-        nextSlide.length ? nextSlide.addClass('slide-on') : lastSlide.addClass('slide-on');
+    function slide(nextSlide, nextTxt, lastSlideIndex){
+        nextSlide.length ? nextSlide.addClass('slide-on') : slides.eq(lastSlideIndex).addClass('slide-on');
         currentSlide.removeClass('slide-on');
+
+        nextTxt.length ? nextTxt.addClass('txt-on') : slidesTxt.eq(lastSlideIndex).addClass('txt-on');
+        currentTxt.removeClass('txt-on');
+        currentTxt = blocRevel.find('.txt-on');
 
         TweenMax.fromTo(baseline.find('> .icon'), 4, {x: '0px'}, tweenToOff);
         TweenMax.fromTo([baseline.find('> span'), baselineSecond.find('> span')], 2, {x: '0px'}, tweenToOff);
@@ -88,10 +94,10 @@ module.exports = function(body, blocTop, themeColors){
 
     nav.on('click', '.prev', function(e){
         e.preventDefault();
-        slide(currentSlide.prev('.slide-home'), slides.eq(nbSlides - 1));
+        slide(currentSlide.prev('.slide-home'), currentTxt.prev('.slide-home-txt'), nbSlides - 1);
     }).on('click', '.next', function(e){
         e.preventDefault();
-        slide(currentSlide.next('.slide-home'), slides.eq(0));
+        slide(currentSlide.next('.slide-home'), currentTxt.next('.slide-home-txt'), 0);
     });
 
     $(window).on('load', function(){

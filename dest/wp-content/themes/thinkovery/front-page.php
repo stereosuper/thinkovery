@@ -37,7 +37,12 @@ get_header(); ?>
             <div id='bloc-revelation'>
                 <div class='container'>
                     <div class='zone-txt align-right'>
-                        <?php echo $currentDecli['txt']; ?>
+                        <?php //echo $currentDecli['txt']; ?>
+                        <?php $count = 0; foreach($declis as $decli){ ?>
+                            <div class='slide-home-txt <?php if($count === 0) echo 'txt-on'; ?>'>
+                                <?php echo $decli['txt']; ?>
+                            </div>
+                        <?php $count ++; } ?>
                         <h1><?php the_title(); ?></h1>
                     </div>
                     <a href='<?php the_field('ctaLink'); ?>' class='btn'>
