@@ -3,6 +3,93 @@
 Template Name: Contact
 */
 
+$error = false;
+$success = false;
+$errorLastname = false;
+$errorFirstname = false;
+$errorJob = false;
+$errorMail = false;
+$errorPhone = false;
+$errorSubject = false;
+$errorMsg = false;
+$errorSend = false;
+
+$lastname = isset($_POST['last_name']) ? strip_tags(stripslashes($_POST['last_name'])) : '';
+$firstname = isset($_POST['first_name']) ? strip_tags(stripslashes($_POST['first_name'])) : '';
+$job = isset($_POST['job']) ? strip_tags(stripslashes($_POST['job'])) : '';
+$mail = isset($_POST['email']) ? strip_tags(stripslashes($_POST['email'])) : '';
+$phone = isset($_POST['tel']) ? strip_tags($_POST['tel']) : '';
+$subject = isset($_POST['subject']) ? strip_tags(stripslashes($_POST['subject'])) : '';
+$msg = isset($_POST['message']) ? strip_tags(stripslashes($_POST['message'])) : '';
+
+// $mailto = get_field('email', 'options');
+$mailto = 'shwarp@live.fr';
+
+
+if(isset($_POST['submit'])){
+
+    if(empty($lastname)){
+        $errorLastname = __('The field "Last Name" is mandatory', 'thinkovery');
+        $error = true;
+    }
+    if(empty($firstname)){
+        $errorFirstname = __('The field "First Name" is mandatory', 'thinkovery');
+        $error = true;
+    }
+    if(empty($job)){
+        $errorJob = __('The field "Function" is mandatory', 'thinkovery');
+        $error = true;
+    }
+    if(empty($mail)){
+        $errorMail = __('The field "Email" is mandatory', 'thinkovery');
+        $error = true;
+    }else{
+        if(!filter_var($mail, FILTER_VALIDATE_EMAIL)){
+            $erreurMail = __('The email address is not valid', 'thinkovery');
+            $error = true;
+        }
+    }
+    if(!empty($phone)){
+        if(!(strlen($phone) < 20 && strlen($phone) > 9 && preg_match("/^\+?[^.\-][0-9\.\- ]+$/", $phone))){
+            $errorPhone = __('The phone number is not valid', 'thinkovery');
+            $error = true;
+        }
+    }
+    if(empty($subject)){
+        $errorSubject = __('Please choose a subject', 'thinkovery');
+        $error = true;
+    }
+    if(empty($msg)){
+        $errorMsg = __('The field "Project" is mandatory', 'thinkovery');
+        $error = true;
+    }
+
+    if(!$error){
+        $name = sprintf('%s %s', $firstname, $lastname);
+        $subjectMail = 'Nouveau message provenant de thinkovery.com';
+        $headers = 'From: "' . $name . '" <' . $mail . '>' . "\r\n" .
+                   'Reply-To: ' . $mail . "\r\n";
+
+        $content = 'De: ' . $name . "\r\n" .
+                   'Email: ' . $mail . "\r\n";
+        if(!empty($phone)){
+            $content .= 'Téléphone: ' . $phone . "\r\n";
+        }
+        $content .= 'Fonction: ' . $job . "\r\n";
+        $content .= 'Sujet: ' . $subject . "\r\n";
+        $content .= "\r\n" . 'Message: ' . $msg;
+
+        $sent = wp_mail($mailto, $subjectMail, $content, $headers);
+
+        if($sent){
+            $success = true;
+        }else{
+            $error = true;
+            $errorSend = __("We are sorry, an error happened! Please try again later.", 'thinkovery');
+        }
+    }
+}
+
 get_header(); ?>
 
 	<div class='container'>
@@ -25,49 +112,63 @@ get_header(); ?>
 		    	</li>
 		    </ul>
 
-		    <form method='post' action='<?php the_permalink(); ?>'>
-		    	<div>
-		    		<input type='text' name='last_name' id='last_name' required>
-		    		<label for='last_name'><?php _e('Last Name', 'thinkovery'); ?>*</label>
-		    	</div><div>
-		    		<input type='text' name='first_name' id='first_name' required>
-		    		<label for='first_name'><?php _e('First Name', 'thinkovery'); ?>*</label>
-		    	</div>
-		    	<div>
-		    		<input type='text' name='job' id='job' required>
-		    		<label for='job'><?php _e('Function', 'thinkovery'); ?>*</label>
-		    	</div>
-		    	<div>
-		    		<input type='tel' name='tel' id='tel'>
-		    		<label for='tel'><?php _e('Phone number (facultative)', 'thinkovery'); ?></label>
-		    	</div><div>
-		    		<input type='email' name='email' id='email' required>
-		    		<label for='email'><?php _e('Email', 'thinkovery'); ?>*</label>
-		    	</div>
-		    	<fieldset>
-		    		<legend><?php _e('I am contacting you for', 'thinkovery'); ?>*</legend>
-		    		<div>
-		    			<input type='radio' name='subject' id='work_with'>
-		    			<label for='work_with'><?php _e('Working with you', 'thinkovery'); ?></label>
-		    		</div><div>
-		    			<input type='radio' name='subject' id='work_for'>
-		    			<label for='work_for'><?php _e('Working for you', 'thinkovery'); ?></label>
-		    		</div><div>
-		    			<input type='radio' name='subject' id='know' checked>
-		    			<label for='know'><?php _e('Knowing you', 'thinkovery'); ?></label>
-		    		</div><div>
-		    			<input type='radio' name='subject' id='mum'>
-		    			<label for='mum'><?php _e("It's mum, call me back!", 'thinkovery'); ?></label>
-		    		</div>
-		    	</fieldset>
-		    	<div>
-		    		<textarea name='message' id='message' required></textarea>
-		    		<label for='message'><?php _e('Your project', 'thinkovery'); ?>*</label>
-		    	</div>
-		    	<button class='btn' type='submit'>
-		    		<?php _e('Send', 'thinkovery'); ?><svg class='icon'><use xlink:href='#icon-arrow-right'/></svg><i></i>
-		    	</button>
-		    </form>
+		    <?php if(!$success) : ?>
+		    	<?php if($error){ ?>
+		    		<p><?php _e("The form countains some errors, please check the highlighted fields", 'thinkovery'); ?></p>
+		    	<?php } ?>
+			    <form method='post' action='<?php the_permalink(); ?>' id='form-contact'>
+			    	<div class='<?php if($errorLastname) echo 'error'; ?>'>
+			    		<input type='text' name='last_name' id='last_name' value='<?php echo $lastname; ?>' required>
+			    		<label for='last_name'><?php _e('Last Name', 'thinkovery'); ?>*</label>
+			    		<?php if($errorLastname) echo '<span>'. $errorLastname .'</span>'; ?>
+			    	</div><div class='<?php if($errorFirstname) echo 'error'; ?>'>
+			    		<input type='text' name='first_name' id='first_name' value='<?php echo $firstname; ?>' required>
+			    		<label for='first_name'><?php _e('First Name', 'thinkovery'); ?>*</label>
+			    		<?php if($errorFirstname) echo '<span>'. $errorFirstname .'</span>'; ?>
+			    	</div>
+			    	<div class='<?php if($errorJob) echo 'error'; ?>'>
+			    		<input type='text' name='job' id='job' value='<?php echo $job; ?>' required>
+			    		<label for='job'><?php _e('Function', 'thinkovery'); ?>*</label>
+			    		<?php if($errorJob) echo '<span>'. $errorJob .'</span>'; ?>
+			    	</div>
+			    	<div class='<?php if($errorPhone) echo 'error'; ?>'>
+			    		<input type='tel' name='tel' id='tel' value='<?php echo $phone; ?>'>
+			    		<label for='tel'><?php _e('Phone number (facultative)', 'thinkovery'); ?></label>
+			    		<?php if($errorPhone) echo '<span>'. $errorPhone .'</span>'; ?>
+			    	</div><div class='<?php if($errorMail) echo 'error'; ?>'>
+			    		<input type='email' name='email' id='email' value='<?php echo $mail; ?>' required>
+			    		<label for='email'><?php _e('Email', 'thinkovery'); ?>*</label>
+			    		<?php if($errorMail) echo '<span>'. $errorMail .'</span>'; ?>
+			    	</div>
+			    	<fieldset class='<?php if($errorSubject) echo 'error'; ?>'>
+			    		<legend><?php _e('I am contacting you to', 'thinkovery'); ?>*</legend>
+			    		<div>
+			    			<input type='radio' name='subject' id='work_with' value='Travailler avec vous'>
+			    			<label for='work_with'><?php _e('Work with you', 'thinkovery'); ?></label>
+			    		</div><div>
+			    			<input type='radio' name='subject' id='work_for' value='Travailler chez nous'>
+			    			<label for='work_for'><?php _e('Work for you', 'thinkovery'); ?></label>
+			    		</div><div>
+			    			<input type='radio' name='subject' id='know' value='Vous connaître' checked>
+			    			<label for='know'><?php _e('Know you', 'thinkovery'); ?></label>
+			    		</div><div>
+			    			<input type='radio' name='subject' id='mum' value='Maman!'>
+			    			<label for='mum'><?php _e("It's mum, call me back!", 'thinkovery'); ?></label>
+			    		</div>
+			    		<?php if($errorSubject) echo '<span>'. $errorSubject .'</span>'; ?>
+			    	</fieldset>
+			    	<div class='<?php if($errorMsg) echo 'error'; ?>'>
+			    		<textarea name='message' id='message' required><?php echo $msg; ?></textarea>
+			    		<label for='message'><?php _e('Your project', 'thinkovery'); ?>*</label>
+			    		<?php if($errorMsg) echo '<span>'. $errorMsg .'</span>'; ?>
+			    	</div>
+			    	<button class='btn' type='submit' name='submit' for='form-contact'>
+			    		<?php _e('Send', 'thinkovery'); ?><svg class='icon'><use xlink:href='#icon-arrow-right'/></svg><i></i>
+			    	</button>
+			    </form>
+			<?php else : ?>
+				<p><?php _e('Thank you, your message has been sent!', 'thinkovery'); ?></p>
+			<?php endif; ?>
 
 		<?php else : ?>
 
