@@ -1,6 +1,7 @@
 <?php get_header(); ?>
 
     <div class='container'>
+        <p><?php _e('Category', 'thinkovery'); ?>
         <h1><?php echo single_cat_title(); ?></h1>
         <?php get_search_form(); ?>
 

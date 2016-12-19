@@ -7,10 +7,11 @@
 			<?php
 				global $wp_query;
 				$results = $wp_query->found_posts;
-				$displayResults = $results > 1 ? $results . ' ' . __('results', 'thinkovery') : '1 ' . __('result', 'thinkovery');
+				$displayResults = $results > 1 ? $results . ' ' . __('results for', 'thinkovery') : '1 ' . __('result for', 'thinkovery');
 			?>
 
-			<h1><?php echo __('The search for', 'thinkovery') . ' «&nbsp;' . get_search_query() . '&nbsp;» ' . __('returned', 'thinkovery') . ' ' . $displayResults; ?></h1>
+			<p><?php echo $displayResults; ?> ...</p>
+			<h1><?php echo '«&nbsp;' . get_search_query() . '&nbsp;»'; ?></h1>
 			<?php get_search_form(); ?>
 
 			<?php

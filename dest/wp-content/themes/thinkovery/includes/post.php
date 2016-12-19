@@ -4,7 +4,6 @@
 
     <?php if(!$formatLink){ ?>
 
-        <h2><a href='<?php the_permalink(); ?>'><?php the_title(); ?></a></h2>
         <time datetime='<?php echo get_the_date('Y-m-d'); ?>'><?php echo get_the_date(); ?></time>
         <i><?php _e('in', 'thinkovery'); ?></i>
         <?php $cats = get_the_category(); if($cats){
@@ -18,6 +17,7 @@
                 }
             }
         } ?>
+        <h2><a href='<?php the_permalink(); ?>'><?php the_title(); ?></a></h2>
 
         <a href='<?php the_permalink(); ?>'>
             <?php if( has_post_thumbnail() ){ the_post_thumbnail(); } ?>
