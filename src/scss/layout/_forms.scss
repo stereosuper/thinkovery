@@ -90,11 +90,14 @@ input{
 
 .radio{
     display: inline-block;
-    width: 275px;
-    max-width: 100%;
-    margin: 10px 20px 0 0;
+    width: 48.5%;
+    min-width: 275px;
     position: relative;
+    margin: 10px 0 0;
     overflow: hidden;
+    &:nth-of-type(odd){
+        margin-right: 3%;
+    }
     label{
         display: block;
         padding: 10px;

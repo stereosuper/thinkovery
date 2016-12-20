@@ -10,8 +10,9 @@
         }
     }
     h1{
-        margin: 1.5em 0;
+        margin: 1.5em 0 1em;
         font-size: 4.5rem;
+        font-weight: 600;
         color: $black;
     }
 }
@@ -35,10 +36,30 @@
 }
 
 .contact-infos{
+    margin: 0 $gutter*2 0 0;
     > li{
+        border-bottom: 1px solid #e5e5e5;
+        padding: 25px 50px 25px 40px;
         &:before{
             display: none;
         }
+        &:last-child{
+            border: 0;
+        }
+    }
+    a{
+        width: 22px;
+        height: 25px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        box-shadow: none;
+        text-align: center;
+    }
+    .icon-mail{
+        width: 20px;
     }
 }
 
