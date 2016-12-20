@@ -4,6 +4,11 @@
     justify-content: flex-start;
     padding: 50px 0;
     position: relative;
+    &:first-of-type{
+        &:before{
+            display: none;
+        }
+    }
     &.post-network{
         margin: 0 auto;
         color: $white;
@@ -15,6 +20,8 @@
         .wrapper-post-img{
             width: calc(#{$col*3} + #{$gutter*2});
             margin: 0;
+            background-position: 50% 50%;
+            background-size: cover;
         }
         .wrapper-post-content{
             width: $col*5;
@@ -24,16 +31,34 @@
                 width: $col*8;
             }
         }
+        + .post{
+            &:before{
+                display: none;
+            }
+        }
+    }
+    &.post-odd{
+        flex-direction: row-reverse;
+        .wrapper-post-img{
+            margin-left: $col;
+            margin-right: 0;
+        }
+        h2{
+            &:before{
+                left: inherit;
+                right: calc(-20% + #{$gutter*2});
+            }
+        }
     }
     &:before{
         content: '';
         display: block;
         width: $col*8;
         position: absolute;
-        bottom: 0;
+        top: 0;
         left: 50%;
         transform: translate(-50%, 0);
-        border-bottom: 1px solid rgba($black, 0.1);
+        border-top: 1px solid rgba($black, 0.1);
     }
     time{
         font-weight: 600;
@@ -43,6 +68,17 @@
         font-size: 3.2rem;
         letter-spacing: 0;
         margin: 0.2em 0 0.8em;
+        position: relative;
+        line-height: 1.1;
+        &:before{
+            content: '';
+            display: block;
+            width: 7px;
+            position: absolute;
+            top: 8px;
+            bottom: 0;
+            left: calc(-20% + #{$gutter*2});
+        }
         a{
             box-shadow: none;
             color: $black;
@@ -53,7 +89,10 @@
     width: $col*4;
     display: block;
     box-shadow: none;
-    margin: 35px $col 0 0;
+    margin: 33px $col 0 0;
+    img{
+        width: 100%;
+    }
 }
 .wrapper-post-content{
     width: $col*5;
