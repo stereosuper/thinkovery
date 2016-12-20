@@ -109,6 +109,11 @@
             time{
                 color: $colorprimary;
             }
+            h2{
+                &:before{
+                    background: $colorprimary;
+                }
+            }
         }
     }
 
