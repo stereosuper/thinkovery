@@ -1,17 +1,18 @@
 <?php get_header(); ?>
 
-	<article class='container'>
+	<?php if ( have_posts() ) : ?>
 
-		<div class='container-small'>
+		<?php while ( have_posts() ) : the_post(); ?>
+			<?php if( has_post_thumbnail() ){ ?>
+				<div class='bloc-top-img' style='background-image: url(<?php the_post_thumbnail_url(); ?>)'></div>
+			<?php } ?>
+			<article class='container'>
 
-			<?php if ( have_posts() ) : ?>
-
-				<?php while ( have_posts() ) : the_post(); ?>
-
-					<?php the_post_thumbnail(); ?>
+				<div class='container-small'>
+				
+					<h1><?php the_title(); ?></h1>
 
 					<time datetime='<?php echo get_the_date('Y-m-d'); ?>'><?php echo get_the_date(); ?></time>
-					<h1><?php the_title(); ?></h1>
 
 					<?php if(get_field('intro')){ ?>
 					    <p class='intro'><?php the_field('intro'); ?></p>
@@ -78,17 +79,21 @@
 
 					<?php comments_template(); ?>
 
-				<?php endwhile; ?>
+				</div>
+
+			</article>
+
+		<?php endwhile; ?>
 
 
-			<?php else : ?>
+	<?php else : ?>
+		<article class='container'>
 
+			<div class='container-small'>
 				<h1>404</h1>
+			</div>
+		</article>
 
-			<?php endif; ?>
-
-		</div>
-
-	</article>
+	<?php endif; ?>
 
 <?php get_footer(); ?>
