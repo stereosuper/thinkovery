@@ -1,6 +1,6 @@
-<?php $formatLink = get_post_format() === 'link' ? true : false; ?>
+<?php global $formatLink, $countPost; ?>
 
-<div class='post <?php if($formatLink) echo "post-network"; ?>'>
+<div class='post <?php if($formatLink){ echo 'post-network'; }else{ if($countPost % 2 !== 0){ echo 'post-odd'; } } ?>'>
 
     <?php if(!$formatLink){ ?>
 
@@ -24,7 +24,7 @@
         </a>
 
         <?php if(get_field('intro')){ ?>
-            <p><?php the_field('intro'); ?></p>
+            <?php the_field('intro'); ?>
         <?php }else{
             the_excerpt();
         } ?>

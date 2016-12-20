@@ -15,9 +15,15 @@
 			<?php get_search_form(); ?>
 
 			<?php
+				global $countPost, $formatLink;
+				$countPost = 0;
 				while ( have_posts() ) :
 					the_post();
+					$formatLink = get_post_format() === 'link' ? true : false;
 					get_template_part('includes/post');
+					if(!$formatLink){
+						$countPost ++;
+					}
 				endwhile;
 			?>
 
