@@ -145,16 +145,28 @@ get_header(); ?>
 				    		<legend><?php _e('I am contacting you to', 'thinkovery'); ?>*</legend>
 				    		<div class='radio'>
 				    			<input type='radio' name='subject' id='work_with' value='Travailler avec vous'>
-				    			<label for='work_with'><?php _e('Work with you', 'thinkovery'); ?></label>
+				    			<label for='work_with'>
+                                    <svg class='icon'><use xlink:href='#icon-thumb'/></svg>
+                                    <?php _e('Work with you', 'thinkovery'); ?>
+                                </label>
 				    		</div><div class='radio'>
-				    			<input type='radio' name='subject' id='work_for' value='Travailler chez nous'>
-				    			<label for='work_for'><?php _e('Work for you', 'thinkovery'); ?></label>
+				    			<input type='radio' name='subject' id='work_for' value='Travailler chez vous'>
+				    			<label for='work_for'>
+                                    <svg class='icon'><use xlink:href='#icon-diamond'/></svg>
+                                    <?php _e('Work for you', 'thinkovery'); ?>
+                                </label>
 				    		</div><div class='radio'>
 				    			<input type='radio' name='subject' id='know' value='Vous connaître' checked>
-				    			<label for='know'><?php _e('Know you', 'thinkovery'); ?></label>
+				    			<label for='know'>
+                                    <svg class='icon'><use xlink:href='#icon-chat'/></svg>
+                                    <?php _e('Know you', 'thinkovery'); ?>
+                                </label>
 				    		</div><div class='radio'>
 				    			<input type='radio' name='subject' id='mum' value='Maman!'>
-				    			<label for='mum'><?php _e("It's mum, call me back!", 'thinkovery'); ?></label>
+				    			<label for='mum'>
+                                    <svg class='icon'><use xlink:href='#icon-heart'/></svg>
+                                    <?php _e("It's mum, call me back!", 'thinkovery'); ?>
+                                </label>
 				    		</div>
 				    		<?php if($errorSubject) echo '<span>'. $errorSubject .'</span>'; ?>
 				    	</fieldset>
@@ -171,7 +183,15 @@ get_header(); ?>
 					<p><?php _e('Thank you, your message has been sent!', 'thinkovery'); ?></p>
 					<p><?php _e('We will get back to you as soon as possible.', 'thinkovery'); ?></p>
 				<?php endif; ?>
+                <svg class='icon hoop'><use xlink:href='#icon-hoop-thin'/></svg>
+                <svg class='icon hoop'><use xlink:href='#icon-hoop-thin'/></svg>
+                <svg class='icon hoop'><use xlink:href='#icon-hoop-thin'/></svg>
+                <svg class='icon hoop'><use xlink:href='#icon-hoop-thin'/></svg>
 			</div>
+
+            <?php if(has_post_thumbnail()){ ?>
+                <div class='bg' style='background-image:url(<?php the_post_thumbnail_url(); ?>)'></div>
+            <?php } ?>
 
 		<?php else : ?>
 

@@ -2,102 +2,48 @@
 @each $color, $theme in $themes{
 	$colorprimary: map-get($theme, color);
 	$colorsecondary: map-get($theme, color-secondary);
+
     .theme-#{$color}{
-        .theme-color, h1, .lang span, a, h2 > span, h1 > strong, .baseline > span > span, .baseline-second > span > span{
+        .theme-color,
+        h1,
+        a,
+        h2 > span,
+        h1 > strong,
+        ol > li:before,
+        blockquote p:before, blockquote p:after,
+        .lang span,
+        #header .lang a:hover, #header .lang a:focus,
+        #footer ul a:hover, #footer ul a:focus,
+        .baseline > span > span,
+        .baseline-second > span > span,
+        .radio input:checked + label .icon,
+        #bloc-revelation p strong,
+        .title-picto .icon,
+        .slide-desc .slide-title,
+        .post time{
         	color: $colorprimary;
         }
-        ol{
-            > li{
-                &:before{
-                    color: $colorprimary;
-                }
-            }
-        }
-        blockquote{
-            p{
-                &:before, &:after{
-                    color: $colorprimary;
-                }
-            }
-        }
-        #bloc-revelation{
-            p{
-                strong{
-                    color: $colorprimary;
-                }
-            }
-        }
-        #header .lang, #footer ul{
-            a{
-                &:hover, &:focus{
-                    color: $colorprimary;
-                }
-            }
+
+        .btn,
+        .post-img:before,
+        .menu-main a:before,
+        .post h2:before{
+			background-color: $colorprimary;
         }
 
-        .post-img{
-            &:before{
-				background-color: $colorprimary;
-            }
-        }
-
-        #logo-o, input:focus, textarea:focus{
-            border-color: $colorprimary;
-        }
-        ul{
-            > li{
-                &:before{
-                    border-color: $colorprimary;
-                }
-            }
-        }
-
-        .btn{
-            background: $colorprimary;
-            i:before{
-                background: radial-gradient(ellipse at center, $colorsecondary 0, rgba($colorsecondary, 0) 65%);
-            }
-        }
-
-        .menu-main{
-            a{
-                &:before{
-                    background: $colorprimary;
-                }
-                > i:after{
-                    background: radial-gradient(ellipse at center, $colorsecondary 0, rgba($colorsecondary, 0) 65%);
-                }
-            }
-        }
-
-        a{
-            &:hover, &:focus{
-                color: $colorsecondary;
-            }
-        }
-        a, .logo{
-            &:hover, &:focus{
-                .theme-color{
-                    color: $colorsecondary;
-                }
-            }
-        }
-        .hoop{
-            fill: url(#gradient-hoop);
-        }
+        ul > li:before,
+        input:focus,
+        textarea:focus,
+        #logo-o,
         .title-picto{
             border-color: $colorprimary;
         }
-        .title-picto{
-            .icon{
-                fill: $colorprimary;
-            }
+
+        .btn i:before,
+        .menu-main a > i:after{
+            background: radial-gradient(ellipse at center, $colorsecondary 0, rgba($colorsecondary, 0) 65%);
         }
-        .slide-desc{
-            .slide-title{
-                color: $colorprimary;
-            }
-        }
+
         .wrapper-video{
             .cover-video{
                 &:after{
@@ -105,15 +51,15 @@
                 }
             }
         }
-        .post{
-            time{
-                color: $colorprimary;
-            }
-            h2{
-                &:before{
-                    background: $colorprimary;
-                }
-            }
+
+        a:hover, a:focus,
+        a:hover .theme-color, a:focus .theme-color,
+        .logo:hover .theme-color, .logo:focus .theme-color{
+            color: $colorsecondary;
+        }
+
+        .hoop{
+            fill: url(#gradient-hoop);
         }
     }
 
