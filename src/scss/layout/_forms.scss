@@ -55,7 +55,7 @@ label{
     left: 15px;
     color: rgba(#fff, 0.5);
     pointer-events: none;
-    transition: $transition;
+    transition: 0.1s ease-in-out;
     + span{
         display: block;
         font-size: 1.2rem;
@@ -100,13 +100,16 @@ input{
     }
     label{
         display: block;
-        padding: 10px;
+        padding: 10px 10px 10px 35px;
         border: 1px solid #fff;
         position: static;
         pointer-events: initial;
         opacity: 0.3;
         color: #fff;
         cursor: pointer;
+        &:hover{
+            opacity: 0.5;
+        }
     }
     input{
         position: absolute;
@@ -118,6 +121,16 @@ input{
                 opacity: 1;
             }
         }
+    }
+    .icon{
+        width: 1.1em;
+        height: 1em;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 10px;
+        margin: auto;
+        transition: $transition;
     }
 }
 
