@@ -100,7 +100,7 @@ input{
     }
     label{
         display: block;
-        padding: 10px 10px 10px 35px;
+        padding: 10px 10px 10px 40px;
         border: 1px solid #fff;
         position: static;
         pointer-events: initial;
@@ -119,6 +119,7 @@ input{
         &:checked{
             + label{
                 opacity: 1;
+                background: rgba(#fff, 0.1);
             }
         }
     }
