@@ -54,6 +54,25 @@ $(function(){
         initVideo();
     }
 
+    $('#form-contact').on('input propertychange', 'input, textarea', function(e){
+        if($(this).attr('type') === 'radio') return;
+
+        if($(this).val() !== ''){
+            $(this).addClass('on');
+        }else{
+            $(this).removeClass('on');
+        }
+    }).find('input, textarea').each(function(){
+        if($(this).attr('type') === 'radio') return;
+
+        if($(this).val() !== ''){
+            $(this).addClass('on');
+        }else{
+            $(this).removeClass('on');
+        }
+        console.log($(this).val())
+    });
+
 
     // $(document).on('scroll', throttle(function(){
 

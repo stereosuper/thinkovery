@@ -41,7 +41,7 @@
             }
         }
 
-        #logo-o{
+        #logo-o, input:focus, textarea:focus{
             border-color: $colorprimary;
         }
         ul{

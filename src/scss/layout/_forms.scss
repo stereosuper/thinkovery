@@ -11,7 +11,11 @@ fieldset{
 
 }
 
-input, textarea, select, button{
+p + form{
+    padding-top: 20px;
+}
+
+input, textarea, button{
   	transition: $transition;
   	&:focus{
       	outline: 0;
@@ -19,17 +23,64 @@ input, textarea, select, button{
 }
 
 input, textarea{
-  	&:-webkit-autofill{
+    padding: 11px 15px 15px;
+    border: 1px solid #fff;
+    background: rgba(#fff, 0.1);
+    color: #fff;
+    &:-webkit-autofill{
       	box-shadow: 0 0 0 1000px #fff inset;
   	}
+    &:focus, &.on{
+        + label{
+            opacity: 0;
+        }
+    }
+    .error &{
+        border-color: #ca4444;
+    }
 }
 
 button{
     border: 0;
 }
 
+textarea{
+    width: 100%;
+    height: 180px;
+}
+
+label{
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    color: rgba(#fff, 0.5);
+    pointer-events: none;
+    transition: $transition;
+    + span{
+        display: block;
+        font-size: 1.2rem;
+        margin: 5px 0 0;
+        color: #ca4444;
+    }
+}
+
+legend{
+    color: #fff;
+}
+
 input{
-    // hide the symbols of input search
+    height: 50px;
+    max-width: 100%;
+    line-height: 1;
+    &[type=text], &[type=email]{
+        width: 270px;
+    }
+    &[type=tel]{
+        width: 175px;
+    }
+    &.big{
+        width: 465px;
+    }
     &[type=search]{
         &::-webkit-search-cancel-button, &::-webkit-search-decoration{
             display: none;
@@ -37,9 +88,49 @@ input{
     }
 }
 
-select{
-    // hide the arrow on edge + ie
-    &::-ms-expand{
-        display: none;
+.radio{
+    display: inline-block;
+    width: 275px;
+    max-width: 100%;
+    margin: 10px 20px 0 0;
+    position: relative;
+    overflow: hidden;
+    label{
+        display: block;
+        padding: 10px;
+        border: 1px solid #fff;
+        position: static;
+        pointer-events: initial;
+        opacity: 0.3;
+        color: #fff;
+        cursor: pointer;
     }
+    input{
+        position: absolute;
+        top: 0;
+        left: -99em;
+        opacity: 0;
+        &:checked{
+            + label{
+                opacity: 1;
+            }
+        }
+    }
+}
+
+.field{
+    display: inline-block;
+    max-width: 100%;
+    position: relative;
+    margin: 0 0 20px;
+    vertical-align: top;
+    &.m-right{
+        margin-right: 20px;
+    }
+}
+
+.field-full{
+    max-width: 100%;
+    position: relative;
+    margin: 10px 0 30px;
 }

@@ -55,6 +55,16 @@
 	}
 }
 
+.btn-medium{
+	padding: 20px 45px 22px;
+	font-size: 1.8rem;
+	> i{
+		width: 200px;
+		height: 200px;
+		left: 20%;
+	}
+}
+
 .btn-small, .btn-small-back{
 	font-weight: 600;
 	.icon{

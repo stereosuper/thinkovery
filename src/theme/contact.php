@@ -92,83 +92,86 @@ if(isset($_POST['submit'])){
 
 get_header(); ?>
 
-	<div class='container'>
+	<div class='container <?php if($success){ echo 'success'; } ?>'>
 		<?php if ( have_posts() ) : the_post(); ?>
 
-		    <h1><?php the_title(); ?></h1>
+			<div class='contact-sidebar'>
+			    <h1><?php the_title(); ?></h1>
 
-		    <ul>
-		    	<li>
-		    		<a href='<?php the_field('maps'); ?>' target='_blank'>Google Maps</a>
-		    		<?php the_field('adress'); ?>
-		    	</li>
-		    	<li>
-		    		<a href='tel:<?php the_field('phone', 'options'); ?>'>Phone</a>
-		    		<?php the_field('phoneDisplay', 'options'); ?>
-		    	</li>
-		    	<li>
-		    		<a href='mailto:<?php the_field('email', 'options'); ?>'>Mail</a>
-		    		<?php the_field('email', 'options'); ?>
-		    	</li>
-		    </ul>
-
-		    <?php if(!$success) : ?>
-		    	<?php if($error){ ?>
-		    		<p><?php _e("The form countains some errors, please check the highlighted fields", 'thinkovery'); ?></p>
-		    	<?php } ?>
-			    <form method='post' action='<?php the_permalink(); ?>' id='form-contact'>
-			    	<div class='<?php if($errorLastname) echo 'error'; ?>'>
-			    		<input type='text' name='last_name' id='last_name' value='<?php echo $lastname; ?>' required>
-			    		<label for='last_name'><?php _e('Last Name', 'thinkovery'); ?>*</label>
-			    		<?php if($errorLastname) echo '<span>'. $errorLastname .'</span>'; ?>
-			    	</div><div class='<?php if($errorFirstname) echo 'error'; ?>'>
-			    		<input type='text' name='first_name' id='first_name' value='<?php echo $firstname; ?>' required>
-			    		<label for='first_name'><?php _e('First Name', 'thinkovery'); ?>*</label>
-			    		<?php if($errorFirstname) echo '<span>'. $errorFirstname .'</span>'; ?>
-			    	</div>
-			    	<div class='<?php if($errorJob) echo 'error'; ?>'>
-			    		<input type='text' name='job' id='job' value='<?php echo $job; ?>' required>
-			    		<label for='job'><?php _e('Function', 'thinkovery'); ?>*</label>
-			    		<?php if($errorJob) echo '<span>'. $errorJob .'</span>'; ?>
-			    	</div>
-			    	<div class='<?php if($errorPhone) echo 'error'; ?>'>
-			    		<input type='tel' name='tel' id='tel' value='<?php echo $phone; ?>'>
-			    		<label for='tel'><?php _e('Phone number (facultative)', 'thinkovery'); ?></label>
-			    		<?php if($errorPhone) echo '<span>'. $errorPhone .'</span>'; ?>
-			    	</div><div class='<?php if($errorMail) echo 'error'; ?>'>
-			    		<input type='email' name='email' id='email' value='<?php echo $mail; ?>' required>
-			    		<label for='email'><?php _e('Email', 'thinkovery'); ?>*</label>
-			    		<?php if($errorMail) echo '<span>'. $errorMail .'</span>'; ?>
-			    	</div>
-			    	<fieldset class='<?php if($errorSubject) echo 'error'; ?>'>
-			    		<legend><?php _e('I am contacting you to', 'thinkovery'); ?>*</legend>
-			    		<div>
-			    			<input type='radio' name='subject' id='work_with' value='Travailler avec vous'>
-			    			<label for='work_with'><?php _e('Work with you', 'thinkovery'); ?></label>
-			    		</div><div>
-			    			<input type='radio' name='subject' id='work_for' value='Travailler chez nous'>
-			    			<label for='work_for'><?php _e('Work for you', 'thinkovery'); ?></label>
-			    		</div><div>
-			    			<input type='radio' name='subject' id='know' value='Vous connaître' checked>
-			    			<label for='know'><?php _e('Know you', 'thinkovery'); ?></label>
-			    		</div><div>
-			    			<input type='radio' name='subject' id='mum' value='Maman!'>
-			    			<label for='mum'><?php _e("It's mum, call me back!", 'thinkovery'); ?></label>
-			    		</div>
-			    		<?php if($errorSubject) echo '<span>'. $errorSubject .'</span>'; ?>
-			    	</fieldset>
-			    	<div class='<?php if($errorMsg) echo 'error'; ?>'>
-			    		<textarea name='message' id='message' required><?php echo $msg; ?></textarea>
-			    		<label for='message'><?php _e('Your project', 'thinkovery'); ?>*</label>
-			    		<?php if($errorMsg) echo '<span>'. $errorMsg .'</span>'; ?>
-			    	</div>
-			    	<button class='btn' type='submit' name='submit' for='form-contact'>
-			    		<?php _e('Send', 'thinkovery'); ?><svg class='icon'><use xlink:href='#icon-arrow-right'/></svg><i></i>
-			    	</button>
-			    </form>
-			<?php else : ?>
-				<p><?php _e('Thank you, your message has been sent!', 'thinkovery'); ?></p>
-			<?php endif; ?>
+			    <ul class='contact-infos'>
+			    	<li>
+			    		<a href='<?php the_field('maps'); ?>' target='_blank'>Google Maps</a>
+			    		<?php the_field('adress'); ?>
+			    	</li>
+			    	<li>
+			    		<a href='tel:<?php the_field('phone', 'options'); ?>'>Phone</a>
+			    		<?php the_field('phoneDisplay', 'options'); ?>
+			    	</li>
+			    	<li>
+			    		<a href='mailto:<?php the_field('email', 'options'); ?>'>Mail</a>
+			    		<?php the_field('email', 'options'); ?>
+			    	</li>
+			    </ul>
+			</div><div class='contact-main'>
+			    <?php if(!$success) : ?>
+			    	<?php if($error){ ?>
+			    		<p><?php _e("The form countains some errors, please check the highlighted fields", 'thinkovery'); ?>:</p>
+			    	<?php } ?>
+				    <form method='post' action='<?php the_permalink(); ?>' id='form-contact'>
+				    	<div class='field m-right <?php if($errorLastname) echo 'error'; ?>'>
+				    		<input type='text' name='last_name' id='last_name' value='<?php echo $lastname; ?>' required>
+				    		<label for='last_name'><?php _e('Last Name', 'thinkovery'); ?>*</label>
+				    		<?php if($errorLastname) echo '<span>'. $errorLastname .'</span>'; ?>
+				    	</div><div class='field <?php if($errorFirstname) echo 'error'; ?>'>
+				    		<input type='text' name='first_name' id='first_name' value='<?php echo $firstname; ?>' required>
+				    		<label for='first_name'><?php _e('First Name', 'thinkovery'); ?>*</label>
+				    		<?php if($errorFirstname) echo '<span>'. $errorFirstname .'</span>'; ?>
+				    	</div>
+				    	<div class='field <?php if($errorJob) echo 'error'; ?>'>
+				    		<input type='text' name='job' id='job' value='<?php echo $job; ?>' class='big' required>
+				    		<label for='job'><?php _e('Function', 'thinkovery'); ?>*</label>
+				    		<?php if($errorJob) echo '<span>'. $errorJob .'</span>'; ?>
+				    	</div>
+				    	<div class='field m-right <?php if($errorPhone) echo 'error'; ?>'>
+				    		<input type='tel' name='tel' id='tel' value='<?php echo $phone; ?>'>
+				    		<label for='tel'><?php _e('Phone', 'thinkovery'); ?> <i>(<?php _e('optionnal', 'thinkovery'); ?>)</i></label>
+				    		<?php if($errorPhone) echo '<span>'. $errorPhone .'</span>'; ?>
+				    	</div><div class='field <?php if($errorMail) echo 'error'; ?>'>
+				    		<input type='email' name='email' id='email' value='<?php echo $mail; ?>' required>
+				    		<label for='email'><?php _e('Email', 'thinkovery'); ?>*</label>
+				    		<?php if($errorMail) echo '<span>'. $errorMail .'</span>'; ?>
+				    	</div>
+				    	<fieldset class='field-full <?php if($errorSubject) echo 'error'; ?>'>
+				    		<legend><?php _e('I am contacting you to', 'thinkovery'); ?>*</legend>
+				    		<div class='radio'>
+				    			<input type='radio' name='subject' id='work_with' value='Travailler avec vous'>
+				    			<label for='work_with'><?php _e('Work with you', 'thinkovery'); ?></label>
+				    		</div><div class='radio'>
+				    			<input type='radio' name='subject' id='work_for' value='Travailler chez nous'>
+				    			<label for='work_for'><?php _e('Work for you', 'thinkovery'); ?></label>
+				    		</div><div class='radio'>
+				    			<input type='radio' name='subject' id='know' value='Vous connaître' checked>
+				    			<label for='know'><?php _e('Know you', 'thinkovery'); ?></label>
+				    		</div><div class='radio'>
+				    			<input type='radio' name='subject' id='mum' value='Maman!'>
+				    			<label for='mum'><?php _e("It's mum, call me back!", 'thinkovery'); ?></label>
+				    		</div>
+				    		<?php if($errorSubject) echo '<span>'. $errorSubject .'</span>'; ?>
+				    	</fieldset>
+				    	<div class='field-full <?php if($errorMsg) echo 'error'; ?>'>
+				    		<textarea name='message' id='message' required><?php echo $msg; ?></textarea>
+				    		<label for='message'><?php _e('Your project', 'thinkovery'); ?>*</label>
+				    		<?php if($errorMsg) echo '<span>'. $errorMsg .'</span>'; ?>
+				    	</div>
+				    	<button class='btn btn-medium' type='submit' name='submit' for='form-contact'>
+				    		<?php _e('Send', 'thinkovery'); ?><svg class='icon'><use xlink:href='#icon-arrow-right'/></svg><i></i>
+				    	</button>
+				    </form>
+				<?php else : ?>
+					<p><?php _e('Thank you, your message has been sent!', 'thinkovery'); ?></p>
+					<p><?php _e('We will get back to you as soon as possible.', 'thinkovery'); ?></p>
+				<?php endif; ?>
+			</div>
 
 		<?php else : ?>
 
