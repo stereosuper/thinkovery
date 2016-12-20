@@ -100,15 +100,15 @@ get_header(); ?>
 
 			    <ul class='contact-infos'>
 			    	<li>
-			    		<a href='<?php the_field('maps'); ?>' target='_blank'>Google Maps</a>
+			    		<a href='<?php the_field('maps'); ?>' target='_blank' title='<?php _e('Open on Google Maps', 'thinkovery'); ?>'><svg class='icon'><use xlink:href='#icon-map'/></svg></a>
 			    		<?php the_field('adress'); ?>
 			    	</li>
 			    	<li>
-			    		<a href='tel:<?php the_field('phone', 'options'); ?>'>Phone</a>
+			    		<a href='tel:<?php the_field('phone', 'options'); ?>' title='<?php _e('Call us', 'thinkovery'); ?>'><svg class='icon'><use xlink:href='#icon-phone'/></svg></a>
 			    		<?php the_field('phoneDisplay', 'options'); ?>
 			    	</li>
 			    	<li>
-			    		<a href='mailto:<?php the_field('email', 'options'); ?>'>Mail</a>
+			    		<a href='mailto:<?php the_field('email', 'options'); ?>' title='<?php _e('Send an email', 'thinkovery'); ?>'><svg class='icon icon-mail'><use xlink:href='#icon-envelope'/></svg></a>
 			    		<?php the_field('email', 'options'); ?>
 			    	</li>
 			    </ul>
