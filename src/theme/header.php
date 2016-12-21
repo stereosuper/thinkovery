@@ -17,6 +17,7 @@
 
 
 	// Lang
+	global $siteUrl;
 	$lang = __('en', 'thinkovery');
 	$siteUrl = get_site_url('/');
 	$siteUrl .= $lang == 'fr' ? '/?noredirect=fr_FR' : '/en/?noredirect=en_US';
@@ -38,6 +39,10 @@
 	    'blue'   => [ 'rgb(2, 187, 255)', 'rgb(138, 126, 224)' ],
 	    'green'  => [ 'rgb(43, 240, 117)', 'rgb(2, 187, 255)' ]
 	];
+
+	// Current url
+	global $currentUrl;
+	$currentUrl = home_url( add_query_arg( null, null ));;
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?> class='no-js'>
@@ -51,7 +56,7 @@
 		<script>document.getElementsByTagName('html')[0].className = 'js';</script>
 
 		<script src='https://use.typekit.net/uhd8avk.js'></script>
-		<script>try{Typekit.load({ async: true });}catch(e){}</script>
+		<script>try{Typekit.load({ async: false });}catch(e){}</script>
 	</head>
 
 	<body <?php body_class('theme-'.$declis[$currentDecli]['mainColor']); ?> data-theme='<?php echo $declis[$currentDecli]['mainColor']; ?>'>

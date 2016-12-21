@@ -12,7 +12,7 @@ get_header(); ?>
                 <?php $count = 0; foreach($declis as $decli){ ?>
                     <div class='slide-home <?php if($count == $currentDecli) echo 'slide-on'; ?>' style='background-image:url("<?php echo wp_get_attachment_url($decli['homeImg'][0]['img']); ?>")' data-color='<?php echo $decli['mainColor']; ?>'>
                         <strong style='z-index:<?php echo $decli['circlePlan']; ?>;left:<?php echo $decli['baselinePosX']; ?>px;top:<?php echo $decli['baselinePosY']; ?>' data-x='<?php echo $decli['baselinePosX']; ?>' data-y='<?php echo $decli['baselinePosY']; ?>' class='baseline'>
-                            <span><?php echo $decli['title1']; ?></span><svg class='icon hoop' style='width:<?php echo $decli['circleWidth']; ?>px;height:<?php echo $decli['circleWidth']; ?>px'>
+                            <span><?php echo $decli['title1']; ?></span><svg class='icon hoop' style='width:<?php echo $decli['circleWidth']; ?>px;height:<?php echo $decli['circleWidth']; ?>px;fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'>
                                 <use xlink:href='#icon-hoop'/>
                             </svg><span><?php echo $decli['title2']; ?></span>
                         </strong>
@@ -59,7 +59,7 @@ get_header(); ?>
                     <div class='wrapper-video'>
                         <iframe src='<?php the_field('section1Video1'); ?>?enablejsapi=1&html5=1' frameborder='0' allowfullscreen></iframe>
                         <div class='cover-video' style='background-image:url(<?php echo wp_get_attachment_url(get_field('section1Cover1')); ?>)'>
-                            <svg class='icon hoop'><use xlink:href='#icon-hoop-thin'/></svg>
+                            <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop-thin'/></svg>
                         </div>
                     </div>
                 <?php } ?>
@@ -70,7 +70,7 @@ get_header(); ?>
                     <div class='wrapper-video'>
                         <iframe src='<?php the_field('section1Video2'); ?>?enablejsapi=1&html5=1' frameborder='0' allowfullscreen></iframe>
                         <div class='cover-video' style='background-image:url(<?php echo wp_get_attachment_url(get_field('section1Cover2')); ?>)'>
-                            <svg class='icon hoop'><use xlink:href='#icon-hoop-thin'/></svg>
+                            <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop-thin'/></svg>
                         </div>
                     </div>
                 <?php } ?>
@@ -83,16 +83,16 @@ get_header(); ?>
                     <h2><?php the_field('section2Title'); ?></h2>
                     <?php the_field('section2Txt'); ?>
                 </div>
-                <svg class='icon hoop'><use xlink:href='#icon-hoop'/></svg>
-                <svg class='icon hoop'><use xlink:href='#icon-hoop'/></svg>
-                <svg class='icon hoop'><use xlink:href='#icon-hoop'/></svg>
-                <svg class='icon hoop'><use xlink:href='#icon-hoop'/></svg>
-                <svg class='icon hoop'><use xlink:href='#icon-hoop'/></svg>
-                <svg class='icon hoop'><use xlink:href='#icon-hoop'/></svg>
-                <svg class='icon hoop'><use xlink:href='#icon-hoop'/></svg>
-                <svg class='icon hoop'><use xlink:href='#icon-hoop'/></svg>
-                <svg class='icon hoop'><use xlink:href='#icon-hoop'/></svg>
-                <svg class='icon hoop'><use xlink:href='#icon-hoop'/></svg>
+                <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop'/></svg>
+                <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop'/></svg>
+                <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop'/></svg>
+                <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop'/></svg>
+                <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop'/></svg>
+                <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop'/></svg>
+                <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop'/></svg>
+                <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop'/></svg>
+                <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop'/></svg>
+                <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop'/></svg>
             </div>
         </section>
 
@@ -127,7 +127,7 @@ get_header(); ?>
                             </ul>
                         </div>
                     </div>
-                    <svg class='icon hoop'><use xlink:href='#icon-hoop-thin'/></svg>
+                    <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop-thin'/></svg>
                 </div>
             <?php endif; ?>
 
@@ -155,7 +155,7 @@ get_header(); ?>
                             </ul>
                         </div>
                     </div>
-                    <svg class='icon hoop'><use xlink:href='#icon-hoop-very-thin'/></svg>
+                    <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop-very-thin'/></svg>
                 </div>
             <?php endif; ?>
         </section>
