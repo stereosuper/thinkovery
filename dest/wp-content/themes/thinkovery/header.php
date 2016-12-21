@@ -25,36 +25,7 @@
 	// Declis
 	global $currentDecli, $declis;
 	$declis = get_field('decli', 'options');
-	if(isset($_COOKIE['think-decli'])){
-		$currentDecli = $_COOKIE['think-decli'];
-	}else{
-
-		// $declis = [];
-		// $count = 0;
-		// foreach($declisField as $decli){
-		//     $declis[$count]['mainColor'] = $decli['mainColor'];
-		//     $declis[$count]['title1'] = $decli['title1'];
-		//     $declis[$count]['title2'] = $decli['title2'];
-		//     $declis[$count]['txt'] = $decli['txt'];
-		//     $declis[$count]['baselinePosX'] = $decli['baselinePosX'];
-		//     $declis[$count]['baselinePosY'] = $decli['baselinePosY'];
-		//     $declis[$count]['circleWidth'] = $decli['circleWidth'];
-		//     $declis[$count]['circlePlan'] = $decli['circlePlan'];
-
-		//     $countImg = 0;
-		//     foreach($decli['homeImg'] as $img){
-		//         $declis[$count]['homeImg'][$countImg] = $img['img'];
-		//         $countImg ++;
-		//     }
-		//     $count ++;
-		// }
-		$currentDecli = 0;
-
-		// print_r($declisField);
-		// print_r($declis);
-
-		// setcookie('think-decli', base64_encode(serialize($currentDecli)), time()+3600*24);
-	}
+	$currentDecli = isset($_COOKIE['think-decli']) ? $_COOKIE['think-decli'] : 0;
 
 
 	// Theme colors
