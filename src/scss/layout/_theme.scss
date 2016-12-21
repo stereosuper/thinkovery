@@ -21,7 +21,8 @@
         .title-picto .icon,
         .slide-desc .slide-title,
         .post time,
-        .wrapper-share-related h4{
+        .wrapper-share-related h4,
+        .related-posts a .icon-arrow{
         	color: $colorprimary;
         }
 
@@ -30,7 +31,10 @@
         .menu-main a:before,
         .post h2:before,
         .intro:before,
-        .share-post ul:before{
+        .share-post ul:before,
+        .share-post a:before,
+        .related-posts ul:before,
+        .related-posts a:before{
 			background-color: $colorprimary;
         }
 
