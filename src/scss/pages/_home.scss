@@ -146,9 +146,6 @@
 		flex-direction: column;
 		justify-content: space-between;
 		width: calc(50% - #{$gutter});
-		h2, p{
-			max-width: 83.3333%;
-		}
 	}
 }
 
@@ -302,16 +299,6 @@
 }
 
 @media (max-width: $desktop){
-	.wrapper-blocs-half{
-		.bloc-half{
-			h2, p{
-				max-width: 100%;
-			}
-		}
-	}
-}
-
-@media (max-width: $desktop-small){
 	#bloc-revelation{
 		padding: 50px 0;
 		text-align: center;
@@ -328,6 +315,9 @@
 			width: auto;
 		}
 	}
+}
+
+@media (max-width: $desktop-small){
 	#mooc-spoc{
 		padding-top: 50px;
 		padding-bottom: 50px;
