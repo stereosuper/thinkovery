@@ -61,6 +61,12 @@
         .hoop{
             fill: url(#gradient-hoop);
         }
+
+        .intro{
+            &:before{
+                background: $colorprimary;
+            }
+        }
     }
 
     .theme-yellow{
