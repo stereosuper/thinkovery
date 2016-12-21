@@ -55,10 +55,6 @@ $(function(){
         animMainSlider(body, $('#bloc-top'), themeColors);
     }
 
-    if($('.wrapper-video').length){
-        initVideo();
-    }
-
     // Form contact inputs
     if($('#form-contact').length){
         $('#form-contact').on('input propertychange', 'input, textarea', function(){
@@ -68,6 +64,10 @@ $(function(){
         });
     }
 
+    // Load videos
+    if($('.wrapper-video').length){
+        initVideo();
+    }
 
     // $(document).on('scroll', throttle(function(){
 
