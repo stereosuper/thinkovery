@@ -27,11 +27,11 @@
         }
         &:hover, &:focus{
             &:after{
-                transform: scale(1.2);
+                transform: scale(1.2) translate3d(0, 0, 0) rotate(0.001deg);
                 opacity: 0;
             }
             .icon{
-                transform: scale(1.1);
+                transform: scale(1.1) translate3d(0, 0, 0) rotate(0.001deg);
             }
         }
     }

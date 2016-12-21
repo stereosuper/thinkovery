@@ -90,6 +90,7 @@ if(isset($_POST['submit'])){
     }
 }
 
+
 get_header(); ?>
 
 	<div class='container <?php if($success){ echo 'success'; } ?>'>
@@ -183,10 +184,10 @@ get_header(); ?>
 					<p><?php _e('Thank you, your message has been sent!', 'thinkovery'); ?></p>
 					<p><?php _e('We will get back to you as soon as possible.', 'thinkovery'); ?></p>
 				<?php endif; ?>
-                <svg class='icon hoop'><use xlink:href='#icon-hoop-thin'/></svg>
-                <svg class='icon hoop'><use xlink:href='#icon-hoop-thin'/></svg>
-                <svg class='icon hoop'><use xlink:href='#icon-hoop-thin'/></svg>
-                <svg class='icon hoop'><use xlink:href='#icon-hoop-thin'/></svg>
+                <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop-thin'/></svg>
+                <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop-thin'/></svg>
+                <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop-thin'/></svg>
+                <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop-thin'/></svg>
 			</div>
 
             <?php if(has_post_thumbnail()){ ?>
