@@ -77,7 +77,7 @@
         </div>
 	</footer>
 
-    <?php global $themeColors, $currentDecli; ?>
+    <?php global $themeColors, $declis, $currentDecli; ?>
 
     <svg style='position:absolute;width:0;height:0;overflow:hidden'>
         <defs>
@@ -172,8 +172,8 @@
                 <path class='theme-color logo-o' id='logo-o1' d='M315 17.5c-25.3 0-45.9 20.7-45.9 46.1s20.5 46.1 45.9 46.1c25.3 0 45.9-20.7 45.9-46.1S340.3 17.5 315 17.5zm.8 73.4c-15.3 0-27.7-12.6-27.7-28.2s12.4-28.2 27.7-28.2 27.7 12.6 27.7 28.2-12.4 28.2-27.7 28.2z'/>
             </symbol>
             <radialGradient id='gradient-hoop' cx='85%' cy='85%' fx='85%' fy='85%'>
-                <stop offset='0%' stop-color='<?php echo $themeColors[$currentDecli['mainColor']][1]; ?>' data-theme-second=''/>
-                <stop offset='100%' stop-color='<?php echo $themeColors[$currentDecli['mainColor']][0]; ?>' data-theme-main=''/>
+                <stop offset='0%' stop-color='<?php echo $themeColors[$declis[$currentDecli]['mainColor']][1]; ?>' data-theme-second=''/>
+                <stop offset='100%' stop-color='<?php echo $themeColors[$declis[$currentDecli]['mainColor']][0]; ?>' data-theme-main=''/>
             </radialGradient>
         </defs>
     </svg>

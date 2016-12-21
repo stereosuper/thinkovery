@@ -1,4 +1,5 @@
 var $ = require('./libs/jquery/dist/jquery.slim.min.js');
+var Cookies = require('./libs/js-cookie/src/js.cookie.js');
 var TweenMax = require('./libs/gsap/src/uncompressed/TweenMax.js');
 var CustomEase = require('./libs/gsap/src/uncompressed/plugins/CustomEase.js');
 
@@ -90,6 +91,8 @@ module.exports = function(body, blocTop, themeColors){
 
         setPosBaseline();
         animSlide();
+
+        Cookies.set('think-decli', currentSlide.index('.slide-home'));
     }
 
     nav.on('click', '.prev', function(e){

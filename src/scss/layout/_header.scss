@@ -152,6 +152,17 @@
             }
         }
     }
+    .current-menu-item{
+        a{
+            pointer-events: none;
+            &:before, > i:after{
+                opacity: 1;
+            }
+            > i:after{
+                transform: scale(1);
+            }
+        }
+    }
     .icon{
         display: none;
     }

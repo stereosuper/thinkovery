@@ -115,7 +115,7 @@ get_header(); ?>
 			</div><div class='contact-main'>
 			    <?php if(!$success) : ?>
 			    	<?php if($error){ ?>
-			    		<p><?php _e("The form countains some errors, please check the highlighted fields", 'thinkovery'); ?>:</p>
+			    		<p class='form-error'><?php _e("The form countains some errors, please check the highlighted fields", 'thinkovery'); ?>:</p>
 			    	<?php } ?>
 				    <form method='post' action='<?php the_permalink(); ?>' id='form-contact'>
 				    	<div class='field m-right <?php if($errorLastname) echo 'error'; ?>'>

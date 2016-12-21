@@ -10,7 +10,7 @@ get_header(); ?>
         <header>
             <div id='bloc-top'>
                 <?php $count = 0; foreach($declis as $decli){ ?>
-                    <div class='slide-home <?php if($count === 0) echo 'slide-on'; ?>' style='background-image:url("<?php echo wp_get_attachment_url($decli['homeImg'][0]); ?>")' data-color='<?php echo $decli['mainColor']; ?>'>
+                    <div class='slide-home <?php if($count == $currentDecli) echo 'slide-on'; ?>' style='background-image:url("<?php echo wp_get_attachment_url($decli['homeImg'][0]['img']); ?>")' data-color='<?php echo $decli['mainColor']; ?>'>
                         <strong style='z-index:<?php echo $decli['circlePlan']; ?>;left:<?php echo $decli['baselinePosX']; ?>px;top:<?php echo $decli['baselinePosY']; ?>' data-x='<?php echo $decli['baselinePosX']; ?>' data-y='<?php echo $decli['baselinePosY']; ?>' class='baseline'>
                             <span><?php echo $decli['title1']; ?></span><svg class='icon hoop' style='width:<?php echo $decli['circleWidth']; ?>px;height:<?php echo $decli['circleWidth']; ?>px'>
                                 <use xlink:href='#icon-hoop'/>
@@ -21,7 +21,7 @@ get_header(); ?>
                             $countImg = 0;
                             foreach($decli['homeImg'] as $img){
                                 if($countImg > 0){ ?>
-                                    <div style="background-image:url('<?php echo wp_get_attachment_url($currentDecli['homeImg'][$countImg]); ?>');z-index:<?php echo $countImg+1; ?>" class='slider-plans'></div>
+                                    <div style="background-image:url('<?php echo wp_get_attachment_url($img['img']); ?>');z-index:<?php echo $countImg+1; ?>" class='slider-plans'></div>
                                 <?php }
                                 $countImg ++;
                             }
@@ -38,7 +38,7 @@ get_header(); ?>
                 <div class='container'>
                     <div class='zone-txt align-right'>
                         <?php $count = 0; foreach($declis as $decli){ ?>
-                            <div class='slide-home-txt <?php if($count === 0) echo 'txt-on'; ?>'>
+                            <div class='slide-home-txt <?php if($count == $currentDecli) echo 'txt-on'; ?>'>
                                 <?php echo $decli['txt']; ?>
                             </div>
                         <?php $count ++; } ?>
