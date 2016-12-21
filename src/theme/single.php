@@ -6,16 +6,21 @@
 			<?php if( has_post_thumbnail() ){ ?>
 				<div class='bloc-top-img' style='background-image: url(<?php the_post_thumbnail_url(); ?>)'></div>
 			<?php } ?>
-			<article class='container'>
+			<article class='container <?php if( has_post_thumbnail() ){ ?>has-post-img<?php } ?>'>
 
 				<div class='container-small'>
-				
+					<?php if(has_post_thumbnail()){ ?>
+						<time datetime='<?php echo get_the_date('Y-m-d'); ?>'><?php echo get_the_date(); ?></time>
+					<?php } ?>
+
 					<h1><?php the_title(); ?></h1>
 
-					<time datetime='<?php echo get_the_date('Y-m-d'); ?>'><?php echo get_the_date(); ?></time>
+					<?php if(!has_post_thumbnail()){ ?>
+						<time datetime='<?php echo get_the_date('Y-m-d'); ?>'><?php echo get_the_date(); ?></time>
+					<?php } ?>
 
 					<?php if(get_field('intro')){ ?>
-					    <p class='intro'><?php the_field('intro'); ?></p>
+					    <div class='intro'><?php the_field('intro'); ?></div>
 					<?php } ?>
 
 					<?php the_content(); ?>
