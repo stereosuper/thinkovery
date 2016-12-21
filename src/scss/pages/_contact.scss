@@ -70,6 +70,9 @@
         margin: auto;
         box-shadow: none;
         text-align: center;
+        &:hover, &:focus{
+            transform: scale(1.1);
+        }
     }
     .icon-mail{
         width: 20px;
