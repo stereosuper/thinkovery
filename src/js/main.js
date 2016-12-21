@@ -34,6 +34,11 @@ $(function(){
 
     // isMobile.any ? body.addClass('is-mobile') : body.addClass('is-desktop');
 
+    function checkEmptyInput(input){
+        if(input.attr('type') === 'radio') return;
+        input.val() !== '' ? input.addClass('on') : input.removeClass('on');
+    }
+
 
     // Anim header on scroll + scroll indicator
     animHeader();
@@ -54,24 +59,14 @@ $(function(){
         initVideo();
     }
 
-    $('#form-contact').on('input propertychange', 'input, textarea', function(e){
-        if($(this).attr('type') === 'radio') return;
-
-        if($(this).val() !== ''){
-            $(this).addClass('on');
-        }else{
-            $(this).removeClass('on');
-        }
-    }).find('input, textarea').each(function(){
-        if($(this).attr('type') === 'radio') return;
-
-        if($(this).val() !== ''){
-            $(this).addClass('on');
-        }else{
-            $(this).removeClass('on');
-        }
-        console.log($(this).val())
-    });
+    // Form contact inputs
+    if($('#form-contact').length){
+        $('#form-contact').on('input propertychange', 'input, textarea', function(){
+            checkEmptyInput($(this));
+        }).find('input, textarea').each(function(){
+            checkEmptyInput($(this));
+        });
+    }
 
 
     // $(document).on('scroll', throttle(function(){
