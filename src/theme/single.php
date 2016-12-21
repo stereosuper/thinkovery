@@ -25,62 +25,65 @@
 
 					<?php the_content(); ?>
 
-					<div>
-						<p><?php _e('Share this post', 'thinkovery'); ?></p>
-						<ul>
-							<li>
-								<a href='http://twitter.com/share?url=<?php the_permalink(); ?>&text=<?php the_title(); ?>&via=<?php bloginfo("name"); ?>' rel='nofollow' target='_blank'><?php _e('Share on Twitter', 'thinkovery'); ?></a>
-							</li>
-							<li>
-								<a href='http://www.linkedin.com/shareArticle?mini=true&url=<?php the_permalink(); ?>&title=<?php the_title(); ?>' rel='nofollow' target='_blank'><?php _e('Share on Linkedin', 'thinkovery'); ?></a>
-							</li>
-							<li>
-								<a href='http://www.facebook.com/sharer.php?u=<?php the_permalink(); ?>&t=<?php the_title(); ?>' rel='nofollow' target='blank'><?php _e('Share on Facebook', 'thinkovery'); ?></a>
-							</li>
-						</ul>
+					<div class='wrapper-share-related'>
+						<div class='share-post'>
+							<h4><?php _e('Share this post', 'thinkovery'); ?></h4>
+							<ul>
+								<li>
+									<a href='http://twitter.com/share?url=<?php the_permalink(); ?>&text=<?php the_title(); ?>&via=<?php bloginfo("name"); ?>' rel='nofollow' target='_blank'><?php _e('Share on Twitter', 'thinkovery'); ?><svg class='icon icon-twitter'><use xlink:href='#icon-twitter'/></svg></a>
+								</li>
+								<li>
+									<a href='http://www.linkedin.com/shareArticle?mini=true&url=<?php the_permalink(); ?>&title=<?php the_title(); ?>' rel='nofollow' target='_blank'><?php _e('Share on Linkedin', 'thinkovery'); ?><svg class='icon icon-linkedin'><use xlink:href='#icon-linkedin'/></svg></a>
+								</li>
+								<li>
+									<a href='http://www.facebook.com/sharer.php?u=<?php the_permalink(); ?>&t=<?php the_title(); ?>' rel='nofollow' target='blank'><?php _e('Share on Facebook', 'thinkovery'); ?><svg class='icon icon-facebook'><use xlink:href='#icon-facebook'/></svg></a>
+								</li>
+							</ul>
+						</div>
+						<div class='related-posts'>
+							<?php
+								$currentPost = $post;
+								global $post;
+
+								$categories = get_the_category($post->ID);
+								if($categories){
+									$categoryIds = array();
+									foreach($categories as $cat){
+										$categoryIds[] = $cat->term_id;
+									}
+
+									$relatedQuery = new WP_Query( array(
+										'category__in' => $categoryIds,
+										'post__not_in' => array($post->ID),
+										'posts_per_page'=> 2,
+										'caller_get_posts'=>1,
+								        'tax_query' => array( array(
+								            'taxonomy' => 'post_format',
+								            'field' => 'slug',
+								            'terms' => array('post-format-link'),
+								            'operator' => 'NOT IN'
+								        ) )
+									) );
+
+									if( $relatedQuery->have_posts() ){
+										echo '<div><h4>' . __('Related Posts', 'thinkovery') . '</h4><ul>';
+										while( $relatedQuery->have_posts() ){ $relatedQuery->the_post(); ?>
+											<li>
+												<a href='<?php the_permalink(); ?>'>
+													<?php the_post_thumbnail(); ?>
+													<?php the_title(); ?>
+												</a>
+											</li>
+										<? }
+										echo '</ul></div>';
+									}
+								}
+
+								$post = $currentPost;
+								wp_reset_query();
+							?>
+						</div>
 					</div>
-
-					<?php
-						$currentPost = $post;
-						global $post;
-
-						$categories = get_the_category($post->ID);
-						if($categories){
-							$categoryIds = array();
-							foreach($categories as $cat){
-								$categoryIds[] = $cat->term_id;
-							}
-
-							$relatedQuery = new WP_Query( array(
-								'category__in' => $categoryIds,
-								'post__not_in' => array($post->ID),
-								'posts_per_page'=> 2,
-								'caller_get_posts'=>1,
-						        'tax_query' => array( array(
-						            'taxonomy' => 'post_format',
-						            'field' => 'slug',
-						            'terms' => array('post-format-link'),
-						            'operator' => 'NOT IN'
-						        ) )
-							) );
-
-							if( $relatedQuery->have_posts() ){
-								echo '<div><p>' . __('Related Posts', 'thinkovery') . '</p><ul>';
-								while( $relatedQuery->have_posts() ){ $relatedQuery->the_post(); ?>
-									<li>
-										<a href='<?php the_permalink(); ?>'>
-											<?php the_post_thumbnail(); ?>
-											<?php the_title(); ?>
-										</a>
-									</li>
-								<? }
-								echo '</ul></div>';
-							}
-						}
-
-						$post = $currentPost;
-						wp_reset_query();
-					?>
 
 					<?php comments_template(); ?>
 
