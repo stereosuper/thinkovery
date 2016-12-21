@@ -310,6 +310,10 @@ a{
     fill: currentColor;
 }
 
+.hoop{
+    fill: url(#gradient-hoop);
+}
+
 
 
 @media (max-width: $desktop){
