@@ -34,7 +34,8 @@
         .share-post ul:before,
         .share-post a:before,
         .related-posts ul:before,
-        .related-posts a:before{
+        .related-posts a:before,
+        .about-img:after{
 			background-color: $colorprimary;
         }
 

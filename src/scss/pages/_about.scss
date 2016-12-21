@@ -1,0 +1,105 @@
+.about-txt{
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 $col;
+    > h2{
+        max-width: 85%;
+        margin-top: 0;
+        font-size: 3.2rem;
+        line-height: 1.2;
+        color: $gray;
+    }
+}
+
+.about-img{
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+    overflow: hidden;
+    &:before, &:after{
+        position: absolute;
+    }
+    &:after{
+        width: 93px;
+        height: 7px;
+        position: absolute;
+        z-index: 2;
+    }
+    &:before{
+        height: 27px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        background: #fff;
+        z-index: 1;
+    }
+    > img{
+        width: 100%;
+    }
+    > .icon{
+        position: absolute;
+        opacity: 0.8;
+    }
+    > .mask{
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: $gutter*2;
+        bottom: 27px;
+        background-size: 100%;
+        background-repeat: no-repeat;
+    }
+}
+.about-img1{
+    width: $col*6;
+    padding: 0 $gutter*2 27px 0;
+    &:before, &:after{
+        content: '';
+        bottom: 0;
+    }
+    &:after{
+        right: 40px;
+    }
+    > .icon{
+        width: 400px;
+        height: 400px;
+        top: -20px;
+        left: 50px;
+    }
+    > .mask{
+        background-image: url(../layoutImg/about1.png);
+    }
+}
+.about-img2{
+    width: $col*2;
+    padding: 0 $gutter*2 0 0;
+    margin: -7px 0 0 $col*2;
+    z-index: 1;
+}
+.about-img3{
+    width: $col*7;
+    padding: 0 $gutter*2 0 0;
+    margin-top: 110px;
+    margin-bottom: 90px;
+    > .icon{
+        width: 90px;
+        height: 90px;
+        top: 130px;
+        left: 135px;
+    }
+    > .mask{
+        background-image: url(../layoutImg/about3.png);
+    }
+}
+.about-img4{
+    width: $col*4;
+    padding: 27px $gutter*2 0 0;
+    margin-bottom: 20px;
+    &:before, &:after{
+        content: '';
+        top: 0;
+    }
+    &:after{
+        left: 40px;
+    }
+}

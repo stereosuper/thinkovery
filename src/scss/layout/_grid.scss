@@ -32,6 +32,12 @@
 }
 
 .col{
+    &-3{
+        width: $col*3;
+    }
+    &-4{
+        width: $col*4;
+    }
     .container-medium &{
         &-2{
             width: $colMedium*2;
