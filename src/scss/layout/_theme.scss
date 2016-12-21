@@ -20,7 +20,8 @@
         #bloc-revelation p strong,
         .title-picto .icon,
         .slide-desc .slide-title,
-        .post time{
+        .post time,
+        .wrapper-share-related h4{
         	color: $colorprimary;
         }
 
@@ -28,7 +29,8 @@
         .post-img:before,
         .menu-main a:before,
         .post h2:before,
-        .intro:before{
+        .intro:before,
+        .share-post ul:before{
 			background-color: $colorprimary;
         }
 
