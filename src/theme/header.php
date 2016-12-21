@@ -56,7 +56,7 @@
 		<script>document.getElementsByTagName('html')[0].className = 'js';</script>
 
 		<script src='https://use.typekit.net/uhd8avk.js'></script>
-		<script>try{Typekit.load({ async: true });}catch(e){}</script>
+		<script>try{Typekit.load({ async: false });}catch(e){}</script>
 	</head>
 
 	<body <?php body_class('theme-'.$declis[$currentDecli]['mainColor']); ?> data-theme='<?php echo $declis[$currentDecli]['mainColor']; ?>'>
