@@ -35,13 +35,16 @@ h1{
     line-height: 0.9;
 }
 
-h2{
+h2, .h2{
     margin: 0.5em 0;
     font-size: 4.5rem;
     font-weight: 600;
     letter-spacing: -2px;
 }
-.baseline > span, .baseline-second > span, h2{
+.h2 > span{
+    white-space: nowrap;
+}
+.baseline > span, .baseline-second > span, h2, .h2 > span{
     > span{
         display: inline-block;
         position: relative;
