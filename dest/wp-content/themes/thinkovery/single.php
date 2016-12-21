@@ -40,49 +40,51 @@
 								</li>
 							</ul>
 						</div>
-						<div class='related-posts'>
-							<?php
-								$currentPost = $post;
-								global $post;
+						<?php
+							$currentPost = $post;
+							global $post;
 
-								$categories = get_the_category($post->ID);
-								if($categories){
-									$categoryIds = array();
-									foreach($categories as $cat){
-										$categoryIds[] = $cat->term_id;
-									}
-
-									$relatedQuery = new WP_Query( array(
-										'category__in' => $categoryIds,
-										'post__not_in' => array($post->ID),
-										'posts_per_page'=> 2,
-										'caller_get_posts'=>1,
-								        'tax_query' => array( array(
-								            'taxonomy' => 'post_format',
-								            'field' => 'slug',
-								            'terms' => array('post-format-link'),
-								            'operator' => 'NOT IN'
-								        ) )
-									) );
-
-									if( $relatedQuery->have_posts() ){
-										echo '<div><h4>' . __('Related Posts', 'thinkovery') . '</h4><ul>';
-										while( $relatedQuery->have_posts() ){ $relatedQuery->the_post(); ?>
-											<li>
-												<a href='<?php the_permalink(); ?>'>
-													<?php the_post_thumbnail(); ?>
-													<?php the_title(); ?>
-												</a>
-											</li>
-										<? }
-										echo '</ul></div>';
-									}
+							$categories = get_the_category($post->ID);
+							if($categories){
+								$categoryIds = array();
+								foreach($categories as $cat){
+									$categoryIds[] = $cat->term_id;
 								}
 
-								$post = $currentPost;
-								wp_reset_query();
-							?>
-						</div>
+								$relatedQuery = new WP_Query( array(
+									'category__in' => $categoryIds,
+									'post__not_in' => array($post->ID),
+									'posts_per_page'=> 2,
+									'caller_get_posts'=>1,
+							        'tax_query' => array( array(
+							            'taxonomy' => 'post_format',
+							            'field' => 'slug',
+							            'terms' => array('post-format-link'),
+							            'operator' => 'NOT IN'
+							        ) )
+								) );
+
+								if( $relatedQuery->have_posts() ){
+									echo '<div class="related-posts"><h4>' . __('Related Posts', 'thinkovery') . '</h4><ul>';
+									while( $relatedQuery->have_posts() ){ $relatedQuery->the_post(); ?>
+										<li>
+											<a href='<?php the_permalink(); ?>'>
+												<?php if( has_post_thumbnail() ){ ?>
+													<span class='related-thumbnail' style='background-image: url(<?php the_post_thumbnail_url(); ?>)'></span>
+												<?php } ?>
+												<!-- <?php the_post_thumbnail(); ?> -->
+												<span class='title'><?php the_title(); ?></span>
+												<svg class='icon icon-arrow'><use xlink:href='#icon-arrow-right'/></svg>
+											</a>
+										</li>
+									<? }
+									echo '</ul></div>';
+								}
+							}
+
+							$post = $currentPost;
+							wp_reset_query();
+						?>
 					</div>
 
 					<?php comments_template(); ?>
