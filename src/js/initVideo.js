@@ -18,12 +18,10 @@ module.exports = function(){
             });
         }
 
-        $(window).on('load', function(){
-            wrapperVideos.each(function(index){
-                iframeVideo = $(this).find('iframe').get(0);
-                players[index] = new YT.Player(iframeVideo, {
-                    events: { 'onReady': onPlayerReady($(this)) }
-                });
+        wrapperVideos.each(function(index){
+            iframeVideo = $(this).find('iframe').get(0);
+            players[index] = new YT.Player(iframeVideo, {
+                events: { 'onReady': onPlayerReady($(this)) }
             });
         });
     }

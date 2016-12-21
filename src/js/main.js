@@ -11,11 +11,11 @@ $(function(){
     var animHeader = require('./animHeader.js');
     var animBtn = require('./animBtn.js');
 
-    var animSlider = require('./slider.js');
-
     var animMainSlider = require('./sliderMain.js');
 
     var initVideo = require('./initVideo.js');
+
+    var animSlider = require('./slider.js');
 
     // var windowWidth = $(window).outerWidth(), windowHeight = $(window).height(), docHeight = $(document).height();
     // var myScroll = $(document).scrollTop();
@@ -46,15 +46,6 @@ $(function(){
     // Anim gradient in btn and in menu links
     animBtn(body);
 
-    if($('.wrapper-sliders').length){
-        animSlider();
-    }
-
-    // Slider home
-    if($('#bloc-top').length){
-        animMainSlider(body, $('#bloc-top'), themeColors);
-    }
-
     // Form contact inputs
     if($('#form-contact').length){
         $('#form-contact').on('input propertychange', 'input, textarea', function(){
@@ -64,10 +55,23 @@ $(function(){
         });
     }
 
-    // Load videos
-    if($('.wrapper-video').length){
-        initVideo();
+    // Slider home
+    if($('#bloc-top').length){
+        animMainSlider(body, $('#bloc-top'), themeColors);
     }
+
+
+    $(window).on('load', function(){
+        // Sliders drag
+        if($('.wrapper-sliders').length){
+            animSlider();
+        }
+
+        // Load videos
+        if($('.wrapper-video').length){
+            initVideo();
+        }
+    });
 
     // $(document).on('scroll', throttle(function(){
 
