@@ -24,17 +24,9 @@ input, textarea, button{
 
 input, textarea{
     padding: 11px 15px 15px;
-    border: 1px solid #fff;
-    background: rgba(#fff, 0.1);
-    color: #fff;
     &:-webkit-autofill{
       	box-shadow: 0 0 0 1000px #fff inset;
   	}
-    &:focus, &.on{
-        + label{
-            opacity: 0;
-        }
-    }
     .error &{
         border-color: #ca4444;
     }
@@ -50,12 +42,6 @@ textarea{
 }
 
 label{
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    color: rgba(#fff, 0.5);
-    pointer-events: none;
-    transition: 0.1s ease-in-out;
     + span{
         display: block;
         font-size: 1.2rem;
@@ -142,12 +128,83 @@ input{
     margin: 0 0 20px;
     vertical-align: top;
     &.m-right{
-        margin-right: 20px;
+        margin-right: $gutter*2;
+    }
+    &.p-right, &.field-block{
+        padding-right: $gutter*2;
+    }
+    &.field-block{
+        display: block;
     }
 }
 
 .field-full{
     max-width: 100%;
-    position: relative;
-    margin: 10px 0 30px;
+    margin: 0 0 20px;
+}
+
+.form-contact{
+    label{
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        color: rgba(#fff, 0.5);
+        pointer-events: none;
+        transition: 0.1s ease-in-out;
+    }
+    input, textarea{
+        border: 1px solid #fff;
+        background: rgba(#fff, 0.1);
+        color: #fff;
+        &:focus, &.on{
+            + label{
+                opacity: 0;
+            }
+        }
+    }
+    .field-full{
+        position: relative;
+        margin: 10px 0 30px;
+    }
+}
+
+.comments{
+    label{
+        display: block;
+        margin: 0 0 10px;
+        font-size: 1.8rem;
+        i{
+            font-size: 1.4rem;
+        }
+    }
+    .required{
+        font-weight: 800;
+    }
+    input, textarea{
+        border: 3px solid rgba($gray-superlight, 0.4);
+    }
+    input{
+        width: 100%;
+    }
+    .error{
+        color: #ca4444;
+    }
+    .field{
+        width: 50%;
+    }
+    .btn{
+        margin: 35px 0 0;
+    }
+}
+
+@media (max-width: $tablet){
+    .comments{
+        .field{
+            display: block;
+            width: 100%;
+            max-width: 350px;
+            margin-right: 0;
+            padding-right: 0;
+        }
+    }
 }

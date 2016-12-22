@@ -22,7 +22,11 @@
         .slide-desc .slide-title,
         .post time,
         .wrapper-share-related h4,
-        .related-posts a .icon-arrow{
+        .related-posts a .icon-arrow,
+        .post h2 a:hover, .post h2 a:focus,
+        .share-post a:hover, .share-post a:focus,
+        .related-posts a:hover, .related-posts a:focus,
+        .comments h2, .comments time{
         	color: $colorprimary;
         }
 
@@ -35,7 +39,8 @@
         .share-post a:before,
         .related-posts ul:before,
         .related-posts a:before,
-        .about-img:after{
+        .about-img:after,
+        .comments li:after{
 			background-color: $colorprimary;
         }
 

@@ -118,7 +118,7 @@ get_header(); ?>
 			    	<?php if($error){ ?>
 			    		<p class='form-error'><?php _e("The form countains some errors, please check the highlighted fields", 'thinkovery'); ?>:</p>
 			    	<?php } ?>
-				    <form method='post' action='<?php the_permalink(); ?>' id='form-contact'>
+				    <form method='post' action='<?php the_permalink(); ?>' id='form-contact' class='form-contact'>
 				    	<div class='field m-right <?php if($errorLastname) echo 'error'; ?>'>
 				    		<input type='text' name='last_name' id='last_name' value='<?php echo $lastname; ?>' required>
 				    		<label for='last_name'><?php _e('Last Name', 'thinkovery'); ?>*</label>

@@ -10,7 +10,7 @@
 
 				<div class='container-small'>
 					<?php if(has_post_thumbnail()){ ?>
-						<time datetime='<?php echo get_the_date('Y-m-d'); ?>'><?php echo get_the_date(); ?></time>
+						<time datetime='<?php echo get_the_date('Y-m-d'); ?>' class='post-date'><?php echo get_the_date(); ?></time>
 					<?php } ?>
 
 					<h1><?php the_title(); ?></h1>
@@ -72,7 +72,6 @@
 												<?php if( has_post_thumbnail() ){ ?>
 													<span class='related-thumbnail' style='background-image: url(<?php the_post_thumbnail_url(); ?>)'></span>
 												<?php } ?>
-												<!-- <?php the_post_thumbnail(); ?> -->
 												<span class='title'><?php the_title(); ?></span>
 												<svg class='icon icon-arrow'><use xlink:href='#icon-arrow-right'/></svg>
 											</a>
@@ -87,7 +86,7 @@
 						?>
 					</div>
 
-					<?php comments_template(); ?>
+					<div class='comments'><?php comments_template(); ?></div>
 
 				</div>
 
