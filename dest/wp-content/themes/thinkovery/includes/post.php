@@ -1,10 +1,12 @@
 <?php global $formatLink, $countPost; ?>
 
-<div class='post <?php if($formatLink){ echo 'post-network'; }else{ if($countPost % 2 !== 0){ echo 'post-odd'; } } ?>'>
+<div class='post <?php if($formatLink){ echo 'post-network'; }else{ if($countPost % 2 !== 0){ echo 'post-odd'; } } if( !has_post_thumbnail() ){ echo ' no-img'; } ?>'>
     <?php if(!$formatLink){ ?>
-        <a href='<?php the_permalink(); ?>' class='wrapper-post-img'>
-            <?php if( has_post_thumbnail() ){ the_post_thumbnail(); } ?>
-        </a>
+        <?php if( has_post_thumbnail() ){ ?>
+            <a href='<?php the_permalink(); ?>' class='wrapper-post-img'>
+                <?php if( has_post_thumbnail() ){ the_post_thumbnail(); } ?>
+            </a>
+        <?php } ?>
 
         <div class='wrapper-post-content'>
             <header class='header-post'>
@@ -35,7 +37,6 @@
 
         <?php if( has_post_thumbnail() ){ ?>
             <a href='<?php the_field('link'); ?>' target='_blank' class='wrapper-post-img' style='background-image: url(<?php the_post_thumbnail_url(); ?>)'>
-                 <!-- <?php the_post_thumbnail(); ?> -->
             </a>
         <?php } ?>
 

@@ -152,16 +152,20 @@
             }
         }
     }
-    .current-menu-item{
+    .current-menu-item, .current_page_parent{
         font-weight: 600;
         a{
-            pointer-events: none;
             &:before, > i:after{
                 opacity: 1;
             }
             > i:after{
                 transform: scale(1);
             }
+        }
+    }
+    .current-menu-item{
+        a{
+            pointer-events: none;
         }
     }
     .icon{

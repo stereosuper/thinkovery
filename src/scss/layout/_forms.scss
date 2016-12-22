@@ -1,14 +1,13 @@
 /* Forms */
 
 ::-webkit-input-placeholder{
+    color: $gray;
 }
 ::-moz-placeholder{
+    color: $gray;
 }
 :-ms-input-placeholder{
-}
-
-fieldset{
-
+    color: $gray;
 }
 
 .form-error{
@@ -194,6 +193,31 @@ input{
     }
     .btn{
         margin: 35px 0 0;
+    }
+}
+
+.form-search{
+    position: relative;
+    input{
+        width: 100%;
+        border: 3px solid rgba($gray-superlight, 0.4);
+    }
+    button{
+        width: 44px;
+        height: 44px;
+        padding: 12px;
+        position: absolute;
+        right: 3px;
+        top: 3px;
+        text-indent: -99em;
+        overflow: hidden;
+        > .icon{
+            text-indent: 0;
+            float: left;
+        }
+        &:hover, &:focus{
+            transform: scale(1.1) rotate(90deg);
+        }
     }
 }
 
