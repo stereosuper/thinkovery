@@ -1,3 +1,12 @@
+# BEGIN SecuPress bad_url_access
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    RewriteCond %{REQUEST_URI} !(([_0-9a-zA-Z-]+/)?)wp-includes/js/tinymce/wp-tinymce\.php$
+    RewriteRule ^(([_0-9a-zA-Z-]+/)?php\.ini|(([_0-9a-zA-Z-]+/)?)wp-config\.php|(([_0-9a-zA-Z-]+/)?)wp-includes/.+\.php|(([_0-9a-zA-Z-]+/)?)wp-admin/(admin-functions|install|menu-header|setup-config|([^/]+/)?menu|upgrade-functions|includes/.+)\.php)$ [R=404,L,NC]
+</IfModule>
+# END SecuPress
+
 
 # BEGIN SecuPress move_login
 <IfModule mod_rewrite.c>
@@ -9,14 +18,6 @@
     RewriteRule ^(([_0-9a-zA-Z-]+/)?)think-lostpassword/?$ /wp-login.php?action=lostpassword [QSA,L]
     RewriteRule ^(([_0-9a-zA-Z-]+/)?)think-resetpass/?$ /wp-login.php?action=resetpass [QSA,L]
     RewriteRule ^(([_0-9a-zA-Z-]+/)?)postpass/?$ /wp-login.php?action=postpass [QSA,L]
-</IfModule>
-# END SecuPress
-# BEGIN SecuPress bad_url_access
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteBase /
-    RewriteCond %{REQUEST_URI} !(([_0-9a-zA-Z-]+/)?)wp-includes/js/tinymce/wp-tinymce\.php$
-    RewriteRule ^(([_0-9a-zA-Z-]+/)?php\.ini|(([_0-9a-zA-Z-]+/)?)wp-includes/.+\.php|(([_0-9a-zA-Z-]+/)?)wp-admin/(admin-functions|install|menu-header|setup-config|([^/]+/)?menu|upgrade-functions|includes/.+)\.php)$ [R=404,L,NC]
 </IfModule>
 # END SecuPress
 # BEGIN SecuPress no_x_powered_by
