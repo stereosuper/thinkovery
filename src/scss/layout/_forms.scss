@@ -27,7 +27,7 @@ input, textarea{
       	box-shadow: 0 0 0 1000px #fff inset;
   	}
     .error &{
-        border-color: #ca4444;
+        border-color: #ca4444 !important;
     }
 }
 
@@ -70,53 +70,6 @@ input{
         &::-webkit-search-cancel-button, &::-webkit-search-decoration{
             display: none;
         }
-    }
-}
-
-.radio{
-    display: inline-block;
-    width: 48.5%;
-    min-width: 275px;
-    position: relative;
-    margin: 10px 0 0;
-    overflow: hidden;
-    &:nth-of-type(odd){
-        margin-right: 3%;
-    }
-    label{
-        display: block;
-        padding: 10px 10px 10px 40px;
-        border: 1px solid #fff;
-        position: static;
-        pointer-events: initial;
-        opacity: 0.3;
-        color: #fff;
-        cursor: pointer;
-        &:hover{
-            opacity: 0.5;
-        }
-    }
-    input{
-        position: absolute;
-        top: 0;
-        left: -99em;
-        opacity: 0;
-        &:checked{
-            + label{
-                opacity: 1;
-                background: rgba(#fff, 0.1);
-            }
-        }
-    }
-    .icon{
-        width: 1.1em;
-        height: 1em;
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 10px;
-        margin: auto;
-        transition: $transition;
     }
 }
 
@@ -218,6 +171,53 @@ input{
         &:hover, &:focus{
             transform: scale(1.1) rotate(90deg);
         }
+    }
+}
+
+.radio{
+    display: inline-block;
+    width: 48.5%;
+    min-width: 275px;
+    position: relative;
+    margin: 10px 0 0;
+    overflow: hidden;
+    &:nth-of-type(odd){
+        margin-right: 3%;
+    }
+    label{
+        display: block;
+        padding: 10px 10px 10px 40px;
+        border: 1px solid #fff;
+        position: static;
+        pointer-events: initial;
+        opacity: 0.3;
+        color: #fff;
+        cursor: pointer;
+        &:hover{
+            opacity: 0.5;
+        }
+    }
+    input{
+        position: absolute;
+        top: 0;
+        left: -99em;
+        opacity: 0;
+        &:checked{
+            + label{
+                opacity: 1;
+                background: rgba(#fff, 0.1);
+            }
+        }
+    }
+    .icon{
+        width: 1.1em;
+        height: 1em;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 10px;
+        margin: auto;
+        transition: $transition;
     }
 }
 
