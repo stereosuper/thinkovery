@@ -2,7 +2,7 @@
 
     <div class='container'>
         <div class='container-small'>
-            <p><?php _e('Category', 'thinkovery'); ?>
+            <p class='subtitle'><?php _e('Category', 'thinkovery'); ?>
             <h1><?php echo single_cat_title(); ?></h1>
             <?php get_search_form(); ?>
         </div>

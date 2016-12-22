@@ -11,7 +11,7 @@
 			?>
 
 			<div class='container-small'>
-				<p><?php echo $displayResults; ?> ...</p>
+				<p class='subtitle'><?php echo $displayResults; ?> ...</p>
 				<h1><?php echo '«&nbsp;' . get_search_query() . '&nbsp;»'; ?></h1>
 				<?php get_search_form(); ?>
 			</div>
@@ -38,7 +38,7 @@
 		<?php else : ?>
 
 			<div class='container-small'>
-				<p><?php _e('No results for', 'thinkovery'); ?> ...</p>
+				<p class='subtitle'><?php _e('No results for', 'thinkovery'); ?> ...</p>
 				<h1><?php echo '«&nbsp;' . get_search_query() . '&nbsp;»'; ?></h1>
 				<?php get_search_form(); ?>
 			</div>
