@@ -153,6 +153,7 @@
         }
     }
     .current-menu-item{
+        font-weight: 600;
         a{
             pointer-events: none;
             &:before, > i:after{
