@@ -398,6 +398,11 @@
     .related-posts{
         margin: 0;
     }
+    .post{
+        h2{
+            font-size: 2.8rem;
+        }
+    }
 }
 
 @media (max-width: $desktop-small){
@@ -458,6 +463,11 @@
         &:not(.post-network).no-img{
             margin: 0;
         }
+        h2{
+            &:before{
+                display: none;
+            }
+        }
     }
     .post-network{
         .wrapper-post-content{
@@ -469,6 +479,9 @@
     .wrapper-post-img{
         width: 100%;
         margin: 0 0 20px 0;
+        .post-odd &{
+            margin-left: 0;
+        }
     }
     .wrapper-post-content{
         width: 100%;
@@ -516,6 +529,11 @@
         }
         p{
             font-size: 2rem;
+        }
+    }
+    .post{
+        h2{
+            font-size: 2.4rem;
         }
     }
 }
