@@ -449,6 +449,44 @@
             margin: 0;
         }
     }
+
+    .form-search{
+        margin-top: 4.5em;
+    }
+    .post{
+        display: block;
+        &:not(.post-network).no-img{
+            margin: 0;
+        }
+    }
+    .post-network{
+        .wrapper-post-content{
+            &.no-img{
+                width: 100%;
+            }
+        }
+    }
+    .wrapper-post-img{
+        width: 100%;
+        margin: 0 0 20px 0;
+    }
+    .wrapper-post-content{
+        width: 100%;
+    }
+}
+
+@media (max-width: $tablet){
+    .blog{
+        h1{
+            display: block;
+            width: 100%;
+        }
+    }
+    .form-search{
+        margin-top: 0;
+        width: 100%;
+        max-width: 400px;
+    }
 }
 
 @media (max-width: $phone){
