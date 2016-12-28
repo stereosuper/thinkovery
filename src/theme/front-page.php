@@ -113,7 +113,7 @@ get_header(); ?>
             </div>
 
             <?php if( have_rows('researcher') ): ?>
-                <div class='container-sliders' id='slider-learn-from-best'>
+                <div class='container-sliders'>
                     <div class='wrapper-sliders'>
                         <div class='slider'>
                             <ul class='slides'>
@@ -141,7 +141,7 @@ get_header(); ?>
             </div>
 
             <?php if( have_rows('exp') ): ?>
-                <div class='container-sliders' id='slider-best-way-learn'>
+                <div class='container-sliders slider-learn'>
                     <div class='wrapper-sliders'>
                         <div class='slider'>
                             <ul class='slides'>
