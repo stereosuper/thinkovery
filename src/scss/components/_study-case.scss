@@ -130,3 +130,108 @@
         margin-top: 110px;
     }
 }
+
+
+@media (max-width: $desktop){
+    .study-case-odd{
+        .quote-img{
+            margin-left: $col;
+        }
+    }
+}
+
+@media (max-width: $desktop-small){
+    .study-content{
+        width: $col*6;
+        > h2{
+            font-size: 2.8rem;
+        }
+    }
+}
+
+@media (max-width: $tablet){
+    .case{
+        display: block;
+        > .img{
+            width: 100%;
+            padding: 0;
+            margin: 0 0 30px;
+        }
+    }
+
+    .study-content{
+        width: 100%;
+        margin: 0 0 0 $gutter*2;
+        > h2{
+            font-size: 2.5rem;
+        }
+    }
+
+    .quote-cite{
+        margin-left: $gutter*2;
+        font-size: 1.6rem;
+        &:before{
+            top: 5px;
+        }
+        > b{
+            font-size: 1.4rem;
+        }
+    }
+
+    .study-case-odd{
+        .case{
+            > .img{
+                padding: 0;
+                margin: 0;
+            }
+        }
+        .study-quote{
+            flex-direction: row;
+            justify-content: flex-start;
+        }
+        .quote-cite{
+            margin-left: $gutter*2;
+        }
+        .quote-img{
+            margin-left: 0;
+        }
+    }
+
+    // .study-quote{
+    //     > blockquote{
+    //         width: $col*8;
+    //     }
+    // }
+}
+
+@media (max-width: $phone){
+    .study-content{
+        > h2{
+            font-size: 2rem;
+        }
+    }
+
+    .study-quote{
+        > blockquote{
+            width: 100%;
+            margin-right: 0;
+            > p{
+                &:before{
+                    top: -14px;
+                    left: -35px;
+                    font-size: 2em;
+                }
+            }
+        }
+    }
+
+    .quote-img{
+        width: 80px;
+        height: 80px;
+        margin: 35px 20px 0 0;
+    }
+
+    .quote-cite{
+        width: 50%;
+    }
+}
