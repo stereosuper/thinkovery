@@ -4,10 +4,10 @@ var Draggable = require('./libs/gsap/src/uncompressed/utils/Draggable.js');
 var ThrowPropsPlugin = require('./libs/gsap/src/uncompressed/plugins/ThrowPropsPlugin.min.js');
 
 module.exports = function(){
-    var containerSliders = $('.container-sliders'), wrapperSliders, sliders, slider, slides, nbSlides, slideWidth, slideHeight;
-    var halfSlides, halfRight, halfLeft, widthSlider, middleSlider;
-    var i, j, newX, centerSlider, centerSlide, slidesSWidth;
-    var sliderTarget, originalSlider, originalSliderTarget, sliderCloned, sliderClonedTarget, nbSlidesTarget, slideTargetWidth, widthSliderTarget, centerSliderTarget, containerSlidersTarget, slidesTarget, slideTargetWidth, hoopSliderTarget;
+    var containerSliders = $('.container-sliders');
+    var i, j, newX, centerSlider, centerSlide;
+    var sliderTarget, originalSlider, originalSliderTarget, widthSliderTarget, centerSliderTarget, slidesTarget;
+    var sliderCloned, sliderClonedTarget;
     var errorMargin, maxMargin, minMargin;
 
     function desactivateSlide(){
@@ -17,16 +17,14 @@ module.exports = function(){
     function activateSlide(){
         // activate the centered slide
         sliderTarget = $(this.target);
-        containerSlidersTarget = sliderTarget.parents('.container-sliders');
-        centerSliderTarget = containerSlidersTarget.width()/2;
+        centerSliderTarget = sliderTarget.parents('.container-sliders').width()/2;
         slidesTarget = sliderTarget.find('.slides > li');
-        slideTargetWidth = slidesTarget.outerWidth();
-        errorMargin = slideTargetWidth/2;
+        errorMargin = slidesTarget.outerWidth()/2;
         maxMargin = centerSliderTarget+errorMargin;
         minMargin = centerSliderTarget-errorMargin;
 
         slidesTarget.each(function(){
-            centerSlide = Math.floor($(this).offset().left + slideTargetWidth/2);
+            centerSlide = Math.floor($(this).offset().left + errorMargin);
             if(centerSlide >= minMargin && centerSlide <= maxMargin){
                 $(this).addClass('active');
             }
@@ -35,8 +33,7 @@ module.exports = function(){
 
     function activateSlideInitial(containerS, slidesS, slidesWidthS){
         centerSlider = containerS.outerWidth()/2;
-        slidesSWidth = slidesS.outerWidth();
-        errorMargin = slidesSWidth/2;
+        errorMargin = slidesS.outerWidth()/2;
         maxMargin = centerSlider+errorMargin;
         minMargin = centerSlider-errorMargin;
 
@@ -53,13 +50,10 @@ module.exports = function(){
 
     function updateSlider(){
         sliderTarget = $(this.target);
-        containerSlidersTarget = sliderTarget.parents('.container-sliders');
         sliderClonedTarget = sliderTarget.find('.slides.cloned');
         originalSliderTarget = sliderTarget.find('.slides:not(.cloned)');
-        nbSlidesTarget = originalSliderTarget.find('> li').length;
-        slideTargetWidth = originalSliderTarget.find('> li').outerWidth();
-        widthSliderTarget = nbSlidesTarget*slideTargetWidth;
-        hoopSliderTarget = containerSlidersTarget.find('.hoop');
+        slidesTarget = originalSliderTarget.find('> li');
+        widthSliderTarget = slidesTarget.length*slidesTarget.outerWidth();
         newX = this.x;
 
         if(newX <= 0){
@@ -81,20 +75,16 @@ module.exports = function(){
         }
 
         // Rotate svg
-        TweenMax.set(hoopSliderTarget, {rotation: newX/2, overwrite: false});
+        TweenMax.set(sliderTarget.parents('.container-sliders').find('.hoop'), {rotation: newX/2, overwrite: false});
     }
 
-    containerSliders.each(function(){
-        wrapperSliders = $(this).find('.wrapper-sliders');
-        sliders = $(this).find('.slider');
-        slider = $(this).find('.slides');
-        slides = slider.find('> li');
+    function initSlider(container){
+        var wrapperSliders = container.find('.wrapper-sliders');
+        var sliders = container.find('.slider'), slider = container.find('.slides');
+        var slides = slider.find('> li'), nbSlides = slides.length;
+        var slideWidth = slides.outerWidth(), slideHeight = slides.outerHeight(), halfSlides = nbSlides/2;
+        var halfRight, halfLeft, widthSlider = nbSlides*slideWidth, middleSlider = widthSlider/2 - slideWidth/2;
 
-        // Position slides
-        nbSlides = slides.length;
-        slideWidth = slides.outerWidth();
-        slideHeight = slides.outerHeight();
-        halfSlides = nbSlides/2;
         if(nbSlides % 2 === 0){
             halfRight = halfSlides;
             halfLeft = halfSlides;
@@ -107,14 +97,12 @@ module.exports = function(){
 
         // Duplicate list
         slider.clone().addClass('cloned').appendTo(sliders);
-        slider = $(this).find('.slides');
+        slider = container.find('.slides');
         slides = slider.find('> li');
-        sliderCloned = $(this).find('.slides.cloned');
-        originalSlider = $(this).find('.slides:not(.cloned)');
+        sliderCloned = container.find('.slides.cloned');
+        originalSlider = container.find('.slides:not(.cloned)');
 
         // Rearrange list
-        widthSlider = nbSlides*slideWidth;
-        middleSlider = widthSlider/2 - slideWidth/2;
         leftSlidesStart = middleSlider - halfLeft*slideWidth;
         TweenMax.set([slider, wrapperSliders], {width: widthSlider+'px'});
         slider.each(function(){
@@ -128,7 +116,7 @@ module.exports = function(){
         TweenMax.set(sliderCloned, {x: widthSlider+'px'});
         TweenMax.set(slider, {marginLeft: -widthSlider/2+'px'});
 
-        activateSlideInitial($(this), slides, slideWidth);
+        activateSlideInitial(container, slides, slideWidth);
 
         // Draggable
         Draggable.create(sliders, {
@@ -146,6 +134,8 @@ module.exports = function(){
                 }
             }
         });
-    });
+    }
+
+    containerSliders.each(function(){ initSlider($(this)); });
 
 }
