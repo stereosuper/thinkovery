@@ -27,7 +27,9 @@
         .share-post a:hover, .share-post a:focus,
         .related-posts a:hover, .related-posts a:focus,
         .comments h2, .comments time,
-        .form-search button{
+        .form-search button,
+        .study-subtitle,
+        .quote-cite > b{
         	color: $colorprimary;
         }
 
@@ -41,7 +43,9 @@
         .related-posts ul:before,
         .related-posts a:before,
         .about-img:after,
-        .comments li:after{
+        .comments li:after,
+        .study-content > h2:before,
+        .quote-cite:before{
 			background-color: $colorprimary;
         }
 
@@ -49,7 +53,8 @@
         input:focus,
         textarea:focus,
         #logo-o,
-        .title-picto{
+        .title-picto,
+        .quote-img{
             border-color: $colorprimary;
         }
 

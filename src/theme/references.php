@@ -8,53 +8,74 @@ get_header(); ?>
     <?php if ( have_posts() ) : the_post(); ?>
 
         <section class='container'>
-            <h1><?php the_title(); ?></h1>
+            <div class='container-small'><h1><?php the_title(); ?></h1></div>
 
-            <?php if( have_rows('cases') ):
+            <?php if( have_rows('cases') ): $count = 0;
 
-                while ( have_rows('cases') ) : the_row(); ?>
+                while ( have_rows('cases') ) : the_row(); $count ++; ?>
 
-                    <?php echo wp_get_attachment_image( get_sub_field('img') ); ?>
-                    <h2><?php the_sub_field('title'); ?></h2>
-                    <?php the_sub_field('txt'); ?>
-                    <?php if(get_sub_field('link')){ ?>
-                        <a href='<?php the_sub_field('link') ?>'><?php _e('En savoir plus', 'thinkovery'); ?></a>
-                    <?php } ?>
+                    <div class='study-case <?php if($count % 2 === 0) echo 'study-case-odd'; ?>'>
 
-                <?php endwhile;
+                        <div class='case'>
+                            <div class='img'><?php echo wp_get_attachment_image( get_sub_field('img'), 'full' ); ?></div>
+                            <div class='study-content'>
+                                <b class='study-subtitle'><?php _e('Study case', 'thinkovery'); ?> n°<?php echo $count; ?></b>
+                                <h2><?php the_sub_field('title'); ?></h2>
+                                <?php the_sub_field('txt'); ?>
+                                <?php if(get_sub_field('link')){ ?>
+                                    <a href='<?php the_sub_field('link') ?>' class='btn-small'>
+                                        <?php _e('Read more on our blog', 'thinkovery'); ?><svg class='icon'><use xlink:href='#icon-arrow-right'/></svg>
+                                    </a>
+                                <?php } ?>
+                            </div>
+                        </div>
+                        <?php if(get_sub_field('quote')){ ?>
+                            <div class='study-quote'>
+                                <blockquote>
+                                    <p><?php the_sub_field('quote'); ?></p>
+                                </blockquote>
+                                <div class='quote-img'>
+                                    <?php echo wp_get_attachment_image( get_sub_field('quoteImg') ); ?>
+                                </div>
+                                <p class='quote-cite'>
+                                    <?php the_sub_field('quoteAuthor'); ?>
+                                    <b><?php the_sub_field('quoteJob'); ?></b>
+                                </p>
+                            </div>
+                        <?php } ?>
 
-            endif; ?>
-
-            <?php if( have_rows('quotes') ):
-
-                while ( have_rows('quotes') ) : the_row(); ?>
-
-                    <blockquote>
-                        <p><?php the_sub_field('quote'); ?></p>
-                        <footer><?php the_sub_field('author'); ?></footer>
-                    </blockquote>
-                    <?php echo wp_get_attachment_image( get_sub_field('img') ); ?>
+                    </div>
 
                 <?php endwhile;
 
             endif; ?>
         </section>
 
-        <section>
+        <section class='study-logos'>
             <div class='container'>
                 <h2><?php the_field('logosTitle'); ?></h2>
-
-                <?php if( have_rows('logos') ): ?>
-                    <ul>
-                        <?php while ( have_rows('logos') ) : the_row(); ?>
-
-                            <li><?php echo wp_get_attachment_image( get_sub_field('img') ); ?></li>
-
-                        <?php endwhile; ?>
-                    </ul>
-
-                <?php endif; ?>
             </div>
+
+            <?php if( have_rows('logos') ): ?>
+                <div class='container-sliders slider-logos'>
+                    <div class='wrapper-sliders'>
+                        <div class='slider'>
+                            <ul class='slides'>
+                                <?php while( have_rows('logos') ){ the_row(); ?><li>
+                                    <div class='img'>
+                                        <?php echo wp_get_attachment_image( get_sub_field('img') ); ?>
+                                    </div>
+                                    <div class='slide-desc'>
+                                        <div class='slide-title'><?php the_sub_field('name'); ?></div>
+                                        <div class='slide-content'><?php the_sub_field('txt'); ?></div>
+                                    </div>
+                                </li><?php } ?>
+                            </ul>
+                        </div>
+                    </div>
+                    <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop-thin'/></svg>
+                </div>
+            <?php endif; ?>
         </section>
 
     <?php else : ?>

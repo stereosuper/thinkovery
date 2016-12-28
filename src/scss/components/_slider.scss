@@ -22,6 +22,28 @@
 			padding-top: 95px;
 		}
 	}
+	&.slider-logos{
+		.img{
+			display: flex;
+			height: 140px;
+			padding: 25px 35px;
+			border: 1px solid rgba($gray-superlight, 0.4);
+			justify-content: center;
+			align-items: center;
+			> img{
+				width: auto;
+				max-height: 100%;
+			}
+		}
+		.slide-desc{
+			padding-top: 95px;
+		}
+		.hoop{
+			width: 270px;
+			height: 270px;
+			top: -65px;
+		}
+	}
 	.hoop{
 		width: 221px;
 		height: 221px;
