@@ -1,7 +1,7 @@
 .study-case{
-    padding: 0 0 90px;
+    padding: 0 0 5.5em;
     position: relative;
-    margin: 0 0 90px;
+    margin: 0 0 5.5em;
     &:after{
         content: '';
         height: 1px;
@@ -46,7 +46,7 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    margin: 45px 0 0;
+    margin: 3em 0 0;
     > blockquote{
         width: $col*7;
         padding: 0 $gutter*2 0 0;
@@ -85,7 +85,7 @@
 
 .quote-cite{
     position: relative;
-    margin: 35px 0 0 $col*6;
+    margin: 1.8em 0 0 $col*6;
     font-size: 2rem;
     &:before{
         content: '';
@@ -127,7 +127,7 @@
 .study-logos{
     text-align: center;
     .container-sliders{
-        margin-top: 110px;
+        margin-top: 7em;
     }
 }
 
@@ -155,7 +155,7 @@
         > .img{
             width: 100%;
             padding: 0;
-            margin: 0 0 30px;
+            margin: 0 0 2em;
         }
     }
 
@@ -196,12 +196,6 @@
             margin-left: 0;
         }
     }
-
-    // .study-quote{
-    //     > blockquote{
-    //         width: $col*8;
-    //     }
-    // }
 }
 
 @media (max-width: $phone){
@@ -228,7 +222,7 @@
     .quote-img{
         width: 80px;
         height: 80px;
-        margin: 35px 20px 0 0;
+        margin: 1.8em $gutter*2 0 0;
     }
 
     .quote-cite{
