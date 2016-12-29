@@ -5,8 +5,8 @@ var ThrowPropsPlugin = require('./libs/gsap/src/uncompressed/plugins/ThrowPropsP
 
 module.exports = function(){
     var containerSliders = $('.container-sliders');
-    var i, j, newX, centerSlider, centerSlide;
-    var sliderTarget, originalSlider, originalSliderTarget, widthSliderTarget, centerSliderTarget, slidesTarget;
+    var i, j, newX, centerSlider, centerSlide, originalSlider;
+    var sliderTarget, originalSliderTarget, widthSliderTarget, centerSliderTarget, slidesTarget;
     var sliderCloned, sliderClonedTarget;
     var errorMargin, maxMargin, minMargin;
 
@@ -56,17 +56,17 @@ module.exports = function(){
         widthSliderTarget = slidesTarget.length*slidesTarget.outerWidth();
         newX = this.x;
 
-        if(newX <= 0){
-            // Going right
-            TweenMax.set(sliderClonedTarget, {x: widthSliderTarget+'px'});
-            if(newX < -widthSliderTarget){
-                newX += widthSliderTarget;
-            }
-        }else{
+        if(newX > 0){
             // Going left
             TweenMax.set(sliderClonedTarget, {x: -widthSliderTarget+'px'});
             if(newX > widthSliderTarget){
                 newX -= widthSliderTarget;
+            }
+        }else{
+            // Going right
+            TweenMax.set(sliderClonedTarget, {x: widthSliderTarget+'px'});
+            if(newX < -widthSliderTarget){
+                newX += widthSliderTarget;
             }
         }
         if(newX !== this.x){
@@ -123,7 +123,7 @@ module.exports = function(){
             type: 'x',
             edgeResistance: 0.65,
             throwProps: true,
-            // bounds: wrapperSliders,
+            //bounds: wrapperSliders,
             onDrag: updateSlider,
             onThrowUpdate: updateSlider,
             onDragStart: desactivateSlide,

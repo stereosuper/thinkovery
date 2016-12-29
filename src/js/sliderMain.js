@@ -22,7 +22,7 @@ module.exports = function(body, blocTop, themeColors){
     var svgHoop = $('#gradient-hoop');
     var ease = CustomEase.create('custom', 'M0,0,C0,0.5,0.005,0.73,0.11,0.85,0.22,0.975,0.505,1,1,1');
 
-    var tweenToOn = {x: '0px', opacity: 1, ease: ease}, tweenToOff = {x: '500px', opacity: 0, ease: ease};
+    var tweenToOn = {x: '0px', opacity: 1, ease: ease}, tweenToOff = {x: '500px', opacity: 0, ease: Power2.easeIn};
 
     function setPosBaseline(){
         containerH = blocTop.height();
@@ -35,15 +35,15 @@ module.exports = function(body, blocTop, themeColors){
         // portrait
         if(containerRatio > imgRatio){
             finalH = containerH;
-            finalW = (imgW*finalH)/imgH;
-            newX = ((finalW*posX) / imgW) - (finalW - containerW)/2;
-            newY = ((finalH*posY) / imgH);
+            finalW = imgW*finalH / imgH;
+            newX = finalW*posX / imgW - (finalW - containerW)/2;
+            newY = finalH*posY / imgH;
         // paysage
         }else{
             finalW = containerW;
-            finalH = (imgH*finalW)/imgW;
-            newX = ((finalW*posX) / imgW);
-            newY = ((finalH*posY) / imgH) - (finalH - containerH)/2;
+            finalH = imgH*finalW /imgW;
+            newX = finalW*posX / imgW;
+            newY = finalH*posY / imgH - (finalH - containerH)/2;
         }
 
         ratioScale = finalH / imgH;
@@ -60,17 +60,15 @@ module.exports = function(body, blocTop, themeColors){
     }
 
     function animSlide(){
-        TweenMax.fromTo(baseline.find('> .icon'), 6, {x: 500-containerW+'px', opacity: 0}, {x: '0px', opacity: 0.85, ease: ease});
-        TweenMax.fromTo([baseline.find('> span'), baselineSecond.find('> span')], 4, {x: -containerW+'px', opacity: 0}, tweenToOn);
-        TweenMax.fromTo(currentSlide.find('.slider-plans'), 4, {x: -containerW+'px', opacity: 0}, tweenToOn);
+        TweenMax.fromTo(baseline.find('> .icon'), 6, {x: 700-containerW+'px', opacity: 0}, {x: '0px', opacity: 0.85, ease: ease});
+        TweenMax.fromTo([baseline.find('> span'), baselineSecond.find('> span')], 4, {x: 200-containerW+'px', opacity: 0}, tweenToOn);
+        TweenMax.fromTo(currentSlide.find('.slider-plans'), 4, {x: 200-containerW+'px', opacity: 0}, tweenToOn);
 
         nav.find('.current').html(currentSlide.index('.slide-home') + 1);
 
-        body.delay(200).queue(function(){
-            $(this).removeClass('theme-'+body.data('theme')).addClass('theme-'+currentSlide.data('color')).data('theme', currentSlide.data('color')).dequeue();
-            svgHoop.find('[data-theme-main]').attr('stop-color', themeColors[currentSlide.data('color')][0]);
-            svgHoop.find('[data-theme-second]').attr('stop-color', themeColors[currentSlide.data('color')][1]);
-        });
+        body.removeClass('theme-'+body.data('theme')).addClass('theme-'+currentSlide.data('color')).data('theme', currentSlide.data('color')).dequeue();
+        svgHoop.find('[data-theme-main]').attr('stop-color', themeColors[currentSlide.data('color')][0]);
+        svgHoop.find('[data-theme-second]').attr('stop-color', themeColors[currentSlide.data('color')][1]);
     }
 
     function slide(nextSlide, nextTxt, lastSlideIndex){
@@ -81,18 +79,18 @@ module.exports = function(body, blocTop, themeColors){
         currentTxt.removeClass('txt-on');
         currentTxt = blocRevel.find('.txt-on');
 
-        TweenMax.fromTo(baseline.find('> .icon'), 4, {x: '0px'}, tweenToOff);
-        TweenMax.fromTo([baseline.find('> span'), baselineSecond.find('> span')], 2, {x: '0px'}, tweenToOff);
-        TweenMax.fromTo(currentSlide.find('.slider-plans'), 2, {x: '0px'}, tweenToOff);
+        TweenMax.fromTo(baseline.find('> .icon'), 0.5, {x: '0px'}, tweenToOff);
+        TweenMax.fromTo([baseline.find('> span'), baselineSecond.find('> span')], 0.5, {x: '0px'}, tweenToOff);
+        TweenMax.fromTo(currentSlide.find('.slider-plans'), 0.5, {x: '0px'}, {x: '500px', opacity: 0, ease: Power2.easeIn, onComplete: function(){
+            currentSlide = blocTop.find('.slide-on');
+            baseline = currentSlide.find('.baseline');
+            baselineSecond = currentSlide.find('.baseline-second');
 
-        currentSlide = blocTop.find('.slide-on');
-        baseline = currentSlide.find('.baseline');
-        baselineSecond = currentSlide.find('.baseline-second');
+            setPosBaseline();
+            animSlide();
 
-        setPosBaseline();
-        animSlide();
-
-        Cookies.set('think-decli', currentSlide.index('.slide-home'));
+            Cookies.set('think-decli', currentSlide.index('.slide-home'));
+        }});
     }
 
     nav.on('click', '.prev', function(e){
