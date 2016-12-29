@@ -10,10 +10,12 @@ define( 'THINK_VERSION', 1.0 );
 add_filter( 'auto_update_plugin', '__return_true' );
 
 // Theme support
-add_theme_support( 'html5', array('comment-list', 'comment-form', 'search-form', 'gallery', 'caption', 'widgets') );
+add_theme_support( 'html5',
+    array('comment-list', 'comment-form', 'search-form', 'gallery', 'caption', 'widgets')
+);
 add_theme_support( 'post-thumbnails' );
 add_theme_support( 'post-formats', array( 'link' ) );
-add_theme_support('title-tag');
+add_theme_support( 'title-tag' );
 
 // Admin bar
 show_admin_bar(false);
@@ -135,11 +137,11 @@ function think_around_images($content){
 add_filter( 'the_content', 'think_around_images' );
 
 // Put the align classes on the div class'post-img'
-function image_tag($html, $id, $alt, $title, $align){
+function think_image_tag($html, $id, $alt, $title, $align){
     $html = '<div class="post-img align' . $align . '">' . $html . '</div>';
     return $html;
 }
-add_filter( 'get_image_tag', 'image_tag', 0, 5 );
+add_filter( 'get_image_tag', 'think_image_tag', 0, 5 );
 
 // Remove the classes on images
 add_filter( 'get_image_tag_class', '__return_empty_string' );

@@ -7,6 +7,7 @@ $(function(){
 
     // window.requestAnimFrame = require('./requestAnimFrame.js');
     // var throttle = require('./throttle.js');
+    var animHoops = require('./animHoops.js');
 
     var animHeader = require('./animHeader.js');
     var animBtn = require('./animBtn.js');
@@ -14,7 +15,6 @@ $(function(){
     var animMainSlider = require('./sliderMain.js');
 
     var initVideo = require('./initVideo.js');
-
     var animSlider = require('./slider.js');
 
     // var windowWidth = $(window).outerWidth(), windowHeight = $(window).height(), docHeight = $(document).height();
@@ -78,6 +78,14 @@ $(function(){
         // Load videos
         if($('.wrapper-video').length){
             initVideo();
+        }
+
+        // Anim hoops
+        if(body.hasClass('home')){
+            animHoops($('#more-than-moocs').find('.hoop'), 200, true);
+        }
+        if(body.hasClass('page-template-about')){
+            animHoops($('#main').find('.hoop'), 300, false);
         }
     });
 

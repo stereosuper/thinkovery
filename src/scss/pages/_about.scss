@@ -56,6 +56,9 @@
     > .icon{
         position: absolute;
         opacity: 0.8;
+        .js &{
+            opacity: 0;
+        }
     }
     > .mask{
         position: absolute;
@@ -80,7 +83,8 @@
     > .icon{
         width: 68%;
         height: 400px;
-        top: -5%;
+        //top: -5%;
+        top: 15%;
         left: 9%;
     }
     > .mask{
@@ -101,7 +105,8 @@
     > .icon{
         width: 90px;
         height: 90px;
-        top: 130px;
+        //top: 130px;
+        top: 200px;
         left: 135px;
     }
     > .mask{
@@ -170,7 +175,8 @@
     > .icon{
         width: 60%;
         height: 295px;
-        top: -6%;
+        //top: -6%;
+        top: -20%;
         left: 22%;
     }
     > .mask{
