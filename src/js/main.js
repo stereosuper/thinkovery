@@ -31,6 +31,8 @@ $(function(){
         'green':  [ 'rgb(43, 240, 117)', 'rgb(2, 187, 255)' ]
     };
 
+    var searchInput = $('#search'), formContact = $('#form-contact');
+
 
     // isMobile.any ? body.addClass('is-mobile') : body.addClass('is-desktop');
 
@@ -46,13 +48,19 @@ $(function(){
     // Anim gradient in btn and in menu links
     animBtn(body);
 
-    // Form contact inputs
-    if($('#form-contact').length){
-        $('#form-contact').on('input propertychange', 'input, textarea', function(){
+    // Form inputs
+    if(formContact.length){
+        formContact.on('input propertychange', 'input, textarea', function(){
             checkEmptyInput($(this));
         }).find('input, textarea').each(function(){
             checkEmptyInput($(this));
         });
+    }
+    if((body.hasClass('archive') || body.hasClass('search')) && searchInput.length){
+        searchInput.on('input propertychange', function(){
+            checkEmptyInput($(this));
+        });
+        checkEmptyInput(searchInput);
     }
 
     // Slider home

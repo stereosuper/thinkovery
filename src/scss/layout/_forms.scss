@@ -154,6 +154,19 @@ input{
     input{
         width: 100%;
         border: 3px solid rgba($gray-superlight, 0.4);
+        &:focus{
+            + label{
+                opacity: 0;
+            }
+        }
+    }
+    label{
+        position: absolute;
+        top: 15px;
+        left: $gutter*2;
+        color: $gray;
+        pointer-events: none;
+        transition: 0.1s ease-in-out;
     }
     button{
         width: 44px;

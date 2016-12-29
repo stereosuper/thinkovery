@@ -42,8 +42,8 @@
 
         <div class='wrapper-post-content <?php if(!has_post_thumbnail() ){ ?>no-img<?php } ?>'>
             <?php the_excerpt(); ?>
-            <a href='<?php the_field('link'); ?>' target='_blank'>
-                <?php echo __('Find us on', 'thinkovery') . ' ' . get_field('network'); ?>
+            <a href='<?php the_field('link'); ?>' target='_blank' class='btn-small'>
+                <?php echo __('Find us on', 'thinkovery') . ' ' . get_field('network'); ?><svg class='icon'><use xlink:href='#icon-arrow-right'/></svg>
             </a>
         </div>
 
