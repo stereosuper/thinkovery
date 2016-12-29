@@ -29,7 +29,8 @@
         .comments h2, .comments time,
         .form-search button,
         .study-subtitle,
-        .quote-cite > b{
+        .quote-cite > b,
+        .solutions-list h3{
         	color: $colorprimary;
         }
 
@@ -85,18 +86,18 @@
                 background: radial-gradient(ellipse at center, rgba($colorsecondary, 0.5) 0, rgba($colorsecondary, 0) 65%);
             }
         }
-        .menu-main{
+        #header{
+            .current-menu-item, .current_page_parent{
+                a{
+                    color: $black;
+                }
+            }
             a{
                 &:hover, &:focus{
-                    color: $black!important;
+                    color: $black;
                 }
                 > i:after{
                     background: radial-gradient(ellipse at center, rgba($colorsecondary, 0.5) 0, rgba($colorsecondary, 0) 65%);
-                }
-            }
-            .current-menu-item{
-                a{
-                    color: $black!important;
                 }
             }
         }

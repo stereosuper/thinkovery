@@ -244,6 +244,11 @@
                 transform: translate3d(0, 48px, 0);
             }
         }
+        .current-menu-item, .current_page_parent{
+            a{
+                color: #fff !important;
+            }
+        }
     }
 
     .menu-main{

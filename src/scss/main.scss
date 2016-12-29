@@ -10,11 +10,11 @@
     'base/fonts',
     'base/base';
 
-//@import
+// @import
 //  'vendors/';
 
-@import
-    'abstracts/placeholders';
+// @import
+//     'abstracts/placeholders';
 
 @import
     'layout/grid',
@@ -33,6 +33,7 @@
 
 @import
     'pages/home',
+    'pages/solutions',
     'pages/about',
     'pages/contact',
     'pages/404';
