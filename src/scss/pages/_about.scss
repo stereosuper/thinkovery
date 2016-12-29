@@ -17,8 +17,9 @@
     margin-bottom: 20px;
 }
 .about-txt3{
-    margin-top: 110px;
-    margin-bottom: 140px;
+    padding-right: 0;
+    margin-top: 6.9em;
+    margin-bottom: 8.7em;
 }
 
 .about-img-wrapper{
@@ -95,8 +96,8 @@
 .about-img3{
     width: $col*7;
     padding: 0 $gutter*2 0 0;
-    margin-top: 110px;
-    margin-bottom: 90px;
+    margin-top: 6.9em;
+    margin-bottom: 5em;
     > .icon{
         width: 90px;
         height: 90px;
@@ -158,7 +159,7 @@
 .about-img7{
     width: $col*5;
     padding: 0 $gutter*2 27px 0;
-    margin: -120px 0 0 $col*6;
+    margin: -7.5em 0 0 $col*6;
     &:before, &:after{
         content: '';
         bottom: 0;
@@ -198,28 +199,38 @@
 }
 
 @media (max-width: $desktop-small){
+    .about-txt{
+        > h2{
+            font-size: 3rem;
+        }
+    }
+
     .about-img-wrapper{
         width: $col*6;
-        margin-top: 50px;
+        margin-top: 3em;
     }
 
     .about-txt3{
         width: $col*5;
-        margin-top: 50px;
+        margin-top: 3em;
     }
 
     .about-img2{
         width: $col*3;
     }
     .about-img7{
-        margin-top: -80px;
+        margin-top: -5em;
     }
 }
 
 @media (max-width: $tablet){
     .about-txt{
         width: 100%;
-        margin: 50px 0;
+        padding: 0;
+        margin: 3em 0;
+        > h2{
+            font-size: 2.8rem;
+        }
     }
 
     .about-img1{
@@ -238,5 +249,13 @@
     .about-img7{
         width: 100%;
         margin: 0;
+    }
+}
+
+@media (max-width: $phone){
+    .about-txt{
+        > h2{
+            font-size: 2.5rem;
+        }
     }
 }
