@@ -11,10 +11,10 @@ get_header(); ?>
             <div id='bloc-top'>
                 <?php $count = 0; foreach($declis as $decli){ ?>
                     <div class='slide-home <?php if($count == $currentDecli) echo 'slide-on'; ?>' style='background-image:url("<?php echo wp_get_attachment_url($decli['homeImg'][0]['img']); ?>")' data-color='<?php echo $decli['mainColor']; ?>'>
-                        <strong style='z-index:<?php echo $decli['circlePlan']; ?>;left:<?php echo $decli['baselinePosX']; ?>px;top:<?php echo $decli['baselinePosY']; ?>' data-x='<?php echo $decli['baselinePosX']; ?>' data-y='<?php echo $decli['baselinePosY']; ?>' class='baseline'>
-                            <span><?php echo $decli['title1']; ?></span><svg class='icon hoop' style='width:<?php echo $decli['circleWidth']; ?>px;height:<?php echo $decli['circleWidth']; ?>px;fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'>
+                        <strong style='z-index:<?php echo $decli['circlePlan']; ?>;left:<?php echo $decli['baselinePosX']; ?>px;top:<?php echo $decli['baselinePosY']; ?>px' data-x='<?php echo $decli['baselinePosX']; ?>' data-y='<?php echo $decli['baselinePosY']; ?>' class='baseline'>
+                            <span <?php if($count != $currentDecli) echo "style='opacity:0'"; ?>><?php echo $decli['title1']; ?></span><svg class='icon hoop' style='<?php if($count != $currentDecli) echo 'opacity:0;';?>width:<?php echo $decli['circleWidth']; ?>px;height:<?php echo $decli['circleWidth']; ?>px;fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'>
                                 <use xlink:href='#icon-hoop'/>
-                            </svg><span><?php echo $decli['title2']; ?></span>
+                            </svg><span <?php if($count != $currentDecli) echo "style='opacity:0'"; ?>><?php echo $decli['title2']; ?></span>
                         </strong>
                         <span class='baseline-second'><span><?php echo $decli['title1']; ?></span> <span><?php echo $decli['title2']; ?></span></span>
                         <?php
