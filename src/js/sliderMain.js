@@ -22,7 +22,7 @@ module.exports = function(body, blocTop, themeColors){
     var svgHoop = $('#gradient-hoop');
     var ease = CustomEase.create('custom', 'M0,0,C0,0.5,0.005,0.73,0.11,0.85,0.22,0.975,0.505,1,1,1');
 
-    var tweenToOn = {x: '0px', opacity: 1, ease: ease}, tweenToOff = {x: '500px', opacity: 0, ease: Power2.easeIn};
+    var tweenToOn = {x: '0px', opacity: 1, force3D: true, ease: ease}, tweenToOff = {x: '500px', opacity: 0, force3D: true, ease: Power2.easeIn};
 
     function setPosBaseline(){
         containerH = blocTop.height();
@@ -48,7 +48,7 @@ module.exports = function(body, blocTop, themeColors){
 
         ratioScale = finalH / imgH;
 
-        TweenMax.set(baseline, {scale: ratioScale, left: newX + 'px', top: newY + 'px', onComplete: function(){
+        TweenMax.set(baseline, {scale: ratioScale, left: newX + 'px', top: newY + 'px', force3D: true, onComplete: function(){
             if(newX < gutter || newX + baseline.width() + gutter*2 > containerW || newY < header.height()){
                 baseline.addClass('off');
                 baselineSecond.addClass('on');
@@ -60,7 +60,7 @@ module.exports = function(body, blocTop, themeColors){
     }
 
     function animSlide(){
-        TweenMax.fromTo(baseline.find('> .icon'), 6, {x: 700-containerW+'px', opacity: 0}, {x: '0px', opacity: 0.85, ease: ease});
+        TweenMax.fromTo(baseline.find('> .icon'), 6, {x: 700-containerW+'px', opacity: 0}, {x: '0px', opacity: 0.85, force3D: true, ease: ease});
         TweenMax.fromTo([baseline.find('> span'), baselineSecond.find('> span')], 4, {x: 200-containerW+'px', opacity: 0}, tweenToOn);
         TweenMax.fromTo(currentSlide.find('.slider-plans'), 4, {x: 200-containerW+'px', opacity: 0}, tweenToOn);
 
@@ -81,7 +81,7 @@ module.exports = function(body, blocTop, themeColors){
 
         TweenMax.fromTo(baseline.find('> .icon'), 0.5, {x: '0px'}, tweenToOff);
         TweenMax.fromTo([baseline.find('> span'), baselineSecond.find('> span')], 0.5, {x: '0px'}, tweenToOff);
-        TweenMax.fromTo(currentSlide.find('.slider-plans'), 0.5, {x: '0px'}, {x: '500px', opacity: 0, ease: Power2.easeIn, onComplete: function(){
+        TweenMax.fromTo(currentSlide.find('.slider-plans'), 0.5, {x: '0px'}, {x: '500px', opacity: 0, force3D: true, ease: Power2.easeIn, onComplete: function(){
             currentSlide = blocTop.find('.slide-on');
             baseline = currentSlide.find('.baseline');
             baselineSecond = currentSlide.find('.baseline-second');

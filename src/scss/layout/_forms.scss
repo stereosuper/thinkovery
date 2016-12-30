@@ -182,7 +182,7 @@ input{
             float: left;
         }
         &:hover, &:focus{
-            transform: scale(1.1) rotate(90deg);
+            transform: scale3d(1.1, 1.1, 1.1) rotate(90deg);
         }
     }
 }

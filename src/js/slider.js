@@ -58,24 +58,24 @@ module.exports = function(){
 
         if(newX > 0){
             // Going left
-            TweenMax.set(sliderClonedTarget, {x: -widthSliderTarget+'px'});
+            TweenMax.set(sliderClonedTarget, {x: -widthSliderTarget+'px', force3D: true});
             if(newX > widthSliderTarget){
                 newX -= widthSliderTarget;
             }
         }else{
             // Going right
-            TweenMax.set(sliderClonedTarget, {x: widthSliderTarget+'px'});
+            TweenMax.set(sliderClonedTarget, {x: widthSliderTarget+'px', force3D: true});
             if(newX < -widthSliderTarget){
                 newX += widthSliderTarget;
             }
         }
         if(newX !== this.x){
-            TweenMax.set(sliderTarget, {x: newX, overwrite: false});
+            TweenMax.set(sliderTarget, {x: newX, force3D: true, overwrite: false});
             this.x = newX;
         }
 
         // Rotate svg
-        TweenMax.set(sliderTarget.parents('.container-sliders').find('.hoop'), {rotation: newX/2, overwrite: false});
+        TweenMax.set(sliderTarget.parents('.container-sliders').find('.hoop'), {rotation: newX/2, force3D: true, overwrite: false});
     }
 
     function initSlider(container){
@@ -113,7 +113,7 @@ module.exports = function(){
                 TweenMax.set($(this).find('>li').eq(halfRight+j), {left: leftSlidesStart+j*slideWidth+'px'});
             }
         });
-        TweenMax.set(sliderCloned, {x: widthSlider+'px'});
+        TweenMax.set(sliderCloned, {x: widthSlider+'px', force3D: true});
         TweenMax.set(slider, {marginLeft: -widthSlider/2+'px'});
 
         activateSlideInitial(container, slides, slideWidth);

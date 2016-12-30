@@ -39,7 +39,7 @@ module.exports = function(){
         if(myScroll > 10){
             showScrollIndic();
             if(windowWidth > 580){
-                TweenMax.set(logoO, {x: scrollProgress + 'px'});
+                TweenMax.set(logoO, {x: scrollProgress + 'px', force3D: true});
             }
         }else{
             hideScrollIndic();

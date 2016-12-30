@@ -7,15 +7,12 @@ $(function(){
 
     // window.requestAnimFrame = require('./requestAnimFrame.js');
     // var throttle = require('./throttle.js');
-    var animHoops = require('./animHoops.js');
 
     var animHeader = require('./animHeader.js');
     var animBtn = require('./animBtn.js');
 
     var animMainSlider = require('./sliderMain.js');
 
-    var initVideo = require('./initVideo.js');
-    var animSlider = require('./slider.js');
 
     // var windowWidth = $(window).outerWidth(), windowHeight = $(window).height(), docHeight = $(document).height();
     // var myScroll = $(document).scrollTop();
@@ -69,26 +66,6 @@ $(function(){
     }
 
 
-    $(window).on('load', function(){
-        // Sliders drag
-        if($('.wrapper-sliders').length){
-            animSlider();
-        }
-
-        // Load videos
-        if($('.wrapper-video').length){
-            initVideo();
-        }
-
-        // Anim hoops
-        if(body.hasClass('home')){
-            animHoops($('#more-than-moocs').find('.hoop'), 200, true);
-        }
-        if(body.hasClass('page-template-about')){
-            animHoops($('#main').find('.hoop'), 300, false);
-        }
-    });
-
     // $(document).on('scroll', throttle(function(){
 
     // }, 10));
@@ -97,4 +74,31 @@ $(function(){
 
     // }, 60));
 
+});
+
+$(window).on('load', function(){
+    var body = $('body');
+
+    var initVideo = require('./initVideo.js');
+    var animSlider = require('./slider.js');
+    var animHoops = require('./animHoops.js');
+
+
+    // Sliders drag
+    if($('.wrapper-sliders').length){
+        animSlider();
+    }
+
+    // Load videos
+    if($('.wrapper-video').length){
+        initVideo();
+    }
+
+    // Anim hoops
+    if(body.hasClass('home')){
+        animHoops($('#more-than-moocs').find('.hoop'), 200, true);
+    }
+    if(body.hasClass('page-template-about')){
+        animHoops($('#main').find('.hoop'), 300, false);
+    }
 });

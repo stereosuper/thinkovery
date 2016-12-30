@@ -229,12 +229,12 @@
         &:before{
             height: 4px;
             left: 0;
-            transform: scaleY(0);
+            transform: scale3d(1, 0, 1);
             transform-origin: 0 100%;
         }
         &:hover, &:focus{
             &:before{
-                transform: scaleY(1);
+                transform: scale3d(1, 1, 1);
             }
         }
         .icon{
@@ -275,12 +275,12 @@
         &:before{
             width: 4px;
             top: 0;
-            transform: scaleX(0);
+            transform: scale3d(0, 1, 1);
             transform-origin: 100% 0;
         }
         &:hover, &:focus{
             &:before{
-                transform: scaleX(1);
+                transform: scale3d(1, 1, 1);
             }
         }
         .related-thumbnail{
