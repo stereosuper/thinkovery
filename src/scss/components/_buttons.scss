@@ -67,6 +67,7 @@
 
 .btn-small, .btn-small-back{
 	font-weight: 600;
+	transform: translate3d(0, 0, 0);
 	.icon{
 		width: 10px;
 		transition: transform 0.15s ease-in-out;
