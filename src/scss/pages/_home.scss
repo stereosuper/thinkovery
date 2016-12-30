@@ -17,6 +17,9 @@
 	font-size: 1.6rem;
 	font-weight: 600;
 	overflow: hidden;
+	.no-js &{
+		display: none;
+	}
 	> button{
 		width: 28px;
 		text-indent: -99em;
@@ -77,7 +80,7 @@
 	top: 0;
 	white-space: nowrap;
 	transform-origin: 0 0;
-	.loaded &, .no-js &{
+	.loaded &{
 		opacity: 1;
 	}
 	.js &{
@@ -95,7 +98,7 @@
 	right: 0;
 	text-align: center;
 	transform-origin: 100% 0;
-	&.on{
+	&.on, .no-js &{
 		opacity: 1;
 	}
 }

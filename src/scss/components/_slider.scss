@@ -55,6 +55,9 @@
 		opacity: 0.9;
 		transform-origin: 50% 50%;
 		pointer-events: none;
+		.no-js &{
+			display: none;
+		}
 	}
 }
 
