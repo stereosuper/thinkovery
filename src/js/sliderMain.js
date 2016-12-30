@@ -5,51 +5,28 @@ var CustomEase = require('./libs/gsap/src/uncompressed/plugins/CustomEase.js');
 
 window.requestAnimFrame = require('./requestAnimFrame.js');
 var throttle = require('./throttle.js');
+var getEltPosOnCover = require('./getEltPosOnCover');
 
 module.exports = function(body, blocTop, themeColors){
     var blocRevel = $('#bloc-revelation');
     var currentSlide = blocTop.find('.slide-on');
     var currentTxt = blocRevel.find('.txt-on');
     var baseline = currentSlide.find('.baseline'), baselineSecond = currentSlide.find('.baseline-second');
-    var ratioScale, imgW = 1260, imgH = 760, imgRatio = imgH / imgW;
-    var finalW, finalH;
-    var newX, newY, posX, posY;
-    var containerH, containerW, containerRatio;
-    var gutter = 20;
+    var imgW = 1260, imgH = 760, imgRatio = imgH / imgW;
+    var newPosBaseline, containerW, gutter = 20;
     var header = $('#header');
-    var nav = blocTop.find('#slider-home-nav');
+    var nav = blocTop.find('#slider-home-nav'), svgHoop = $('#gradient-hoop');
     var slides = blocTop.find('.slide-home'), nbSlides = slides.length, slidesTxt = blocRevel.find('.slide-home-txt');
-    var svgHoop = $('#gradient-hoop');
     var ease = CustomEase.create('custom', 'M0,0,C0,0.5,0.005,0.73,0.11,0.85,0.22,0.975,0.505,1,1,1');
 
     var tweenToOn = {x: '0px', opacity: 1, force3D: true, ease: ease}, tweenToOff = {x: '500px', opacity: 0, force3D: true, ease: Power2.easeIn};
 
     function setPosBaseline(){
-        containerH = blocTop.height();
+        newPosBaseline = getEltPosOnCover(blocTop, imgRatio, imgW, imgH, baseline);
         containerW = blocTop.width();
-        containerRatio = containerH / containerW;
 
-        posX = baseline.data('x');
-        posY = baseline.data('y');
-
-        // portrait
-        if(containerRatio > imgRatio){
-            finalH = containerH;
-            finalW = imgW*finalH / imgH;
-            newX = finalW*posX / imgW - (finalW - containerW)/2;
-            newY = finalH*posY / imgH;
-        // paysage
-        }else{
-            finalW = containerW;
-            finalH = imgH*finalW /imgW;
-            newX = finalW*posX / imgW;
-            newY = finalH*posY / imgH - (finalH - containerH)/2;
-        }
-
-        ratioScale = finalH / imgH;
-
-        TweenMax.set(baseline, {scale: ratioScale, left: newX + 'px', top: newY + 'px', force3D: true, onComplete: function(){
-            if(newX < gutter || newX + baseline.width() + gutter*2 > containerW || newY < header.height()){
+        TweenMax.set(baseline, {scale: newPosBaseline[2], left: newPosBaseline[0] + 'px', top: newPosBaseline[1] + 'px', force3D: true, onComplete: function(){
+            if(newPosBaseline[0] < gutter || newPosBaseline[0] + baseline.width() + gutter*2 > containerW || newPosBaseline[1] < header.height()){
                 baseline.addClass('off');
                 baselineSecond.addClass('on');
             }else{

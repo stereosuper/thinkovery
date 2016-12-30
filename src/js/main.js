@@ -82,6 +82,7 @@ $(window).on('load', function(){
     var initVideo = require('./initVideo.js');
     var animSlider = require('./slider.js');
     var animHoops = require('./animHoops.js');
+    var setPosCircle = require('./setPosCircle.js');
 
 
     // Sliders drag
@@ -100,5 +101,9 @@ $(window).on('load', function(){
     }
     if(body.hasClass('page-template-about')){
         animHoops($('#main').find('.hoop'), 300, false);
+    }
+
+    if(body.hasClass('page-template-solutions')){
+        setPosCircle($('#solutions-header'));
     }
 });

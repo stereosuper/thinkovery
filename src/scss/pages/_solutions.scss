@@ -4,18 +4,24 @@
     }
 }
 
+.solutions-header, .solutions-cover{
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
 .solutions-header{
     display: flex;
     height: 100vh;
     min-height: 620px;
     padding-top: 75px;
+    position: relative;
     align-items: flex-end;
-    background-size: cover;
-    background-position: 50% 50%;
-    background-repeat: no-repeat;
     color: #fff;
+    overflow: hidden;
     .container{
         padding-bottom: 5em;
+        position: relative;
+        z-index: 1;
     }
     h1{
         margin: 0 0 0.4em;
@@ -24,6 +30,18 @@
             display: block;
         }
     }
+    > .hoop{
+        position: absolute;
+        opacity: 0;
+        transform-origin: 0 0;
+    }
+}
+.solutions-cover{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
 }
 
 .solutions-intro{

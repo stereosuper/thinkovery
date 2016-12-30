@@ -7,7 +7,7 @@ get_header(); ?>
 
 	<?php if ( have_posts() ) : the_post(); ?>
 
-		<header class='solutions-header' style='background-image:url(<?php the_post_thumbnail_url(); ?>)'>
+		<header class='solutions-header' style='background-image:url(<?php the_post_thumbnail_url(); ?>)' id='solutions-header'>
 			<div class='container'>
 				<div class='container-medium'>
 					<div class='solutions-intro'>
@@ -17,6 +17,10 @@ get_header(); ?>
 					</div>
 				</div>
 			</div>
+			<svg class='icon hoop' style='top:<?php the_field('circleY') ?>px;left:<?php the_field('circleX') ?>px;width:<?php the_field('circleWidth'); ?>px;height:<?php the_field('circleWidth'); ?>px;fill:url(<?php echo $currentUrl; ?>#gradient-hoop')' data-x='<?php the_field('circleX') ?>' data-y='<?php the_field('circleY') ?>'>
+			        <use xlink:href='#icon-hoop-thin'/>
+			</svg>
+			<div class='solutions-cover' style='background-image:url(<?php echo wp_get_attachment_url(get_field('img')); ?>)'></div>
 		</header>
 
 		<section class='solutions clearfix'>
