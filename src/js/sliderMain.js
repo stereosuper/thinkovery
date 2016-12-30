@@ -13,13 +13,22 @@ module.exports = function(body, blocTop, themeColors){
     var currentTxt = blocRevel.find('.txt-on');
     var baseline = currentSlide.find('.baseline'), baselineSecond = currentSlide.find('.baseline-second');
     var imgW = blocTop.data('img-width'), imgH = blocTop.data('img-height'), imgRatio = imgH / imgW;
-    var newPosBaseline, containerW, gutter = 20;
+    var circle = currentSlide.find('.hoop');
+    var newPosBaseline, newPosCircle, containerW, gutter = 20;
     var header = $('#header');
     var nav = blocTop.find('#slider-home-nav'), svgHoop = $('#gradient-hoop');
     var slides = blocTop.find('.slide-home'), nbSlides = slides.length, slidesTxt = blocRevel.find('.slide-home-txt');
     var ease = CustomEase.create('custom', 'M0,0,C0,0.5,0.005,0.73,0.11,0.85,0.22,0.975,0.505,1,1,1');
 
     var tweenToOn = {x: '0px', opacity: 1, force3D: true, ease: ease}, tweenToOff = {x: '500px', opacity: 0, force3D: true, ease: Power2.easeIn};
+
+
+    function setPosCircle(){
+        newPosCircle = getEltPosOnCover(blocTop, imgRatio, imgW, imgH, circle);
+        containerW = blocTop.width();
+
+        TweenMax.set(circle, {scale: newPosCircle[2], left: newPosCircle[0] + 'px', top: newPosCircle[1] + 'px', force3D: true});
+    }
 
     function setPosBaseline(){
         newPosBaseline = getEltPosOnCover(blocTop, imgRatio, imgW, imgH, baseline);
@@ -37,7 +46,7 @@ module.exports = function(body, blocTop, themeColors){
     }
 
     function animSlide(){
-        TweenMax.fromTo(baseline.find('> .icon'), 6, {x: 700-containerW+'px', opacity: 0}, {x: '0px', opacity: 0.85, force3D: true, ease: ease});
+        TweenMax.fromTo(circle, 6, {x: 700-containerW+'px', opacity: 0}, {x: '0px', opacity: 0.85, force3D: true, ease: ease});
         TweenMax.fromTo([baseline.find('> span'), baselineSecond.find('> span')], 4, {x: 200-containerW+'px', opacity: 0}, tweenToOn);
         TweenMax.fromTo(currentSlide.find('.slider-plans'), 4, {x: 200-containerW+'px', opacity: 0}, tweenToOn);
 
@@ -56,14 +65,16 @@ module.exports = function(body, blocTop, themeColors){
         currentTxt.removeClass('txt-on');
         currentTxt = blocRevel.find('.txt-on');
 
-        TweenMax.fromTo(baseline.find('> .icon'), 0.5, {x: '0px'}, tweenToOff);
-        TweenMax.fromTo([baseline.find('> span'), baselineSecond.find('> span')], 0.5, {x: '0px'}, tweenToOff);
-        TweenMax.fromTo(currentSlide.find('.slider-plans'), 0.5, {x: '0px'}, {x: '500px', opacity: 0, force3D: true, ease: Power2.easeIn, onComplete: function(){
+        TweenMax.to(circle, 0.5, tweenToOff);
+        TweenMax.to([baseline.find('> span'), baselineSecond.find('> span')], 0.5, tweenToOff);
+        TweenMax.to(currentSlide.find('.slider-plans'), 0.5, {x: '500px', opacity: 0, force3D: true, ease: Power2.easeIn, onComplete: function(){
             currentSlide = blocTop.find('.slide-on');
             baseline = currentSlide.find('.baseline');
             baselineSecond = currentSlide.find('.baseline-second');
+            circle = currentSlide.find('.icon');
 
             setPosBaseline();
+            setPosCircle();
             animSlide();
 
             Cookies.set('think-decli', currentSlide.index('.slide-home'));
@@ -82,10 +93,12 @@ module.exports = function(body, blocTop, themeColors){
         blocTop.addClass('loaded');
 
         setPosBaseline();
+        setPosCircle();
         animSlide();
     });
 
     $(window).on('resize', throttle(function(){
         requestAnimFrame(setPosBaseline);
+        requestAnimFrame(setPosCircle);
     }, 60));
 }

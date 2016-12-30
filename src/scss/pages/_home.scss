@@ -47,6 +47,14 @@
 		opacity: 1;
 		z-index: 1;
 	}
+	.hoop{
+		position: absolute;
+		transform-origin: 0 0;
+		opacity: 0;
+		.loaded &{
+			opacity: 0.85;
+		}
+	}
 }
 .slider-plans{
 	.loaded &, .no-js &{
@@ -56,10 +64,11 @@
 .baseline, .baseline-second{
 	position: absolute;
 	left: 0;
+	z-index: 50;
 	font-weight: 600;
 	transition: 0.3s opacity $transition;
 	opacity: 0;
-	> span, .icon{
+	> span{
 		display: inline-block;
 		transform-origin: 100% 0;
 	}
@@ -68,9 +77,6 @@
 	top: 0;
 	white-space: nowrap;
 	transform-origin: 0 0;
-	> .icon{
-		opacity: 0.85;
-	}
 	.loaded &, .no-js &{
 		opacity: 1;
 	}
@@ -80,10 +86,6 @@
 				opacity: 0 !important;
 			}
 		}
-	}
-	.icon{
-		margin: 0 25px;
-		opacity: 0.85;
 	}
 }
 .baseline-second{
