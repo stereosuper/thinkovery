@@ -8,7 +8,7 @@ var getEltPosOnCover = require('./getEltPosOnCover');
 
 module.exports = function(container){
     var posCircle, circle = container.find('> .hoop');
-    var imgW = 1400, imgH = 833, imgRatio = imgH / imgW;
+    var imgW = container.data('img-width'), imgH = container.data('img-height'), imgRatio = imgH / imgW;
 
     function setPosCircle(){
         posCircle = getEltPosOnCover(container, imgRatio, imgW, imgH, circle);

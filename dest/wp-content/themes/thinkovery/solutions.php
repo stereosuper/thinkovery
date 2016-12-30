@@ -7,7 +7,13 @@ get_header(); ?>
 
 	<?php if ( have_posts() ) : the_post(); ?>
 
-		<header class='solutions-header' style='background-image:url(<?php the_post_thumbnail_url(); ?>)' id='solutions-header'>
+		<?php
+			$imgMeta = wp_get_attachment_metadata( get_post_thumbnail_id() );
+			$imgWidth = $imgMeta['width'];
+			$imgHeight = $imgMeta['height'];
+		?>
+
+		<header class='solutions-header' style='background-image:url(<?php the_post_thumbnail_url(); ?>)' id='solutions-header' data-img-width='<?php echo $imgWidth; ?>' data-img-height='<?php echo $imgHeight; ?>'>
 			<div class='container'>
 				<div class='container-medium'>
 					<div class='solutions-intro'>

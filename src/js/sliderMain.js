@@ -12,7 +12,7 @@ module.exports = function(body, blocTop, themeColors){
     var currentSlide = blocTop.find('.slide-on');
     var currentTxt = blocRevel.find('.txt-on');
     var baseline = currentSlide.find('.baseline'), baselineSecond = currentSlide.find('.baseline-second');
-    var imgW = 1260, imgH = 760, imgRatio = imgH / imgW;
+    var imgW = blocTop.data('img-width'), imgH = blocTop.data('img-height'), imgRatio = imgH / imgW;
     var newPosBaseline, containerW, gutter = 20;
     var header = $('#header');
     var nav = blocTop.find('#slider-home-nav'), svgHoop = $('#gradient-hoop');

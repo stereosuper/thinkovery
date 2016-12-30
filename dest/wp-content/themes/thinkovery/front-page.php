@@ -7,49 +7,53 @@ get_header(); ?>
 
     <?php if ( have_posts() ) : the_post(); ?>
 
-        <header>
-            <div id='bloc-top'>
-                <?php $count = 0; foreach($declis as $decli){ ?>
-                    <div class='slide-home <?php if($count == $currentDecli) echo 'slide-on'; ?>' style='background-image:url("<?php echo wp_get_attachment_url($decli['homeImg'][0]['img']); ?>")' data-color='<?php echo $decli['mainColor']; ?>'>
-                        <strong style='z-index:<?php echo $decli['circlePlan']; ?>;left:<?php echo $decli['baselinePosX']; ?>px;top:<?php echo $decli['baselinePosY']; ?>px' data-x='<?php echo $decli['baselinePosX']; ?>' data-y='<?php echo $decli['baselinePosY']; ?>' class='baseline'>
-                            <span <?php if($count != $currentDecli) echo "style='opacity:0'"; ?>><?php echo $decli['title1']; ?></span><svg class='icon hoop' style='<?php if($count != $currentDecli) echo 'opacity:0;';?>width:<?php echo $decli['circleWidth']; ?>px;height:<?php echo $decli['circleWidth']; ?>px;fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'>
-                                <use xlink:href='#icon-hoop-thin'/>
-                            </svg><span <?php if($count != $currentDecli) echo "style='opacity:0'"; ?>><?php echo $decli['title2']; ?></span>
-                        </strong>
-                        <span class='baseline-second'><span><?php echo $decli['title1']; ?></span> <span><?php echo $decli['title2']; ?></span></span>
-                        <?php
-                            $countImg = 0;
-                            foreach($decli['homeImg'] as $img){
-                                if($countImg > 0){ ?>
-                                    <div style="background-image:url('<?php echo wp_get_attachment_url($img['img']); ?>');z-index:<?php echo $countImg+1; ?>" class='slider-plans'></div>
-                                <?php }
-                                $countImg ++;
-                            }
-                        ?>
-                    </div>
-                <?php $count ++; } ?>
-                <div id='slider-home-nav' class='theme-color'>
-                    <button class='prev btn-small-back'><?php _e('Previous', 'thinkovery'); ?><svg class='icon'><use xlink:href='#icon-arrow-left'/></svg></button>
-                    <span><span class='current'>1</span>/<?php echo $count; ?></span>
-                    <button class='next btn-small'><?php _e('Next', 'thinkovery'); ?><svg class='icon'><use xlink:href='#icon-arrow-right'/></svg></button>
+        <?php
+            $imgMeta = wp_get_attachment_metadata( $declis[$currentDecli]['homeImg'][0]['img'] );
+            $imgWidth = $imgMeta['width'];
+            $imgHeight = $imgMeta['height'];
+        ?>
+
+        <header id='bloc-top' data-img-width='<?php echo $imgWidth; ?>' data-img-height='<?php echo $imgHeight; ?>'>
+            <?php $count = 0; foreach($declis as $decli){ ?>
+                <div class='slide-home <?php if($count == $currentDecli) echo 'slide-on'; ?>' style='background-image:url("<?php echo wp_get_attachment_url($decli['homeImg'][0]['img']); ?>")' data-color='<?php echo $decli['mainColor']; ?>'>
+                    <strong style='z-index:<?php echo $decli['circlePlan']; ?>;left:<?php echo $decli['baselinePosX']; ?>px;top:<?php echo $decli['baselinePosY']; ?>px' data-x='<?php echo $decli['baselinePosX']; ?>' data-y='<?php echo $decli['baselinePosY']; ?>' class='baseline'>
+                        <span <?php if($count != $currentDecli) echo "style='opacity:0'"; ?>><?php echo $decli['title1']; ?></span><svg class='icon hoop' style='<?php if($count != $currentDecli) echo 'opacity:0;';?>width:<?php echo $decli['circleWidth']; ?>px;height:<?php echo $decli['circleWidth']; ?>px;fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'>
+                            <use xlink:href='#icon-hoop-thin'/>
+                        </svg><span <?php if($count != $currentDecli) echo "style='opacity:0'"; ?>><?php echo $decli['title2']; ?></span>
+                    </strong>
+                    <span class='baseline-second'><span><?php echo $decli['title1']; ?></span> <span><?php echo $decli['title2']; ?></span></span>
+                    <?php
+                        $countImg = 0;
+                        foreach($decli['homeImg'] as $img){
+                            if($countImg > 0){ ?>
+                                <div style="background-image:url('<?php echo wp_get_attachment_url($img['img']); ?>');z-index:<?php echo $countImg+1; ?>" class='slider-plans'></div>
+                            <?php }
+                            $countImg ++;
+                        }
+                    ?>
                 </div>
-            </div>
-            <div id='bloc-revelation'>
-                <div class='container'>
-                    <div class='zone-txt align-right'>
-                        <?php $count = 0; foreach($declis as $decli){ ?>
-                            <div class='slide-home-txt <?php if($count == $currentDecli) echo 'txt-on'; ?>'>
-                                <?php echo $decli['txt']; ?>
-                            </div>
-                        <?php $count ++; } ?>
-                        <h1><?php the_title(); ?></h1>
-                    </div>
-                    <a href='<?php the_field('ctaLink'); ?>' class='btn'>
-                        <?php the_field('ctaTxt'); ?><svg class='icon'><use xlink:href='#icon-arrow-right'/></svg><i></i>
-                    </a>
-                </div>
+            <?php $count ++; } ?>
+            <div id='slider-home-nav' class='theme-color'>
+                <button class='prev btn-small-back'><?php _e('Previous', 'thinkovery'); ?><svg class='icon'><use xlink:href='#icon-arrow-left'/></svg></button>
+                <span><span class='current'>1</span>/<?php echo $count; ?></span>
+                <button class='next btn-small'><?php _e('Next', 'thinkovery'); ?><svg class='icon'><use xlink:href='#icon-arrow-right'/></svg></button>
             </div>
         </header>
+        <div id='bloc-revelation'>
+            <div class='container'>
+                <div class='zone-txt align-right'>
+                    <?php $count = 0; foreach($declis as $decli){ ?>
+                        <div class='slide-home-txt <?php if($count == $currentDecli) echo 'txt-on'; ?>'>
+                            <?php echo $decli['txt']; ?>
+                        </div>
+                    <?php $count ++; } ?>
+                    <h1><?php the_title(); ?></h1>
+                </div>
+                <a href='<?php the_field('ctaLink'); ?>' class='btn'>
+                    <?php the_field('ctaTxt'); ?><svg class='icon'><use xlink:href='#icon-arrow-right'/></svg><i></i>
+                </a>
+            </div>
+        </div>
 
         <section id='mooc-spoc' class='container wrapper-blocs-half'>
             <div class='bloc-half'>
