@@ -386,6 +386,7 @@
             border-color: transparent;
             &:focus{
                 color: $black;
+                border-color: rgba($gray-superlight, 0.4);
                 background: rgba(#fff, 0.9);
             }
             &:focus, &.on{
