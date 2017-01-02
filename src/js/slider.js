@@ -1,7 +1,7 @@
 var $ = require('./libs/jquery/dist/jquery.slim.min.js');
 var TweenMax = require('./libs/gsap/src/uncompressed/TweenMax.js');
 var Draggable = require('./libs/gsap/src/uncompressed/utils/Draggable.js');
-var ThrowPropsPlugin = require('./libs/gsap/src/uncompressed/plugins/ThrowPropsPlugin.min.js');
+var ThrowPropsPlugin = require('./libs/gsap/src/uncompressed/plugins/ThrowPropsPlugin.js');
 
 module.exports = function(){
     var containerSliders = $('.container-sliders');
