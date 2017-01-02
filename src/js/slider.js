@@ -123,7 +123,7 @@ module.exports = function(){
             type: 'x',
             edgeResistance: 0.65,
             throwProps: true,
-            //bounds: wrapperSliders,
+            // bounds: wrapperSliders,
             onDrag: updateSlider,
             onThrowUpdate: updateSlider,
             onDragStart: desactivateSlide,
