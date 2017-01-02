@@ -119,10 +119,12 @@ module.exports = function(){
         activateSlideInitial(container, slides, slideWidth);
 
         // Draggable
-        Draggable.create(sliders, {
+        Draggable.create('.slider', {
             type: 'x',
+            dragClickables: true,
             edgeResistance: 0.65,
             throwProps: true,
+            minimumMovement: 0,
             // bounds: wrapperSliders,
             onDrag: updateSlider,
             onThrowUpdate: updateSlider,
