@@ -8,7 +8,7 @@ module.exports = function(){
     var i, j, newX, centerSlider, centerSlide, originalSlider;
     var sliderTarget, originalSliderTarget, widthSliderTarget, centerSliderTarget, slidesTarget;
     var sliderCloned, sliderClonedTarget;
-    var errorMargin, maxMargin, minMargin;
+    var errorMargin, maxMargin, minMargin, halfSlide;
     var DraggableElems = [];
 
     function desactivateSlide(){
@@ -20,12 +20,13 @@ module.exports = function(){
         sliderTarget = $(this.target);
         centerSliderTarget = sliderTarget.parents('.container-sliders').width()/2;
         slidesTarget = sliderTarget.find('.slides > li');
-        errorMargin = slidesTarget.outerWidth()/2;
+        errorMargin = slidesTarget.outerWidth()/4;
         maxMargin = centerSliderTarget+errorMargin;
         minMargin = centerSliderTarget-errorMargin;
+        halfSlide = slidesTarget.outerWidth()/2;
 
         slidesTarget.each(function(){
-            centerSlide = Math.floor($(this).offset().left + errorMargin);
+            centerSlide = Math.floor($(this).offset().left + halfSlide);
             if(centerSlide >= minMargin && centerSlide <= maxMargin){
                 $(this).addClass('active');
             }
@@ -121,9 +122,10 @@ module.exports = function(){
 
         // Draggable
         TweenMax.set(sliders, {clearProps: 'x,y,zIndex'});
-        DraggableElems[indexSlider] = Draggable.create('.slider', {
+        DraggableElems[indexSlider] = Draggable.create(sliders, {
             type: 'x',
             dragClickables: true,
+            dragResistance: 0,
             edgeResistance: 0.65,
             throwProps: true,
             minimumMovement: 0,
