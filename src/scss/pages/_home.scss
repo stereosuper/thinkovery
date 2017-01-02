@@ -163,11 +163,10 @@
 
 #more-than-moocs{
 	position: relative;
-	overflow: hidden;
 	&:before, &:after{
 		content: '';
 		width: 50%;
-		height: 24px;
+		height: 25px;
 		position: absolute;
 		bottom: 0;
 		background: $white;
@@ -186,6 +185,9 @@
 		position: relative;
 		padding-top: 7.5em;
 		padding-bottom: 9em;
+	}
+	#content-more-than-moocs{
+		overflow: hidden;
 	}
 	h2{
 		margin-top: 0;
