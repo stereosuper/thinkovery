@@ -9,6 +9,7 @@ module.exports = function(){
     var sliderTarget, originalSliderTarget, widthSliderTarget, centerSliderTarget, slidesTarget;
     var sliderCloned, sliderClonedTarget;
     var errorMargin, maxMargin, minMargin;
+    var DraggableElems = [];
 
     function desactivateSlide(){
         $(this.target).find('.slides > li').removeClass('active');
@@ -78,7 +79,7 @@ module.exports = function(){
         TweenMax.set(sliderTarget.parents('.container-sliders').find('.hoop'), {rotation: newX/2, force3D: true, overwrite: false});
     }
 
-    function initSlider(container){
+    function initSlider(container, indexSlider){
         var wrapperSliders = container.find('.wrapper-sliders');
         var sliders = container.find('.slider'), slider = container.find('.slides');
         var slides = slider.find('> li'), nbSlides = slides.length;
@@ -120,7 +121,7 @@ module.exports = function(){
 
         // Draggable
         TweenMax.set(sliders, {clearProps: 'x,y,zIndex'});
-        Draggable.create('.slider', {
+        DraggableElems[indexSlider] = Draggable.create('.slider', {
             type: 'x',
             dragClickables: true,
             edgeResistance: 0.65,
@@ -139,6 +140,8 @@ module.exports = function(){
         });
     }
 
-    containerSliders.each(function(){ initSlider($(this)); });
+    containerSliders.each(function(i){
+        initSlider($(this), i);
+    });
 
 }
