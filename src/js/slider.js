@@ -121,9 +121,9 @@ module.exports = function(){
         activateSlideInitial(container, slides, slideWidth);
 
         // Draggable
-        TweenMax.set(sliders, {clearProps: 'x,y,zIndex'});
         DraggableElems[indexSlider] = Draggable.create(sliders, {
             type: 'x',
+            zIndexBoost: false,
             dragClickables: true,
             dragResistance: 0,
             edgeResistance: 0.65,
