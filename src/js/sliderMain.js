@@ -19,6 +19,7 @@ module.exports = function(body, blocTop, themeColors){
     var nav = blocTop.find('#slider-home-nav'), svgHoop = $('#gradient-hoop');
     var slides = blocTop.find('.slide-home'), nbSlides = slides.length, slidesTxt = blocRevel.find('.slide-home-txt');
     var ease = CustomEase.create('custom', 'M0,0,C0,0.5,0.005,0.73,0.11,0.85,0.22,0.975,0.505,1,1,1');
+    // var ease = CustomEase.create('custom', 'M0,0 C0.25,0 0.486,0 0.486,0.21 0.486,0.246 0.522,0.752 0.522,0.796 0.522,0.99 0.818,1 1,1');
 
     var tweenToOn = {x: '0px', opacity: 1, force3D: true, ease: ease}, tweenToOff = {x: '500px', opacity: 0, force3D: true, ease: Power2.easeIn};
 
