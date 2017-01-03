@@ -27,7 +27,7 @@ body{
     background: $white;
 }
 
-h1{
+h1, .h1{
     margin: 1em 0 0.9em;
     font-size: 8rem;
     font-weight: 700;
@@ -278,7 +278,7 @@ a{
 
 
 @media (max-width: $desktop-small){
-    h1{
+    h1, .h1{
         font-size: 6rem;
     }
     h2{
@@ -316,7 +316,7 @@ a{
 }
 
 @media (max-width: $tablet){
-    h1{
+    h1, .h1{
         font-size: 5rem;
     }
     h2{
@@ -353,7 +353,7 @@ a{
     .hide-mb{
         display: none !important;
     }
-    h1{
+    h1, .h1{
         font-size: 4rem;
     }
     h2{

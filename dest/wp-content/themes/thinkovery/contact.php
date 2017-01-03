@@ -181,8 +181,11 @@ get_header(); ?>
 				    	</button>
 				    </form>
 				<?php else : ?>
-					<p><?php _e('Thank you, your message has been sent!', 'thinkovery'); ?></p>
-					<p><?php _e('We will get back to you as soon as possible.', 'thinkovery'); ?></p>
+					<div class='bloc-success'>
+						<h2><?php _e('Thank you', 'thinkovery'); ?></h2>
+						<p><?php _e('Your message has been sent!', 'thinkovery'); ?><br/>
+							<?php _e('We will get back to you as soon as possible.', 'thinkovery'); ?></p>
+					</div>
 				<?php endif; ?>
                 <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop-thin'/></svg>
                 <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop-thin'/></svg>

@@ -6,7 +6,7 @@
         .container{
             display: flex;
             &.success{
-                align-items: center;
+                align-items: flex-start;
             }
         }
     }
@@ -83,6 +83,22 @@
     width: $col*8;
     padding: 5.5em $col 8em;
     color: #fff;
+    p, h2{
+        position: relative;
+        z-index: 1;
+    }
+    .bloc-success{
+        h2{
+            margin: 1.5em 0 1em;
+            line-height: 0.9;
+            letter-spacing: -4px;
+        }
+        p{
+            margin: 0;
+            padding: 25px 0;
+            line-height: 1.2;
+        }
+    }
     form, .form-error{
         max-width: 650px;
     }
@@ -134,7 +150,7 @@
                 display: block;
             }
         }
-        h1{
+        h1, .bloc-success h2{
             margin: 0.55em 0;
             font-size: 8rem;
         }
@@ -192,7 +208,7 @@
 
 @media (max-width: $desktop-small){
     .page-template-contact{
-        h1{
+        h1, .bloc-success h2{
             font-size: 6rem;
         }
     }
@@ -217,7 +233,7 @@
 
 @media (max-width: $tablet){
     .page-template-contact{
-        h1{
+        h1, .bloc-success h2{
             font-size: 5rem;
         }
     }
@@ -225,7 +241,7 @@
 
 @media (max-width: $phone){
     .page-template-contact{
-        h1{
+        h1, .bloc-success h2{
             font-size: 4rem;
         }
     }
