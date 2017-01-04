@@ -32,12 +32,12 @@
 	// Theme colors
 	global $themeColors;
 	$themeColors = [
+		'blue'   => [ 'rgb(2, 187, 255)', 'rgb(138, 126, 224)' ],
+		'green'  => [ 'rgb(43, 240, 117)', 'rgb(2, 187, 255)' ],
 	    'yellow' => [ 'rgb(255, 228, 0)', 'rgb(43, 240, 117)' ],
 	    'orange' => [ 'rgb(255, 120, 0)', 'rgb(255, 228, 0)' ],
 	    'red'    => [ 'rgb(255, 6, 0)', 'rgb(255, 120, 0)' ],
-	    'pink'   => [ 'rgb(240, 43, 140)', 'rgb(255, 6, 0)' ],
-	    'blue'   => [ 'rgb(2, 187, 255)', 'rgb(138, 126, 224)' ],
-	    'green'  => [ 'rgb(43, 240, 117)', 'rgb(2, 187, 255)' ]
+	    'pink'   => [ 'rgb(240, 43, 140)', 'rgb(255, 6, 0)' ]
 	];
 
 	// Current url
@@ -52,11 +52,11 @@
 
 		<link rel='alternate' type='application/rss+xml' title='<?php echo get_bloginfo('sitename'); ?> Feed' href='<?php echo get_bloginfo('rss2_url'); ?>'>
 
-		<link rel='apple-touch-icon' sizes='180x180' href='<?php echo get_template_directory_uri(); ?>/favicons/orange/apple-touch-icon.png'>
-		<link rel='icon' type='image/png' href='<?php echo get_template_directory_uri(); ?>/favicons/orange/favicon-32x32.png' sizes='32x32'>
-		<link rel='icon' type='image/png' href='<?php echo get_template_directory_uri(); ?>/favicons/orange/favicon-16x16.png' sizes='16x16'>
-		<link rel='manifest' href='<?php echo get_template_directory_uri(); ?>/favicons/orange/manifest.json'>
-		<link rel='mask-icon' href='<?php echo get_template_directory_uri(); ?>/favicons/orange/safari-pinned-tab.svg' color='#000000'>
+		<link rel='apple-touch-icon' sizes='180x180' href='<?php echo get_template_directory_uri() . "/favicons/" . array_keys($themeColors)[$currentDecli] . "/apple-touch-icon.png"; ?>'>
+		<link rel='icon' type='image/png' href='<?php echo get_template_directory_uri() . "/favicons/" . array_keys($themeColors)[$currentDecli] . "/favicon-32x32.png"; ?>' sizes='32x32'>
+		<link rel='icon' type='image/png' href='<?php echo get_template_directory_uri() . "/favicons/" . array_keys($themeColors)[$currentDecli] . "/favicon-16x16.png"; ?>' sizes='16x16'>
+		<link rel='manifest' href='<?php echo get_template_directory_uri() . "/favicons/" . array_keys($themeColors)[$currentDecli] . "/manifest.json"; ?>'>
+		<link rel='mask-icon' href='<<?php echo get_template_directory_uri() . "/favicons/" . array_keys($themeColors)[$currentDecli] . "/safari-pinned-tab.svg"; ?>' color='#000000'>
 		<meta name='theme-color' content='#ffffff'>
 
 		<?php wp_head(); ?>

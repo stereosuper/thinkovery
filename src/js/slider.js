@@ -123,6 +123,7 @@ module.exports = function(){
         // Draggable
         DraggableElems[indexSlider] = Draggable.create(sliders, {
             type: 'x',
+            trigger: wrapperSliders,
             zIndexBoost: false,
             dragClickables: true,
             dragResistance: 0,
@@ -130,7 +131,6 @@ module.exports = function(){
             throwProps: true,
             minimumMovement: 0,
             allowNativeTouchScrolling: false,
-            // bounds: wrapperSliders,
             onDrag: updateSlider,
             onThrowUpdate: updateSlider,
             onDragStart: desactivateSlide,
