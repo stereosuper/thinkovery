@@ -123,6 +123,7 @@ module.exports = function(){
         // Draggable
         DraggableElems[indexSlider] = Draggable.create(sliders, {
             type: 'x',
+            trigger: wrapperSliders,
             zIndexBoost: false,
             dragClickables: true,
             dragResistance: 0,
