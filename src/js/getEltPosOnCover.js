@@ -8,14 +8,14 @@ module.exports = function(container, imgRatio, imgW, imgH, elt){
     posX = elt.data('x');
     posY = elt.data('y');
 
-    // portrait
     if(containerRatio > imgRatio){
+        // portrait
         finalH = containerH;
         finalW = imgW*finalH / imgH;
         newX = finalW*posX / imgW - (finalW - containerW)/2;
         newY = finalH*posY / imgH;
-    // paysage
     }else{
+        // paysage
         finalW = containerW;
         finalH = imgH*finalW / imgW;
         newX = finalW*posX / imgW;
@@ -23,8 +23,6 @@ module.exports = function(container, imgRatio, imgW, imgH, elt){
     }
 
     ratioScale = finalH / imgH;
-
-    console.log(containerH)
 
     return [newX, newY, ratioScale];
 }
