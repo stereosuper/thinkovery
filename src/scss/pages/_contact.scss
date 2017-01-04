@@ -99,14 +99,14 @@
             line-height: 1.2;
         }
     }
-    form, .form-error{
+    > form, .form-error{
         max-width: 650px;
     }
-    form{
+    > form{
         position: relative;
         z-index: 1;
     }
-    .hoop{
+    > .hoop{
         position: absolute;
         &:nth-of-type(1){
             width: 110px;
@@ -193,11 +193,11 @@
         width: 100%;
         padding: 100px 0 130px;
         position: relative;
-        form, .form-error{
+        > form, .form-error{
             margin-left: auto;
             margin-right: auto;
         }
-        .hoop{
+        > .hoop{
             &:nth-of-type(4){
                 left: auto;
                 right: 18%;
@@ -211,10 +211,15 @@
         h1, .bloc-success h2{
             font-size: 6rem;
         }
+        h1{
+            max-width: 650px;
+            margin: 0.55em auto;
+        }
     }
 
     .contact-infos{
-        max-width: 350px;
+        max-width: 650px;
+        margin: 0 auto;
         li{
             display: block;
             padding-left: 45px;
@@ -228,6 +233,9 @@
 
     .contact-main{
         padding-top: 70px;
+        > .hoop{
+            display: none;
+        }
     }
 }
 
