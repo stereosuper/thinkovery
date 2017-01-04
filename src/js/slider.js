@@ -129,6 +129,7 @@ module.exports = function(){
             edgeResistance: 0.65,
             throwProps: true,
             minimumMovement: 0,
+            allowNativeTouchScrolling: false,
             // bounds: wrapperSliders,
             onDrag: updateSlider,
             onThrowUpdate: updateSlider,

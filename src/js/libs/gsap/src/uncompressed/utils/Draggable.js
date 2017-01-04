@@ -1,11 +1,11 @@
 /*!
- * VERSION: 0.14.8
- * DATE: 2016-07-18
+ * VERSION: 0.14.9
+ * DATE: 2017-01-02
  * UPDATES AND DOCS AT: http://greensock.com
  *
  * Requires TweenLite and CSSPlugin version 1.17.0 or later (TweenMax contains both TweenLite and CSSPlugin). ThrowPropsPlugin is required for momentum-based continuation of movement after the mouse/touch is released (ThrowPropsPlugin is a membership benefit of Club GreenSock - http://greensock.com/club/).
  *
- * @license Copyright (c) 2008-2016, GreenSock. All rights reserved.
+ * @license Copyright (c) 2008-2017, GreenSock. All rights reserved.
  * This work is subject to the terms at http://greensock.com/standard-license or for
  * Club GreenSock members, the software agreement that was issued with your membership.
  *
@@ -381,8 +381,8 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 				if (!e.getBoundingClientRect || !e.parentNode || !_transformProp) {
 					return {offsetTop:0, offsetLeft:0, scaleX:1, scaleY:1, offsetParent:_docElement};
 				}
-				if (Draggable.cacheSVGData !== false && e._gsCache && e._gsCache.lastUpdate === TweenLite.ticker.frame) { //performance optimization. Assume that if the offsets are requested again on the same tick, we can just feed back the values we already calculated (no need to keep recalculating until another tick elapses).
-					return e._gsCache;
+				if (Draggable.cacheSVGData !== false && e._dCache && e._dCache.lastUpdate === TweenLite.ticker.frame) { //performance optimization. Assume that if the offsets are requested again on the same tick, we can just feed back the values we already calculated (no need to keep recalculating until another tick elapses).
+					return e._dCache;
 				}
 				var curElement = e,
 					cache = _cache(e),
@@ -493,11 +493,11 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 				}
 				return decoratee;
 			},
-			_cache = function(e) { //computes some important values and stores them in a _gsCache object attached to the element itself so that we can optimize performance
-				if (Draggable.cacheSVGData !== false && e._gsCache && e._gsCache.lastUpdate === TweenLite.ticker.frame) { //performance optimization. Assume that if the offsets are requested again on the same tick, we can just feed back the values we already calculated (no need to keep recalculating until another tick elapses).
-					return e._gsCache;
+			_cache = function(e) { //computes some important values and stores them in a _dCache object attached to the element itself so that we can optimize performance
+				if (Draggable.cacheSVGData !== false && e._dCache && e._dCache.lastUpdate === TweenLite.ticker.frame) { //performance optimization. Assume that if the offsets are requested again on the same tick, we can just feed back the values we already calculated (no need to keep recalculating until another tick elapses).
+					return e._dCache;
 				}
-				var cache = e._gsCache = e._gsCache || {},
+				var cache = e._dCache = e._dCache || {},
 					cs = _getComputedStyle(e),
 					isSVG = (e.getBBox && _isSVG(e)),
 					isSVGRoot = ((e.nodeName + "").toLowerCase() === "svg"),
@@ -526,14 +526,13 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 				if (e === window || !e || !e.style || !e.parentNode) {
 					return [1,0,0,1,0,0];
 				}
-				var cache = e._gsCache || _cache(e),
+				var cache = e._dCache || _cache(e),
 					parent = e.parentNode,
-					parentCache = parent._gsCache || _cache(parent),
+					parentCache = parent._dCache || _cache(parent),
 					cs = cache.computedStyle,
 					parentOffsetParent = cache.isSVG ? parentCache.offsetParent : parent.offsetParent,
 					m, isRoot, offsets, rect, t, sx, sy, offsetX, offsetY, parentRect, borderTop, borderLeft, borderTranslateX, borderTranslateY;
 				m = (cache.isSVG && (e.style[_transformProp] + "").indexOf("matrix") !== -1) ? e.style[_transformProp] : cs ? cs.getPropertyValue(_transformPropCSS) : e.currentStyle ? e.currentStyle[_transformProp] : "1,0,0,1,0,0"; //some browsers (like Chrome 40) don't correctly report transforms that are applied inline on an SVG element (they don't get included in the computed style), so we double-check here and accept matrix values
-
 				if (e.getBBox && (e.getAttribute("transform") + "").indexOf("matrix") !== -1) { //SVG can store transform data in its "transform" attribute instead of the CSS, so look for that here (only accept matrix()).
 					m = e.getAttribute("transform");
 				}
@@ -1261,7 +1260,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 							self.y = parseInt(target.style.top, 10) || 0;
 							self.x = parseInt(target.style.left, 10) || 0;
 						}
-						if ((snapX || snapY) && !skipSnap) {
+						if ((snapX || snapY) && !skipSnap && (self.isDragging || self.isThrowing)) {
 							if (snapX) {
 								snappedValue = snapX(self.x);
 								if (snappedValue !== self.x) {
@@ -1520,8 +1519,10 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 					onPress = function(e) {
 						var i;
 						if (!enabled || self.isPressed || !e || ((e.type === "mousedown" || e.type === "pointerdown") && _getTime() - clickTime < 30 && _touchEventLookup[self.pointerEvent.type])) { //when we DON'T preventDefault() in order to accommodate touch-scrolling and the user just taps, many browsers also fire a mousedown/mouseup sequence AFTER the touchstart/touchend sequence, thus it'd result in two quick "click" events being dispatched. This line senses that condition and halts it on the subsequent mousedown.
+							console.log("RETURN onPress", self.isPressed, e.type);
 							return;
 						}
+						console.log("onPress", e.type);
 						interrupted = isTweening();
 						self.pointerEvent = e;
 						if (_touchEventLookup[e.type]) { //note: on iOS, BOTH touchmove and mousemove are dispatched, but the mousemove has pageY and pageX of 0 which would mess up the calculations and needlessly hurt performance.
@@ -1546,7 +1547,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 							_setSelectable(triggers, true); //accommodates things like inputs and elements with contentEditable="true" (otherwise user couldn't drag to select text)
 							return;
 						}
-						allowNativeTouchScrolling = (!touchEventTarget || allowX === allowY || scrollProxy || self.vars.allowNativeTouchScrolling === false) ? false : allowX ? "y" : "x";
+						allowNativeTouchScrolling = (!touchEventTarget || allowX === allowY || self.vars.allowNativeTouchScrolling === false) ? false : allowX ? "y" : "x";
 						if (_isOldIE) {
 							e = _populateIEEvent(e, true);
 						} else if (!allowNativeTouchScrolling && !self.allowEventDefault) {
@@ -1601,7 +1602,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 					//called every time the mouse/touch moves
 					onMove = function(e) {
 						var originalEvent = e,
-							touches, pointerX, pointerY, i;
+							touches, pointerX, pointerY, i, dx, dy;
 						if (!enabled || _isMultiTouching || !self.isPressed || !e) {
 							return;
 						}
@@ -1630,16 +1631,20 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 									pointerY = pointerX * matrix[1] + pointerY * matrix[3] + matrix[5];
 									pointerX = i;
 								}
-								touchDragAxis = (Math.abs(pointerX - startPointerX) > Math.abs(pointerY - startPointerY) && allowX) ? "x" : "y";
-								if (self.vars.lockAxisOnTouchScroll !== false) {
-									self.lockedAxis = (touchDragAxis === "x") ? "y" : "x";
-									if (typeof(self.vars.onLockAxis) === "function") {
-										self.vars.onLockAxis.call(self, originalEvent);
+								dx = Math.abs(pointerX - startPointerX);
+								dy = Math.abs(pointerY - startPointerY);
+								if ((dx !== dy && (dx > minimumMovement || dy > minimumMovement)) || (_isAndroid && allowNativeTouchScrolling === touchDragAxis)) {
+									touchDragAxis = (dx > dy && allowX) ? "x" : "y";
+									if (self.vars.lockAxisOnTouchScroll !== false) {
+										self.lockedAxis = (touchDragAxis === "x") ? "y" : "x";
+										if (typeof(self.vars.onLockAxis) === "function") {
+											self.vars.onLockAxis.call(self, originalEvent);
+										}
 									}
-								}
-								if (_isAndroid && allowNativeTouchScrolling === touchDragAxis) {
-									onRelease(originalEvent);
-									return;
+									if (_isAndroid && allowNativeTouchScrolling === touchDragAxis) {
+										onRelease(originalEvent);
+										return;
+									}
 								}
 							}
 							if (!self.allowEventDefault && (!allowNativeTouchScrolling || (touchDragAxis && allowNativeTouchScrolling !== touchDragAxis)) && originalEvent.cancelable !== false) {
@@ -1662,7 +1667,6 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 
 						self.pointerX = pointerX;
 						self.pointerY = pointerY;
-
 						if (rotationMode) {
 							y = Math.atan2(rotationOrigin.y - pointerY, pointerX - rotationOrigin.x) * _RAD2DEG;
 							dif = self.y - y;
@@ -1706,7 +1710,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 							y = startElementY + yChange * dragTolerance;
 						}
 
-						if (snapX || snapY) {
+						if ((snapX || snapY) && (self.x !== x || (self.y !== y && !rotationMode))) {
 							if (snapX) {
 								x = snapX(x);
 							}
@@ -1732,6 +1736,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 							y = Math.round(y);
 						}
 						if (self.x !== x || (self.y !== y && !rotationMode)) {
+							console.log("setting self ", x, y);
 							if (rotationMode) {
 								self.endRotation = self.x = self.endX = x;
 							} else {
@@ -1858,7 +1863,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 					},
 
 					updateScroll = function(e) {
-						if (e && self.isDragging) {
+						if (e && self.isDragging && !scrollProxy) {
 							var parent = e.target || e.srcElement || target.parentNode,
 								deltaX = parent.scrollLeft - parent._gsScrollX,
 								deltaY = parent.scrollTop - parent._gsScrollY;
@@ -2059,7 +2064,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 								_setStyle(trigger, "cursor", vars.cursor || "move");
 							}
 							_setStyle(trigger, "touchCallout", "none");
-							_setStyle(trigger, "touchAction", (allowX === allowY || scrollProxy) ? "none" : allowX ? "pan-y" : "pan-x");
+							_setStyle(trigger, "touchAction", (allowX === allowY) ? "none" : allowX ? "pan-y" : "pan-x");
 						}
 						_setSelectable(triggers, false);
 					}
@@ -2185,7 +2190,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 		p.constructor = Draggable;
 		p.pointerX = p.pointerY = 0;
 		p.isDragging = p.isPressed = false;
-		Draggable.version = "0.14.8";
+		Draggable.version = "0.14.9";
 		Draggable.zIndex = 1000;
 
 		_addListener(_doc, "touchcancel", function() {
