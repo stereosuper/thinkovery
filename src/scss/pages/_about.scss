@@ -184,6 +184,15 @@
     }
 }
 
+
+@media (max-width: 1220px){ // grid width
+    .about-img6{
+        .icon{
+            display: none;
+        }
+    }
+}
+
 @media (max-width: $desktop){
     .about-txt1{
         width: $col*5;
@@ -198,11 +207,6 @@
 
     .about-img4{
         width: $col*5;
-    }
-    .about-img6{
-        .icon{
-            display: none;
-        }
     }
     .about-img7{
         width: $col*6;
