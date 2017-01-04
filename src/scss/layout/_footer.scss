@@ -4,6 +4,10 @@
     padding: 0 0 75px;
     background: $black;
     color: #fff;
+    &.footer-contact{
+        padding-top: 80px;
+        border-top: 20px solid $gray-dark;
+    }
     a{
         box-shadow: none;
     }

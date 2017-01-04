@@ -1,16 +1,18 @@
 	</main>
 
-    <footer role='contentinfo' id='footer'>
-        <div class='footer-top'>
-            <div class='container'>
-                <div class='container-medium'>
-                    <p><?php the_field('ctaTxt', 'options'); ?></p>
-                    <a href='<?php the_field('ctaLink', 'options'); ?>' class='btn'>
-                        <?php the_field('ctaLinkTxt', 'options'); ?><svg class='icon'><use xlink:href='#icon-arrow-right'/></svg><i></i>
-                    </a>
+    <footer role='contentinfo' id='footer' <?php if(is_page_template('contact.php')){ echo "class='footer-contact'";} ?>>
+        <?php if(!is_page_template('contact.php')){ ?>
+            <div class='footer-top'>
+                <div class='container'>
+                    <div class='container-medium'>
+                        <p><?php the_field('ctaTxt', 'options'); ?></p>
+                        <a href='<?php the_field('ctaLink', 'options'); ?>' class='btn'>
+                            <?php the_field('ctaLinkTxt', 'options'); ?><svg class='icon'><use xlink:href='#icon-arrow-right'/></svg><i></i>
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
+        <?php } ?>
         <div class='container'>
             <div class='container-medium'>
                 <div class='grid'>
