@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Thinkovery\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: Mon Dec 05 2016 15:48:13 GMT+0100 (CET)\n"
-"PO-Revision-Date: Mon Dec 12 2016 17:38:08 GMT+0100 (CET)\n"
+"PO-Revision-Date: Wed Jan 04 2017 15:30:51 GMT+0100 (CET)\n"
 "Last-Translator: adminThink <elisabeth@stereosuper.fr>\n"
 "Language-Team: \n"
 "Language: French (France)\n"
@@ -21,107 +21,260 @@ msgstr ""
 "X-Loco-Target-Locale: fr_FR\n"
 "X-Generator: Loco - https://localise.biz/"
 
-#: category.php:17 /index.php:17 /search.php:24
+#: ../../themes/thinkovery/404.php:3
+msgid "Erreur 404 - Trump n'a pas du regarder de MOOC.."
+msgstr ""
+
+#: ../../themes/thinkovery/404.php:5
+msgid "Lui, il n'a pas du regarder de"
+msgstr ""
+
+#. Name of the template
+msgid "About"
+msgstr ""
+
+#: ../../themes/thinkovery/category.php:5
+msgid "Category"
+msgstr ""
+
+#: ../../themes/thinkovery/category.php:27 ../../themes/thinkovery/index.php:27 ..
+#: /../themes/thinkovery/search.php:34
+msgid "Previous page"
+msgstr ""
+
+#: ../../themes/thinkovery/category.php:27 ../../themes/thinkovery/index.php:27 ..
+#: /../themes/thinkovery/search.php:34
 msgid "Next page"
 msgstr ""
 
-#: category.php:22 /index.php:22
+#: ../../themes/thinkovery/category.php:32 ../../themes/thinkovery/index.php:32
 msgid "No posts yet!"
 msgstr ""
 
-#: comments.php:38 /includes/post.php:29 /includes/posts.php:29
+#: ../../themes/thinkovery/comments.php:24
+msgid "Your comment is being verified"
+msgstr ""
+
+#: ../../themes/thinkovery/comments.php:37 ../../themes/thinkovery/includes/posts.
+#: php:29
 msgid "Leave a comment"
 msgstr ""
 
-#: comments.php:61
+#: ../../themes/thinkovery/comments.php:61
 msgid "Name"
 msgstr ""
 
-#: comments.php:66
+#: ../../themes/thinkovery/comments.php:67 ../../themes/thinkovery/contact.php:142
 msgid "Email"
 msgstr ""
 
-#: comments.php:71
+#: ../../themes/thinkovery/comments.php:72
 msgid "Website"
 msgstr ""
 
-#: comments.php:78
+#: ../../themes/thinkovery/comments.php:72 ../../themes/thinkovery/contact.php:138
+msgid "optionnal"
+msgstr ""
+
+#: ../../themes/thinkovery/comments.php:80
 msgid "Comment"
 msgstr ""
 
-#: comments.php:82
+#: ../../themes/thinkovery/comments.php:85 ../../themes/thinkovery/contact.php:180
 msgid "Send"
+msgstr ""
+
+#. Name of the template
+msgid "Contact"
+msgstr ""
+
+#: ../../themes/thinkovery/contact.php:32
+msgid "The field \"Last Name\" is mandatory"
+msgstr ""
+
+#: ../../themes/thinkovery/contact.php:36
+msgid "The field \"First Name\" is mandatory"
+msgstr ""
+
+#: ../../themes/thinkovery/contact.php:40
+msgid "The field \"Function\" is mandatory"
+msgstr ""
+
+#: ../../themes/thinkovery/contact.php:44
+msgid "The field \"Email\" is mandatory"
+msgstr ""
+
+#: ../../themes/thinkovery/contact.php:48
+msgid "The email address is not valid"
+msgstr ""
+
+#: ../../themes/thinkovery/contact.php:54
+msgid "The phone number is not valid"
+msgstr ""
+
+#: ../../themes/thinkovery/contact.php:59
+msgid "Please choose a subject"
+msgstr ""
+
+#: ../../themes/thinkovery/contact.php:63
+msgid "The field \"Project\" is mandatory"
+msgstr ""
+
+#: ../../themes/thinkovery/contact.php:88
+msgid "We are sorry, an error happened! Please try again later."
+msgstr ""
+
+#: ../../themes/thinkovery/contact.php:104
+msgid "Open on Google Maps"
+msgstr ""
+
+#: ../../themes/thinkovery/contact.php:108
+msgid "Call us"
+msgstr ""
+
+#: ../../themes/thinkovery/contact.php:112
+msgid "Send an email"
+msgstr ""
+
+#: ../../themes/thinkovery/contact.php:119
+msgid "The form countains some errors, please check the highlighted fields"
+msgstr ""
+
+#: ../../themes/thinkovery/contact.php:124
+msgid "Last Name"
+msgstr ""
+
+#: ../../themes/thinkovery/contact.php:128
+msgid "First Name"
+msgstr ""
+
+#: ../../themes/thinkovery/contact.php:133
+msgid "Function"
+msgstr ""
+
+#: ../../themes/thinkovery/contact.php:138
+msgid "Phone"
+msgstr ""
+
+#: ../../themes/thinkovery/contact.php:146
+msgid "I am contacting you to"
+msgstr ""
+
+#: ../../themes/thinkovery/contact.php:151
+msgid "Work with you"
+msgstr ""
+
+#: ../../themes/thinkovery/contact.php:157
+msgid "Work for you"
+msgstr ""
+
+#: ../../themes/thinkovery/contact.php:163
+msgid "Know you"
+msgstr ""
+
+#: ../../themes/thinkovery/contact.php:169
+msgid "It's mum, call me back!"
+msgstr ""
+
+#: ../../themes/thinkovery/contact.php:176
+msgid "Your project"
+msgstr ""
+
+#: ../../themes/thinkovery/contact.php:185
+msgid "Thank you"
+msgstr ""
+
+#: ../../themes/thinkovery/contact.php:186
+msgid "Your message has been sent!"
+msgstr ""
+
+#: ../../themes/thinkovery/contact.php:187
+msgid "We will get back to you as soon as possible."
 msgstr ""
 
 #. Name of the template
 msgid "Front Page"
 msgstr ""
 
-#: includes/post.php:26 /includes/posts.php:26
+#: ../../themes/thinkovery/front-page.php:38
+msgid "Previous"
+msgstr ""
+
+#: ../../themes/thinkovery/front-page.php:40
+msgid "Next"
+msgstr ""
+
+#: ../../themes/thinkovery/includes/post.php:14
+msgid "in"
+msgstr ""
+
+#: ../../themes/thinkovery/includes/post.php:46 ../..
+#: /themes/thinkovery/includes/posts.php:47
+msgid "Find us on"
+msgstr ""
+
+#: ../../themes/thinkovery/includes/posts.php:26
 #, php-format
 msgid "%s comment"
 msgid_plural "%s comments"
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/post.php:47 /includes/posts.php:47
-msgid "Find us on"
-msgstr ""
-
 #. Name of the template
 msgid "References"
 msgstr ""
 
-#: references.php:21
-msgid "En savoir plus"
+#: ../../themes/thinkovery/references.php:22
+msgid "Study case"
 msgstr ""
 
-#: search.php:10
-msgid "results"
+#: ../../themes/thinkovery/references.php:27
+msgid "Read more on our blog"
 msgstr ""
 
-#: search.php:10
-msgid "result"
+#: ../../themes/thinkovery/search.php:10
+msgid "results for"
 msgstr ""
 
-#: search.php:13 /search.php:29
-msgid "The search for"
+#: ../../themes/thinkovery/search.php:10
+msgid "result for"
 msgstr ""
 
-#: search.php:13
-msgid "returned"
+#: ../../themes/thinkovery/search.php:41
+msgid "No results for"
 msgstr ""
 
-#: search.php:29
-msgid "didn't return any results"
-msgstr ""
-
-#: searchform.php:2 /searchform.php:3
+#: ../../themes/thinkovery/searchform.php:3 ../../themes/thinkovery/searchform.
+#: php:4
 msgid "Search"
 msgstr ""
 
-#: single.php:21
-msgid "Share on"
+#: ../../themes/thinkovery/single.php:30
+msgid "Share this post"
 msgstr ""
 
-#: single.php:24
+#: ../../themes/thinkovery/single.php:33
 msgid "Share on Twitter"
 msgstr ""
 
-#: single.php:27
+#: ../../themes/thinkovery/single.php:36
 msgid "Share on Linkedin"
 msgstr ""
 
-#: single.php:30
+#: ../../themes/thinkovery/single.php:39
 msgid "Share on Facebook"
 msgstr ""
 
-#: single.php:54
+#: ../../themes/thinkovery/single.php:68
 msgid "Related Posts"
 msgstr ""
 
 #. Name of the template
 msgid "Sitemap"
+msgstr ""
+
+#. Name of the template
+msgid "Solutions"
 msgstr ""
 
 #. Name of the theme
@@ -140,14 +293,10 @@ msgstr ""
 msgid "http://stereosuper.fr"
 msgstr ""
 
-#: category.php:17 /index.php:17 /search.php:24
-msgid "Previous page"
-msgstr "test"
-
-#: header.php:87 /header.php:88
-msgid "en"
-msgstr "fr"
-
-#: comments.php:12
+#: ../../themes/thinkovery/comments.php:12
 msgid "Comments"
 msgstr "Commentaires"
+
+#: ../../themes/thinkovery/header.php:21
+msgid "en"
+msgstr "fr"
