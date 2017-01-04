@@ -62,11 +62,9 @@ get_header(); ?>
                 <?php the_field('section1Txt1'); ?>
                 <?php if(get_field('section1Video1')){ ?>
                     <div class='wrapper-video'>
-                        <div>
-                            <iframe src='<?php the_field('section1Video1'); ?>?enablejsapi=1&html5=1' frameborder='0' allowfullscreen></iframe>
-                            <div class='cover-video' style='background-image:url(<?php echo wp_get_attachment_url(get_field('section1Cover1')); ?>)'>
-                                <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop-thin'/></svg>
-                            </div>
+                        <iframe src='<?php the_field('section1Video1'); ?>?enablejsapi=1&html5=1' frameborder='0' allowfullscreen></iframe>
+                        <div class='cover-video' style='background-image:url(<?php echo wp_get_attachment_url(get_field('section1Cover1')); ?>)'>
+                            <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop-thin'/></svg>
                         </div>
                     </div>
                 <?php } ?>
@@ -75,11 +73,9 @@ get_header(); ?>
                 <?php the_field('section1Txt2'); ?>
                 <?php if(get_field('section1Video2')){ ?>
                     <div class='wrapper-video'>
-                        <div>
-                            <iframe src='<?php the_field('section1Video2'); ?>?enablejsapi=1&html5=1' frameborder='0' allowfullscreen></iframe>
-                            <div class='cover-video' style='background-image:url(<?php echo wp_get_attachment_url(get_field('section1Cover2')); ?>)'>
-                                <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop-thin'/></svg>
-                            </div>
+                        <iframe src='<?php the_field('section1Video2'); ?>?enablejsapi=1&html5=1' frameborder='0' allowfullscreen></iframe>
+                        <div class='cover-video' style='background-image:url(<?php echo wp_get_attachment_url(get_field('section1Cover2')); ?>)'>
+                            <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop-thin'/></svg>
                         </div>
                     </div>
                 <?php } ?>
