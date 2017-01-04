@@ -14,7 +14,7 @@ module.exports = function(body, blocTop, themeColors){
     var baseline = currentSlide.find('.baseline'), baselineSecond = currentSlide.find('.baseline-second');
     var imgW = blocTop.data('img-width'), imgH = blocTop.data('img-height'), imgRatio = imgH / imgW;
     var circle = currentSlide.find('.hoop');
-    var newPosBaseline, newPosCircle, containerW, gutter = 20;
+    var newPosBaseline, newPosCircle, containerW = blocTop.width(), gutter = 20;
     var header = $('#header');
     var nav = blocTop.find('#slider-home-nav'), svgHoop = $('#gradient-hoop');
     var slides = blocTop.find('.slide-home'), nbSlides = slides.length, slidesTxt = blocRevel.find('.slide-home-txt');
@@ -26,14 +26,11 @@ module.exports = function(body, blocTop, themeColors){
 
     function setPosCircle(){
         newPosCircle = getEltPosOnCover(blocTop, imgRatio, imgW, imgH, circle);
-        containerW = blocTop.width();
-
         TweenMax.set(circle, {scale: newPosCircle[2], left: newPosCircle[0] + 'px', top: newPosCircle[1] + 'px', force3D: true});
     }
 
     function setPosBaseline(){
         newPosBaseline = getEltPosOnCover(blocTop, imgRatio, imgW, imgH, baseline);
-        containerW = blocTop.width();
 
         TweenMax.set(baseline, {scale: newPosBaseline[2], left: newPosBaseline[0] + 'px', top: newPosBaseline[1] + 'px', force3D: true, onComplete: function(){
             if(newPosBaseline[0] < gutter || newPosBaseline[0] + baseline.width() + gutter*2 > containerW || newPosBaseline[1] < header.height()){
@@ -53,7 +50,7 @@ module.exports = function(body, blocTop, themeColors){
 
         nav.find('.current').html(currentSlide.index('.slide-home') + 1);
 
-        body.removeClass('theme-'+body.data('theme')).addClass('theme-'+currentSlide.data('color')).data('theme', currentSlide.data('color')).dequeue();
+        body.removeClass('theme-'+body.data('theme')).addClass('theme-'+currentSlide.data('color')).data('theme', currentSlide.data('color'));
         svgHoop.find('[data-theme-main]').attr('stop-color', themeColors[currentSlide.data('color')][0]);
         svgHoop.find('[data-theme-second]').attr('stop-color', themeColors[currentSlide.data('color')][1]);
     }
@@ -84,7 +81,7 @@ module.exports = function(body, blocTop, themeColors){
 
     nav.on('click', '.prev', function(e){
         e.preventDefault();
-        slide(currentSlide.prev('.slide-home'), currentTxt.prev('.slide-home-txt'), nbSlides - 1);
+        slide(currentSlide.prev('.slide-home'), currentTxt.prev('.slide-home-txt'), nbSlides-1);
     }).on('click', '.next', function(e){
         e.preventDefault();
         slide(currentSlide.next('.slide-home'), currentTxt.next('.slide-home-txt'), 0);
@@ -99,6 +96,8 @@ module.exports = function(body, blocTop, themeColors){
     });
 
     $(window).on('resize', throttle(function(){
+        containerW = blocTop.width();
+
         requestAnimFrame(setPosBaseline);
         requestAnimFrame(setPosCircle);
     }, 60));
