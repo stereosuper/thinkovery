@@ -30,7 +30,8 @@
         .form-search button,
         .study-subtitle,
         .quote-cite > b,
-        .solutions-list h3{
+        .solutions-list h3,
+        .pagination > a:hover, .pagination > a:focus{
         	color: $colorprimary;
         }
 
@@ -46,7 +47,8 @@
         .about-img:after,
         .comments li:after,
         .study-content > h2:before,
-        .quote-cite:before{
+        .quote-cite:before,
+        .pagination > .current:before{
 			background-color: $colorprimary;
         }
 

@@ -433,6 +433,80 @@
     }
 }
 
+.pagination{
+    display: flex;
+    width: $col*4;
+    min-width: 260px;
+    position: relative;
+    margin: 0 auto;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    font-weight: 600;
+    background: $black;
+    color: #fff;
+    &:before, &:after{
+        content: '';
+        width: $gutter;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        background: #fff;
+    }
+    &:before{
+        left: 0;
+    }
+    &:after{
+        right: 0;
+    }
+    > .page-numbers{
+        display: inline-block;
+        width: 40px;
+        padding: 5px 0;
+        position: relative;
+    }
+    > a{
+        box-shadow: none;
+        color: #fff;
+    }
+    > .current{
+        z-index: 1;
+        &:before{
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: 0;
+            right: 0;
+            bottom: -5px;
+            z-index: -1;
+        }
+    }
+    > .dots{
+        margin-top: -8px;
+    }
+    > .prev, > .next{
+        font-size: 10px;
+        text-indent: -99em;
+        overflow: hidden;
+        > .icon{
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+    }
+    > .prev{
+        &:hover, &:focus{
+            transform: translate3d(-3px, 0, 0);
+        }
+    }
+    > .next{
+        &:hover, &:focus{
+            transform: translate3d(3px, 0, 0);
+        }
+    }
+}
+
 
 @media (max-width: $desktop){
     .single-post{
@@ -464,6 +538,12 @@
         &.alignright{
             margin-right: $colMedium*-1;
             margin-left: $colMedium;
+        }
+    }
+
+    .pagination{
+        &:before, &:after{
+            display: none;
         }
     }
 }
