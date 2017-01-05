@@ -11,11 +11,52 @@ module.exports = function(){
     var errorMargin, maxMargin, minMargin, halfSlide;
     var DraggableElems = [];
 
+    function actualizeSlider(sliderToActualize, sliderThis){
+        sliderTarget = sliderToActualize;
+        sliderClonedTarget = sliderTarget.find('.slides.cloned');
+        originalSliderTarget = sliderTarget.find('.slides:not(.cloned)');
+        slidesTarget = originalSliderTarget.find('> li');
+        widthSlidesTarget = slidesTarget.outerWidth();
+        nbSlidesTarget = slidesTarget.length;
+        widthSliderTarget = nbSlidesTarget*widthSlidesTarget;
+        newX = sliderThis.x;
+
+        if(nbSlidesTarget % 2 === 0){
+            gapLeft = widthSlidesTarget/2;
+        }else{
+            gapLeft = 0;
+        }
+
+        // if(newX > 0){
+        if(newX > gapLeft){
+            // Going left
+            TweenMax.set(sliderClonedTarget, {x: -widthSliderTarget+'px', force3D: true});
+            if(newX > widthSliderTarget){
+                newX -= widthSliderTarget;
+            }
+        }else{
+            // Going right
+            TweenMax.set(sliderClonedTarget, {x: widthSliderTarget+'px', force3D: true});
+            if(newX < -widthSliderTarget){
+                newX += widthSliderTarget;
+            }
+        }
+        if(newX !== this.x){
+            TweenMax.set(sliderTarget, {x: newX, force3D: true, overwrite: false});
+            sliderThis.x = newX;
+        }
+
+        // Rotate svg
+        TweenMax.set(sliderTarget.parents('.container-sliders').find('.hoop'), {rotation: newX/2, force3D: true, overwrite: false});
+    }
+
     function desactivateSlide(){
+        actualizeSlider($(this.target), this);
         $(this.target).find('.slides > li').removeClass('active');
     }
 
     function activateSlide(){
+        actualizeSlider($(this.target), this);
         // activate the centered slide
         sliderTarget = $(this.target);
         centerSliderTarget = sliderTarget.parents('.container-sliders').width()/2;
@@ -51,42 +92,7 @@ module.exports = function(){
     }
 
     function updateSlider(){
-        sliderTarget = $(this.target);
-        sliderClonedTarget = sliderTarget.find('.slides.cloned');
-        originalSliderTarget = sliderTarget.find('.slides:not(.cloned)');
-        slidesTarget = originalSliderTarget.find('> li');
-        widthSlidesTarget = slidesTarget.outerWidth();
-        nbSlidesTarget = slidesTarget.length;
-        widthSliderTarget = nbSlidesTarget*widthSlidesTarget;
-        newX = this.x;
-
-        if(nbSlidesTarget % 2 === 0){
-            gapLeft = widthSlidesTarget/2;
-        }else{
-            gapLeft = 0;
-        }
-
-        // if(newX > 0){
-        if(newX > gapLeft){
-            // Going left
-            TweenMax.set(sliderClonedTarget, {x: -widthSliderTarget+'px', force3D: true});
-            if(newX > widthSliderTarget){
-                newX -= widthSliderTarget;
-            }
-        }else{
-            // Going right
-            TweenMax.set(sliderClonedTarget, {x: widthSliderTarget+'px', force3D: true});
-            if(newX < -widthSliderTarget){
-                newX += widthSliderTarget;
-            }
-        }
-        if(newX !== this.x){
-            TweenMax.set(sliderTarget, {x: newX, force3D: true, overwrite: false});
-            this.x = newX;
-        }
-
-        // Rotate svg
-        TweenMax.set(sliderTarget.parents('.container-sliders').find('.hoop'), {rotation: newX/2, force3D: true, overwrite: false});
+        actualizeSlider($(this.target), this);
     }
 
     function initSlider(container, indexSlider){
@@ -126,6 +132,7 @@ module.exports = function(){
         });
         TweenMax.set(sliderCloned, {x: widthSlider+'px', force3D: true});
         TweenMax.set(slider, {marginLeft: -widthSlider/2+'px'});
+        TweenMax.set(container, {opacity: 1});
 
         activateSlideInitial(container, slides, slideWidth);
 
