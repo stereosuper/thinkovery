@@ -2,6 +2,7 @@
     padding: 0 0 5.5em;
     position: relative;
     margin: 0 0 5.5em;
+    line-height: 1.2;
     &:after{
         content: '';
         height: 1px;
@@ -10,6 +11,9 @@
         right: $col;
         bottom: 0;
         background: rgba($gray-superlight, 0.4);
+    }
+    p{
+        line-height: 1.5;
     }
 }
 

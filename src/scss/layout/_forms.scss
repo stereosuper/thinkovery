@@ -14,6 +14,10 @@
     padding-bottom: 20px;
 }
 
+form{
+    line-height: 1.2;
+}
+
 input, textarea, button{
   	transition: $transition;
   	&:focus{
@@ -200,20 +204,21 @@ input{
     &:nth-of-type(odd){
         margin-right: 3%;
     }
-    label{
+    > label{
         display: block;
         padding: 10px 10px 10px 40px;
         border: 1px solid #fff;
         position: static;
         pointer-events: initial;
         opacity: 0.3;
-        color: #fff;
+        color: #fff !important;
         cursor: pointer;
+        transform: none !important;
         &:hover{
             opacity: 0.5;
         }
     }
-    input{
+    > input{
         position: absolute;
         top: 0;
         left: -99em;
