@@ -5,8 +5,8 @@ var ThrowPropsPlugin = require('./libs/gsap/src/uncompressed/plugins/ThrowPropsP
 
 module.exports = function(){
     var containerSliders = $('.container-sliders');
-    var i, j, newX, centerSlider, centerSlide, originalSlider;
-    var sliderTarget, originalSliderTarget, widthSliderTarget, centerSliderTarget, slidesTarget;
+    var i, j, newX, centerSlider, centerSlide, originalSlider, gapLeft;
+    var sliderTarget, originalSliderTarget, widthSliderTarget, centerSliderTarget, slidesTarget, widthSlidesTarget, nbSlidesTarget;
     var sliderCloned, sliderClonedTarget;
     var errorMargin, maxMargin, minMargin, halfSlide;
     var DraggableElems = [];
@@ -55,10 +55,19 @@ module.exports = function(){
         sliderClonedTarget = sliderTarget.find('.slides.cloned');
         originalSliderTarget = sliderTarget.find('.slides:not(.cloned)');
         slidesTarget = originalSliderTarget.find('> li');
-        widthSliderTarget = slidesTarget.length*slidesTarget.outerWidth();
+        widthSlidesTarget = slidesTarget.outerWidth();
+        nbSlidesTarget = slidesTarget.length;
+        widthSliderTarget = nbSlidesTarget*widthSlidesTarget;
         newX = this.x;
 
-        if(newX > 0){
+        if(nbSlidesTarget % 2 === 0){
+            gapLeft = widthSlidesTarget/2;
+        }else{
+            gapLeft = 0;
+        }
+
+        // if(newX > 0){
+        if(newX > gapLeft){
             // Going left
             TweenMax.set(sliderClonedTarget, {x: -widthSliderTarget+'px', force3D: true});
             if(newX > widthSliderTarget){
