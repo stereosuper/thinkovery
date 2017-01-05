@@ -55,10 +55,12 @@ module.exports = function(){
         sliderClonedTarget = sliderTarget.find('.slides.cloned');
         originalSliderTarget = sliderTarget.find('.slides:not(.cloned)');
         slidesTarget = originalSliderTarget.find('> li');
+        widthSlidesTarget = slidesTarget.outerWidth();
         widthSliderTarget = slidesTarget.length*slidesTarget.outerWidth();
         newX = this.x;
 
-        if(newX > 0){
+        // if(newX > 0){
+        if(newX > (widthSlidesTarget/2)){
             // Going left
             TweenMax.set(sliderClonedTarget, {x: -widthSliderTarget+'px', force3D: true});
             if(newX > widthSliderTarget){
