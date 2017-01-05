@@ -187,6 +187,9 @@
         top: 5px;
         bottom: 0;
         left: -40px;
+        .page-template-default &{
+            display: none;
+        }
     }
     > p{
         font-size: 2.4rem;
