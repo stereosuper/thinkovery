@@ -143,7 +143,7 @@ ul{
             border: 2px solid $black;
             border-radius: 50%;
             position: absolute;
-            top: 9px;
+            top: 12px;
             left: -2*$gutter;
         }
     }
@@ -338,7 +338,7 @@ a{
     ul{
         >li{
             &:before{
-                top: 7px;
+                top: 9px;
             }
         }
     }
@@ -375,7 +375,7 @@ a{
     ul{
         > li{
             &:before{
-                top: 5px;
+                top: 7px;
             }
         }
     }

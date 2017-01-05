@@ -19,6 +19,11 @@
                 color: #fff;
             }
         }
+        > li{
+            &:before{
+                margin-top: -2px;
+            }
+        }
     }
     .link-small{
         padding: 0 0 0 $gutter;
