@@ -135,6 +135,7 @@
     box-shadow: none;
     > img{
         width: 100%;
+        border: 1px solid rgba($gray-superlight, 0.4);
     }
 }
 .wrapper-post-content{
