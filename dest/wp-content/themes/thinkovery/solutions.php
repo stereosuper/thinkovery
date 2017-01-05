@@ -14,6 +14,7 @@ get_header(); ?>
 		?>
 
 		<header class='solutions-header' style='background-image:url(<?php the_post_thumbnail_url(); ?>)' id='solutions-header' data-img-width='<?php echo $imgWidth; ?>' data-img-height='<?php echo $imgHeight; ?>'>
+			<?php the_post_thumbnail(); ?>
 			<div class='container'>
 				<div class='container-medium'>
 					<div class='solutions-intro'>
