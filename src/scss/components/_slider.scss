@@ -91,6 +91,7 @@
 		padding: 0;
 		vertical-align: top;
 		margin: 0;
+		backface-visibility: hidden;
 		&.active{
 			img{
 				filter: grayscale(0%);
