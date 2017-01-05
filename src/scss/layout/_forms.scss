@@ -112,7 +112,7 @@ input{
         &:focus, &.on{
             + label{
                 //opacity: 0;
-                transform: translate3d(0, -210%, 0);
+                transform: translate3d(0, -200%, 0) scale(0.9);
             }
         }
     }

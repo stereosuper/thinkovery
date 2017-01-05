@@ -256,10 +256,18 @@
     }
     .about-img3{
         margin: 0 0 0 $col*2;
+        > .hoop{
+            display: none;
+        }
     }
     .about-img4{
         width: 50%;
         margin: 0;
+    }
+    .about-img5{
+        > .hoop{
+            display: none;
+        }
     }
     .about-img7{
         width: 100%;
