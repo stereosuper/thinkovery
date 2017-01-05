@@ -2,6 +2,7 @@
 
 var $ = require('./libs/jquery/dist/jquery.slim.min.js');
 // var TweenMax = require('./libs/gsap/src/uncompressed/TweenMax.js');
+var isMobile = require('./libs/isMobile.min.js');
 
 $(function(){
 
@@ -31,12 +32,14 @@ $(function(){
     var searchInput = $('#search'), formContact = $('#form-contact');
 
 
-    // isMobile.any ? body.addClass('is-mobile') : body.addClass('is-desktop');
 
     function checkEmptyInput(input){
         if(input.attr('type') === 'radio') return;
         input.val() !== '' ? input.addClass('on') : input.removeClass('on');
     }
+
+
+    isMobile.any ? body.addClass('is-mobile') : body.addClass('is-desktop');
 
 
     // Anim header on scroll + scroll indicator
@@ -75,6 +78,7 @@ $(function(){
     // }, 60));
 
 });
+
 
 $(window).on('load', function(){
     var body = $('body');
