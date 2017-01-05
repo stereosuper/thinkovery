@@ -9,21 +9,15 @@
 			<article class='container <?php if( has_post_thumbnail() ){ ?>has-post-img<?php } ?>'>
 
 				<div class='container-small'>
-					<?php if(has_post_thumbnail()){ ?>
-						<time datetime='<?php echo get_the_date('Y-m-d'); ?>' class='post-date'><?php echo get_the_date(); ?></time>
-					<?php } ?>
+					<time datetime='<?php echo get_the_date('Y-m-d'); ?>' class='post-date'><?php echo get_the_date(); ?></time>
 
 					<h1><?php the_title(); ?></h1>
-
-					<?php if(!has_post_thumbnail()){ ?>
-						<time datetime='<?php echo get_the_date('Y-m-d'); ?>'><?php echo get_the_date(); ?></time>
-					<?php } ?>
 
 					<?php if(get_field('intro')){ ?>
 					    <div class='intro'><?php the_field('intro'); ?></div>
 					<?php } ?>
 
-					<?php the_content(); ?>
+					<div class='single-content'><?php the_content(); ?></div>
 
 					<div class='wrapper-share-related'>
 						<div class='share-post'>
