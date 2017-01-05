@@ -16,6 +16,7 @@ module.exports = function(body, blocTop, themeColors){
     var circle = currentSlide.find('.hoop');
     var newPosBaseline, newPosCircle, containerW = blocTop.width(), gutter = 20;
     var header = $('#header');
+    var favicons = $('.favicon'), faviconsHref, currentFaviconsColor;
     var nav = blocTop.find('#slider-home-nav'), svgHoop = $('#gradient-hoop');
     var slides = blocTop.find('.slide-home'), nbSlides = slides.length, slidesTxt = blocRevel.find('.slide-home-txt');
     var ease = CustomEase.create('custom', 'M0,0,C0,0.5,0.005,0.73,0.11,0.85,0.22,0.975,0.505,1,1,1');
@@ -53,6 +54,25 @@ module.exports = function(body, blocTop, themeColors){
         body.removeClass('theme-'+body.data('theme')).addClass('theme-'+currentSlide.data('color')).data('theme', currentSlide.data('color'));
         svgHoop.find('[data-theme-main]').attr('stop-color', themeColors[currentSlide.data('color')][0]);
         svgHoop.find('[data-theme-second]').attr('stop-color', themeColors[currentSlide.data('color')][1]);
+
+        // Favicons url
+        faviconsHref = favicons.eq(0).attr('href');
+        if(faviconsHref.includes('blue')){
+            currentFaviconsColor = 'blue';
+        }else if(faviconsHref.includes('green')){
+            currentFaviconsColor = 'green';
+        }else if(faviconsHref.includes('yellow')){
+            currentFaviconsColor = 'yellow';
+        }else if(faviconsHref.includes('orange')){
+            currentFaviconsColor = 'orange';
+        }else if(faviconsHref.includes('red')){
+            currentFaviconsColor = 'red';
+        }else if(faviconsHref.includes('pink')){
+            currentFaviconsColor = 'pink';
+        }
+        favicons.each(function(){
+            this.href = this.href.replace(currentFaviconsColor, body.data('theme'));
+        });
     }
 
     function slide(nextSlide, nextTxt, lastSlideIndex){
