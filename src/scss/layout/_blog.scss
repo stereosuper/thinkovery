@@ -62,7 +62,8 @@
     }
     .wrapper-video{
         > div{
-            padding: 0 0 66%;
+            height: 100%;
+            padding: 0;
             margin: 0;
         }
         .hoop{
@@ -762,6 +763,18 @@
         }
         .btn-small{
             font-size: 1.4rem;
+        }
+        &.post-video{
+            display: block;
+            .wrapper-video{
+                width: 100%;
+                > div{
+                    padding: 0 0 50%;
+                }
+            }
+            .wrapper-post-content{
+                width: 100%;
+            }
         }
     }
 }
