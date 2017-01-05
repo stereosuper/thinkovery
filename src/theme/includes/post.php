@@ -1,6 +1,6 @@
 <?php global $formatLink, $countPost; ?>
 
-<div class='post <?php if($formatLink){ echo 'post-network'; }else{ if($countPost % 2 !== 0){ echo 'post-odd'; } } if( !has_post_thumbnail() ){ echo ' no-img'; } ?>'>
+<div class='post <?php if($formatLink){ echo 'post-network'; if(get_field('video') && get_field('cover')){ echo ' post-video'; } }else{ if($countPost % 2 !== 0){ echo 'post-odd'; } } if( !has_post_thumbnail() ){ echo ' no-img'; } ?>'>
     <?php if(!$formatLink){ ?>
         <?php if( has_post_thumbnail() ){ ?>
             <a href='<?php the_permalink(); ?>' class='wrapper-post-img'>
@@ -35,7 +35,16 @@
 
     <?php }else{ ?>
 
-        <?php if( has_post_thumbnail() ){ ?>
+        <?php if(get_field('video') && get_field('cover')){ ?>
+            <div class='wrapper-video'>
+                <div>
+                    <iframe src='<?php the_field('video'); ?>?enablejsapi=1&html5=1' frameborder='0' allowfullscreen></iframe>
+                    <div class='cover-video' style='background-image:url(<?php echo wp_get_attachment_url(get_field('cover')); ?>)'>
+                        <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop-thin'/></svg>
+                    </div>
+                </div>
+            </div>
+        <?php }else if( has_post_thumbnail() ){ ?>
             <a href='<?php the_field('link'); ?>' target='_blank' class='wrapper-post-img' style='background-image: url(<?php the_post_thumbnail_url(); ?>)'>
             </a>
         <?php } ?>

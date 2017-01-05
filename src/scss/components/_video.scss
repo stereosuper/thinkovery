@@ -24,11 +24,11 @@
         &:before, &:after{
             content: '';
             position: absolute;
-        }
-        &:before{
             top: 0;
             right: 0;
             bottom: 0;
+        }
+        &:before{
             left: 0;
             background: rgba($black, 0.4);
         }
@@ -40,9 +40,8 @@
             border-top-color: transparent;
             border-right-color: transparent;
             border-bottom-color: transparent;
-            top: 50%;
-            left: 50%;
-            transform: translate3d(-40%, -50%, 0);
+            margin: auto;
+            left: 1%;
             transition: $transition;
             opacity: 0.9;
         }
@@ -60,9 +59,11 @@
         width: 126px;
         height: 126px;
         position: absolute;
-        top: 50%;
-        left: 50%;
-        margin: -63px 0 0 -63px;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        margin: auto;
         opacity: 0.9;
         transition: $transition;
         transform-origin: 50% 50%;
