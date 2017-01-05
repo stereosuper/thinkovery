@@ -88,6 +88,7 @@
         z-index: 1;
     }
     .bloc-success{
+        margin: 0 auto;
         h2{
             margin: 1.5em 0 1em;
             line-height: 0.9;
@@ -96,10 +97,9 @@
         p{
             margin: 0;
             padding: 25px 0;
-            line-height: 1.2;
         }
     }
-    > form, .form-error{
+    > form, .form-error, .bloc-success{
         max-width: 650px;
     }
     > form{
