@@ -126,6 +126,7 @@ module.exports = function(){
         });
         TweenMax.set(sliderCloned, {x: widthSlider+'px', force3D: true});
         TweenMax.set(slider, {marginLeft: -widthSlider/2+'px'});
+        TweenMax.set(container, {opacity: 1});
 
         activateSlideInitial(container, slides, slideWidth);
 
