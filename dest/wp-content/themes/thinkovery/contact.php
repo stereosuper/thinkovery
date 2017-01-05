@@ -128,16 +128,16 @@ get_header(); ?>
 			    	<?php } ?>
 				    <form method='post' action='<?php the_permalink(); ?>' id='form-contact' class='form-contact'>
 				    	<div class='field m-right <?php if($errorLastname) echo 'error'; ?>'>
-				    		<input type='text' name='last_name' id='last_name' value='<?php echo $lastname; ?>' >
+				    		<input type='text' name='last_name' id='last_name' value='<?php echo $lastname; ?>' required>
 				    		<label for='last_name'><?php _e('Last Name', 'thinkovery'); ?>*</label>
 				    		<?php if($errorLastname) echo '<span>'. $errorLastname .'</span>'; ?>
 				    	</div><div class='field <?php if($errorFirstname) echo 'error'; ?>'>
-				    		<input type='text' name='first_name' id='first_name' value='<?php echo $firstname; ?>' >
+				    		<input type='text' name='first_name' id='first_name' value='<?php echo $firstname; ?>' required>
 				    		<label for='first_name'><?php _e('First Name', 'thinkovery'); ?>*</label>
 				    		<?php if($errorFirstname) echo '<span>'. $errorFirstname .'</span>'; ?>
 				    	</div>
 				    	<div class='field <?php if($errorJob) echo 'error'; ?>'>
-				    		<input type='text' name='job' id='job' value='<?php echo $job; ?>' class='big' >
+				    		<input type='text' name='job' id='job' value='<?php echo $job; ?>' class='big' required>
 				    		<label for='job'><?php _e('Function', 'thinkovery'); ?>*</label>
 				    		<?php if($errorJob) echo '<span>'. $errorJob .'</span>'; ?>
 				    	</div>
@@ -146,7 +146,7 @@ get_header(); ?>
 				    		<label for='tel'><?php _e('Phone', 'thinkovery'); ?> <i>(<?php _e('optionnal', 'thinkovery'); ?>)</i></label>
 				    		<?php if($errorPhone) echo '<span>'. $errorPhone .'</span>'; ?>
 				    	</div><div class='field <?php if($errorMail) echo 'error'; ?>'>
-				    		<input type='email' name='email' id='email' value='<?php echo $mail; ?>' >
+				    		<input type='email' name='email' id='email' value='<?php echo $mail; ?>' required>
 				    		<label for='email'><?php _e('Email', 'thinkovery'); ?>*</label>
 				    		<?php if($errorMail) echo '<span>'. $errorMail .'</span>'; ?>
 				    	</div>
@@ -180,7 +180,7 @@ get_header(); ?>
 				    		<?php if($errorSubject) echo '<span>'. $errorSubject .'</span>'; ?>
 				    	</fieldset>
 				    	<div class='field-full <?php if($errorMsg) echo 'error'; ?>'>
-				    		<textarea name='message' id='message' ><?php echo $msg; ?></textarea>
+				    		<textarea name='message' id='message' required><?php echo $msg; ?></textarea>
 				    		<label for='message'><?php _e('Your project', 'thinkovery'); ?>*</label>
 				    		<?php if($errorMsg) echo '<span>'. $errorMsg .'</span>'; ?>
 				    	</div>
