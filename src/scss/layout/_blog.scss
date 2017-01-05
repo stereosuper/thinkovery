@@ -358,40 +358,47 @@
 }
 
 .archive, .search{
-    #main{
-        .container-small{
-            position: relative;
+    &.is-mobile{
+        .form-search{
+            margin: 0 0 100px;
         }
     }
-    .form-search{
-        width: 100/12*5%;
-        position: absolute;
-        bottom: 0;
-        right: $col*2;
-        &:hover{
-            input{
-                color: $black;
-                border-color: rgba($gray-superlight, 0.4);
-                background: rgba(#fff, 0.9);
+    &:not(.is-mobile){
+        #main{
+            .container-small{
+                position: relative;
+            }
+        }
+        .form-search{
+            width: 100/12*5%;
+            position: absolute;
+            bottom: 0;
+            right: $col*2;
+            &:hover{
+                input{
+                    color: $black;
+                    border-color: rgba($gray-superlight, 0.4);
+                    background: rgba(#fff, 0.9);
+                }
+                label{
+                    opacity: 1;
+                }
             }
             label{
-                opacity: 1;
+                opacity: 0;
             }
-        }
-        label{
-            opacity: 0;
-        }
-        input{
-            color: transparent;
-            border-color: transparent;
-            &:focus{
-                color: $black;
-                border-color: rgba($gray-superlight, 0.4);
-                background: rgba(#fff, 0.9);
-            }
-            &:focus, &.on{
-                + label{
-                    opacity: 0;
+            input{
+                color: transparent;
+                border-color: transparent;
+                &:focus{
+                    color: $black;
+                    border-color: rgba($gray-superlight, 0.4);
+                    background: rgba(#fff, 0.9);
+                }
+                &:focus, &.on{
+                    + label{
+                        opacity: 0;
+                    }
                 }
             }
         }
@@ -639,10 +646,12 @@
     }
 
     .archive, .search{
-        .form-search{
-            width: $col*8;
-            right: 0;
-            bottom: -12px;
+        &:not(.is-mobile){
+            .form-search{
+                width: $col*8;
+                right: 0;
+                bottom: -12px;
+            }
         }
     }
 

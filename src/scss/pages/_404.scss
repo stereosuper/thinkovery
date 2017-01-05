@@ -5,7 +5,7 @@ $color404: map-get($themes, orange);
     #main{
         padding: 0;
         position: relative;
-        .h2{
+        > .h2{
             padding: 0 $gutter*2;
             position: absolute;
             top: 23vw;
@@ -15,23 +15,24 @@ $color404: map-get($themes, orange);
                 color: map-get($color404, color);
             }
         }
-        img{
+        > img{
             width: 100%;
             min-width: 1100px;
         }
     }
 }
 
+
 @media (max-width: $desktop){
     .error404{
-         #main{
-            .h2{
+        #main{
+            > .h2{
                 top: 250px;
                 left: 20px;
                 right: 0;
                 text-align: center;
             }
-            img{
+            > img{
                 position: relative;
                 left: 50%;
                 transform: translate3d(-50%, 0, 0);
@@ -39,3 +40,20 @@ $color404: map-get($themes, orange);
         }
     }
 }
+
+// @media (max-width: $tablet){
+//     .error404{
+//         #main{
+//             > .h2{
+//                 position: static;
+//                 background: #fff;
+//                 color: $black;
+//             }
+//             > img{
+//                 min-width: 0;
+//                 position: static;
+//                 transform: none;
+//             }
+//         }
+//     }
+// }
