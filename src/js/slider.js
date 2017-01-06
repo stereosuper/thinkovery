@@ -2,6 +2,7 @@ var $ = require('./libs/jquery/dist/jquery.slim.min.js');
 var TweenMax = require('./libs/gsap/src/uncompressed/TweenMax.js');
 var Draggable = require('./libs/gsap/src/uncompressed/utils/Draggable.js');
 var ThrowPropsPlugin = require('./libs/gsap/src/uncompressed/plugins/ThrowPropsPlugin.js');
+var throttle = require('./throttle.js');
 
 module.exports = function(){
     var containerSliders = $('.container-sliders');
@@ -10,6 +11,8 @@ module.exports = function(){
     var sliderCloned, sliderClonedTarget;
     var errorMargin, maxMargin, minMargin, halfSlide;
     var DraggableElems = [];
+
+    var windowWidth = $(window).outerWidth(), smallWindowWidth = false;
 
     function actualizeSlider(sliderToActualize, sliderThis){
         sliderTarget = sliderToActualize;
@@ -102,6 +105,10 @@ module.exports = function(){
         var slideWidth = slides.outerWidth(), slideHeight = slides.outerHeight(), halfSlides = nbSlides/2;
         var halfRight, halfLeft, widthSlider = nbSlides*slideWidth, middleSlider = widthSlider/2 - slideWidth/2;
 
+        $('.slides.cloned').remove();
+        $('.slides > li.active').removeClass('active');
+        TweenMax.set([sliders, container.find('.hoop')], {clearProps: 'all'});
+
         if(nbSlides % 2 === 0){
             halfRight = halfSlides;
             halfLeft = halfSlides;
@@ -163,4 +170,22 @@ module.exports = function(){
         initSlider($(this), i);
     });
 
+    if(windowWidth <= 580){
+        smallWindowWidth = true;
+    }
+
+    $(window).on('resize', throttle(function(){
+        windowWidth = $(window).outerWidth();
+        if(windowWidth > 580 && smallWindowWidth){
+            containerSliders.each(function(i){
+                initSlider($(this), i);
+            });
+            smallWindowWidth = false;
+        }else if(windowWidth <= 580 && !smallWindowWidth){
+            containerSliders.each(function(i){
+                initSlider($(this), i);
+            });
+            smallWindowWidth = true;
+        }
+    }, 60));
 }
