@@ -73,7 +73,7 @@ get_header(); ?>
                             </ul>
                         </div>
                     </div>
-                    <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop-thin'/></svg>
+                    <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop-thin'/></svg>
                 </div>
             <?php endif; ?>
         </section>

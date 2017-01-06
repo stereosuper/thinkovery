@@ -46,7 +46,7 @@ get_header(); ?>
 								<div class='img'>
 									<?php echo wp_get_attachment_image( get_sub_field('img') ); ?>
 								</div>
-								<svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop-thin'/></svg>
+								<svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop-thin'/></svg>
 							</li>
 						<?php } ?>
 					</ul>
@@ -76,7 +76,7 @@ get_header(); ?>
 		                </ul>
 		            </div>
 		        </div>
-		        <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop-very-thin'/></svg>
+		        <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop-very-thin'/></svg>
 		    </section>
 		<?php endif; ?>
 

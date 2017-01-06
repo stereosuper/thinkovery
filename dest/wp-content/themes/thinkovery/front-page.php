@@ -19,7 +19,7 @@ get_header(); ?>
                     <strong style='left:<?php echo $decli['baselinePosX']; ?>px;top:<?php echo $decli['baselinePosY']; ?>px' data-x='<?php echo $decli['baselinePosX']; ?>' data-y='<?php echo $decli['baselinePosY']; ?>' class='baseline'>
                         <span style='<?php if($count != $currentDecli) echo 'opacity:0;'; ?>margin-right:<?php echo $decli['circleWidth'] + 50; ?>px'><?php echo $decli['title1']; ?></span><span <?php if($count != $currentDecli) echo "style='opacity:0'"; ?>><?php echo $decli['title2']; ?></span>
                     </strong>
-                    <svg class='icon hoop' style='<?php if($count != $currentDecli) echo 'opacity:0;';?>width:<?php echo $decli['circleWidth']; ?>px;height:<?php echo $decli['circleWidth']; ?>px;z-index:<?php echo $decli['circlePlan']; ?>;left:<?php echo $decli['circleX']; ?>px;top:<?php echo $decli['circleY']; ?>px;fill:url(<?php echo $currentUrl; ?>#gradient-hoop');' data-x='<?php echo $decli['circleX']; ?>' data-y='<?php echo $decli['circleY']; ?>'>
+                    <svg class='icon hoop' style='<?php if($count != $currentDecli) echo 'opacity:0;';?>width:<?php echo $decli['circleWidth']; ?>px;height:<?php echo $decli['circleWidth']; ?>px;z-index:<?php echo $decli['circlePlan']; ?>;left:<?php echo $decli['circleX']; ?>px;top:<?php echo $decli['circleY']; ?>px;fill:url(<?php echo $currentUrl; ?>#gradient-hoop);' data-x='<?php echo $decli['circleX']; ?>' data-y='<?php echo $decli['circleY']; ?>'>
                             <use xlink:href='#icon-hoop-thin'/>
                     </svg>
                     <span class='baseline-second'><span><?php echo $decli['title1']; ?></span> <span><?php echo $decli['title2']; ?></span></span>
@@ -65,7 +65,7 @@ get_header(); ?>
                         <div>
                             <iframe src='<?php the_field('section1Video1'); ?>?enablejsapi=1&html5=1' frameborder='0' allowfullscreen></iframe>
                             <div class='cover-video' style='background-image:url(<?php echo wp_get_attachment_url(get_field('section1Cover1')); ?>)'>
-                                <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop-thin'/></svg>
+                                <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop-thin'/></svg>
                             </div>
                         </div>
                     </div>
@@ -78,7 +78,7 @@ get_header(); ?>
                         <div>
                             <iframe src='<?php the_field('section1Video2'); ?>?enablejsapi=1&html5=1' frameborder='0' allowfullscreen></iframe>
                             <div class='cover-video' style='background-image:url(<?php echo wp_get_attachment_url(get_field('section1Cover2')); ?>)'>
-                                <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop-thin'/></svg>
+                                <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop-thin'/></svg>
                             </div>
                         </div>
                     </div>
@@ -93,16 +93,16 @@ get_header(); ?>
                         <h2><?php the_field('section2Title'); ?></h2>
                         <?php the_field('section2Txt'); ?>
                     </div>
-                    <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop'/></svg>
-                    <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop'/></svg>
-                    <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop'/></svg>
-                    <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop'/></svg>
-                    <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop'/></svg>
-                    <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop'/></svg>
-                    <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop'/></svg>
-                    <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop'/></svg>
-                    <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop'/></svg>
-                    <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop'/></svg>
+                    <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop'/></svg>
+                    <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop'/></svg>
+                    <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop'/></svg>
+                    <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop'/></svg>
+                    <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop'/></svg>
+                    <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop'/></svg>
+                    <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop'/></svg>
+                    <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop'/></svg>
+                    <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop'/></svg>
+                    <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop'/></svg>
                 </div>
             </div>
         </section>
@@ -138,7 +138,7 @@ get_header(); ?>
                             </ul>
                         </div>
                     </div>
-                    <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop-thin'/></svg>
+                    <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop-thin'/></svg>
                 </div>
             <?php endif; ?>
 
@@ -166,7 +166,7 @@ get_header(); ?>
                             </ul>
                         </div>
                     </div>
-                    <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop-very-thin'/></svg>
+                    <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop-very-thin'/></svg>
                 </div>
             <?php endif; ?>
         </section>

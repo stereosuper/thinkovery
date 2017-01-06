@@ -13,7 +13,7 @@ get_header(); ?>
 
 		    <div class='about-img about-img1'>
 		    	<img src='<?php echo get_template_directory_uri(); ?>/layoutImg/about1.jpg' alt='Thinkovery team'>
-		    	<svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop-thin'/></svg>
+		    	<svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop-thin'/></svg>
 		    	<div class='mask'></div>
 		    </div><div class='about-txt about-txt1 col-4'>
 		    	<h2><?php the_field('title1'); ?></h2>
@@ -24,7 +24,7 @@ get_header(); ?>
 		    	<img src='<?php echo get_template_directory_uri(); ?>/layoutImg/about2.jpg' alt=''>
 		    </div><div class='about-img about-img3'>
 		    	<img src='<?php echo get_template_directory_uri(); ?>/layoutImg/about3.jpg' alt=''>
-		    	<svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop'/></svg>
+		    	<svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop'/></svg>
 		    	<div class='mask'></div>
 		    </div>
 
@@ -36,11 +36,11 @@ get_header(); ?>
 		    </div><div class='about-img-wrapper'>
 		    	<div class='about-img about-img5'>
 		    		<img src='<?php echo get_template_directory_uri(); ?>/layoutImg/about5.jpg' alt=''>
-		    		<svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop'/></svg>
+		    		<svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop'/></svg>
 		    	</div>
 		    	<div class='about-img about-img6'>
 		    		<img src='<?php echo get_template_directory_uri(); ?>/layoutImg/about6.jpg' alt=''>
-		    		<svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop'/></svg>
+		    		<svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop'/></svg>
 		    	</div>
 		    </div><div class='about-txt about-txt3 col-3'>
 		    	<h2><?php the_field('title3'); ?></h2>
@@ -49,7 +49,7 @@ get_header(); ?>
 
 		    <div class='about-img about-img7'>
 		    	<img src='<?php echo get_template_directory_uri(); ?>/layoutImg/about7.jpg' alt=''>
-		    	<svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop-thin'/></svg>
+		    	<svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop-thin'/></svg>
 		    	<div class='mask'></div>
 		    </div>
 
