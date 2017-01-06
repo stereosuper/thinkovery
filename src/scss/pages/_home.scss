@@ -133,7 +133,9 @@
 	.container{
 		display: flex;
 		justify-content: space-between;
-		align-items: center;
+		.js &{
+			opacity: 0;
+		}
 	}
 	.zone-txt{
 		width: 50%;
@@ -147,9 +149,12 @@
 		color: $white;
 		font-size: 4.5rem;
 	}
-	.btn{
+	.zone-btn{
 		width: calc(#{$col*4} - #{$gutter*2});
 		margin: 0 $col 0 0;
+	}
+	.btn{
+		width: 100%;
 	}
 }
 
@@ -328,7 +333,7 @@
 			width: 100%;
 			text-align: center;
 		}
-		.btn{
+		.zone-btn{
 			margin: 30px 0 0;
 			width: auto;
 		}
