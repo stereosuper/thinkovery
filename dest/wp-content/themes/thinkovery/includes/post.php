@@ -40,7 +40,7 @@
                 <div>
                     <iframe src='<?php the_field('video'); ?>?enablejsapi=1&html5=1' frameborder='0' allowfullscreen></iframe>
                     <div class='cover-video' style='background-image:url(<?php echo wp_get_attachment_url(get_field('cover')); ?>)'>
-                        <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop')'><use xlink:href='#icon-hoop-thin'/></svg>
+                        <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop-thin'/></svg>
                     </div>
                 </div>
             </div>

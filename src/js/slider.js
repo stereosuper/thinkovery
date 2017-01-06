@@ -107,7 +107,7 @@ module.exports = function(){
 
         $('.slides.cloned').remove();
         $('.slides > li.active').removeClass('active');
-        TweenMax.set([sliders, container.find('.hoop')], {clearProps: 'all'});
+        TweenMax.set([sliders, container.find('.hoop')], {clearProps: 'transform'});
 
         if(nbSlides % 2 === 0){
             halfRight = halfSlides;
