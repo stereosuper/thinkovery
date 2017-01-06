@@ -2,7 +2,7 @@
 
 .btn{
 	display: inline-block;
-	padding: 40px $gutter*2;
+	padding: 40px 35px;
 	position: relative;
 	z-index: 1;
 	overflow: hidden;
@@ -11,7 +11,7 @@
 	text-align: center;
 	box-shadow: none;
 	color: $white !important;
-	line-height: 1.2;
+	line-height: 1;
 	> i{
 		width: 360px;
 		height: 360px;
@@ -97,7 +97,7 @@
 
 @media (max-width: $phone){
 	.btn{
-		padding: 30px $gutter*2;
+		padding: 30px 25px;
 		font-size: 2rem;
 		> i{
 			top: -80%;
