@@ -56,7 +56,7 @@ $(function(){
             checkEmptyInput($(this));
         });
     }
-    if((body.hasClass('archive') || body.hasClass('search')) && searchInput.length){
+    if(searchInput.length){
         searchInput.on('input propertychange', function(){
             checkEmptyInput($(this));
         });

@@ -423,30 +423,25 @@
             bottom: 0;
             right: $col*2;
             &:hover{
-                input{
+                > input{
                     color: $black;
                     border-color: rgba($gray-superlight, 0.4);
                     background: rgba(#fff, 0.9);
                 }
-                label{
+                > label{
                     opacity: 1;
                 }
             }
-            label{
+            > label{
                 opacity: 0;
             }
-            input{
+            > input{
                 color: transparent;
                 border-color: transparent;
                 &:focus{
                     color: $black;
                     border-color: rgba($gray-superlight, 0.4);
                     background: rgba(#fff, 0.9);
-                }
-                &:focus, &.on{
-                    + label{
-                        opacity: 0;
-                    }
                 }
             }
         }
