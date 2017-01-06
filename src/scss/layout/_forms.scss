@@ -158,16 +158,16 @@ input{
 
 .form-search{
     position: relative;
-    input{
+    > input{
         width: 100%;
         border: 3px solid rgba($gray-superlight, 0.4);
-        &:focus{
+        &:focus, &.on{
             + label{
-                opacity: 0;
+                opacity: 0 !important;
             }
         }
     }
-    label{
+    > label{
         position: absolute;
         top: 15px;
         left: $gutter*2;
@@ -175,7 +175,7 @@ input{
         pointer-events: none;
         transition: 0.1s ease-in-out;
     }
-    button{
+    > button{
         width: 44px;
         height: 44px;
         padding: 12px;

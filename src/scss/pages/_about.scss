@@ -255,7 +255,9 @@
         margin: 0;
     }
     .about-img3{
-        margin: 0 0 0 $col*2;
+        width: $col*9;
+        padding-right: 0;
+        margin-bottom: 0;
         > .hoop{
             display: none;
         }
@@ -280,5 +282,9 @@
         > h2{
             font-size: 2.5rem;
         }
+    }
+
+    .about-img3{
+        margin-top: 2.5em;
     }
 }
