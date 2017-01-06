@@ -42,7 +42,7 @@
 
 	// Current url
 	global $currentUrl;
-	$currentUrl = home_url( add_query_arg( null, null ));;
+	$currentUrl = home_url( add_query_arg( null, null ));
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?> class='no-js'>
@@ -53,11 +53,11 @@
 
 		<link rel='alternate' type='application/rss+xml' title='<?php echo get_bloginfo('sitename'); ?> Feed' href='<?php echo get_bloginfo('rss2_url'); ?>'>
 
-		<link class='favicon' rel='apple-touch-icon' sizes='180x180' href='<?php echo get_template_directory_uri() . "/favicons/" . array_keys($themeColors)[$currentDecli] . "/apple-touch-icon.png"; ?>'>
-		<link class='favicon' rel='icon' type='image/png' href='<?php echo get_template_directory_uri() . "/favicons/" . array_keys($themeColors)[$currentDecli] . "/favicon-32x32.png"; ?>' sizes='32x32'>
-		<link class='favicon' rel='icon' type='image/png' href='<?php echo get_template_directory_uri() . "/favicons/" . array_keys($themeColors)[$currentDecli] . "/favicon-16x16.png"; ?>' sizes='16x16'>
-		<link class='favicon' rel='manifest' href='<?php echo get_template_directory_uri() . "/favicons/" . array_keys($themeColors)[$currentDecli] . "/manifest.json"; ?>'>
-		<link class='favicon' rel='mask-icon' href='<<?php echo get_template_directory_uri() . "/favicons/" . array_keys($themeColors)[$currentDecli] . "/safari-pinned-tab.svg"; ?>' color='#000'>
+		<link class='favicon' rel='apple-touch-icon' sizes='180x180' href='<?php echo get_template_directory_uri() . "/favicons/" . $declis[$currentDecli]['mainColor'] . "/apple-touch-icon.png"; ?>'>
+		<link class='favicon' rel='icon' type='image/png' href='<?php echo get_template_directory_uri() . "/favicons/" . $declis[$currentDecli]['mainColor'] . "/favicon-32x32.png"; ?>' sizes='32x32'>
+		<link class='favicon' rel='icon' type='image/png' href='<?php echo get_template_directory_uri() . "/favicons/" . $declis[$currentDecli]['mainColor'] . "/favicon-16x16.png"; ?>' sizes='16x16'>
+		<link class='favicon' rel='manifest' href='<?php echo get_template_directory_uri() . "/favicons/" . $declis[$currentDecli]['mainColor'] . "/manifest.json"; ?>'>
+		<link class='favicon' rel='mask-icon' href='<<?php echo get_template_directory_uri() . "/favicons/" . $declis[$currentDecli]['mainColor'] . "/safari-pinned-tab.svg"; ?>' color='#000'>
 		<meta name='theme-color' content='#fff'>
 
 		<?php wp_head(); ?>

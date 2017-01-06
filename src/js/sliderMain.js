@@ -21,7 +21,7 @@ module.exports = function(body, blocTop, themeColors){
     var slides = blocTop.find('.slide-home'), nbSlides = slides.length, slidesTxt = blocRevel.find('.slide-home-txt');
     var oldDirNb, timeOut, scrollTop;
     // var ease = CustomEase.create('custom', 'M0,0,C0,0.5,0.005,0.73,0.11,0.85,0.22,0.975,0.505,1,1,1');
-    var ease = CustomEase.create('custom', 'M0,0 C0,0 0.382,0 0.544,0.2 0.655,0.337 0.7,0.751 0.8,0.9 0.878,1.016 1,1 1,1');
+    var ease = CustomEase.create('custom', 'M0,0 C0,0 0.358,-0.02 0.52,0.18 0.631,0.317 0.65,0.713 0.75,0.862 0.828,0.978 1,1 1,1');
     var tweenIn = {x: '0px', delay: 0.3, force3D: true, ease: Power2.easeOut};
 
 
@@ -61,30 +61,26 @@ module.exports = function(body, blocTop, themeColors){
 
         // Favicons url
         favicons.each(function(){
-            this.href = this.href.replace(currentColor, body.data('theme'));
+            this.href = this.href.replace(currentColor, currentSlide.data('color'));
         });
     }
 
     function animSlide(oldDir, newDir){
-        TweenMax.to(oldSlide, 0.7, {x: 100*oldDir + '%', delay: 0.3, force3D: true, ease: ease});
-        TweenMax.fromTo(currentSlide, 0.7, {x: 100*newDir + '%'}, {x: '0%', delay: 0.3, force3D: true, ease: ease});
+        TweenMax.to(oldSlide, 1, {x: 100*oldDir + '%', delay: 0.3, force3D: true, ease: ease});
+        TweenMax.fromTo(currentSlide, 1, {x: 100*newDir + '%'}, {x: '0%', delay: 0.3, force3D: true, ease: ease});
 
-        TweenMax.fromTo(currentSlide.find('.slider-plans'), 2, {x: newDir*containerW/5+'px'}, tweenIn);
-        TweenMax.fromTo(circle, 2.5, {x: newDir*containerW/5+'px'}, tweenIn);
-        TweenMax.fromTo([baseline.find('> span').eq(0), baselineSecond.find('> span')], 3, {x: newDir*containerW/5+'px'}, tweenIn);
-        TweenMax.fromTo(baseline.find('> span').eq(1), 3.5, {x: newDir*containerW/5+'px'}, tweenIn);
+        TweenMax.fromTo(currentSlide.find('.slider-plans'), 1.5, {x: newDir*containerW/5+'px'}, tweenIn);
+        TweenMax.fromTo(circle, 2, {x: newDir*containerW/5+'px'}, tweenIn);
+        TweenMax.fromTo([baseline.find('> span').eq(0), baselineSecond.find('> span')], 2.5, {x: newDir*containerW/5+'px'}, tweenIn);
+        TweenMax.fromTo(baseline.find('> span').eq(1), 3, {x: newDir*containerW/5+'px'}, tweenIn);
     }
 
     function slide(nextSlide, nextTxt, lastSlideIndex, dir){
         nextSlide.length ? nextSlide.addClass('slide-on') : slides.eq(lastSlideIndex).addClass('slide-on');
         currentSlide.removeClass('slide-on');
 
-        nextTxt.length ? nextTxt.addClass('txt-on') : slidesTxt.eq(lastSlideIndex).addClass('txt-on');
-        currentTxt.removeClass('txt-on');
-
         oldSlide = currentSlide;
         currentSlide = blocTop.find('.slide-on');
-        currentTxt = blocRevel.find('.txt-on');
         currentColor = body.data('theme');
         baseline = currentSlide.find('.baseline');
         baselineSecond = currentSlide.find('.baseline-second');
@@ -98,8 +94,14 @@ module.exports = function(body, blocTop, themeColors){
                 oldSlide.find('.baseline-second').find('> span'),
                 oldSlide.find('.slider-plans')
             ],
-            0.7, {x: oldDirNb*300 + 'px', force3D: true, ease: Power2.easeIn, onComplete: setTheme}
+            1, {x: oldDirNb*300 + 'px', force3D: true, ease: Power2.easeIn, onComplete: setTheme}
         );
+        TweenMax.to(blocRevel.find('.container'), 0.3, {y: '250px', delay: 0.4, onComplete: function(){
+            nextTxt.length ? nextTxt.addClass('txt-on') : slidesTxt.eq(lastSlideIndex).addClass('txt-on');
+            currentTxt.removeClass('txt-on');
+            currentTxt = blocRevel.find('.txt-on');
+            TweenMax.to(blocRevel.find('.container'), 0.5, {y: '0px', delay: 0.2});
+        }});
 
         setPosBaseline();
         setPosCircle();
