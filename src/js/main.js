@@ -68,7 +68,6 @@ $(function(){
         animMainSlider(body, $('#bloc-top'), themeColors);
     }
 
-
     // $(document).on('scroll', throttle(function(){
 
     // }, 10));
