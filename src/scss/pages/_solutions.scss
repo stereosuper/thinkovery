@@ -159,6 +159,7 @@
         min-height: 0;
         background: $black !important;
         h1{
+            color: $black;
             strong{
                 display: inline;
             }
@@ -166,6 +167,8 @@
         > .container{
             padding-top: 5em;
             padding-bottom: 3em;
+            background: $white;
+            color: $black;
         }
         > img{
             display: block;
