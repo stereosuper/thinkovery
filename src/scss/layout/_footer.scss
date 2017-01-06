@@ -116,6 +116,9 @@
                 width: $col*7;
             }
         }
+        .container-medium{
+            padding: 0;
+        }
     }
 
     .footer-top{
@@ -166,7 +169,7 @@
         .link-small{
             position: absolute;
             bottom: 30px;
-            left: $gutter*4;
+            left: $gutter*2;
         }
     }
 
