@@ -54,7 +54,7 @@ module.exports = function(elts, distance, diffSpeed){
     checkIfInView();
 
     if(elts.length){
-        TweenMax.to(elts, 1, {opacity: 0.8});
+        TweenMax.set(elts, {opacity: 0.8});
     }
 
     $(document).on('scroll', throttle(function(){
