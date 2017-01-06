@@ -42,7 +42,7 @@ get_header(); ?>
         </header>
         <div id='bloc-revelation'>
             <div class='container'>
-                <div class='zone-txt align-right'>
+                <div class='zone-txt align-right slide-anim-txt'>
                     <?php $count = 0; foreach($declis as $decli){ ?>
                         <div class='slide-home-txt <?php if($count == $currentDecli) echo 'txt-on'; ?>'>
                             <?php echo $decli['txt']; ?>
@@ -50,9 +50,11 @@ get_header(); ?>
                     <?php $count ++; } ?>
                     <h1><?php the_title(); ?></h1>
                 </div>
-                <a href='<?php the_field('ctaLink'); ?>' class='btn'>
-                    <?php the_field('ctaTxt'); ?><svg class='icon'><use xlink:href='#icon-arrow-right'/></svg><i></i>
-                </a>
+                <div class='slide-anim-txt zone-btn'>
+                    <a href='<?php the_field('ctaLink'); ?>' class='btn'>
+                        <?php the_field('ctaTxt'); ?><svg class='icon'><use xlink:href='#icon-arrow-right'/></svg><i></i>
+                    </a>
+                </div>
             </div>
         </div>
 
