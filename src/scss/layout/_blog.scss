@@ -476,7 +476,7 @@
     }
     &:before{
         content: '';
-        width: 93px;
+        width: 94px;
         height: 7px;
         position: absolute;
         bottom: -27px;
@@ -728,13 +728,21 @@
     .post-img{
         &.alignleft, &.alignright{
             float: none;
+            text-align: center;
         }
         &.alignleft{
             margin-right: 0;
+            &:before{
+                left: 50%;
+                transform: translate(-50%, 0);
+            }
         }
         &.alignright{
             margin-left: 0;
-            text-align: right;
+            &:before{
+                right: 50%;
+                transform: translate(50%, 0);
+            }
         }
     }
 
