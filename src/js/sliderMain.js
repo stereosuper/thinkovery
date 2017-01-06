@@ -16,7 +16,7 @@ module.exports = function(body, blocTop, themeColors){
     var circle = currentSlide.find('.hoop');
     var newPosBaseline, newPosCircle, containerW = blocTop.width(), gutter = 20;
     var header = $('#header');
-    var favicons = $('.favicon'), currentColor;
+    var favicons = $('.favicon'), currentColor = body.data('theme');
     var nav = blocTop.find('#slider-home-nav'), svgHoop = $('#gradient-hoop');
     var slides = blocTop.find('.slide-home'), nbSlides = slides.length, slidesTxt = blocRevel.find('.slide-home-txt');
     var ease = CustomEase.create('custom', 'M0,0,C0,0.5,0.005,0.73,0.11,0.85,0.22,0.975,0.505,1,1,1');
@@ -44,11 +44,7 @@ module.exports = function(body, blocTop, themeColors){
         }});
     }
 
-    function animSlide(){
-        TweenMax.fromTo(circle, 6, {x: 700-containerW+'px', opacity: 0}, {x: '0px', opacity: 0.85, force3D: true, ease: ease});
-        TweenMax.fromTo([baseline.find('> span'), baselineSecond.find('> span')], 4, {x: 200-containerW+'px', opacity: 0}, tweenToOn);
-        TweenMax.fromTo(currentSlide.find('.slider-plans'), 4, {x: 200-containerW+'px', opacity: 0}, tweenToOn);
-
+    function setTheme(){
         nav.find('.current').html(currentSlide.index('.slide-home') + 1);
 
         body.removeClass('theme-'+currentColor).addClass('theme-'+currentSlide.data('color')).data('theme', currentSlide.data('color'));
@@ -59,6 +55,22 @@ module.exports = function(body, blocTop, themeColors){
         favicons.each(function(){
             this.href = this.href.replace(currentColor, body.data('theme'));
         });
+    }
+
+    function animSlide(){
+        TweenMax.fromTo(circle, 6, {x: 700-containerW+'px', opacity: 0}, {x: '0px', opacity: 0.85, force3D: true, ease: ease});
+        TweenMax.fromTo([baseline.find('> span'), baselineSecond.find('> span')], 4, {x: 200-containerW+'px', opacity: 0}, tweenToOn);
+        TweenMax.fromTo(currentSlide.find('.slider-plans'), 4, {x: 200-containerW+'px', opacity: 0}, tweenToOn);
+
+        setTheme();
+    }
+
+    function setSlide(){
+        TweenMax.set(circle, {x: '0px', opacity: 0.85, force3D: true});
+        TweenMax.set([baseline.find('> span'), baselineSecond.find('> span')], {x: '0px', opacity: 1, force3D: true});
+        TweenMax.set(currentSlide.find('.slider-plans'), {x: '0px', opacity: 1, force3D: true});
+
+        setTheme();
     }
 
     function slide(nextSlide, nextTxt, lastSlideIndex){
@@ -99,7 +111,7 @@ module.exports = function(body, blocTop, themeColors){
 
         setPosBaseline();
         setPosCircle();
-        animSlide();
+        setSlide();
     });
 
     $(window).on('resize', throttle(function(){
