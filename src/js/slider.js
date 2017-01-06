@@ -3,6 +3,7 @@ var TweenMax = require('./libs/gsap/src/uncompressed/TweenMax.js');
 var Draggable = require('./libs/gsap/src/uncompressed/utils/Draggable.js');
 var ThrowPropsPlugin = require('./libs/gsap/src/uncompressed/plugins/ThrowPropsPlugin.js');
 var throttle = require('./throttle.js');
+var isMobile = require('./libs/isMobile.min.js');
 
 module.exports = function(){
     var containerSliders = $('.container-sliders');
@@ -11,8 +12,16 @@ module.exports = function(){
     var sliderCloned, sliderClonedTarget;
     var errorMargin, maxMargin, minMargin, halfSlide;
     var DraggableElems = [];
+    var nativeTouchScrollingVar = false;
+    var firstInit = true;
 
     var windowWidth = $(window).outerWidth(), smallWindowWidth = false;
+
+    function clearSliders(){
+        $('.slides.cloned').remove();
+        $('.slides > li.active').removeClass('active');
+        TweenMax.set([$('.slider'), $('.container-sliders .hoop')], {clearProps: 'transform'});
+    }
 
     function actualizeSlider(sliderToActualize, sliderThis){
         sliderTarget = sliderToActualize;
@@ -105,9 +114,11 @@ module.exports = function(){
         var slideWidth = slides.outerWidth(), slideHeight = slides.outerHeight(), halfSlides = nbSlides/2;
         var halfRight, halfLeft, widthSlider = nbSlides*slideWidth, middleSlider = widthSlider/2 - slideWidth/2;
 
-        $('.slides.cloned').remove();
-        $('.slides > li.active').removeClass('active');
-        TweenMax.set([sliders, container.find('.hoop')], {clearProps: 'transform'});
+        // if(slides.hasClass('active')){
+        //     wrapperSliders.find('.slides.cloned').remove();
+        //     slider.find('> li.active').removeClass('active');
+        //     TweenMax.set([sliders, container.find('.hoop')], {clearProps: 'transform'});
+        // }
 
         if(nbSlides % 2 === 0){
             halfRight = halfSlides;
@@ -144,6 +155,9 @@ module.exports = function(){
         activateSlideInitial(container, slides, slideWidth);
 
         // Draggable
+        if(isMobile.any){
+            nativeTouchScrollingVar = true;
+        }
         DraggableElems[indexSlider] = Draggable.create(sliders, {
             type: 'x',
             trigger: wrapperSliders,
@@ -153,7 +167,7 @@ module.exports = function(){
             edgeResistance: 0.65,
             throwProps: true,
             minimumMovement: 0,
-            allowNativeTouchScrolling: false,
+            allowNativeTouchScrolling: nativeTouchScrollingVar,
             onDrag: updateSlider,
             onThrowUpdate: updateSlider,
             onDragStart: desactivateSlide,
@@ -177,11 +191,13 @@ module.exports = function(){
     $(window).on('resize', throttle(function(){
         windowWidth = $(window).outerWidth();
         if(windowWidth > 580 && smallWindowWidth){
+            clearSliders();
             containerSliders.each(function(i){
                 initSlider($(this), i);
             });
             smallWindowWidth = false;
         }else if(windowWidth <= 580 && !smallWindowWidth){
+            clearSliders();
             containerSliders.each(function(i){
                 initSlider($(this), i);
             });
