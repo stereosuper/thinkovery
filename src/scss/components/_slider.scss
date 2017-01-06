@@ -135,3 +135,34 @@
 		font-weight: 600;
 	}
 }
+
+@media (max-width: $phone){
+	.slides{
+		>li{
+			width: 150px;
+		}
+	}
+	.container-sliders{
+		height: 280px;
+		.hoop{
+			width: 195px;
+			height: 195px;
+			top: -22px;
+		}
+		&.slider-learn{
+			height: 330px;
+			.slides{
+				>li{
+					width: 290px;
+				}
+			}
+			.hoop{
+				width: 310px;
+				height: 310px;
+			}
+			.slide-desc{
+				padding-top: 80px;
+			}
+		}
+	}
+}
