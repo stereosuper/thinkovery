@@ -32,7 +32,7 @@
         .quote-cite > b,
         .solutions-list h3,
         .pagination > a:hover, .pagination > a:focus,
-        .form-contact input:focus + label, .form-contact textarea:focus + label{
+        input:focus + label, textarea:focus + label{
         	color: $colorprimary;
         }
 

@@ -29,8 +29,6 @@ $(function(){
         'pink':   [ 'rgb(240, 43, 140)', 'rgb(255, 6, 0)' ]
     };
 
-    var searchInput = $('#search'), formContact = $('#form-contact');
-
 
 
     function checkEmptyInput(input){
@@ -49,18 +47,12 @@ $(function(){
     animBtn(body);
 
     // Form inputs
-    if(formContact.length){
-        formContact.on('input propertychange', 'input, textarea', function(){
+    if($('form').length){
+        $('form').on('input propertychange', 'input, textarea', function(){
             checkEmptyInput($(this));
         }).find('input, textarea').each(function(){
             checkEmptyInput($(this));
         });
-    }
-    if(searchInput.length){
-        searchInput.on('input propertychange', function(){
-            checkEmptyInput($(this));
-        });
-        checkEmptyInput(searchInput);
     }
 
     // Slider home
