@@ -9,7 +9,7 @@
 	font-size: 3.5rem;
 	color: #fff;
 	line-height: 1.2;
-	background: $black;
+	background: #000;
 }
 #slider-home-nav{
 	padding: 0 $gutter*2;
@@ -393,7 +393,7 @@
 	#bloc-top{
 		height: 0;
 		min-height: 0;
-		padding: 0 0 74%;
+		padding: 0 0 73%;
 	}
 	.slide-home{
 		height: 0;
@@ -417,6 +417,9 @@
 
 	#bloc-revelation{
 		margin: 0;
+		h1{
+			font-size: 4rem;
+		}
 	}
 
 	.wrapper-blocs-half{
@@ -446,7 +449,10 @@
 @media (max-width: $phone){
 	#bloc-revelation{
 		h1{
-			font-size: 4rem;
+			font-size: 3.5rem;
+		}
+		br{
+			display: none;
 		}
 	}
 
