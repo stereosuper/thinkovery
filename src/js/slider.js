@@ -15,6 +15,7 @@ module.exports = function(){
     var nativeTouchScrollingVar = false;
     var firstInit = true;
     var tlAutoScroll = [], parentSlider, indexSliderToDesactivate, timeOutAutoScroll = [];
+    var totalWithSlider, rotationValue;
 
     var windowWidth = $(window).outerWidth(), smallWindowWidth = false;
 
@@ -75,7 +76,9 @@ module.exports = function(){
         }
 
         // Rotate svg
-        TweenMax.set(sliderTarget.parents('.container-sliders').find('.hoop'), {rotation: newX/2, force3D: true, overwrite: false});
+        totalWithSlider = nbSlidesTarget*widthSlidesTarget;
+        rotationValue = (newX*360)/totalWithSlider;
+        TweenMax.set(sliderTarget.parents('.container-sliders').find('.hoop'), {rotation: rotationValue, force3D: true, overwrite: false});
     }
 
     function desactivateSlide(){
@@ -138,17 +141,9 @@ module.exports = function(){
         var slideWidth = slides.outerWidth(), slideHeight = slides.outerHeight(), halfSlides = nbSlides/2;
         var halfRight, halfLeft, widthSlider = nbSlides*slideWidth, middleSlider = widthSlider/2 - slideWidth/2;
 
-        // if(slides.hasClass('active')){
-        //     wrapperSliders.find('.slides.cloned').remove();
-        //     slider.find('> li.active').removeClass('active');
-        //     TweenMax.set([sliders, container.find('.hoop')], {clearProps: 'transform'});
-        // }
-
         if(nbSlides % 2 === 0){
             halfRight = halfSlides;
             halfLeft = halfSlides;
-            // Center the middle slide
-            //TweenMax.set(wrapperSliders, {paddingRight: slideWidth+'px'});
         }else{
             halfRight = Math.ceil(halfSlides);
             halfLeft = nbSlides - halfRight;
