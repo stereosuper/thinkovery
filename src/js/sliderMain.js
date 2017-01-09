@@ -197,7 +197,7 @@ module.exports = function(body, blocTop, themeColors){
 
         clearTimeout(timeOut);
 
-    }).on('focus', setSliderTimeout);
+    }).on('focus', checkIfInView);
 
     $(document).on('scroll', throttle(function(){
         requestAnimFrame(checkIfInView);
