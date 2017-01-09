@@ -9,7 +9,7 @@
 		opacity: 0;
 	}
 	&.slider-learn{
-		height: 350px;
+		height: 360px;
 		margin-top: 7em;
 		.slides{
 			> li{
@@ -132,10 +132,13 @@
 	.slide-title{
 		font-size: 2.2rem;
 		font-weight: 700;
+		line-height: 1;
+		margin-bottom: 4px;
 	}
 	.slide-content{
 		font-size: 1.4rem;
 		font-weight: 600;
+		line-height: 1;
 	}
 }
 
@@ -146,7 +149,7 @@
 		}
 	}
 	.container-sliders{
-		height: 280px;
+		height: 260px;
 		.hoop{
 			width: 195px;
 			height: 195px;
