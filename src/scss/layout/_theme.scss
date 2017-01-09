@@ -7,15 +7,15 @@
         .theme-color,
         h1,
         a,
-        h2 > span,
+        h2 span,
         h1 > strong,
         ol > li:before,
         blockquote p:before, blockquote p:after,
         .lang span,
         #header .lang a:hover, #header .lang a:focus,
         #footer ul a:hover, #footer ul a:focus,
-        .baseline > span > span,
-        .baseline-second > span > span,
+        .baseline > span span,
+        .baseline-second > span span,
         .radio input:checked + label .icon,
         #bloc-revelation p strong,
         .title-picto .icon,
@@ -32,7 +32,7 @@
         .quote-cite > b,
         .solutions-list h3,
         .pagination > a:hover, .pagination > a:focus,
-        .form-contact input:focus + label, .form-contact textarea:focus + label{
+        input:focus + label, textarea:focus + label{
         	color: $colorprimary;
         }
 

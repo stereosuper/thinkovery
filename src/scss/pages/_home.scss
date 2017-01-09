@@ -9,6 +9,7 @@
 	font-size: 3.5rem;
 	color: #fff;
 	line-height: 1.2;
+	background: $black;
 }
 #slider-home-nav{
 	padding: 0 $gutter*2;
@@ -19,9 +20,7 @@
 	font-size: 1.6rem;
 	font-weight: 600;
 	overflow: hidden;
-	.no-js &{
-		display: none;
-	}
+	opacity: 0;
 	> button{
 		width: 28px;
 		text-indent: -99em;
@@ -38,19 +37,26 @@
 .slide-home, .slider-plans{
 	position: absolute;
 	top: 0;
-	bottom: 0;
 	left: 0;
+}
+.slide-home{
+	bottom: 0;
 	right: 0;
 	background-size: cover;
 	background-position: 50% 50%;
 	background-repeat: no-repeat;
+	overflow: hidden;
+	.no-js &{
+		background: none !important;
+	}
+}
+.slider-plans{
+	transform-origin: 0 0;
+	.no-js &{
+		display: none;
+	}
 }
 .slide-home{
-	// transition: opacity 1.5s ease-in-out;
-	// &.slide-on{
-	// 	opacity: 1;
-	// 	z-index: 1;
-	// }
 	opacity: 0;
 	&.slide-on{
 		.no-js &{
@@ -65,6 +71,13 @@
 		.no-js &{
 			display: none;
 		}
+	}
+}
+.slide-home-mb{
+	display: none;
+	.no-js &{
+		display: block;
+		margin: 0 auto;
 	}
 }
 
@@ -121,6 +134,10 @@
 		opacity: 1;
 	}
 }
+.baseline-mb{
+	display: none;
+	margin-top: 0;
+}
 
 
 #bloc-revelation{
@@ -128,6 +145,7 @@
 	position: relative;
 	margin: -50px 0 0;
 	overflow: hidden;
+	z-index: 1;
 	background: $black;
 	color: $white;
 	.container{
@@ -331,11 +349,12 @@
 		}
 		.zone-txt{
 			width: 100%;
+			padding: 0;
 			text-align: center;
 		}
 		.zone-btn{
-			margin: 30px 0 0;
 			width: auto;
+			margin: 30px 0 0;
 		}
 	}
 }
@@ -371,6 +390,35 @@
 }
 
 @media (max-width: $tablet){
+	#bloc-top{
+		height: 0;
+		min-height: 0;
+		padding: 0 0 74%;
+	}
+	.slide-home{
+		height: 0;
+		padding: 0 0 60%;
+		top: 100px;
+		background: none !important;
+		.baseline, .baseline-second, .hoop{
+			display: none;
+		}
+	}
+	.slider-plans{
+		display: none;
+	}
+	.slide-home-mb{
+		display: block;
+	}
+
+	.baseline-mb{
+		display: block;
+	}
+
+	#bloc-revelation{
+		margin: 0;
+	}
+
 	.wrapper-blocs-half{
 		flex-wrap: wrap;
 		.bloc-half{
@@ -396,6 +444,12 @@
 }
 
 @media (max-width: $phone){
+	#bloc-revelation{
+		h1{
+			font-size: 4rem;
+		}
+	}
+
 	.bloc-with-picto{
 		h3{
 			padding-left: 45px;

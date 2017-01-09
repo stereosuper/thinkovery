@@ -8,14 +8,14 @@ get_header(); ?>
     <?php if ( have_posts() ) : the_post(); ?>
 
         <?php
-            $imgMeta = wp_get_attachment_metadata( $declis[$currentDecli]['homeImg'][0]['img'] );
+            $imgMeta = wp_get_attachment_metadata( $declis[$currentDecli]['homeBg'] );
             $imgWidth = $imgMeta['width'];
             $imgHeight = $imgMeta['height'];
         ?>
 
         <header id='bloc-top' data-img-width='<?php echo $imgWidth; ?>' data-img-height='<?php echo $imgHeight; ?>'>
             <?php $count = 0; foreach($declis as $decli){ ?>
-                <div class='slide-home <?php if($count == $currentDecli) echo 'slide-on'; ?>' style='background-image:url("<?php echo wp_get_attachment_url($decli['homeImg'][0]['img']); ?>")' data-color='<?php echo $decli['mainColor']; ?>'>
+                <div class='slide-home <?php if($count == $currentDecli) echo 'slide-on'; ?>' style='background-image:url("<?php echo wp_get_attachment_url($decli['homeBg']); ?>")' data-color='<?php echo $decli['mainColor']; ?>'>
                     <strong style='left:<?php echo $decli['baselinePosX']; ?>px;top:<?php echo $decli['baselinePosY']; ?>px' data-x='<?php echo $decli['baselinePosX']; ?>' data-y='<?php echo $decli['baselinePosY']; ?>' class='baseline'>
                         <span style='margin-right:<?php echo $decli['circleWidth'] + 50; ?>px'><?php echo $decli['title1']; ?></span><span><?php echo $decli['title2']; ?></span>
                     </strong>
@@ -24,14 +24,13 @@ get_header(); ?>
                     </svg>
                     <span class='baseline-second'><span><?php echo $decli['title1']; ?></span> <span><?php echo $decli['title2']; ?></span></span>
                     <?php
-                        $countImg = 0;
-                        foreach($decli['homeImg'] as $img){
-                            if($countImg > 0){ ?>
-                                <div style="background-image:url('<?php echo wp_get_attachment_url($img['img']); ?>');z-index:<?php echo $countImg+1; ?>" class='slider-plans'></div>
-                            <?php }
-                            $countImg ++;
-                        }
-                    ?>
+                        $countImg = 2;
+                        foreach($decli['homeImg'] as $img){ ?>
+                            <div style='z-index:<?php echo $countImg; ?>;left:<?php echo $img['planX']; ?>px;top:<?php echo $img['planY']; ?>px' data-x='<?php echo $img['planX']; ?>' data-y='<?php echo $img['planY']; ?>' class='slider-plans'>
+                                <?php echo wp_get_attachment_image($img['img'], 'full'); ?>
+                            </div>
+                    <?php $countImg ++; } ?>
+                    <?php echo wp_get_attachment_image($decli['imgResponsive'], 'full', '', array('class' => 'slide-home-mb')); ?>
                 </div>
             <?php $count ++; } ?>
             <div id='slider-home-nav' class='theme-color'>
@@ -45,6 +44,7 @@ get_header(); ?>
                 <div class='zone-txt align-right slide-anim-txt'>
                     <?php $count = 0; foreach($declis as $decli){ ?>
                         <div class='slide-home-txt <?php if($count == $currentDecli) echo 'txt-on'; ?>'>
+                            <h2 class='baseline-mb'><?php echo $decli['title1']; ?> <?php echo $decli['title2']; ?></h2>
                             <?php echo $decli['txt']; ?>
                         </div>
                     <?php $count ++; } ?>

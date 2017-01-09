@@ -50,9 +50,6 @@ module.exports = function(){
         windowWidth = $(window).outerWidth();
         windowHeight = $(window).height();
         docHeight = $(document).height();
-
-        TweenMax.set(logoO, {opacity: 0});
-        TweenMax.set(logoO1, {opacity: 1});
     }
 
     header.on('mouseenter', hideScrollIndic).on('mouseleave', function(){

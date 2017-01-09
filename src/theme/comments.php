@@ -57,29 +57,31 @@
 			<?php if( !$user_ID ) : ?>
 
 				<div class='field field-block'>
-					<label for='author' class='required'>
-						<?php _e('Name', 'thinkovery'); ?>
-					</label>
 					<input type='text' name='author' id='author' value='<?php echo $comment_author; ?>' required>
+					<label for='author' class='required'>
+						<?php _e('Name', 'thinkovery'); ?>*
+					</label>
 				</div>
 				<div class='field p-right'>
-					<label for='email' class='required'>
-						<?php _e('Email', 'thinkovery'); ?>
-					</label>
 					<input type='email' name='email' id='email' value='<?php echo $comment_author_email; ?>' required>
+					<label for='email' class='required'>
+						<?php _e('Email', 'thinkovery'); ?>*
+					</label>
 				</div><div class='field'>
+					<input type='url' name='url' id='url' value='<?php echo $comment_author_url; ?>'>
 					<label for='url'>
 						<?php _e('Website', 'thinkovery'); ?> <i>(<?php _e('optionnal', 'thinkovery'); ?>)</i>
 					</label>
-					<input type='url' name='url' id='url' value='<?php echo $comment_author_url; ?>'>
 				</div>
 
 			<?php endif; ?>
 
-			<label for='comment' class='required'>
-				<?php _e('Comment', 'thinkovery'); ?>
-			</label>
-			<textarea name='comment' id='comment' required></textarea>
+			<div class='field-full'>
+				<textarea name='comment' id='comment' required></textarea>
+				<label for='comment' class='required'>
+					<?php _e('Comment', 'thinkovery'); ?>*
+				</label>
+			</div>
 
 			<button name='submit' type='submit' class='btn btn-medium'>
 				<?php _e('Send', 'thinkovery'); ?><svg class='icon'><use xlink:href='#icon-arrow-right'/></svg><i></i>
