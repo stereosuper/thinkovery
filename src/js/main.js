@@ -53,6 +53,14 @@ $(function(){
         }).find('input, textarea').each(function(){
             checkEmptyInput($(this));
         });
+
+        $('#form-contact').on('submit', function(e){
+            ga('send', 'event', {
+                eventCategory: 'Form',
+                eventAction: 'submit',
+                eventLabel: 'thinkovery.com/contact-send'
+            });
+        });
     }
 
     // Slider home
