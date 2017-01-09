@@ -160,7 +160,7 @@ module.exports = function(body, blocTop, themeColors){
 
     function checkIfInView(){
         scrollTop = $(document).scrollTop();
-        scrollTop > blocTop.height() - 500 ? clearTimeout(timeOut) : setSliderTimeout();
+        scrollTop > 50 ? clearTimeout(timeOut) : setSliderTimeout();
     }
 
 

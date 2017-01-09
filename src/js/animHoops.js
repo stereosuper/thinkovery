@@ -5,7 +5,7 @@ var throttle = require('./throttle.js');
 window.requestAnimFrame = require('./requestAnimFrame.js');
 
 
-module.exports = function(elts, distance, diffSpeed){
+module.exports = function(elts, distance){
     var elt, eltHeight, eltTop, eltBottom, newY;
     var docHeight = $(document).height(), windowHeight = $(window).height(), windowTop, windowBottom;
     var gapBottom = 0, gapBottom = 0;
@@ -22,9 +22,9 @@ module.exports = function(elts, distance, diffSpeed){
             eltTop = elt.data('check-top');
             eltBottom = elt.data('check-bottom');
             newY = windowTop*distance/(docHeight-windowHeight) - distance/2;
-            if(diffSpeed){
-                newY = newY*(i+2)/2;
-            }
+            // if(diffSpeed){
+            //     newY = newY*(i+2)/2;
+            // }
             // console.log(i)
             // console.log(newY)
             if(eltBottom - gapBottom >= windowTop && eltTop + gapBottom <= windowBottom){
