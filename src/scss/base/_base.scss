@@ -42,11 +42,12 @@ h2, .h2{
     letter-spacing: -0.025em;
     line-height: 1.2;
 }
-.h2 > span{
+.h2 > span, h2 > strong, .baseline strong, .baseline-second strong{
     white-space: nowrap;
+    font-weight: inherit;
 }
 .baseline > span, .baseline-second > span, h2, .h2 > span{
-    > span{
+    span{
         display: inline-block;
         position: relative;
         margin: 0 -0.1em;
