@@ -49,7 +49,6 @@
 									'category__in' => $categoryIds,
 									'post__not_in' => array($post->ID),
 									'posts_per_page'=> 2,
-									'caller_get_posts'=>1,
 							        'tax_query' => array( array(
 							            'taxonomy' => 'post_format',
 							            'field' => 'slug',
