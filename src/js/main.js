@@ -99,11 +99,8 @@ $(window).on('load', function(){
     }
 
     // Anim hoops
-    if(body.hasClass('home')){
-        animHoops($('#more-than-moocs').find('.hoop'), 200, true);
-    }
     if(body.hasClass('page-template-about')){
-        animHoops($('#main').find('.hoop'), 300, false);
+        animHoops($('#main').find('.hoop'), 300);
     }
 
     if(body.hasClass('page-template-solutions')){

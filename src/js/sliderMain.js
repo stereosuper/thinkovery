@@ -141,6 +141,11 @@ module.exports = function(body, blocTop, themeColors){
         }});
     }
 
+    function checkIfInView(){
+        scrollTop = $(document).scrollTop();
+        scrollTop > 50 ? clearTimeout(timeOut) : setSliderTimeout();
+    }
+
     function setSlider(){
         setPosBaseline();
         setPosCircle();
@@ -155,12 +160,7 @@ module.exports = function(body, blocTop, themeColors){
         TweenMax.to(nav, 0.5, {opacity: 1});
 
         setTheme();
-        setSliderTimeout();
-    }
-
-    function checkIfInView(){
-        scrollTop = $(document).scrollTop();
-        scrollTop > blocTop.height() - 500 ? clearTimeout(timeOut) : setSliderTimeout();
+        checkIfInView();
     }
 
 
