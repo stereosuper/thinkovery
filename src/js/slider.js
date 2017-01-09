@@ -223,13 +223,31 @@ module.exports = function(){
         if(windowWidth > 580 && smallWindowWidth){
             clearSliders();
             containerSliders.each(function(i){
+                tlAutoScroll[i].kill();
+                clearTimeout(timeOutAutoScroll[i]);
+
                 initSlider($(this), i);
+
+                tlAutoScroll[i] = new TimelineMax();
+                var slidersInit = $(this).find('.slider'), sliderInit = $(this).find('.slides');
+                var slidesInit = sliderInit.find('> li');
+                var slideWidthInit = slidesInit.outerWidth();
+                autoScroll(slidersInit, slideWidthInit, i, tlAutoScroll[i]);
             });
             smallWindowWidth = false;
         }else if(windowWidth <= 580 && !smallWindowWidth){
             clearSliders();
             containerSliders.each(function(i){
+                tlAutoScroll[i].kill();
+                clearTimeout(timeOutAutoScroll[i]);
+
                 initSlider($(this), i);
+
+                tlAutoScroll[i] = new TimelineMax();
+                var slidersInit = $(this).find('.slider'), sliderInit = $(this).find('.slides');
+                var slidesInit = sliderInit.find('> li');
+                var slideWidthInit = slidesInit.outerWidth();
+                autoScroll(slidersInit, slideWidthInit, i, tlAutoScroll[i]);
             });
             smallWindowWidth = true;
         }
