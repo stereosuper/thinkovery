@@ -73,25 +73,22 @@ module.exports = function(body, blocTop, themeColors){
 
     function animSlide(oldDir, newDir){
         TweenMax.to(oldSlide, 1, {x: 100*oldDir + '%', delay: 0.3, force3D: true, ease: ease});
-
         if(currentSlide.find('.slide-home-mb').is(':visible')){
             TweenMax.fromTo(currentSlide, 1, {x: 100*newDir + '%'}, {x: '0%', delay: 0.3, force3D: true, ease: ease, onComplete: function(){
                 sliding = false;
-                TweenMax.to(blocRevel.find('.slide-anim-txt').eq(0), 0.7, {y: '0px', opacity: 1});
-                TweenMax.to(blocRevel.find('.slide-anim-txt').eq(1), 0.7, {y: '0px', opacity: 1, delay: 0.3});
+                TweenMax.to(blocRevel.find('.slide-anim-txt').eq(0), 0.7, {y: '0px', opacity: 1, ease: Power2.easeIn});
+                TweenMax.to(blocRevel.find('.slide-anim-txt').eq(1), 0.7, {y: '0px', opacity: 1, delay: 0.1, ease: Power2.easeIn});
             }});
         }else{
             TweenMax.fromTo(currentSlide, 1, {x: 100*newDir + '%'}, {x: '0%', delay: 0.3, force3D: true, ease: ease});
-
-            TweenMax.fromTo(plans, 1.5, {x: newDir*containerW/5+'px'}, {x: '0px', delay: 0.3, force3D: true, ease: Power2.easeOut});
-            TweenMax.fromTo(circle, 2, {x: newDir*containerW/5+'px'}, {x: '0px', delay: 0.3, force3D: true, ease: Power2.easeOut});
-            TweenMax.fromTo([baseline.find('> span').eq(0), baselineSecond.find('> span')], 2.5, {x: newDir*containerW/5+'px'}, {x: '0px', delay: 0.3, force3D: true, ease: Power2.easeOut, onComplete: function(){
+            TweenMax.fromTo(circle, 1.8, {x: newDir*containerW/4+'px'}, {x: '0px', delay: 0.3, force3D: true, ease: Power2.easeOut});
+            TweenMax.fromTo(plans, 2.3, {x: newDir*containerW/4+'px'}, {x: '0px', delay: 0.3, force3D: true, ease: Power2.easeOut});
+            TweenMax.fromTo([baseline.find('> span').eq(0), baselineSecond.find('> span')], 2.6, {x: newDir*containerW/4+'px'}, {x: '0px', delay: 0.3, force3D: true, ease: Power2.easeOut, onComplete: function(){
                 sliding = false;
             }});
-            TweenMax.fromTo(baseline.find('> span').eq(1), 3, {x: newDir*containerW/5+'px'}, {x: '0px', delay: 0.3, force3D: true, ease: Power2.easeOut});
-
-            TweenMax.to(blocRevel.find('.slide-anim-txt').eq(0), 0.7, {y: '0px', opacity: 1, delay: 2.65});
-            TweenMax.to(blocRevel.find('.slide-anim-txt').eq(1), 0.7, {y: '0px', opacity: 1, delay: 3});
+            TweenMax.fromTo(baseline.find('> span').eq(1), 2.5, {x: newDir*containerW/4+'px'}, {x: '0px', delay: 0.3, force3D: true, ease: Power2.easeOut});
+            TweenMax.to(blocRevel.find('.slide-anim-txt').eq(0), 1.3, {y: '0px', opacity: 1, delay: 1.05, ease: Power2.easeOut});
+            TweenMax.to(blocRevel.find('.slide-anim-txt').eq(1), 1.3, {y: '0px', opacity: 1, delay: 1.1, ease: Power2.easeOut});
         }
     }
 
@@ -111,34 +108,35 @@ module.exports = function(body, blocTop, themeColors){
 
         oldDirNb = dir === 'next' ? -1 : 1;
 
-        TweenMax.to(blocRevel.find('.slide-anim-txt').eq(1), 0.3, {y: '20px', opacity: 0, delay: 0.35});
-        TweenMax.to(blocRevel.find('.slide-anim-txt').eq(0), 0.3, {y: '20px', opacity: 0, onComplete: function(){
+        TweenMax.to(blocRevel.find('.slide-anim-txt').eq(1), .6, {y: '20px', opacity: 0, delay: 0.15, ease: Power2.easeIn});
+        TweenMax.to(blocRevel.find('.slide-anim-txt').eq(0), .6, {y: '20px', opacity: 0, delay: 0.2, ease: Power2.easeIn, onComplete:function(){
             nextTxt.length ? nextTxt.addClass('txt-on') : slidesTxt.eq(lastSlideIndex).addClass('txt-on');
             currentTxt.removeClass('txt-on');
             currentTxt = blocRevel.find('.txt-on');
+        }});         
 
-            if(oldSlide.find('.slide-home-mb').is(':visible')){
-                setTheme();
-            }else{
-                TweenMax.to([
-                        oldSlide.find('.hoop'),
-                        oldSlide.find('.baseline').find('> span'),
-                        oldSlide.find('.baseline-second').find('> span'),
-                        oldSlide.find('.slider-plans')
-                    ],
-                    1, {x: oldDirNb*300 + 'px', force3D: true, ease: Power2.easeIn, onComplete: setTheme}
-                );
-            }
+        if(oldSlide.find('.slide-home-mb').is(':visible')){
+            setTheme();
+        }else{
+            TweenMax.to([
+                    oldSlide.find('.hoop'),
+                    oldSlide.find('.baseline').find('> span'),
+                    oldSlide.find('.baseline-second').find('> span'),
+                    oldSlide.find('.slider-plans')
+                ],
+                .95, {x: oldDirNb*300 + 'px', force3D: true, ease: Power2.easeIn, onComplete: setTheme}
+            );
+        }
 
-            setPosBaseline();
-            setPosCircle();
-            setPosPlans();
+        setPosBaseline();
+        setPosCircle();
+        setPosPlans();
 
-            dir === 'next' ? animSlide(-1, 1) : animSlide(1, -1);
-            setSliderTimeout();
+        dir === 'next' ? animSlide(-1, 1) : animSlide(1, -1);
+        setSliderTimeout();
 
-            Cookies.set('think-decli', currentSlide.index('.slide-home'));
-        }});
+        Cookies.set('think-decli', currentSlide.index('.slide-home'));
+        
     }
 
     function checkIfInView(){
