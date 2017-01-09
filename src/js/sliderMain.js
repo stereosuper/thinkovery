@@ -87,8 +87,8 @@ module.exports = function(body, blocTop, themeColors){
                 sliding = false;
             }});
             TweenMax.fromTo(baseline.find('> span').eq(1), 2.5, {x: newDir*containerW/4+'px'}, {x: '0px', delay: 0.3, force3D: true, ease: Power2.easeOut});
-            TweenMax.to(blocRevel.find('.slide-anim-txt').eq(0), 1.3, {y: '0px', opacity: 1, delay: 1.05, ease: Power2.easeOut});
-            TweenMax.to(blocRevel.find('.slide-anim-txt').eq(1), 1.3, {y: '0px', opacity: 1, delay: 1.1, ease: Power2.easeOut});
+            TweenMax.to(blocRevel.find('.slide-anim-txt').eq(0), 1.5, {y: '0px', opacity: 1, delay: 1.05, ease: Power2.easeOut});
+            TweenMax.to(blocRevel.find('.slide-anim-txt').eq(1), 1.5, {y: '0px', opacity: 1, delay: 1.1, ease: Power2.easeOut});
         }
     }
 
