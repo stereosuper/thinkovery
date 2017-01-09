@@ -3,6 +3,7 @@
 var $ = require('./libs/jquery/dist/jquery.slim.min.js');
 // var TweenMax = require('./libs/gsap/src/uncompressed/TweenMax.js');
 var isMobile = require('./libs/isMobile.min.js');
+var parallax = require('./libs/parallax.min.js');
 
 $(function(){
 
@@ -29,6 +30,7 @@ $(function(){
         'pink':   [ 'rgb(240, 43, 140)', 'rgb(255, 6, 0)' ]
     };
 
+    var parallax;
 
 
     function checkEmptyInput(input){
@@ -66,6 +68,13 @@ $(function(){
     // Slider home
     if($('#bloc-top').length){
         animMainSlider(body, $('#bloc-top'), themeColors);
+    }
+
+    if($('#more-than-moocs').length){
+        parallax = new Parallax($('#more-than-moocs').get(0));
+    }
+    if(body.hasClass('page-template-contact')){
+        parallax = new Parallax($('#main').get(0));
     }
 
     // $(document).on('scroll', throttle(function(){
