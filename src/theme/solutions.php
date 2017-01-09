@@ -62,7 +62,7 @@ get_header(); ?>
 		</section>
 
 		<?php if( have_rows('tools') ): ?>
-		    <section class='container-sliders slider-learn'>
+		    <section class='container-sliders slider-learn right-aligned'>
 		        <div class='wrapper-sliders'>
 		            <div class='slider'>
 		                <ul class='slides'>

@@ -47,6 +47,16 @@
 			top: -65px;
 		}
 	}
+	&.right-aligned{
+		.hoop{
+			left: calc(50% + 185px);
+		}
+		&.slider-learn{
+			.hoop{
+				left: calc(50% + 332px);
+			}
+		}
+	}
 	.hoop{
 		width: 221px;
 		height: 221px;
@@ -139,6 +149,21 @@
 		font-size: 1.4rem;
 		font-weight: 600;
 		line-height: 1;
+	}
+}
+
+@media (max-width: $desktop){
+	.container-sliders{
+		&.right-aligned{
+			.hoop{
+				left: 50%;
+			}
+			&.slider-learn{
+				.hoop{
+					left: 50%;
+				}
+			}
+		}
 	}
 }
 

@@ -8,7 +8,7 @@ var isMobile = require('./libs/isMobile.min.js');
 module.exports = function(){
     var containerSliders = $('.container-sliders');
     var i, j, newX, centerSlider, centerSlide, originalSlider, gapLeft;
-    var sliderTarget, originalSliderTarget, widthSliderTarget, centerSliderTarget, slidesTarget, widthSlidesTarget, nbSlidesTarget, isEven;
+    var sliderTarget, originalSliderTarget, widthSliderTarget, containerParent, centerSliderTarget, slidesTarget, widthSlidesTarget, nbSlidesTarget, isEven;
     var sliderCloned, sliderClonedTarget;
     var errorMargin, maxMargin, minMargin, halfSlide;
     var DraggableElems = [];
@@ -91,8 +91,14 @@ module.exports = function(){
 
     function activateCenteredSlide(sliderTarget){
         // activate the centered slide
-        centerSliderTarget = sliderTarget.parents('.container-sliders').width()/2;
         slidesTarget = sliderTarget.find('.slides > li');
+        containerParent = sliderTarget.parents('.container-sliders');
+
+        if(containerParent.hasClass('right-aligned') && ($(window).outerWidth() > 1100)){
+            centerSliderTarget = containerParent.outerWidth()/2 + slidesTarget.outerWidth();
+        }else{
+            centerSliderTarget = containerParent.outerWidth()/2;
+        }
         errorMargin = slidesTarget.outerWidth()/4;
         maxMargin = centerSliderTarget+errorMargin;
         minMargin = centerSliderTarget-errorMargin;
@@ -107,16 +113,17 @@ module.exports = function(){
     }
 
     function activateSlideInitial(containerS, slidesS, slidesWidthS){
-        centerSlider = containerS.outerWidth()/2;
+        if(containerS.hasClass('right-aligned') && ($(window).outerWidth() > 1100)){
+            centerSlider = containerS.outerWidth()/2 + slidesS.outerWidth();
+        }else{
+            centerSlider = containerS.outerWidth()/2;
+        }
         errorMargin = slidesS.outerWidth()/2;
         maxMargin = centerSlider+errorMargin;
         minMargin = centerSlider-errorMargin;
 
         slidesS.each(function(){
             centerSlide = Math.floor($(this).offset().left + slidesWidthS/2);
-            // if(centerSlide === centerSlider){
-            //     $(this).addClass('active');
-            // }
             if(centerSlide >= minMargin && centerSlide <= maxMargin){
                 $(this).addClass('active');
             }
@@ -207,6 +214,11 @@ module.exports = function(){
     }
 
     $(window).on('resize', throttle(function(){
+        $('.slides > li.active').removeClass('active');
+        containerSliders.each(function(i){
+            activateCenteredSlide($(this).find('.slider'));
+        });
+
         windowWidth = $(window).outerWidth();
         if(windowWidth > 580 && smallWindowWidth){
             clearSliders();
