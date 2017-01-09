@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Thinkovery\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: Mon Dec 05 2016 15:48:13 GMT+0100 (CET)\n"
-"PO-Revision-Date: Wed Jan 04 2017 15:30:51 GMT+0100 (CET)\n"
+"PO-Revision-Date: Mon Jan 09 2017 22:30:20 GMT+0100 (CET)\n"
 "Last-Translator: adminThink <elisabeth@stereosuper.fr>\n"
 "Language-Team: \n"
 "Language: French (France)\n"
@@ -31,21 +31,21 @@ msgstr ""
 
 #. Name of the template
 msgid "About"
-msgstr ""
+msgstr "À propos"
 
 #: ../../themes/thinkovery/category.php:5
 msgid "Category"
-msgstr ""
+msgstr "Catégorie"
 
 #: ../../themes/thinkovery/category.php:27 ../../themes/thinkovery/index.php:27 ..
-#: /../themes/thinkovery/search.php:34
+#: ../themes/thinkovery/search.php:34
 msgid "Previous page"
-msgstr ""
+msgstr "Page précédente"
 
 #: ../../themes/thinkovery/category.php:27 ../../themes/thinkovery/index.php:27 ..
-#: /../themes/thinkovery/search.php:34
+#: ../themes/thinkovery/search.php:34
 msgid "Next page"
-msgstr ""
+msgstr "Page suivante"
 
 #: ../../themes/thinkovery/category.php:32 ../../themes/thinkovery/index.php:32
 msgid "No posts yet!"
@@ -53,229 +53,229 @@ msgstr ""
 
 #: ../../themes/thinkovery/comments.php:24
 msgid "Your comment is being verified"
-msgstr ""
+msgstr "Votre commentaire est en cours de vérification"
 
 #: ../../themes/thinkovery/comments.php:37 ../../themes/thinkovery/includes/posts.
 #: php:29
 msgid "Leave a comment"
-msgstr ""
+msgstr "Votre commentaire"
 
 #: ../../themes/thinkovery/comments.php:61
 msgid "Name"
-msgstr ""
+msgstr "Nom"
 
 #: ../../themes/thinkovery/comments.php:67 ../../themes/thinkovery/contact.php:142
 msgid "Email"
-msgstr ""
+msgstr "Email"
 
 #: ../../themes/thinkovery/comments.php:72
 msgid "Website"
-msgstr ""
+msgstr "Site web"
 
 #: ../../themes/thinkovery/comments.php:72 ../../themes/thinkovery/contact.php:138
 msgid "optionnal"
-msgstr ""
+msgstr "facultatif"
 
 #: ../../themes/thinkovery/comments.php:80
 msgid "Comment"
-msgstr ""
+msgstr "Commentaire"
 
 #: ../../themes/thinkovery/comments.php:85 ../../themes/thinkovery/contact.php:180
 msgid "Send"
-msgstr ""
+msgstr "Envoyer"
 
 #. Name of the template
 msgid "Contact"
-msgstr ""
+msgstr "Contact"
 
 #: ../../themes/thinkovery/contact.php:32
 msgid "The field \"Last Name\" is mandatory"
-msgstr ""
+msgstr "Le champ \"Nom\" est obligatoire"
 
 #: ../../themes/thinkovery/contact.php:36
 msgid "The field \"First Name\" is mandatory"
-msgstr ""
+msgstr "Le champ \"Préom\" est obligatoire"
 
 #: ../../themes/thinkovery/contact.php:40
 msgid "The field \"Function\" is mandatory"
-msgstr ""
+msgstr "Le champ \"Fonction\" est obligatoire"
 
 #: ../../themes/thinkovery/contact.php:44
 msgid "The field \"Email\" is mandatory"
-msgstr ""
+msgstr "Le champ \"Email\" est obligatoire"
 
 #: ../../themes/thinkovery/contact.php:48
 msgid "The email address is not valid"
-msgstr ""
+msgstr "L'adresse email est invalide"
 
 #: ../../themes/thinkovery/contact.php:54
 msgid "The phone number is not valid"
-msgstr ""
+msgstr "Le téléphone n'est pas valide"
 
 #: ../../themes/thinkovery/contact.php:59
 msgid "Please choose a subject"
-msgstr ""
+msgstr "Merci de choisir un objet"
 
 #: ../../themes/thinkovery/contact.php:63
 msgid "The field \"Project\" is mandatory"
-msgstr ""
+msgstr "Le champ \"Projet\" est obligatoire"
 
 #: ../../themes/thinkovery/contact.php:88
 msgid "We are sorry, an error happened! Please try again later."
-msgstr ""
+msgstr "Une erreur est survenue. Pouvez-vous nous contacter autrement?"
 
 #: ../../themes/thinkovery/contact.php:104
 msgid "Open on Google Maps"
-msgstr ""
+msgstr "Ouvrir Google Maps"
 
 #: ../../themes/thinkovery/contact.php:108
 msgid "Call us"
-msgstr ""
+msgstr "Nous appeler"
 
 #: ../../themes/thinkovery/contact.php:112
 msgid "Send an email"
-msgstr ""
+msgstr "Nous envoyer un email"
 
 #: ../../themes/thinkovery/contact.php:119
 msgid "The form countains some errors, please check the highlighted fields"
-msgstr ""
+msgstr "Le formulaire contient des erreurs, merci de corriger les champs concernés"
 
 #: ../../themes/thinkovery/contact.php:124
 msgid "Last Name"
-msgstr ""
+msgstr "Nom"
 
 #: ../../themes/thinkovery/contact.php:128
 msgid "First Name"
-msgstr ""
+msgstr "Prénom"
 
 #: ../../themes/thinkovery/contact.php:133
 msgid "Function"
-msgstr ""
+msgstr "Fonction"
 
 #: ../../themes/thinkovery/contact.php:138
 msgid "Phone"
-msgstr ""
+msgstr "Téléphone"
 
 #: ../../themes/thinkovery/contact.php:146
 msgid "I am contacting you to"
-msgstr ""
+msgstr "Je vous contacte pour"
 
 #: ../../themes/thinkovery/contact.php:151
 msgid "Work with you"
-msgstr ""
+msgstr "Travailler avec vous"
 
 #: ../../themes/thinkovery/contact.php:157
 msgid "Work for you"
-msgstr ""
+msgstr "Travailler chez vous"
 
 #: ../../themes/thinkovery/contact.php:163
 msgid "Know you"
-msgstr ""
+msgstr "Vous connaître"
 
 #: ../../themes/thinkovery/contact.php:169
 msgid "It's mum, call me back!"
-msgstr ""
+msgstr "C'est maman, rappelle-moi !"
 
 #: ../../themes/thinkovery/contact.php:176
 msgid "Your project"
-msgstr ""
+msgstr "Votre projet"
 
 #: ../../themes/thinkovery/contact.php:185
 msgid "Thank you"
-msgstr ""
+msgstr "Merci"
 
 #: ../../themes/thinkovery/contact.php:186
 msgid "Your message has been sent!"
-msgstr ""
+msgstr "Merci pour votre message. "
 
 #: ../../themes/thinkovery/contact.php:187
 msgid "We will get back to you as soon as possible."
-msgstr ""
+msgstr "Nos équipes vous recontacterons dans les meilleurs délais. "
 
 #. Name of the template
 msgid "Front Page"
-msgstr ""
+msgstr "Accueil"
 
 #: ../../themes/thinkovery/front-page.php:38
 msgid "Previous"
-msgstr ""
+msgstr "Précédent"
 
 #: ../../themes/thinkovery/front-page.php:40
 msgid "Next"
-msgstr ""
+msgstr "Suivant"
 
 #: ../../themes/thinkovery/includes/post.php:14
 msgid "in"
-msgstr ""
+msgstr "dans"
 
 #: ../../themes/thinkovery/includes/post.php:46 ../..
-#: /themes/thinkovery/includes/posts.php:47
+#: themes/thinkovery/includes/posts.php:47
 msgid "Find us on"
-msgstr ""
+msgstr "Retrouvez-nous sur"
 
 #: ../../themes/thinkovery/includes/posts.php:26
 #, php-format
 msgid "%s comment"
 msgid_plural "%s comments"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s commentaire"
+msgstr[1] "%s commentaires"
 
 #. Name of the template
 msgid "References"
-msgstr ""
+msgstr "Références"
 
 #: ../../themes/thinkovery/references.php:22
 msgid "Study case"
-msgstr ""
+msgstr "Étude de cas"
 
 #: ../../themes/thinkovery/references.php:27
 msgid "Read more on our blog"
-msgstr ""
+msgstr "Lire la suite sur le blog"
 
 #: ../../themes/thinkovery/search.php:10
 msgid "results for"
-msgstr ""
+msgstr "Résultats pour"
 
 #: ../../themes/thinkovery/search.php:10
 msgid "result for"
-msgstr ""
+msgstr "Résultat pour"
 
 #: ../../themes/thinkovery/search.php:41
 msgid "No results for"
-msgstr ""
+msgstr "Pas de résultats pour"
 
 #: ../../themes/thinkovery/searchform.php:3 ../../themes/thinkovery/searchform.
 #: php:4
 msgid "Search"
-msgstr ""
+msgstr "Rechercher"
 
 #: ../../themes/thinkovery/single.php:30
 msgid "Share this post"
-msgstr ""
+msgstr "Partager cet article"
 
 #: ../../themes/thinkovery/single.php:33
 msgid "Share on Twitter"
-msgstr ""
+msgstr "Partager sur Twitter"
 
 #: ../../themes/thinkovery/single.php:36
 msgid "Share on Linkedin"
-msgstr ""
+msgstr "Partager sur Linkedin"
 
 #: ../../themes/thinkovery/single.php:39
 msgid "Share on Facebook"
-msgstr ""
+msgstr "Partager sur Facebook"
 
 #: ../../themes/thinkovery/single.php:68
 msgid "Related Posts"
-msgstr ""
+msgstr "Articles similaires"
 
 #. Name of the template
 msgid "Sitemap"
-msgstr ""
+msgstr "Plan du site"
 
 #. Name of the template
 msgid "Solutions"
-msgstr ""
+msgstr "Solutions"
 
 #. Name of the theme
 msgid "Thinkovery"
