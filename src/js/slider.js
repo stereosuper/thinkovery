@@ -8,7 +8,7 @@ var isMobile = require('./libs/isMobile.min.js');
 module.exports = function(){
     var containerSliders = $('.container-sliders');
     var i, j, newX, centerSlider, centerSlide, originalSlider, gapLeft;
-    var sliderTarget, originalSliderTarget, widthSliderTarget, centerSliderTarget, slidesTarget, widthSlidesTarget, nbSlidesTarget;
+    var sliderTarget, originalSliderTarget, widthSliderTarget, centerSliderTarget, slidesTarget, widthSlidesTarget, nbSlidesTarget, isEven;
     var sliderCloned, sliderClonedTarget;
     var errorMargin, maxMargin, minMargin, halfSlide;
     var DraggableElems = [];
@@ -19,21 +19,6 @@ module.exports = function(){
 
     var windowWidth = $(window).outerWidth(), smallWindowWidth = false;
 
-    function autoScroll(slidersInit, slideWidthInit, indexSliderInit, tlScroll){
-        activateCenteredSlide(slidersInit);
-
-        timeOutAutoScroll[indexSliderInit] = setTimeout(function(){
-            tlScroll.set(slidersInit.find('.slides > li'), {className: '-=active'});
-            tlScroll.to(slidersInit, 2, {x: '-='+slideWidthInit, ease: Power3.easeInOut, onUpdate: actualizeSlider, onUpdateParams: [slidersInit, false, false], onComplete: autoScroll, onCompleteParams: [slidersInit, slideWidthInit, indexSliderInit, tlScroll]});
-        }, 2000);
-    }
-
-    function clearSliders(){
-        $('.slides.cloned').remove();
-        $('.slides > li.active').removeClass('active');
-        TweenMax.set([$('.slider'), $('.container-sliders .hoop')], {clearProps: 'transform'});
-    }
-
     function actualizeSlider(sliderToActualize, sliderThis, hasGSAPObject){
         sliderTarget = sliderToActualize;
         sliderClonedTarget = sliderTarget.find('.slides.cloned');
@@ -42,6 +27,13 @@ module.exports = function(){
         widthSlidesTarget = slidesTarget.outerWidth();
         nbSlidesTarget = slidesTarget.length;
         widthSliderTarget = nbSlidesTarget*widthSlidesTarget;
+
+        if(nbSlidesTarget % 2 === 0){
+            isEven = true;
+        }else{
+            isEven = false;
+        }
+
         if(hasGSAPObject){
             newX = sliderThis.x;
         }else{
@@ -58,13 +50,13 @@ module.exports = function(){
         if(newX > gapLeft){
             // Going left
             TweenMax.set(sliderClonedTarget, {x: -widthSliderTarget+'px', force3D: true});
-            if(newX > widthSliderTarget){
+            if((!isEven && (newX > widthSliderTarget)) || (isEven && (newX > (widthSliderTarget-widthSlidesTarget)))){
                 newX -= widthSliderTarget;
             }
         }else{
             // Going right
             TweenMax.set(sliderClonedTarget, {x: widthSliderTarget+'px', force3D: true});
-            if(newX < -widthSliderTarget){
+            if((!isEven && (newX < -widthSliderTarget)) || (isEven && (newX < (-widthSliderTarget+widthSlidesTarget/2)))){
                 newX += widthSliderTarget;
             }
         }
@@ -79,6 +71,21 @@ module.exports = function(){
         totalWithSlider = nbSlidesTarget*widthSlidesTarget;
         rotationValue = (newX*360)/totalWithSlider;
         TweenMax.set(sliderTarget.parents('.container-sliders').find('.hoop'), {rotation: rotationValue, force3D: true, overwrite: false});
+    }
+
+    function autoScroll(slidersInit, slideWidthInit, indexSliderInit, tlScroll){
+        activateCenteredSlide(slidersInit);
+
+        timeOutAutoScroll[indexSliderInit] = setTimeout(function(){
+            tlScroll.set(slidersInit.find('.slides > li'), {className: '-=active'});
+            tlScroll.to(slidersInit, 2, {x: '-='+slideWidthInit, ease: Power3.easeInOut, onUpdate: actualizeSlider, onUpdateParams: [slidersInit, false, false], onComplete: autoScroll, onCompleteParams: [slidersInit, slideWidthInit, indexSliderInit, tlScroll]});
+        }, 2000);
+    }
+
+    function clearSliders(){
+        $('.slides.cloned').remove();
+        $('.slides > li.active').removeClass('active');
+        TweenMax.set([$('.slider'), $('.container-sliders .hoop')], {clearProps: 'transform'});
     }
 
     function desactivateSlide(){
