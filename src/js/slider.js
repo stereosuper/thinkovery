@@ -14,8 +14,18 @@ module.exports = function(){
     var DraggableElems = [];
     var nativeTouchScrollingVar = false;
     var firstInit = true;
+    var tlAutoScroll = [], parentSlider, indexSliderToDesactivate, timeOutAutoScroll = [];
 
     var windowWidth = $(window).outerWidth(), smallWindowWidth = false;
+
+    function autoScroll(slidersInit, slideWidthInit, indexSliderInit, tlScroll){
+        activateCenteredSlide(slidersInit);
+
+        timeOutAutoScroll[indexSliderInit] = setTimeout(function(){
+            tlScroll.set(slidersInit.find('.slides > li'), {className: '-=active'});
+            tlScroll.to(slidersInit, 2, {x: '-='+slideWidthInit, ease: Power3.easeInOut, onUpdate: actualizeSlider, onUpdateParams: [slidersInit, false, false], onComplete: autoScroll, onCompleteParams: [slidersInit, slideWidthInit, indexSliderInit, tlScroll]});
+        }, 2000);
+    }
 
     function clearSliders(){
         $('.slides.cloned').remove();
@@ -23,7 +33,7 @@ module.exports = function(){
         TweenMax.set([$('.slider'), $('.container-sliders .hoop')], {clearProps: 'transform'});
     }
 
-    function actualizeSlider(sliderToActualize, sliderThis){
+    function actualizeSlider(sliderToActualize, sliderThis, hasGSAPObject){
         sliderTarget = sliderToActualize;
         sliderClonedTarget = sliderTarget.find('.slides.cloned');
         originalSliderTarget = sliderTarget.find('.slides:not(.cloned)');
@@ -31,7 +41,11 @@ module.exports = function(){
         widthSlidesTarget = slidesTarget.outerWidth();
         nbSlidesTarget = slidesTarget.length;
         widthSliderTarget = nbSlidesTarget*widthSlidesTarget;
-        newX = sliderThis.x;
+        if(hasGSAPObject){
+            newX = sliderThis.x;
+        }else{
+            newX = sliderTarget.get(0)._gsTransform.x;
+        }
 
         if(nbSlidesTarget % 2 === 0){
             gapLeft = widthSlidesTarget/2;
@@ -55,7 +69,9 @@ module.exports = function(){
         }
         if(newX !== this.x){
             TweenMax.set(sliderTarget, {x: newX, force3D: true, overwrite: false});
-            sliderThis.x = newX;
+            if(hasGSAPObject){
+                sliderThis.x = newX;
+            }
         }
 
         // Rotate svg
@@ -63,14 +79,22 @@ module.exports = function(){
     }
 
     function desactivateSlide(){
-        actualizeSlider($(this.target), this);
+        actualizeSlider($(this.target), this, true);
         $(this.target).find('.slides > li').removeClass('active');
+
+        parentSlider = $(this.target).parents('.container-sliders');
+        indexSliderToDesactivate = parentSlider.index('.container-sliders');
+        tlAutoScroll[indexSliderToDesactivate].kill();
+        clearTimeout(timeOutAutoScroll[indexSliderToDesactivate]);
     }
 
     function activateSlide(){
-        actualizeSlider($(this.target), this);
+        actualizeSlider($(this.target), this, true);
+        activateCenteredSlide($(this.target));
+    }
+
+    function activateCenteredSlide(sliderTarget){
         // activate the centered slide
-        sliderTarget = $(this.target);
         centerSliderTarget = sliderTarget.parents('.container-sliders').width()/2;
         slidesTarget = sliderTarget.find('.slides > li');
         errorMargin = slidesTarget.outerWidth()/4;
@@ -104,7 +128,7 @@ module.exports = function(){
     }
 
     function updateSlider(){
-        actualizeSlider($(this.target), this);
+        actualizeSlider($(this.target), this, true);
     }
 
     function initSlider(container, indexSlider){
@@ -182,6 +206,12 @@ module.exports = function(){
 
     containerSliders.each(function(i){
         initSlider($(this), i);
+
+        tlAutoScroll[i] = new TimelineMax();
+        var slidersInit = $(this).find('.slider'), sliderInit = $(this).find('.slides');
+        var slidesInit = sliderInit.find('> li');
+        var slideWidthInit = slidesInit.outerWidth();
+        autoScroll(slidersInit, slideWidthInit, i, tlAutoScroll[i]);
     });
 
     if(windowWidth <= 580){
@@ -193,13 +223,31 @@ module.exports = function(){
         if(windowWidth > 580 && smallWindowWidth){
             clearSliders();
             containerSliders.each(function(i){
+                tlAutoScroll[i].kill();
+                clearTimeout(timeOutAutoScroll[i]);
+
                 initSlider($(this), i);
+
+                tlAutoScroll[i] = new TimelineMax();
+                var slidersInit = $(this).find('.slider'), sliderInit = $(this).find('.slides');
+                var slidesInit = sliderInit.find('> li');
+                var slideWidthInit = slidesInit.outerWidth();
+                autoScroll(slidersInit, slideWidthInit, i, tlAutoScroll[i]);
             });
             smallWindowWidth = false;
         }else if(windowWidth <= 580 && !smallWindowWidth){
             clearSliders();
             containerSliders.each(function(i){
+                tlAutoScroll[i].kill();
+                clearTimeout(timeOutAutoScroll[i]);
+
                 initSlider($(this), i);
+
+                tlAutoScroll[i] = new TimelineMax();
+                var slidersInit = $(this).find('.slider'), sliderInit = $(this).find('.slides');
+                var slidesInit = sliderInit.find('> li');
+                var slideWidthInit = slidesInit.outerWidth();
+                autoScroll(slidersInit, slideWidthInit, i, tlAutoScroll[i]);
             });
             smallWindowWidth = true;
         }
