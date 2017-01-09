@@ -21,7 +21,6 @@ module.exports = function(body, blocTop, themeColors){
     var nav = blocTop.find('#slider-home-nav'), svgHoop = $('#gradient-hoop');
     var slides = blocTop.find('.slide-home'), nbSlides = slides.length, slidesTxt = blocRevel.find('.slide-home-txt');
     var oldDirNb, timeOut, scrollTop, sliding = false;
-    // var ease = CustomEase.create('custom', 'M0,0,C0,0.5,0.005,0.73,0.11,0.85,0.22,0.975,0.505,1,1,1');
     var ease = CustomEase.create('custom', 'M0,0 C0,0 0.358,-0.02 0.52,0.18 0.631,0.317 0.65,0.713 0.75,0.862 0.828,0.978 1,1 1,1');
 
 
@@ -75,7 +74,13 @@ module.exports = function(body, blocTop, themeColors){
     function animSlide(oldDir, newDir){
         TweenMax.to(oldSlide, 1, {x: 100*oldDir + '%', delay: 0.3, force3D: true, ease: ease});
 
-        if(plans.is(':visible')){
+        if(currentSlide.find('.slide-home-mb').is(':visible')){
+            TweenMax.fromTo(currentSlide, 1, {x: 100*newDir + '%'}, {x: '0%', delay: 0.3, force3D: true, ease: ease, onComplete: function(){
+                sliding = false;
+                TweenMax.to(blocRevel.find('.slide-anim-txt').eq(0), 0.7, {y: '0px', opacity: 1});
+                TweenMax.to(blocRevel.find('.slide-anim-txt').eq(1), 0.7, {y: '0px', opacity: 1, delay: 0.3});
+            }});
+        }else{
             TweenMax.fromTo(currentSlide, 1, {x: 100*newDir + '%'}, {x: '0%', delay: 0.3, force3D: true, ease: ease});
 
             TweenMax.fromTo(plans, 1.5, {x: newDir*containerW/5+'px'}, {x: '0px', delay: 0.3, force3D: true, ease: Power2.easeOut});
@@ -87,12 +92,6 @@ module.exports = function(body, blocTop, themeColors){
 
             TweenMax.to(blocRevel.find('.slide-anim-txt').eq(0), 0.7, {y: '0px', opacity: 1, delay: 2.65});
             TweenMax.to(blocRevel.find('.slide-anim-txt').eq(1), 0.7, {y: '0px', opacity: 1, delay: 3});
-        }else{
-            TweenMax.fromTo(currentSlide, 1, {x: 100*newDir + '%'}, {x: '0%', delay: 0.3, force3D: true, ease: ease, onComplete: function(){
-                sliding = false;
-                TweenMax.to(blocRevel.find('.slide-anim-txt').eq(0), 0.7, {y: '0px', opacity: 1});
-                TweenMax.to(blocRevel.find('.slide-anim-txt').eq(1), 0.7, {y: '0px', opacity: 1, delay: 0.3});
-            }});
         }
     }
 
@@ -118,7 +117,9 @@ module.exports = function(body, blocTop, themeColors){
             currentTxt.removeClass('txt-on');
             currentTxt = blocRevel.find('.txt-on');
 
-            if(plans.is(':visible')){
+            if(oldSlide.find('.slide-home-mb').is(':visible')){
+                setTheme();
+            }else{
                 TweenMax.to([
                         oldSlide.find('.hoop'),
                         oldSlide.find('.baseline').find('> span'),
@@ -127,8 +128,6 @@ module.exports = function(body, blocTop, themeColors){
                     ],
                     1, {x: oldDirNb*300 + 'px', force3D: true, ease: Power2.easeIn, onComplete: setTheme}
                 );
-            }else{
-                setTheme();
             }
 
             setPosBaseline();
