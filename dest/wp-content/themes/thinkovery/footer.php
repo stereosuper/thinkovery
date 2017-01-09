@@ -14,68 +14,100 @@
             </div>
         <?php } ?>
         <div class='container'>
-            <div class='container-medium'>
-                <div class='grid'>
-                    <div class='col-7'>
-                        <span class='footer-title'><?php the_field('blogTitleFooter', 'options'); ?></span>
-                        <?php
-                            $blogFooter = new WP_Query(
-                                array('posts_per_page' => 2,
-                                    'tax_query' => array(
-                                        array(
-                                            'taxonomy' => 'post_format',
-                                            'field'    => 'slug',
-                                            'terms'    => array( 'post-format-link' ),
-                                            'operator' => 'NOT IN'
+            <?php if(get_field('blogTitleFooter', 'options')){ ?>
+                <div class='container-medium'>
+                    <div class='grid'>
+                        <div class='col-7'>
+                            <span class='footer-title'><?php the_field('blogTitleFooter', 'options'); ?></span>
+                            <?php
+                                $blogFooter = new WP_Query(
+                                    array('posts_per_page' => 2,
+                                        'tax_query' => array(
+                                            array(
+                                                'taxonomy' => 'post_format',
+                                                'field'    => 'slug',
+                                                'terms'    => array( 'post-format-link' ),
+                                                'operator' => 'NOT IN'
+                                            ),
                                         ),
-                                    ),
-                                )
-                            );
-                            if( $blogFooter->have_posts() ){ ?>
-                                <ul>
-                                    <?php while( $blogFooter->have_posts() ){ $blogFooter->the_post(); ?>
-                                        <li><a href='<?php the_permalink(); ?>'><?php the_title(); ?></a></li>
-                                    <?php } ?>
+                                    )
+                                );
+                                if( $blogFooter->have_posts() ){ ?>
+                                    <ul>
+                                        <?php while( $blogFooter->have_posts() ){ $blogFooter->the_post(); ?>
+                                            <li><a href='<?php the_permalink(); ?>'><?php the_title(); ?></a></li>
+                                        <?php } ?>
+                                    </ul>
+                                <?php }
+                                wp_reset_query();
+                            ?>
+                            <a href='<?php the_field('blogLink', 'options'); ?>' class='btn-small'>
+                                <?php the_field('blogLinkTxt', 'options'); ?>
+                                <svg class='icon'><use xlink:href='#icon-arrow-right'/></svg>
+                            </a>
+                        </div>
+                        <div class='col-2'>
+                            <span class='footer-title'><?php the_field('alsoTitle', 'options'); ?></span>
+                            <?php wp_nav_menu( array( 'theme_location' => 'secondary', 'container' => false, 'menu_class' => 'menu-footer', 'walker' => new rc_scm_walker ) ); ?>
+                            <?php if( have_rows('social', 'options') ): ?>
+                                <ul class='social'>
+                                    <?php while ( have_rows('social', 'options') ) : the_row(); ?><li>
+                                        <a href='<?php the_sub_field('networkLink'); ?>' target='_blank'>
+                                            <?php the_sub_field('networkLinkTxt'); ?>
+                                            <svg class='icon'><use xlink:href='#icon-<?php the_sub_field('networkSlug'); ?>'/></svg>
+                                        </a>
+                                    </li><?php endwhile; ?>
                                 </ul>
-                            <?php }
-                            wp_reset_query();
-                        ?>
-                        <a href='<?php the_field('blogLink', 'options'); ?>' class='btn-small'>
-                            <?php the_field('blogLinkTxt', 'options'); ?>
-                            <svg class='icon'><use xlink:href='#icon-arrow-right'/></svg>
-                        </a>
+                            <?php endif; ?>
+                        </div>
                     </div>
-                    <div class='col-2'>
-                        <span class='footer-title'><?php the_field('alsoTitle', 'options'); ?></span>
-                        <?php wp_nav_menu( array( 'theme_location' => 'secondary', 'container' => false, 'menu_class' => 'menu-footer', 'walker' => new rc_scm_walker ) ); ?>
-                        <?php if( have_rows('social', 'options') ): ?>
-                            <ul class='social'>
-                                <?php while ( have_rows('social', 'options') ) : the_row(); ?><li>
-                                    <a href='<?php the_sub_field('networkLink'); ?>' target='_blank'>
-                                        <?php the_sub_field('networkLinkTxt'); ?>
-                                        <svg class='icon'><use xlink:href='#icon-<?php the_sub_field('networkSlug'); ?>'/></svg>
-                                    </a>
-                                </li><?php endwhile; ?>
-                            </ul>
-                        <?php endif; ?>
-                    </div>
-                </div>
 
-                <a href='<?php the_field('legalLink', 'options'); ?>' class='link-small'>
-                    <?php the_field('legalLinkText', 'options'); ?>
-                </a>
-
-                <div class='contact-footer'>
-                    <a href='mailto:<?php the_field('footerEmail', 'options'); ?>'>
-                        <?php the_field('footerEmail', 'options'); ?>
+                    <a href='<?php the_field('legalLink', 'options'); ?>' class='link-small'>
+                        <?php the_field('legalLinkText', 'options'); ?>
                     </a>
-                    <div class='tel-footer'>
-                        <a href='tel:<?php the_field('phone', 'options'); ?>'>
-                            <?php the_field('phoneDisplay', 'options'); ?>
+
+                    <div class='contact-footer'>
+                        <a href='mailto:<?php the_field('footerEmail', 'options'); ?>'>
+                            <?php the_field('footerEmail', 'options'); ?>
                         </a>
+                        <div class='tel-footer'>
+                            <a href='tel:<?php the_field('phone', 'options'); ?>'>
+                                <?php the_field('phoneDisplay', 'options'); ?>
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
+            <?php }else{ ?>
+                <div class='container-medium'>
+                    <div class='grid grid-en'>
+                        <div class='col-3 col-en'>
+                            <a href='<?php the_field('legalLink', 'options'); ?>' class='link-small'>
+                                <?php the_field('legalLinkText', 'options'); ?>
+                            </a>
+                        </div><div class='col-3 contact-footer-en col-en'>
+                            <a href='mailto:<?php the_field('footerEmail', 'options'); ?>'>
+                                <?php the_field('footerEmail', 'options'); ?>
+                            </a>
+                            <a href='tel:<?php the_field('phone', 'options'); ?>'>
+                                <?php the_field('phoneDisplay', 'options'); ?>
+                            </a>
+                        </div><div class='col-2 col-en'>
+                            <?php wp_nav_menu( array( 'theme_location' => 'secondary', 'container' => false, 'menu_class' => 'menu-footer menu-footer-en', 'walker' => new rc_scm_walker ) ); ?>
+                        </div><div class='col-3 col-en'>
+                            <?php if( have_rows('social', 'options') ): ?>
+                                <ul class='social social-en'>
+                                    <?php while ( have_rows('social', 'options') ) : the_row(); ?><li>
+                                        <a href='<?php the_sub_field('networkLink'); ?>' target='_blank'>
+                                            <?php the_sub_field('networkLinkTxt'); ?>
+                                            <svg class='icon'><use xlink:href='#icon-<?php the_sub_field('networkSlug'); ?>'/></svg>
+                                        </a>
+                                    </li><?php endwhile; ?>
+                                </ul>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
         </div>
 	</footer>
 
