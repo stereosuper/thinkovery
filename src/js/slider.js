@@ -78,8 +78,8 @@ module.exports = function(){
 
         timeOutAutoScroll[indexSliderInit] = setTimeout(function(){
             tlScroll.set(slidersInit.find('.slides > li'), {className: '-=active'});
-            tlScroll.to(slidersInit, 2, {x: '-='+slideWidthInit, ease: Power3.easeInOut, onUpdate: actualizeSlider, onUpdateParams: [slidersInit, false, false], onComplete: autoScroll, onCompleteParams: [slidersInit, slideWidthInit, indexSliderInit, tlScroll]});
-        }, 2000);
+            tlScroll.to(slidersInit, 1, {x: '-='+slideWidthInit, force3D: true, ease: Power3.easeInOut, onUpdate: actualizeSlider, onUpdateParams: [slidersInit, false, false], onComplete: autoScroll, onCompleteParams: [slidersInit, slideWidthInit, indexSliderInit, tlScroll]});
+        }, 5000);
     }
 
     function clearSliders(){
