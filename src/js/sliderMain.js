@@ -74,17 +74,26 @@ module.exports = function(body, blocTop, themeColors){
 
     function animSlide(oldDir, newDir){
         TweenMax.to(oldSlide, 1, {x: 100*oldDir + '%', delay: 0.3, force3D: true, ease: ease});
-        TweenMax.fromTo(currentSlide, 1, {x: 100*newDir + '%'}, {x: '0%', delay: 0.3, force3D: true, ease: ease});
 
-        TweenMax.fromTo(plans, 1.5, {x: newDir*containerW/5+'px'}, {x: '0px', delay: 0.3, force3D: true, ease: Power2.easeOut});
-        TweenMax.fromTo(circle, 2, {x: newDir*containerW/5+'px'}, {x: '0px', delay: 0.3, force3D: true, ease: Power2.easeOut});
-        TweenMax.fromTo([baseline.find('> span').eq(0), baselineSecond.find('> span')], 2.5, {x: newDir*containerW/5+'px'}, {x: '0px', delay: 0.3, force3D: true, ease: Power2.easeOut});
-        TweenMax.fromTo(baseline.find('> span').eq(1), 3, {x: newDir*containerW/5+'px'}, {x: '0px', delay: 0.3, force3D: true, ease: Power2.easeOut, onComplete: function(){
-            sliding = false;
-        }});
+        if(plans.is(':visible')){
+            TweenMax.fromTo(currentSlide, 1, {x: 100*newDir + '%'}, {x: '0%', delay: 0.3, force3D: true, ease: ease});
 
-        TweenMax.to(blocRevel.find('.slide-anim-txt').eq(0), 0.7, {y: '0px', opacity: 1, delay: 2.65});
-        TweenMax.to(blocRevel.find('.slide-anim-txt').eq(1), 0.7, {y: '0px', opacity: 1, delay: 3});
+            TweenMax.fromTo(plans, 1.5, {x: newDir*containerW/5+'px'}, {x: '0px', delay: 0.3, force3D: true, ease: Power2.easeOut});
+            TweenMax.fromTo(circle, 2, {x: newDir*containerW/5+'px'}, {x: '0px', delay: 0.3, force3D: true, ease: Power2.easeOut});
+            TweenMax.fromTo([baseline.find('> span').eq(0), baselineSecond.find('> span')], 2.5, {x: newDir*containerW/5+'px'}, {x: '0px', delay: 0.3, force3D: true, ease: Power2.easeOut, onComplete: function(){
+                sliding = false;
+            }});
+            TweenMax.fromTo(baseline.find('> span').eq(1), 3, {x: newDir*containerW/5+'px'}, {x: '0px', delay: 0.3, force3D: true, ease: Power2.easeOut});
+
+            TweenMax.to(blocRevel.find('.slide-anim-txt').eq(0), 0.7, {y: '0px', opacity: 1, delay: 2.65});
+            TweenMax.to(blocRevel.find('.slide-anim-txt').eq(1), 0.7, {y: '0px', opacity: 1, delay: 3});
+        }else{
+            TweenMax.fromTo(currentSlide, 1, {x: 100*newDir + '%'}, {x: '0%', delay: 0.3, force3D: true, ease: ease, onComplete: function(){
+                sliding = false;
+                TweenMax.to(blocRevel.find('.slide-anim-txt').eq(0), 0.7, {y: '0px', opacity: 1});
+                TweenMax.to(blocRevel.find('.slide-anim-txt').eq(1), 0.7, {y: '0px', opacity: 1, delay: 0.3});
+            }});
+        }
     }
 
     function slide(nextSlide, nextTxt, lastSlideIndex, dir){
@@ -109,21 +118,25 @@ module.exports = function(body, blocTop, themeColors){
             currentTxt.removeClass('txt-on');
             currentTxt = blocRevel.find('.txt-on');
 
-            TweenMax.to([
-                    oldSlide.find('.hoop'),
-                    oldSlide.find('.baseline').find('> span'),
-                    oldSlide.find('.baseline-second').find('> span'),
-                    oldSlide.find('.slider-plans2')
-                ],
-                1, {x: oldDirNb*300 + 'px', force3D: true, ease: Power2.easeIn, onComplete: setTheme}
-            );
+            if(plans.is(':visible')){
+                TweenMax.to([
+                        oldSlide.find('.hoop'),
+                        oldSlide.find('.baseline').find('> span'),
+                        oldSlide.find('.baseline-second').find('> span'),
+                        oldSlide.find('.slider-plans')
+                    ],
+                    1, {x: oldDirNb*300 + 'px', force3D: true, ease: Power2.easeIn, onComplete: setTheme}
+                );
+            }else{
+                setTheme();
+            }
 
             setPosBaseline();
             setPosCircle();
             setPosPlans();
 
             dir === 'next' ? animSlide(-1, 1) : animSlide(1, -1);
-            // setSliderTimeout();
+            setSliderTimeout();
 
             Cookies.set('think-decli', currentSlide.index('.slide-home'));
         }});
@@ -143,7 +156,7 @@ module.exports = function(body, blocTop, themeColors){
         TweenMax.to(nav, 0.5, {opacity: 1});
 
         setTheme();
-        // setSliderTimeout();
+        setSliderTimeout();
     }
 
     function checkIfInView(){
@@ -181,11 +194,11 @@ module.exports = function(body, blocTop, themeColors){
         requestAnimFrame(setPosCircle);
         requestAnimFrame(setPosPlans);
 
-    }, 60))/*.on('blur', function(){
+    }, 60)).on('blur', function(){
 
         clearTimeout(timeOut);
 
-    }).on('focus', setSliderTimeout)*/;
+    }).on('focus', setSliderTimeout);
 
     $(document).on('scroll', throttle(function(){
         requestAnimFrame(checkIfInView);
