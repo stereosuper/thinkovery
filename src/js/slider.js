@@ -28,23 +28,9 @@ module.exports = function(){
         nbSlidesTarget = slidesTarget.length;
         widthSliderTarget = nbSlidesTarget*widthSlidesTarget;
 
-        if(nbSlidesTarget % 2 === 0){
-            isEven = true;
-        }else{
-            isEven = false;
-        }
-
-        if(hasGSAPObject){
-            newX = sliderThis.x;
-        }else{
-            newX = sliderTarget.get(0)._gsTransform.x;
-        }
-
-        if(nbSlidesTarget % 2 === 0){
-            gapLeft = widthSlidesTarget/2;
-        }else{
-            gapLeft = 0;
-        }
+        isEven = nbSlidesTarget % 2 === 0 ? true : false;
+        newX = hasGSAPObject ? sliderThis.x : sliderTarget.get(0)._gsTransform.x;
+        gapLeft = nbSlidesTarget % 2 === 0 ? widthSlidesTarget/2 : 0;
 
         // if(newX > 0){
         if(newX > gapLeft){

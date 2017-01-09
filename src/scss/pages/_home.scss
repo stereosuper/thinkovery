@@ -113,6 +113,7 @@
 	z-index: 50;
 	font-weight: 600;
 	transition: 0.3s opacity $transition;
+	font-feature-settings: 'salt', 'liga' 1;
 	> span{
 		display: inline-block;
 		transform-origin: 100% 0;
@@ -177,6 +178,7 @@
 	.container{
 		display: flex;
 		justify-content: space-between;
+		align-items: center;
 		.js &{
 			opacity: 0;
 		}
@@ -195,7 +197,7 @@
 	}
 	.zone-btn{
 		width: calc(#{$col*4} - #{$gutter*2});
-		margin: 0 $col 0 0;
+		margin: 10px $col 0 0;
 	}
 	.btn{
 		width: 100%;
@@ -244,7 +246,7 @@
 		padding-top: 7.5em;
 		padding-bottom: 9em;
 	}
-	#content-more-than-moocs{
+	> div{
 		overflow: hidden;
 	}
 	h2{
@@ -253,76 +255,76 @@
 	h2, p{
 		z-index: 2;
 	}
-	svg{
-		position: absolute;
+	.hoop{
+		position: absolute !important;
 		&:nth-of-type(10){
 			width: 60px;
 			height: 60px;
-			top: -5%;
-			left: 50%;
+			top: -5% !important;
+			left: 50% !important;
 			filter: blur(7px);
 		}
 		&:nth-of-type(9){
 			width: 54px;
 			height: 54px;
-			top: 92%;
-			left: -2%;
+			top: 92% !important;
+			left: -2% !important;
 			filter: blur(7px);
 		}
 		&:nth-of-type(8){
 			width: 66px;
 			height: 66px;
-			top: 91%;
-			left: 67%;
+			top: 91% !important;
+			left: 67% !important;
 			filter: blur(7px);
 		}
 		&:nth-of-type(7){
 			width: 74px;
 			height: 74px;
-			top: 67%;
-			left: 86%;
+			top: 67% !important;
+			left: 86% !important;
 			filter: blur(4px);
 		}
 		&:nth-of-type(6){
 			width: 78px;
 			height: 78px;
-			top: -6%;
-			left: 91%;
+			top: -6% !important;
+			left: 91% !important;
 			filter: blur(4px);
 		}
 		&:nth-of-type(5){
 			width: 80px;
 			height: 80px;
-			top: 16%;
-			left: 60%;
+			top: 16% !important;
+			left: 60% !important;
 			filter: blur(3px);
 		}
 		&:nth-of-type(4){
 			width: 66px;
 			height: 66px;
-			top: 56%;
-			left: 55%;
+			top: 56% !important;
+			left: 55% !important;
 			filter: blur(3px);
 		}
 		&:nth-of-type(3){
 			width: 80px;
 			height: 80px;
-			top: 34%;
-			left: 107%;
+			top: 34% !important;
+			left: 107% !important;
 			filter: blur(3px);
 		}
 		&:nth-of-type(2){
 			width: 116px;
 			height: 116px;
-			top: 20%;
-			left: 92%;
+			top: 20% !important;
+			left: 92% !important;
 			filter: blur(1px);
 		}
 		&:nth-of-type(1){
 			width: 166px;
 			height: 166px;
-		    top: 34%;
-		    left: 73%;
+		    top: 34% !important;
+		    left: 73% !important;
 		}
 	}
 }
