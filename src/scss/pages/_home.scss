@@ -177,6 +177,7 @@
 	.container{
 		display: flex;
 		justify-content: space-between;
+		align-items: center;
 		.js &{
 			opacity: 0;
 		}
@@ -195,7 +196,7 @@
 	}
 	.zone-btn{
 		width: calc(#{$col*4} - #{$gutter*2});
-		margin: 0 $col 0 0;
+		margin: 10px $col 0 0;
 	}
 	.btn{
 		width: 100%;
