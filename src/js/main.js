@@ -58,7 +58,7 @@ $(function(){
             ga('send', 'event', {
                 eventCategory: 'Form',
                 eventAction: 'submit',
-                eventLabel: 'thinkovery.com/contact-send'
+                eventLabel: window.location.host + '/contact-send'
             });
         });
     }
