@@ -14,6 +14,7 @@ get_header(); ?>
         ?>
 
         <header id='bloc-top' data-img-width='<?php echo $imgWidth; ?>' data-img-height='<?php echo $imgHeight; ?>'>
+            <div id='loader'></div>
             <?php $count = 0; foreach($declis as $decli){ ?>
                 <div class='slide-home <?php if($count == $currentDecli) echo 'slide-on'; ?>' style='background-image:url("<?php echo wp_get_attachment_url($decli['homeBg']); ?>")' data-color='<?php echo $decli['mainColor']; ?>'>
                     <strong style='left:<?php echo $decli['baselinePosX']; ?>px;top:<?php echo $decli['baselinePosY']; ?>px' data-x='<?php echo $decli['baselinePosX']; ?>' data-y='<?php echo $decli['baselinePosY']; ?>' class='baseline'>

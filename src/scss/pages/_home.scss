@@ -11,6 +11,32 @@
 	line-height: 1.2;
 	background: #000;
 }
+
+#loader{
+	width: 42px;
+	height: 42px;
+	border: 3px solid;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	margin: auto;
+	border-radius: 50%;
+	animation: loading 1.5s ease-in-out 0s infinite;
+}
+
+@keyframes loading{
+    0%{
+		transform: scale(1) translate3d(0, 0, 0);
+    	opacity: 1;
+	}
+    50%{
+		transform: scale(1.2) translate3d(0, 0, 0);
+    	opacity: 0;
+	}
+}
+
 #slider-home-nav{
 	padding: 0 $gutter*2;
 	position: absolute;
@@ -339,6 +365,7 @@
 	margin-left: 0.25em;
 }
 
+
 @media (max-width: $desktop){
 	#bloc-revelation{
 		padding: 3em 0;
@@ -409,6 +436,10 @@
 	}
 	.slide-home-mb{
 		display: block;
+	}
+
+	#loader{
+		top: 100px;
 	}
 
 	.baseline-mb{
