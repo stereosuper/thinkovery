@@ -54,6 +54,7 @@
     padding: 22px 0;
     margin: 0 0 80px;
     background: $gray-dark;
+    font-feature-settings: 'salt', 'liga' 1;
     .container-medium{
         display: flex;
         justify-content: space-between;
@@ -77,6 +78,7 @@
     line-height: 1.1;
     font-weight: 600;
     color: $gray-superlight;
+    font-feature-settings: 'salt', 'liga' 1;
 }
 
 .menu-footer{

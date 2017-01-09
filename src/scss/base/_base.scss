@@ -18,13 +18,16 @@ html{
 
 body{
     font-family: $sofia, sans-serif;
-    font-feature-settings: 'salt', 'liga' 1;
     font-size: 1.6em;
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: $black;
     background: $white;
+}
+
+h1, h2, h3, h4, h5, h6{
+    font-feature-settings: 'salt', 'liga' 1;
 }
 
 h1, .h1{
