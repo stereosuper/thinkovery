@@ -12,6 +12,7 @@ module.exports = function(body, blocTop, themeColors){
     var slides = currentSlide = blocTop.find('.slide-on'), oldSlide;
     var currentTxt = blocRevel.find('.txt-on');
     var baseline = currentSlide.find('.baseline'), baselineSecond = currentSlide.find('.baseline-second');
+    var plans = currentSlide.find('.slider-plans'), newPosPlan;
     var imgW = blocTop.data('img-width'), imgH = blocTop.data('img-height'), imgRatio = imgH / imgW;
     var circle = currentSlide.find('.hoop');
     var newPosBaseline, newPosCircle, containerW = blocTop.width(), gutter = 20;
@@ -27,6 +28,13 @@ module.exports = function(body, blocTop, themeColors){
     function setPosCircle(){
         newPosCircle = getEltPosOnCover(blocTop, imgRatio, imgW, imgH, circle);
         TweenMax.set(circle, {scale: newPosCircle[2], left: newPosCircle[0] + 'px', top: newPosCircle[1] + 'px', force3D: true});
+    }
+
+    function setPosPlans(){
+        plans.each(function(){
+            newPosPlan = getEltPosOnCover(blocTop, imgRatio, imgW, imgH, $(this));
+            TweenMax.set($(this), {scale: newPosPlan[2], left: newPosPlan[0] + 'px', top: newPosPlan[1] + 'px', force3D: true});
+        });
     }
 
     function setPosBaseline(){
@@ -68,7 +76,7 @@ module.exports = function(body, blocTop, themeColors){
         TweenMax.to(oldSlide, 1, {x: 100*oldDir + '%', delay: 0.3, force3D: true, ease: ease});
         TweenMax.fromTo(currentSlide, 1, {x: 100*newDir + '%'}, {x: '0%', delay: 0.3, force3D: true, ease: ease});
 
-        TweenMax.fromTo(currentSlide.find('.slider-plans'), 1.5, {x: newDir*containerW/5+'px'}, {x: '0px', delay: 0.3, force3D: true, ease: Power2.easeOut});
+        TweenMax.fromTo(plans, 1.5, {x: newDir*containerW/5+'px'}, {x: '0px', delay: 0.3, force3D: true, ease: Power2.easeOut});
         TweenMax.fromTo(circle, 2, {x: newDir*containerW/5+'px'}, {x: '0px', delay: 0.3, force3D: true, ease: Power2.easeOut});
         TweenMax.fromTo([baseline.find('> span').eq(0), baselineSecond.find('> span')], 2.5, {x: newDir*containerW/5+'px'}, {x: '0px', delay: 0.3, force3D: true, ease: Power2.easeOut});
         TweenMax.fromTo(baseline.find('> span').eq(1), 3, {x: newDir*containerW/5+'px'}, {x: '0px', delay: 0.3, force3D: true, ease: Power2.easeOut, onComplete: function(){
@@ -91,6 +99,7 @@ module.exports = function(body, blocTop, themeColors){
         baseline = currentSlide.find('.baseline');
         baselineSecond = currentSlide.find('.baseline-second');
         circle = currentSlide.find('.hoop');
+        plans = currentSlide.find('.slider-plans');
 
         oldDirNb = dir === 'next' ? -1 : 1;
 
@@ -104,30 +113,37 @@ module.exports = function(body, blocTop, themeColors){
                     oldSlide.find('.hoop'),
                     oldSlide.find('.baseline').find('> span'),
                     oldSlide.find('.baseline-second').find('> span'),
-                    oldSlide.find('.slider-plans')
+                    oldSlide.find('.slider-plans2')
                 ],
                 1, {x: oldDirNb*300 + 'px', force3D: true, ease: Power2.easeIn, onComplete: setTheme}
             );
 
             setPosBaseline();
             setPosCircle();
+            setPosPlans();
+
             dir === 'next' ? animSlide(-1, 1) : animSlide(1, -1);
-            setSliderTimeout();
+            // setSliderTimeout();
 
             Cookies.set('think-decli', currentSlide.index('.slide-home'));
         }});
     }
 
     function setSlider(){
+        setPosBaseline();
+        setPosCircle();
+        setPosPlans();
+
         TweenMax.set(slides, {x: '100%', force3D: true});
         TweenMax.set(currentSlide, {x: '0%', force3D: true});
         TweenMax.to(currentSlide, 1, {opacity: 1, onComplete: function(){
             TweenMax.set(slides, {opacity: 1});
         }});
         TweenMax.to(blocRevel.find('.container'), 0.7, {opacity: 1, delay: 0.5});
+        TweenMax.to(nav, 0.5, {opacity: 1});
 
         setTheme();
-        setSliderTimeout();
+        // setSliderTimeout();
     }
 
     function checkIfInView(){
@@ -155,8 +171,6 @@ module.exports = function(body, blocTop, themeColors){
 
     $(window).on('load', function(){
 
-        setPosBaseline();
-        setPosCircle();
         setSlider();
 
     }).on('resize', throttle(function(){
@@ -165,12 +179,13 @@ module.exports = function(body, blocTop, themeColors){
 
         requestAnimFrame(setPosBaseline);
         requestAnimFrame(setPosCircle);
+        requestAnimFrame(setPosPlans);
 
-    }, 60)).on('blur', function(){
+    }, 60))/*.on('blur', function(){
 
         clearTimeout(timeOut);
 
-    }).on('focus', setSliderTimeout);
+    }).on('focus', setSliderTimeout)*/;
 
     $(document).on('scroll', throttle(function(){
         requestAnimFrame(checkIfInView);
