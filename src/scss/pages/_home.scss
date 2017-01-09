@@ -46,9 +46,15 @@
 	background-position: 50% 50%;
 	background-repeat: no-repeat;
 	overflow: hidden;
+	.no-js &{
+		background: none !important;
+	}
 }
 .slider-plans{
 	transform-origin: 0 0;
+	.no-js &{
+		display: none;
+	}
 }
 .slide-home{
 	opacity: 0;
@@ -69,6 +75,10 @@
 }
 .slide-home-mb{
 	display: none;
+	.no-js &{
+		display: block;
+		margin: 0 auto;
+	}
 }
 
 .baseline, .baseline-second{
