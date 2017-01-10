@@ -19,7 +19,7 @@ get_header(); ?>
                         <div class='case'>
                             <div class='img'><?php echo wp_get_attachment_image( get_sub_field('img'), 'full' ); ?></div>
                             <div class='study-content'>
-                                <b class='study-subtitle'><?php _e('Study case', 'thinkovery'); ?> n°<?php echo $count; ?></b>
+                                <b class='study-subtitle'><?php _e('Case study', 'thinkovery'); ?> n°<?php echo $count; ?></b>
                                 <h2 class='animateOnScroll'><?php the_sub_field('title'); ?></h2>
                                 <?php the_sub_field('txt'); ?>
                                 <?php if(get_sub_field('link')){ ?>
