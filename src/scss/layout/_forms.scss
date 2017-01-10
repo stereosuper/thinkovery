@@ -154,21 +154,63 @@ input{
         color: $gray;
     }
     > button{
-        width: 44px;
-        height: 44px;
+        width: 48px;
+        height: 48px;
         padding: 12px;
         position: absolute;
-        right: 3px;
-        top: 3px;
+        right: 1px;
+        top: 1px;
         text-indent: -99em;
         overflow: hidden;
+        z-index: 1;
         > .icon{
             text-indent: 0;
             float: left;
         }
-        &:hover, &:focus{
-            transform: scale3d(1.1, 1.1, 1.1) rotate(90deg);
+        &:before, > i:after{
+            content: '';
+            position: absolute;
+            transition: opacity $transition, transform 0.5s ease-in-out;
+            opacity: 0;
         }
+        &:before{
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: -1;
+        }
+        > i{
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            bottom: -100px;
+            right: -80px;
+            z-index: -1;
+            &:after{
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                border-radius: 50%;
+                transform: scale3d(0, 0, 0);
+                transition: $transition;
+            }
+        }
+        &:hover, &:focus{
+            .icon{
+                fill: $white;
+            }
+            &:before, > i:after{
+                opacity: 1;
+            }
+            > i:after{
+                transform: scale3d(1, 1, 1);
+            }
+        }
+        // &:hover, &:focus{
+        //     transform: scale3d(1.1, 1.1, 1.1) rotate(90deg);
+        // }
     }
 }
 

@@ -267,17 +267,49 @@
     }
     a{
         display: block;
+        position: relative;
         width: 75px;
         height: 75px;
         text-indent: -99em;
+        overflow: hidden;
+        z-index: 1;
+        &:before, > i:after{
+            content: '';
+            position: absolute;
+            transition: opacity $transition, transform 0.5s ease-in-out;
+            opacity: 0;
+        }
         &:before{
-            height: 4px;
+            top: 0;
+            bottom: 0;
             left: 0;
-            transform: scale3d(1, 0, 1);
-            transform-origin: 0 100%;
+            right: 0;
+            z-index: -1;
+        }
+        > i{
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            bottom: -100px;
+            right: -80px;
+            z-index: -1;
+            &:after{
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                border-radius: 50%;
+                transform: scale3d(0, 0, 0);
+            }
         }
         &:hover, &:focus{
-            &:before{
+            .icon{
+                fill: $white;
+            }
+            &:before, > i:after{
+                opacity: 1;
+            }
+            > i:after{
                 transform: scale3d(1, 1, 1);
             }
         }
@@ -316,14 +348,48 @@
         font-size: 1.6rem;
         font-weight: 700;
         line-height: 1.4;
+        overflow: hidden;
+        z-index: 1;
+        position: relative;
+        &:before, > i:after{
+            content: '';
+            position: absolute;
+            transition: opacity $transition, transform 0.5s ease-in-out;
+            opacity: 0;
+        }
         &:before{
-            width: 4px;
             top: 0;
-            transform: scale3d(0, 1, 1);
-            transform-origin: 100% 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: -1;
+        }
+        > i{
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            bottom: -100px;
+            right: -80px;
+            z-index: -1;
+            &:after{
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                border-radius: 50%;
+                transform: scale3d(0, 0, 0);
+                transition: $transition;
+            }
         }
         &:hover, &:focus{
-            &:before{
+            color: $white;
+            .icon{
+                fill: $white;
+            }
+            &:before, > i:after{
+                opacity: 1;
+            }
+            > i:after{
                 transform: scale3d(1, 1, 1);
             }
         }

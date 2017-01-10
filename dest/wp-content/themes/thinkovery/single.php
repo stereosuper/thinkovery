@@ -24,13 +24,13 @@
 							<h4><?php _e('Share this post', 'thinkovery'); ?></h4>
 							<ul>
 								<li>
-									<a href='http://twitter.com/share?url=<?php the_permalink(); ?>&text=<?php the_title(); ?>&via=<?php bloginfo("name"); ?>' rel='nofollow' target='_blank'><?php _e('Share on Twitter', 'thinkovery'); ?><svg class='icon icon-twitter'><use xlink:href='#icon-twitter'/></svg></a>
+									<a href='http://twitter.com/share?url=<?php the_permalink(); ?>&text=<?php the_title(); ?>&via=<?php bloginfo("name"); ?>' rel='nofollow' target='_blank'><?php _e('Share on Twitter', 'thinkovery'); ?><svg class='icon icon-twitter'><use xlink:href='#icon-twitter'/></svg><i></i></a>
 								</li>
 								<li>
-									<a href='http://www.linkedin.com/shareArticle?mini=true&url=<?php the_permalink(); ?>&title=<?php the_title(); ?>' rel='nofollow' target='_blank'><?php _e('Share on Linkedin', 'thinkovery'); ?><svg class='icon icon-linkedin'><use xlink:href='#icon-linkedin'/></svg></a>
+									<a href='http://www.linkedin.com/shareArticle?mini=true&url=<?php the_permalink(); ?>&title=<?php the_title(); ?>' rel='nofollow' target='_blank'><?php _e('Share on Linkedin', 'thinkovery'); ?><svg class='icon icon-linkedin'><use xlink:href='#icon-linkedin'/></svg><i></i></a>
 								</li>
 								<li>
-									<a href='http://www.facebook.com/sharer.php?u=<?php the_permalink(); ?>&t=<?php the_title(); ?>' rel='nofollow' target='blank'><?php _e('Share on Facebook', 'thinkovery'); ?><svg class='icon icon-facebook'><use xlink:href='#icon-facebook'/></svg></a>
+									<a href='http://www.facebook.com/sharer.php?u=<?php the_permalink(); ?>&t=<?php the_title(); ?>' rel='nofollow' target='blank'><?php _e('Share on Facebook', 'thinkovery'); ?><svg class='icon icon-facebook'><use xlink:href='#icon-facebook'/></svg><i></i></a>
 								</li>
 							</ul>
 						</div>
@@ -67,6 +67,7 @@
 												<?php } ?>
 												<span class='title'><?php the_title(); ?></span>
 												<svg class='icon icon-arrow'><use xlink:href='#icon-arrow-right'/></svg>
+												<i></i>
 											</a>
 										</li>
 									<? }
