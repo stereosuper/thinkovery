@@ -185,7 +185,6 @@ module.exports = function(){
             dragResistance: 0,
             edgeResistance: 0.65,
             throwProps: true,
-            minimumMovement: 0,
             allowNativeTouchScrolling: nativeTouchScrollingVar,
             onDrag: updateSlider,
             onThrowUpdate: updateSlider,
@@ -193,7 +192,7 @@ module.exports = function(){
             onThrowComplete: activateSlide,
             snap: {
                 x: function(endValue){
-                    return ((endValue / slideWidth) | 0) * slideWidth;
+                    return Math.round(endValue / slideWidth) * slideWidth;
                 }
             }
         });

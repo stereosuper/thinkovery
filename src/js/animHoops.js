@@ -59,7 +59,7 @@ module.exports = function(elts, distance){
 
     $(document).on('scroll', throttle(function(){
         requestAnimFrame(checkIfInView);
-    }, 40));
+    }, 10));
 
     $(window).on('resize', throttle(function(){
         windowHeight = $(window).height();
