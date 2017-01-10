@@ -24,8 +24,6 @@
         .wrapper-share-related h4,
         .related-posts a .icon-arrow,
         .post h2 a:hover, .post h2 a:focus,
-        .share-post a:hover, .share-post a:focus,
-        .related-posts a:hover, .related-posts a:focus,
         .comments h2, .comments time,
         .form-search button,
         .study-subtitle,
@@ -49,7 +47,9 @@
         .comments li:after,
         .study-content > h2:before,
         .quote-cite:before,
-        .pagination > .current:before{
+        .pagination > .current:before,
+        .share-post a:before,
+        .related-posts a:before{
 			background-color: $colorprimary;
         }
 
@@ -64,7 +64,9 @@
         }
 
         .btn i:before,
-        .menu-main a > i:after{
+        .menu-main a > i:after,
+        .share-post a > i:after,
+        .related-posts a > i:after{
             background: radial-gradient(ellipse at center, $colorsecondary 0, rgba($colorsecondary, 0) 65%);
         }
 
@@ -101,6 +103,16 @@
                 }
                 > i:after{
                     background: radial-gradient(ellipse at center, rgba($colorsecondary, 0.5) 0, rgba($colorsecondary, 0) 65%);
+                }
+            }
+        }
+        .share-post, .related-posts{
+            a{
+                &:hover, &:focus{
+                    color: $black;
+                    .icon{
+                        fill: $black;
+                    }
                 }
             }
         }
