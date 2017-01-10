@@ -58,11 +58,7 @@ $(function(){
         });
 
         $('#form-contact').on('submit', function(e){
-            ga('send', 'event', {
-                eventCategory: 'Form',
-                eventAction: 'submit',
-                eventLabel: window.location.host + '/contact-send'
-            });
+            ga('send', 'pageview', '/contact-send');
         });
     }
 
