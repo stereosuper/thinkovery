@@ -43,7 +43,7 @@
         z-index: 2;
     }
     &:before{
-        height: 27px;
+        height: 77px;
         position: absolute;
         left: 0;
         right: 0;
@@ -72,13 +72,17 @@
 }
 .about-img1{
     width: $col*6;
-    padding: 0 $gutter*2 27px 0;
+    // padding: 0 $gutter*2 27px 0;
+    padding: 0 $gutter*2 77px 0;
     &:before, &:after{
         content: '';
+    }
+    &:before{
         bottom: 0;
     }
     &:after{
         right: 40px;
+        bottom: 50px;
     }
     > .icon{
         width: 68%;
@@ -94,7 +98,7 @@
 .about-img2{
     width: $col*2;
     padding: 0 $gutter*2 0 0;
-    margin: -7px 0 0 $col*2;
+    margin: -57px 0 0 $col*2;
     z-index: 1;
 }
 .about-img3{
@@ -116,10 +120,13 @@
 .about-img4{
     width: $col*4;
     padding: 27px $gutter*2 0 0;
-    margin-bottom: 20px;
+    margin: -50px 0 20px;
     &:before, &:after{
         content: '';
         top: 0;
+    }
+    &:before{
+        height: 27px;
     }
     &:after{
         left: 40px;
@@ -163,13 +170,16 @@
 }
 .about-img7{
     width: $col*5;
-    padding: 0 $gutter*2 27px 0;
+    padding: 0 $gutter*2 77px 0;
     margin: -7.5em 0 0 $col*6;
     &:before, &:after{
         content: '';
+    }
+    &:before{
         bottom: 0;
     }
     &:after{
+        bottom: 50px;
         right: 40px;
     }
     > .icon{
@@ -242,7 +252,7 @@
     .about-txt{
         width: 100%;
         padding: 0;
-        margin: 3em 0;
+        margin: 1em 0 3em;
         > h2{
             font-size: 2.8rem;
         }

@@ -20,7 +20,7 @@ get_header(); ?>
                             <div class='img'><?php echo wp_get_attachment_image( get_sub_field('img'), 'full' ); ?></div>
                             <div class='study-content'>
                                 <b class='study-subtitle'><?php _e('Study case', 'thinkovery'); ?> n°<?php echo $count; ?></b>
-                                <h2><?php the_sub_field('title'); ?></h2>
+                                <h2 class='animateOnScroll'><?php the_sub_field('title'); ?></h2>
                                 <?php the_sub_field('txt'); ?>
                                 <?php if(get_sub_field('link')){ ?>
                                     <a href='<?php the_sub_field('link') ?>' class='btn-small'>
@@ -37,7 +37,7 @@ get_header(); ?>
                                 <div class='quote-img'>
                                     <?php echo wp_get_attachment_image( get_sub_field('quoteImg') ); ?>
                                 </div>
-                                <p class='quote-cite'>
+                                <p class='quote-cite animateOnScroll'>
                                     <?php the_sub_field('quoteAuthor'); ?>
                                     <b><?php the_sub_field('quoteJob'); ?></b>
                                 </p>

@@ -25,7 +25,7 @@
                 } ?>
             </header>
 
-            <h2><a href='<?php the_permalink(); ?>'><?php the_title(); ?></a></h2>
+            <h2 class='animateOnScroll'><a href='<?php the_permalink(); ?>'><?php the_title(); ?></a></h2>
             <?php if(get_field('intro')){ ?>
                 <?php the_field('intro'); ?>
             <?php }else{
