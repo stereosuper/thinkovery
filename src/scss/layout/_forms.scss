@@ -156,7 +156,7 @@ input{
     > button{
         width: 48px;
         height: 48px;
-        padding: 12px;
+        padding: 14px;
         position: absolute;
         right: 1px;
         top: 1px;
@@ -208,9 +208,6 @@ input{
                 transform: scale3d(1, 1, 1);
             }
         }
-        // &:hover, &:focus{
-        //     transform: scale3d(1.1, 1.1, 1.1) rotate(90deg);
-        // }
     }
 }
 
