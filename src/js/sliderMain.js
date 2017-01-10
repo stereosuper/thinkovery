@@ -88,7 +88,7 @@ module.exports = function(body, blocTop, themeColors){
             }});
             TweenMax.fromTo(baseline.find('> span').eq(1), 2.5, {x: newDir*containerW/4+'px'}, {x: '0px', delay: 0.3, force3D: true, ease: Power2.easeOut});
             TweenMax.to(blocRevel.find('.slide-anim-txt').eq(0), 1.5, {y: '0px', opacity: 1, delay: 1.05, ease: Power2.easeOut});
-            TweenMax.to(blocRevel.find('.slide-anim-txt').eq(1), 1.5, {y: '0px', opacity: 1, delay: 1.1, ease: Power2.easeOut});
+            TweenMax.to(blocRevel.find('.slide-anim-txt').eq(1), 1.5, {y: '0px', opacity: 1, delay: 1.15, ease: Power2.easeOut});
         }
     }
 
@@ -108,12 +108,12 @@ module.exports = function(body, blocTop, themeColors){
 
         oldDirNb = dir === 'next' ? -1 : 1;
 
-        TweenMax.to(blocRevel.find('.slide-anim-txt').eq(1), .6, {y: '20px', opacity: 0, delay: 0.15, ease: Power2.easeIn});
-        TweenMax.to(blocRevel.find('.slide-anim-txt').eq(0), .6, {y: '20px', opacity: 0, delay: 0.2, ease: Power2.easeIn, onComplete:function(){
+        TweenMax.to(blocRevel.find('.slide-anim-txt').eq(1), .6, {y: '20px', opacity: 0, delay: 0.1, ease: Power2.easeIn});
+        TweenMax.to(blocRevel.find('.slide-anim-txt').eq(0), .6, {y: '20px', opacity: 0, delay: 0.2, ease: Power2.easeIn, onComplete: function(){
             nextTxt.length ? nextTxt.addClass('txt-on') : slidesTxt.eq(lastSlideIndex).addClass('txt-on');
             currentTxt.removeClass('txt-on');
             currentTxt = blocRevel.find('.txt-on');
-        }});         
+        }});
 
         if(oldSlide.find('.slide-home-mb').is(':visible')){
             setTheme();
@@ -136,7 +136,6 @@ module.exports = function(body, blocTop, themeColors){
         setSliderTimeout();
 
         Cookies.set('think-decli', currentSlide.index('.slide-home'));
-        
     }
 
     function checkIfInView(){
@@ -175,6 +174,17 @@ module.exports = function(body, blocTop, themeColors){
         if(!sliding){
             clearTimeout(timeOut);
             slide(currentSlide.next('.slide-home'), currentTxt.next('.slide-home-txt'), 0, 'next');
+        }
+    });
+
+    $(document).on('keydown', function(e){
+        if(!sliding){
+            clearTimeout(timeOut);
+            if(e.keyCode === 39){
+                slide(currentSlide.next('.slide-home'), currentTxt.next('.slide-home-txt'), 0, 'next');
+            }else if(e.keyCode === 37){
+                slide(currentSlide.prev('.slide-home'), currentTxt.prev('.slide-home-txt'), nbSlides-1, 'prev');
+            }
         }
     });
 

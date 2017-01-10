@@ -81,6 +81,9 @@
 	.no-js &{
 		display: none;
 	}
+	> img{
+		max-width: none;
+	}
 }
 .slide-home{
 	opacity: 0;
