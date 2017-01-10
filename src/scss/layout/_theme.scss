@@ -49,7 +49,8 @@
         .quote-cite:before,
         .pagination > .current:before,
         .share-post a:before,
-        .related-posts a:before{
+        .related-posts a:before,
+        .form-search > button:before{
 			background-color: $colorprimary;
         }
 
@@ -66,7 +67,8 @@
         .btn i:before,
         .menu-main a > i:after,
         .share-post a > i:after,
-        .related-posts a > i:after{
+        .related-posts a > i:after,
+        .form-search > button > i:after{
             background: radial-gradient(ellipse at center, $colorsecondary 0, rgba($colorsecondary, 0) 65%);
         }
 
@@ -113,6 +115,14 @@
                     .icon{
                         fill: $black;
                     }
+                }
+            }
+        }
+        .form-search > button{
+            &:hover, &:focus{
+                color: $black;
+                .icon{
+                    fill: $black;
                 }
             }
         }
