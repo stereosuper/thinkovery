@@ -11,7 +11,7 @@ get_header(); ?>
 
 		    <div class='container-small'><h1><?php the_title(); ?></h1></div>
 
-		    <div class='about-img about-img1'>
+		    <div class='about-img about-img1 animateOnScroll'>
 		    	<img src='<?php echo get_template_directory_uri(); ?>/layoutImg/about1.jpg' alt='Thinkovery team'>
 		    	<svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop-thin'/></svg>
 		    	<div class='mask'></div>
@@ -31,14 +31,14 @@ get_header(); ?>
 		    <div class='about-txt about-txt2 col-4'>
 		    	<h2><?php the_field('title2'); ?></h2>
 		    	<?php the_field('txt2'); ?>
-		    </div><div class='about-img about-img4'>
+		    </div><div class='about-img about-img4 animateOnScroll'>
 		    	<img src='<?php echo get_template_directory_uri(); ?>/layoutImg/about4.jpg' alt=''>
 		    </div><div class='about-img-wrapper'>
 		    	<div class='about-img about-img5'>
 		    		<img src='<?php echo get_template_directory_uri(); ?>/layoutImg/about5.jpg' alt=''>
 		    		<svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop'/></svg>
 		    	</div>
-		    	<div class='about-img about-img6'>
+		    	<div class='about-img about-img6 animateOnScroll'>
 		    		<img src='<?php echo get_template_directory_uri(); ?>/layoutImg/about6.jpg' alt=''>
 		    		<svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop'/></svg>
 		    	</div>
@@ -47,7 +47,7 @@ get_header(); ?>
 		    	<?php the_field('txt3'); ?>
 		    </div>
 
-		    <div class='about-img about-img7'>
+		    <div class='about-img about-img7 animateOnScroll'>
 		    	<img src='<?php echo get_template_directory_uri(); ?>/layoutImg/about7.jpg' alt=''>
 		    	<svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop-thin'/></svg>
 		    	<div class='mask'></div>

@@ -102,6 +102,7 @@ $(window).on('load', function(){
     var animSlider = require('./slider.js');
     var animHoops = require('./animHoops.js');
     var setPosCircle = require('./setPosCircle.js');
+    var animOnScroll = require('./animOnScroll.js');
 
 
     // Sliders drag
@@ -121,5 +122,10 @@ $(window).on('load', function(){
 
     if(body.hasClass('page-template-solutions')){
         setPosCircle($('#solutions-header'));
+    }
+
+    // Anim on scroll
+    if($('.animateOnScroll').length){
+        animOnScroll();
     }
 });

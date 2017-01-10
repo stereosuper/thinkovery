@@ -1,0 +1,51 @@
+.about-img1, .about-img4, .about-img6, .about-img7{
+	&.animateOnScroll{
+    	&:after{
+    		transition: all 0.3s ease-out;
+    	}
+    	&.under-view{
+    		&:after{
+    			transform: translate3d(0, 50px, 0);
+    			opacity: 0;
+    		}
+    	}
+    	&.above-view{
+    	    &:after{
+    	    	transform: translate3d(0, 50px, 0);
+    	    	opacity: 0;
+    	    }
+    	}
+    	&.in-view{
+    	    &:after{
+    	    	transform: translate3d(0, 0, 0);
+    	    	opacity: 1;
+    	    }
+    	}
+    }
+}
+
+.study-content h2, .quote-cite, .post h2{
+	&.animateOnScroll{
+    	&:before{
+    		transition: all 0.3s ease-out;
+    	}
+    	&.under-view{
+    		&:before{
+    			transform: translate3d(0, 50px, 0);
+    			opacity: 0;
+    		}
+    	}
+    	&.above-view{
+    	    &:before{
+    	    	transform: translate3d(0, 50px, 0);
+    	    	opacity: 0;
+    	    }
+    	}
+    	&.in-view{
+    	    &:before{
+    	    	transform: translate3d(0, 0, 0);
+    	    	opacity: 1;
+    	    }
+    	}
+    }
+}
