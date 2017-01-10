@@ -2,6 +2,7 @@ var $ = require('./libs/jquery/dist/jquery.slim.min.js');
 var Cookies = require('./libs/js-cookie/src/js.cookie.js');
 var TweenMax = require('./libs/gsap/src/uncompressed/TweenMax.js');
 var CustomEase = require('./libs/gsap/src/uncompressed/easing/CustomEase.js');
+var Hammer = require('hammerjs');
 
 window.requestAnimFrame = require('./requestAnimFrame.js');
 var throttle = require('./throttle.js');
@@ -186,6 +187,17 @@ module.exports = function(body, blocTop, themeColors){
                 slide(currentSlide.prev('.slide-home'), currentTxt.prev('.slide-home-txt'), nbSlides-1, 'prev');
             }
         }
+    });
+
+    var hammertime = new Hammer($('#bloc-top').get(0));
+    hammertime.on('swipeleft', function(){
+        if(!sliding){
+            slide(currentSlide.next('.slide-home'), currentTxt.next('.slide-home-txt'), 0, 'next');
+        }
+    }).on('swiperight', function(){
+       if(!sliding){
+            slide(currentSlide.prev('.slide-home'), currentTxt.prev('.slide-home-txt'), nbSlides-1, 'prev');
+       }
     });
 
 

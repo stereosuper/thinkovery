@@ -22,6 +22,7 @@
     "gulp-twig": "^0.7.0",
     "gulp-uglify": "^2.0.0",
     "gulp-watch": "^4.3.11",
+    "hammerjs": "^2.0.8",
     "path": "^0.12.7",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
