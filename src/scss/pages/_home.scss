@@ -481,6 +481,15 @@
 		height: 42px;
 		border-width: 3px;
 	}
+
+	#more-than-moocs{
+		.hoop{
+			opacity: 0.7;
+			&:nth-of-type(1){
+				display: none !important;
+			}
+		}
+	}
 }
 
 @media (max-width: $phone){
@@ -510,6 +519,14 @@
 			&.star{
 				width: 16px;
 				height: 16px;
+			}
+		}
+	}
+
+	#more-than-moocs{
+		.hoop{
+			&:nth-of-type(2){
+				display: none !important;
 			}
 		}
 	}
