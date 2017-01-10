@@ -339,13 +339,6 @@ a{
     ol, ul{
         font-size: 1.6rem;
     }
-    ul{
-        >li{
-            &:before{
-                top: 9px;
-            }
-        }
-    }
     blockquote{
         padding-left: 20px;
         p{
@@ -375,13 +368,6 @@ a{
     }
     ol, ul{
         font-size: 1.4rem;
-    }
-    ul{
-        > li{
-            &:before{
-                top: 7px;
-            }
-        }
     }
     blockquote{
         padding-left: 18px;
