@@ -241,6 +241,16 @@ function get_think_die_handler(){
 }
 add_filter('wp_die_handler', 'get_think_die_handler');
 
+// Limit title lenth
+function think_title_length( $title ){
+    $max = 92;
+    if( strlen($title) > $max ){
+        return substr( $title, 0, $max ) . " &hellip;";
+    }else{
+        return $title;
+    }
+}
+
 
 /*-----------------------------------------------------------------------------------*/
 /* Enqueue Styles and Scripts
