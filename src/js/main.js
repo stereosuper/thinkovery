@@ -4,6 +4,7 @@ var $ = require('./libs/jquery/dist/jquery.slim.min.js');
 // var TweenMax = require('./libs/gsap/src/uncompressed/TweenMax.js');
 var isMobile = require('./libs/isMobile.min.js');
 var parallax = require('./libs/parallax.min.js');
+var Cookies = require('./libs/js-cookie/src/js.cookie.js');
 
 $(function(){
 
@@ -76,6 +77,12 @@ $(function(){
     if(body.hasClass('page-template-contact')){
         parallax = new Parallax($('#main').get(0));
     }
+
+    body.on('click', '#cookie-ok', function(e){
+        e.preventDefault();
+        Cookies.set('think-cookies', true, { expires: 30, path: '/' });
+        $('#header').removeClass('cookie-on').find('.cookie').addClass('off');
+    });
 
     // $(document).on('scroll', throttle(function(){
 

@@ -52,7 +52,13 @@ module.exports = function(){
         docHeight = $(document).height();
     }
 
-    header.on('mouseenter', hideScrollIndic).on('mouseleave', function(){
+    header.on('mouseenter', function(){
+        hideScrollIndic();
+        if(myScroll > 10){
+            header.addClass('hover');
+        }
+    }).on('mouseleave', function(){
+        header.removeClass('hover');
         if(myScroll > 10){
             showScrollIndic();
         }

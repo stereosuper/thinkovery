@@ -136,7 +136,7 @@ module.exports = function(body, blocTop, themeColors){
         dir === 'next' ? animSlide(-1, 1) : animSlide(1, -1);
         setSliderTimeout();
 
-        Cookies.set('think-decli', currentSlide.index('.slide-home'));
+        Cookies.set('think-decli', currentSlide.index('.slide-home'), { expires: 7, path: '/' });
     }
 
     function checkIfInView(){

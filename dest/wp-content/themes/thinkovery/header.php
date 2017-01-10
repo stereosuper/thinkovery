@@ -43,6 +43,9 @@
 	// Current url
 	global $currentUrl;
 	$currentUrl = home_url( add_query_arg( null, null ));
+
+	// Cookie
+	$cookie = isset($_COOKIE['think-cookies']) ? true : false;
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?> class='no-js'>
@@ -80,7 +83,15 @@
 
 	<body <?php body_class('theme-'.$declis[$currentDecli]['mainColor']); ?> data-theme='<?php echo $declis[$currentDecli]['mainColor']; ?>'>
 
-		<header role='banner' id='header'>
+		<header role='banner' id='header' <?php if(!$cookie && is_front_page()) echo "class='cookie-on'"; ?>>
+			<?php if(!$cookie && is_front_page()){ ?>
+				<div id='cookie' class='cookie'>
+					<p class='container'>
+						<?php _e('We use Cookies to improve user experience on our website', 'thinkovery'); ?>
+						<button id='cookie-ok'><?php _e('Accept', 'thinkovery'); ?></button>
+					</p>
+				</div>
+			<?php } ?>
 			<nav role='navigation' class='container'>
 				<a href='<?php echo $siteUrl ?>' title='<?php bloginfo( 'name' ); ?>' rel='home' class='logo' id='logo'>
 					<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 592 123' class='logo-svg' preserveAspectRatio='xMinYMin meet'>
