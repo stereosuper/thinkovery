@@ -65,7 +65,7 @@
 												<?php if( has_post_thumbnail() ){ ?>
 													<div class='related-thumbnail' style='background-image: url(<?php the_post_thumbnail_url(); ?>)'></div>
 												<?php } ?>
-												<span class='title'><?php the_title(); ?></span>
+												<span class='title'><?php echo think_title_length(get_the_title()); ?></span>
 												<svg class='icon icon-arrow'><use xlink:href='#icon-arrow-right'/></svg>
 												<i></i>
 											</a>
