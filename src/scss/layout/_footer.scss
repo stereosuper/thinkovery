@@ -29,7 +29,6 @@
         margin: 0;
     }
     .link-small{
-        padding: 0 0 0 $gutter;
         font-size: 1.4rem;
         color: $gray-superlight;
         &:hover, &:focus{
@@ -44,7 +43,6 @@
     }
     .col-en{
         .link-small{
-            padding: 0;
             position: static;
         }
     }
@@ -201,7 +199,7 @@
         .link-small{
             position: absolute;
             bottom: 30px;
-            left: $gutter*2;
+            left: $gutter*3;
         }
     }
 
