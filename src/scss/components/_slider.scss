@@ -118,6 +118,8 @@
 			position: absolute;
 		}
 		img{
+			width: auto;
+			max-height: 183px;
 			filter: grayscale(100%);
 			transition: filter 0.4s ease-out;
 			pointer-events: none;
