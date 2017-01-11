@@ -16,27 +16,28 @@ get_header(); ?>
         <header id='bloc-top' data-img-width='<?php echo $imgWidth; ?>' data-img-height='<?php echo $imgHeight; ?>'>
             <div id='loader'></div>
             <?php $count = 0; foreach($declis as $decli){ ?>
-                <div class='slide-home <?php if($count == $currentDecli) echo 'slide-on'; ?>' style='background-image:url("<?php echo wp_get_attachment_url($decli['homeBg']); ?>")' data-color='<?php echo $decli['mainColor']; ?>'>
-                    <strong style='left:<?php echo $decli['baselinePosX']; ?>px;top:<?php echo $decli['baselinePosY']; ?>px' data-x='<?php echo $decli['baselinePosX']; ?>' data-y='<?php echo $decli['baselinePosY']; ?>' class='baseline'>
-                        <span style='margin-right:<?php echo $decli['circleWidth'] + 50; ?>px'><?php echo $decli['title1']; ?></span><span><?php echo $decli['title2']; ?></span>
-                    </strong>
-                    <svg class='icon hoop' style='width:<?php echo $decli['circleWidth']; ?>px;height:<?php echo $decli['circleWidth']; ?>px;z-index:<?php echo $decli['circlePlan']; ?>;left:<?php echo $decli['circleX']; ?>px;top:<?php echo $decli['circleY']; ?>px;fill:url(<?php echo $currentUrl; ?>#gradient-hoop);' data-x='<?php echo $decli['circleX']; ?>' data-y='<?php echo $decli['circleY']; ?>'>
-                            <use xlink:href='#icon-hoop-thin'/>
-                    </svg>
-                    <span class='baseline-second'><span><?php echo $decli['title1']; ?></span> <span><?php echo $decli['title2']; ?></span></span>
-                    <?php
-                        $countImg = 2;
-                        if($decli['homeImg']){
-                            foreach($decli['homeImg'] as $img){ ?>
-                                <div style='z-index:<?php echo $countImg; ?>;left:<?php echo $img['planX']; ?>px;top:<?php echo $img['planY']; ?>px' data-x='<?php echo $img['planX']; ?>' data-y='<?php echo $img['planY']; ?>' class='slider-plans'>
-                                    <?php echo wp_get_attachment_image($img['img'], 'full'); ?>
-                                </div>
-                                <?php $countImg ++;
-                            }
-                        } ?>
-                    <?php echo wp_get_attachment_image($decli['imgResponsive'], 'full', '', array('class' => 'slide-home-mb')); ?>
-                </div>
-            <?php $count ++; } ?>
+                <?php if($decli['displayDecli']){ ?>
+                    <div class='slide-home <?php if($count == $currentDecli) echo 'slide-on'; ?>' style='background-image:url("<?php echo wp_get_attachment_url($decli['homeBg']); ?>")' data-color='<?php echo $decli['mainColor']; ?>'>
+                        <strong style='left:<?php echo $decli['baselinePosX']; ?>px;top:<?php echo $decli['baselinePosY']; ?>px' data-x='<?php echo $decli['baselinePosX']; ?>' data-y='<?php echo $decli['baselinePosY']; ?>' class='baseline'>
+                            <span style='margin-right:<?php echo $decli['circleWidth'] + 50; ?>px'><?php echo $decli['title1']; ?></span><span><?php echo $decli['title2']; ?></span>
+                        </strong>
+                        <svg class='icon hoop' style='width:<?php echo $decli['circleWidth']; ?>px;height:<?php echo $decli['circleWidth']; ?>px;z-index:<?php echo $decli['circlePlan']; ?>;left:<?php echo $decli['circleX']; ?>px;top:<?php echo $decli['circleY']; ?>px;fill:url(<?php echo $currentUrl; ?>#gradient-hoop);' data-x='<?php echo $decli['circleX']; ?>' data-y='<?php echo $decli['circleY']; ?>'>
+                                <use xlink:href='#icon-hoop-thin'/>
+                        </svg>
+                        <span class='baseline-second'><span><?php echo $decli['title1']; ?></span> <span><?php echo $decli['title2']; ?></span></span>
+                        <?php
+                            $countImg = 2;
+                            if($decli['homeImg']){
+                                foreach($decli['homeImg'] as $img){ ?>
+                                    <div style='z-index:<?php echo $countImg; ?>;left:<?php echo $img['planX']; ?>px;top:<?php echo $img['planY']; ?>px' data-x='<?php echo $img['planX']; ?>' data-y='<?php echo $img['planY']; ?>' class='slider-plans'>
+                                        <?php echo wp_get_attachment_image($img['img'], 'full'); ?>
+                                    </div>
+                                    <?php $countImg ++;
+                                }
+                            } ?>
+                        <?php echo wp_get_attachment_image($decli['imgResponsive'], 'full', '', array('class' => 'slide-home-mb')); ?>
+                    </div>
+            <?php $count ++; } } ?>
             <div id='slider-home-nav' class='theme-color'>
                 <button class='prev btn-small-back'><?php _e('Previous', 'thinkovery'); ?><svg class='icon'><use xlink:href='#icon-arrow-left'/></svg></button>
                 <span><span class='current'>1</span>/<?php echo $count; ?></span>

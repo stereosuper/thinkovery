@@ -45,8 +45,9 @@
         transition: $transition;
     }
     .logo{
-        max-width: 250px;
         display: flex;
+        width: 250px;
+        max-width: 250px;
         position: relative;
         align-items: center;
         flex-grow: 0.7;
@@ -142,6 +143,7 @@
             bottom: -100px;
             right: -80px;
             z-index: -1;
+            pointer-events: none;
             &:after{
                 top: 0;
                 left: 0;
@@ -209,7 +211,6 @@
 }
 
 .logo-svg{
-    // width: 150px;
     width: 100%;
     height: 32px;
     color: #fff;
@@ -260,6 +261,11 @@
 }
 @media (max-width: $desktop-small){
     #header{
+        &.cookie-on{
+            &.on{
+                transform: translate3d(0, -80px, 0);
+            }
+        }
         > .container{
             display: block;
             padding-top: 15px;
@@ -267,7 +273,6 @@
         }
         .logo{
             display: inline-block;
-            //max-width: 155px;
         }
         .logo-svg{
             > g{
@@ -319,6 +324,7 @@
         bottom: 62px;
         transition: $transition;
         a{
+            width: 21px;
             padding: 0 !important;
             text-indent: -99em;
         }
@@ -360,6 +366,7 @@
             }
         }
         .logo{
+            width: 125px;
             max-width: 125px;
             height: 26px;
             .border, #logo-o, &:before, &:after{
@@ -384,7 +391,7 @@
         }
         .logo-svg{
             > g{
-                transform: none;
+                transform: translate3d(0, 0, 0);
             }
         }
         .menu-main{

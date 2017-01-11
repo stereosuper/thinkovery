@@ -6,7 +6,7 @@
 	max-height: 900px;
 	position: relative;
 	overflow: hidden;
-	font-size: 3.5rem;
+	font-size: 3.2rem;
 	color: #fff;
 	line-height: 1.2;
 	background: #000;
@@ -115,8 +115,9 @@
 	left: 0;
 	z-index: 50;
 	font-weight: 600;
-	transition: 0.3s opacity $transition;
 	font-feature-settings: 'salt', 'liga' 1;
+	letter-spacing: -0.05em;
+	transition: 0.3s opacity $transition;
 	> span{
 		display: inline-block;
 		transform-origin: 100% 0;
@@ -372,9 +373,26 @@
 
 
 @media (max-width: $desktop){
+	.slide-home{
+		.baseline, .baseline-second{
+			display: none;
+		}
+	}
+	.baseline-mb{
+		display: block;
+	}
+
+	#slider-home-nav{
+		bottom: 110px;
+	}
+
 	#bloc-revelation{
 		padding: 3em 0;
+		margin-top: -150px;
 		text-align: center;
+		h1{
+			margin: 0.5em 0 0;
+		}
 		.container{
 			flex-wrap: wrap;
 			justify-content: center;
@@ -432,7 +450,7 @@
 		padding: 0 0 60%;
 		top: 100px;
 		background: none !important;
-		.baseline, .baseline-second, .hoop{
+		.hoop{
 			display: none;
 		}
 	}
@@ -443,18 +461,18 @@
 		display: block;
 	}
 
+	#slider-home-nav{
+		bottom: 17px;
+	}
+
 	#loader{
 		top: 100px;
 	}
 
-	.baseline-mb{
-		display: block;
-	}
-
 	#bloc-revelation{
+		padding-top: 2em;
 		margin: 0;
 		h1{
-			margin: 0.5em 0 0;
 			font-size: 3rem;
 		}
 	}
@@ -480,6 +498,15 @@
 		width: 42px;
 		height: 42px;
 		border-width: 3px;
+	}
+
+	#more-than-moocs{
+		.hoop{
+			opacity: 0.7;
+			&:nth-of-type(1){
+				display: none !important;
+			}
+		}
 	}
 }
 
@@ -510,6 +537,14 @@
 			&.star{
 				width: 16px;
 				height: 16px;
+			}
+		}
+	}
+
+	#more-than-moocs{
+		.hoop{
+			&:nth-of-type(2){
+				display: none !important;
 			}
 		}
 	}

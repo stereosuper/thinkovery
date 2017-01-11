@@ -13,21 +13,21 @@ get_header(); ?>
 			$imgHeight = $imgMeta['height'];
 		?>
 
-		<header class='solutions-header' style='background-image:url(<?php the_post_thumbnail_url(); ?>)' id='solutions-header' data-img-width='<?php echo $imgWidth; ?>' data-img-height='<?php echo $imgHeight; ?>'>
+		<header class='solutions-header' style='background-image:url(<?php echo wp_get_attachment_url(get_field('img1')); ?>)' id='solutions-header' data-img-width='<?php echo $imgWidth; ?>' data-img-height='<?php echo $imgHeight; ?>'>
 			<?php the_post_thumbnail(); ?>
 			<div class='container'>
 				<div class='container-medium'>
-					<div class='solutions-intro'>
+					<div class='solutions-intro hasParallax' data-parallax-strength='2.5'>
 						<span class='subtitle'><?php the_field('subtitle'); ?></span>
 						<h1><strong><?php the_field('title1_1'); ?> </strong><?php the_field('title1_2'); ?></h1>
 						<p><?php the_field('intro'); ?></p>
 					</div>
 				</div>
 			</div>
-			<svg class='icon hoop' style='top:<?php the_field('circleY') ?>px;left:<?php the_field('circleX') ?>px;width:<?php the_field('circleWidth'); ?>px;height:<?php the_field('circleWidth'); ?>px;fill:url(<?php echo $currentUrl; ?>#gradient-hoop')' data-x='<?php the_field('circleX') ?>' data-y='<?php the_field('circleY') ?>'>
+			<svg class='icon hoop hasParallax' data-parallax-strength='1.5' style='top:<?php the_field('circleY') ?>px;left:<?php the_field('circleX') ?>px;width:<?php the_field('circleWidth'); ?>px;height:<?php the_field('circleWidth'); ?>px;fill:url(<?php echo $currentUrl; ?>#gradient-hoop')' data-x='<?php the_field('circleX') ?>' data-y='<?php the_field('circleY') ?>'>
 			        <use xlink:href='#icon-hoop-thin'/>
 			</svg>
-			<div class='solutions-cover' style='background-image:url(<?php echo wp_get_attachment_url(get_field('img')); ?>)'></div>
+			<div class='solutions-cover hasParallax' data-parallax-strength='2' style='background-image:url(<?php echo wp_get_attachment_url(get_field('img')); ?>)'></div>
 		</header>
 
 		<section class='solutions clearfix'>

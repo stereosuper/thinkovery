@@ -17,7 +17,16 @@ get_header(); ?>
                     <div class='study-case <?php if($count % 2 === 0) echo 'study-case-odd'; ?>'>
 
                         <div class='case'>
-                            <div class='img'><?php echo wp_get_attachment_image( get_sub_field('img'), 'full' ); ?></div>
+                            <div class='img <?php if(get_sub_field('video')) echo 'wrapper-video'; ?>'>
+                                <?php if(get_sub_field('video')){ ?>
+                                    <div>
+                                        <iframe src='<?php the_sub_field('video'); ?>?enablejsapi=1&html5=1' frameborder='0' allowfullscreen></iframe>
+                                        <div class='cover-video' style='background-image:url(<?php echo wp_get_attachment_url(get_sub_field('img')); ?>)'>
+                                            <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop-thin'/></svg>
+                                        </div>
+                                    </div>
+                                <?php }else{ echo wp_get_attachment_image( get_sub_field('img'), 'full' ); } ?>
+                            </div>
                             <div class='study-content'>
                                 <b class='study-subtitle'><?php _e('Case study', 'thinkovery'); ?> n°<?php echo $count; ?></b>
                                 <h2 class='animateOnScroll'><?php the_sub_field('title'); ?></h2>
