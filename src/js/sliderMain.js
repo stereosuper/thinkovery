@@ -23,6 +23,7 @@ module.exports = function(body, blocTop, themeColors){
     var slides = blocTop.find('.slide-home'), nbSlides = slides.length, slidesTxt = blocRevel.find('.slide-home-txt');
     var oldDirNb, timeOut, scrollTop, sliding = false;
     var ease = CustomEase.create('custom', 'M0,0 C0,0 0.358,-0.02 0.52,0.18 0.631,0.317 0.65,0.713 0.75,0.862 0.828,0.978 1,1 1,1');
+    var hammertime = new Hammer($('#bloc-top').get(0));
 
 
     function setPosCircle(){
@@ -188,7 +189,6 @@ module.exports = function(body, blocTop, themeColors){
         }
     });
 
-    var hammertime = new Hammer($('#bloc-top').get(0));
     hammertime.on('swipeleft', function(){
         if(!sliding){
             slide(currentSlide.next('.slide-home'), currentTxt.next('.slide-home-txt'), 0, 'next');
