@@ -40,7 +40,9 @@ $(function(){
     animHeader();
 
     // Anim gradient in btn and in menu links
-    animBtn(body);
+    if(!isMobile.any){
+        animBtn(body);
+    }
 
     // Form inputs
     if($('form').length){
