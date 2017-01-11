@@ -213,11 +213,11 @@ module.exports = function(body, blocTop, themeColors){
         requestAnimFrame(setPosCircle);
         requestAnimFrame(setPosPlans);
 
-    }, 60)).on('blur', function(){
+    }, 60)).on('focusout', function(){
 
         clearTimeout(timeOut);
 
-    }).on('focus', checkIfInView);
+    }).on('focusin', checkIfInView);
 
     $(document).on('scroll', throttle(function(){
         requestAnimFrame(checkIfInView);

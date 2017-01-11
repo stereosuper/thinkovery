@@ -1,24 +1,17 @@
 'use strict';
 
 var $ = require('./libs/jquery/dist/jquery.slim.min.js');
-// var TweenMax = require('./libs/gsap/src/uncompressed/TweenMax.js');
 var isMobile = require('./libs/isMobile.min.js');
 var parallax = require('./libs/parallax.min.js');
 var Cookies = require('./libs/js-cookie/src/js.cookie.js');
 
 $(function(){
 
-    // window.requestAnimFrame = require('./requestAnimFrame.js');
-    // var throttle = require('./throttle.js');
-
     var animHeader = require('./animHeader.js');
     var animBtn = require('./animBtn.js');
 
     var animMainSlider = require('./sliderMain.js');
 
-
-    // var windowWidth = $(window).outerWidth(), windowHeight = $(window).height(), docHeight = $(document).height();
-    // var myScroll = $(document).scrollTop();
 
     var body = $('body');
 
@@ -67,6 +60,7 @@ $(function(){
         animMainSlider(body, $('#bloc-top'), themeColors);
     }
 
+    // Parallaxe
     if($('#more-than-moocs').length){
         parallax = new Parallax($('#more-than-moocs').get(0));
     }
@@ -74,19 +68,12 @@ $(function(){
         parallax = new Parallax($('#main').get(0));
     }
 
+    // Cookie for cookie consentment
     body.on('click', '#cookie-ok', function(e){
         e.preventDefault();
         Cookies.set('think-cookies', true, { expires: 30, path: '/' });
         $('#header').removeClass('cookie-on').find('.cookie').addClass('off');
     });
-
-    // $(document).on('scroll', throttle(function(){
-
-    // }, 10));
-
-    // $(window).on('resize', throttle(function(){
-
-    // }, 60));
 
 });
 
