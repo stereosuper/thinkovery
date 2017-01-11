@@ -118,7 +118,7 @@
 					<i id='logo-o'></i>
 				</a>
 				<div class='menu-wrapper'>
-					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu-main', 'link_after' => '<i></i>', 'walker' => new rc_scm_walker ) ); ?>
+					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu-main', 'link_before' => '<span>', 'link_after' => '</span><i></i>', 'walker' => new rc_scm_walker ) ); ?>
 
 					<!--<ul class='lang'>
 						<?php // if( $lang != 'fr' ){ ?>
