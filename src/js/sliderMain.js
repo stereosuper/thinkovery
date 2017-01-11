@@ -136,7 +136,7 @@ module.exports = function(body, blocTop, themeColors){
         dir === 'next' ? animSlide(-1, 1) : animSlide(1, -1);
         setSliderTimeout();
 
-        Cookies.set('think-decli', currentSlide.index('.slide-home'));
+        Cookies.set('think-decli', currentSlide.index('.slide-home'), { expires: 7, path: '/' });
     }
 
     function checkIfInView(){
@@ -213,11 +213,11 @@ module.exports = function(body, blocTop, themeColors){
         requestAnimFrame(setPosCircle);
         requestAnimFrame(setPosPlans);
 
-    }, 60)).on('blur', function(){
+    }, 60)).on('focusout', function(){
 
         clearTimeout(timeOut);
 
-    }).on('focus', checkIfInView);
+    }).on('focusin', checkIfInView);
 
     $(document).on('scroll', throttle(function(){
         requestAnimFrame(checkIfInView);

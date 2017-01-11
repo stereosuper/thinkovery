@@ -43,6 +43,9 @@
 	// Current url
 	global $currentUrl;
 	$currentUrl = home_url( add_query_arg( null, null ));
+
+	// Cookie
+	$cookie = isset($_COOKIE['think-cookies']) ? true : false;
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?> class='no-js'>
@@ -80,7 +83,15 @@
 
 	<body <?php body_class('theme-'.$declis[$currentDecli]['mainColor']); ?> data-theme='<?php echo $declis[$currentDecli]['mainColor']; ?>'>
 
-		<header role='banner' id='header'>
+		<header role='banner' id='header' <?php if(!$cookie && is_front_page()) echo "class='cookie-on'"; ?>>
+			<?php if(!$cookie && is_front_page()){ ?>
+				<div id='cookie' class='cookie'>
+					<p class='container'>
+						<?php _e('We use Cookies to improve user experience on our website', 'thinkovery'); ?>
+						<button id='cookie-ok'><?php _e('Accept', 'thinkovery'); ?></button>
+					</p>
+				</div>
+			<?php } ?>
 			<nav role='navigation' class='container'>
 				<a href='<?php echo $siteUrl ?>' title='<?php bloginfo( 'name' ); ?>' rel='home' class='logo' id='logo'>
 					<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 592 123' class='logo-svg' preserveAspectRatio='xMinYMin meet'>
@@ -109,19 +120,19 @@
 				<div class='menu-wrapper'>
 					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu-main', 'link_after' => '<i></i>', 'walker' => new rc_scm_walker ) ); ?>
 
-					<ul class='lang'>
-						<?php if( $lang != 'fr' ){ ?>
+					<!--<ul class='lang'>
+						<?php // if( $lang != 'fr' ){ ?>
 							<li><span>en</span></li>
 							<li>
-								<a rel='alternate' hreflang='fr-FR' href='<?php echo get_site_url('/'); ?>/?noredirect=fr_FR'>fr</a>
+								<a rel='alternate' hreflang='fr-FR' href='<?php // echo get_site_url('/'); ?>/?noredirect=fr_FR'>fr</a>
 							</li>
-						<?php }else{ ?>
+						<?php // }else{ ?>
 							<li><span>fr</span></li>
 							<li>
-								<a rel='alternate' hreflang='en-US' href='<?php echo get_site_url('/'); ?>/en/?noredirect=en_US'>en</a>
+								<a rel='alternate' hreflang='en-US' href='<?php // echo get_site_url('/'); ?>/en/?noredirect=en_US'>en</a>
 							</li>
-						<?php } ?>
-					</ul>
+						<?php // } ?>
+					</ul>-->
 				</div>
 			</nav>
 		</header>

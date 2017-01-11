@@ -293,6 +293,7 @@
             bottom: -100px;
             right: -80px;
             z-index: -1;
+            pointer-events: none;
             &:after{
                 top: 0;
                 left: 0;
@@ -371,6 +372,7 @@
             bottom: -100px;
             right: -80px;
             z-index: -1;
+            pointer-events: none;
             &:after{
                 top: 0;
                 left: 0;

@@ -30,7 +30,8 @@
         .quote-cite > b,
         .solutions-list h3,
         .pagination > a:hover, .pagination > a:focus,
-        input:focus + label, textarea:focus + label{
+        input:focus + label, textarea:focus + label,
+        .cookie button{
         	color: $colorprimary;
         }
 
@@ -81,7 +82,8 @@
         }
 
         a:hover, a:focus,
-        .logo:hover .theme-color, .logo:focus .theme-color{
+        .logo:hover .theme-color, .logo:focus .theme-color,
+        .cookie button:hover, .cookie button:focus{
             color: $colorsecondary;
         }
     }
