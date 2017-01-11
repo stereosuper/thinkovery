@@ -45,8 +45,8 @@
         transition: $transition;
     }
     .logo{
-        max-width: 250px;
         display: flex;
+        width: 250px;
         position: relative;
         align-items: center;
         flex-grow: 0.7;
@@ -320,6 +320,7 @@
         bottom: 62px;
         transition: $transition;
         a{
+            width: 21px;
             padding: 0 !important;
             text-indent: -99em;
         }
@@ -361,7 +362,7 @@
             }
         }
         .logo{
-            max-width: 125px;
+            width: 125px;
             height: 26px;
             .border, #logo-o, &:before, &:after{
                 display: none;
