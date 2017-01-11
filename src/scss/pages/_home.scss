@@ -6,7 +6,7 @@
 	max-height: 900px;
 	position: relative;
 	overflow: hidden;
-	font-size: 3.5rem;
+	font-size: 3.2rem;
 	color: #fff;
 	line-height: 1.2;
 	background: #000;
@@ -115,8 +115,9 @@
 	left: 0;
 	z-index: 50;
 	font-weight: 600;
-	transition: 0.3s opacity $transition;
 	font-feature-settings: 'salt', 'liga' 1;
+	letter-spacing: -0.03em;
+	transition: 0.3s opacity $transition;
 	> span{
 		display: inline-block;
 		transform-origin: 100% 0;
