@@ -73,14 +73,15 @@ module.exports = function(body, blocTop, themeColors){
     }
 
     function animSlide(oldDir, newDir){
-        TweenMax.to(oldSlide, 1, {x: 100*oldDir + '%', delay: 0.3, force3D: true, ease: ease});
         if(currentSlide.find('.slide-home-mb').is(':visible')){
+            TweenMax.to(oldSlide, 1, {x: 100*oldDir + '%', delay: 0.3, force3D: true, ease: ease, onComplete: setTheme});
             TweenMax.fromTo(currentSlide, 1, {x: 100*newDir + '%'}, {x: '0%', delay: 0.3, force3D: true, ease: ease, onComplete: function(){
                 sliding = false;
                 TweenMax.to(blocRevel.find('.slide-anim-txt').eq(0), 0.7, {y: '0px', opacity: 1, ease: Power2.easeIn});
                 TweenMax.to(blocRevel.find('.slide-anim-txt').eq(1), 0.7, {y: '0px', opacity: 1, delay: 0.1, ease: Power2.easeIn});
             }});
         }else{
+            TweenMax.to(oldSlide, 1, {x: 100*oldDir + '%', delay: 0.3, force3D: true, ease: ease});
             TweenMax.fromTo(currentSlide, 1, {x: 100*newDir + '%'}, {x: '0%', delay: 0.3, force3D: true, ease: ease});
             TweenMax.fromTo(circle, 1.8, {x: newDir*containerW/4+'px'}, {x: '0px', delay: 0.3, force3D: true, ease: Power2.easeOut});
             TweenMax.fromTo(plans, 2.3, {x: newDir*containerW/4+'px'}, {x: '0px', delay: 0.3, force3D: true, ease: Power2.easeOut});
@@ -116,9 +117,7 @@ module.exports = function(body, blocTop, themeColors){
             currentTxt = blocRevel.find('.txt-on');
         }});
 
-        if(oldSlide.find('.slide-home-mb').is(':visible')){
-            setTheme();
-        }else{
+        if(!oldSlide.find('.slide-home-mb').is(':visible')){
             TweenMax.to([
                     oldSlide.find('.hoop'),
                     oldSlide.find('.baseline').find('> span'),
