@@ -19,6 +19,7 @@
 		position: absolute;
 		top: -40%;
 		left: 30%;
+		pointer-events: none;
 		z-index: -1;
 		&:before{
 			content: '';
