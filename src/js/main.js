@@ -88,6 +88,7 @@ $(window).on('load', function(){
     var animHoops = require('./animHoops.js');
     var setPosCircle = require('./setPosCircle.js');
     var animOnScroll = require('./animOnScroll.js');
+    var animParallax = require('./animParallax.js');
 
 
     // Sliders drag
@@ -112,5 +113,10 @@ $(window).on('load', function(){
     // Anim on scroll
     if($('.animateOnScroll').length){
         animOnScroll();
+    }
+
+    // Parallax
+    if($('.hasParallax').length){
+        animParallax();
     }
 });
