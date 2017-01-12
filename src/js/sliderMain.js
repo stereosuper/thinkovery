@@ -1,7 +1,10 @@
 var $ = require('./libs/jquery/dist/jquery.slim.min.js');
 var Cookies = require('./libs/js-cookie/src/js.cookie.js');
+// var unveil = require('./libs/unveil.js');
+
 var TweenMax = require('./libs/gsap/src/uncompressed/TweenMax.js');
 var CustomEase = require('./libs/gsap/src/uncompressed/easing/CustomEase.js');
+
 var Hammer = require('hammerjs');
 
 window.requestAnimFrame = require('./requestAnimFrame.js');
@@ -200,11 +203,9 @@ module.exports = function(body, blocTop, themeColors){
     });
 
 
-    $(window).on('load', function(){
+    setSlider();
 
-        setSlider();
-
-    }).on('resize', throttle(function(){
+    $(window).on('resize', throttle(function(){
 
         containerW = blocTop.width();
 

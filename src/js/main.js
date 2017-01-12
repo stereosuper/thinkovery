@@ -1,30 +1,18 @@
 'use strict';
 
 var $ = require('./libs/jquery/dist/jquery.slim.min.js');
-var isMobile = require('./libs/isMobile.min.js');
-var parallax = require('./libs/parallax.min.js');
 var Cookies = require('./libs/js-cookie/src/js.cookie.js');
+var parallax = require('./libs/parallax.min.js');
+
+var isMobile = require('./libs/isMobile.min.js');
+
 
 $(function(){
 
-    var animHeader = require('./animHeader.js');
-    var animBtn = require('./animBtn.js');
-
-    var animMainSlider = require('./sliderMain.js');
-
-
     var body = $('body');
 
-    var themeColors = {
-        'blue':   [ 'rgb(2, 187, 255)', 'rgb(138, 126, 224)' ],
-        'green':  [ 'rgb(43, 240, 117)', 'rgb(2, 187, 255)' ],
-        'yellow': [ 'rgb(255, 228, 0)', 'rgb(43, 240, 117)' ],
-        'orange': [ 'rgb(255, 120, 0)', 'rgb(255, 228, 0)' ],
-        'red':    [ 'rgb(255, 6, 0)', 'rgb(255, 120, 0)' ],
-        'pink':   [ 'rgb(240, 43, 140)', 'rgb(255, 6, 0)' ]
-    };
-
-    var parallax;
+    var animHeader = require('./animHeader.js');
+    var animBtn = require('./animBtn.js');
 
 
     function checkEmptyInput(input){
@@ -57,19 +45,6 @@ $(function(){
         });
     }
 
-    // Slider home
-    if($('#bloc-top').length){
-        animMainSlider(body, $('#bloc-top'), themeColors);
-    }
-
-    // Parallaxe
-    if($('#more-than-moocs').length){
-        parallax = new Parallax($('#more-than-moocs').get(0));
-    }
-    if(body.hasClass('page-template-contact')){
-        parallax = new Parallax($('#main').get(0));
-    }
-
     // Cookie for cookie consentment
     body.on('click', '#cookie-ok', function(e){
         e.preventDefault();
@@ -82,7 +57,18 @@ $(function(){
 
 $(window).on('load', function(){
     var body = $('body');
+    var parallax;
 
+    var themeColors = {
+        'blue':   [ 'rgb(2, 187, 255)', 'rgb(138, 126, 224)' ],
+        'green':  [ 'rgb(43, 240, 117)', 'rgb(2, 187, 255)' ],
+        'yellow': [ 'rgb(255, 228, 0)', 'rgb(43, 240, 117)' ],
+        'orange': [ 'rgb(255, 120, 0)', 'rgb(255, 228, 0)' ],
+        'red':    [ 'rgb(255, 6, 0)', 'rgb(255, 120, 0)' ],
+        'pink':   [ 'rgb(240, 43, 140)', 'rgb(255, 6, 0)' ]
+    };
+
+    var animMainSlider = require('./sliderMain.js');
     var initVideo = require('./initVideo.js');
     var animSlider = require('./slider.js');
     var animHoops = require('./animHoops.js');
@@ -91,15 +77,27 @@ $(window).on('load', function(){
     var animParallax = require('./animParallax.js');
     var spritesAnim = require('./spritesAnim.js');
 
-
-    // Sliders drag
-    if($('.wrapper-sliders').length){
-        animSlider();
+    // Slider home
+    if($('#bloc-top').length){
+        animMainSlider(body, $('#bloc-top'), themeColors);
     }
 
     // Load videos
     if($('.wrapper-video').length){
         initVideo();
+    }
+
+    // Parallaxe
+    if($('#more-than-moocs').length){
+        parallax = new Parallax($('#more-than-moocs').get(0));
+    }
+    if(body.hasClass('page-template-contact')){
+        parallax = new Parallax($('#main').get(0));
+    }
+
+    // Sliders drag
+    if($('.wrapper-sliders').length){
+        animSlider();
     }
 
     // Anim hoops

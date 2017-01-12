@@ -25,7 +25,10 @@
 
 	// Declis
 	global $currentDecli, $declis;
-	$declis = get_field('decli', 'options');
+	function getDisplayedDeclis($field){
+		return $field['displayDecli'];
+	}
+	$declis = array_values(array_filter(get_field('decli', 'options'), 'getDisplayedDeclis'));
 	$currentDecli = isset($_COOKIE['think-decli']) ? $_COOKIE['think-decli'] : 0;
 
 
