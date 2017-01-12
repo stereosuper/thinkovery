@@ -14,7 +14,6 @@ module.exports = function(){
 
     function animateSprites(){
         heightVisu = visuSprites.outerHeight();
-        console.log('heightVisu : '+heightVisu);
         visuSprites.each(function(i){
             sprite = $(this);
             if(typeof spritesTl[i] !== 'undefined'){
@@ -25,7 +24,7 @@ module.exports = function(){
             for(j; j<numRows; j++){
                // spritesTl[i].add(TweenMax.fromTo(sprite, 0.15, {backgroundPosition: '0 -'+(frameHeight*j)+'px'}, {backgroundPosition: '-'+(frameWidth*(numCols-1))+'px -'+(frameHeight*j)+'px', ease: steppedEase}));
                // spritesTl[i].add(TweenMax.fromTo(sprite, 0.15, {backgroundPosition: '0% '+(10*j)+'%'}, {backgroundPosition: '0% '+(10*j)+'%', ease: steppedEase}));
-               spritesTl[i].add(TweenMax.fromTo(sprite, 0.15, {backgroundPosition: '0 -'+(heightVisu*j)+'px'}, {backgroundPosition: '0 -'+(heightVisu*j)+'px', ease: steppedEase}));
+               spritesTl[i].add(TweenMax.fromTo(sprite, 0.08, {backgroundPosition: '0 -'+(heightVisu*j)+'px'}, {backgroundPosition: '0 -'+(heightVisu*j)+'px', ease: steppedEase}));
             }
         });
     }
@@ -33,7 +32,6 @@ module.exports = function(){
     animateSprites();
 
     $(window).on('resize', throttle(function(){
-        console.log('aze');
         requestAnimFrame(animateSprites);
     }, 40));
 }
