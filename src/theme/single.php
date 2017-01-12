@@ -14,7 +14,7 @@
 					<h1><?php the_title(); ?></h1>
 
 					<?php if(get_field('intro')){ ?>
-					    <div class='intro'><?php the_field('intro'); ?></div>
+					    <div class='intro animateOnScroll'><?php the_field('intro'); ?></div>
 					<?php } ?>
 
 					<div class='single-content'><?php the_content(); ?></div>
@@ -22,7 +22,7 @@
 					<div class='wrapper-share-related'>
 						<div class='share-post'>
 							<h4><?php _e('Share this post', 'thinkovery'); ?></h4>
-							<ul>
+							<ul class='animateOnScroll'>
 								<li>
 									<a href='http://twitter.com/share?url=<?php the_permalink(); ?>&text=<?php the_title(); ?>&via=<?php bloginfo("name"); ?>' rel='nofollow' target='_blank'><?php _e('Share on Twitter', 'thinkovery'); ?><svg class='icon icon-twitter'><use xlink:href='#icon-twitter'/></svg><i></i></a>
 								</li>
@@ -58,7 +58,7 @@
 								) );
 
 								if( $relatedQuery->have_posts() ){
-									echo '<div class="related-posts"><h4>' . __('Related Posts', 'thinkovery') . '</h4><ul>';
+									echo '<div class="related-posts"><h4>' . __('Related Posts', 'thinkovery') . '</h4><ul  class="animateOnScroll">';
 									while( $relatedQuery->have_posts() ){ $relatedQuery->the_post(); ?>
 										<li>
 											<a href='<?php the_permalink(); ?>'>

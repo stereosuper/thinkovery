@@ -6,12 +6,13 @@
     	&.under-view{
     		&:after{
     			transform: translate3d(0, 50px, 0);
+    			opacity: 0;
     		}
     	}
     	&.above-view{
     	    &:after{
     	    	transform: translate3d(0, 50px, 0);
-  
+    	    	opacity: 0;
     	    }
     	}
     	&.in-view{
@@ -23,7 +24,7 @@
     }
 }
 
-.study-content h2, .quote-cite, .post h2{
+.study-content h2, .quote-cite, .post h2, .share-post ul, .related-posts ul, .intro{
 	&.animateOnScroll{
     	&:before{
     		transition: all 0.3s ease-out;
@@ -31,12 +32,13 @@
     	&.under-view{
     		&:before{
     			transform: translate3d(0, 50px, 0);
+    			opacity: 0;
     		}
     	}
     	&.above-view{
     	    &:before{
     	    	transform: translate3d(0, 50px, 0);
-  
+  				opacity: 0;
     	    }
     	}
     	&.in-view{
