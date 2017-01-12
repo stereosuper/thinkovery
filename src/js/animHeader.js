@@ -1,6 +1,8 @@
 var $ = require('./libs/jquery/dist/jquery.slim.min.js');
 var TweenMax = require('./libs/gsap/src/uncompressed/TweenMax.js');
 
+var isMobile = require('./libs/isMobile.min.js');
+
 window.requestAnimFrame = require('./requestAnimFrame.js');
 var throttle = require('./throttle.js');
 
@@ -52,17 +54,30 @@ module.exports = function(){
         docHeight = $(document).height();
     }
 
-    header.on('mouseenter', function(){
-        hideScrollIndic();
-        if(myScroll > 10){
-            header.addClass('hover');
-        }
-    }).on('mouseleave', function(){
-        header.removeClass('hover');
-        if(myScroll > 10){
-            showScrollIndic();
-        }
-    });
+    if(isMobile.any){
+        header.on('click', function(){
+            hideScrollIndic();
+            if(myScroll > 10){
+                header.addClass('hover');
+            }
+        }).on('click', 'a', function(e){
+            if(header.hasClass('on')){
+                e.preventDefault();
+            }
+        });
+    }else{
+        header.on('mouseenter', function(){
+            hideScrollIndic();
+            if(myScroll > 10){
+                header.addClass('hover');
+            }
+        }).on('mouseleave', function(){
+            header.removeClass('hover');
+            if(myScroll > 10){
+                showScrollIndic();
+            }
+        });
+    }
 
     $(document).on('scroll', throttle(function(){
         requestAnimFrame(scrollHandler);
