@@ -72,7 +72,7 @@ get_header(); ?>
                             <ul class='slides'>
                                 <?php while( have_rows('logos') ){ the_row(); ?><li>
                                     <div class='img'>
-                                        <?php echo wp_get_attachment_image( get_sub_field('img') ); ?>
+                                        <?php echo wp_get_attachment_image( get_sub_field('img'), 'medium' ); ?>
                                     </div>
                                     <div class='slide-desc'>
                                         <div class='slide-title'><?php the_sub_field('name'); ?></div>
