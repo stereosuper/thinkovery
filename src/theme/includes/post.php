@@ -4,7 +4,7 @@
     <?php if(!$formatLink){ ?>
         <?php if( has_post_thumbnail() ){ ?>
             <a href='<?php the_permalink(); ?>' class='wrapper-post-img'>
-                <?php if( has_post_thumbnail() ){ the_post_thumbnail(); } ?>
+                <?php if( has_post_thumbnail() ){ the_post_thumbnail('large'); } ?>
             </a>
         <?php } ?>
 
@@ -45,7 +45,7 @@
                 </div>
             </div>
         <?php }else if( has_post_thumbnail() ){ ?>
-            <a href='<?php the_field('link'); ?>' target='_blank' class='wrapper-post-img' style='background-image: url(<?php the_post_thumbnail_url(); ?>)'>
+            <a href='<?php the_field('link'); ?>' target='_blank' class='wrapper-post-img' style='background-image: url(<?php the_post_thumbnail_url('large'); ?>)'>
             </a>
         <?php } ?>
 
