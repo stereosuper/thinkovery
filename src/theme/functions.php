@@ -129,22 +129,15 @@ function think_imagelink_setup(){
 }
 add_action( 'admin_init', 'think_imagelink_setup' );
 
-// Enlever les <p> autour des images
-function think_around_images($content){
-   $content = preg_replace('/<p>\s*(<a .*>)?\s*(<img .* \/>)\s*(<\/a>)?\s*<\/p>/iU', '\1\2\3', $content);
-   return $content;
-}
-add_filter( 'the_content', 'think_around_images' );
-
-// Put the align classes on the div class'post-img'
-function think_image_tag($html, $id, $alt, $title, $align){
-    $html = '<div class="post-img align' . $align . '">' . $html . '</div>';
-    return $html;
-}
-add_filter( 'get_image_tag', 'think_image_tag', 0, 5 );
-
 // Remove the classes on images
 add_filter( 'get_image_tag_class', '__return_empty_string' );
+
+// Change markup images in content
+function think_insert_image($html, $id, $caption, $title, $align, $url) {
+    $html5 = '<div class="post-img align' . $align . '">' . $html . '</div>';
+    return $html5;
+}
+add_filter( 'image_send_to_editor', 'think_insert_image', 10, 9 );
 
 // Allow svg in media library
 function think_mime_types($mimes){
