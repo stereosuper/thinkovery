@@ -202,7 +202,8 @@ add_filter('wp_die_handler', 'get_think_die_handler');
 function think_title_length( $title ){
     $max = 92;
     if( strlen($title) > $max ){
-        return substr( $title, 0, $max ) . " &hellip;";
+        // return substr( $title, 0, $max ) . " &hellip;";
+        return explode("\n", wordwrap($title, $max))[0] . " &hellip;";
     }else{
         return $title;
     }
