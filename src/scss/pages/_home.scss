@@ -419,6 +419,9 @@
 		padding-bottom: 5em;
 	}
 	#more-than-moocs{
+		.hoop{
+			opacity: 0.5;
+		}
 		.wrapper-blocs-half{
 			flex-wrap: wrap;
 			.bloc-half{
@@ -521,7 +524,6 @@
 
 	#more-than-moocs{
 		.hoop{
-			opacity: 0.7;
 			&:nth-of-type(1){
 				display: none !important;
 			}
