@@ -48,11 +48,12 @@ get_header(); ?>
             <div class='container'>
                 <div class='zone-txt align-right slide-anim-txt'>
                     <?php $count = 0; foreach($declis as $decli){ ?>
-                        <div class='slide-home-txt <?php if($count == $currentDecli) echo 'txt-on'; ?>'>
-                            <h2 class='baseline-mb'><?php echo $decli['title1']; ?> <?php echo $decli['title2']; ?></h2>
-                            <?php echo $decli['txt']; ?>
-                        </div>
-                    <?php $count ++; } ?>
+                        <?php if($decli['displayDecli']){ ?>
+                            <div class='slide-home-txt <?php if($count == $currentDecli) echo 'txt-on'; ?>'>
+                                <h2 class='baseline-mb'><?php echo $decli['title1']; ?> <?php echo $decli['title2']; ?></h2>
+                                <?php echo $decli['txt']; ?>
+                            </div>
+                    <?php $count ++; } } ?>
                     <h1><?php the_title(); ?></h1>
                 </div>
                 <div class='slide-anim-txt zone-btn'>
