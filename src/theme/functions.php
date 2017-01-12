@@ -165,42 +165,6 @@ add_filter( 'nav_menu_css_class', 'think_css_attributes_filter' );
 
 
 /*-----------------------------------------------------------------------------------*/
-/* Sidebar & Widgets
-/*-----------------------------------------------------------------------------------*/
-function think_register_sidebars(){
-	register_sidebar(array(
-		'id' => 'sidebar',
-		'name' => 'Sidebar',
-		'description' => 'Take it on the side...',
-		'before_widget' => '',
-		'after_widget' => '',
-		'before_title' => '',
-		'after_title' => '',
-		'empty_title'=> ''
-	));
-}
-add_action( 'widgets_init', 'think_register_sidebars' );
-
-// Deregister default widgets
-function think_unregister_default_widgets(){
-    unregister_widget('WP_Widget_Pages');
-    unregister_widget('WP_Widget_Calendar');
-    unregister_widget('WP_Widget_Archives');
-    unregister_widget('WP_Widget_Links');
-    unregister_widget('WP_Widget_Meta');
-    unregister_widget('WP_Widget_Search');
-    unregister_widget('WP_Widget_Text');
-    unregister_widget('WP_Widget_Categories');
-    unregister_widget('WP_Widget_Recent_Posts');
-    unregister_widget('WP_Widget_Recent_Comments');
-    unregister_widget('WP_Widget_RSS');
-    unregister_widget('WP_Widget_Tag_Cloud');
-    unregister_widget('WP_Nav_Menu_Widget');
-}
-add_action( 'widgets_init', 'think_unregister_default_widgets' );
-
-
-/*-----------------------------------------------------------------------------------*/
 /* Blog
 /*-----------------------------------------------------------------------------------*/
 // Only posts on search
@@ -238,7 +202,8 @@ add_filter('wp_die_handler', 'get_think_die_handler');
 function think_title_length( $title ){
     $max = 92;
     if( strlen($title) > $max ){
-        return substr( $title, 0, $max ) . " &hellip;";
+        // return substr( $title, 0, $max ) . " &hellip;";
+        return explode("\n", wordwrap($title, $max))[0] . " &hellip;";
     }else{
         return $title;
     }
