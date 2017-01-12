@@ -89,6 +89,7 @@ $(window).on('load', function(){
     var setPosCircle = require('./setPosCircle.js');
     var animOnScroll = require('./animOnScroll.js');
     var animParallax = require('./animParallax.js');
+    var spritesAnim = require('./spritesAnim.js');
 
 
     // Sliders drag
@@ -118,5 +119,10 @@ $(window).on('load', function(){
     // Parallax
     if($('.hasParallax').length){
         animParallax();
+    }
+
+    // Sprites SVG
+    if($('.svgAnim').length){
+        spritesAnim();
     }
 });
