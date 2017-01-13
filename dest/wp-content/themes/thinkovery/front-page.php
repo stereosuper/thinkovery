@@ -69,12 +69,13 @@ get_header(); ?>
                 <h2><?php the_field('section1Title1'); ?></h2>
                 <?php the_field('section1Txt1'); ?>
                 <?php if(get_field('section1Video1')){ ?>
-                    <div class='wrapper-video'>
+                    <div class='wrapper-video' data-id='<?php the_field('section1Video1'); ?>'>
                         <div>
                             <?php
-                                $video1 = "<iframe src='" . get_field('section1Video1') . "?enablejsapi=1&html5=1' frameborder='0' allowfullscreen></iframe>";
-                                echo apply_filters( 'bj_lazy_load_html', $video1 );
+                                // $video1 = "<iframe src='" . get_field('section1Video1') . "?enablejsapi=1&html5=1' frameborder='0' allowfullscreen></iframe>";
+                                // echo apply_filters( 'bj_lazy_load_html', $video1 );
                             ?>
+                            <div class='iframe'></div>
                             <div class='cover-video' style='background-image:url(<?php echo wp_get_attachment_url(get_field('section1Cover1')); ?>)'>
                                 <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop-thin'/></svg>
                             </div>
@@ -85,12 +86,9 @@ get_header(); ?>
                 <h2><?php the_field('section1Title2'); ?></h2>
                 <?php the_field('section1Txt2'); ?>
                 <?php if(get_field('section1Video2')){ ?>
-                    <div class='wrapper-video'>
+                    <div class='wrapper-video' data-id='<?php the_field('section1Video2'); ?>'>
                         <div>
-                            <?php
-                                $video2 = "<iframe src='" . get_field('section1Video2') . "?enablejsapi=1&html5=1' frameborder='0' allowfullscreen></iframe>";
-                                echo apply_filters( 'bj_lazy_load_html', $video2 );
-                            ?>
+                            <div class='iframe'></div>
                             <div class='cover-video' style='background-image:url(<?php echo wp_get_attachment_url(get_field('section1Cover2')); ?>)'>
                                 <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop-thin'/></svg>
                             </div>

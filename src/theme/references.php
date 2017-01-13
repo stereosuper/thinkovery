@@ -17,13 +17,10 @@ get_header(); ?>
                     <div class='study-case <?php if($count % 2 === 0) echo 'study-case-odd'; ?>'>
 
                         <div class='case'>
-                            <div class='img <?php if(get_sub_field('video')) echo 'wrapper-video'; ?>'>
+                            <div class='img <?php if(get_sub_field('video')) echo 'wrapper-video'; ?>' data-id='<?php the_sub_field('video'); ?>'>
                                 <?php if(get_sub_field('video')){ ?>
                                     <div>
-                                        <?php
-                                            $video = "<iframe src='" . get_sub_field('video') . "?enablejsapi=1&html5=1' frameborder='0' allowfullscreen></iframe>";
-                                            echo apply_filters( 'bj_lazy_load_html', $video );
-                                        ?>
+                                        <div class='iframe'></div>
                                         <div class='cover-video' style='background-image:url(<?php echo wp_get_attachment_url(get_sub_field('img')); ?>)'>
                                             <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop-thin'/></svg>
                                         </div>
