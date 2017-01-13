@@ -71,23 +71,23 @@ module.exports = function(body, blocTop, themeColors){
 
     function animSlide(oldDir, newDir){
         if(currentSlide.find('.slide-home-mb').is(':visible')){
-            tl.to(oldSlide, 1, {x: 100*oldDir + '%', delay: 0.3, force3D: true, ease: ease, onComplete: function(){
+            tl.to(oldSlide, 1, {x: 100*oldDir + '%', force3D: true, ease: ease, onComplete: function(){
                     setTheme();
                     sliding = false;
-                }}, 0)
-              .fromTo(currentSlide, 1, {x: 100*newDir + '%'}, {x: '0%', delay: 0.3, force3D: true, ease: ease, onComplete: function(){
+                }}, 0.3)
+              .fromTo(currentSlide, 1, {x: 100*newDir + '%'}, {x: '0%', force3D: true, ease: ease, onComplete: function(){
                     TweenMax.to(blocRevel.find('.slide-anim-txt').eq(0), 0.7, {y: '0px', opacity: 1, ease: Power2.easeIn});
                     TweenMax.to(blocRevel.find('.slide-anim-txt').eq(1), 0.7, {y: '0px', opacity: 1, delay: 0.1, ease: Power2.easeIn});
-              }}, 0);
+              }}, 0.3);
         }else{
-            tl.to(oldSlide, 1, {x: 100*oldDir + '%', delay: 0.3, force3D: true, ease: ease}, 0)
-              .fromTo(currentSlide, 1, {x: 100*newDir + '%'}, {x: '0%', delay: 0.3, force3D: true, ease: ease}, 0)
-              .fromTo(circle, 1.8, {x: newDir*containerW/4+'px'}, {x: '0px', delay: 0.3, force3D: true, ease: Power2.easeOut}, 0)
-              .fromTo(plans, 2.3, {x: newDir*containerW/4+'px'}, {x: '0px', delay: 0.3, force3D: true, ease: Power2.easeOut}, 0)
-              .fromTo([baseline.find('> span').eq(0), baselineSecond.find('> span')], 2.6, {x: newDir*containerW/4+'px'}, {x: '0px', delay: 0.3, force3D: true, ease: Power2.easeOut}, 0)
-              .fromTo(baseline.find('> span').eq(1), 2.5, {x: newDir*containerW/4+'px'}, {x: '0px', delay: 0.3, force3D: true, ease: Power2.easeOut}, 0)
-              .to(blocRevel.find('.slide-anim-txt').eq(0), 1.5, {y: '0px', opacity: 1, delay: 1.05, ease: Power2.easeOut}, 0)
-              .to(blocRevel.find('.slide-anim-txt').eq(1), 1.5, {y: '0px', opacity: 1, delay: 1.15, ease: Power2.easeOut}, 0);
+            tl.to(oldSlide, 1, {x: 100*oldDir + '%', force3D: true, ease: ease}, 0.3)
+              .fromTo(currentSlide, 1, {x: 100*newDir + '%'}, {x: '0%', force3D: true, ease: ease}, 0.3)
+              .fromTo(circle, 1.8, {x: newDir*containerW/4+'px'}, {x: '0px', force3D: true, ease: Power2.easeOut}, 0.3)
+              .fromTo(plans, 2.3, {x: newDir*containerW/4+'px'}, {x: '0px', force3D: true, ease: Power2.easeOut}, 0.3)
+              .fromTo([baseline.find('> span').eq(0), baselineSecond.find('> span')], 2.6, {x: newDir*containerW/4+'px'}, {x: '0px', force3D: true, ease: Power2.easeOut}, 0.3)
+              .fromTo(baseline.find('> span').eq(1), 2.5, {x: newDir*containerW/4+'px'}, {x: '0px', force3D: true, ease: Power2.easeOut}, 0.3)
+              .to(blocRevel.find('.slide-anim-txt').eq(0), 1.5, {y: '0px', opacity: 1, ease: Power2.easeOut}, 1.05)
+              .to(blocRevel.find('.slide-anim-txt').eq(1), 1.5, {y: '0px', opacity: 1, ease: Power2.easeOut}, 1.15);
         }
     }
 
@@ -109,12 +109,12 @@ module.exports = function(body, blocTop, themeColors){
 
         tl = new TimelineMax();
 
-        tl.to(blocRevel.find('.slide-anim-txt').eq(1), .6, {y: '20px', opacity: 0, delay: 0.1, ease: Power2.easeIn})
-          .to(blocRevel.find('.slide-anim-txt').eq(0), .6, {y: '20px', opacity: 0, delay: 0.2, ease: Power2.easeIn, onComplete: function(){
+        tl.to(blocRevel.find('.slide-anim-txt').eq(1), .6, {y: '20px', opacity: 0, ease: Power2.easeIn}, 0.1)
+          .to(blocRevel.find('.slide-anim-txt').eq(0), .6, {y: '20px', opacity: 0, ease: Power2.easeIn, onComplete: function(){
                 nextTxt.length ? nextTxt.addClass('txt-on') : slidesTxt.eq(lastSlideIndex).addClass('txt-on');
                 currentTxt.removeClass('txt-on');
                 currentTxt = blocRevel.find('.txt-on');
-          }}, 0);
+          }}, 0.2);
 
         if(!oldSlide.find('.slide-home-mb').is(':visible')){
             tl.to([
