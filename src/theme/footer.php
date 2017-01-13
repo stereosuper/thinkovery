@@ -76,6 +76,8 @@
                             </a>
                         </div>
                     </div>
+
+                    <?php echo do_shortcode('[mc4wp_form id="8558"]'); ?>
                 </div>
             <?php }else{ ?>
                 <div class='container-medium'>
