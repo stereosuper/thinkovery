@@ -57,6 +57,9 @@ label{
     .no-js &{
         transform: translate3d(0, -200%, 0) scale(0.9);
     }
+    > i{
+        font-size: 0.8em;
+    }
     + span{
         display: block;
         font-size: 1.35rem;
@@ -199,7 +202,7 @@ input{
             }
         }
         &:hover, &:focus{
-            color: #fff;
+            color: #fff !important;
             &:before, > i:after{
                 opacity: 1;
             }

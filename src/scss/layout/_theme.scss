@@ -113,9 +113,14 @@
                     }
                 }
             }
-            .share-post a, .related-posts a, .form-search > button, .btn{
+            .share-post a, .related-posts a, .btn{
                 &:hover, &:focus{
                     color: $black;
+                }
+            }
+            .form-search > button{
+                &:hover, &:focus{
+                    color: $black !important;
                 }
             }
             .related-posts a:hover .icon, .related-posts a:focus .icon{
