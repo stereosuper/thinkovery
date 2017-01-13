@@ -20,12 +20,15 @@ get_header(); ?>
                             <div class='img <?php if(get_sub_field('video')) echo 'wrapper-video'; ?>'>
                                 <?php if(get_sub_field('video')){ ?>
                                     <div>
-                                        <iframe src='<?php the_sub_field('video'); ?>?enablejsapi=1&html5=1' frameborder='0' allowfullscreen></iframe>
+                                        <?php
+                                            $video = "<iframe src='" . get_sub_field('video') . "?enablejsapi=1&html5=1' frameborder='0' allowfullscreen></iframe>";
+                                            echo apply_filters( 'bj_lazy_load_html', $video );
+                                        ?>
                                         <div class='cover-video' style='background-image:url(<?php echo wp_get_attachment_url(get_sub_field('img')); ?>)'>
                                             <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop-thin'/></svg>
                                         </div>
                                     </div>
-                                <?php }else{ echo wp_get_attachment_image( get_sub_field('img'), 'full' ); } ?>
+                                <?php }else{ echo apply_filters( 'bj_lazy_load_html', wp_get_attachment_image( get_sub_field('img'), 'large' ) ); } ?>
                             </div>
                             <div class='study-content'>
                                 <b class='study-subtitle'><?php _e('Case study', 'thinkovery'); ?> n°<?php echo $count; ?></b>
@@ -44,7 +47,7 @@ get_header(); ?>
                                     <p><?php the_sub_field('quote'); ?></p>
                                 </blockquote>
                                 <div class='quote-img'>
-                                    <?php echo wp_get_attachment_image( get_sub_field('quoteImg') ); ?>
+                                    <?php echo apply_filters( 'bj_lazy_load_html', wp_get_attachment_image( get_sub_field('quoteImg') ) ); ?>
                                 </div>
                                 <p class='quote-cite animateOnScroll'>
                                     <?php the_sub_field('quoteAuthor'); ?>
@@ -72,7 +75,7 @@ get_header(); ?>
                             <ul class='slides'>
                                 <?php while( have_rows('logos') ){ the_row(); ?><li>
                                     <div class='img'>
-                                        <?php echo wp_get_attachment_image( get_sub_field('img'), 'medium' ); ?>
+                                        <?php echo apply_filters( 'bj_lazy_load_html', wp_get_attachment_image( get_sub_field('img'), 'medium' ) ); ?>
                                     </div>
                                     <div class='slide-desc'>
                                         <div class='slide-title'><?php the_sub_field('name'); ?></div>
