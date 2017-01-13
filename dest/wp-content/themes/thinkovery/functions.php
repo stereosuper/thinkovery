@@ -211,6 +211,24 @@ function think_title_length( $title ){
 
 
 /*-----------------------------------------------------------------------------------*/
+/* Sidebar & Widgets
+/*-----------------------------------------------------------------------------------*/
+function super_register_sidebars(){
+    register_sidebar(array(
+        'id' => 'sidebar',
+        'name' => 'Sidebar',
+        'description' => 'Take it on the side...',
+        'before_widget' => '',
+        'after_widget' => '',
+        'before_title' => '',
+        'after_title' => '',
+        'empty_title'=> ''
+    ));
+}
+add_action( 'widgets_init', 'super_register_sidebars' );
+
+
+/*-----------------------------------------------------------------------------------*/
 /* Enqueue Styles and Scripts
 /*-----------------------------------------------------------------------------------*/
 function think_scripts(){
