@@ -201,10 +201,12 @@ module.exports = function(body, blocTop, themeColors){
 
     hammertime.on('swipeleft', function(){
         if(!sliding){
+            clearTimeout(timeOut);
             slide(currentSlide.next('.slide-home'), currentTxt.next('.slide-home-txt'), 0, 'next');
         }
     }).on('swiperight', function(){
        if(!sliding){
+            clearTimeout(timeOut);
             slide(currentSlide.prev('.slide-home'), currentTxt.prev('.slide-home-txt'), nbSlides-1, 'prev');
        }
     });
