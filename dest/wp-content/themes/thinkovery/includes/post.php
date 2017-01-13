@@ -36,9 +36,9 @@
     <?php }else{ ?>
 
         <?php if(get_field('video') && get_field('cover')){ ?>
-            <div class='wrapper-video' data-id='<?php the_field('video'); ?>'>
+            <div class='wrapper-video'>
                 <div>
-                    <div class='iframe'></div>
+                    <iframe src='<?php the_field('video'); ?>?enablejsapi=1&html5=1' frameborder='0' allowfullscreen></iframe>
                     <div class='cover-video' style='background-image:url(<?php echo wp_get_attachment_url(get_field('cover')); ?>)'>
                         <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop-thin'/></svg>
                     </div>
