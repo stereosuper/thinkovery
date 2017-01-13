@@ -21,6 +21,11 @@
         background-size: cover;
         background-position: 50% 50%;
         cursor: pointer;
+        &.on{
+            > .hoop, &:after{
+                opacity: 0.9;
+            }
+        }
         &:before, &:after{
             content: '';
             position: absolute;
@@ -43,7 +48,7 @@
             margin: auto;
             left: 1%;
             transition: $transition;
-            opacity: 0.9;
+            opacity: 0;
         }
         &:hover, &:focus{
             .hoop{
@@ -64,7 +69,7 @@
         bottom: 0;
         right: 0;
         margin: auto;
-        opacity: 0.9;
+        opacity: 0;
         transition: $transition;
         transform-origin: 50% 50%;
     }

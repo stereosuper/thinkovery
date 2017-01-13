@@ -129,22 +129,15 @@ function think_imagelink_setup(){
 }
 add_action( 'admin_init', 'think_imagelink_setup' );
 
-// Enlever les <p> autour des images
-function think_around_images($content){
-   $content = preg_replace('/<p>\s*(<a .*>)?\s*(<img .* \/>)\s*(<\/a>)?\s*<\/p>/iU', '\1\2\3', $content);
-   return $content;
-}
-add_filter( 'the_content', 'think_around_images' );
-
-// Put the align classes on the div class'post-img'
-function think_image_tag($html, $id, $alt, $title, $align){
-    $html = '<div class="post-img align' . $align . '">' . $html . '</div>';
-    return $html;
-}
-add_filter( 'get_image_tag', 'think_image_tag', 0, 5 );
-
 // Remove the classes on images
 add_filter( 'get_image_tag_class', '__return_empty_string' );
+
+// Change markup images in content
+function think_insert_image($html, $id, $caption, $title, $align, $url) {
+    $html5 = '<div class="post-img align' . $align . '">' . $html . '</div>';
+    return $html5;
+}
+add_filter( 'image_send_to_editor', 'think_insert_image', 10, 9 );
 
 // Allow svg in media library
 function think_mime_types($mimes){
@@ -169,42 +162,6 @@ function think_css_attributes_filter($var){
     return is_array($var) ? array_intersect($var, array('current-menu-item', 'current_page_parent', 'link-contact', 'hide-mb')) : '';
 }
 add_filter( 'nav_menu_css_class', 'think_css_attributes_filter' );
-
-
-/*-----------------------------------------------------------------------------------*/
-/* Sidebar & Widgets
-/*-----------------------------------------------------------------------------------*/
-function think_register_sidebars(){
-	register_sidebar(array(
-		'id' => 'sidebar',
-		'name' => 'Sidebar',
-		'description' => 'Take it on the side...',
-		'before_widget' => '',
-		'after_widget' => '',
-		'before_title' => '',
-		'after_title' => '',
-		'empty_title'=> ''
-	));
-}
-add_action( 'widgets_init', 'think_register_sidebars' );
-
-// Deregister default widgets
-function think_unregister_default_widgets(){
-    unregister_widget('WP_Widget_Pages');
-    unregister_widget('WP_Widget_Calendar');
-    unregister_widget('WP_Widget_Archives');
-    unregister_widget('WP_Widget_Links');
-    unregister_widget('WP_Widget_Meta');
-    unregister_widget('WP_Widget_Search');
-    unregister_widget('WP_Widget_Text');
-    unregister_widget('WP_Widget_Categories');
-    unregister_widget('WP_Widget_Recent_Posts');
-    unregister_widget('WP_Widget_Recent_Comments');
-    unregister_widget('WP_Widget_RSS');
-    unregister_widget('WP_Widget_Tag_Cloud');
-    unregister_widget('WP_Nav_Menu_Widget');
-}
-add_action( 'widgets_init', 'think_unregister_default_widgets' );
 
 
 /*-----------------------------------------------------------------------------------*/
@@ -245,7 +202,8 @@ add_filter('wp_die_handler', 'get_think_die_handler');
 function think_title_length( $title ){
     $max = 92;
     if( strlen($title) > $max ){
-        return substr( $title, 0, $max ) . " &hellip;";
+        // return substr( $title, 0, $max ) . " &hellip;";
+        return explode("\n", wordwrap($title, $max))[0] . " &hellip;";
     }else{
         return $title;
     }

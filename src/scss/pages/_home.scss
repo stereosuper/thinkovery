@@ -24,6 +24,10 @@
 	margin: auto;
 	border-radius: 50%;
 	animation: loading 1.5s ease-in-out 0s infinite;
+	&.off{
+		animation: none;
+		opacity: 0;
+	}
 }
 
 @keyframes loading{
@@ -410,9 +414,31 @@
 }
 
 @media (max-width: $desktop-small){
-	#mooc-spoc, #more-than-moocs .container{
+	#mooc-spoc{
 		padding-top: 3em;
 		padding-bottom: 3em;
+	}
+	#more-than-moocs .container{
+		padding-top: 5em;
+		padding-bottom: 5em;
+	}
+	#more-than-moocs{
+		.hoop{
+			opacity: 0.5;
+		}
+		.wrapper-blocs-half{
+			flex-wrap: wrap;
+			.bloc-half{
+				width: 100%;
+				&:first-of-type{
+					margin-bottom: 30px;
+				}
+				&.align-right{
+					text-align: left;
+					padding-right: 33.33333%;
+				}
+			}
+		}
 	}
 
 	.bloc-with-picto{
@@ -502,9 +528,15 @@
 
 	#more-than-moocs{
 		.hoop{
-			opacity: 0.7;
 			&:nth-of-type(1){
 				display: none !important;
+			}
+		}
+		.wrapper-blocs-half{
+			.bloc-half{
+				&.align-right{
+					padding-right: 0;
+				}
 			}
 		}
 	}
@@ -540,8 +572,11 @@
 			}
 		}
 	}
-
 	#more-than-moocs{
+		.container{
+			padding-top: 3em;
+			padding-bottom: 3em;
+		}
 		.hoop{
 			&:nth-of-type(2){
 				display: none !important;

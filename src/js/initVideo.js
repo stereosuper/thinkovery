@@ -10,12 +10,18 @@ module.exports = function(){
             wrapperVideoParent.on('click', function(){
                 TweenMax.to($(this).find('.cover-video'), 0.5, {opacity: 0, display: 'none'});
                 players[$(this).index('.wrapper-video')].playVideo();
-            });
+            }).find('.cover-video').addClass('on');
         }
 
         wrapperVideos.each(function(i){
-            players[i] = new YT.Player($(this).find('iframe').get(0), {
-                events: { 'onReady': onPlayerReady($(this)) }
+            // players[i] = new YT.Player($(this).find('iframe').get(0), {
+            //     events: { 'onReady': onPlayerReady($(this)) }
+            // });
+            players[i] = new YT.Player($(this).find('.iframe').get(0), {
+                videoId: $(this).data('id'),
+                events: {
+                    'onReady': onPlayerReady($(this))
+                }
             });
         });
     }

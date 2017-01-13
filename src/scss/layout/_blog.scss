@@ -304,9 +304,7 @@
             }
         }
         &:hover, &:focus{
-            .icon{
-                fill: $white;
-            }
+            color: #fff;
             &:before, > i:after{
                 opacity: 1;
             }

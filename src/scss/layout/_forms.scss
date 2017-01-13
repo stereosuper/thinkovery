@@ -57,6 +57,9 @@ label{
     .no-js &{
         transform: translate3d(0, -200%, 0) scale(0.9);
     }
+    > i{
+        font-size: 0.8em;
+    }
     + span{
         display: block;
         font-size: 1.35rem;
@@ -112,7 +115,7 @@ input{
     margin: 0 0 45px;
 }
 
-.form-contact{
+.form-contact, .newsletter-footer form{
     label{
         color: rgba(#fff, 0.5);
     }
@@ -199,9 +202,7 @@ input{
             }
         }
         &:hover, &:focus{
-            .icon{
-                fill: $white;
-            }
+            color: #fff !important;
             &:before, > i:after{
                 opacity: 1;
             }

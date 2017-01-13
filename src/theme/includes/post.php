@@ -4,7 +4,7 @@
     <?php if(!$formatLink){ ?>
         <?php if( has_post_thumbnail() ){ ?>
             <a href='<?php the_permalink(); ?>' class='wrapper-post-img'>
-                <?php if( has_post_thumbnail() ){ the_post_thumbnail(); } ?>
+                <?php if( has_post_thumbnail() ){ the_post_thumbnail('large'); } ?>
             </a>
         <?php } ?>
 
@@ -36,16 +36,16 @@
     <?php }else{ ?>
 
         <?php if(get_field('video') && get_field('cover')){ ?>
-            <div class='wrapper-video'>
+            <div class='wrapper-video' data-id='<?php the_field('video'); ?>'>
                 <div>
-                    <iframe src='<?php the_field('video'); ?>?enablejsapi=1&html5=1' frameborder='0' allowfullscreen></iframe>
+                    <div class='iframe'></div>
                     <div class='cover-video' style='background-image:url(<?php echo wp_get_attachment_url(get_field('cover')); ?>)'>
                         <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop-thin'/></svg>
                     </div>
                 </div>
             </div>
         <?php }else if( has_post_thumbnail() ){ ?>
-            <a href='<?php the_field('link'); ?>' target='_blank' class='wrapper-post-img' style='background-image: url(<?php the_post_thumbnail_url(); ?>)'>
+            <a href='<?php the_field('link'); ?>' target='_blank' class='wrapper-post-img' style='background-image: url(<?php the_post_thumbnail_url('large'); ?>)'>
             </a>
         <?php } ?>
 

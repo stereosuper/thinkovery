@@ -101,6 +101,16 @@
         max-height: 50%;
         width: auto;
     }
+    .bg{
+        max-width: 50%;
+        max-height: 50%;
+        background-repeat: no-repeat;
+        background-size: 100% auto;
+        background-position: 0 0;
+        background-image: url('../img/realisation.png');
+        width: 100%;
+        height: 100%;
+    }
 }
 
 .tools{
@@ -211,6 +221,12 @@
 }
 
 @media (max-width: $phone){
+    .solutions-header{
+        >.container{
+            padding-top: 2em;
+            padding-bottom: 2em;
+        }
+    }
     .tools{
         > h2{
             font-size: 2.5rem;

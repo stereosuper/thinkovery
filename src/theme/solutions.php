@@ -44,7 +44,8 @@ get_header(); ?>
 								<h3><?php the_sub_field('title'); ?></h3>
 								<p><?php the_sub_field('txt'); ?></p>
 								<div class='img'>
-									<?php echo wp_get_attachment_image( get_sub_field('img') ); ?>
+									<?php //echo wp_get_attachment_image( get_sub_field('img') ); ?>
+									<div class='bg svgAnim'></div>
 								</div>
 								<svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop-thin'/></svg>
 							</li>
@@ -67,7 +68,7 @@ get_header(); ?>
 		            <div class='slider'>
 		                <ul class='slides'>
 		                    <?php while( have_rows('tools') ){ the_row(); ?><li>
-		                        <?php echo wp_get_attachment_image(get_sub_field('img'), 'medium'); ?>
+		                        <?php echo apply_filters( 'bj_lazy_load_html', wp_get_attachment_image(get_sub_field('img'), 'medium') ); ?>
 		                        <div class='slide-desc'>
 		                            <div class='slide-title'><?php the_sub_field('title'); ?></div>
 		                            <div class='slide-content'><?php the_sub_field('txt'); ?></div>
