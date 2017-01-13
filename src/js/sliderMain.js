@@ -156,6 +156,7 @@ module.exports = function(body, blocTop, themeColors){
         TweenMax.set(currentSlide, {x: '0%', force3D: true});
         TweenMax.to(currentSlide, 1, {opacity: 1, onComplete: function(){
             TweenMax.set(slides, {opacity: 1});
+            $('#loader').addClass('off');
         }});
         TweenMax.to(blocRevel.find('.container'), 0.7, {opacity: 1, delay: 0.5});
         TweenMax.to(nav, 0.5, {opacity: 1});

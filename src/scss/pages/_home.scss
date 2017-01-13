@@ -24,6 +24,10 @@
 	margin: auto;
 	border-radius: 50%;
 	animation: loading 1.5s ease-in-out 0s infinite;
+	&.off{
+		animation: none;
+		opacity: 0;
+	}
 }
 
 @keyframes loading{
