@@ -61,7 +61,7 @@
                             <?php endif; ?>
                         </div>
                     </div>
-                    
+
                     <div class='footer-bottom'>
                         <div class='mentions-newsletter-footer'>
                             <a href='<?php the_field('legalLink', 'options'); ?>' class='link-small'>
@@ -90,12 +90,13 @@
                         <div class='container-medium'>
                             <p><?php _e('Nous envoyons environ une newsletter par mois. Garanti sans spam.', 'thinkovery'); ?></p>
                             <?php echo do_shortcode('[mc4wp_form id="8558"]'); ?>
+                            <?php dynamic_sidebar( 'sidebar' ); ?>
                         </div>
                     </div>
                 </div>
             </div>
         <?php }else{ ?>
-            <div class='container container-footer'> 
+            <div class='container container-footer'>
                 <div class='container-medium'>
                     <div class='grid grid-en'>
                         <div class='col-3 col-en'>
