@@ -88,44 +88,38 @@
         }
     }
 
-    .theme-yellow, .theme-green{
-        .btn{
-            color: $black!important;
-            i:before{
+    @if ($color == green or $color == yellow){
+        .theme-#{$color}{
+            .btn i:before,
+            .menu-main a > i:after,
+            .share-post a > i:after,
+            .related-posts a > i:after,
+            .form-search > button > i:after{
                 background: radial-gradient(ellipse at center, rgba($colorsecondary, 0.5) 0, rgba($colorsecondary, 0) 65%);
             }
-        }
-        #header{
-            .current-menu-item, .current_page_parent{
+
+            .btn{
+                color: $black !important;
+            }
+            #header{
+                .current-menu-item, .current_page_parent{
+                    a{
+                        color: $black;
+                    }
+                }
                 a{
-                    color: $black;
-                }
-            }
-            a{
-                &:hover, &:focus{
-                    color: $black;
-                }
-                > i:after{
-                    background: radial-gradient(ellipse at center, rgba($colorsecondary, 0.5) 0, rgba($colorsecondary, 0) 65%);
-                }
-            }
-        }
-        .share-post, .related-posts{
-            a{
-                &:hover, &:focus{
-                    color: $black;
-                    .icon{
-                        fill: $black;
+                    &:hover, &:focus{
+                        color: $black;
                     }
                 }
             }
-        }
-        .form-search > button{
-            &:hover, &:focus{
-                color: $black;
-                .icon{
-                    fill: $black;
+            .share-post a, .related-posts a, .form-search > button, .btn{
+                &:hover, &:focus{
+                    color: $black;
                 }
+            }
+            .related-posts a:hover .icon, .related-posts a:focus .icon{
+                fill: $black;
             }
         }
     }
