@@ -90,7 +90,6 @@
                         <div class='container-medium'>
                             <p><?php _e('Nous envoyons environ une newsletter par mois. Garanti sans spam.', 'thinkovery'); ?></p>
                             <?php echo do_shortcode('[mc4wp_form id="8558"]'); ?>
-                            <?php dynamic_sidebar( 'sidebar' ); ?>
                         </div>
                     </div>
                 </div>
