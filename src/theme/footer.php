@@ -13,8 +13,8 @@
                 </div>
             </div>
         <?php } ?>
-        <div class='container'>
-            <?php if(get_field('blogTitleFooter', 'options')){ ?>
+        <?php if(get_field('blogTitleFooter', 'options')){ ?>
+            <div class='container container-footer'>
                 <div class='container-medium'>
                     <div class='grid'>
                         <div class='col-7'>
@@ -61,25 +61,41 @@
                             <?php endif; ?>
                         </div>
                     </div>
-
-                    <a href='<?php the_field('legalLink', 'options'); ?>' class='link-small'>
-                        <?php the_field('legalLinkText', 'options'); ?>
-                    </a>
-
-                    <div class='contact-footer'>
-                        <a href='mailto:<?php the_field('footerEmail', 'options'); ?>'>
-                            <?php the_field('footerEmail', 'options'); ?>
-                        </a>
-                        <div class='tel-footer'>
-                            <a href='tel:<?php the_field('phone', 'options'); ?>'>
-                                <?php the_field('phoneDisplay', 'options'); ?>
+                    
+                    <div class='footer-bottom'>
+                        <div class='mentions-newsletter-footer'>
+                            <a href='<?php the_field('legalLink', 'options'); ?>' class='link-small'>
+                                <?php the_field('legalLinkText', 'options'); ?>
+                            </a>
+                            <a href='#' class='link-small' id='btnNewsletter'>
+                                <?php _e('Newsletter', 'thinkovery'); ?>
                             </a>
                         </div>
+                        <div class='contact-footer'>
+                            <a href='mailto:<?php the_field('footerEmail', 'options'); ?>'>
+                                <?php the_field('footerEmail', 'options'); ?>
+                            </a>
+                            <div class='tel-footer'>
+                                <a href='tel:<?php the_field('phone', 'options'); ?>'>
+                                    <?php the_field('phoneDisplay', 'options'); ?>
+                                </a>
+                            </div>
+                        </div>
                     </div>
-
-                    <?php echo do_shortcode('[mc4wp_form id="8558"]'); ?>
                 </div>
-            <?php }else{ ?>
+            </div>
+            <div class='newsletter-footer'>
+                <div class='content-newsletter'>
+                    <div class='container'>
+                        <div class='container-medium'>
+                            <p><?php _e('Nous envoyons environ une newsletter par mois. Garanti sans spam.', 'thinkovery'); ?></p>
+                            <?php echo do_shortcode('[mc4wp_form id="8558"]'); ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php }else{ ?>
+            <div class='container container-footer'> 
                 <div class='container-medium'>
                     <div class='grid grid-en'>
                         <div class='col-3 col-en'>
@@ -109,8 +125,8 @@
                         </div>
                     </div>
                 </div>
-            <?php } ?>
-        </div>
+            </div>
+        <?php } ?>
 	</footer>
 
     <?php global $themeColors, $declis, $currentDecli; ?>

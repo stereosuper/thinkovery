@@ -68,7 +68,7 @@ get_header(); ?>
 		            <div class='slider'>
 		                <ul class='slides'>
 		                    <?php while( have_rows('tools') ){ the_row(); ?><li>
-		                        <?php echo wp_get_attachment_image(get_sub_field('img'), 'medium'); ?>
+		                        <?php echo apply_filters( 'bj_lazy_load_html', wp_get_attachment_image(get_sub_field('img'), 'medium') ); ?>
 		                        <div class='slide-desc'>
 		                            <div class='slide-title'><?php the_sub_field('title'); ?></div>
 		                            <div class='slide-content'><?php the_sub_field('txt'); ?></div>

@@ -76,6 +76,7 @@ $(window).on('load', function(){
     var animOnScroll = require('./animOnScroll.js');
     var animParallax = require('./animParallax.js');
     var spritesAnim = require('./spritesAnim.js');
+    var newsletter = require('./newsletter.js');
 
     // Slider home
     if($('#bloc-top').length){
@@ -122,5 +123,10 @@ $(window).on('load', function(){
     // Sprites SVG
     if($('.svgAnim').length){
         spritesAnim();
+    }
+
+    // Newsletter
+    if($('#btnNewsletter').length){
+        newsletter();
     }
 });
