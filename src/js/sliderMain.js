@@ -72,9 +72,8 @@ module.exports = function(body, blocTop, themeColors){
     function animSlide(oldDir, newDir){
         if(currentSlide.find('.slide-home-mb').is(':visible')){
             tl.to(oldSlide, 1, {x: 100*oldDir + '%', force3D: true, ease: ease, onComplete: function(){
-                    setTheme();
                     sliding = false;
-                }}, 0.3)
+              }}, 0.3)
               .fromTo(currentSlide, 1, {x: 100*newDir + '%'}, {x: '0%', force3D: true, ease: ease, onComplete: function(){
                     TweenMax.to(blocRevel.find('.slide-anim-txt').eq(0), 0.7, {y: '0px', opacity: 1, ease: Power2.easeIn});
                     TweenMax.to(blocRevel.find('.slide-anim-txt').eq(1), 0.7, {y: '0px', opacity: 1, delay: 0.1, ease: Power2.easeIn});
@@ -114,6 +113,7 @@ module.exports = function(body, blocTop, themeColors){
                 nextTxt.length ? nextTxt.addClass('txt-on') : slidesTxt.eq(lastSlideIndex).addClass('txt-on');
                 currentTxt.removeClass('txt-on');
                 currentTxt = blocRevel.find('.txt-on');
+                setTheme();
           }}, 0.2);
 
         if(!oldSlide.find('.slide-home-mb').is(':visible')){
@@ -124,7 +124,6 @@ module.exports = function(body, blocTop, themeColors){
                     oldSlide.find('.slider-plans')
                 ],
                 1, {x: oldDirNb*300 + 'px', force3D: true, ease: Power2.easeIn, onComplete: function(){
-                    setTheme();
                     sliding = false;
                 }}, 0
             );
