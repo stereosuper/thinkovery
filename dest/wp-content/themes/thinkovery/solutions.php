@@ -44,8 +44,7 @@ get_header(); ?>
 								<h3><?php the_sub_field('title'); ?></h3>
 								<p><?php the_sub_field('txt'); ?></p>
 								<div class='img'>
-									<?php //echo wp_get_attachment_image( get_sub_field('img') ); ?>
-									<div class='bg svgAnim'></div>
+									<div class='bg svgAnim' style='background-image: url(<?php echo wp_get_attachment_url( get_sub_field('img') ); ?>)'></div>
 								</div>
 								<svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop-thin'/></svg>
 							</li>

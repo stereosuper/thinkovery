@@ -4,13 +4,20 @@ var ScrollToPlugin = require('./libs/gsap/src/uncompressed/plugins/ScrollToPlugi
 
 module.exports = function(){
     var btnNewsletter = $('#btnNewsletter'),
-        newsletter = $('.newsletter-footer'),
-        tlNewsletter = new TimelineMax();
+        newsletter = $('.newsletter-footer');
 
     btnNewsletter.on('click', function(e){
         e.preventDefault();
-        tlNewsletter.to(newsletter, 0.4, {height: 'auto'});
-        tlNewsletter.to(window, 1, {scrollTo:{y: $(document).outerHeight()}});
-        tlNewsletter.to(newsletter.find('.content-newsletter'), 0.4, {y: '0'}, 0.4);
+        TweenMax.to(newsletter, 0.4, {height: 'auto', onComplete: function(){
+            TweenMax.to(newsletter, 0.4, {opacity: 1});
+            TweenMax.to(window, 1, {scrollTo:{y: $(document).outerHeight()}});
+        }});
     });
+
+    if($('.mc4wp-form-submitted').length){
+        TweenMax.to(newsletter, 0.4, {height: 'auto', onComplete: function(){
+            TweenMax.to(newsletter, 0.4, {opacity: 1});
+            TweenMax.to(window, 1, {scrollTo:{y: $(document).outerHeight()}});
+        }});
+    }
 }

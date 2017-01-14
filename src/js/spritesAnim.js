@@ -8,9 +8,14 @@ window.requestAnimFrame = require('./requestAnimFrame.js');
 module.exports = function(){
     var visuSprites = $('.svgAnim'), sprite,
         spritesTl = [],
-        numRows = 10, frameHeight = 200, frameWidth = 200, j,
+        numRows = 21, frameHeight = 200, frameWidth = 200, j,
         heightVisu,
         steppedEase = new SteppedEase(0);
+
+    var animationElts = $('.svgAnim'), elt, eltContent;
+    var windowHeight, windowTopPosition, windowBottomPosition;
+    var eltToAnimate, eltHeight, eltTopPosition, eltBottomPosition;
+    var launchGapIn = 100, launchGapOut = 250;
 
     function animateSprites(){
         heightVisu = visuSprites.outerHeight();
@@ -19,7 +24,7 @@ module.exports = function(){
             if(typeof spritesTl[i] !== 'undefined'){
                 spritesTl[i].kill();
             }
-            spritesTl[i] = new TimelineMax({repeat: -1});
+            spritesTl[i] = new TimelineMax({paused: true});
             j = 0;
             for(j; j<numRows; j++){
                // spritesTl[i].add(TweenMax.fromTo(sprite, 0.15, {backgroundPosition: '0 -'+(frameHeight*j)+'px'}, {backgroundPosition: '-'+(frameWidth*(numCols-1))+'px -'+(frameHeight*j)+'px', ease: steppedEase}));
@@ -29,9 +34,49 @@ module.exports = function(){
         });
     }
 
+    function checkIfInView(){
+        if(!animationElts.length) return;
+
+        windowHeight = $(window).height();
+        windowTop = $(window).scrollTop();
+        windowBottom = windowTop + windowHeight;
+
+        animationElts.each(function(i){
+            elt = $(this);
+            eltTopPosition = elt.data('check-top');
+            eltBottomPosition = elt.data('check-bottom');
+            if((eltBottomPosition - launchGapOut >= windowTop) && (eltTopPosition + launchGapIn <= windowBottom)){
+                spritesTl[i].play();
+            }
+        });
+    }
+
+    function setDataElts(){
+        if(!animationElts.length) return;
+
+        animationElts.each(function(){
+            elt = $(this);
+            eltHeight = elt.outerHeight();
+            eltTop = elt.offset().top;
+            eltBottom = eltTop + eltHeight;
+            elt.data({'check-height': eltHeight, 'check-top': eltTop, 'check-bottom': eltBottom});
+        });
+    }
+
     animateSprites();
+    setDataElts();
+    checkIfInView();
+
+    $(document).on('scroll', throttle(function(){
+        requestAnimFrame(checkIfInView);
+    }, 10));
 
     $(window).on('resize', throttle(function(){
+        windowHeight = $(window).height();
+
         requestAnimFrame(animateSprites);
+        requestAnimFrame(setDataElts);
+        requestAnimFrame(checkIfInView);
     }, 40));
 }
+
