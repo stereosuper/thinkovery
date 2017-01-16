@@ -87,6 +87,7 @@ define( 'WP_POST_REVISIONS', 5 );
 define( 'EMPTY_TRASH_DAYS', 10 );
 define( 'WP_AUTO_UPDATE_CORE', TRUE );
 define( 'DISALLOW_FILE_EDIT', TRUE );
+define( 'DISALLOW_UNFILTERED_HTML', TRUE);
 
 define( 'WP_ALLOW_MULTISITE', TRUE );
 define( 'MULTISITE', TRUE );

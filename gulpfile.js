@@ -26,7 +26,7 @@ var report_error = function(error) {
 
 gulp.task('styles', function () {
     return gulp.src('src/scss/main.scss')
-        .pipe($.sourcemaps.init())
+        //.pipe($.sourcemaps.init())
         .pipe($.sass({ precision: 6, outputStyle: 'compressed', sourceComments: false, indentWidth: 4 }))
         .on('error', report_error)
         .pipe($.autoprefixer({ browsers: ['> 5%'] }))
@@ -67,9 +67,9 @@ gulp.task('js', function () {
     return browserify('src/js/main.js', {debug: true}).bundle()
         .pipe(source('main.js'))
         .pipe(buffer())
-        .pipe($.sourcemaps.init({loadMaps: true}))
+        //.pipe($.sourcemaps.init({loadMaps: true}))
         .pipe($.uglify())
-        .pipe($.sourcemaps.write())
+        //.pipe($.sourcemaps.write())
         .pipe(gulp.dest(projectPath+'/js'));
 });
 
