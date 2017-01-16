@@ -26,14 +26,14 @@ module.exports = function(){
                 dataStrength = elt.data('parallax-strength');
                 newY = Math.round(windowTop/dataStrength);
                 if(eltBottom - gapBottom >= windowTop && eltTop + gapBottom <= windowBottom){
-                    TweenMax.set(elt, {y: newY + 'px', force3D: true});
+                    TweenMax.set(elt, {y: newY + 'px', rotation: 0.01, force3D: true});
                 }
             });
         }else if(windowWidth <= 780 && !smallWindowWidth){
             smallWindowWidth = true;
             elts.each(function(i){
                 elt = $(this);
-                TweenMax.set(elt, {y: '0px', force3D: true});
+                TweenMax.set(elt, {y: '0px', rotation: 0.01, force3D: true});
             });
         }
     }
