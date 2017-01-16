@@ -13,7 +13,7 @@ module.exports = function(){
     var smallWindowWidth;
 
     function checkIfInView(){
-        if(!windowWidth <= 780) return;
+        if(windowWidth <= 780) return;
 
         windowTop = $(window).scrollTop();
         windowBottom = windowTop + windowHeight;
@@ -31,6 +31,8 @@ module.exports = function(){
     }
 
     function setDataElts(){
+        if(windowWidth <= 780) return;
+
         elts.each(function(){
             elt = $(this);
             eltHeight = elt.outerHeight();
