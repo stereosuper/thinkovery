@@ -53,3 +53,10 @@
 .hasParallax{
 	backface-visibility: hidden;
 }
+
+
+@media (max-width: $tablet){
+    .hasParallax{
+        transform: none !important;
+    }
+}
