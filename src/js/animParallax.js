@@ -24,7 +24,7 @@ module.exports = function(){
                 eltTop = elt.data('check-top');
                 eltBottom = elt.data('check-bottom');
                 dataStrength = elt.data('parallax-strength');
-                newY = windowTop/dataStrength;
+                newY = Math.round(windowTop/dataStrength);
                 if(eltBottom - gapBottom >= windowTop && eltTop + gapBottom <= windowBottom){
                     TweenMax.set(elt, {y: newY + 'px', force3D: true});
                 }

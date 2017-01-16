@@ -11,6 +11,7 @@ var watch = require('gulp-watch');
 var cache = require('gulp-cache');
 
 var projectPath = 'dest/wp-content/themes/thinkovery';
+var comingSoonPath = 'dest/coming-soon';
 
 
 var report_error = function(error) {
@@ -31,6 +32,7 @@ gulp.task('styles', function () {
         .pipe($.autoprefixer({ browsers: ['> 5%'] }))
         .pipe($.sourcemaps.write())
         .pipe(gulp.dest(projectPath+'/css'))
+        .pipe(gulp.dest(comingSoonPath+'/css'))
         .pipe($.size({title: 'styles'}));
 });
 
@@ -43,6 +45,7 @@ gulp.task('bower', function() {
 gulp.task('fonts', function() {
     return gulp.src('src/fonts/**/*')
         .pipe(gulp.dest(projectPath+'/fonts'))
+        .pipe(gulp.dest(comingSoonPath+'/fonts'))
         .pipe($.size({ title: 'fonts' }));
 });
 

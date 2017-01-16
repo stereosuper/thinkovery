@@ -1,0 +1,151 @@
+/* Coming soon specific style */
+
+.coming-soon{
+	min-height: 100vh;
+	background: $black;
+	color: $white;
+	.logo-svg{
+		margin-bottom: 1em;
+		height: 40px;
+	}
+	h1{
+		font-size: 4.5rem;
+		color: $white;
+	}
+	a{
+		box-shadow: none;
+		&.tel{
+			color: $white;
+		}
+	}
+	.hoop{
+		position: absolute !important;
+		&:nth-of-type(1){
+			width: 62px;
+			height: 62px;
+		    top: 8% !important;
+		    left: 47% !important;
+		    filter: blur(7px);
+		}
+		&:nth-of-type(2){
+			width: 90px;
+			height: 90px;
+		    top: 7% !important;
+		    left: 90% !important;
+		    filter: blur(3px);
+		}
+		&:nth-of-type(3){
+			width: 90px;
+			height: 90px;
+		    top: 24% !important;
+		    left: 57% !important;
+		    filter: blur(3px);
+		}
+		&:nth-of-type(4){
+			width: 115px;
+			height: 115px;
+		    top: 30% !important;
+		    left: 90% !important;
+		    filter: blur(1px);
+		}
+		&:nth-of-type(5){
+			width: 90px;
+			height: 90px;
+		    top: 45% !important;
+		    left: 105% !important;
+		    filter: blur(3px);
+		}
+		&:nth-of-type(6){
+			width: 170px;
+			height: 170px;
+		    top: 40% !important;
+		    left: 70% !important;
+		}
+		&:nth-of-type(7){
+			width: 65px;
+			height: 65px;
+		    top: 62% !important;
+		    left: 50% !important;
+		    filter: blur(3px);
+		}
+		&:nth-of-type(8){
+			width: 75px;
+			height: 75px;
+		    top: 70% !important;
+		    left: 83% !important;
+		    filter: blur(4px);
+		}
+		&:nth-of-type(9){
+			width: 74px;
+			height: 74px;
+		    top: 75% !important;
+		    left: 118% !important;
+		    filter: blur(7px);
+		}
+		&:nth-of-type(10){
+			width: 70px;
+			height: 70px;
+		    top: 88% !important;
+		    left: 65% !important;
+		    filter: blur(5px);
+		}
+		&:nth-of-type(11){
+			width: 62px;
+			height: 62px;
+		    top: 88% !important;
+		    left: -20% !important;
+		    filter: blur(7px);
+		}
+	}
+	main{
+		overflow: hidden;
+	}
+}
+
+.footer-coming-soon{
+	display: block;
+	> li{
+		display: block;
+		&:before{
+			display: none;
+		}
+	}
+}
+
+.wrapper-c-s{
+	display: flex;
+	align-items: center;
+	min-height: 100vh;
+	position: relative;
+	z-index: 2;
+	.content-c-s{
+		max-width: 400px;
+		padding: 50px 0;
+		position: relative;
+		z-index: 2;
+	}
+}
+
+@media (max-width: $desktop-small){
+	.coming-soon{
+		.hoop{
+			opacity: 0.5;
+			&:nth-of-type(5), &:nth-of-type(6){
+				display: none !important;
+			}
+		}
+	}
+	.footer-coming-soon{
+		>li{
+			padding-left: 0;
+		}
+	}
+}
+
+@media (max-width: $phone){
+	.coming-soon{
+		h1{
+			font-size: 3.5rem;
+		}
+	}
+}
