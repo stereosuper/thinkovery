@@ -53,6 +53,7 @@ label{
     position: absolute;
     top: 15px;
     left: 15px;
+    pointer-events: none;
     transition: 0.1s ease-in-out;
     .no-js &{
         transform: translate3d(0, -200%, 0) scale(0.9);
