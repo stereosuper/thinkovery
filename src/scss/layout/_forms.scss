@@ -30,7 +30,7 @@ input, textarea{
     &:-webkit-autofill{
       	box-shadow: 0 0 0 1000px #fff inset;
   	}
-    .error &{
+    .error &, .mc4wp-form-error &{
         border-color: #ca4444 !important;
     }
     &:focus, &.on{
@@ -62,10 +62,16 @@ label{
     }
     + span{
         display: block;
-        font-size: 1.35rem;
-        margin: 5px 0 0;
-        color: #ca4444;
     }
+}
+
+label + span, .mc4wp-alert > p{
+    font-size: 1.35rem;
+    margin: 5px 0 0;
+}
+
+label + span, .mc4wp-error{
+    color: #ca4444;
 }
 
 legend{

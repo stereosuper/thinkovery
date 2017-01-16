@@ -84,7 +84,7 @@
                     </div>
                 </div>
             </div>
-            <div class='newsletter-footer'>
+            <div class='newsletter-footer' id='newsletter'>
                 <div class='container'>
                     <div class='container-medium'>
                         <p><?php _e('Nous envoyons environ une newsletter par mois. Garanti sans spam.', 'thinkovery'); ?></p>

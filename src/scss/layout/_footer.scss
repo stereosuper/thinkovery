@@ -4,9 +4,6 @@
     // padding: 0 0 75px;
     background: $black;
     color: #fff;
-    // overflow: hidden;
-    backface-visibility: hidden;
-    transform: translate3d(0, 0, 0);
     &.footer-contact{
         padding-top: 80px;
         border-top: 20px solid $gray-dark;
@@ -136,13 +133,13 @@
 }
 
 .newsletter-footer{
-    margin-top: -40px;
     height: 0;
-    opacity: 0;
-    backface-visibility: hidden;
     position: relative;
+    margin-top: -40px;
+    overflow: hidden;
     background: $gray-dark;
-    .container{
+    opacity: 0;
+    > .container{
         padding-top: 22px;
         padding-bottom: 22px;
     }
@@ -151,7 +148,7 @@
         justify-content: space-between;
         align-items: center;
     }
-    form{
+    .mc4wp-form{
         min-width: 350px;
         margin-left: 50px;
     }
@@ -276,8 +273,8 @@
         .container-medium{
             display: block;
         }
-        form{
-            margin: 30px 0 0 0;
+        .mc4wp-form{
+            margin: 30px 0 0;
         }
     }
 }
@@ -309,20 +306,16 @@
     }
 
     .newsletter-footer{
-        form{
-            input{
-                width: 200px;
-            }
+        input{
+            width: 200px;
         }
     }
 }
 
 @media (max-width: $phone-small){
     .newsletter-footer{
-        form{
-            input{
-                width: 180px;
-            }
+        input{
+            width: 180px;
         }
     }
 }

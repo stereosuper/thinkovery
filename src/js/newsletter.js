@@ -3,21 +3,21 @@ var TweenMax = require('./libs/gsap/src/uncompressed/TweenMax.js');
 var ScrollToPlugin = require('./libs/gsap/src/uncompressed/plugins/ScrollToPlugin.js');
 
 module.exports = function(){
-    var btnNewsletter = $('#btnNewsletter'),
-        newsletter = $('.newsletter-footer');
+    var btnNewsletter = $('#btnNewsletter'), newsletter = $('#newsletter');
+
+    function openNewsletter(){
+        TweenMax.to(newsletter, 0.4, {height: 'auto', onComplete: function(){
+            TweenMax.to(newsletter, 0.4, {opacity: 1});
+            TweenMax.to(window, 1, {scrollTo:{y: $(document).outerHeight()}});
+        }});
+    }
 
     btnNewsletter.on('click', function(e){
         e.preventDefault();
-        TweenMax.to(newsletter, 0.4, {height: 'auto', onComplete: function(){
-            TweenMax.to(newsletter, 0.4, {opacity: 1});
-            TweenMax.to(window, 1, {scrollTo:{y: $(document).outerHeight()}});
-        }});
+        openNewsletter();
     });
 
-    if($('.mc4wp-form-submitted').length){
-        TweenMax.to(newsletter, 0.4, {height: 'auto', onComplete: function(){
-            TweenMax.to(newsletter, 0.4, {opacity: 1});
-            TweenMax.to(window, 1, {scrollTo:{y: $(document).outerHeight()}});
-        }});
+    if(newsletter.find('.mc4wp-form').hasClass('mc4wp-form-submitted')){
+        openNewsletter();
     }
 }
