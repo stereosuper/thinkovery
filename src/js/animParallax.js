@@ -8,29 +8,38 @@ window.requestAnimFrame = require('./requestAnimFrame.js');
 module.exports = function(){
     var elts = $('.hasParallax');
     var elt, eltHeight, eltTop, eltBottom, newY;
-    var windowWidth = $(window).outerWidth(), windowHeight = $(window).height(), windowTop, windowBottom;
-    var gapBottom = -200;
+    var docHeight = $(document).height(), windowWidth = $(window).outerWidth(), windowHeight = $(window).height(), windowTop, windowBottom;
+    var gapBottom = 0, gapBottom = 0;
+    var smallWindowWidth;
 
     function checkIfInView(){
-        if(windowWidth <= 780) return;
+        if(!elts.length) return;
 
         windowTop = $(window).scrollTop();
         windowBottom = windowTop + windowHeight;
-
-        elts.each(function(i){
-            elt = $(this);
-            eltTop = elt.data('check-top');
-            eltBottom = elt.data('check-bottom');
-            dataStrength = elt.data('parallax-strength');
-            newY = windowTop/dataStrength | 0;
-            if(eltBottom - gapBottom >= windowTop && eltTop + gapBottom <= windowBottom){
-                TweenMax.set(elt, {y: newY + 'px', force3D: true});
-            }
-        });
+        if(windowWidth > 780){
+            smallWindowWidth = false;
+            elts.each(function(i){
+                elt = $(this);
+                eltTop = elt.data('check-top');
+                eltBottom = elt.data('check-bottom');
+                dataStrength = elt.data('parallax-strength');
+                newY = Math.round(windowTop/dataStrength);
+                if(eltBottom - gapBottom >= windowTop && eltTop + gapBottom <= windowBottom){
+                    TweenMax.set(elt, {y: newY + 'px', force3D: true});
+                }
+            });
+        }else if(windowWidth <= 780 && !smallWindowWidth){
+            smallWindowWidth = true;
+            elts.each(function(i){
+                elt = $(this);
+                TweenMax.set(elt, {y: '0px', force3D: true});
+            });
+        }
     }
 
     function setDataElts(){
-        if(windowWidth <= 780) return;
+        if(!elts.length) return;
 
         elts.each(function(){
             elt = $(this);
@@ -41,6 +50,11 @@ module.exports = function(){
         });
     }
 
+    if(windowWidth > 780){
+        smallWindowWidth = false;
+    }else{
+        smallWindowWidth = true;
+    }
     setDataElts();
     checkIfInView();
 
@@ -51,6 +65,7 @@ module.exports = function(){
     $(window).on('resize', throttle(function(){
         windowWidth = $(window).outerWidth();
         windowHeight = $(window).height();
+        docHeight = $(document).height();
 
         requestAnimFrame(setDataElts);
         requestAnimFrame(checkIfInView);

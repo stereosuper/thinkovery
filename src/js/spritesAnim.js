@@ -47,7 +47,6 @@ module.exports = function(){
             eltBottomPosition = elt.data('check-bottom');
             if((eltBottomPosition - launchGapOut >= windowTop) && (eltTopPosition + launchGapIn <= windowBottom)){
                 spritesTl[i].play();
-                console.log($(this).parents('li'));
                 $(this).parents('li').addClass('active');
             }
         });
