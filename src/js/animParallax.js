@@ -9,7 +9,7 @@ module.exports = function(){
     var elts = $('.hasParallax');
     var elt, eltHeight, eltTop, eltBottom, newY;
     var windowWidth = $(window).outerWidth(), windowHeight = $(window).height(), windowTop, windowBottom;
-    var gapBottom = 0, gapBottom = 0;
+    var gapBottom = -200;
 
     function checkIfInView(){
         if(windowWidth <= 780) return;
