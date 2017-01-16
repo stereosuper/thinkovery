@@ -17,7 +17,7 @@ $errorSend = false;
 $lastname = isset($_POST['last_name']) ? strip_tags(stripslashes($_POST['last_name'])) : '';
 $firstname = isset($_POST['first_name']) ? strip_tags(stripslashes($_POST['first_name'])) : '';
 $job = isset($_POST['job']) ? strip_tags(stripslashes($_POST['job'])) : '';
-$mail = isset($_POST['email']) ? strip_tags(stripslashes($_POST['email'])) : '';
+$mail = isset($_POST['email-contact']) ? strip_tags(stripslashes($_POST['email-contact'])) : '';
 $phone = isset($_POST['tel']) ? strip_tags($_POST['tel']) : '';
 $subject = isset($_POST['subject']) ? strip_tags(stripslashes($_POST['subject'])) : '';
 $msg = isset($_POST['message']) ? strip_tags(stripslashes($_POST['message'])) : '';
@@ -145,7 +145,7 @@ get_header(); ?>
 				    		<label for='tel'><?php _e('Phone', 'thinkovery'); ?> <i>(<?php _e('optionnal', 'thinkovery'); ?>)</i></label>
 				    		<?php if($errorPhone) echo '<span>'. $errorPhone .'</span>'; ?>
 				    	</div><div class='field <?php if($errorMail) echo 'error'; ?>'>
-				    		<input type='email' name='email' id='email' value='<?php echo $mail; ?>' required>
+				    		<input type='email' name='email-contact' id='email' value='<?php echo $mail; ?>' required>
 				    		<label for='email'><?php _e('Email', 'thinkovery'); ?>*</label>
 				    		<?php if($errorMail) echo '<span>'. $errorMail .'</span>'; ?>
 				    	</div>
