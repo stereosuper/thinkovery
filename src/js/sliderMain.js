@@ -69,6 +69,7 @@ module.exports = function(body, blocTop, themeColors){
         });
 
         // fix safari not updating radial gradient in icons
+        // hoping someone finds a less ugly solution...
         $('.hoop').each(function(){
             var thisHoop = $(this);
             thisHoop.attr('data-style', thisHoop.attr('style')).attr('style', '');
