@@ -11,6 +11,7 @@ get_header(); ?>
 			$imgMeta = wp_get_attachment_metadata( get_post_thumbnail_id() );
 			$imgWidth = $imgMeta['width'];
 			$imgHeight = $imgMeta['height'];
+			global $currentUrl;
 		?>
 
 		<header class='solutions-header' style='background-image:url(<?php echo wp_get_attachment_url(get_field('img1')); ?>)' id='solutions-header' data-img-width='<?php echo $imgWidth; ?>' data-img-height='<?php echo $imgHeight; ?>'>
@@ -24,7 +25,7 @@ get_header(); ?>
 					</div>
 				</div>
 			</div>
-			<svg class='icon hoop hasParallax' data-parallax-strength='1.7' style='top:<?php the_field('circleY') ?>px;left:<?php the_field('circleX') ?>px;width:<?php the_field('circleWidth'); ?>px;height:<?php the_field('circleWidth'); ?>px;fill:url(<?php echo $currentUrl; ?>#gradient-hoop')' data-x='<?php the_field('circleX') ?>' data-y='<?php the_field('circleY') ?>'>
+			<svg class='icon hoop hasParallax' data-parallax-strength='1.7' style='fill:url("<?php echo $currentUrl; ?>#gradient-hoop");top:<?php the_field('circleY') ?>px;left:<?php the_field('circleX') ?>px;width:<?php the_field('circleWidth'); ?>px;height:<?php the_field('circleWidth'); ?>px;' data-x='<?php the_field('circleX') ?>' data-y='<?php the_field('circleY') ?>'>
 			        <use xlink:href='#icon-hoop-thin'/>
 			</svg>
 			<div class='solutions-cover hasParallax' data-parallax-strength='2' style='background-image:url(<?php echo wp_get_attachment_url(get_field('img')); ?>)'></div>
