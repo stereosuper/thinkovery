@@ -4,7 +4,7 @@
     // padding: 0 0 75px;
     background: $black;
     color: #fff;
-    overflow: hidden;
+    // overflow: hidden;
     backface-visibility: hidden;
     transform: translate3d(0, 0, 0);
     &.footer-contact{
@@ -307,7 +307,7 @@
         padding: 0;
         margin: 10px 0 0;
     }
-    
+
     .newsletter-footer{
         form{
             input{
