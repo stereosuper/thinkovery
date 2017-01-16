@@ -72,8 +72,22 @@
         padding: 0 0 0 $col*2;
         position: relative;
         margin: 5.5em 0 0;
+        &:nth-child(even){
+            .icon, .img{
+                transition-delay: 0.4s;
+            }
+        }
         &:before{
             display: none;
+        }
+        &.active{
+            .icon{
+                transform: scale(1) translate3d(0, 0, 0) rotate(0.001deg);
+                opacity: 1;
+            }
+            .img{
+                opacity: 1;
+            }
         }
     }
     h3{
@@ -92,10 +106,17 @@
         left: 10%;
         margin: auto;
     }
+    .icon{
+        transform: scale(1.2) translate3d(0, 0, 0) rotate(0.001deg);
+        opacity: 0;
+        transition: 0.3s ease-in-out;
+    }
     .img{
         display: flex;
         align-items: center;
         justify-content: center;
+        opacity: 0;
+        transition: 0.3s ease-in-out;
     }
     img{
         max-width: 50%;
@@ -149,6 +170,11 @@
         display: block;
         > li{
             width: 100%;
+            &:nth-child(even){
+                .icon, .img{
+                    transition-delay: 0s;
+                }
+            }
         }
         .icon, .img{
             left: 0;
