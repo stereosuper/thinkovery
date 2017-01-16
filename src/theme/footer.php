@@ -130,11 +130,11 @@
 
     <?php global $themeColors, $declis, $currentDecli; ?>
 
-    <svg style='position:absolute;width:0;height:0;overflow:hidden'>
+    <svg xmlns='http://www.w3.org/2000/svg' style='position:absolute;width:0;height:0;overflow:hidden'>
         <defs>
-            <radialGradient id='gradient-hoop' cx='85%' cy='85%' fx='85%' fy='85%'>
-                <stop offset='0%' stop-color='<?php echo $themeColors[$declis[$currentDecli]['mainColor']][1]; ?>' data-theme-second=''/>
-                <stop offset='100%' stop-color='<?php echo $themeColors[$declis[$currentDecli]['mainColor']][0]; ?>' data-theme-main=''/>
+            <radialGradient id='gradient-hoop' cx='85%' cy='85%' fx='85%' fy='85%' data-url='<?php echo $currentUrl; ?>#gradient-hoop'>
+                <stop offset='0%' stop-color='<?php echo $themeColors[$declis[$currentDecli]['mainColor']][1]; ?>' id='gradient-second'></stop>
+                <stop offset='100%' stop-color='<?php echo $themeColors[$declis[$currentDecli]['mainColor']][0]; ?>' id='gradient-main'></stop>
             </radialGradient>
             <symbol id='icon-search' viewBox='0 0 32 32'>
                 <title>Search</title>
