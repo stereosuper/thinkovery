@@ -290,6 +290,16 @@
         }
     }
 
+    // ie11 hack: can't set transform on svg element
+    @media all and (-ms-high-contrast:none){
+        #header{
+            .logo{
+                width: 150px;
+                max-width: 150px;
+            }
+        }
+    }
+
     .menu-main{
         ul{
             font-size: 1.5rem;
