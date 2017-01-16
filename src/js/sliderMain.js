@@ -60,12 +60,20 @@ module.exports = function(body, blocTop, themeColors){
         nav.find('.current').html(currentSlide.index('.slide-home') + 1);
 
         body.removeClass('theme-'+currentColor).addClass('theme-'+currentSlide.data('color')).data('theme', currentSlide.data('color'));
-        svgHoop.find('[data-theme-main]').attr('stop-color', themeColors[currentSlide.data('color')][0]);
-        svgHoop.find('[data-theme-second]').attr('stop-color', themeColors[currentSlide.data('color')][1]);
+        svgHoop.find('#gradient-main').attr('stop-color', themeColors[currentSlide.data('color')][0]);
+        svgHoop.find('#gradient-second').attr('stop-color', themeColors[currentSlide.data('color')][1]);
 
         // Favicons url
         favicons.each(function(){
             this.href = this.href.replace(currentColor, currentSlide.data('color'));
+        });
+
+        // fix safari not updating radial gradient in icons
+        // hoping someone finds a less ugly solution...
+        $('.hoop').each(function(){
+            var thisHoop = $(this);
+            thisHoop.attr('data-style', thisHoop.attr('style')).attr('style', '');
+            setTimeout(function(){ thisHoop.attr('style', thisHoop.attr('data-style')); }, 0);
         });
     }
 
@@ -108,13 +116,12 @@ module.exports = function(body, blocTop, themeColors){
 
         tl = new TimelineMax();
 
-        tl.to(blocRevel.find('.slide-anim-txt').eq(1), .6, {y: '20px', opacity: 0, ease: Power2.easeIn}, 0.1)
-          .to(blocRevel.find('.slide-anim-txt').eq(0), .6, {y: '20px', opacity: 0, ease: Power2.easeIn, onComplete: function(){
-                nextTxt.length ? nextTxt.addClass('txt-on') : slidesTxt.eq(lastSlideIndex).addClass('txt-on');
-                currentTxt.removeClass('txt-on');
-                currentTxt = blocRevel.find('.txt-on');
-                setTheme();
-          }}, 0.2);
+        tl.to(blocRevel.find('.slide-anim-txt').eq(1), .6, {y: '20px', opacity: 0, ease: Power2.easeIn, onComplete: function(){
+            nextTxt.length ? nextTxt.addClass('txt-on') : slidesTxt.eq(lastSlideIndex).addClass('txt-on');
+            currentTxt.removeClass('txt-on');
+            currentTxt = blocRevel.find('.txt-on');
+          }}, 0.1)
+          .to(blocRevel.find('.slide-anim-txt').eq(0), .6, {y: '20px', opacity: 0, ease: Power2.easeIn, onComplete: setTheme}, 0.2);
 
         if(!oldSlide.find('.slide-home-mb').is(':visible')){
             tl.to([

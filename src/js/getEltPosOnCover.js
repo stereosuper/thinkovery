@@ -22,7 +22,7 @@ module.exports = function(container, imgRatio, imgW, imgH, elt){
         newY = finalH*posY / imgH - (finalH - containerH)/2;
     }
 
-    ratioScale = finalH / imgH;
+    ratioScale = (finalH / imgH).toFixed(3);
 
     return [newX, newY, ratioScale];
 }

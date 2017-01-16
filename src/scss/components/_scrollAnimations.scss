@@ -54,3 +54,10 @@
 	backface-visibility: hidden;
 	will-change: transform;
 }
+
+
+@media (max-width: $tablet){
+    .hasParallax{
+        transform: none !important;
+    }
+}

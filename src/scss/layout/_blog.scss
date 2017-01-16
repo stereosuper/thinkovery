@@ -343,13 +343,13 @@
     a{
         display: flex;
         min-height: 75px;
+        position: relative;
         align-items: center;
+        overflow: hidden;
+        z-index: 1;
         font-size: 1.6rem;
         font-weight: 700;
         line-height: 1.2;
-        overflow: hidden;
-        z-index: 1;
-        position: relative;
         &:before, > i:after{
             content: '';
             position: absolute;
@@ -395,8 +395,8 @@
         }
     }
     .related-thumbnail{
-        width: 78px;
-        height: 78px;
+        width: 73px;
+        height: 73px;
         background-position: 50% 50%;
         background-size: cover;
         flex-shrink: 0;
