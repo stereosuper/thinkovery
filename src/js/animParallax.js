@@ -9,38 +9,28 @@ module.exports = function(){
     var elts = $('.hasParallax');
     var elt, eltHeight, eltTop, eltBottom, newY;
     var docHeight = $(document).height(), windowWidth = $(window).outerWidth(), windowHeight = $(window).height(), windowTop, windowBottom;
-    var gapBottom = 0, gapBottom = 0;
+    var gapBottom = -200;
     var smallWindowWidth;
 
     function checkIfInView(){
-        if(!elts.length) return;
+        if(!windowWidth <= 780) return;
 
         windowTop = $(window).scrollTop();
         windowBottom = windowTop + windowHeight;
-        if(windowWidth > 780){
-            smallWindowWidth = false;
-            elts.each(function(i){
-                elt = $(this);
-                eltTop = elt.data('check-top');
-                eltBottom = elt.data('check-bottom');
-                dataStrength = elt.data('parallax-strength');
-                newY = Math.round(windowTop/dataStrength);
-                if(eltBottom - gapBottom >= windowTop && eltTop + gapBottom <= windowBottom){
-                    TweenMax.set(elt, {y: newY + 'px', rotation: 0.01, force3D: true});
-                }
-            });
-        }else if(windowWidth <= 780 && !smallWindowWidth){
-            smallWindowWidth = true;
-            elts.each(function(i){
-                elt = $(this);
-                TweenMax.set(elt, {y: '0px', rotation: 0.01, force3D: true});
-            });
-        }
+
+        elts.each(function(i){
+            elt = $(this);
+            eltTop = elt.data('check-top');
+            eltBottom = elt.data('check-bottom');
+            dataStrength = elt.data('parallax-strength');
+            newY = windowTop/dataStrength | 0;
+            if(eltBottom - gapBottom >= windowTop && eltTop + gapBottom <= windowBottom){
+                TweenMax.set(elt, {y: newY + 'px', rotation: 0.01, force3D: true});
+            }
+        });
     }
 
     function setDataElts(){
-        if(!elts.length) return;
-
         elts.each(function(){
             elt = $(this);
             eltHeight = elt.outerHeight();
@@ -50,11 +40,6 @@ module.exports = function(){
         });
     }
 
-    if(windowWidth > 780){
-        smallWindowWidth = false;
-    }else{
-        smallWindowWidth = true;
-    }
     setDataElts();
     checkIfInView();
 
