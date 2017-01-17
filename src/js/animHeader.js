@@ -35,6 +35,7 @@ module.exports = function(){
 
     function scrollHandler(){
         myScroll = $(document).scrollTop();
+        docHeight = $(document).height()
         scrollPercent = (myScroll-10) / (docHeight-windowHeight);
         scrollProgress = scrollPercent*228 > 226 ? 226 : scrollPercent*228;
 
