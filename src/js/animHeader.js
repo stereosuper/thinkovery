@@ -36,7 +36,7 @@ module.exports = function(){
     function scrollHandler(){
         myScroll = $(document).scrollTop();
         scrollPercent = (myScroll-10) / (docHeight-windowHeight);
-        scrollProgress = scrollPercent*227.7;
+        scrollProgress = scrollPercent*228 > 226 ? 226 : scrollPercent*228;
 
         if(myScroll > 10){
             showScrollIndic();
