@@ -70,27 +70,10 @@ function think_remove_top_menus( $wp_admin_bar ){
 }
 add_action( 'admin_bar_menu', 'think_remove_top_menus', 999 );
 
-// Custom posts in the dashboard
-function think_right_now_custom_post() {
-    $post_types = get_post_types(array( '_builtin' => false ) , 'objects' , 'and');
-    foreach($post_types as $post_type){
-        $cpt_name = $post_type->name;
-        if($cpt_name != 'acf-field-group' && $cpt_name != 'acf-field' && $cpt_name != 'secupress_log_err404' && $cpt_name != 'secupress_log_action'){
-            $num_posts = wp_count_posts($post_type->name);
-            $num = number_format_i18n($num_posts->publish);
-            $text = _n($post_type->labels->name, $post_type->labels->name , intval($num_posts->publish));
-            echo '<li class="'. $cpt_name .'-count"><tr><a class="'.$cpt_name.'" href="edit.php?post_type='.$cpt_name.'"><td></td>' . $num . ' <td>' . $text . '</td></a></tr></li>';
-        }
-    }
-}
-add_action( 'dashboard_glance_items', 'think_right_now_custom_post' );
-
 // Customize a bit the wysiwyg editor
 function think_mce_before_init( $styles ){
     // Remove h1 and code
     $styles['block_formats'] = 'Paragraph=p;Heading 2=h2;Heading 3=h3;Heading 4=h4;Heading 5=h5;Heading 6=h6';
-    // Let only the colors you want
-    $styles['textcolor_map'] = '[' . "'000000', 'Noir', '565656', 'Texte', 'b5006a', 'Violet'" . ']';
     return $styles;
 }
 add_filter( 'tiny_mce_before_init', 'think_mce_before_init' );
