@@ -174,7 +174,10 @@ module.exports = function(body, blocTop, themeColors){
         TweenMax.to(nav, 0.5, {opacity: 1});
 
         setTheme();
-        checkIfInView();
+
+        if(document.hasFocus()){
+            checkIfInView();
+        }
     }
 
 
