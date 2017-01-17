@@ -41,7 +41,9 @@ $(function(){
         });
 
         $('#form-contact').on('submit', function(e){
-            ga('send', 'pageview', '/contact-send');
+            // ga('send', 'pageview', '/contact-send');
+            // _gaq.push(['_trackEvent', 'button', 'click', 'Contact']);
+            ga('send', 'event', 'button', 'click', 'Contact');
         });
     }
 
