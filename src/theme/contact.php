@@ -46,7 +46,7 @@ if(isset($_POST['submit'])){
         $error = true;
     }else{
         if(!filter_var($mail, FILTER_VALIDATE_EMAIL)){
-            $erreurMail = __('The email address is not valid', 'thinkovery');
+            $errorMail = __('The email address is not valid', 'thinkovery');
             $error = true;
         }
     }
