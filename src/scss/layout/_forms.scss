@@ -105,6 +105,7 @@ input{
     position: relative;
     margin: 0 0 35px;
     vertical-align: top;
+    backface-visibility: hidden;
     &.m-right{
         margin-right: $gutter*2;
     }
