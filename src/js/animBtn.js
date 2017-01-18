@@ -29,4 +29,4 @@ module.exports = function(body){
         TweenMax.to($(this).find('> i'), 0.3, {x: '0px', y: '0px'});
 
     });
-}
+};

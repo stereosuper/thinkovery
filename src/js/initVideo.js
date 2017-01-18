@@ -24,8 +24,8 @@ module.exports = function(){
                 }
             });
         });
-    }
+    };
 
     tag.src = 'https://www.youtube.com/iframe_api';
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-}
+};
