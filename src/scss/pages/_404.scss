@@ -11,7 +11,7 @@ $color404: map-get($themes, orange);
             top: 23vw;
             left: calc(19vw - #{$gutter*2});
             line-height: 1;
-            > span > span{
+            > span{
                 color: map-get($color404, color);
             }
         }
