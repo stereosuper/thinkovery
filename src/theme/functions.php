@@ -194,6 +194,18 @@ function think_title_length( $title ){
 
 
 /*-----------------------------------------------------------------------------------*/
+/* WP Rocket
+/*-----------------------------------------------------------------------------------*/
+
+function think_cookies($cookies){
+    $cookies[] = 'think-decli';
+    $cookies[] = 'think-cookies';
+    return $cookies;
+}
+add_filter( 'rocket_cache_dynamic_cookies', 'think_cookies' );
+
+
+/*-----------------------------------------------------------------------------------*/
 /* Enqueue Styles and Scripts
 /*-----------------------------------------------------------------------------------*/
 function think_scripts(){
