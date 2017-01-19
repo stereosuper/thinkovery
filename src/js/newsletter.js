@@ -6,14 +6,16 @@ module.exports = function(){
     var btnNewsletter = $('#btnNewsletter'), newsletter = $('#newsletter');
 
     function openNewsletter(){
-        if(newsletter.css('opacity') == 0) {
+        if(newsletter.hasClass('on')){
+            TweenMax.to(newsletter, 0.4, {opacity: 0, height: '0px'});
+            btnNewsletter.blur();
+        }else{
             TweenMax.to(newsletter, 0.4, {height: 'auto', onComplete: function(){
                 TweenMax.to(newsletter, 0.4, {opacity: 1});
-                TweenMax.to(window, 1, {scrollTo:{y: $(document).outerHeight()}});
+                TweenMax.to(window, 1, {scrollTo: {y: $(document).outerHeight()}});
             }});
-        } else {
-            TweenMax.to(newsletter, 0.4, {opacity: 0, height: '0px'});
         }
+        newsletter.toggleClass('on');
     }
 
     btnNewsletter.on('click', function(e){
@@ -24,4 +26,4 @@ module.exports = function(){
     if(newsletter.find('.mc4wp-form').hasClass('mc4wp-form-submitted')){
         openNewsletter();
     }
-}
+};
