@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Thinkovery\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: Mon Dec 05 2016 15:48:13 GMT+0100 (CET)\n"
-"PO-Revision-Date: Tue Feb 07 2017 19:47:14 GMT+0100 (CET)\n"
+"PO-Revision-Date: Tue Feb 07 2017 19:46:02 GMT+0100 (CET)\n"
 "Last-Translator: adminThink <elisabeth@stereosuper.fr>\n"
 "Language-Team: \n"
 "Language: French (France)\n"
@@ -59,11 +59,17 @@ msgstr "Travailler chez vous"
 
 #: ../../themes/thinkovery/contact.php:170
 msgid "Meet you"
-msgstr "Vous connaître"
+msgstr ""
+"Vous connaître\n"
+"\n"
+"C'est maman, rappelle-moi !\n"
+" \n"
+"Votre projet*\n"
+"Envoyer\n"
 
 #: ../../themes/thinkovery/contact.php:176
 msgid "It’s your mum, please call back!"
-msgstr "C'est maman, rappelle-moi !"
+msgstr ""
 
 #: ../../themes/thinkovery/contact.php:188
 msgid "Please leave this field empty"
@@ -71,15 +77,15 @@ msgstr ""
 
 #: ../../themes/thinkovery/contact.php:191
 msgid "Submit"
-msgstr "Envoyer"
+msgstr ""
 
 #: ../../themes/thinkovery/contact.php:197
 msgid "Thank you for your message."
-msgstr "Merci pour votre message"
+msgstr ""
 
 #: ../../themes/thinkovery/contact.php:198
 msgid "We’ll get back to you soon."
-msgstr "Nos équipes vous recontacterons dans les meilleurs délais. "
+msgstr ""
 
 #: ../../themes/thinkovery/footer.php:71
 msgid "Newsletter"
@@ -173,7 +179,7 @@ msgstr "Le champ \"Nom\" est obligatoire"
 
 #: ../../themes/thinkovery/contact.php:37
 msgid "The field \"First Name\" is mandatory"
-msgstr "Le champ \"Prénom\" est obligatoire"
+msgstr "Le champ \"Préom\" est obligatoire"
 
 #: ../../themes/thinkovery/contact.php:55
 msgid "The phone number is not valid"

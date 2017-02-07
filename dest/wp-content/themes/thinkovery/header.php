@@ -45,7 +45,7 @@
 
 	// Current url
 	global $currentUrl;
-	$currentUrl = home_url( add_query_arg( null, null ));
+	$currentUrl = network_site_url( add_query_arg( null, null ) );
 
 	// Cookie
 	$cookie = isset($_COOKIE['think-cookies']) ? true : false;
@@ -90,7 +90,7 @@
 			<?php if(!$cookie && is_front_page()){ ?>
 				<div id='cookie' class='cookie'>
 					<p class='container'>
-						<?php _e('We use Cookies to improve user experience on our website', 'thinkovery'); ?>
+						<?php _e('We use Cookies to improve the experience of users of our Site', 'thinkovery'); ?>
 						<button id='cookie-ok'><?php _e('Accept', 'thinkovery'); ?></button>
 					</p>
 				</div>

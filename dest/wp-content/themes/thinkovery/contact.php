@@ -38,15 +38,15 @@ if(isset($_POST['submit'])){
         $error = true;
     }
     if(empty($job)){
-        $errorJob = __('The field "Function" is mandatory', 'thinkovery');
+        $errorJob = __('The field "Position" is mandatory', 'thinkovery');
         $error = true;
     }
     if(empty($mail)){
-        $errorMail = __('The field "Email" is mandatory', 'thinkovery');
+        $errorMail = __('The field "E-mail" is mandatory', 'thinkovery');
         $error = true;
     }else{
         if(!filter_var($mail, FILTER_VALIDATE_EMAIL)){
-            $errorMail = __('The email address is not valid', 'thinkovery');
+            $errorMail = __('The e-mail address is not valid', 'thinkovery');
             $error = true;
         }
     }
@@ -61,7 +61,7 @@ if(isset($_POST['submit'])){
         $error = true;
     }
     if(empty($msg)){
-        $errorMsg = __('The field "Project" is mandatory', 'thinkovery');
+        $errorMsg = __('The field "Your project" is mandatory', 'thinkovery');
         $error = true;
     }
 
@@ -137,7 +137,7 @@ get_header(); ?>
 				    	</div>
 				    	<div class='field <?php if($errorJob) echo 'error'; ?>'>
 				    		<input type='text' name='job' id='job' value='<?php echo $job; ?>' class='big' required>
-				    		<label for='job'><?php _e('Function', 'thinkovery'); ?>*</label>
+				    		<label for='job'><?php _e('Position', 'thinkovery'); ?>*</label>
 				    		<?php if($errorJob) echo '<span>'. $errorJob .'</span>'; ?>
 				    	</div>
 				    	<div class='field m-right <?php if($errorPhone) echo 'error'; ?>'>
@@ -150,7 +150,7 @@ get_header(); ?>
 				    		<?php if($errorMail) echo '<span>'. $errorMail .'</span>'; ?>
 				    	</div>
 				    	<fieldset class='field-full <?php if($errorSubject) echo 'error'; ?>'>
-				    		<legend><?php _e('I am contacting you to', 'thinkovery'); ?>*</legend>
+				    		<legend><?php _e('I would like to', 'thinkovery'); ?>*</legend>
 				    		<div class='radio'>
 				    			<input type='radio' name='subject' id='work_with' value='Travailler avec vous'>
 				    			<label for='work_with'>
@@ -161,19 +161,19 @@ get_header(); ?>
 				    			<input type='radio' name='subject' id='work_for' value='Travailler chez vous'>
 				    			<label for='work_for'>
                                     <svg class='icon'><use xlink:href='#icon-diamond'/></svg>
-                                    <?php _e('Work for you', 'thinkovery'); ?>
+                                    <?php _e('Work in your firm', 'thinkovery'); ?>
                                 </label>
 				    		</div><div class='radio'>
 				    			<input type='radio' name='subject' id='know' value='Vous connaître' checked>
 				    			<label for='know'>
                                     <svg class='icon'><use xlink:href='#icon-chat'/></svg>
-                                    <?php _e('Know you', 'thinkovery'); ?>
+                                    <?php _e('Meet you', 'thinkovery'); ?>
                                 </label>
 				    		</div><div class='radio'>
 				    			<input type='radio' name='subject' id='mum' value='Maman!'>
 				    			<label for='mum'>
                                     <svg class='icon'><use xlink:href='#icon-heart'/></svg>
-                                    <?php _e("It's mum, call me back!", 'thinkovery'); ?>
+                                    <?php _e("It’s your mum, please call back!", 'thinkovery'); ?>
                                 </label>
 				    		</div>
 				    		<?php if($errorSubject) echo '<span>'. $errorSubject .'</span>'; ?>
@@ -188,14 +188,14 @@ get_header(); ?>
                             <label for='url2'><?php _e('Please leave this field empty', 'thinkovery'); ?></label>
                         </div>
 				    	<button class='btn btn-medium' type='submit' name='submit' for='form-contact'>
-				    		<?php _e('Send', 'thinkovery'); ?><svg class='icon'><use xlink:href='#icon-arrow-right'/></svg><i></i>
+				    		<?php _e('Submit', 'thinkovery'); ?><svg class='icon'><use xlink:href='#icon-arrow-right'/></svg><i></i>
 				    	</button>
 				    </form>
 				<?php else : ?>
 					<div class='bloc-success'>
 						<h2><?php _e('Thank you', 'thinkovery'); ?></h2>
-						<p><?php _e('Your message has been sent!', 'thinkovery'); ?><br/>
-							<?php _e('We will get back to you as soon as possible.', 'thinkovery'); ?></p>
+						<p><?php _e('Thank you for your message.', 'thinkovery'); ?><br/>
+							<?php _e('We’ll get back to you soon.', 'thinkovery'); ?></p>
 					</div>
 				<?php endif; ?>
                 <svg class='icon hoop layer' data-depth='1.50' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop-thin'/></svg>
