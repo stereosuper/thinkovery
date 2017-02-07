@@ -45,7 +45,7 @@
 
 	// Current url
 	global $currentUrl;
-	$currentUrl = home_url( add_query_arg( null, null ));
+	$currentUrl = network_site_url( add_query_arg( null, null ) );
 
 	// Cookie
 	$cookie = isset($_COOKIE['think-cookies']) ? true : false;
