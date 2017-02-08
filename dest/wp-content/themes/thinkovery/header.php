@@ -30,6 +30,8 @@
 	}
 	$declis = array_values(array_filter(get_field('decli', 'options'), 'getDisplayedDeclis'));
 	$currentDecli = isset($_COOKIE['think-decli']) ? $_COOKIE['think-decli'] : 0;
+	$countDeclis = count($declis);
+	$currentDecli = $currentDecli > $countDeclis ? 0 : $currentDecli;
 
 
 	// Theme colors
@@ -90,7 +92,7 @@
 			<?php if(!$cookie && is_front_page()){ ?>
 				<div id='cookie' class='cookie'>
 					<p class='container'>
-						<?php _e('We use Cookies to improve the experience of users of our Site', 'thinkovery'); ?>
+						<?php _e('We use Cookies to improve user experience on our website', 'thinkovery'); ?>
 						<button id='cookie-ok'><?php _e('Accept', 'thinkovery'); ?></button>
 					</p>
 				</div>
