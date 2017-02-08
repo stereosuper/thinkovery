@@ -81,6 +81,8 @@ get_header(); ?>
                             </div>
                         </div>
                     </div>
+                <?php }else{ ?>
+                    <div></div>
                 <?php } ?>
             </div><div class='bloc-half'>
                 <h2><?php the_field('section1Title2'); ?></h2>
@@ -94,6 +96,8 @@ get_header(); ?>
                             </div>
                         </div>
                     </div>
+                <?php }else{ ?>
+                    <div></div>
                 <?php } ?>
             </div>
         </section>
