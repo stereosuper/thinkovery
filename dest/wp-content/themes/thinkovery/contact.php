@@ -173,7 +173,7 @@ get_header(); ?>
 				    			<input type='radio' name='subject' id='mum' value='Maman!'>
 				    			<label for='mum'>
                                     <svg class='icon'><use xlink:href='#icon-heart'/></svg>
-                                    <?php _e("It’s your mum, please call back!", 'thinkovery'); ?>
+                                    <?php _e("It’s mum, please call back!", 'thinkovery'); ?>
                                 </label>
 				    		</div>
 				    		<?php if($errorSubject) echo '<span>'. $errorSubject .'</span>'; ?>
