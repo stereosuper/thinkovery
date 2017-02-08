@@ -31,7 +31,7 @@
 	$declis = array_values(array_filter(get_field('decli', 'options'), 'getDisplayedDeclis'));
 	$currentDecli = isset($_COOKIE['think-decli']) ? $_COOKIE['think-decli'] : 0;
 	$countDeclis = count($declis);
-	$currentDecli = $currentDecli > $countDeclis ? 0 : $currentDecli;
+	$currentDecli = $currentDecli >= $countDeclis ? 0 : $currentDecli;
 
 
 	// Theme colors
