@@ -125,19 +125,19 @@
 				<div class='menu-wrapper'>
 					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu-main', 'link_after' => '<i></i>', 'walker' => new rc_scm_walker ) ); ?>
 
-					<!--<ul class='lang'>
-						<?php // if( $lang != 'fr' ){ ?>
+					<ul class='lang'>
+						<?php if( $lang != 'fr' ){ ?>
 							<li><span>en</span></li>
 							<li>
-								<a rel='alternate' hreflang='fr-FR' href='<?php // echo get_site_url('/'); ?>/?noredirect=fr_FR'>fr</a>
+								<a rel='alternate' hreflang='fr-FR' href='<?php echo get_site_url('/'); ?>/?noredirect=fr_FR'>fr</a>
 							</li>
-						<?php // }else{ ?>
+						<?php }else{ ?>
 							<li><span>fr</span></li>
 							<li>
-								<a rel='alternate' hreflang='en-US' href='<?php // echo get_site_url('/'); ?>/en/?noredirect=en_US'>en</a>
+								<a rel='alternate' hreflang='en-US' href='<?php echo get_site_url('/'); ?>/en/?noredirect=en_US'>en</a>
 							</li>
-						<?php // } ?>
-					</ul>-->
+						<?php } ?>
+					</ul>
 				</div>
 			</nav>
 		</header>
