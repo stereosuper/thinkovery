@@ -228,6 +228,7 @@ input{
     position: relative;
     margin: 10px 0 0;
     overflow: hidden;
+    backface-visiblity: hidden;
     &:nth-of-type(odd){
         margin-right: 3%;
     }
