@@ -235,5 +235,13 @@
 
 	<?php wp_footer(); ?>
 
+    <script id='_agile_min_js' async src='https://thinkovery.agilecrm.com/stats/min/agile-min.js'></script>
+    <script>
+        var Agile_API = Agile_API || {}; Agile_API.on_after_load = function(){
+        _agile.set_account('8c6s7s10it45vop640mrjnjsnk', 'thinkovery');
+        _agile.track_page_view();
+        _agile_execute_web_rules();};
+    </script>
+
 	</body>
 </html>
