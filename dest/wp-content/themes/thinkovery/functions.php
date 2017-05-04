@@ -1,6 +1,6 @@
 <?php
 
-define( 'THINK_VERSION', 1.0 );
+define( 'THINK_VERSION', 1.2 );
 
 
 /*-----------------------------------------------------------------------------------*/
@@ -217,7 +217,7 @@ function think_scripts(){
 	wp_deregister_script( 'jquery' );
 
     // footer
-	wp_enqueue_script( 'think-scripts', get_template_directory_uri() . '/js/main.js', array(), null, true );
+	wp_enqueue_script( 'think-scripts', get_template_directory_uri() . '/js/main.js', array(), THINK_VERSION, true );
 }
 add_action( 'wp_enqueue_scripts', 'think_scripts' );
 
