@@ -2,6 +2,7 @@
 
 var $ = require('./libs/jquery/dist/jquery.slim.min.js');
 var Cookies = require('./libs/js-cookie/src/js.cookie.js');
+var parallax = require('./libs/parallax.min.js');
 
 var isMobile = require('./libs/isMobile.min.js');
 
