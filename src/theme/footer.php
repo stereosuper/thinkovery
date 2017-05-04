@@ -67,9 +67,6 @@
                             <a href='<?php the_field('legalLink', 'options'); ?>' class='link-small'>
                                 <?php the_field('legalLinkText', 'options'); ?>
                             </a>
-                            <a href='#' class='link-small' id='btnNewsletter'>
-                                <?php _e('Newsletter', 'thinkovery'); ?>
-                            </a>
                         </div>
                         <div class='contact-footer'>
                             <a href='mailto:<?php the_field('footerEmail', 'options'); ?>'>

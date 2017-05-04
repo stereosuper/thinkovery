@@ -58,6 +58,7 @@
 		<meta charset='utf-8'>
 		<meta name='viewport' content='width=device-width,initial-scale=1'>
 		<meta name='format-detection' content='telephone=no'>
+		<meta name='msvalidate.01' content='906251023DAD6B943F1CFA449F54611A'>
 
 		<link rel='alternate' type='application/rss+xml' title='<?php echo get_bloginfo('sitename'); ?> Feed' href='<?php echo get_bloginfo('rss2_url'); ?>'>
 

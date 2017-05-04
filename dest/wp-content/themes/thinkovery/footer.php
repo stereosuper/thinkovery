@@ -67,9 +67,6 @@
                             <a href='<?php the_field('legalLink', 'options'); ?>' class='link-small'>
                                 <?php the_field('legalLinkText', 'options'); ?>
                             </a>
-                            <a href='#' class='link-small' id='btnNewsletter'>
-                                <?php _e('Newsletter', 'thinkovery'); ?>
-                            </a>
                         </div>
                         <div class='contact-footer'>
                             <a href='mailto:<?php the_field('footerEmail', 'options'); ?>'>
@@ -234,6 +231,14 @@
     </svg>
 
 	<?php wp_footer(); ?>
+
+    <script id='_agile_min_js' async src='https://thinkovery.agilecrm.com/stats/min/agile-min.js'></script>
+    <script>
+        var Agile_API = Agile_API || {}; Agile_API.on_after_load = function(){
+        _agile.set_account('8c6s7s10it45vop640mrjnjsnk', 'thinkovery');
+        _agile.track_page_view();
+        _agile_execute_web_rules();};
+    </script>
 
 	</body>
 </html>
