@@ -82,7 +82,7 @@
 			new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-			})(window,document,'script','dataLayer','GTM-TKWFKWJ');
+			})(window,document,'script','dataLayer','GTM-MKRJ9ZB');
 		</script>
 		<!-- End Google Tag Manager -->
 	</head>
@@ -90,9 +90,9 @@
 	<body <?php body_class('theme-'.$declis[$currentDecli]['mainColor']); ?> data-theme='<?php echo $declis[$currentDecli]['mainColor']; ?>'>
 
 		<!-- Google Tag Manager (noscript) -->
-		<noscript><iframe src='https://www.googletagmanager.com/ns.html?id=GTM-TKWFKWJ' height='0' width='0' style='display:none'></iframe></noscript>
+		<noscript><iframe src='https://www.googletagmanager.com/ns.html?id=GTM-MKRJ9ZB' height='0' width='0' style='display:none'></iframe></noscript>
 		<!-- End Google Tag Manager (noscript) -->
-		
+
 		<header role='banner' id='header' <?php if(!$cookie && is_front_page()) echo "class='cookie-on'"; ?>>
 			<?php if(!$cookie && is_front_page()){ ?>
 				<div id='cookie' class='cookie'>
