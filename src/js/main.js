@@ -2,7 +2,6 @@
 
 var $ = require('./libs/jquery/dist/jquery.slim.min.js');
 var Cookies = require('./libs/js-cookie/src/js.cookie.js');
-var parallax = require('./libs/parallax.min.js');
 
 var isMobile = require('./libs/isMobile.min.js');
 
@@ -40,7 +39,7 @@ $(function(){
             checkEmptyInput($(this));
         });
 
-        $('#form-contact').on('submit', function(e){
+        $('#form-contact').on('submit', function(){
             // ga('send', 'pageview', '/contact-send');
             // _gaq.push(['_trackEvent', 'button', 'click', 'Contact']);
             ga('send', 'event', 'button', 'click', 'Contact');
@@ -78,7 +77,6 @@ $(window).on('load', function(){
     var animOnScroll = require('./animOnScroll.js');
     var animParallax = require('./animParallax.js');
     var spritesAnim = require('./spritesAnim.js');
-    var newsletter = require('./newsletter.js');
 
     // Slider home
     if($('#bloc-top').length){
@@ -125,10 +123,5 @@ $(window).on('load', function(){
     // Sprites SVG
     if($('.svgAnim').length){
         spritesAnim();
-    }
-
-    // Newsletter
-    if($('#btnNewsletter').length){
-        newsletter();
     }
 });
