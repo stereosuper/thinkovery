@@ -1,7 +1,6 @@
 /* Footer */
 
 #footer{
-    // padding: 0 0 75px;
     background: $black;
     color: #fff;
     &.footer-contact{
@@ -213,14 +212,6 @@
         }
     }
 
-    .contact-footer{
-        //width: 70%;
-    }
-
-    .tel-footer{
-        //width: 47.4%;
-    }
-
     .menu-footer{
         >li{
             padding-left: 0;
@@ -231,7 +222,6 @@
 @media (max-width: $tablet){
     #footer{
         position: relative;
-        // padding: 0 0 100px;
         .grid{
             display: block;
         }
@@ -279,7 +269,6 @@
 
 @media (max-width: $phone){
     #footer{
-        // padding: 0 0 120px;
         .col-en{
             width: 100% !important;
             &:nth-child(3){
