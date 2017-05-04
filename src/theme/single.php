@@ -4,7 +4,7 @@
 
 		<?php while ( have_posts() ) : the_post(); ?>
 			<?php if( has_post_thumbnail() ){ ?>
-				<div class='bloc-top-img' style='background-image: url(<?php the_post_thumbnail_url(); ?>)'></div>
+				<div class='bloc-top-img'><?php the_post_thumbnail( 'full' ); ?></div>
 			<?php } ?>
 			<article class='container <?php if( has_post_thumbnail() ){ ?>has-post-img<?php } ?>'>
 

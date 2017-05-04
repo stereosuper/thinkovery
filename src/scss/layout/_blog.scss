@@ -193,9 +193,13 @@
 }
 
 .bloc-top-img{
-    height: 85vh;
-    background-position: 50% 50%;
-    background-size: cover;
+    max-height: 85vh;
+    overflow: hidden;
+    // background-position: 50% 50%;
+    // background-size: cover;
+    > img{
+        width: 100%;
+    }
 }
 
 .intro{
@@ -628,6 +632,7 @@
 @media (max-width: $desktop){
     .single-post{
         .has-post-img{
+            margin-top: 0;
             .container-small{
                 &:before{
                     left: $gutter*2;
@@ -635,6 +640,19 @@
                 }
             }
         }
+        #main{
+            .container{
+                padding-top: 105px;
+                &.has-post-img{
+                    padding-top: 0;
+                }
+            }
+        }
+    }
+
+    .bloc-top-img{
+        margin: 125px 0 0;
+        padding: 0 20px;
     }
 
     .related-posts{
@@ -845,9 +863,6 @@
         padding: 0;
     }
     .intro{
-        &:before{
-            display: none;
-        }
         p{
             font-size: 2rem;
         }
