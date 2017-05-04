@@ -632,7 +632,6 @@
 @media (max-width: $desktop){
     .single-post{
         .has-post-img{
-            margin-top: 0;
             .container-small{
                 &:before{
                     left: $gutter*2;
@@ -640,19 +639,6 @@
                 }
             }
         }
-        #main{
-            .container{
-                padding-top: 105px;
-                &.has-post-img{
-                    padding-top: 0;
-                }
-            }
-        }
-    }
-
-    .bloc-top-img{
-        margin: 125px 0 0;
-        padding: 0 20px;
     }
 
     .related-posts{
@@ -689,6 +675,7 @@
             font-size: 4rem;
         }
         .has-post-img{
+            margin-top: 0;
             .container-small{
                 padding-top: 40px;
                 &:before{
@@ -698,10 +685,23 @@
                 }
             }
         }
+        #main{
+            .container{
+                padding-top: 105px;
+                &.has-post-img{
+                    padding-top: 0;
+                }
+            }
+        }
     }
 
     .post-date, .single-post h1, .single-post .intro{
         padding: 0 $gutter*4;
+    }
+
+    .bloc-top-img{
+        margin: 125px 0 0;
+        padding: 0 20px;
     }
 
     .intro{
