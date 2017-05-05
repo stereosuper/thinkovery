@@ -138,19 +138,16 @@
     background: $gray-dark;
     > .container{
         padding-top: 20px;
-        padding-bottom: 45px;
+        padding-bottom: 22px;
     }
-    // .container-medium{
-    //     display: flex;
-    //     justify-content: space-between;
-    //     align-items: center;
-    // }
-    // .mc4wp-form{
-    //     min-width: 350px;
-    //     margin-left: 50px;
-    // }
+    .container-medium{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
     .mc4wp-form{
-        margin: 30px 0 0;
+        min-width: 506px;
+        margin: 0 0 0 50px;
     }
     p{
         line-height: 1.2;
@@ -162,7 +159,11 @@
         vertical-align: middle;
     }
     input{
-        margin-right: 12px;
+        width: 150px;
+        margin: 0 10px 0 0;
+        &[type=email]{
+            width: 270px;
+        }
     }
 }
 
@@ -216,8 +217,18 @@
     }
 
     .menu-footer{
-        >li{
+        > li{
             padding-left: 0;
+        }
+    }
+
+    .newsletter-footer{
+        .container-medium{
+            display: block;
+        }
+        .mc4wp-form{
+            min-width: 0;
+            margin: 30px 0 10px;
         }
     }
 }
@@ -259,19 +270,6 @@
             padding: 0;
         }
     }
-
-    .newsletter-footer{
-        // .container-medium{
-        //     display: block;
-        // }
-        // .mc4wp-form{
-        //     margin: 30px 0 0;
-        // }
-        .field{
-            display: block;
-            margin: 0 0 10px;
-        }
-    }
 }
 
 @media (max-width: $phone){
@@ -299,17 +297,15 @@
         margin: 10px 0 0;
     }
 
-    // .newsletter-footer{
-    //     input{
-    //         width: 200px;
-    //     }
-    // }
+    .newsletter-footer{
+        > .container{
+            padding-bottom: 0;
+        }
+        .field{
+            margin: 0 0 30px;
+            &:first-of-type{
+                display: block;
+            }
+        }
+    }
 }
-
-// @media (max-width: $phone-small){
-//     .newsletter-footer{
-//         input{
-//             width: 180px;
-//         }
-//     }
-// }
