@@ -159,10 +159,9 @@
         vertical-align: middle;
     }
     input{
-        width: 150px;
         margin: 0 10px 0 0;
-        &[type=email]{
-            width: 270px;
+        &[type=text]{
+            width: 150px;
         }
     }
 }
@@ -305,6 +304,11 @@
             margin: 0 0 30px;
             &:first-of-type{
                 display: block;
+            }
+        }
+        input{
+            &[type=text]{
+                width: 270px;
             }
         }
     }
