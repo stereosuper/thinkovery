@@ -6,6 +6,8 @@ var parallax = require('./libs/parallax.min.js');
 
 var isMobile = require('./libs/isMobile.min.js');
 
+window.requestAnimFrame = require('./requestAnimFrame.js');
+
 
 $(function(){
 
@@ -16,8 +18,11 @@ $(function(){
 
 
     function checkEmptyInput(input){
-        if(input.attr('type') === 'radio') return;
         input.val() !== '' ? input.addClass('on') : input.removeClass('on');
+
+        // make it run all the time because of AgileCRM which dinamically populate the fields
+        // (and .on('input') or .on('change) doesn't work)
+        requestAnimFrame(function(){ checkEmptyInput(input); });
     }
 
 
@@ -34,13 +39,12 @@ $(function(){
 
     // Form inputs
     if($('form').length){
-        $('form').on('input propertychange', 'input, textarea', function(){
-            checkEmptyInput($(this));
-        }).find('input, textarea').each(function(){
+        $('form').find('input, textarea').each(function(){
+            if($(this).is(':hidden') || $(this).attr('type') === 'radio') return;
             checkEmptyInput($(this));
         });
 
-        $('#form-contact').on('submit', function(){
+        $('#agile-form').on('submit', function(){
             // ga('send', 'pageview', '/contact-send');
             // _gaq.push(['_trackEvent', 'button', 'click', 'Contact']);
             ga('send', 'event', 'button', 'click', 'Contact');
