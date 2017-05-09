@@ -128,7 +128,7 @@
 
         <?php global $themeColors, $declis, $currentDecli; ?>
 
-        <svg xmlns='http://www.w3.org/2000/svg' class='hidden'>
+        <svg xmlns='http://www.w3.org/2000/svg' style='position:absolute;width:0;height:0;overflow:hidden'>
             <defs>
                 <radialGradient id='gradient-hoop' cx='85%' cy='85%' fx='85%' fy='85%' data-url='<?php echo $currentUrl; ?>#gradient-hoop'>
                     <stop offset='0%' stop-color='<?php echo $themeColors[$declis[$currentDecli]['mainColor']][1]; ?>' id='gradient-second'></stop>
