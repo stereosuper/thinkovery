@@ -38,6 +38,12 @@ input, textarea{
             transform: translate3d(0, -200%, 0) scale(0.9);
         }
     }
+    + span{
+        display: block;
+        margin: 5px 0 0;
+        font-size: 1.35rem;
+        color: #ca4444;
+    }
 }
 
 button{
@@ -67,8 +73,8 @@ label{
 }
 
 label + span, .mc4wp-alert > p{
-    font-size: 1.35rem;
     margin: 5px 0 0;
+    font-size: 1.35rem;
 }
 
 label + span, .mc4wp-error{
