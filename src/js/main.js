@@ -57,7 +57,7 @@ $(function(){
 
 $(window).on('load', function(){
     var body = $('body');
-    var parallax;
+    var setParallax;
 
     var themeColors = {
         'blue':   [ 'rgb(2, 187, 255)', 'rgb(138, 126, 224)' ],
@@ -89,10 +89,10 @@ $(window).on('load', function(){
 
     // Parallaxe
     if($('#more-than-moocs').length){
-        parallax = new Parallax($('#more-than-moocs').get(0));
+        setParallax = new Parallax($('#more-than-moocs').get(0));
     }
     if(body.hasClass('page-template-contact')){
-        parallax = new Parallax($('#main').get(0));
+        setParallax = new Parallax($('#main').get(0));
     }
 
     // Sliders drag
