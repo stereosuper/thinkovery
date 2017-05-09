@@ -43,12 +43,6 @@ $(function(){
             if($(this).is(':hidden') || $(this).attr('type') === 'radio') return;
             checkEmptyInput($(this));
         });
-
-        $('#agile-form').on('submit', function(){
-            // ga('send', 'pageview', '/contact-send');
-            // _gaq.push(['_trackEvent', 'button', 'click', 'Contact']);
-            ga('send', 'event', 'button', 'click', 'Contact');
-        });
     }
 
     // Cookie for cookie consentment
