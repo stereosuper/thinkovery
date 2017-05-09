@@ -52,7 +52,10 @@
 	// Cookie
 	$cookie = isset($_COOKIE['think-cookies']) ? true : false;
 ?>
+
+
 <!DOCTYPE html>
+
 <html <?php language_attributes(); ?> class='no-js'>
 	<head>
 		<meta charset='utf-8'>
@@ -90,7 +93,9 @@
 	<body <?php body_class('theme-'.$declis[$currentDecli]['mainColor']); ?> data-theme='<?php echo $declis[$currentDecli]['mainColor']; ?>'>
 
 		<!-- Google Tag Manager (noscript) -->
-		<noscript><iframe src='https://www.googletagmanager.com/ns.html?id=GTM-MKRJ9ZB' height='0' width='0' style='display:none'></iframe></noscript>
+		<noscript>
+			<iframe src='https://www.googletagmanager.com/ns.html?id=GTM-MKRJ9ZB' class='hidden'></iframe>
+		</noscript>
 		<!-- End Google Tag Manager (noscript) -->
 
 		<header role='banner' id='header' <?php if(!$cookie && is_front_page()) echo "class='cookie-on'"; ?>>
