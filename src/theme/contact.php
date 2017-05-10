@@ -36,8 +36,11 @@ get_header(); ?>
                 <?php else : ?>
 					<div class='bloc-success'>
 						<h2><?php _e('Thank you', 'thinkovery'); ?></h2>
-						<p><?php _e('Thank you for your message.', 'thinkovery'); ?><br/>
-							<?php _e('We’ll get back to you soon.', 'thinkovery'); ?></p>
+						<p>
+                            <?php _e('Your message have been sent.', 'thinkovery'); ?><br>
+							<?php _e('We will come back to you as soon as possible.', 'thinkovery'); ?><br>
+                            <?php _e('Have a great day!', 'thinkovery'); ?>
+                        </p>
 					</div>
 				<?php endif; ?>
                 
