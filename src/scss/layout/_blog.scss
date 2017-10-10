@@ -695,6 +695,18 @@
         }
     }
 
+    .single-content{
+        h2{
+            font-size: 3.5rem;
+        }
+        h3{
+            font-size: 3rem;
+        }
+        h4{
+            font-size: 2.6rem;
+        }
+    }
+
     .post-date, .single-post h1, .single-post .intro{
         padding: 0 $gutter*4;
     }

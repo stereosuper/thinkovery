@@ -62,7 +62,7 @@ h2, .h2{
     }
 }
 
-h3, .single-content h2{
+h3{
     margin: 1em 0;
     font-size: 3.2rem;
     font-weight: 600;
@@ -71,25 +71,49 @@ h3, .single-content h2{
     line-height: 1.2;
 }
 
-h4, .single-content h3{
-    margin: 2.2em 0;
+h4{
+    margin: 1.8em 0 1em;
+    font-size: 3rem;
+    font-weight: 400;
+    color: $gray;
+    letter-spacing: -1px;
+    line-height: 1.2;
+}
+
+h5{
+    margin: 2em 0 1.2em;
+    font-size: 2.4rem;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -1px;
+    color: $gray;
+}
+
+h6{
+    margin: 3.5em 0 1.5em;
     font-size: 1.4rem;
-    font-weight: 700;
+    line-height: 1.2;
+    color: $gray;
     text-transform: uppercase;
-    color: $gray-light;
-    line-height: 1.2;
 }
 
-h5, .single-content h4{
-    margin: 1.67em 0;
-    font-size: 2rem;
-    line-height: 1.2;
-}
-
-h6, .single-content h5{
-    margin: 1.5em 0;
-    font-size: 1.8rem;
-    line-height: 1.2;
+.single-content{
+    h2{
+        margin: 0.8em 0;
+        font-size: 4rem;
+        font-weight: 600;
+        letter-spacing: -1px;
+        line-height: 1.2;
+        color: $gray-dark;
+    }
+    h3{
+        margin: 1.7em 0 1em;
+        font-size: 3.2rem;
+        font-weight: 600;
+        text-transform: none;
+        color: $gray;
+        line-height: 1.2;
+    }
 }
 
 p{
@@ -288,7 +312,7 @@ a{
     h2{
         font-size: 3.5rem;
     }
-    h3, .single-content h2{
+    h3{
         font-size: 2.8rem;
     }
     ol{
@@ -326,7 +350,7 @@ a{
     h2{
         font-size: 3rem;
     }
-    h3, .single-content h2{
+    h3{
         font-size: 2.5rem;
     }
     p{
@@ -356,9 +380,10 @@ a{
     h2{
         font-size: 2.5rem;
     }
-    h3, .single-content h2{
+    h3{
         font-size: 2rem;
     }
+
     p{
         font-size: 1.4rem;
     }
