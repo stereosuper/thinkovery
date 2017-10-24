@@ -180,7 +180,7 @@
 	position: relative;
 	margin: -50px 0 0;
 	overflow: hidden;
-	//z-index: 1; -> remoe it for blinkl
+	z-index: 1;
 	background: $black;
 	color: $white;
 	.container{

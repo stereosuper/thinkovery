@@ -88,8 +88,6 @@
 			})(window,document,'script','dataLayer','GTM-MKRJ9ZB');
 		</script>
 		<!-- End Google Tag Manager -->
-
-		<script src="https://client.blinkl.com/js/yiboo-client.min.js?pid=461911b5291356357d281481c8e21464cc78d425e413925fd92e8d04a1a80244&cid=181af8ea1cdfafc38e69bcc774e874953d8f8f150403ba84a11d26f851ca1efe"></script>
 	</head>
 
 	<body <?php body_class('theme-'.$declis[$currentDecli]['mainColor']); ?> data-theme='<?php echo $declis[$currentDecli]['mainColor']; ?>'>
