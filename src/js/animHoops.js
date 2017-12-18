@@ -8,7 +8,7 @@ window.requestAnimFrame = require('./requestAnimFrame.js');
 module.exports = function(elts, distance){
     var elt, eltHeight, eltTop, eltBottom, newY;
     var docHeight = $(document).height(), windowHeight = $(window).height(), windowTop, windowBottom;
-    var gapBottom = 0, gapBottom = 0;
+    var gapBottom = 0;
 
     function checkIfInView(){
         if(!elts.length) return;

@@ -102,7 +102,7 @@ $(window).on('load', function(){
 
     // Anim hoops
     if(body.hasClass('page-template-about')){
-        animHoops($('#main').find('.hoop'), 300);
+        animHoops($('#aboutPage').find('.hoop'), 300);
     }
 
     if(body.hasClass('page-template-solutions')){

@@ -1,3 +1,33 @@
+.about-video{
+    position: relative;
+    background: #1a2527;
+    &:after{
+        content: '';
+        height: 200px;
+        position: absolute;
+        top: -200px;
+        left: 0;
+        right: 0;
+        background: #1a2527;
+    }
+    .container{
+        position: relative;
+        z-index: 1;
+    }
+    > div{
+        padding: 10px 0 65px;
+        position: relative;
+        overflow: hidden;
+        > .hoop{
+            width: 420px;
+            height: 420px;
+            position: absolute;
+            bottom: -210px;
+            right: -210px;
+        }
+    }
+}
+
 .about-txt{
     display: inline-block;
     vertical-align: top;
@@ -249,6 +279,12 @@
 }
 
 @media (max-width: $tablet){
+    .about-video{
+        > div{
+            padding: 20px 0 40px;
+        }
+    }
+
     .about-txt{
         width: 100%;
         padding: 0;
@@ -288,6 +324,17 @@
 }
 
 @media (max-width: $phone){
+    .about-video{
+        > div{
+            > .hoop{
+                width: 210px;
+                height: 210px;
+                bottom: -105px;
+                right: -105px;
+            }
+        }
+    }
+
     .about-txt{
         > h2{
             font-size: 2.5rem;
