@@ -69,7 +69,7 @@ $(window).on('load', function(){
     };
 
     var animMainSlider = require('./sliderMain.js');
-    var initVideo = require('./initVideo.js');
+    //var initVideo = require('./initVideo.js');
     var animSlider = require('./slider.js');
     var animHoops = require('./animHoops.js');
     var setPosCircle = require('./setPosCircle.js');
@@ -83,9 +83,9 @@ $(window).on('load', function(){
     }
 
     // Load videos
-    if($('.wrapper-video').length){
-        initVideo();
-    }
+    // if($('.wrapper-video').length){
+    //     initVideo();
+    // }
 
     // Parallaxe
     if($('#more-than-moocs').length){

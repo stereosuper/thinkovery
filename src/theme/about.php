@@ -13,12 +13,12 @@ get_header(); ?>
 					<div class='container'>
 						<div class='container-small'>
 
-							<div class='wrapper-video' data-id='<?php the_field('video'); ?>'>
+							<div class='wrapper-video'>
 								<div>
-									<div class='iframe'></div>
-									<div class='cover-video' style='background-image:url(<?php echo wp_get_attachment_url(get_field('cover')); ?>)'>
-										<svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop-thin'/></svg>
-									</div>
+									<?php
+										$video = "<iframe src='https://www.youtube.com/embed/" . get_field('video') . "?html5=1' frameborder='0' allowfullscreen></iframe>";
+										echo apply_filters( 'bj_lazy_load_html', $video );
+									?>
 								</div>
 							</div>
 
