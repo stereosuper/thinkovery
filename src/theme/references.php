@@ -17,13 +17,13 @@ get_header(); ?>
                     <div class='study-case <?php if($count % 2 === 0) echo 'study-case-odd'; ?>'>
 
                         <div class='case'>
-                            <div class='img <?php if(get_sub_field('video')) echo 'wrapper-video'; ?>' data-id='<?php the_sub_field('video'); ?>'>
+                            <div class='img <?php if(get_sub_field('video')) echo 'wrapper-video'; ?>'>
                                 <?php if(get_sub_field('video')){ ?>
                                     <div>
-                                        <div class='iframe'></div>
-                                        <div class='cover-video' style='background-image:url(<?php echo wp_get_attachment_url(get_sub_field('img')); ?>)'>
-                                            <svg class='icon hoop' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop-thin'/></svg>
-                                        </div>
+                                        <?php
+                                            $video = "<iframe src='https://www.youtube.com/embed/" . get_sub_field('video') . "?html5=1' frameborder='0' allowfullscreen></iframe>";
+                                            echo apply_filters( 'bj_lazy_load_html', $video );
+                                        ?>
                                     </div>
                                 <?php }else{ echo apply_filters( 'bj_lazy_load_html', wp_get_attachment_image( get_sub_field('img'), 'large' ) ); } ?>
                             </div>
