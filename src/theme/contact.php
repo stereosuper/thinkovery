@@ -23,10 +23,12 @@ get_header(); ?>
 			    		<a href='tel:<?php the_field('phone', 'options'); ?>' title='<?php _e('Call us', 'thinkovery'); ?>'><svg class='icon'><use xlink:href='#icon-phone'/></svg></a>
 			    		<?php the_field('phoneDisplay', 'options'); ?>
 			    	</li>
-			    	<li>
-			    		<a href='mailto:<?php the_field('email', 'options'); ?>' title='<?php _e('Send an email', 'thinkovery'); ?>'><svg class='icon icon-mail'><use xlink:href='#icon-envelope'/></svg></a>
-			    		<?php the_field('email', 'options'); ?>
-			    	</li>
+					<?php if( get_field('email', 'options') ){ ?>
+						<li>
+							<a href='mailto:<?php the_field('email', 'options'); ?>' title='<?php _e('Send an email', 'thinkovery'); ?>'><svg class='icon icon-mail'><use xlink:href='#icon-envelope'/></svg></a>
+							<?php the_field('email', 'options'); ?>
+						</li>
+					<?php } ?>
 			    </ul>
 
 			</div><div class='contact-main'>
@@ -44,10 +46,10 @@ get_header(); ?>
 					</div>
 				<?php endif; ?>
                 
-                <svg class='icon hoop layer' data-depth='1.50' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop-thin'/></svg>
-                <svg class='icon hoop layer' data-depth='1.10' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop-thin'/></svg>
-                <svg class='icon hoop layer' data-depth='0.70' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop-thin'/></svg>
-                <svg class='icon hoop layer' data-depth='0.30' style='fill:url(<?php echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop-thin'/></svg>
+                <!--<svg class='icon hoop layer' data-depth='1.50' style='fill:url(<?php //echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop-thin'/></svg>
+                <svg class='icon hoop layer' data-depth='1.10' style='fill:url(<?php //echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop-thin'/></svg>
+                <svg class='icon hoop layer' data-depth='0.70' style='fill:url(<?php //echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop-thin'/></svg>
+                <svg class='icon hoop layer' data-depth='0.30' style='fill:url(<?php //echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop-thin'/></svg>-->
 			</div>
 
             <?php if(has_post_thumbnail()){ ?>

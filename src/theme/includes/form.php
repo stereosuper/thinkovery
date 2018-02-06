@@ -7,10 +7,10 @@
         <label for='last-name-agilefield'><?php _e('Last Name', 'thinkovery'); ?>*</label>
     </div>
 
-    <div class='field'>
+    <!--<div class='field'>
         <input id='title-agilefield' name='title' type='text' class='big' required>
-        <label for='title-agilefield'><?php _e('Position', 'thinkovery'); ?>*</label>
-    </div>
+        <label for='title-agilefield'><?php //_e('Position', 'thinkovery'); ?>*</label>
+    </div>-->
 
     <div class='field m-right'>
         <input maxlength='250' id='phone-agilefield' name='phone' type='tel'>
@@ -20,34 +20,34 @@
         <label for='email-agilefield'><?php _e('Email', 'thinkovery'); ?>*</label>
     </div>
 
-    <fieldset class='field-full'>
-        <legend><?php _e('I would like to', 'thinkovery'); ?>*</legend>
+    <!--<fieldset class='field-full'>
+        <legend><?php //_e('I would like to', 'thinkovery'); ?>*</legend>
         <div class='radio'>
             <input type='radio' name='objet-0' id='objet-0' value='Vous connaître' checked>
             <label for='objet-0'>
                 <svg class='icon'><use xlink:href='#icon-chat'/></svg>
-                <?php _e('Meet you', 'thinkovery'); ?>
+                <?php //_e('Meet you', 'thinkovery'); ?>
             </label>
         </div><div class='radio'>
             <input type='radio' name='objet-0' id='objet-1' value='Un projet'>
             <label for='objet-1'>
                 <svg class='icon'><use xlink:href='#icon-thumb'/></svg>
-                <?php _e('Work with you', 'thinkovery'); ?>
+                <?php //_e('Work with you', 'thinkovery'); ?>
             </label>
         </div><div class='radio'>
             <input type='radio' name='objet-0' id='objet-2' value='Travailler chez vous'>
             <label for='objet-2'>
                 <svg class='icon'><use xlink:href='#icon-diamond'/></svg>
-                <?php _e('Work in your firm', 'thinkovery'); ?>
+                <?php //_e('Work in your firm', 'thinkovery'); ?>
             </label>
         </div><div class='radio'>
             <input type='radio' name='objet-0' id='objet-3' value='Maman'>
             <label for='objet-3'>
                 <svg class='icon'><use xlink:href='#icon-heart'/></svg>
-                <?php _e("It’s mum, please call back!", 'thinkovery'); ?>
+                <?php //_e("It’s mum, please call back!", 'thinkovery'); ?>
             </label>
         </div>
-    </fieldset>
+    </fieldset>-->
     
     <div class='field-full'>
         <textarea id='identification-projet-agilefield' name='note' required></textarea>
