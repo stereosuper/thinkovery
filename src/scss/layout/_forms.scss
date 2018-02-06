@@ -130,16 +130,29 @@ input{
 }
 
 .form-contact, .newsletter-footer form{
+    .field-full{
+        margin-top: 10px;
+    }
+}
+
+.form-contact{
     label{
         color: rgba(#000, 0.5);
     }
     input, textarea{
         border: 1px solid #000;
-        //background: rgba(#000, 0.1);
         color: #000;
     }
-    .field-full{
-        margin-top: 10px;
+}
+
+.newsletter-footer form{
+    label{
+        color: rgba(#fff, 0.5);
+    }
+    input, textarea{
+        border: 1px solid #fff;
+        background: rgba(#fff, 0.1);
+        color: #fff;
     }
 }
 
