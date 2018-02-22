@@ -69,9 +69,11 @@
                                 </a>
                             </div>
                             <div class='contact-footer'>
-                                <a href='mailto:<?php the_field('footerEmail', 'options'); ?>'>
-                                    <?php the_field('footerEmail', 'options'); ?>
-                                </a>
+                                <?php if( get_field('footerEmail', 'options') ){ ?>
+                                    <a href='mailto:<?php the_field('footerEmail', 'options'); ?>'>
+                                        <?php the_field('footerEmail', 'options'); ?>
+                                    </a>
+                                <?php } ?>
                                 <div class='tel-footer'>
                                     <a href='tel:<?php the_field('phone', 'options'); ?>'>
                                         <?php the_field('phoneDisplay', 'options'); ?>
