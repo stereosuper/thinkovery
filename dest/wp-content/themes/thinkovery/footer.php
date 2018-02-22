@@ -69,9 +69,9 @@
                                 </a>
                             </div>
                             <div class='contact-footer'>
-                                <?php if( get_field('footerEmail', 'options') ){ ?>
-                                    <a href='mailto:<?php the_field('footerEmail', 'options'); ?>'>
-                                        <?php the_field('footerEmail', 'options'); ?>
+                                <?php if( get_field('email', 'options') ){ ?>
+                                    <a href='mailto:<?php the_field('email', 'options'); ?>'>
+                                        <?php the_field('email', 'options'); ?>
                                     </a>
                                 <?php } ?>
                                 <div class='tel-footer'>
@@ -101,9 +101,9 @@
                                     <?php the_field('legalLinkText', 'options'); ?>
                                 </a>
                             </div><div class='col-3 contact-footer-en col-en'>
-                                <?php if( get_field('footerEmail', 'options') ){ ?>
-                                    <a href='mailto:<?php the_field('footerEmail', 'options'); ?>'>
-                                        <?php the_field('footerEmail', 'options'); ?>
+                                <?php if( get_field('email', 'options') ){ ?>
+                                    <a href='mailto:<?php the_field('email', 'options'); ?>'>
+                                        <?php the_field('email', 'options'); ?>
                                     </a>
                                 <?php } ?>
                                 <a href='tel:<?php the_field('phone', 'options'); ?>'>
