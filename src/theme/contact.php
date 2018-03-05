@@ -23,12 +23,12 @@ get_header(); ?>
 			    		<a href='tel:<?php the_field('phone', 'options'); ?>' title='<?php _e('Call us', 'thinkovery'); ?>'><svg class='icon'><use xlink:href='#icon-phone'/></svg></a>
 			    		<?php the_field('phoneDisplay', 'options'); ?>
 			    	</li>
-					<?php if( get_field('email', 'options') ){ ?>
-						<li>
-							<a href='mailto:<?php the_field('email', 'options'); ?>' title='<?php _e('Send an email', 'thinkovery'); ?>'><svg class='icon icon-mail'><use xlink:href='#icon-envelope'/></svg></a>
-							<?php the_field('email', 'options'); ?>
-						</li>
-					<?php } ?>
+					<?php //if( get_field('email', 'options') ){ ?>
+						<!--<li>
+							<a href='mailto:<?php // the_field('email', 'options'); ?>' title='<?php // _e('Send an email', 'thinkovery'); ?>'><svg class='icon icon-mail'><use xlink:href='#icon-envelope'/></svg></a>
+							<?php //the_field('email', 'options'); ?>
+						</li>-->
+					<?php //} ?>
 			    </ul>
 
 			</div><div class='contact-main'>
