@@ -31,7 +31,9 @@
         .solutions-list h3,
         .pagination > a:hover, .pagination > a:focus,
         input:focus + label, textarea:focus + label,
-        .cookie button{
+        .cookie button,
+        .contact-main > h2,
+        .select > .icon{
         	color: $colorprimary;
         }
 

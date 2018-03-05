@@ -13,11 +13,20 @@
     </div>-->
 
     <div class='field m-right'>
-        <input maxlength='250' id='phone-agilefield' name='phone' type='tel'>
-        <label for='phone-agilefield'><?php _e('Phone', 'thinkovery'); ?> <i>(<?php _e('optionnal', 'thinkovery'); ?>)</i></label>
-    </div><div class='field'>
         <input id='email-agilefield' name='email' type='email' required>
         <label for='email-agilefield'><?php _e('Email', 'thinkovery'); ?>*</label>
+    </div><div class='field'>
+        <input maxlength='250' id='phone-agilefield' name='phone' type='tel' required>
+        <label for='phone-agilefield'><?php _e('Phone', 'thinkovery'); ?>*</label>
+    </div>
+
+    <div class='field-full'>
+        <div class='select'>
+            <select required>
+                <option>Objet de votre message*</option>
+            </select>
+            <svg class='icon'><use xlink:href='#icon-arrow-bottom'/></svg>
+        </div>
     </div>
 
     <!--<fieldset class='field-full'>

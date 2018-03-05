@@ -85,7 +85,7 @@
 
 .contact-main{
     width: $col*8;
-    padding: 5.5em $col 8em;
+    padding: 3em $col 8em;
     //color: #fff;
     position: relative;
     background: #fff;
@@ -117,7 +117,7 @@
         }
     }
     > form, .form-error, .bloc-success{
-        max-width: 650px;
+        max-width: 590px;
     }
     > form{
         position: relative;
@@ -157,6 +157,14 @@
             right: 22% !important;
             margin: auto;
             filter: blur(1px);
+        }
+    }
+    > h2{
+        font-size: 3.2rem;
+        margin: 0 0 1em;
+        + p{
+            font-size: 1.6rem;
+            margin: 0 0 2.5em;
         }
     }
 }
@@ -233,13 +241,13 @@
             font-size: 6rem;
         }
         h1{
-            max-width: 650px;
+            max-width: 590px;
             margin: 0.55em auto;
         }
     }
 
     .contact-infos{
-        max-width: 650px;
+        max-width: 590px;
         margin: 0 auto;
         li{
             display: block;

@@ -32,6 +32,9 @@ get_header(); ?>
 			    </ul>
 
 			</div><div class='contact-main'>
+
+				<h2>Vous avez un projet de Digital Learning?</h2>
+				<p>N'hésitez pas à nous contacter afin d'échanger sur vos projets (conseil, accompagnement, réalisations...) ou bien tout simplement si vous avez besoin de renseignements sur nos offres ainsi que le Digital Learning.</p>
 			    
                 <?php if(!$success) : ?>
 			    	<?php echo get_template_part( 'includes/form' ); ?>
