@@ -33,8 +33,12 @@ get_header(); ?>
 
 			</div><div class='contact-main'>
 
-				<h2>Vous avez un projet de Digital Learning?</h2>
-				<p>N'hésitez pas à nous contacter afin d'échanger sur vos projets (conseil, accompagnement, réalisations...) ou bien tout simplement si vous avez besoin de renseignements sur nos offres ainsi que le Digital Learning.</p>
+				<?php if( get_field('formTitle') ){ ?>
+					<h2><?php the_field('formTitle'); ?></h2>
+				<?php } ?>
+				<?php if( get_field('formText') ){ ?>
+					<p><?php the_field('formText'); ?></p>
+				<?php } ?>
 			    
                 <?php if(!$success) : ?>
 			    	<?php echo get_template_part( 'includes/form' ); ?>
