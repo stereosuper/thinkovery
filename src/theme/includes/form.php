@@ -23,10 +23,10 @@
     <div class='field-full'>
         <div class='select'>
             <select id='objet-contact' name='objet-contact' required>
-                <option value='' selected disabled>Objet de votre message*</option>
-                <option value='Découvrir votre approche du Digital Learning'>Découvrir votre approche du Digital Learning</option>
-                <option value='Affiner mon projet de formation'>Affiner mon projet de formation</option>
-                <option value='Obtenir une proposition commerciale sur-mesure'>Obtenir une proposition commerciale sur-mesure</option>
+                <option value='' selected disabled><?php _e("I'm contacting you for", 'thinkovery'); ?>*</option>
+                <option value='<?php _e("Discovering your approach to Digital Learning", 'thinkovery'); ?>'><?php _e("Discovering your approach to Digital Learning", 'thinkovery'); ?></option>
+                <option value='<?php _e("Refine my training project", 'thinkovery'); ?>'><?php _e("Refine my training project", 'thinkovery'); ?></option>
+                <option value='<?php _e("Getting a customized business commercial proposal", 'thinkovery'); ?>'><?php _e("Getting a customized business commercial proposal", 'thinkovery'); ?></option>
             </select>
             <svg class='icon'><use xlink:href='#icon-arrow-bottom'/></svg>
         </div>
@@ -63,7 +63,7 @@
     
     <div class='field-full'>
         <textarea id='identification-projet-agilefield' name='note' required></textarea>
-        <label for='identification-projet-agilefield'><?php _e('Your project', 'thinkovery'); ?>*</label>
+        <label for='identification-projet-agilefield'><?php _e('Specify your request', 'thinkovery'); ?>*</label>
     </div>
 
     <div class='hidden'>

@@ -32,17 +32,20 @@ get_header(); ?>
 			    </ul>
 
 			</div><div class='contact-main'>
-
-				<?php if( get_field('formTitle') ){ ?>
-					<h2><?php the_field('formTitle'); ?></h2>
-				<?php } ?>
-				<?php if( get_field('formText') ){ ?>
-					<p><?php the_field('formText'); ?></p>
-				<?php } ?>
 			    
-                <?php if(!$success) : ?>
-			    	<?php echo get_template_part( 'includes/form' ); ?>
-                <?php else : ?>
+				<?php if(!$success) : ?>
+					
+					<?php if( get_field('formTitle') ){ ?>
+						<h2><?php the_field('formTitle'); ?></h2>
+					<?php } ?>
+					<?php if( get_field('formText') ){ ?>
+						<p><?php the_field('formText'); ?></p>
+					<?php } ?>
+
+					<?php echo get_template_part( 'includes/form' ); ?>
+					
+				<?php else : ?>
+				
 					<div class='bloc-success'>
 						<h2><?php _e('Thank you', 'thinkovery'); ?></h2>
 						<p>
@@ -51,6 +54,7 @@ get_header(); ?>
                             <?php _e('Have a great day!', 'thinkovery'); ?>
                         </p>
 					</div>
+
 				<?php endif; ?>
                 
                 <!--<svg class='icon hoop layer' data-depth='1.50' style='fill:url(<?php //echo $currentUrl; ?>#gradient-hoop)'><use xlink:href='#icon-hoop-thin'/></svg>

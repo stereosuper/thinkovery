@@ -5,9 +5,9 @@
         position: relative;
         .container{
             display: flex;
-            &.success{
-                align-items: flex-start;
-            }
+            // &.success{
+            //     align-items: flex-start;
+            // }
         }
     }
     h1{
@@ -106,7 +106,7 @@
         z-index: 1;
     }
     .bloc-success{
-        margin: 0 auto;
+        margin: 7em auto 0;
         h2{
             margin: 1.5em 0 1em;
             line-height: 0.9;
@@ -179,6 +179,8 @@
         }
         h1, .bloc-success h2{
             margin: 0.55em 0;
+        }
+        h1{
             font-size: 8rem;
         }
     }
@@ -232,6 +234,9 @@
                 left: auto !important;
                 right: 18% !important;
             }
+        }
+        .bloc-success{
+            margin-top: 0;
         }
     }
 }

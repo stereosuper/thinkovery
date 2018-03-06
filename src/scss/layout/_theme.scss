@@ -33,7 +33,8 @@
         input:focus + label, textarea:focus + label,
         .cookie button,
         .contact-main > h2,
-        .select > .icon{
+        .select > .icon,
+        .bloc-success h2{
         	color: $colorprimary;
         }
 
