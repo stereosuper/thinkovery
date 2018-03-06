@@ -22,8 +22,11 @@
 
     <div class='field-full'>
         <div class='select'>
-            <select required>
-                <option>Objet de votre message*</option>
+            <select id='objet-contact' name='objet-contact' required>
+                <option value='' selected disabled>Objet de votre message*</option>
+                <option value='Découvrir votre approche du Digital Learning'>Découvrir votre approche du Digital Learning</option>
+                <option value='Affiner mon projet de formation'>Affiner mon projet de formation</option>
+                <option value='Obtenir une proposition commerciale sur-mesure'>Obtenir une proposition commerciale sur-mesure</option>
             </select>
             <svg class='icon'><use xlink:href='#icon-arrow-bottom'/></svg>
         </div>
@@ -70,9 +73,9 @@
         <input type='hidden' id='_agile_redirect_url' name='_agile_redirect_url' value='<?php the_permalink(); ?>?success=true'>
         <input type='hidden' id='_agile_document_url' name='_agile_document_url' value=''>
         <input type='hidden' id='_agile_form_id_tags' name='tags' value='Contact From Web'>
-        <input type='hidden' id='_agile_form_id' name='_agile_form_id' value='5703593692758016'>
+        <input type='hidden' id='_agile_form_id' name='_agile_form_id' value='5750900492599296'>
 
-        <input  type='text' id='sourceCookie-agilefield' name='sourceCookie-agilefield'>
+        <input type='text' id='sourceCookie-agilefield' name='sourceCookie-agilefield'>
     </div>
 
     <button class='btn btn-medium' type='submit' name='submit' for='form-contact'>
