@@ -191,6 +191,9 @@ select{
         background: rgba(#fff, 0.1);
         color: #fff;
     }
+    input[type=email]{
+        width: 270px;
+    }
 }
 
 .commentform{
