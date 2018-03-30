@@ -3,8 +3,8 @@
 Template Name: Contact
 */
 
-    $error = false;
-    if(isset($_POST['submit'])){
+    if(isset($_POST['submit']) && !isset($_GET['success']) && !isset($_GET['errorForm'])  ){
+        
         global $wp;
         $currentUrl = home_url( $wp->request );  
         $currentTitle = wp_title('&raquo;',FALSE);  
@@ -52,10 +52,21 @@ Template Name: Contact
         $status_code = @curl_getinfo($ch, CURLINFO_HTTP_CODE); //Log the response status code
         @curl_close($ch);
 
-        $success = $status_code == "204" || $status_code == "302" ? true : false;
-        $error = $status_code == "404" || $status_code == "500" ? true : false;
+
+        $valueUrl = $status_code == "204" || $status_code == "302" ? 'success' : 'errorForm';
+
+        $currentPageUrl = get_permalink();
+
+        $newUrl = add_query_arg( $valueUrl, 'formsubmit', $currentPageUrl );
+
+        wp_redirect($newUrl);
+        exit;
+        
     }
     
+    $success = $_GET['success'] ? true : false;
+    $errorForm = $_GET['errorForm'] ? true : false;
+
 
 get_header(); ?>
 
@@ -96,7 +107,7 @@ get_header(); ?>
 
 
                         
-					<?php include(locate_template('includes/form.php')); ?>
+                    <?php include(locate_template('includes/form.php')); ?>
 					
 				<?php else : ?>
 				

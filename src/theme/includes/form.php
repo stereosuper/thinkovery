@@ -32,7 +32,7 @@
         <label for='identification-projet'><?php _e('Specify your request', 'thinkovery'); ?>*</label>
     </div>
 
-    <?php if($error){ ?>
+    <?php if($errorForm){ ?>
         <div class='mc4wp-error form-error'><?php _e("An error occurred, please try again later.", 'thinkovery'); ?></div>
     <?php } ?>
     
