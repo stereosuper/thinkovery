@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Thinkovery\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: Mon Dec 05 2016 15:48:13 GMT+0100 (CET)\n"
-"PO-Revision-Date: Fri Mar 30 2018 12:25:42 GMT+0200 (CEST)\n"
+"PO-Revision-Date: Fri Mar 30 2018 12:14:47 GMT+0200 (CEST)\n"
 "Last-Translator: adminThink <elisabeth@stereosuper.fr>\n"
 "Language-Team: \n"
 "Language: French (France)\n"
@@ -29,11 +29,40 @@ msgstr ""
 msgid "404 error - We wish Trump have watched MOOCs..."
 msgstr ""
 
-#: ../../themes/thinkovery/includes/form.php:36
-msgid "An error occurred, please try again later."
-msgstr ""
-"Il y a eu une erreur lors de l'envoi du formulaire. Veuillez réessayer plus "
-"tard."
+#: ../../themes/thinkovery/includes/form.php:20
+msgid "I'm contacting you for"
+msgstr "Je vous contacte pour"
+
+#: ../../themes/thinkovery/includes/form.php:21 ../..
+#: /themes/thinkovery/includes/form.php:21
+msgid "Discovering your approach to Digital Learning"
+msgstr "Découvrir votre approche du Digital Learning"
+
+#: ../../themes/thinkovery/includes/form.php:22 ../..
+#: /themes/thinkovery/includes/form.php:22
+msgid "Refine my training project"
+msgstr "Affiner mon projet de formation"
+
+#: ../../themes/thinkovery/includes/form.php:23 ../..
+#: /themes/thinkovery/includes/form.php:23
+msgid "Getting a customized business commercial proposal"
+msgstr "Obtenir une proposition commerciale sur-mesure"
+
+#: ../../themes/thinkovery/includes/form.php:32
+msgid "Specify your request"
+msgstr "Précisez votre demande"
+
+#: ../../themes/thinkovery/contact.php:104
+msgid "Your message have been sent."
+msgstr "Votre message a bien été envoyé."
+
+#: ../../themes/thinkovery/contact.php:105
+msgid "We will come back to you as soon as possible."
+msgstr "Nous reviendrons vers vous le plus tôt possible."
+
+#: ../../themes/thinkovery/contact.php:106
+msgid "Have a great day!"
+msgstr "Très bonne journée à vous!"
 
 #: ../../themes/thinkovery/header.php:105
 msgid "We use Cookies to improve user experience on our website"
@@ -130,27 +159,7 @@ msgstr "Nom"
 msgid "Phone"
 msgstr "Téléphone"
 
-#: ../../themes/thinkovery/includes/form.php:20
-msgid "I'm contacting you for"
-msgstr "Je vous contacte pour"
-
-#: ../../themes/thinkovery/includes/form.php:21
-msgid "Discovering your approach to Digital Learning"
-msgstr "Découvrir votre approche du Digital Learning"
-
-#: ../../themes/thinkovery/includes/form.php:22
-msgid "Refine my training project"
-msgstr "Affiner mon projet de formation"
-
-#: ../../themes/thinkovery/includes/form.php:23
-msgid "Getting a customized business commercial proposal"
-msgstr "Obtenir une proposition commerciale sur-mesure"
-
-#: ../../themes/thinkovery/includes/form.php:32
-msgid "Specify your request"
-msgstr "Précisez votre demande"
-
-#: ../../themes/thinkovery/includes/form.php:41
+#: ../../themes/thinkovery/includes/form.php:36
 msgid "Submit"
 msgstr "Envoyer"
 
@@ -170,29 +179,17 @@ msgstr "Pas de résultats pour"
 msgid "Contact"
 msgstr "Contact"
 
-#: ../../themes/thinkovery/contact.php:72
+#: ../../themes/thinkovery/contact.php:71
 msgid "Open on Google Maps"
 msgstr "Ouvrir Google Maps"
 
-#: ../../themes/thinkovery/contact.php:76
+#: ../../themes/thinkovery/contact.php:75
 msgid "Call us"
 msgstr "Nous appeler"
 
-#: ../../themes/thinkovery/contact.php:105
+#: ../../themes/thinkovery/contact.php:102
 msgid "Thank you"
 msgstr "Merci"
-
-#: ../../themes/thinkovery/contact.php:107
-msgid "Your message have been sent."
-msgstr "Votre message a bien été envoyé."
-
-#: ../../themes/thinkovery/contact.php:108
-msgid "We will come back to you as soon as possible."
-msgstr "Nous reviendrons vers vous le plus tôt possible."
-
-#: ../../themes/thinkovery/contact.php:109
-msgid "Have a great day!"
-msgstr "Très bonne journée à vous!"
 
 #. Name of the template
 msgid "References"

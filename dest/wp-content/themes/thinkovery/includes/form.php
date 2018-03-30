@@ -1,85 +1,43 @@
-<form id='agile-form' action='https://thinkovery.agilecrm.com/formsubmit' method='GET' class='form-contact'>
+<form id='agile-form' method='POST' class='form-contact'>
     <div class='field m-right'>
-        <input id='first-name-agilefield' name='first_name' type='text' required>
-        <label for='first-name-agilefield'><?php _e('First Name', 'thinkovery'); ?>*</label>
+        <input id='first-name' name='firstname' type='text' required>
+        <label for='first-name'><?php _e('First Name', 'thinkovery'); ?>*</label>
     </div><div class='field'>
-        <input id='last-name-agilefield' name='last_name' type='text' required>
-        <label for='last-name-agilefield'><?php _e('Last Name', 'thinkovery'); ?>*</label>
+        <input id='last-name' name='lastname' type='text' required>
+        <label for='last-name'><?php _e('Last Name', 'thinkovery'); ?>*</label>
     </div>
 
-    <!--<div class='field'>
-        <input id='title-agilefield' name='title' type='text' class='big' required>
-        <label for='title-agilefield'><?php //_e('Position', 'thinkovery'); ?>*</label>
-    </div>-->
-
     <div class='field m-right'>
-        <input id='email-agilefield' name='email' type='email' required>
-        <label for='email-agilefield'><?php _e('Email', 'thinkovery'); ?>*</label>
+        <input id='email' name='email' type='email' required>
+        <label for='email'><?php _e('Email', 'thinkovery'); ?>*</label>
     </div><div class='field'>
-        <input maxlength='250' id='phone-agilefield' name='phone' type='tel' required>
-        <label for='phone-agilefield'><?php _e('Phone', 'thinkovery'); ?>*</label>
+        <input maxlength='250' id='phone' name='phone' type='tel' required>
+        <label for='phone'><?php _e('Phone', 'thinkovery'); ?>*</label>
     </div>
-
     <div class='field-full'>
         <div class='select'>
             <select id='objet-contact' name='objet-contact' required>
                 <option value='' selected disabled><?php _e("I'm contacting you for", 'thinkovery'); ?>*</option>
-                <option value='<?php _e("Discovering your approach to Digital Learning", 'thinkovery'); ?>'><?php _e("Discovering your approach to Digital Learning", 'thinkovery'); ?></option>
-                <option value='<?php _e("Refine my training project", 'thinkovery'); ?>'><?php _e("Refine my training project", 'thinkovery'); ?></option>
-                <option value='<?php _e("Getting a customized business commercial proposal", 'thinkovery'); ?>'><?php _e("Getting a customized business commercial proposal", 'thinkovery'); ?></option>
+                <option value='Découvrir votre approche du Digital Learning'><?php _e("Discovering your approach to Digital Learning", 'thinkovery'); ?></option>
+                <option value='Affiner mon projet de formation'><?php _e("Refine my training project", 'thinkovery'); ?></option>
+                <option value='Obtenir une proposition commerciale sur-mesure'><?php _e("Getting a customized business commercial proposal", 'thinkovery'); ?></option>
             </select>
             <svg class='icon'><use xlink:href='#icon-arrow-bottom'/></svg>
         </div>
     </div>
-
-    <!--<fieldset class='field-full'>
-        <legend><?php //_e('I would like to', 'thinkovery'); ?>*</legend>
-        <div class='radio'>
-            <input type='radio' name='objet-0' id='objet-0' value='Vous connaître' checked>
-            <label for='objet-0'>
-                <svg class='icon'><use xlink:href='#icon-chat'/></svg>
-                <?php //_e('Meet you', 'thinkovery'); ?>
-            </label>
-        </div><div class='radio'>
-            <input type='radio' name='objet-0' id='objet-1' value='Un projet'>
-            <label for='objet-1'>
-                <svg class='icon'><use xlink:href='#icon-thumb'/></svg>
-                <?php //_e('Work with you', 'thinkovery'); ?>
-            </label>
-        </div><div class='radio'>
-            <input type='radio' name='objet-0' id='objet-2' value='Travailler chez vous'>
-            <label for='objet-2'>
-                <svg class='icon'><use xlink:href='#icon-diamond'/></svg>
-                <?php //_e('Work in your firm', 'thinkovery'); ?>
-            </label>
-        </div><div class='radio'>
-            <input type='radio' name='objet-0' id='objet-3' value='Maman'>
-            <label for='objet-3'>
-                <svg class='icon'><use xlink:href='#icon-heart'/></svg>
-                <?php //_e("It’s mum, please call back!", 'thinkovery'); ?>
-            </label>
-        </div>
-    </fieldset>-->
-    
+        
+        
     <div class='field-full'>
-        <textarea id='identification-projet-agilefield' name='note' required></textarea>
-        <label for='identification-projet-agilefield'><?php _e('Specify your request', 'thinkovery'); ?>*</label>
+        <textarea id='identification-projet' name='note' required></textarea>
+        <label for='identification-projet'><?php _e('Specify your request', 'thinkovery'); ?>*</label>
     </div>
 
-    <div class='hidden'>
-        <input type='hidden' id='_agile_form_name' name='_agile_form_name' value='Formulaire Contact'>
-        <input type='hidden' id='_agile_domain' name='_agile_domain' value='thinkovery'>
-        <input type='hidden' id='_agile_api' name='_agile_api' value='8c6s7s10it45vop640mrjnjsnk'>
-        <input type='hidden' id='_agile_redirect_url' name='_agile_redirect_url' value='<?php the_permalink(); ?>?success=true'>
-        <input type='hidden' id='_agile_document_url' name='_agile_document_url' value=''>
-        <input type='hidden' id='_agile_form_id_tags' name='tags' value='Contact From Web'>
-        <input type='hidden' id='_agile_form_id' name='_agile_form_id' value='5750900492599296'>
-
-        <input type='text' id='sourceCookie-agilefield' name='sourceCookie-agilefield'>
-    </div>
+    <?php if($error){ ?>
+        <div class='mc4wp-error form-error'><?php _e("An error occurred, please try again later.", 'thinkovery'); ?></div>
+    <?php } ?>
+    
 
     <button class='btn btn-medium' type='submit' name='submit' for='form-contact'>
         <?php _e('Submit', 'thinkovery'); ?><svg class='icon'><use xlink:href='#icon-arrow-right'/></svg><i></i>
     </button>
-    <span id='agile-error-msg'></span>
 </form>

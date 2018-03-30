@@ -242,7 +242,7 @@
 
         <?php wp_footer(); ?>
         
-        <script id='_agile_min_js' defer src='https://thinkovery.agilecrm.com/stats/min/agile-min.js'></script>
+        <!--<script id='_agile_min_js' defer src='https://thinkovery.agilecrm.com/stats/min/agile-min.js'></script>
         <script>
             // AgileCRM Tracking
             var Agile_API = Agile_API || {}; Agile_API.on_after_load = function(){
@@ -252,7 +252,7 @@
 
             // AgileCRM Ajax Form
             (function(a){var b=a.onload,p=true;isCaptcha=false;if(p){a.onload='function'!=typeof b?function(){try{_agile_load_form_fields()}catch(a){}}:function(){b();try{_agile_load_form_fields()}catch(a){}}};var formLen=document.forms.length;for(i=0;i<formLen;i++){if(document.forms.item(i).getAttribute('id')== 'agile-form'){a.document.forms.item(i).onsubmit=function(a){a.preventDefault();try{_agile_synch_form_v4(this)}catch(b){this.submit()}}}}})(window);
-        </script>
+        </script>-->
 
 	</body>
 </html>
