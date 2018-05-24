@@ -32,6 +32,13 @@
         <label for='identification-projet'><?php _e('Specify your request', 'thinkovery'); ?>*</label>
     </div>
 
+    <div class="field-full">
+        <input type="checkbox" name="rgpd" id="rgpd_checkbox" required>
+        <label for='rgpd_checkbox' class='label-checkbox no-transform'>
+            <?php _e('J\'accepte que les informations saisies soient utilisées exclusivement dans le cadre de ma demande et de la relation commerciale personnalisée qui peut en découler (par e-mail et/ou par téléphone)', 'thinkovery'); ?>
+        </label>
+    </div>
+
     <?php if($errorForm){ ?>
         <div class='mc4wp-error form-error'><?php _e("An error occurred, please try again later.", 'thinkovery'); ?></div>
     <?php } ?>
