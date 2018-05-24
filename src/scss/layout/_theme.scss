@@ -54,7 +54,8 @@
         .pagination > .current:before,
         .share-post a:before,
         .related-posts a:before,
-        .form-search > button:before{
+        .form-search > button:before,
+        .label-checkbox:after{
 			background-color: $colorprimary;
         }
 
@@ -110,7 +111,7 @@
                         color: $black;
                     }
                 }
-                a{
+                nav a{
                     &:hover, &:focus{
                         color: $black;
                     }

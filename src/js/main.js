@@ -45,10 +45,33 @@ $(function(){
         });
     }
 
-    // Cookie for cookie consentment
+    // Footer RGPD
+    const newsletterForm  = $('.newsletter-footer form');
+    const newsletterInput = $('.newsletter-input');
+
+    newsletterInput.focus(function(){
+        $('.newsletter-input-hidden').not('.visible').addClass('visible');
+        setTimeout(function(){
+            window.scrollTo(0,document.body.scrollHeight);
+        },400);
+    });
+    body.on('click', function(event){
+        if( newsletterForm.has(event.target).length == 0 && !newsletterForm.is(event.target) ){
+			if( $('.newsletter-input-hidden').is('.visible') ){
+                $('.newsletter-input-hidden').removeClass('visible');
+            }
+		}
+    });
+
+    // Cookie RGPD
     body.on('click', '#cookie-ok', function(e){
         e.preventDefault();
         Cookies.set('think-cookies', true, { expires: 30, path: '/' });
+        $('#header').removeClass('cookie-on').find('.cookie').addClass('off');
+    });
+    body.on('click', '#cookie-no', function(e){
+        e.preventDefault();
+        Cookies.set('think-cookies', false, { expires: 30, path: '/' });
         $('#header').removeClass('cookie-on').find('.cookie').addClass('off');
     });
 

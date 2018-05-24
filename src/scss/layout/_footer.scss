@@ -143,11 +143,12 @@
     .container-medium{
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-items: flex-start;
     }
     .mc4wp-form{
         min-width: 506px;
-        margin: 0 0 0 50px;
+        max-width: 50%;
+        margin: 1em 0 0 50px;
     }
     p{
         line-height: 1.2;
@@ -162,6 +163,17 @@
         margin: 0 10px 0 0;
         &[type=text]{
             width: 150px;
+        }
+    }
+    .newsletter-input-hidden{
+        max-height: 0;
+        
+        overflow: hidden;
+        transition: $transition;
+        &.visible{
+            max-height: 200px;
+            margin: 30px 0 0;
+            transition: $transition; 
         }
     }
 }
@@ -226,6 +238,7 @@
             display: block;
         }
         .mc4wp-form{
+            max-width: 100%;
             min-width: 0;
             margin: 30px 0 10px;
         }
@@ -305,10 +318,18 @@
             &:first-of-type{
                 display: block;
             }
+            &.gdpr{
+                display: flex;
+            }
         }
         input{
             &[type=text]{
                 width: 270px;
+            }
+        }
+        .newsletter-input-hidden.visible{
+            &.visible{
+                margin: 0;
             }
         }
     }

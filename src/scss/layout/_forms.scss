@@ -35,7 +35,10 @@ input, textarea{
     }
     &:focus, &.on{
         + label{
-            transform: translate3d(0, -200%, 0) scale(0.9);
+            &:not(.no-transform){
+                transform: translate3d(0, -200%, 0) scale(0.9);
+            }
+
         }
     }
     + span{
@@ -61,8 +64,15 @@ label{
     left: 15px;
     pointer-events: none;
     transition: 0.1s ease-in-out;
+    &.no-transform{
+        position: relative;
+        top: 0;
+        left: 0;
+    }
     .no-js &{
-        transform: translate3d(0, -200%, 0) scale(0.9);
+        &:not(.no-transform){
+            transform: translate3d(0, -200%, 0) scale(0.9);
+        }
     }
     > i{
         font-size: 0.8em;
@@ -97,6 +107,53 @@ input{
     }
     &[type=tel]{
         width: 185px;
+    }
+    &[type=checkbox]{
+        height: auto;
+        position: absolute;
+        left: -9999px;
+        + label{
+            display: inline-block;
+            position: relative;
+            padding-left: 28px;
+            pointer-events: initial;
+            cursor: pointer;
+            &:before{
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 3px;
+                width: 17px;
+                height: 17px;
+                border: 1px solid #fff;
+                background: transparent;
+            }
+            &:after{
+                content: '';
+                width: 9px;
+                height: 9px;
+                position: absolute;
+                top: 7px;
+                left: 4px;
+                transition: all 0.2s ease;
+            }
+        }
+        &:not(:checked){
+            + label{
+                &:after{
+                    opacity: 0;
+                    transform: scale(0);
+                }
+            }
+        }
+        &:checked{
+            + label{
+                &:after{
+                    opacity: 1;
+                    transform: scale(1);
+                }
+            }
+        }
     }
     &.big{
         width: 465px;
@@ -184,7 +241,9 @@ select{
 
 .newsletter-footer form{
     label{
-        color: rgba(#fff, 0.5);
+        &:not(.no-transform){
+            color: rgba(#fff, 0.5);
+        }
     }
     input, textarea{
         border: 1px solid #fff;

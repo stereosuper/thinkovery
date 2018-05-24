@@ -101,10 +101,20 @@
 		<header role='banner' id='header' <?php if(!$cookie && is_front_page()) echo "class='cookie-on'"; ?>>
 			<?php if(!$cookie && is_front_page()){ ?>
 				<div id='cookie' class='cookie'>
-					<p class='container'>
-						<?php _e('We use Cookies to improve user experience on our website', 'thinkovery'); ?>
-						<button id='cookie-ok'><?php _e('Accept', 'thinkovery'); ?></button>
-					</p>
+					<div class='container'>
+						<p>
+							<?php _e('En poursuivant votre navigation sur notre site, vous acceptez l\'utilisation de cookies destinés à faciliter votre navigation, le partage de contenus, à vous proposer des services personnalisés et à réaliser des statistiques de visites.', 'thinkovery'); ?>
+							<a href='<?php the_field('', 'options'); ?>' class='btn-small'>
+								<span><?php _e('Pour en savoir plus', 'thinkovery'); ?></span>
+								<svg class='icon'><use xlink:href='#icon-arrow-right'/></svg>
+							</a>
+						</p>
+						<div class='cookie-buttons'>
+							<button id='cookie-ok' class='cookie-ok'><?php _e('J\'accepte', 'thinkovery'); ?></button>
+							<span> / </span>
+							<button id='cookie-no' class='cookie-no'><?php _e('Je refuse', 'thinkovery'); ?></button>
+						</div>
+					</div>
 				</div>
 			<?php } ?>
 			<nav role='navigation' class='container'>

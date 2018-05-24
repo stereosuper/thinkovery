@@ -101,7 +101,10 @@ define( 'BLOG_ID_CURRENT_SITE', 1 );
 
 /** Chemin absolu vers le dossier de WordPress. */
 if ( !defined('ABSPATH') )
-	define('ABSPATH', dirname(__FILE__) . '/');
+  define('ABSPATH', dirname(__FILE__) . '/');
+  
+
+define('CONCATENATE_SCRIPTS', false); 
 
 /** Réglage des variables de WordPress et de ses fichiers inclus. */
 require_once(ABSPATH . 'wp-settings.php');
