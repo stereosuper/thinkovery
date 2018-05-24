@@ -46,8 +46,8 @@ $(function(){
     }
 
     // Footer RGPD
-    const newsletterForm  = $('.newsletter-footer form');
-    const newsletterInput = $('.newsletter-input');
+    var newsletterForm  = $('.newsletter-footer form');
+    var newsletterInput = $('.newsletter-input');
 
     newsletterInput.focus(function(){
         $('.newsletter-input-hidden').not('.visible').addClass('visible');
