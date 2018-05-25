@@ -166,6 +166,7 @@
         }
     }
     .newsletter-input-hidden{
+        position: relative;
         max-height: 0;
         overflow: hidden;
         transition: $transition;
