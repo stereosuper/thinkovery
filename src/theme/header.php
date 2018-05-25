@@ -104,7 +104,7 @@
 					<div class='container'>
 						<p>
 							<?php _e('En poursuivant votre navigation sur notre site, vous acceptez l\'utilisation de cookies destinés à faciliter votre navigation, le partage de contenus, à vous proposer des services personnalisés et à réaliser des statistiques de visites.', 'thinkovery'); ?>
-							<a href='<?php the_field('', 'options'); ?>' class='btn-small'>
+							<a href='<?php echo sprintf('%1$s', esc_url( get_permalink(126) )); ?>' class='btn-small'>
 								<span><?php _e('Pour en savoir plus', 'thinkovery'); ?></span>
 								<svg class='icon'><use xlink:href='#icon-arrow-right'/></svg>
 							</a>

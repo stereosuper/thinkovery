@@ -30,11 +30,12 @@
         .quote-cite > b,
         .solutions-list h3,
         .pagination > a:hover, .pagination > a:focus,
-        input:focus + label, textarea:focus + label,
+        input:not([type=checkbox]):focus + label, textarea:focus + label,
         .cookie button,
         .contact-main > h2,
         .select > .icon,
-        .bloc-success h2{
+        .bloc-success h2,
+        input[type=checkbox]:focus + label{
         	color: $colorprimary;
         }
 
@@ -55,13 +56,15 @@
         .share-post a:before,
         .related-posts a:before,
         .form-search > button:before,
-        .label-checkbox:after{
+        input[type=checkbox]:focus + label:after{
 			background-color: $colorprimary;
         }
 
         ul > li:before,
-        input:focus,
+        input:not([type=checkbox]):focus,
         textarea:focus,
+        input[type=checkbox]:focus +label:before,
+        //input[type=checkbox]:checked +label:before,
         #logo-o,
         .title-picto,
         .quote-img,

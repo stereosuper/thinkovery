@@ -136,11 +136,16 @@ input{
                 position: absolute;
                 top: 7px;
                 left: 4px;
+                background-color: $black;
                 transition: all 0.2s ease;
             }
         }
         &:not(:checked){
             + label{
+                color: inherit;
+                /*&:before{
+                    border-color: $black;
+                }*/
                 &:after{
                     opacity: 0;
                     transform: scale(0);
