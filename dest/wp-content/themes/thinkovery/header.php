@@ -103,16 +103,16 @@
 				<div id='cookie' class='cookie'>
 					<div class='container'>
 						<p>
-							<?php _e('En poursuivant votre navigation sur notre site, vous acceptez l\'utilisation de cookies destinés à faciliter votre navigation, le partage de contenus, à vous proposer des services personnalisés et à réaliser des statistiques de visites.', 'thinkovery'); ?>
+							<?php _e('By continuing your navigation on our website, you accept the use of cookies to facilitate your browsing, content sharing, to offer you personalized services and to carry out statistics of visits.', 'thinkovery'); ?>
 							<a href='<?php echo sprintf('%1$s', esc_url( get_permalink(126) )); ?>' target='_blank' rel='noopener noreferrer' class='btn-small'>
-								<span><?php _e('Pour en savoir plus', 'thinkovery'); ?></span>
+								<span><?php _e('Find out more', 'thinkovery'); ?></span>
 								<svg class='icon'><use xlink:href='#icon-arrow-right'/></svg>
 							</a>
 						</p>
 						<div class='cookie-buttons'>
-							<button id='cookie-ok' class='cookie-ok'><?php _e('J\'accepte', 'thinkovery'); ?></button>
+							<button id='cookie-ok' class='cookie-ok'><?php _e('I accept', 'thinkovery'); ?></button>
 							<span> / </span>
-							<button id='cookie-no' class='cookie-no'><?php _e('Je refuse', 'thinkovery'); ?></button>
+							<button id='cookie-no' class='cookie-no'><?php _e('I refuse', 'thinkovery'); ?></button>
 						</div>
 					</div>
 				</div>

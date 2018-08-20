@@ -35,7 +35,7 @@
     <div class="field-full">
         <input type="checkbox" name="rgpd" id="rgpd_checkbox" required>
         <label for='rgpd_checkbox' class='label-checkbox no-transform'>
-            <?php _e('J\'accepte que les informations saisies soient utilisées exclusivement dans le cadre de ma demande et de la relation commerciale personnalisée qui peut en découler (par e-mail et/ou par téléphone)', 'thinkovery'); ?>
+            <?php _e('I accept that the informations entered are used exclusively as part of my request and the personalized business relationship that can flow from it (by e-mail and / or phone)', 'thinkovery'); ?>
         </label>
     </div>
 
