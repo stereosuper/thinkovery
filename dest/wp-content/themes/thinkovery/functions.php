@@ -150,6 +150,85 @@ add_filter( 'nav_menu_css_class', 'think_css_attributes_filter' );
 /*-----------------------------------------------------------------------------------*/
 /* Blog
 /*-----------------------------------------------------------------------------------*/
+/**
+ * Generate custom search form
+ *
+ * @param string $form Form HTML.
+ * @return string Modified form HTML.
+**/
+function wpdocs_my_search_form( $form ) {
+    $form = '<form role="search" method="get" id="searchform" class="searchform" action="' . home_url( '/' ) . '" >
+    <div><label class="screen-reader-text" for="s">' . __( 'Search for:' ) . '</label>
+    <input type="text" value="' . get_search_query() . '" name="s" id="s" />
+    <input type="submit" id="searchsubmit" value="'. esc_attr__( 'Search' ) .'" />
+    </div>
+    </form>';
+ 
+    return $form;
+}
+add_filter( 'get_search_form', 'wpdocs_my_search_form' );
+
+// Add custom taxonomy "Rubriques"
+add_action( 'init', 'register_topic_taxonomy', 0 );
+function register_topic_taxonomy() {
+
+	// !Rubrique Taxonomy
+	$labels = array(
+		'name'							=> _x( 'Topics', 'taxonomy general name', 'my_plugin' ),
+		'singular_name'					=> _x( 'Topic', 'taxonomy singular name', 'my_plugin' ),
+		'menu_name'						=> _x( 'Topics', 'taxonomy general name', 'my_plugin' ),
+		'search_items'					=> __( 'Search Topics', 'my_plugin' ),
+		'popular_items'					=> __( 'Popular Topics', 'my_plugin' ),
+		'all_items'						=> __( 'All Topics', 'my_plugin' ),
+		'parent_item'					=> __( 'Parent Topic', 'my_plugin' ),
+		'parent_item_colon'				=> __( 'Parent Topic:', 'my_plugin' ),
+		'edit_item'						=> __( 'Edit Topic', 'my_plugin' ),
+		'view_item'						=> __( 'View Topic', 'my_plugin' ),
+		'update_item'					=> __( 'Update Topic', 'my_plugin' ),
+		'add_new_item'					=> __( 'Add New Topic', 'my_plugin' ),
+		'new_item_name'					=> __( 'New Topic Name', 'my_plugin' ),
+		'separate_items_with_commas' 	=> __( 'Separate topics with commas', 'my_plugin' ),
+		'add_or_remove_items'			=> __( 'Add or remove topics', 'my_plugin' ),
+		'choose_from_most_used'			=> __( 'Choose from the most used topics', 'my_plugin' ),
+		'not_found'						=> __( 'No topics found.', 'my_plugin' ),
+	);
+
+	$rewrite = array(
+		'slug'                       => 'rubrique',
+		'with_front'                 => true,
+		'hierarchical'               => false,
+	);
+
+	$args = array(
+		'labels'                     => $labels,
+		'hierarchical'               => true,
+		'public'                     => true,
+		'show_ui'                    => true,
+		'show_admin_column'          => true,
+		'show_in_nav_menus'          => true,
+		'show_tagcloud'              => true,
+		'rewrite'                    => $rewrite,
+	);
+	register_taxonomy( 'rubrique', array( 'post' ), $args );
+
+}
+
+add_filter( 'term_updated_messages', 'topic_taxonomy_messages' );
+function topic_taxonomy_messages( $messages ) {
+
+	$messages['rubrique'] = array(
+		0 => '', // Unused. Messages start at index 1.
+		1 => __( 'Topic added.', 'my_plugin' ),
+		2 => __( 'Topic deleted.', 'my_plugin' ),
+		3 => __( 'Topic updated.', 'my_plugin' ),
+		4 => __( 'Topic not added.', 'my_plugin' ),
+		5 => __( 'Topic not updated.', 'my_plugin' ),
+		6 => __( 'Topic deleted.', 'my_plugin' ),
+	);
+
+	return $messages;
+}
+
 // Only posts on search
 function think_search_filter($query){
     if($query->is_search){

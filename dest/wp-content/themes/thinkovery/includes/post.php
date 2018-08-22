@@ -9,9 +9,11 @@
         <?php } ?>
 
         <div class='wrapper-post-content'>
-            <header class='header-post'>
+            <h2><a href='<?php the_permalink(); ?>'><?php the_title(); ?></a></h2>
+            <footer class='footer-post'>
                 <time datetime='<?php echo get_the_date('Y-m-d'); ?>'><?php echo get_the_date(); ?></time>
                 <i><?php _e('in', 'thinkovery'); ?></i>
+                <?php the_taxonomies(); ?>
                 <?php $cats = get_the_category(); if($cats){
                     $countCats = count($cats);
                     $i = 0;
@@ -23,14 +25,7 @@
                         }
                     }
                 } ?>
-            </header>
-
-            <h2 class='animateOnScroll'><a href='<?php the_permalink(); ?>'><?php the_title(); ?></a></h2>
-            <?php if(get_field('intro')){ ?>
-                <?php the_field('intro'); ?>
-            <?php }else{
-                the_excerpt();
-            } ?>
+            </footer>
         </div>
 
     <?php }else{ ?>
