@@ -11,9 +11,6 @@
         <div class='wrapper-post-content'>
             <h2><a href='<?php the_permalink(); ?>'><?php the_title(); ?></a></h2>
             <footer class='footer-post'>
-                <time datetime='<?php echo get_the_date('Y-m-d'); ?>'><?php echo get_the_date(); ?></time>
-                <i><?php _e('in', 'thinkovery'); ?></i>
-                <?php the_taxonomies(); ?>
                 <?php $cats = get_the_category(); if($cats){
                     $countCats = count($cats);
                     $i = 0;

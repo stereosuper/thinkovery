@@ -70,8 +70,27 @@ function think_remove_top_menus( $wp_admin_bar ){
 }
 add_action( 'admin_bar_menu', 'think_remove_top_menus', 999 );
 
+// Add styles format to TinyMCE
+function think_button( $buttons ){
+    array_unshift( $buttons, 'styleselect' );
+    return $buttons;
+}
+add_filter( 'mce_buttons_2', 'think_button' );
+
 // Customize a bit the wysiwyg editor
 function think_mce_before_init( $styles ){
+    
+    // Add style formats
+    $style_formats = array(
+        array(
+            'title' => 'Styles H1',
+            'selector' => 'p',
+            //'block' => 'css-h1',
+            'classes' => 'h1',
+        ),
+    );
+    $styles['style_formats'] = json_encode( $style_formats );
+
     // Remove h1 and code
     $styles['block_formats'] = 'Paragraph=p;Heading 2=h2;Heading 3=h3;Heading 4=h4;Heading 5=h5;Heading 6=h6';
     return $styles;
@@ -150,23 +169,27 @@ add_filter( 'nav_menu_css_class', 'think_css_attributes_filter' );
 /*-----------------------------------------------------------------------------------*/
 /* Blog
 /*-----------------------------------------------------------------------------------*/
-/**
- * Generate custom search form
- *
- * @param string $form Form HTML.
- * @return string Modified form HTML.
-**/
-function wpdocs_my_search_form( $form ) {
-    $form = '<form role="search" method="get" id="searchform" class="searchform" action="' . home_url( '/' ) . '" >
-    <div><label class="screen-reader-text" for="s">' . __( 'Search for:' ) . '</label>
-    <input type="text" value="' . get_search_query() . '" name="s" id="s" />
-    <input type="submit" id="searchsubmit" value="'. esc_attr__( 'Search' ) .'" />
-    </div>
-    </form>';
- 
-    return $form;
-}
-add_filter( 'get_search_form', 'wpdocs_my_search_form' );
+function custom_blog_search( $query ) {
+    if ( is_search() && $query->is_main_query() ){
+        // Set category to query
+        if( !empty( $_GET['category'] ) ):  
+            $query->set('category_name', $_GET['category'] );
+        endif;
+
+        // Set topic to query
+        if( !empty( $_GET['topic'] ) ):  
+            $query->set('tax_query', array(
+                array(
+                    'taxonomy' => 'rubrique',
+                    'field'    => 'slug',
+                    'terms'    => $_GET['topic']
+                )
+            ));
+        endif;
+    }
+    return $query;
+ };
+add_filter('pre_get_posts', 'custom_blog_search');
 
 // Add custom taxonomy "Rubriques"
 add_action( 'init', 'register_topic_taxonomy', 0 );
@@ -174,23 +197,23 @@ function register_topic_taxonomy() {
 
 	// !Rubrique Taxonomy
 	$labels = array(
-		'name'							=> _x( 'Topics', 'taxonomy general name', 'my_plugin' ),
-		'singular_name'					=> _x( 'Topic', 'taxonomy singular name', 'my_plugin' ),
-		'menu_name'						=> _x( 'Topics', 'taxonomy general name', 'my_plugin' ),
-		'search_items'					=> __( 'Search Topics', 'my_plugin' ),
-		'popular_items'					=> __( 'Popular Topics', 'my_plugin' ),
-		'all_items'						=> __( 'All Topics', 'my_plugin' ),
-		'parent_item'					=> __( 'Parent Topic', 'my_plugin' ),
-		'parent_item_colon'				=> __( 'Parent Topic:', 'my_plugin' ),
-		'edit_item'						=> __( 'Edit Topic', 'my_plugin' ),
-		'view_item'						=> __( 'View Topic', 'my_plugin' ),
-		'update_item'					=> __( 'Update Topic', 'my_plugin' ),
-		'add_new_item'					=> __( 'Add New Topic', 'my_plugin' ),
-		'new_item_name'					=> __( 'New Topic Name', 'my_plugin' ),
-		'separate_items_with_commas' 	=> __( 'Separate topics with commas', 'my_plugin' ),
-		'add_or_remove_items'			=> __( 'Add or remove topics', 'my_plugin' ),
-		'choose_from_most_used'			=> __( 'Choose from the most used topics', 'my_plugin' ),
-		'not_found'						=> __( 'No topics found.', 'my_plugin' ),
+		'name'							=> _x( 'Topics', 'taxonomy general name', 'thinkovery' ),
+		'singular_name'					=> _x( 'Topic', 'taxonomy singular name', 'thinkovery' ),
+		'menu_name'						=> _x( 'Topics', 'taxonomy general name', 'thinkovery' ),
+		'search_items'					=> __( 'Search Topics', 'thinkovery' ),
+		'popular_items'					=> __( 'Popular Topics', 'thinkovery' ),
+		'all_items'						=> __( 'All Topics', 'thinkovery' ),
+		'parent_item'					=> __( 'Parent Topic', 'thinkovery' ),
+		'parent_item_colon'				=> __( 'Parent Topic:', 'thinkovery' ),
+		'edit_item'						=> __( 'Edit Topic', 'thinkovery' ),
+		'view_item'						=> __( 'View Topic', 'thinkovery' ),
+		'update_item'					=> __( 'Update Topic', 'thinkovery' ),
+		'add_new_item'					=> __( 'Add New Topic', 'thinkovery' ),
+		'new_item_name'					=> __( 'New Topic Name', 'thinkovery' ),
+		'separate_items_with_commas' 	=> __( 'Separate topics with commas', 'thinkovery' ),
+		'add_or_remove_items'			=> __( 'Add or remove topics', 'thinkovery' ),
+		'choose_from_most_used'			=> __( 'Choose from the most used topics', 'thinkovery' ),
+		'not_found'						=> __( 'No topics found.', 'thinkovery' ),
 	);
 
 	$rewrite = array(
@@ -218,12 +241,12 @@ function topic_taxonomy_messages( $messages ) {
 
 	$messages['rubrique'] = array(
 		0 => '', // Unused. Messages start at index 1.
-		1 => __( 'Topic added.', 'my_plugin' ),
-		2 => __( 'Topic deleted.', 'my_plugin' ),
-		3 => __( 'Topic updated.', 'my_plugin' ),
-		4 => __( 'Topic not added.', 'my_plugin' ),
-		5 => __( 'Topic not updated.', 'my_plugin' ),
-		6 => __( 'Topic deleted.', 'my_plugin' ),
+		1 => __( 'Topic added.', 'thinkovery' ),
+		2 => __( 'Topic deleted.', 'thinkovery' ),
+		3 => __( 'Topic updated.', 'thinkovery' ),
+		4 => __( 'Topic not added.', 'thinkovery' ),
+		5 => __( 'Topic not updated.', 'thinkovery' ),
+		6 => __( 'Topic deleted.', 'thinkovery' ),
 	);
 
 	return $messages;

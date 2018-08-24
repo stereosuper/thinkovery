@@ -34,7 +34,7 @@
 
 	<div class='container'>
 		<div class='grid blog-header'>
-			<div class='col-3 blog-params'>
+			<div class='col-3 search-params'>
 				<h1>
 					<?php the_field('blogTitle', 'options'); ?>
 				</h1>
@@ -90,15 +90,17 @@
 			</div>
 		</div>
 
-		<section class='grid posts-list'>
+		<section class='posts-list'>
 			<?php
 				if( $postsQuery->have_posts() ){
-					while ( $postsQuery->have_posts() ) {
-						$postsQuery->the_post();
-						echo "<div class='col-4 post-ratio-m'>";
-							require 'includes/post.php';
-						echo "</div>";
-					}
+					echo "<div class='grid'>";
+						while ( $postsQuery->have_posts() ) {
+							$postsQuery->the_post();
+							echo "<div class='col-4 post-ratio-m'>";
+								require 'includes/post.php';
+							echo "</div>";
+						}
+					echo "</div>";
 					echo "<div class='pagination'>";
 					echo paginate_links( array(
 						'total' => $postsQuery->max_num_pages,

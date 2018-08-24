@@ -58,7 +58,7 @@ textarea{
     height: 180px;
 }
 
-label{
+label:not(.screen-reader-text){
     position: absolute;
     top: 15px;
     left: 15px;
@@ -89,6 +89,11 @@ label + span, .mc4wp-alert > p{
 
 label + span, .mc4wp-error{
     color: #ca4444;
+}
+
+label.screen-reader-text{
+    position: absolute;
+    visibility: hidden;
 }
 
 legend{
