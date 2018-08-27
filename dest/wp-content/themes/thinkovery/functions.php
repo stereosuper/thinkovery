@@ -70,6 +70,11 @@ function think_remove_top_menus( $wp_admin_bar ){
 }
 add_action( 'admin_bar_menu', 'think_remove_top_menus', 999 );
 
+function concord_init_editor_styles(){
+    add_editor_style();
+}
+add_action( 'after_setup_theme', 'concord_init_editor_styles' );
+
 // Add styles format to TinyMCE
 function think_button( $buttons ){
     array_unshift( $buttons, 'styleselect' );
@@ -84,10 +89,39 @@ function think_mce_before_init( $styles ){
     $style_formats = array(
         array(
             'title' => 'Styles H1',
-            'selector' => 'p',
-            //'block' => 'css-h1',
+            'inline' => 'span',
             'classes' => 'h1',
         ),
+        array(
+            'title' => 'Styles H2',
+            'inline' => 'span',
+            'classes' => 'h2',
+        ),
+        array(
+            'title' => 'Styles H3',
+            'inline' => 'span',
+            'classes' => 'h3',
+        ),
+        array(
+            'title' => 'Styles H4',
+            'inline' => 'span',
+            'classes' => 'h4',
+        ),
+        array(
+            'title' => 'Styles H5',
+            'inline' => 'span',
+            'classes' => 'h5',
+        ),
+        array(
+            'title' => 'Styles H6',
+            'inline' => 'span',
+            'classes' => 'h6',
+        ),
+        array(
+            'title' => 'Text Indent',
+            'block' => 'p',
+            'classes' => 'text-indent'
+        )
     );
     $styles['style_formats'] = json_encode( $style_formats );
 
@@ -96,6 +130,18 @@ function think_mce_before_init( $styles ){
     return $styles;
 }
 add_filter( 'tiny_mce_before_init', 'think_mce_before_init' );
+
+function think_add_buttons( $plugin_array ) {
+    $plugin_array['think'] = get_template_directory_uri() . '/think-editor-buttons/think-plugin.js';
+    return $plugin_array;
+}
+add_filter( 'mce_external_plugins', 'think_add_buttons' );
+
+function think_register_buttons( $buttons ) {
+    array_push( $buttons, 'break', 'bckq' );
+    return $buttons;
+}
+add_filter( 'mce_buttons', 'think_register_buttons' );
 
 // Add Options Page
 if(function_exists('acf_add_options_page')){

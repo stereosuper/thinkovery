@@ -62,7 +62,7 @@ h2, .h2{
     }
 }
 
-h3{
+h3, .h3{
     margin: 1em 0;
     font-size: 3.2rem;
     font-weight: 600;
@@ -71,7 +71,7 @@ h3{
     line-height: 1.2;
 }
 
-h4{
+h4, .h4{
     margin: 1.8em 0 1em;
     font-size: 3rem;
     font-weight: 400;
@@ -80,7 +80,7 @@ h4{
     line-height: 1.2;
 }
 
-h5{
+h5, .h5{
     margin: 2em 0 1.2em;
     font-size: 2.4rem;
     font-weight: 400;
@@ -89,7 +89,7 @@ h5{
     color: $gray;
 }
 
-h6{
+h6, .h6{
     margin: 3.5em 0 1.5em;
     font-size: 1.4rem;
     line-height: 1.2;
@@ -118,7 +118,10 @@ h6{
 
 p{
     margin: 1em 0;
-    font-size: 1.8rem;
+    font-size: 2rem;
+    &.text-indent{
+        text-indent: 2rem;
+    }
 }
 
 b, strong{
@@ -126,11 +129,25 @@ b, strong{
 }
 
 blockquote{
+    position: relative;
     margin: 2.7em 0;
     font-size: 2.2rem;
     font-style: italic;
     color: $gray-light;
     line-height: 1.3;
+    .single-post &{
+        &:before{
+            content: '';
+            width: 4px;
+            position: absolute;
+            top: 5px;
+            bottom: 0;
+            left: -40px;
+            .page-template-default &{
+                display: none;
+            }
+        }
+    }
     > p{
         position: relative;
         &:before, &:after{
@@ -154,8 +171,8 @@ blockquote{
 
 ol, ul{
     padding: 0;
-    margin: 1em 0;
-    font-size: 1.8rem;
+    margin: 1em 1.3em;
+    font-size: 2rem;
     list-style-type: none;
     > li{
         margin: 3px 0;
@@ -173,6 +190,32 @@ ul{
             position: absolute;
             top: 12px;
             left: -2*$gutter;
+        }
+        ul{
+            margin-left: 2rem;
+            > li{
+                &:before{
+                    content: '-';
+                    width: 0;
+                    height: 0;
+                    border: none;
+                    top: 0;
+                }
+                ul{
+                    margin-left: 2rem;
+                    > li{
+                        &:before{
+                            content: '';
+                            width: 8px;
+                            height: 8px;
+                            border: 2px solid $gray !important;
+                            background-color: $gray;
+                            border-radius: 50%;
+                            top: 12px;
+                        }
+                    }
+                }
+            }
         }
     }
 }

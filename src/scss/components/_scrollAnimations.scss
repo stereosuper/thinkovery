@@ -24,7 +24,7 @@
     }
 }
 
-.study-content h2, .quote-cite, .post h2, .share-post ul, .related-posts ul, .intro{
+.study-content h2, .quote-cite, .post h2, .share-post ul, .related-posts ul, .intro, .blockquote-single-post{
 	&.animateOnScroll{
     	&:before{
     		transition: all 0.3s ease-out;

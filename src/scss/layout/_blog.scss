@@ -74,6 +74,9 @@
         }
         .col-6{
             padding-right: $gutter*2;
+            > :first-child{
+                margin-top: 0;
+            }
         }
         .col-5{
             padding-left: $gutter*2;
@@ -88,6 +91,9 @@
 .posts-list{
     .blog &{
         margin-top: $row*3;
+        > :first-child{
+            margin-top: 0;
+        }
     }
     .grid{
         justify-content: flex-start;

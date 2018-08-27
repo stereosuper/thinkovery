@@ -58,6 +58,7 @@
 
 		<div class='grid posts-select'>
 			<div class='col-6 post-ratio-xl'>
+				<p class='h3 h3-themed'><?php _e('Notre sélection', 'thinkovery'); ?></p>
 				<?php
 					$post = $postsFeatured[0];
 					require 'includes/post-featured.php';
@@ -91,6 +92,7 @@
 		</div>
 
 		<section class='posts-list'>
+			<p class='h3 h3-themed'><?php _e('Nos derniers articles', 'thinkovery'); ?></p>
 			<?php
 				if( $postsQuery->have_posts() ){
 					echo "<div class='grid'>";
