@@ -1033,6 +1033,46 @@ h1{
 }
 
 @media (max-width: $tablet){
+
+    .blog{
+        .search-params, .posts-pushes{
+            width: 50%;
+        }
+        .search-params{
+            padding-right: $gutter*3;
+        }
+        .posts-pushes{
+            flex-wrap: wrap;
+            padding-left: $gutter;
+            .posts-push{
+                width: 100%;
+                &:first-child{
+                    margin-right: 0;
+                    margin-bottom: $row;
+                }
+            }
+        }
+    }
+
+    .posts-list{
+        .grid{
+            justify-content: space-between;
+            > div{
+                width: calc(50% - 10px);
+                &:nth-child(3n -1){
+                    margin-left: 0;
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+
+    .post{
+        h2{
+            line-height: 1.33;
+        }
+    }
+
     /*.blog{
         h1{
             display: block;
@@ -1138,4 +1178,16 @@ h1{
             display: none;
         }
     }*/
+}
+
+@media (max-width: $phone-small){
+
+    .posts-list{
+        .grid{
+            > div{
+                width: 100%;
+            }
+        }
+    }
+
 }

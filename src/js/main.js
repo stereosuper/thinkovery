@@ -49,11 +49,16 @@ $(function(){
     var newsletterForm  = $('.newsletter-footer form');
     var newsletterInput = $('.newsletter-input');
 
-    newsletterInput.focus(function(){
-        $('.newsletter-input-hidden').not('.visible').addClass('visible');
-        setTimeout(function(){
-            window.scrollTo(0,document.body.scrollHeight);
-        },400);
+    newsletterInput.focus(function(field){
+        var formParent  = this.closest('.mc4wp-form');
+        var formConsent = $(formParent).find('.newsletter-input-hidden');
+
+        formConsent.not('.visible').addClass('visible');
+        if( $(formParent).is('#footer-newsletter-form') ){
+            setTimeout(function(){
+                window.scrollTo(0,document.body.scrollHeight);
+            },400);
+        }
     });
     body.on('click', function(event){
         if( newsletterForm.has(event.target).length == 0 && !newsletterForm.is(event.target) ){

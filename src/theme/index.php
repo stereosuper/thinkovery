@@ -66,6 +66,7 @@
 			</div>
 			<div class='col-5 blog-newsletter-mod'>
 				<p>Newsletter</p>
+				
 			</div>
 		</div>
 		<div class='grid posts-select'>

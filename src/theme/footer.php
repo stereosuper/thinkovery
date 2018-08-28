@@ -87,7 +87,7 @@
                     <div class='container'>
                         <div class='container-medium'>
                             <p><?php _e('Abonnez-vous à notre Newsletter. Garanti sans spam.', 'thinkovery'); ?></p>
-                            <?php echo do_shortcode('[mc4wp_form id="8558"]'); ?>
+                            <?php echo do_shortcode('[mc4wp_form id="8558" element_id="footer-newsletter-form"]'); ?>
                             <?php dynamic_sidebar( 'sidebar' ); ?>
                         </div>
                     </div>
