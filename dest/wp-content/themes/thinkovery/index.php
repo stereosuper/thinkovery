@@ -56,7 +56,7 @@
 			</div>
 		</div>
 
-		<div class='grid posts-select'>
+		<div class='grid posts-select posts-select-first'>
 			<div class='col-6 post-ratio-xl'>
 				<p class='h3 h3-themed'><?php _e('Notre sélection', 'thinkovery'); ?></p>
 				<?php
@@ -64,12 +64,27 @@
 					require 'includes/post-featured.php';
 				?>
 			</div>
-			<div class='col-5 blog-newsletter-mod'>
-				<p>Newsletter</p>
-				
+			<div class='col-5 stay-connected-mod'>
+				<div class='blog-newsletter-mod'>
+					<h3 class='h5'><?php _e('Inscrivez-vous à notre newsletter', 'thinkovery'); ?></h3>
+					<?php echo do_shortcode('[mc4wp_form id="8558"]'); ?>
+				</div>
+				<div class='networks-links'>
+					<h3 class='h5'><?php _e('Retrouvez-nous sur les réseaux sociaux', 'thinkovery'); ?></h3>
+					<?php if( have_rows('social', 'options') ): ?>
+                        <ul class=''>
+                            <?php while ( have_rows('social', 'options') ) : the_row(); ?><li>
+                                <a href='<?php the_sub_field('networkLink'); ?>' target='_blank' rel='noreferrer noopener' title='<?php the_sub_field('networkLinkTxt'); ?>'>
+									<?php the_sub_field('networkLinkTxt'); ?>
+									<svg class='icon icon-<?php the_sub_field('networkSlug'); ?>'><use xlink:href='#icon-<?php the_sub_field('networkSlug'); ?>'/></svg><i></i>
+                                </a>
+                            </li><?php endwhile; ?>
+                        </ul>
+                    <?php endif; ?>
+				</div>
 			</div>
 		</div>
-		<div class='grid posts-select'>
+		<div class='grid posts-select posts-select-second'>
 			<div class='grid col-6 container-tiny posts-s'>
 				<div class='col-3 post-ratio-s'>
 					<?php

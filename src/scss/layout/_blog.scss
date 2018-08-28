@@ -40,7 +40,7 @@
     &:before{
         content: '';
         display: block;
-        width: 3px;
+        width: 4px;
         height: calc(100% - 7.9rem);
         position: absolute;
         top: 0;
@@ -65,11 +65,14 @@
     }
 }
 .posts-select{
-    &:last-of-type{
+    &.posts-select-first{
+        align-items: flex-start;
+    }
+    &.posts-select-second{
         align-items: baseline;
     }
     .blog &{
-        &:last-of-type{
+        &.posts-select-second{
             margin-top: -$row;
         }
         .col-6{
@@ -109,6 +112,18 @@
     }
     [class*='col-']{
         padding: 0;
+    }
+}
+
+h1{
+    .search &{
+        span{
+            font-size: 1.8rem;
+            font-weight: normal;
+            font-style: italic;
+            letter-spacing: 0;
+            color: $black;
+        }
     }
 }
 
@@ -195,14 +210,61 @@
     }
 }
 
-h1{
-    .search &{
-        span{
-            font-size: 1.8rem;
-            font-weight: normal;
+.stay-connected-mod{
+    position: relative;
+    margin: 4px 0 0;
+    padding: $row $gutter*2 !important;
+    background-color: $white;
+    box-shadow: 0px 4px 39px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    &:before{
+        content: '';
+        display: block;
+        width: 100%;
+        height: 4px;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    h3{
+        margin-top: 0;
+        font-weight: initial;
+        color: $black;
+    }
+
+}
+
+.blog-newsletter-mod{
+    margin: 0 0 46px;
+    .newsletter-fields-inline{
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        .field{
+            min-width: 15.5rem;
+            margin-bottom: 4px;
+            margin-right: 7px;
             font-style: italic;
-            letter-spacing: 0;
-            color: $black;
+            color: $gray-supralight;
+        }
+        input[type=text],
+        input[type=email] {
+            width: auto;
+            max-width: 19rem;
+            border: 1px solid rgb(229, 229, 229);
+            box-shadow: none;
+        }
+    }
+    .newsletter-input-hidden {
+        position: relative;
+        max-height: 0;
+        overflow: hidden;
+        transition: $transition;
+        &.visible{
+            max-height: 200px;
+            margin: $row 0;
+            transition: $transition;
         }
     }
 }
@@ -441,7 +503,7 @@ h1{
     }
 }
 
-.wrapper-share-related{
+.wrapper-share-related, .networks-links{
     display: flex;
     margin: 5em 0;
     h4{
@@ -481,7 +543,7 @@ h1{
     }
 }
 
-.share-post{
+.share-post, .networks-links{
     width: $colSmall*4;
     ul{
         display: flex;
@@ -558,6 +620,17 @@ h1{
         }
     }
 }
+
+.networks-links{
+    display: block;
+    width: 100%;
+    margin: 0;
+    a{
+        width: 50px;
+        height: 50px;
+    }
+}
+
 /*.related-posts{
     width: $colSmall*5;
     margin: 0 $colSmall*-1 0 0;
@@ -853,6 +926,15 @@ h1{
 
 
 @media (max-width: $desktop){
+
+    .posts-select{
+        .blog &{
+            .col-5{
+                width: 50%;
+            }
+        }
+    }
+
     .single-post{
         .has-post-img{
             .container-small{
