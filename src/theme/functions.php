@@ -138,10 +138,36 @@ function think_add_buttons( $plugin_array ) {
 add_filter( 'mce_external_plugins', 'think_add_buttons' );
 
 function think_register_buttons( $buttons ) {
-    array_push( $buttons, 'break', 'bckq' );
+    array_push( $buttons, 'break', 'bckq', 'modNewsletter', 'modContact' );
     return $buttons;
 }
 add_filter( 'mce_buttons', 'think_register_buttons' );
+
+function think_mod_newsletter( $atts, $content = '' ) {
+    $mod_newsletter = "<div class='blog-newsletter-mod blog-mod'>
+    <h3 class='h5'>" . __('Inscrivez-vous à notre newsletter', 'thinkovery') . "</h3>"
+    . do_shortcode("[mc4wp_form id='8558']") ."</div>";
+
+    return $mod_newsletter;
+}
+add_shortcode( 'mod_newsletter', 'think_mod_newsletter' );
+
+function think_mod_contact( $atts, $content = '' ) {
+    $mod_contact_datas = get_field('blog_modContact','options');
+    
+    if( !empty($mod_contact_datas['blog_modContact_btnLink']) ):
+        $modContact_btnLabel = $mod_contact_datas['blog_modContact_btnLabel'] ? $mod_contact_datas['blog_modContact_btnLabel'] : __('Contactez-nous','thinkovery');
+        $mod_contact = "<div class='blog-contact-mod blog-mod'>
+                        <h3 class='h5'>" . $mod_contact_datas['blog_modContact_txt'] . "</h3>
+                        <a href='". $mod_contact_datas['blog_modContact_btnLink'] ."' title='". $modContact_btnLabel ."' class='btn btn-medium'>". $modContact_btnLabel ."<svg class='icon'><use xlink:href='#icon-arrow-right'/></svg><i></i></a>
+                        </div>";
+    else:
+        $mod_contact = '';
+    endif;
+
+    return $mod_contact;
+}
+add_shortcode( 'mod_contact', 'think_mod_contact' );
 
 // Add Options Page
 if(function_exists('acf_add_options_page')){
@@ -152,6 +178,12 @@ if(function_exists('acf_add_options_page')){
         'redirect'   => false
     ));
 
+    acf_add_options_sub_page(array(
+        'page_title'    => 'Blog Settings',
+        'menu_title'    => 'Blog',
+        'parent_slug'   => $optionsMainPage['menu_slug'],
+    ));
+    
     acf_add_options_sub_page(array(
         'page_title'    => 'Footer Settings',
         'menu_title'    => 'Footer',

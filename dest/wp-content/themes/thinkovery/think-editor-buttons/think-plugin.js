@@ -68,6 +68,26 @@
 
             });
 
+            editor.addButton('modNewsletter', {
+                title : 'Module Newsletter',
+                cmd : 'modNewsletter',
+                image : url + '/thumbnail_nwsl.png'
+            });
+
+            editor.addCommand('modNewsletter', function() {
+                editor.insertContent( '[mod_newsletter]' );
+            });
+
+            editor.addButton('modContact', {
+                title : 'Module Contact',
+                cmd : 'modContact',
+                image : url + '/thumbnail_cntct.png'
+            });
+
+            editor.addCommand('modContact', function() {
+                editor.insertContent( '[mod_contact]' );
+            });
+
         },
  
         /**

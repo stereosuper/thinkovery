@@ -59,6 +59,7 @@
         input[type=checkbox]:focus + label:after,
         .search-params:before,
         .stay-connected-mod:before,
+        .blog-mod:before,
         blockquote:before{
 			background-color: $colorprimary;
         }
