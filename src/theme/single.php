@@ -10,10 +10,13 @@
 			<article class='container <?php if( has_post_thumbnail() ){ ?>has-post-img<?php } ?>'>
 
 				<div class='container-small'>
-					<div class='grid single-header'>
-						<time datetime='<?php echo get_the_date('Y-m-d'); ?>' class='post-date'><?php echo get_the_date(); ?></time>
-						<div><?php the_terms( $post->ID, 'category' ); ?></div>
-						<?php the_author(); ?>
+					<div class='single-header'>
+							<?php _e('Le ', 'thinkovery'); ?>
+							<time datetime='<?php echo get_the_date('Y-m-d'); ?>' class='post-date'><?php echo get_the_date(); ?></time>
+							<?php _e('dans ', 'thinkovery'); ?>
+							<?php the_terms( $post->ID, 'category' ); ?>
+							<?php _e('par ', 'thinkovery'); ?>
+							<?php the_author(); ?>
 					</div>
 
 					<h1><?php the_title(); ?></h1>

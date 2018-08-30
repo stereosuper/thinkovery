@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Thinkovery\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-08-30 12:52+0000\n"
-"PO-Revision-Date: 2018-08-30 12:58+0000\n"
+"PO-Revision-Date: 2018-08-30 12:57+0000\n"
 "Last-Translator: adminThink <elisabeth@stereosuper.fr>\n"
 "Language-Team: French (France)\n"
 "Language: fr-FR\n"
@@ -125,7 +125,7 @@ msgstr ""
 
 #: index.php:62
 msgid "Notre sélection"
-msgstr "Notre sélection"
+msgstr "Our select"
 
 #: index.php:91
 msgid "Retrouvez-nous sur les réseaux sociaux"

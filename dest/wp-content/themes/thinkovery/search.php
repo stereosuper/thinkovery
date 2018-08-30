@@ -25,53 +25,53 @@
 	<?php if ( have_posts() ) : ?>
 	
 	<?php
-	global $wp_query;
-	$results = $wp_query->found_posts;
-	$displayResults = $results > 1 ? $results . ' ' . __('results for', 'thinkovery') : '1 ' . __('result for', 'thinkovery');
+		global $wp_query;
+		$results = $wp_query->found_posts;
+		$displayResults = $results > 1 ? $results . ' ' . __('results for', 'thinkovery') : '1 ' . __('result for', 'thinkovery');
 	?>
 	
 	<div class='grid search-header'>
-	<div class='col-3 search-params'>
-	<?php get_search_form(); ?>
-	</div>
-	<div class='col-8 container-small'>
-	<p class='subtitle'><?php echo $displayResults; ?> ...</p>
-	<h1><?php echo $search;?></h1>
-	</div>
+		<div class='col-3 search-params'>
+			<?php get_search_form(); ?>
+		</div>
+		<div class='col-8 container-small'>
+			<p class='h1 subtitle'><?php echo $displayResults; ?> ...</p>
+			<p><?php echo $search;?></p>
+		</div>
 	</div>
 	
 	<section class='posts-list'>
-	<div class='grid'>
-	<?php
-	global $countPost, $formatLink;
-	$countPost = 0;
-	while ( have_posts() ) :
-		the_post();
-		$formatLink = get_post_format() === 'link' ? true : false;
-		echo "<div class='col-4 post-ratio-m'>";
-		get_template_part('includes/post');
-		echo "</div>";
-		if(!$formatLink){
-			$countPost ++;
-		}
-	endwhile;
-	?>
-	</div>
-	<div class='pagination'>
-	<?php echo paginate_links( array( 'prev_text' => __('Previous page', 'thinkovery') . "<svg class='icon'><use xlink:href='#icon-arrow-left'/></svg>", 'next_text'  => __('Next page', 'thinkovery') . "<svg class='icon'><use xlink:href='#icon-arrow-right'/></svg>", 'end_size' => 2, 'mid_size' => 0 ) ); ?>
-	</div>
+		<div class='grid'>
+			<?php
+				global $countPost, $formatLink;
+				$countPost = 0;
+				while ( have_posts() ) :
+					the_post();
+					$formatLink = get_post_format() === 'link' ? true : false;
+					echo "<div class='col-4 post-ratio-m'>";
+					get_template_part('includes/post');
+					echo "</div>";
+					if(!$formatLink){
+						$countPost ++;
+					}
+				endwhile;
+			?>
+		</div>
+		<div class='pagination'>
+			<?php echo paginate_links( array( 'prev_text' => __('Previous page', 'thinkovery') . "<svg class='icon'><use xlink:href='#icon-arrow-left'/></svg>", 'next_text'  => __('Next page', 'thinkovery') . "<svg class='icon'><use xlink:href='#icon-arrow-right'/></svg>", 'end_size' => 2, 'mid_size' => 0 ) ); ?>
+		</div>
 	</section>
 	
 	<?php else : ?>
 	
 	<div class='grid search-header'>
-	<div class='col-3 search-params'>
-	<?php get_search_form(); ?>
-	</div>
-	<div class='col-8 container-small'>
-	<p class='subtitle'><?php echo __('No results for', 'thinkovery'); ?> ...</p>
-	<h1><?php echo $search; ?></h1>
-	</div>
+		<div class='col-3 search-params'>
+			<?php get_search_form(); ?>
+		</div>
+		<div class='col-8 container-small'>
+			<p class='h1 subtitle'><?php echo __('No results for', 'thinkovery'); ?> ...</p>
+			<h1 class='h5'><?php echo $search; ?></h1>
+		</div>
 	</div>
 	
 	<?php endif; ?>
