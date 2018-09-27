@@ -45,7 +45,7 @@
 								</li>
 							</ul>
 						</div>
-						<?php require 'includes/posts-related.php'; ?>
+						<?php include 'includes/posts-related.php'; ?>
 					</div>
 
 					<div class='comments'><?php comments_template(); ?></div>

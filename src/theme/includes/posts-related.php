@@ -1,8 +1,10 @@
 <?php
-	//global $post;
+	global $post;
 	$currentPost = $post;
-
+	//$categories = get_the_category($post->ID);
 	$categories = get_the_terms($post->ID, 'category');
+
+	//var_dump( $categories );
 
 	if ($categories) {
 
@@ -24,20 +26,23 @@
 		));
 
 		if ($relatedQuery->have_posts()) {
-			echo '<div class="related-posts">';
-				echo '<h4>' . __('Related Posts', 'thinkovery') . '</h4>';
-				echo '<div class="grid">';
-					while( $relatedQuery->have_posts() ) :  $relatedQuery->the_post();
-						echo "<div class='related-post post-ratio-m'>";
-							require 'post.php';
-						echo "</div>";
-					endwhile;
-				echo '</div>';
-			echo '</div>';
+			echo '<div class="related-posts"><h4>' . __('Related Posts', 'thinkovery') . '</h4><ul  class="animateOnScroll">';
+			while( $relatedQuery->have_posts() ) : $relatedQuery->the_post(); ?>
+				<li>
+					<a href='<?php the_permalink(); ?>'>
+						<?php if( has_post_thumbnail() ){ ?>
+							<div class='related-thumbnail' style='background-image: url(<?php the_post_thumbnail_url(); ?>)'></div>
+						<?php } ?>
+						<span class='title'><?php echo think_title_length(get_the_title()); ?></span>
+						<svg class='icon icon-arrow'><use xlink:href='#icon-arrow-right'/></svg>
+						<i></i>
+					</a>
+				</li>
+			<?php endwhile;
+			echo '</ul></div>';
 		}
-		wp_reset_query();
 	}
 
 	$post = $currentPost;
-	
+	wp_reset_query();
 ?>
