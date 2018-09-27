@@ -1,4 +1,5 @@
 (function() {
+
     tinymce.create('tinymce.plugins.THINKOVERY', {
         /**
          * Initializes the plugin, this will be executed after the plugin has been created.
@@ -55,7 +56,7 @@
                             value: ''
                         }],
                         onsubmit: function(e) {
-                            var quote = '<blockquote cite="'+e.data.source+'" class="blockquote-single-post animateOnScroll">';
+                            var quote = '<blockquote cite="'+e.data.source+'" class="blockquote-single-post">';
                             quote += e.data.quote;
                             if( e.data.cite !== '' ){
                                 quote += '<cite> &ndash; '+e.data.cite+'</cite>';
@@ -86,6 +87,37 @@
 
             editor.addCommand('modContact', function() {
                 editor.insertContent( '[mod_contact]' );
+            });
+
+            editor.addButton('ytb', {
+                title : 'Youtube video',
+                cmd : 'ytb',
+                image : url + '/thumbnail_ytb.png'
+            });
+
+            editor.addCommand('ytb', function() {
+                if( editor.selection.getContent() ){
+                    alert('You have to unselect text before insert a quote.');
+                }else{
+                    editor.windowManager.open({
+                        title: 'Youtube iframe',
+                        minWidth: 400,
+                        body: [
+                        {
+                            type: 'textbox',
+                            label: 'Iframe',
+                            name: 'frame',
+                            value: '',
+                            multiline: true
+                        }],
+                        onsubmit: function(e) {
+                            var ytbfrm = '<div class="youtube-container">';
+                            ytbfrm += e.data.frame;
+                            ytbfrm += '</div>';
+                            editor.execCommand('mceInsertContent', 0, ytbfrm);
+                        }   
+                    });
+                }
             });
 
         },

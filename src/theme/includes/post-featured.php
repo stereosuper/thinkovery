@@ -12,7 +12,16 @@
         <?php } ?>
 
         <div class='wrapper-post-content'>
-            <h2><a href='<?php the_permalink(); ?>'><?php the_title(); ?></a></h2>
+            <h2>
+                <a href='<?php the_permalink(); ?>'>
+                    <?php $postFeaturedTitle = get_the_title();
+                        if( strlen( $postFeaturedTitle ) > 180 ):
+                            echo substr( $postFeaturedTitle, 0, 180 ) . '...';
+                        else:
+                            echo $postFeaturedTitle;
+                        endif; ?>
+                </a>
+            </h2>
             <footer class='footer-post'>
                 <?php $cats = get_the_category(); if($cats){
                     $countCats = count($cats);

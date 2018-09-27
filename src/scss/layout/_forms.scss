@@ -285,6 +285,14 @@ select{
     }
 }
 
+.search-form{
+    button{
+        &[type=submit]{
+            box-shadow: inset 0 -1px 0 0 currentColor;
+        }
+    }
+}
+
 .form-search{
     position: relative;
     > input{
@@ -424,6 +432,17 @@ select{
             max-width: 350px;
             margin-right: 0;
             padding-right: 0;
+        }
+    }
+}
+
+
+@media (min-width: $phone){
+    .search-form{
+        button{
+            &[type=submit]{
+                margin-bottom: 83px;
+            }
         }
     }
 }

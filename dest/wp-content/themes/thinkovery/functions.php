@@ -70,10 +70,26 @@ function think_remove_top_menus( $wp_admin_bar ){
 }
 add_action( 'admin_bar_menu', 'think_remove_top_menus', 999 );
 
-function concord_init_editor_styles(){
+function think_init_editor_styles(){
     add_editor_style();
 }
-add_action( 'after_setup_theme', 'concord_init_editor_styles' );
+add_action( 'after_setup_theme', 'think_init_editor_styles' );
+
+// Allow iframe tag within posts
+function allow_post_tags( $allowedposttags ){
+    $allowedposttags['iframe'] = array(
+        'src' => true,
+        'width' => true,
+        'height' => true,
+        'class' => true,
+        'frameborder' => true,
+        'webkitAllowFullScreen' => true,
+        'mozallowfullscreen' => true,
+        'allowFullScreen' => true
+    );
+    return $allowedposttags;
+}
+add_filter('wp_kses_allowed_html','allow_post_tags', 1);
 
 // Add styles format to TinyMCE
 function think_button( $buttons ){
@@ -138,7 +154,7 @@ function think_add_buttons( $plugin_array ) {
 add_filter( 'mce_external_plugins', 'think_add_buttons' );
 
 function think_register_buttons( $buttons ) {
-    array_push( $buttons, 'break', 'bckq', 'modNewsletter', 'modContact' );
+    array_push( $buttons, 'break', 'bckq', 'ytb', 'modNewsletter', 'modContact' );
     return $buttons;
 }
 add_filter( 'mce_buttons', 'think_register_buttons' );
@@ -159,7 +175,7 @@ function think_mod_contact( $atts, $content = '' ) {
         $modContact_btnLabel = $mod_contact_datas['blog_modContact_btnLabel'] ? $mod_contact_datas['blog_modContact_btnLabel'] : __('Contactez-nous','thinkovery');
         $mod_contact = "<div class='blog-contact-mod blog-mod'>
                         <h3 class='h5'>" . $mod_contact_datas['blog_modContact_txt'] . "</h3>
-                        <a href='". $mod_contact_datas['blog_modContact_btnLink'] ."' title='". $modContact_btnLabel ."' class='btn btn-medium'>". $modContact_btnLabel ."<svg class='icon'><use xlink:href='#icon-arrow-right'/></svg><i></i></a>
+                        <a href='". $mod_contact_datas['blog_modContact_btnLink'] ."' title='". $modContact_btnLabel ."' class='btn btn-medium'>". $modContact_btnLabel ."&nbsp;<svg class='icon'><use xlink:href='#icon-arrow-right'/></svg><i></i></a>
                         </div>";
     else:
         $mod_contact = '';

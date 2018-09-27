@@ -11,12 +11,15 @@
 
 				<div class='container-small'>
 					<div class='single-header'>
-							<?php _e('Le ', 'thinkovery'); ?>
-							<time datetime='<?php echo get_the_date('Y-m-d'); ?>' class='post-date'><?php echo get_the_date(); ?></time>
-							<?php _e('dans ', 'thinkovery'); ?>
+						<p>
+							<a href="<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>" title='<?php _e('Blog ', 'thinkovery'); ?>'><?php _e('Blog ', 'thinkovery'); ?></a>
+							<span class='breadcrumb-separator'> > </span>
 							<?php the_terms( $post->ID, 'category' ); ?>
-							<?php _e('par ', 'thinkovery'); ?>
-							<?php the_author(); ?>
+						</p>
+						<p><?php _e('Publié le ', 'thinkovery'); ?>
+						<time datetime='<?php echo get_the_date('Y-m-d'); ?>' class='post-date'><?php echo get_the_date(); ?></time>
+						<?php _e('par ', 'thinkovery'); ?>
+						<span><?php the_author(); ?></span></p>
 					</div>
 
 					<h1><?php the_title(); ?></h1>
@@ -42,9 +45,8 @@
 								</li>
 							</ul>
 						</div>
+						<?php require 'includes/posts-related.php'; ?>
 					</div>
-
-					<?php require 'includes/posts-related.php'; ?> 
 
 					<div class='comments'><?php comments_template(); ?></div>
 

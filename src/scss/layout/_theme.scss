@@ -36,7 +36,8 @@
         .contact-main > h2,
         .select > .icon,
         .bloc-success h2,
-        input[type=checkbox]:focus + label{
+        input[type=checkbox]:focus + label,
+        .breadcrumb-separator{
         	color: $colorprimary;
         }
 
@@ -59,8 +60,7 @@
         input[type=checkbox]:focus + label:after,
         .search-params:before,
         .stay-connected-mod:before,
-        .blog-mod:before,
-        blockquote:before{
+        .blog-mod:before{
 			background-color: $colorprimary;
         }
 

@@ -63,6 +63,12 @@
     &:first-child{
         margin-right: $gutter*2;
     }
+    //h2{
+    //    height: 90px;
+    //}
+    .wrapper-post-content{
+        height: 116px;
+    }
 }
 
 .posts-select{
@@ -88,7 +94,7 @@
 }
 .posts-list{
     .blog &{
-        margin-top: $row*3;
+        margin-top: $row*2;
         > :first-child{
             margin-top: 0;
         }
@@ -145,6 +151,13 @@ h1{
         width: 100%;
         height: 100%;
         object-fit: cover;
+    }
+    .post-ratio-newsletter-mod &{
+        &:before{
+            content: '';
+            display: block;
+            padding-top: 303px;
+        }
     }
     .post-ratio-xl &{
         &:before{
@@ -252,8 +265,8 @@ h1{
     &:before{
         content: '';
         display: block;
-        width: 4px;
-        height: 100%;
+        width: 100%;
+        height: 4px;
         position: absolute;
         top: 0;
         left: 0;
@@ -312,7 +325,7 @@ h1{
         margin: 0;
     }
     .btn{
-        width: 36rem;
+        min-width: 26rem;
         margin-left: $gutter*4;
     }
 }
@@ -324,7 +337,6 @@ h1{
         font-size: 4.5rem;
         letter-spacing: 0;
         font-weight: 700;
-        margin-top: 0.2em;
         margin-bottom: 1.6em;
     }
     h2, h3{
@@ -344,7 +356,7 @@ h1{
         padding-top: 0;
         margin-top: -135px;
         .container-small{
-            padding-top: 48px;
+            padding-top: 12px;
             z-index: 1;
             position: relative;
             &:before{
@@ -363,13 +375,22 @@ h1{
         }
     }
 }
-.post-date{
-    display: block;
-    margin: 2em 0 0;
-    font-size: 2.2rem;
-    color: rgb(87, 95, 98);
+.single-header{
+    p{
+        margin: 0;
+        font-size: 0.9em;
+        &:first-child{
+            font-weight: 600;
+        }
+    }
+    .post-date, span{
+        font-size: 1.2em;
+        font-weight: 600;
+    }
+    .breadcrumb-separator{
+        margin: 0 2px;
+    }
 }
-
 .bloc-top-img{
     max-height: 85vh;
     overflow: hidden;
@@ -875,8 +896,15 @@ h1{
     }
 }
 
-@media (max-width: $desktop-small){
+@media (min-width: $desktop-small){
+    .blog-header{
+        .blog &{
+            align-items: flex-end;
+        }
+    }
+}
 
+@media (max-width: $desktop-small){
     .blog{
         .search-params{
             width: 50%;
@@ -903,7 +931,6 @@ h1{
         .has-post-img{
             margin-top: 0;
             .container-small{
-                padding-top: 40px;
                 &:before{
                     top: 10px;
                     left: 0;

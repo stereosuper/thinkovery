@@ -135,19 +135,6 @@ blockquote{
     font-style: italic;
     color: $gray-light;
     line-height: 1.3;
-    .single-post &{
-        &:before{
-            content: '';
-            width: 4px;
-            position: absolute;
-            top: 5px;
-            bottom: 0;
-            left: -40px;
-            .page-template-default &{
-                display: none;
-            }
-        }
-    }
     > p{
         position: relative;
         &:before, &:after{
@@ -345,6 +332,24 @@ a{
     width: 1.2em;
     height: 1.2em;
     fill: currentColor;
+}
+
+.youtube-container{
+    position: relative;
+    &:before {
+        content: "";
+        display: block;
+        padding-bottom: 56.25%;
+    }
+    iframe{
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+    }
 }
 
 

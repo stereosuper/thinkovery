@@ -32,7 +32,7 @@
 	<label class='screen-reader-text' for='s'><?php _e('Mot clé', 'thinkovery'); ?></label>
 	<input type='text' name='s' id='s' value='<?php echo trim(get_search_query()); ?>' placeholder='<?php _e('Mot clé', 'thinkovery'); ?>'>
     
-	<button type='submit' class='btn btn-medium'>
+	<button type='submit' class='btn-small'>
 		<?php _e('Filtrer', 'thinkovery'); ?><svg class='icon'><use xlink:href='#icon-arrow-right'/></svg><i></i>
 	</button>
 	

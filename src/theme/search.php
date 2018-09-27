@@ -1,3 +1,5 @@
+<?php get_header(); ?>
+
 <?php
 	// Create notification result
 	if( !empty( get_search_query() ) ):
@@ -17,9 +19,7 @@
 		$search .= '&nbsp;»';
 	endif;
 ?>
-	
-	<?php get_header(); ?>
-	
+
 	<div class='container'>
 	
 	<?php if ( have_posts() ) : ?>

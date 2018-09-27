@@ -1,23 +1,28 @@
-<?php
-	// Get 2 last posts
-	$postsLastQuery = wp_get_recent_posts( array(
-		'numberposts' => 2,
-		'post_status' => 'publish',
-		'meta_key' => '_thumbnail_id'
-	) );
-	$postsLast = [ json_decode(json_encode($postsLastQuery[0]), FALSE), json_decode(json_encode($postsLastQuery[1]), FALSE)];
-	$postsLastIds = [ $postsLast[0]->ID, $postsLast[1]->ID ];
+<?php get_header(); ?>
 
-	// Get all featured posts
-	$postsFeaturedIDs   = get_field('blogPosts_featured', 'options');
-	$postsFeaturedQuery = new WP_Query( array(
-		'post__in' => $postsFeaturedIDs
-	) );
-	$postsFeatured = $postsFeaturedQuery->posts;
-	wp_reset_postdata();
+<?php
+	$paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
+
+	if( $paged <= 1 ):
+		// Get 2 last posts
+		$postsLastQuery = wp_get_recent_posts( array(
+			'numberposts' => 2,
+			'post_status' => 'publish',
+			'meta_key' => '_thumbnail_id'
+		) );
+		$postsLast = [ json_decode(json_encode($postsLastQuery[0]), FALSE), json_decode(json_encode($postsLastQuery[1]), FALSE)];
+		$postsLastIds = [ $postsLast[0]->ID, $postsLast[1]->ID ];
+
+		// Get all featured posts
+		$postsFeaturedIDs   = get_field('blogPosts_featured', 'options');
+		$postsFeaturedQuery = new WP_Query( array(
+			'post__in' => $postsFeaturedIDs
+		) );
+		$postsFeatured = $postsFeaturedQuery->posts;
+		wp_reset_postdata();
+	endif;
 
 	// Get posts list
-	$paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
 	$postsQuery = new WP_Query( array(
 		'post_type' => 'post',
 		'post__not_in' => $postsFeaturedIDs,
@@ -26,89 +31,90 @@
 		'meta_key' => '_thumbnail_id'
 	) );
 	$posts = $postsQuery->posts;
-	//wp_reset_postdata();
-
+	wp_reset_postdata();
 ?>
 
-<?php get_header(); ?>
-
 	<div class='container'>
-		<div class='grid blog-header'>
-			<div class='col-3 search-params'>
-				<h1>
-					<?php the_field('blogTitle', 'options'); ?>
-				</h1>
-				<?php get_search_form(); ?>
-			</div>
-			<div class='col-8 container-small posts-pushes'>
-				<div class='col-4 posts-push post-ratio-m'>
-					<?php
-						$post = $postsLast[0];
-						require 'includes/post-featured.php';
-					?>
+		<?php if( $paged <= 1 ): ?>
+			<div class='grid blog-header'>
+				<div class='col-3 search-params'>
+					<h1>
+						<?php the_field('blogTitle', 'options'); ?>
+					</h1>
+					<?php get_search_form(); ?>
 				</div>
-				<div class='col-4 posts-push post-ratio-m'>
-					<?php
-						$post = $postsLast[1];
-						require 'includes/post-featured.php';
-					?>
-				</div>
-			</div>
-		</div>
-
-		<div class='grid posts-select'>
-			<div class='col-6 col-left'>
-				<div class='post-ratio-xl'>
-					<p class='h3 h3-themed'><?php _e('Notre sélection', 'thinkovery'); ?></p>
-					<?php
-						$post = $postsFeatured[0];
-						require 'includes/post-featured.php';
-					?>
-				</div>
-				<div class='grid container-tiny posts-s'>
-					<div class='col-3 post-ratio-s'>
+				<div class='col-8 container-small posts-pushes'>
+					<div class='col-4 posts-push post-ratio-m'>
 						<?php
-							$post = $postsFeatured[1];
+							$post = $postsLast[0];
 							require 'includes/post-featured.php';
 						?>
 					</div>
-					<div class='col-3 post-ratio-s'>
+					<div class='col-4 posts-push post-ratio-m'>
 						<?php
-							$post = $postsFeatured[2];
+							$post = $postsLast[1];
 							require 'includes/post-featured.php';
 						?>
 					</div>
 				</div>
 			</div>
+		<?php endif; ?>
 
-			<div class='col-5 col-right'>
-				<div class='stay-connected-mod'>
-					<div class='blog-newsletter-mod'>
-						<h3 class='h5'><?php _e('Inscrivez-vous à notre newsletter', 'thinkovery'); ?></h3>
-						<?php echo do_shortcode('[mc4wp_form id="8558"]'); ?>
+		<?php if( $paged <= 1 ): ?>
+			<p class='h3 h3-themed'><?php _e('Notre sélection', 'thinkovery'); ?></p>
+			<div class='grid posts-select'>
+				<div class='col-6 col-left'>
+					<div class='post-ratio-newsletter-mod'>
+						<?php
+							$post = $postsFeatured[0];
+							require 'includes/post-featured.php';
+						?>
 					</div>
-					<div class='networks-links'>
-						<h3 class='h5'><?php _e('Retrouvez-nous sur les réseaux sociaux', 'thinkovery'); ?></h3>
-						<?php if( have_rows('social', 'options') ): ?>
-							<ul class=''>
-								<?php while ( have_rows('social', 'options') ) : the_row(); ?><li>
-									<a href='<?php the_sub_field('networkLink'); ?>' target='_blank' rel='noreferrer noopener' title='<?php the_sub_field('networkLinkTxt'); ?>'>
-										<?php the_sub_field('networkLinkTxt'); ?>
-										<svg class='icon icon-<?php the_sub_field('networkSlug'); ?>'><use xlink:href='#icon-<?php the_sub_field('networkSlug'); ?>'/></svg><i></i>
-									</a>
-								</li><?php endwhile; ?>
-							</ul>
-						<?php endif; ?>
+					<div class='grid container-tiny posts-s'>
+						<div class='col-3 post-ratio-s'>
+							<?php
+								$post = $postsFeatured[1];
+								require 'includes/post-featured.php';
+							?>
+						</div>
+						<div class='col-3 post-ratio-s'>
+							<?php
+								$post = $postsFeatured[2];
+								require 'includes/post-featured.php';
+							?>
+						</div>
 					</div>
 				</div>
-				<div class='post-ratio-l'>
-					<?php
-						$post = $postsFeatured[3];
-						require 'includes/post-featured.php';
-					?>
+
+				<div class='col-5 col-right'>
+					<div class='stay-connected-mod'>
+						<div class='blog-newsletter-mod'>
+							<h3 class='h5'><?php _e('Inscrivez-vous à notre newsletter', 'thinkovery'); ?></h3>
+							<?php echo do_shortcode('[mc4wp_form id="8558"]'); ?>
+						</div>
+						<div class='networks-links'>
+							<h3 class='h5'><?php _e('Retrouvez-nous sur les réseaux sociaux', 'thinkovery'); ?></h3>
+							<?php if( have_rows('social', 'options') ): ?>
+								<ul class=''>
+									<?php while ( have_rows('social', 'options') ) : the_row(); ?><li>
+										<a href='<?php the_sub_field('networkLink'); ?>' target='_blank' rel='noreferrer noopener' title='<?php the_sub_field('networkLinkTxt'); ?>'>
+											<?php the_sub_field('networkLinkTxt'); ?>
+											<svg class='icon icon-<?php the_sub_field('networkSlug'); ?>'><use xlink:href='#icon-<?php the_sub_field('networkSlug'); ?>'/></svg><i></i>
+										</a>
+									</li><?php endwhile; ?>
+								</ul>
+							<?php endif; ?>
+						</div>
+					</div>
+					<div class='post-ratio-l'>
+						<?php
+							$post = $postsFeatured[3];
+							require 'includes/post-featured.php';
+						?>
+					</div>
 				</div>
 			</div>
-		</div>
+	<?php endif; ?>
 		<!--<div class='grid posts-select posts-select-second'>
 			<div class='grid col-6 container-tiny posts-s'>
 				<div class='col-3 post-ratio-s'>
