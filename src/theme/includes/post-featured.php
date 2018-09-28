@@ -15,8 +15,8 @@
             <h2>
                 <a href='<?php the_permalink(); ?>'>
                     <?php $postFeaturedTitle = get_the_title();
-                        if( strlen( $postFeaturedTitle ) > 180 ):
-                            echo substr( $postFeaturedTitle, 0, 180 ) . '...';
+                        if( strlen( $postFeaturedTitle ) > 168 ):
+                            echo substr( $postFeaturedTitle, 0, 168 ) . '...';
                         else:
                             echo $postFeaturedTitle;
                         endif; ?>

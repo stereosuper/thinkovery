@@ -63,12 +63,9 @@
     &:first-child{
         margin-right: $gutter*2;
     }
-    //h2{
-    //    height: 90px;
-    //}
-    .wrapper-post-content{
+    /*.wrapper-post-content{
         height: 116px;
-    }
+    }*/
 }
 
 .posts-select{
@@ -130,8 +127,9 @@ h1{
 
 .post{
     h2{
-        font-size: 15px;
-        line-height: 2;
+        height: 100px;
+        font-size: 17px;
+        line-height: 1.8;
         a{
             color: $gray;
             box-shadow: none;

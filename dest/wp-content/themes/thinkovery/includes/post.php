@@ -9,7 +9,16 @@
         <?php } ?>
 
         <div class='wrapper-post-content'>
-            <h2><a href='<?php the_permalink(); ?>'><?php the_title(); ?></a></h2>
+            <h2>
+                <a href='<?php the_permalink(); ?>'>
+                    <?php $postTitle = get_the_title();
+                        if( strlen( $postTitle ) > 168 ):
+                            echo substr( $postTitle, 0, 168 ) . '...';
+                        else:
+                            echo $postTitle;
+                        endif; ?>
+                </a>
+            </h2>
             <footer class='footer-post'>
                 <?php $cats = get_the_category(); if($cats){
                     $countCats = count($cats);

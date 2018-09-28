@@ -25,7 +25,7 @@
 	// Get posts list
 	$postsQuery = new WP_Query( array(
 		'post_type' => 'post',
-		'post__not_in' => $postsFeaturedIDs,
+		'post__not_in' => array_merge($postsLastIds, $postsFeaturedIDs),
 		'posts_per_page' => 6,
 		'paged' => $paged,
 		'meta_key' => '_thumbnail_id'
@@ -61,7 +61,7 @@
 		<?php endif; ?>
 
 		<?php if( $paged <= 1 ): ?>
-			<p class='h3 h3-themed'><?php _e('Notre sélection', 'thinkovery'); ?></p>
+			<p class='h2 h2-themed'><?php _e('Notre sélection', 'thinkovery'); ?></p>
 			<div class='grid posts-select'>
 				<div class='col-6 col-left'>
 					<div class='post-ratio-newsletter-mod'>
