@@ -93,7 +93,7 @@
 							<?php echo do_shortcode('[mc4wp_form id="8558"]'); ?>
 						</div>
 						<div class='networks-links'>
-							<h3 class='h5'><?php _e('Retrouvez-nous sur les réseaux sociaux', 'thinkovery'); ?></h3>
+							<h3 class='h5'><?php _e('Suivez-nous !', 'thinkovery'); ?></h3>
 							<?php if( have_rows('social', 'options') ): ?>
 								<ul class=''>
 									<?php while ( have_rows('social', 'options') ) : the_row(); ?><li>

@@ -18,6 +18,10 @@
 						</p>
 						<p><?php _e('Publié le ', 'thinkovery'); ?>
 						<time datetime='<?php echo get_the_date('Y-m-d'); ?>' class='post-date'><?php echo get_the_date(); ?></time>
+						<?php if( get_the_modified_date() !== get_the_date() ): ?>
+							<?php _e(', mis à jour le ', 'thinkovery'); ?>
+							<time datetime='<?php echo get_the_modified_date('Y-m-d'); ?>' class='post-date'><?php echo get_the_modified_date(); ?></time>
+						<?php endif; ?>
 						<?php _e('par ', 'thinkovery'); ?>
 						<span><?php the_author(); ?></span></p>
 					</div>

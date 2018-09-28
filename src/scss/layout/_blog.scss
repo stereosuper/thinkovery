@@ -82,6 +82,11 @@
     .col-left{
         padding-right: $gutter*2;
     }
+    .col-right{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
 }
 
 .posts-s{
@@ -127,7 +132,6 @@ h1{
 
 .post{
     h2{
-        height: 100px;
         font-size: 17px;
         line-height: 1.8;
         a{
@@ -154,7 +158,7 @@ h1{
         &:before{
             content: '';
             display: block;
-            padding-top: 303px;
+            padding-top: 274px;
         }
     }
     .post-ratio-xl &{
@@ -757,9 +761,15 @@ h1{
 }
 
 .networks-links{
-    display: block;
     width: 100%;
     margin: 0;
+    padding: 26px 0 0;
+    align-items: center;
+    justify-content: flex-end;
+    border-top: 1px dashed $gray-supralight;
+    h3{
+        margin: 0 2*$gutter 0 0;
+    }
     a{
         width: 50px;
         height: 50px;
@@ -1256,6 +1266,14 @@ h1{
     }
 }
 
+@media (min-width: $phone-small){
+    .post{
+        h2{
+            height: 100px;
+        }
+    }
+}
+
 @media (max-width: $phone-small){
     .blog{
         .posts-pushes{
@@ -1290,4 +1308,5 @@ h1{
             }
         }
     }
+
 }
