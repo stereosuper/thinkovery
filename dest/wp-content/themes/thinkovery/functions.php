@@ -159,6 +159,76 @@ function think_register_buttons( $buttons ) {
 }
 add_filter( 'mce_buttons', 'think_register_buttons' );
 
+function think_mod_posts( $atts, $content = '' ) {
+
+    $atts = shortcode_atts( array(
+        'post1' => '',
+        'post2' => ''
+    ), $atts, 'mod_posts' );
+
+    $postsModIds = array( $atts['post1'], $atts['post2'] );
+
+    //var_dump( $postsModIds );
+
+    $postsModQuery = new WP_Query( array(
+        'post__in' => $postsModIds
+    ) );
+    /*echo "<pre>";
+        var_dump( $postsModQuery );
+    echo "</pre>";
+    die();*/
+    $mod_posts = "";
+    if ( $postsModQuery->have_posts() ) {
+        $mod_posts = "<div class='blog-posts-mod post-ratio-m'>";
+        while ( $postsModQuery->have_posts() ) {
+            $postsModQuery->the_post();
+            $mod_posts .= "<div class='post'>";
+                if( has_post_thumbnail() ){
+                    $mod_posts .= "<a href='". get_the_permalink() ."' class='wrapper-post-img'>";
+                        if( has_post_thumbnail() ){ 
+                            $mod_posts .= get_the_post_thumbnail(the_ID(), 'large');
+                        }
+                    $mod_posts .= "</a>";
+                }
+        
+                $mod_posts .= "<div class='wrapper-post-content'>";
+                    $mod_posts .= "<h2>";
+                        $mod_posts .= "<a href='". get_the_permalink() ."'>";
+                            $postTitle = get_the_title();
+                                if( strlen( $postTitle ) > 168 ):
+                                    $mod_posts .= substr( $postTitle, 0, 168 ) . '...';
+                                else:
+                                    $mod_posts .= $postTitle;
+                                endif;
+                        $mod_posts .= "</a>";
+                    $mod_posts .= "</h2>";
+                    $mod_posts .= "<footer class='footer-post'>";
+                        $cats = get_the_category(); 
+                        if($cats){
+                            $countCats = count($cats);
+                            $i = 0;
+                            foreach($cats as $cat){
+                                $i ++;
+                                $mod_posts .= "<a href='" . get_category_link($cat->term_id) . "'>" . $cat->cat_name . '</a>';
+                                if($i < $countCats){
+                                    $mod_posts .= ', ';
+                                }
+                            }
+                        }
+                    $mod_posts .= "</footer>";
+                $mod_posts .= "</div>";
+            $mod_posts .= '</div>';
+        }
+        $mod_posts .= "</div>";
+        wp_reset_postdata();
+    } else {
+        // no posts found
+    }
+
+    return $mod_posts;
+}
+add_shortcode( 'mod_posts', 'think_mod_posts' );
+
 function think_mod_newsletter( $atts, $content = '' ) {
     $mod_newsletter = "<div class='blog-newsletter-mod blog-mod'>
     <h3 class='h5'>" . __('Inscrivez-vous à notre newsletter', 'thinkovery') . "</h3>"

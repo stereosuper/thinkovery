@@ -275,6 +275,18 @@ h1{
     }
 }
 
+.blog-posts-mod{
+    display: flex;
+    .post{
+        width: 50%;
+    }
+    .single-post &{
+        h2{
+            margin-top: 0.8em;
+        }
+    }
+}
+
 .blog-newsletter-mod{
     position: relative;
     margin: 0 0 26px;

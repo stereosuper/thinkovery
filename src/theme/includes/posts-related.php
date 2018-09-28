@@ -1,10 +1,7 @@
 <?php
 	global $post;
 	$currentPost = $post;
-	//$categories = get_the_category($post->ID);
 	$categories = get_the_terms($post->ID, 'category');
-
-	//var_dump( $categories );
 
 	if ($categories) {
 
@@ -26,7 +23,7 @@
 		));
 
 		if ($relatedQuery->have_posts()) {
-			echo '<div class="related-posts"><h4>' . __('Related Posts', 'thinkovery') . '</h4><ul  class="animateOnScroll">';
+			echo '<div class="related-posts"><h4>' . __('Previous Posts', 'thinkovery') . '</h4><ul  class="animateOnScroll">';
 			while( $relatedQuery->have_posts() ) : $relatedQuery->the_post(); ?>
 				<li>
 					<a href='<?php the_permalink(); ?>'>
