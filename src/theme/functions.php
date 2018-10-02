@@ -154,71 +154,69 @@ function think_add_buttons( $plugin_array ) {
 add_filter( 'mce_external_plugins', 'think_add_buttons' );
 
 function think_register_buttons( $buttons ) {
-    array_push( $buttons, 'break', 'bckq', 'ytb', 'modNewsletter', 'modContact' );
+    array_push( $buttons, 'break', 'bckq', 'ytb', 'modNewsletter', 'modPosts', 'modContact' );
     return $buttons;
 }
 add_filter( 'mce_buttons', 'think_register_buttons' );
 
 function think_mod_posts( $atts, $content = '' ) {
 
-    $atts = shortcode_atts( array(
+    $attributes = shortcode_atts( array(
         'post1' => '',
         'post2' => ''
     ), $atts, 'mod_posts' );
 
-    $postsModIds = array( $atts['post1'], $atts['post2'] );
-
-    //var_dump( $postsModIds );
+    $postsModIds = array( $attributes['post1'], $attributes['post2'] );
 
     $postsModQuery = new WP_Query( array(
         'post__in' => $postsModIds
     ) );
-    /*echo "<pre>";
-        var_dump( $postsModQuery );
-    echo "</pre>";
-    die();*/
+
     $mod_posts = "";
     if ( $postsModQuery->have_posts() ) {
-        $mod_posts = "<div class='blog-posts-mod post-ratio-m'>";
-        while ( $postsModQuery->have_posts() ) {
-            $postsModQuery->the_post();
-            $mod_posts .= "<div class='post'>";
-                if( has_post_thumbnail() ){
-                    $mod_posts .= "<a href='". get_the_permalink() ."' class='wrapper-post-img'>";
-                        if( has_post_thumbnail() ){ 
-                            $mod_posts .= get_the_post_thumbnail(the_ID(), 'large');
-                        }
-                    $mod_posts .= "</a>";
-                }
-        
-                $mod_posts .= "<div class='wrapper-post-content'>";
-                    $mod_posts .= "<h2>";
-                        $mod_posts .= "<a href='". get_the_permalink() ."'>";
-                            $postTitle = get_the_title();
-                                if( strlen( $postTitle ) > 168 ):
-                                    $mod_posts .= substr( $postTitle, 0, 168 ) . '...';
-                                else:
-                                    $mod_posts .= $postTitle;
-                                endif;
+        $mod_posts = "<div class='blog-posts-mod blog-mod post-ratio-m'>";
+        $mod_posts .= "<h3 class='h5'>" . __('Articles liés', 'thinkovery') . "</h3>";
+            $mod_posts .= "<div class='blog-posts-mod-container'>";
+            while ( $postsModQuery->have_posts() ) {
+                $postsModQuery->the_post();
+                $mod_posts .= "<div class='post'>";
+                    if( has_post_thumbnail() ){
+                        $mod_posts .= "<a href='". get_the_permalink() ."' class='wrapper-post-img'>";
+                            if( has_post_thumbnail() ){ 
+                                $mod_posts .= get_the_post_thumbnail(get_the_ID(), 'large');
+                            }
                         $mod_posts .= "</a>";
-                    $mod_posts .= "</h2>";
-                    $mod_posts .= "<footer class='footer-post'>";
-                        $cats = get_the_category(); 
-                        if($cats){
-                            $countCats = count($cats);
-                            $i = 0;
-                            foreach($cats as $cat){
-                                $i ++;
-                                $mod_posts .= "<a href='" . get_category_link($cat->term_id) . "'>" . $cat->cat_name . '</a>';
-                                if($i < $countCats){
-                                    $mod_posts .= ', ';
+                    }
+            
+                    $mod_posts .= "<div class='wrapper-post-content'>";
+                        $mod_posts .= "<h2>";
+                            $mod_posts .= "<a href='". get_the_permalink() ."'>";
+                                $postTitle = get_the_title();
+                                    if( strlen( $postTitle ) > 168 ):
+                                        $mod_posts .= substr( $postTitle, 0, 168 ) . '...';
+                                    else:
+                                        $mod_posts .= $postTitle;
+                                    endif;
+                            $mod_posts .= "</a>";
+                        $mod_posts .= "</h2>";
+                        $mod_posts .= "<footer class='footer-post'>";
+                            $cats = get_the_category(); 
+                            if($cats){
+                                $countCats = count($cats);
+                                $i = 0;
+                                foreach($cats as $cat){
+                                    $i ++;
+                                    $mod_posts .= "<a href='" . get_category_link($cat->term_id) . "'>" . $cat->cat_name . '</a>';
+                                    if($i < $countCats){
+                                        $mod_posts .= ', ';
+                                    }
                                 }
                             }
-                        }
-                    $mod_posts .= "</footer>";
-                $mod_posts .= "</div>";
-            $mod_posts .= '</div>';
-        }
+                        $mod_posts .= "</footer>";
+                    $mod_posts .= "</div>";
+                $mod_posts .= '</div>';
+            }
+            $mod_posts .= "</div>";
         $mod_posts .= "</div>";
         wp_reset_postdata();
     } else {

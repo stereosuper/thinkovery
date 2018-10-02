@@ -79,6 +79,16 @@
                 editor.insertContent( '[mod_newsletter]' );
             });
 
+            editor.addButton('modPosts', {
+                title : 'Module Posts',
+                cmd : 'modPosts',
+                image : url + '/thumbnail_posts.png'
+            });
+
+            editor.addCommand('modPosts', function() {
+                editor.insertContent( '[mod_posts post1="" post2=""]' );
+            });
+
             editor.addButton('modContact', {
                 title : 'Module Contact',
                 cmd : 'modContact',

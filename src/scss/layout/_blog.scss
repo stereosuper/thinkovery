@@ -276,9 +276,15 @@ h1{
 }
 
 .blog-posts-mod{
+    > :first-child{
+        margin-top: 0;
+    }
+}
+.blog-posts-mod-container{
     display: flex;
+    justify-content: space-between;
     .post{
-        width: 50%;
+        width: calc(50% - #{$gutter});
     }
     .single-post &{
         h2{
@@ -1122,6 +1128,14 @@ h1{
             margin-left: $col;
         }
     }
+
+    .blog-posts-mod-container{
+        .single-post &{
+            h2{
+                font-size: inherit;
+            }
+        }
+    }
 }
 
 @media (max-width: $tablet){
@@ -1313,6 +1327,13 @@ h1{
             }
         }
     }
+    .blog-posts-mod-container{
+        flex-wrap: wrap;
+        .post{
+            width: 100%;
+            margin-bottom: 20px;
+        }
+    }
     .blog-newsletter-mod{
         .newsletter-fields-inline{
             .field{
@@ -1320,5 +1341,4 @@ h1{
             }
         }
     }
-
 }
