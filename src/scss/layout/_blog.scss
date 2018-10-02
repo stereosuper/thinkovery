@@ -275,6 +275,22 @@ h1{
     }
 }
 
+.blog-content-table-mod{
+    > :first-child{
+        margin-top: 0;
+    }
+    a{
+        display: table;
+        &.title_lvl3{
+            margin-top: $gutter/2;
+            margin-left: $gutter*2;
+            & + .title_lvl2{
+                margin-top: 20px;
+            }
+        }
+    }
+}
+
 .blog-posts-mod{
     > :first-child{
         margin-top: 0;

@@ -154,7 +154,7 @@ function think_add_buttons( $plugin_array ) {
 add_filter( 'mce_external_plugins', 'think_add_buttons' );
 
 function think_register_buttons( $buttons ) {
-    array_push( $buttons, 'break', 'bckq', 'ytb', 'modNewsletter', 'modPosts', 'modContact' );
+    array_push( $buttons, 'break', 'bckq', 'ytb', 'modNewsletter', 'modSummary', 'modPosts', 'modContact' );
     return $buttons;
 }
 add_filter( 'mce_buttons', 'think_register_buttons' );
@@ -456,6 +456,69 @@ function think_title_length( $title ){
     }
 }
 
+
+// Content table
+function replace_ca( $matches ){
+    return '<h'.$matches[1].$matches[2].' id="'.sanitize_title($matches[3]).'">'.$matches[3].'</h'.$matches[4].'>';
+}
+  
+// Filter content
+function add_anchor_to_title( $content ){   
+    if( is_singular('post') ){
+        global $post;
+        $pattern = "/<h([2-4])(.*?)>(.*?)<\/h([2-4])>/i";
+      
+        $content = preg_replace_callback($pattern, 'replace_ca', $content);
+        return $content;
+    }else{
+        return $content;
+    }
+}
+add_filter('the_content', 'add_anchor_to_title', 12);
+
+function automenu( $echo = false ){
+    global $post;
+    $obj = "<div class='blog-content-table-mod blog-mod'>";
+        $obj .= "<h3 class='h5'>" . __('Sommaire', 'thinkovery') . "</h3>";
+        $obj .= '<nav id="post-content-table">';
+        $original_content = $post->post_content;
+    
+        $patt = "/<h([2-4])(.*?)>(.*?)<\/h([2-4])>/i";
+        preg_match_all($patt, $original_content, $results);
+    
+        $lvl1 = 0;
+        $lvl2 = 0;
+        $lvl3 = 0;
+    
+        foreach ($results[3] as $k=> $r) {
+            switch($results[1][$k]){
+                case 2:
+                    $lvl1++;
+                    $niveau = '<span class="title_lvl">'.$lvl1.'/</span>';
+                    $lvl2 = 0;
+                    $lvl3 = 0;
+                    break;
+                case 3:
+                    $lvl2++;
+                    $niveau = '<span class="title_lvl">'.base_convert(($lvl2+9),10,36).'.</span>';
+                    $lvl3 = 0;
+                    break;
+                case 4:
+                    $lvl3++;
+                    $niveau = '<span class="title_lvl">'.$lvl3.')</span>';
+                    break;
+            }
+            $obj .= '<a href="#'.sanitize_title($r).'" class="title_lvl'.$results[1][$k].'">'.$niveau.$r.'</a>';
+        }
+        $obj .= '</nav>';
+    $obj .= '</div>';
+
+    if ( $echo )
+      echo $obj;
+    else
+      return $obj;
+}
+add_shortcode('mod_summary','automenu');
 
 /*-----------------------------------------------------------------------------------*/
 /* WP Rocket

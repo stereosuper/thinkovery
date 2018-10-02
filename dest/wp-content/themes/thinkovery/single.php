@@ -27,7 +27,6 @@
 					</div>
 
 					<h1><?php the_title(); ?></h1>
-
 					<?php if(get_field('intro')){ ?>
 					    <div class='intro animateOnScroll'><?php the_field('intro'); ?></div>
 					<?php } ?>
