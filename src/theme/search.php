@@ -32,6 +32,7 @@
 	
 	<div class='grid search-header'>
 		<div class='col-3 search-params'>
+			<a href='<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>' title='<?php the_field('blogTitle', 'options'); ?>' class='back-link-blog'><?php the_field('blogTitle', 'options'); ?></a>
 			<?php get_search_form(); ?>
 		</div>
 		<div class='col-8 container-small'>

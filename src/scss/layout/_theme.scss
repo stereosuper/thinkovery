@@ -60,7 +60,8 @@
         input[type=checkbox]:focus + label:after,
         .search-params:before,
         .stay-connected-mod:before,
-        .blog-mod:before{
+        .blog-mod:before,
+        .blog-mod:after{
 			background-color: $colorprimary;
         }
 

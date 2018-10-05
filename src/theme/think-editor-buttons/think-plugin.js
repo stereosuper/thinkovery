@@ -76,7 +76,26 @@
             });
 
             editor.addCommand('modNewsletter', function() {
-                editor.insertContent( '[mod_newsletter]' );
+                if( editor.selection.getContent() ){
+                    alert('You have to unselect text before insert a quote.');
+                }else{
+                    editor.windowManager.open({
+                        title: 'List ID',
+                        minWidth: 400,
+                        body: [
+                        {
+                            type: 'textbox',
+                            label: 'ID',
+                            name: 'listID',
+                            value: ''
+                        }],
+                        onsubmit: function(e) {
+                            var nwsl_shortcode = '[mod_newsletter id="'+ e.data.listID +'"]';
+                            editor.execCommand('mceInsertContent', 0, nwsl_shortcode);
+                        }   
+                    });
+                }
+                //editor.insertContent( '[mod_newsletter]' );
             });
 
             editor.addButton('modSummary', {

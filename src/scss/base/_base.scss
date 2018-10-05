@@ -336,6 +336,7 @@ a{
 
 .youtube-container{
     position: relative;
+    margin: 46px 0;
     &:before {
         content: "";
         display: block;
@@ -432,12 +433,12 @@ a{
         font-size: 2rem;
     }
 
-    p{
-        font-size: 1.4rem;
+    /*p{
+        font-size: 1.6rem;
     }
     ol, ul{
-        font-size: 1.4rem;
-    }
+        font-size: 1.8rem;
+    }*/
     blockquote{
         padding-left: 18px;
         > p{

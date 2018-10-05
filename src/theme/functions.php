@@ -175,7 +175,7 @@ function think_mod_posts( $atts, $content = '' ) {
     $mod_posts = "";
     if ( $postsModQuery->have_posts() ) {
         $mod_posts = "<div class='blog-posts-mod blog-mod post-ratio-m'>";
-        $mod_posts .= "<h3 class='h5'>" . __('Articles liés', 'thinkovery') . "</h3>";
+        $mod_posts .= "<p class='h3'>" . __('Articles liés', 'thinkovery') . "</p>";
             $mod_posts .= "<div class='blog-posts-mod-container'>";
             while ( $postsModQuery->have_posts() ) {
                 $postsModQuery->the_post();
@@ -228,9 +228,14 @@ function think_mod_posts( $atts, $content = '' ) {
 add_shortcode( 'mod_posts', 'think_mod_posts' );
 
 function think_mod_newsletter( $atts, $content = '' ) {
+
+    $attributes = shortcode_atts( array(
+        'id' => ''
+    ), $atts, 'mod_newsletter' );
+
     $mod_newsletter = "<div class='blog-newsletter-mod blog-mod'>
-    <h3 class='h5'>" . __('Inscrivez-vous à notre newsletter', 'thinkovery') . "</h3>"
-    . do_shortcode("[mc4wp_form id='8558']") ."</div>";
+    <p class='h3'>" . __('Inscrivez-vous à notre newsletter', 'thinkovery') . "</p>"
+    . do_shortcode("[mc4wp_form id='". $attributes['id'] ."']") ."</div>";
 
     return $mod_newsletter;
 }
@@ -242,7 +247,7 @@ function think_mod_contact( $atts, $content = '' ) {
     if( !empty($mod_contact_datas['blog_modContact_btnLink']) ):
         $modContact_btnLabel = $mod_contact_datas['blog_modContact_btnLabel'] ? $mod_contact_datas['blog_modContact_btnLabel'] : __('Contactez-nous','thinkovery');
         $mod_contact = "<div class='blog-contact-mod blog-mod'>
-                        <h3 class='h5'>" . $mod_contact_datas['blog_modContact_txt'] . "</h3>
+                        <p class='h3'>" . $mod_contact_datas['blog_modContact_txt'] . "</p>
                         <a href='". $mod_contact_datas['blog_modContact_btnLink'] ."' title='". $modContact_btnLabel ."' class='btn btn-medium'>". $modContact_btnLabel ."&nbsp;<svg class='icon'><use xlink:href='#icon-arrow-right'/></svg><i></i></a>
                         </div>";
     else:
@@ -479,8 +484,8 @@ add_filter('the_content', 'add_anchor_to_title', 12);
 function automenu( $echo = false ){
     global $post;
     $obj = "<div class='blog-content-table-mod blog-mod'>";
-        $obj .= "<h3 class='h5'>" . __('Sommaire', 'thinkovery') . "</h3>";
-        $obj .= '<nav id="post-content-table"><ol>';
+        $obj .= "<p class='h3'>" . __('Sommaire', 'thinkovery') . "</p>";
+        $obj .= '<nav class="post-content-table"><ol>';
             $original_content = $post->post_content;
         
             $patt = "/<h2(.*?)>(.*?)<\/h2>/i";
