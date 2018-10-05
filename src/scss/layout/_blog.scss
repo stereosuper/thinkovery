@@ -131,14 +131,26 @@ h1{
 }
 
 .post{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: 100%;
     h2{
         font-size: 17px;
-        line-height: 1.8;
+        //line-height: 1.8;
         a{
+            display: block;
             color: $gray;
             box-shadow: none;
+            @include multiLineEllipsis($lineHeight: 1.8em, $lineCount: 3, $bgColor: white);
         }
     }
+}
+.wrapper-post-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 2;
 }
 .wrapper-post-img{
     display: block;
@@ -278,16 +290,6 @@ h1{
 .blog-content-table-mod{
     > :first-child{
         margin-top: 0;
-    }
-    a{
-        display: table;
-        &.title_lvl3{
-            margin-top: $gutter/2;
-            margin-left: $gutter*2;
-            & + .title_lvl2{
-                margin-top: 20px;
-            }
-        }
     }
 }
 
@@ -1019,13 +1021,13 @@ h1{
 }
 
 @media (max-width: $desktop-small){
-    .blog{
+    .blog, .category{
         .search-params{
             width: 50%;
             padding-right: $gutter*2;
         }
         .posts-pushes{
-            width: 41.666667%;
+            width: 41.67%;
             flex-wrap: wrap;
             padding-left: 0;
             .posts-push{
@@ -1035,6 +1037,11 @@ h1{
                     margin-bottom: $row;
                 }
             }
+        }
+    }
+    .category-header{
+        > .container-small{
+            width: 41.67%;
         }
     }
 
@@ -1229,7 +1236,7 @@ h1{
 }
 
 @media (max-width: $phone){
-    .blog{
+    .blog, .category{
         .search-params, .posts-pushes{
             width: 100%;
         }
@@ -1244,7 +1251,7 @@ h1{
             }
         }
     }
-    .blog-header{
+    .blog-header, .category-header{
         flex-wrap: wrap;
     }
     .single-post{
@@ -1308,13 +1315,13 @@ h1{
     }
 }
 
-@media (min-width: $phone-small){
+/*@media (min-width: $phone-small){
     .post{
         h2{
             height: 100px;
         }
     }
-}
+}*/
 
 @media (max-width: $phone-small){
     .blog{

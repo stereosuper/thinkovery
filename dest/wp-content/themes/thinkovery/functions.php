@@ -466,7 +466,7 @@ function replace_ca( $matches ){
 function add_anchor_to_title( $content ){   
     if( is_singular('post') ){
         global $post;
-        $pattern = "/<h([2-4])(.*?)>(.*?)<\/h([2-4])>/i";
+        $pattern = "/<h([2])(.*?)>(.*?)<\/h([2])>/i";
       
         $content = preg_replace_callback($pattern, 'replace_ca', $content);
         return $content;
@@ -480,37 +480,16 @@ function automenu( $echo = false ){
     global $post;
     $obj = "<div class='blog-content-table-mod blog-mod'>";
         $obj .= "<h3 class='h5'>" . __('Sommaire', 'thinkovery') . "</h3>";
-        $obj .= '<nav id="post-content-table">';
-        $original_content = $post->post_content;
-    
-        $patt = "/<h([2-4])(.*?)>(.*?)<\/h([2-4])>/i";
-        preg_match_all($patt, $original_content, $results);
-    
-        $lvl1 = 0;
-        $lvl2 = 0;
-        $lvl3 = 0;
-    
-        foreach ($results[3] as $k=> $r) {
-            switch($results[1][$k]){
-                case 2:
-                    $lvl1++;
-                    $niveau = '<span class="title_lvl">'.$lvl1.'/</span>';
-                    $lvl2 = 0;
-                    $lvl3 = 0;
-                    break;
-                case 3:
-                    $lvl2++;
-                    $niveau = '<span class="title_lvl">'.base_convert(($lvl2+9),10,36).'.</span>';
-                    $lvl3 = 0;
-                    break;
-                case 4:
-                    $lvl3++;
-                    $niveau = '<span class="title_lvl">'.$lvl3.')</span>';
-                    break;
+        $obj .= '<nav id="post-content-table"><ol>';
+            $original_content = $post->post_content;
+        
+            $patt = "/<h2(.*?)>(.*?)<\/h2>/i";
+            preg_match_all($patt, $original_content, $results);
+
+            foreach ($results[2] as $key => $r) {
+                $obj .= '<li><a href="#'.sanitize_title($r).'" class="">'.$r.'</a></li>';
             }
-            $obj .= '<a href="#'.sanitize_title($r).'" class="title_lvl'.$results[1][$k].'">'.$niveau.$r.'</a>';
-        }
-        $obj .= '</nav>';
+        $obj .= '</ol></nav>';
     $obj .= '</div>';
 
     if ( $echo )

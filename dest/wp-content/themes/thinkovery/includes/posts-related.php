@@ -13,7 +13,7 @@
 		$relatedQuery = new WP_Query(array(
 			'category__in' => $categoryIds,
 			'post__not_in' => array($post->ID),
-			'posts_per_page' => 3,
+			'posts_per_page' => 2,
 			'tax_query' => array(array(
 				'taxonomy' => 'post_format',
 				'field' => 'slug',

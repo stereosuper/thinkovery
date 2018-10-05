@@ -13,13 +13,8 @@
 
         <div class='wrapper-post-content'>
             <h2>
-                <a href='<?php the_permalink(); ?>'>
-                    <?php $postFeaturedTitle = get_the_title();
-                        if( strlen( $postFeaturedTitle ) > 168 ):
-                            echo substr( $postFeaturedTitle, 0, 168 ) . '...';
-                        else:
-                            echo $postFeaturedTitle;
-                        endif; ?>
+                <a href='<?php the_permalink(); ?>' class='block-with-text'>
+                    <?php the_title(); ?>
                 </a>
             </h2>
             <footer class='footer-post'>
