@@ -101,6 +101,13 @@
         }
     }
 
+    .wrapper-post-img{
+        .theme-#{$color} &{
+            color: transparent;
+        }
+    }
+    
+
     @if ($color == green or $color == yellow){
         .theme-#{$color}{
             .btn i:before,

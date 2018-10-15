@@ -4,12 +4,12 @@
 
         <div class='grid category-header'>
 			<div class='col-3 search-params'>
-				<a href='<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>' title='<?php the_field('blogTitle', 'options'); ?>' class='back-link-blog'><?php the_field('blogTitle', 'options'); ?></a>
+				<a href='<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>' title='<?php the_field('blogTitle', 'options'); ?>' class='h1 back-link-blog'><?php the_field('blogTitle', 'options'); ?></a>
 				<?php get_search_form(); ?>
 			</div>
 			<div class='col-8 container-small'>
-                <p class='subtitle'><?php _e('Category', 'thinkovery'); ?>
-                <h1><?php echo single_cat_title(); ?></h1>
+                <!--<p class='subtitle'><?php _e('Category', 'thinkovery'); ?>-->
+                <h1 class='search-params-title'><?php echo single_cat_title(); ?></h1>
 			</div>
 		</div>
 

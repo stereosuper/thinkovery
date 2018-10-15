@@ -248,7 +248,7 @@ function think_mod_contact( $atts, $content = '' ) {
         $modContact_btnLabel = $mod_contact_datas['blog_modContact_btnLabel'] ? $mod_contact_datas['blog_modContact_btnLabel'] : __('Contactez-nous','thinkovery');
         $mod_contact = "<div class='blog-contact-mod blog-mod'>
                         <p class='h3'>" . $mod_contact_datas['blog_modContact_txt'] . "</p>
-                        <a href='". $mod_contact_datas['blog_modContact_btnLink'] ."' title='". $modContact_btnLabel ."' class='btn btn-medium'>". $modContact_btnLabel ."&nbsp;<svg class='icon'><use xlink:href='#icon-arrow-right'/></svg><i></i></a>
+                        <a href='". $mod_contact_datas['blog_modContact_btnLink'] ."' title='". $modContact_btnLabel ."' id='send-newletter-article-blog' class='btn btn-medium'>". $modContact_btnLabel ."&nbsp;<svg class='icon'><use xlink:href='#icon-arrow-right'/></svg><i></i></a>
                         </div>";
     else:
         $mod_contact = '';
@@ -464,7 +464,7 @@ function think_title_length( $title ){
 
 // Content table
 function replace_ca( $matches ){
-    return '<h'.$matches[1].$matches[2].' id="'.sanitize_title($matches[3]).'">'.$matches[3].'</h'.$matches[4].'>';
+    return '<h'.$matches[1].' id="'.sanitize_title($matches[3]).'">'.$matches[3].'</h'.$matches[4].'>';
 }
   
 // Filter content

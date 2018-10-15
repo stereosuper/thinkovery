@@ -115,31 +115,11 @@
 				</div>
 			</div>
 	<?php endif; ?>
-		<!--<div class='grid posts-select posts-select-second'>
-			<div class='grid col-6 container-tiny posts-s'>
-				<div class='col-3 post-ratio-s'>
-					<?php
-						$post = $postsFeatured[1];
-						require 'includes/post-featured.php';
-					?>
-				</div>
-				<div class='col-3 post-ratio-s'>
-					<?php
-						$post = $postsFeatured[2];
-						require 'includes/post-featured.php';
-					?>
-				</div>
-			</div>
-			<div class='col-5 post-ratio-l'>
-				<?php
-					$post = $postsFeatured[3];
-					require 'includes/post-featured.php';
-				?>
-			</div>
-		</div>-->
 
 		<section class='posts-list'>
-			<p class='h3 h3-themed'><?php _e('Nos derniers articles', 'thinkovery'); ?></p>
+			<?php if( $paged <= 1 ): ?>
+				<p class='h3 h3-themed'><?php _e('Nos derniers articles', 'thinkovery'); ?></p>
+			<?php endif; ?>
 			<?php
 				if( $postsQuery->have_posts() ){
 					echo "<div class='grid'>";
