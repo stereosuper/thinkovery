@@ -35,14 +35,15 @@
 ?>
 
 	<div class='container'>
-		<?php if( $paged <= 1 ): ?>
-			<div class='grid blog-header'>
-				<div class='col-3 search-params'>
-					<h1>
-						<?php the_field('blogTitle', 'options'); ?>
-					</h1>
-					<?php get_search_form(); ?>
-				</div>
+		
+		<div class='grid blog-header'>
+			<div class='col-3 search-params'>
+				<h1>
+					<?php the_field('blogTitle', 'options'); ?>
+				</h1>
+				<?php get_search_form(); ?>
+			</div>
+			<?php if( $paged <= 1 ): ?>
 				<div class='col-8 container-small posts-pushes'>
 					<div class='col-4 posts-push post-ratio-m'>
 						<?php
@@ -57,8 +58,13 @@
 						?>
 					</div>
 				</div>
-			</div>
-		<?php endif; ?>
+			<?php else: ?>
+				<div class='col-8 container-small'>
+					<?php require 'includes/mod-newsletter-blog-home.php'; ?>
+				</div>
+			<?php endif; ?>
+		</div>
+		
 
 		<?php if( $paged <= 1 ): ?>
 			<p class='h2 h2-themed'><?php _e('Notre sélection', 'thinkovery'); ?></p>
@@ -87,25 +93,7 @@
 				</div>
 
 				<div class='col-5 col-right'>
-					<div class='stay-connected-mod'>
-						<div class='blog-newsletter-mod'>
-							<h3 class='h5'><?php _e('Inscrivez-vous à notre newsletter', 'thinkovery'); ?></h3>
-							<?php echo do_shortcode('[mc4wp_form id="8558"]'); ?>
-						</div>
-						<div class='networks-links'>
-							<h3 class='h5'><?php _e('Suivez-nous !', 'thinkovery'); ?></h3>
-							<?php if( have_rows('social', 'options') ): ?>
-								<ul class=''>
-									<?php while ( have_rows('social', 'options') ) : the_row(); ?><li>
-										<a href='<?php the_sub_field('networkLink'); ?>' target='_blank' rel='noreferrer noopener' title='<?php the_sub_field('networkLinkTxt'); ?>'>
-											<?php the_sub_field('networkLinkTxt'); ?>
-											<svg class='icon icon-<?php the_sub_field('networkSlug'); ?>'><use xlink:href='#icon-<?php the_sub_field('networkSlug'); ?>'/></svg><i></i>
-										</a>
-									</li><?php endwhile; ?>
-								</ul>
-							<?php endif; ?>
-						</div>
-					</div>
+					<?php require 'includes/mod-newsletter-blog-home.php'; ?>
 					<div class='post-ratio-l'>
 						<?php
 							$post = $postsFeatured[3];
