@@ -26,6 +26,15 @@ function think_unregister_tags(){
 }
 add_action( 'init', 'think_unregister_tags' );
 
+remove_filter( 'the_content', 'wpautop' );
+/**
+ * Preserve linebreaks
+ */
+function preserve_linebreaks( $content ) {
+    $content = preg_replace("/\n\n+/", "<br />", $content);
+	return $content;
+}
+add_filter( 'the_content', 'preserve_linebreaks' , 99);
 
 /*-----------------------------------------------------------------------------------*/
 /* Clean WordPress head and remove some stuff for security
@@ -187,7 +196,6 @@ function think_mod_posts( $atts, $content = '' ) {
                             }
                         $mod_posts .= "</a>";
                     }
-            
                     $mod_posts .= "<div class='wrapper-post-content'>";
                         $mod_posts .= "<h2>";
                             $mod_posts .= "<a href='". get_the_permalink() ."'>";
@@ -531,5 +539,11 @@ function think_scripts(){
 	wp_enqueue_script( 'think-scripts', get_template_directory_uri() . '/js/main.js', array(), THINK_VERSION, true );
 }
 add_action( 'wp_enqueue_scripts', 'think_scripts' );
+
+
+/*-----------------------------------------------------------------------------------*/
+/* HELPERS
+/*-----------------------------------------------------------------------------------*/
+
 
 ?>

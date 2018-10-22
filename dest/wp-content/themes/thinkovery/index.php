@@ -38,9 +38,13 @@
 		
 		<div class='grid blog-header'>
 			<div class='col-3 search-params'>
-				<h1>
-					<?php the_field('blogTitle', 'options'); ?>
-				</h1>
+				<?php if( $paged <= 1 ): ?>
+					<h1>
+						<?php the_field('blogTitle', 'options'); ?>
+					</h1>
+				<?php else: ?>
+					<a href='<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>' title='<?php the_field('blogTitle', 'options'); ?>' class='h1 back-link-blog'><?php the_field('blogTitle', 'options'); ?></a>
+				<?php endif; ?>
 				<?php get_search_form(); ?>
 			</div>
 			<?php if( $paged <= 1 ): ?>

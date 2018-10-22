@@ -18,7 +18,7 @@
             });
 
             editor.addCommand('break', function() {
-                editor.insertContent('<br />');
+                editor.insertContent('<br class="blank" />');
             });
 
             editor.addButton('bckq', {
