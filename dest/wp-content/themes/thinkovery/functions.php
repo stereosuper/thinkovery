@@ -28,11 +28,24 @@ add_action( 'init', 'think_unregister_tags' );
 
 remove_filter( 'the_content', 'wpautop' );
 /**
- * Preserve linebreaks
+ * Transform empty paragraph to breakline <br>
  */
-function preserve_linebreaks( $content ) {
-    $content = preg_replace("/\n\n+/", "<br />", $content);
-	return $content;
+function preserve_linebreaks( $pee ) {
+    // Split up the contents into an array of strings, separated by double line breaks.
+    $pees = preg_split('/\n\s*\n/', $pee, -1, PREG_SPLIT_NO_EMPTY);
+
+    // Reset $pee prior to rebuilding.
+    $pee = '';
+
+    // Rebuild the content as a string, wrapping every bit with a <p>.
+    foreach ( $pees as $tinkle ) {
+        $pee .= '<p>' . trim( $tinkle, "\n" ) . "</p>\n";
+    }
+
+    // Transform empty paragraph to breakline <br>
+    $pee = preg_replace('#<p>&nbsp;</p>#', '<br />', $pee);
+
+	return $pee;
 }
 add_filter( 'the_content', 'preserve_linebreaks' , 99);
 
