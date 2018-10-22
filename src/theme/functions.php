@@ -26,11 +26,11 @@ function think_unregister_tags(){
 }
 add_action( 'init', 'think_unregister_tags' );
 
-remove_filter( 'the_content', 'wpautop' );
+//remove_filter( 'the_content', 'wpautop' );
 /**
  * Transform empty paragraph to breakline <br>
  */
-function preserve_linebreaks( $pee ) {
+/*function preserve_linebreaks( $pee ) {
     // Split up the contents into an array of strings, separated by double line breaks.
     $pees = preg_split('/\n\s*\n/', $pee, -1, PREG_SPLIT_NO_EMPTY);
 
@@ -47,7 +47,7 @@ function preserve_linebreaks( $pee ) {
 
 	return $pee;
 }
-add_filter( 'the_content', 'preserve_linebreaks' , 99);
+add_filter( 'the_content', 'preserve_linebreaks' , 99);*/
 
 /*-----------------------------------------------------------------------------------*/
 /* Clean WordPress head and remove some stuff for security

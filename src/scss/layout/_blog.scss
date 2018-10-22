@@ -36,7 +36,7 @@
         padding-right: $gutter*2;
     }
     .search &{
-        padding-top: $row*3;
+        padding-top: $row*2;
         padding-right: $gutter*2;
     }
     &:before{
@@ -55,6 +55,7 @@
 .back-link-blog{
     display: table;
     box-shadow: none;
+    font-feature-settings: 'salt', 'liga' 1;
 }
 
 .posts-pushes{
@@ -293,6 +294,7 @@ h1{
         left: 0;
     }
     &.blog-content-table-mod{
+        margin: 80px 0;
         &:after{
             content: '';
             display: block;
