@@ -269,7 +269,7 @@ function think_mod_contact( $atts, $content = '' ) {
         $modContact_btnLabel = $mod_contact_datas['blog_modContact_btnLabel'] ? $mod_contact_datas['blog_modContact_btnLabel'] : __('Contactez-nous','thinkovery');
         $mod_contact = "<div class='blog-contact-mod blog-mod'>
                         <p class='h3'>" . $mod_contact_datas['blog_modContact_txt'] . "</p>
-                        <a href='". $mod_contact_datas['blog_modContact_btnLink'] ."' title='". $modContact_btnLabel ."' id='send-newletter-article-blog' class='btn btn-medium'>". $modContact_btnLabel ."&nbsp;<svg class='icon'><use xlink:href='#icon-arrow-right'/></svg><i></i></a>
+                        <a href='". $mod_contact_datas['blog_modContact_btnLink'] ."' title='". $modContact_btnLabel ."' id='contactez-nous-blog' class='btn btn-medium'>". $modContact_btnLabel ."&nbsp;<svg class='icon'><use xlink:href='#icon-arrow-right'/></svg><i></i></a>
                         </div>";
     else:
         $mod_contact = '';

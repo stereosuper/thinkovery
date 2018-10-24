@@ -16,7 +16,8 @@
 		// Get all featured posts
 		$postsFeaturedIDs   = get_field('blogPosts_featured', 'options');
 		$postsFeaturedQuery = new WP_Query( array(
-			'post__in' => $postsFeaturedIDs
+			'orderby'  => 'post__in',
+			'post__in' => $postsFeaturedIDs,
 		) );
 		$postsFeatured = $postsFeaturedQuery->posts;
 		wp_reset_postdata();
