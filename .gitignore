@@ -5,6 +5,8 @@
 .sass-cache
 .sass-cache/*
 
+node_modules
+
 dest/wp-admin/
 dest/wp-includes/
 
