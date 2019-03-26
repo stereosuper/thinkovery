@@ -1,3 +1,7 @@
+*.codekit
+
+wp-cli
+
 .DS_Store
 *.DS_Store
 **/.DS_Store
@@ -5,24 +9,13 @@
 .sass-cache
 .sass-cache/*
 
-node_modules
+node_modules/**
 
-dest/wp-admin/
-dest/wp-includes/
-
-dest/wp-cron.php
-dest/wp-trackback.php
-dest/wp-signup.php
-dest/wp-settings.php
-dest/wp-mail.php
-dest/wp-login.php
-dest/wp-load.php
-dest/wp-links-opml.php
-dest/wp-config-sample.php
-dest/wp-comments-post.php
-dest/wp-blog-header.php
-dest/wp-activate.php
-dest/xmlrpc.php
-dest/index.php
-
-dest/license.txt
+/*.php
+wp-content/languages
+wp-content/plugins
+wp-content/upgrade
+wp-content/uploads
+wp-content/*.php
+wp-admin/**
+wp-includes/**
