@@ -195,8 +195,8 @@ sup {
 /******* GÉNÉRAL *******/
 
 ::selection {
-  background: black;
-  color: white;
+  background: #000;
+  color: #fff;
   text-shadow: none; }
 
 html {
@@ -286,7 +286,7 @@ hr {
   max-width: 250px;
   border: 0;
   margin: 3em auto 5em;
-  background: black; }
+  background: #000; }
 
 /******* LIENS / BOUTONS *******/
 a {
@@ -331,12 +331,6 @@ a {
 .align-right {
   text-align: right; }
 
-.inline-b {
-  display: inline-block;
-  vertical-align: middle;
-  -webkit-transform: translateY(-0.1em);
-          transform: translateY(-0.1em); }
-
 .full-width {
   width: 100%; }
 
@@ -359,7 +353,7 @@ a {
 /* Grid */
 .container {
   max-width: 1200px;
-  padding: 0 20px;
+  padding: 0 170px;
   margin: 0 auto; }
 
 /* Forms */

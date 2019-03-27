@@ -13,4 +13,22 @@
     }
     @return #{$transition};
 }
- 
+
+// Grid columns calculator
+@function grid-column-percent(
+    $container-size,
+    $wanted-col-number,
+    $total-col-number,
+    $container-type: "without-gutter"
+) {
+    $container-percent: 100;
+    $column-width: $container-percent / $total-col-number;
+
+    @return #{$column-width * $wanted-col-number + "%"};
+}
+
+@function grid-column-pixels($container-size, $wanted-col-number, $total-col-number) {
+    $column-width: $container-size / $total-col-number;
+
+    @return $column-width * $wanted-col-number;
+}
