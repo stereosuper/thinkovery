@@ -62,7 +62,7 @@ $header-height: 96px;
         right: 0;
         bottom: 0;
         margin: auto;
-        background: $primary-color;
+        background: $primary;
         transition: transition(
             (
                 background-color: "#{$minions-duration} #{$minions-duration}"
@@ -77,7 +77,7 @@ $header-height: 96px;
             position: absolute;
             top: 0;
             left: 0;
-            background: $primary-color;
+            background: $primary;
             border-radius: 5px;
             transform-origin: 50% 50%;
             transition: transition(

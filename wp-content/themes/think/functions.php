@@ -1,6 +1,6 @@
 <?php
 
-define( 'THINK_VERSION', 1.0 );
+define( 'THINK_VERSION', 2.0 );
 
 
 /*-----------------------------------------------------------------------------------*/
@@ -19,6 +19,7 @@ add_theme_support( 'html5', array(
     'widgets'
 ) );
 add_theme_support( 'post-thumbnails' );
+add_theme_support( 'post-formats', array( 'link' ) );
 add_theme_support( 'title-tag' );
 
 // Admin bar

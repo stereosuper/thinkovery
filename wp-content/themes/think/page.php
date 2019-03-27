@@ -4,13 +4,11 @@
 
 	<?php if ( have_posts() ) : the_post(); ?>
 
-		<h1><?php the_title(); ?></h1>
-		<?php the_content(); ?>
+		<div class='col-3-desk'>
+			<h1><?php the_title(); ?></h1>
+			<?php the_content(); ?>
+		</div>
 	
-	<?php else : ?>
-				
-		<h1>404</h1>
-
 	<?php endif; ?>
 
 </div>

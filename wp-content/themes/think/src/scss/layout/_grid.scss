@@ -1,7 +1,24 @@
 /* Grid */
 
 .container{
-    max-width: 1200px;
-    padding: 0 $gutter*2;
+    max-width: $container;
+    padding: 0 $gutter;
     margin: 0 auto;
+}
+
+.col-3{
+    width: $col*3;
+}
+
+
+@media (min-width: $desktop-small){
+
+    .container{
+        padding: 0 $gutter*2;
+    }
+
+    .col-3-desk{
+        width: $col*3;
+    }
+
 }
