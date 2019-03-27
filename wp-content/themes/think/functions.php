@@ -251,50 +251,50 @@ add_action( 'wp_enqueue_scripts', 'think_scripts' );
 /*-----------------------------------------------------------------------------------*/
 /* TGMPA
 /*-----------------------------------------------------------------------------------*/
-// function think_register_required_plugins(){
-// 	$plugins = array(
-//         array(
-//             'name'        => 'Advanced Custom Fields PRO',
-//             'slug'        => 'advanced-custom-fields-pro',
-//             'source'     => get_template_directory_uri() . '/plugins/advanced-custom-fields-pro.zip',
-//             'required'    => true,
-//             'force_activation' => false
-//         ),
-//         array(
-//             'name'        => 'SecuPress Free — Sécurité WordPress 1.3.3',
-//             'slug'        => 'secupress',
-//             'required'    => false,
-//             'force_activation' => false
-//         ),
-//         array(
-//             'name'        => 'EWWW Image Optimizer',
-//             'slug'        => 'ewww-image-optimizer',
-//             'required'    => false,
-//             'force_activation' => false
-//         ),
-//         array(
-//             'name'        => 'Clean Image Filenames',
-//             'slug'        => 'clean-image-filenames',
-//             'required'    => false,
-//             'force_activation' => false
-//         ),
-//     );
+function think_register_required_plugins(){
+	$plugins = array(
+        array(
+            'name'        => 'Advanced Custom Fields PRO',
+            'slug'        => 'advanced-custom-fields-pro',
+            'source'     => get_template_directory_uri() . '/plugins/advanced-custom-fields-pro.zip',
+            'required'    => true,
+            'force_activation' => false
+        ),
+        array(
+            'name'        => 'SecuPress Free — Sécurité WordPress 1.3.3',
+            'slug'        => 'secupress',
+            'required'    => false,
+            'force_activation' => false
+        ),
+        array(
+            'name'        => 'EWWW Image Optimizer',
+            'slug'        => 'ewww-image-optimizer',
+            'required'    => false,
+            'force_activation' => false
+        ),
+        array(
+            'name'        => 'Clean Image Filenames',
+            'slug'        => 'clean-image-filenames',
+            'required'    => false,
+            'force_activation' => false
+        ),
+    );
     
-// 	$config = array(
-// 		'id'           => 'think',
-// 		'default_path' => '', 
-// 		'menu'         => 'tgmpa-install-plugins',
-// 		'parent_slug'  => 'themes.php',
-// 		'capability'   => 'edit_theme_options', 
-// 		'has_notices'  => true,
-// 		'dismissable'  => true,
-// 		'dismiss_msg'  => '',
-// 		'is_automatic' => false,
-// 		'message'      => ''
-//     );
+	$config = array(
+		'id'           => 'think',
+		'default_path' => '', 
+		'menu'         => 'tgmpa-install-plugins',
+		'parent_slug'  => 'themes.php',
+		'capability'   => 'edit_theme_options', 
+		'has_notices'  => true,
+		'dismissable'  => true,
+		'dismiss_msg'  => '',
+		'is_automatic' => false,
+		'message'      => ''
+    );
     
-// 	tgmpa( $plugins, $config );
-// }
-// add_action( 'tgmpa_register', 'think_register_required_plugins' );
+	tgmpa( $plugins, $config );
+}
+add_action( 'tgmpa_register', 'think_register_required_plugins' );
 
 ?>
