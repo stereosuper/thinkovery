@@ -12,7 +12,7 @@ $header-height: 96px;
         (
             transform: "#{$minions-duration}"
         ),
-        $minions-timing-function
+        $minions-easing
     );
     z-index: 2;
     &.activated {
@@ -67,7 +67,7 @@ $header-height: 96px;
             (
                 background-color: "#{$minions-duration} #{$minions-duration}"
             ),
-            $minions-timing-function
+            $minions-easing
         );
         &:before,
         &:after {
@@ -84,7 +84,7 @@ $header-height: 96px;
                 (
                     transform: "#{$minions-duration}"
                 ),
-                $minions-timing-function
+                $minions-easing
             );
         }
         &:before {
@@ -101,7 +101,7 @@ $header-height: 96px;
                 (
                     background-color: "#{$minions-duration}"
                 ),
-                $minions-timing-function
+                $minions-easing
             );
             &:before,
             &:after {
@@ -109,7 +109,7 @@ $header-height: 96px;
                     (
                         transform: "#{$minions-duration} #{$minions-duration}"
                     ),
-                    $minions-timing-function
+                    $minions-easing
                 );
             }
             &:before {

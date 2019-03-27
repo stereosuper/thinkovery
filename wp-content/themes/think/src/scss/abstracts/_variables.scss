@@ -12,7 +12,7 @@ $transition: 0.3s ease-in-out;
 $minions-duration: 0.23s;
 
 // Transition timing functions
-$minions-timing-function: cubic-bezier(0.25, 0.46, 0.25, 1);
+$minions-easing: cubic-bezier(0.25, 0.46, 0.25, 1);
 
 // Fonts
 // $font: 'font', sans-serif;
