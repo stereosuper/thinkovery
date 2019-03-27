@@ -1,28 +1,38 @@
 import '../scss/main.scss';
 
+import win from './utils/Window';
+import io from './utils/io';
+import scroll from './utils/Scroll';
+import fallback from './utils/Fallback';
 
-import { TweenLite, TimelineLite } from 'gsap';
-
-
-import win from './Window.js';
-import io from './io.js';
-import scroll from './Scroll.js';
-import fallback from './fallback.js';
-import $ from 'jquery-slim';
-
-const html = $('html');
-const body = $('body');
+import burger from './burger';
 
 const loadHandler = () => {
+    const noTransElem = [].slice.call(
+        document.getElementsByClassName('element-without-transition-on-resize')
+    );
+
+    // Stéréosuper js library init
     scroll.init();
-    win.noTransitionElts = $('.element-without-transition-on-resize');
+    win.setNoTransitionElts(noTransElem);
     win.init();
     io.init();
-    fallback(body, html);
-}
+    fallback.init();
+
+    // Custom scripts
+    burger();
+};
 
 if (document.readyState === 'complete') {
-   loadHandler();
+    loadHandler();
 } else {
-   $(window).on('load', loadHandler);
+    document.addEventListener(
+        'readystatechange',
+        () => {
+            if (document.readyState === 'complete') {
+                loadHandler();
+            }
+        },
+        false
+    );
 }

@@ -12,17 +12,16 @@
 
 		<script>document.getElementsByTagName('html')[0].className = 'js';</script>
 	</head>
-
 	<body <?php body_class(); ?>>
-
 		<header role='banner'>
-
-			<nav role='navigation'>
-				<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu-main' ) ); ?>
-			</nav>
-
-			<a href='<?php echo home_url('/'); ?>' title='<?php bloginfo( 'name' ); ?>' rel='home'><?php bloginfo( 'name' ); ?></a>
-
+			<div class='container'>
+				<a href='<?php echo home_url('/'); ?>' title='<?php bloginfo( 'name' ); ?>' rel='home'><?php bloginfo( 'name' ); ?></a>
+				<button class='burger js-burger'><span></span></button>
+				<nav class="main-navigation js-main-navigation" aria-expanded="false">
+					<div class="main-navigation-container">
+						<?php wp_nav_menu(array('theme_location' => 'primary', 'container' => null, 'menu_id' => '', 'menu_class' => 'menu')); ?>
+					</div>
+				</nav>
+			</div>
 		</header>
-
 		<main role='main'>
