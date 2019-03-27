@@ -1,2 +1,16 @@
 /* Functions */
-@import "./animations";
+
+// Transition generator
+@function transition($list, $timing-function) {
+    $transition: "";
+    $i: 1;
+    @each $property, $value in $list {
+        $transition: $transition + " " + $property + " " + $value + " " + $timing-function;
+        @if ($i != length($list)) {
+            $transition: $transition + ",";
+        }
+        $i: $i + 1;
+    }
+    @return #{$transition};
+}
+ 

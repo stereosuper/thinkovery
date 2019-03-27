@@ -2,12 +2,22 @@
 
 
 // Colors
-$white: rgb(255, 255, 255);
-$black: rgb(0, 0, 0);
+$white: #fff;
+$black: #000;
 
 
 // Transitions
 $transition: 0.3s ease-in-out;
+
+// Durations
+$comme-dans-du-beurre-duration: 0.23s;
+$plop-duration: 0.4s;
+$smooth-operator-duration: 0.5s;
+
+// Transition timing functions
+$comme-dans-du-beurre-timing: cubic-bezier(0.25, 0.46, 0.25, 1);
+$plop-timing: cubic-bezier(0.6, 0.2, 0.2, 1);
+$smooth-operator-timing: cubic-bezier(0.455, 0.03, 0.515, 0.955);
 
 
 // Fonts
@@ -17,14 +27,15 @@ $transition: 0.3s ease-in-out;
 // Mediaqueries
 $retina: 'only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi)';
 
-$desktop: '1100px';
-$desktop-small: '960px';
-$tablet: '780px';
-$phone: '580px';
-$phone-small: '400px';
+$desktop: 1100px;
+$desktop-small: 960px;
+$tablet: 780px;
+$phone: 580px;
+$phone-small: 400px;
 
 
 // Grid
-$col: 100/12*1%;
+$col: 100/4*1%;
 
-$gutter: 10px;
+$gutter: 85px;
+$line-height: 28px;
