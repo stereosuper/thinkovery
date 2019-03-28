@@ -1,25 +1,34 @@
 // Variables //
 
-// Colors
+// COLORS //
+
 $white: #fff;
 $black: #000;
 $txt: #404040;
+$bg: #F7F2EA;
 $primary: #1E5E32;
+$primary-light: #4D917E;
+$secondary: #65A3DA;
 
-// Transitions
-$transition: 0.3s ease-in-out;
+
+// TRANSITIONS //
 
 // Durations
 $minions-duration: 0.23s;
+$cut-duration: 0.05s;
 
 // Transition timing functions
 $minions-easing: cubic-bezier(0.25, 0.46, 0.25, 1);
 
-// Fonts
+$transition: $cut-duration ease-in-out;
+
+
+// FONTS //
+
 $sofia: 'sofia-pro', sans-serif;
 
-// Mediaqueries
-$retina: "only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi)";
+
+// MEDIAQUERIES //
 
 $desktop: 1100px;
 $desktop-small: 960px;
@@ -27,7 +36,11 @@ $tablet: 780px;
 $phone: 580px;
 $phone-small: 400px;
 
-// Grid
+$retina: "only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi)";
+
+
+// GRID //
+
 $container: 1400px;
 $col: 100/4*1%;
 $gutter: 44px;

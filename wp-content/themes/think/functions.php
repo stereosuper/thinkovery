@@ -148,16 +148,14 @@ function think_mce_before_init( $styles ){
 add_filter( 'tiny_mce_before_init', 'think_mce_before_init' );
 
 // Option page
-function think_menu_order( $menu_ord ){  
-    if( !$menu_ord ) return true;  
-    
-    $menu = 'acf-options';
-    $menu_ord = array_diff($menu_ord, array( $menu ));
-    array_splice( $menu_ord, 1, 0, array( $menu ) );
-    return $menu_ord;
-}  
-add_filter( 'custom_menu_order', 'think_menu_order' );
-add_filter( 'menu_order', 'think_menu_order' );
+if(function_exists('acf_add_options_page')){
+    acf_add_options_page(array(
+        'position'   => 2,
+        'page_title' => 'Theme Options',
+        'menu_title' => 'Theme Options',
+        'redirect'   => false
+    ));
+}
 
 
 /*-----------------------------------------------------------------------------------*/

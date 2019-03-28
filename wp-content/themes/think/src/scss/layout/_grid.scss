@@ -6,12 +6,15 @@
     margin: 0 auto;
 }
 
-.col-3{
-    width: $col*3;
+.col-1{
+    width: $col;
+}
+.col-2{
+    width: $col*2;
 }
 
 
-@media (min-width: $desktop-small){
+@media (min-width: $desktop){
 
     .container{
         padding: 0 $gutter*2;

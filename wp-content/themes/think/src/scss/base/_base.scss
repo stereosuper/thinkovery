@@ -23,6 +23,7 @@ html {
 body {
     font: 1.8em / 1.6 $sofia;
     letter-spacing: -0.01em;
+    background: $bg;
     color: $txt;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -183,12 +184,13 @@ a{
     color: $primary;
     transition: $transition;
     &:focus, &:hover {
+        color: $secondary;
     }
     &:focus {
         outline: 0;
     }
     &:active {
-        filter: saturate(200%);
+        color: $primary-light;
     }
 }
 
@@ -235,8 +237,8 @@ a{
 }
 
 .icon {
-    width: 1.2em;
-    height: 1.2em;
+    width: 0.9em;
+    height: 0.9em;
     fill: currentColor;
     stroke: currentColor;
 }
@@ -269,7 +271,7 @@ a{
 
 @media (min-width: $tablet){
     h1{
-        font-size: 8.6rem;
+        font-size: 7rem;
     }
 
     h2{
@@ -282,5 +284,11 @@ a{
 
     h4{
         font-size: 3rem;
+    }
+}
+
+@media (min-width: $desktop-small){
+    h1{
+        font-size: 8.6rem;
     }
 }
