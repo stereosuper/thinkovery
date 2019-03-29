@@ -2,14 +2,50 @@
 
 .main-footer{
     margin: 7.5em 0 0;
-    a{
+    a:not(.btn){
         color: inherit;
+        &:hover, &:focus{
+            opacity: 0.6;
+        }
+    }
+    .container{
+        position: relative;
     }
 }
 
 .newsletter-container{
     padding: 40px 0;
     background: $white;
+}
+
+.newsletter-footer{
+    p{
+        margin-top: 0;
+    }
+    .mc4wp-form{
+        margin: 20px 0 0;
+    }
+}
+.newsletter-title{
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: $primary;
+}
+
+.footer-contact{
+    width: calc(#{$col} + #{$gutter});
+    padding: $line-height $gutter;
+    position: absolute;
+    top: $line-height;
+    right: $gutter*2;
+    z-index: 10;
+    background: $bg;
+    p{
+        margin: 0 0 20px;
+        font-size: 2.4rem;
+        font-weight: 700;
+        line-height: 1.2;
+    }
 }
 
 .main-footer-container{

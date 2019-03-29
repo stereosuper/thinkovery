@@ -1,15 +1,11 @@
 /* Forms */
 
-::-webkit-input-placeholder{
-}
-::-moz-placeholder{
-}
-:-ms-input-placeholder{
-}
-
-fieldset{
-
-}
+// ::-webkit-input-placeholder{
+// }
+// ::-moz-placeholder{
+// }
+// :-ms-input-placeholder{
+// }
 
 input, textarea, select, button{
   	transition: $transition;
@@ -19,6 +15,10 @@ input, textarea, select, button{
 }
 
 input, textarea{
+    padding: 16px 15px 10px;
+    border: 0;
+    font-size: 1.6rem;
+    background: $bg;
   	&:-webkit-autofill{
       	box-shadow: 0 0 0 1000px #fff inset;
   	}
@@ -46,4 +46,41 @@ select{
 
 button{
     border: 0;
+}
+
+label{
+    font-size: 1.6rem;
+}
+
+.field{
+    position: relative;
+    > label{
+        position: absolute;
+        top: 12px;
+        left: 15px;
+        font-style: italic;
+        opacity: 0.4;
+        transform-origin: 0 0;
+        transition: $transition;
+    }
+    input, textarea{
+        &:focus{
+            + label{
+                transform: scale(0.7) translate3d(0, -14px, 0);
+            }
+        }
+    }
+}
+
+.newsletter{
+    display: flex;
+    label{
+        pointer-events: none;
+    }
+    .field{
+        margin: 0 6px 0 0;
+    }
+}
+.newsletter-input-hidden{
+    display: none;
 }

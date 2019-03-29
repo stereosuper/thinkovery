@@ -5,21 +5,23 @@
                 <div class='container'>
                     <?php if( have_rows('newsletter', 'options') ): $news = get_field('newsletter', 'options'); ?>
                         <div class='newsletter-footer' id='newsletter'>
-                            <p><?php echo $news['newsletterTitle']; ?></p>
+                            <p class='newsletter-title'><?php echo $news['newsletterTitle']; ?></p>
                             <p><?php echo $news['newsletterSubtitle']; ?></p>
                             
-                            <?php echo do_shortcode('[mc4wp_form id="8558" element_id="footer-newsletter-form"]'); ?>
+                            <?php echo do_shortcode('[mc4wp_form id="2057048" element_id="newsletter-form"]'); ?>
                         </div>
                     <?php endif; ?>
                 
-                    <?php if(!is_page_template('contact.php')){ ?>
+                    <?php $contact = get_field('contact', 'options'); if( $contact ): ?>
                         <div class='footer-contact'>
-                            <p><?php the_field('ctaTxt', 'options'); ?></p>
-                            <a href='<?php the_field('ctaLink', 'options'); ?>' class='btn'>
-                                <?php the_field('ctaLinkTxt', 'options'); ?>
-                            </a>
+                            <p><?php echo $contact['text'] ?></p>
+                            <?php if( $contact['btn'] ) : ?>
+                                <a href='<?php echo $contact['btn']['url']; ?>' class='btn'>
+                                    <?php echo $contact['btn']['title']; ?>
+                                </a>
+                            <?php endif; ?>
                         </div>
-                    <?php } ?>
+                    <?php endif; ?>
                 </div>
             </div>
 
