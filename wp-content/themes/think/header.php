@@ -43,10 +43,11 @@
 					<span></span>
 					<span></span>
 				</button>
-				<nav class="main-navigation js-main-navigation activated" aria-expanded="false">
+				<nav class="main-navigation js-main-navigation" aria-expanded="false">
 					<div class="main-navigation-container">
 						<?php wp_nav_menu(array('theme_location' => 'primary', 'container' => null, 'menu_id' => '', 'menu_class' => 'menu')); ?>
 					</div>
+					<span class="line"></span>
 				</nav>
 			</div>
 		</header>

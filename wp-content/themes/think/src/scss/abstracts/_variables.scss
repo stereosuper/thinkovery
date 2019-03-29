@@ -22,11 +22,13 @@ $mouse-duration: 0.23;
 $big-cat-duration: 0.8;
 $big-mouse-duration: 0.5;
 $cut-duration: 0.05s;
+$fade-duration: 0.3;
 
 // Transition timing functions
 $minions-easing: cubic-bezier(0.25, 0.46, 0.25, 1);
 $cat-mouse-easing-in: cubic-bezier(0.72, 0.01, 0.74, -0.09);
 $cat-mouse-easing-out: cubic-bezier(0.26, 1.09, 0.28, 0.99);
+$fade-easing: ease-out;
 
 $transition: $cut-duration ease-in-out;
 
