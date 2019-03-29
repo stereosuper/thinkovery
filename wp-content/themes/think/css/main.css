@@ -286,11 +286,13 @@ blockquote {
     right: -44px;
     background: url(/wp-content/themes/think/img/quote-end.svg); }
 
-ol,
-ul {
+ol, ul {
   padding: 0;
   margin: 1.65em 0 0;
   list-style: none; }
+  ol ul, ol ol, ul ul, ul ol {
+    padding: 0 0 0 15px;
+    margin: 0 0 1.65em; }
 
 li {
   position: relative; }
@@ -309,10 +311,6 @@ ul > li:before {
   border-radius: 50%;
   background: #1e5e32; }
 
-ul ul {
-  padding: 0 0 0 25px;
-  margin: 1em 0; }
-
 ol {
   counter-reset: ol-counter; }
   ol > li {
@@ -320,9 +318,6 @@ ol {
     ol > li:before {
       content: counter(ol-counter) ".";
       top: 5px; }
-  ol ol {
-    padding: 0 0 0 25px;
-    margin: 1em 0; }
 
 img {
   max-width: 100%;
