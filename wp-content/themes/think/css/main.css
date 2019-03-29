@@ -512,6 +512,8 @@ label {
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between; }
+    .main-header > .container > .logo {
+      z-index: 3; }
 
 .main-navigation {
   position: fixed;
@@ -537,33 +539,26 @@ label {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: stretch;
-      -ms-flex-align: stretch;
-          align-items: stretch;
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  padding: 84px 132px 28px; }
-  .main-navigation-container .menu {
-    margin: auto 0 auto;
-    font-weight: 500;
-    text-align: center; }
-    .main-navigation-container .menu > li {
-      padding: 0;
-      margin: 9vh 0 0; }
-      .main-navigation-container .menu > li:before {
-        content: none; }
-      .main-navigation-container .menu > li:nth-child(1) {
-        margin-top: 0; }
+  padding: 84px 44px 28px; }
+
+.menu > ul {
+  margin: 0;
+  list-style-type: none; }
+  .menu > ul > li {
+    padding: 0;
+    margin: 0 0 28px; }
+    .menu > ul > li:before {
+      content: none; }
+    .menu > ul > li:last-child {
+      margin-bottom: 0; }
+
+.menu .page_item > a {
+  text-decoration: none; }
 
 .burger {
   width: 30px;
@@ -673,6 +668,7 @@ label {
 
 /* Footer */
 .main-footer {
+  display: none;
   margin: 7.5em 0 0; }
   .main-footer a:not(.btn) {
     color: inherit; }
@@ -716,13 +712,16 @@ label {
   background: #1e5e32;
   color: #fff; }
 
-.main-footer-top, .main-footer-middle, .main-footer-bottom {
+.main-footer-top,
+.main-footer-middle,
+.main-footer-bottom {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   padding: 3.5em 0 0; }
 
-.main-footer-top, .main-footer-bottom {
+.main-footer-top,
+.main-footer-bottom {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center; }

@@ -1,46 +1,48 @@
 /* Footer */
 
-.main-footer{
+.main-footer {
+    display: none;
     margin: 7.5em 0 0;
-    a:not(.btn){
+    a:not(.btn) {
         color: inherit;
-        &:hover, &:focus{
+        &:hover,
+        &:focus {
             opacity: 0.6;
         }
     }
-    .container{
+    .container {
         position: relative;
     }
 }
 
-.newsletter-container{
+.newsletter-container {
     padding: 40px 0;
     background: $white;
 }
 
-.newsletter-footer{
-    p{
+.newsletter-footer {
+    p {
         margin-top: 0;
     }
-    .mc4wp-form{
+    .mc4wp-form {
         margin: 20px 0 0;
     }
 }
-.newsletter-title{
+.newsletter-title {
     font-size: 2.2rem;
     font-weight: 700;
     color: $primary;
 }
 
-.footer-contact{
+.footer-contact {
     width: calc(#{$col} + #{$gutter});
     padding: $line-height $gutter;
     position: absolute;
     top: $line-height;
-    right: $gutter*2;
+    right: $gutter * 2;
     z-index: 10;
     background: $bg;
-    p{
+    p {
         margin: 0 0 20px;
         font-size: 2.4rem;
         font-weight: 700;
@@ -48,49 +50,52 @@
     }
 }
 
-.main-footer-container{
+.main-footer-container {
     padding: 0 0 3.5em;
     font-size: 1.6rem;
     background: $primary;
     color: $white;
 }
 
-.main-footer-top, .main-footer-middle, .main-footer-bottom{
+.main-footer-top,
+.main-footer-middle,
+.main-footer-bottom {
     display: flex;
     padding: 3.5em 0 0;
 }
-.main-footer-top, .main-footer-bottom{
+.main-footer-top,
+.main-footer-bottom {
     align-items: center;
 }
-.main-footer-middle{
+.main-footer-middle {
     align-items: flex-start;
 }
-.main-footer-bottom{
-    a{
+.main-footer-bottom {
+    a {
         font-weight: 600;
         text-decoration: none;
     }
-    .col-1{
+    .col-1 {
         display: flex;
         align-items: center;
     }
 }
 
-.main-footer-baseline{
+.main-footer-baseline {
     font-size: 2.2rem;
 }
 
-.social{
+.social {
     display: flex;
     margin: 0 15px;
     align-items: center;
-    > li{
+    > li {
         margin: 0 5px;
-        &:before{
+        &:before {
             content: none;
         }
     }
-    a{
+    a {
         display: flex;
         width: 30px;
         height: 30px;
