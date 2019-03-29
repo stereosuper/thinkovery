@@ -20,9 +20,9 @@ $header-height: 84px;
     bottom: 0;
     transition: transition(
         (
-            transform: "#{$big-mouse-duration}s"
+            transform: "#{$mouse-duration}s #{0.1 + $cat-duration + $cat-duration}s"
         ),
-        $cat-mouse-easing-in
+        $cat-mouse-easing-out
     );
     z-index: 2;
     > .line {
@@ -32,6 +32,12 @@ $header-height: 84px;
         right: 0;
         bottom: 0;
         transform: scale3d(1, 0.02, 1);
+        transition: transition(
+            (
+                transform: "#{$cat-duration}s #{0.1 + $cat-duration}s"
+            ),
+            $cat-mouse-easing-out
+        );
         z-index: -1;
         &::before,
         &::after {
@@ -51,6 +57,13 @@ $header-height: 84px;
             right: -100%;
             background: $primary;
             z-index: -1;
+            transition: transition(
+                (
+                    background-color: "#{$cat-duration}s 0.1s",
+                    transform: "0s #{0.1 + $cat-duration + $cat-duration + $cat-duration}s"
+                ),
+                $cat-mouse-easing-in
+            );
         }
     }
     &.activated {
@@ -75,7 +88,7 @@ $header-height: 84px;
                 transition: transition(
                     (
                         background-color:
-                            "#{$cat-duration}s #{$cat-duration + 0.05 + $cat-duration + 0.05}s",
+                            "#{$cat-duration}s #{$cat-duration + 0.05 + $cat-duration + 0.1}s",
                         transform: "#{$cat-duration}s 0.1s"
                     ),
                     $cat-mouse-easing-out
@@ -87,7 +100,7 @@ $header-height: 84px;
             transition: transition(
                 (
                     opacity:
-                        "#{$fade-duration}s #{$cat-duration + 0.05 + $cat-duration + 0.05 + 0.2}s"
+                        "#{$fade-duration}s #{$cat-duration + 0.05 + $cat-duration + 0.1 + 0.3}s"
                 ),
                 $fade-easing
             );
@@ -104,6 +117,12 @@ $header-height: 84px;
     bottom: 0;
     padding: $header-height $gutter $line-height;
     opacity: 0;
+    transition: transition(
+        (
+            opacity: "#{$fade-duration}s"
+        ),
+        $fade-easing
+    );
 }
 
 .menu {
@@ -164,7 +183,7 @@ $header-height: 84px;
             &::before {
                 transition: transition(
                     (
-                        transform: "#{$mouse-duration}s #{$mouse-duration + 0.2}s"
+                        transform: "#{$mouse-duration}s #{$fade-duration + $mouse-duration + 0.2}s"
                     ),
                     $cat-mouse-easing-out
                 );
@@ -172,7 +191,7 @@ $header-height: 84px;
             &::after {
                 transition: transition(
                     (
-                        transform: "#{$cat-duration}s #{$mouse-duration + 0.25}s"
+                        transform: "#{$cat-duration}s #{$fade-duration + $mouse-duration + 0.25}s"
                     ),
                     $cat-mouse-easing-out
                 );
@@ -207,7 +226,7 @@ $header-height: 84px;
             &::before {
                 transition: transition(
                     (
-                        transform: "#{$mouse-duration}s 0.2s"
+                        transform: "#{$mouse-duration}s #{$fade-duration + 0.1}s"
                     ),
                     $cat-mouse-easing-out
                 );
@@ -215,7 +234,7 @@ $header-height: 84px;
             &::after {
                 transition: transition(
                     (
-                        transform: "#{$cat-duration}s 0.1s"
+                        transform: "#{$cat-duration}s #{$fade-duration}s"
                     ),
                     $cat-mouse-easing-out
                 );
