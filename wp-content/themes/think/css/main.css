@@ -210,16 +210,22 @@ html {
 body {
   font: 1.8em/1.6 "sofia-pro", sans-serif;
   letter-spacing: -0.01em;
-  background: #F7F2EA;
+  background: #f7f2ea;
   color: #404040;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   letter-spacing: -0.03em; }
 
-h1, h2 {
-  color: #1E5E32; }
+h1,
+h2 {
+  color: #1e5e32; }
 
 h1 {
   margin: 0 0 0.1em;
@@ -250,10 +256,12 @@ h6 {
 
 p {
   margin: 1.65em 0 0; }
-  p + ol, p + ul {
+  p + ol,
+  p + ul {
     margin-top: 0; }
 
-b, strong {
+b,
+strong {
   font-weight: 700; }
 
 blockquote {
@@ -263,7 +271,7 @@ blockquote {
   font-weight: 700;
   line-height: 1.3; }
   blockquote:before, blockquote:after {
-    content: '';
+    content: "";
     position: absolute; }
   blockquote:before {
     width: 25px;
@@ -291,15 +299,15 @@ li {
     left: -15px;
     font-size: 1.3rem;
     font-weight: 700;
-    color: #1E5E32; }
+    color: #1e5e32; }
 
 ul > li:before {
-  content: '';
+  content: "";
   width: 5px;
   height: 5px;
   top: 13px;
   border-radius: 50%;
-  background: #1E5E32; }
+  background: #1e5e32; }
 
 ul ul {
   padding: 0 0 0 25px;
@@ -338,15 +346,15 @@ hr {
 a {
   font-weight: 700;
   word-break: break-all;
-  color: #1E5E32;
+  color: #1e5e32;
   -webkit-transition: 0.05s ease-in-out;
   transition: 0.05s ease-in-out; }
   a:focus, a:hover {
-    color: #65A3DA; }
+    color: #65a3da; }
   a:focus {
     outline: 0; }
   a:active {
-    color: #4D917E; }
+    color: #4d917e; }
 
 /******* CLASSES GENERALES  *******/
 .intro {
@@ -451,7 +459,7 @@ input, textarea {
   padding: 16px 15px 10px;
   border: 0;
   font-size: 1.6rem;
-  background: #F7F2EA; }
+  background: #f7f2ea; }
   input:-webkit-autofill, textarea:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 1000px #fff inset;
             box-shadow: 0 0 0 1000px #fff inset; }
@@ -562,7 +570,7 @@ label {
     right: 0;
     bottom: 0;
     margin: auto;
-    background: #1E5E32;
+    background: #1e5e32;
     -webkit-transition:  background-color 0.23s 0.23s cubic-bezier(0.25, 0.46, 0.25, 1);
     transition:  background-color 0.23s 0.23s cubic-bezier(0.25, 0.46, 0.25, 1); }
     .burger > span:before, .burger > span:after {
@@ -572,7 +580,7 @@ label {
       position: absolute;
       top: 0;
       left: 0;
-      background: #1E5E32;
+      background: #1e5e32;
       border-radius: 5px;
       -webkit-transform-origin: 50% 50%;
               transform-origin: 50% 50%;
@@ -625,7 +633,7 @@ label {
 .newsletter-title {
   font-size: 2.2rem;
   font-weight: 700;
-  color: #1E5E32; }
+  color: #1e5e32; }
 
 .footer-contact {
   width: calc(25% + 44px);
@@ -634,7 +642,7 @@ label {
   top: 28px;
   right: 88px;
   z-index: 10;
-  background: #F7F2EA; }
+  background: #f7f2ea; }
   .footer-contact p {
     margin: 0 0 20px;
     font-size: 2.4rem;
@@ -644,7 +652,7 @@ label {
 .main-footer-container {
   padding: 0 0 3.5em;
   font-size: 1.6rem;
-  background: #1E5E32;
+  background: #1e5e32;
   color: #fff; }
 
 .main-footer-top, .main-footer-middle, .main-footer-bottom {
@@ -710,11 +718,11 @@ label {
   display: inline-block;
   padding: 8px 22px 12px;
   font-weight: 400;
-  background: #DF622D;
+  background: #df622d;
   color: #fff;
   text-decoration: none; }
   .btn:hover, .btn:focus {
-    background: #F8BA41;
+    background: #f8ba41;
     color: #fff; }
 
 /* Home specific style */

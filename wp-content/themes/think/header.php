@@ -12,8 +12,8 @@
 
 		<script>document.getElementsByTagName('html')[0].className = 'js';</script>
 
+		<link rel="preload" href="https://use.typekit.net/uhd8avk.js" as="script">
 		<script src='https://use.typekit.net/uhd8avk.js'></script>
-		<script>try{Typekit.load({ async: false });}catch(e){}</script>
 
 		<!-- Google Tag Manager -->
 		<script>

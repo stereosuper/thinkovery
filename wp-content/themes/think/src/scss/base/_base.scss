@@ -29,76 +29,85 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5, h6{
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     letter-spacing: -0.03em;
 }
 
-h1, h2{
+h1,
+h2 {
     color: $primary;
 }
 
-h1{
+h1 {
     margin: 0 0 0.1em;
     font-size: 4rem;
     line-height: 1.35;
     font-weight: 600;
 }
 
-h2{ 
+h2 {
     margin: 1.85em 0 0;
     font-size: 3.5rem;
     line-height: 1.2;
 }
 
-h3{
+h3 {
     margin: 1.6em 0 0;
     font-size: 3rem;
 }
 
-h4{
+h4 {
     margin: 2em 0 0;
     font-size: 2.7rem;
 }
 
-h5{
+h5 {
     margin: 2em 0 0;
     font-size: 2.5rem;
 }
 
-h6{
+h6 {
     margin: 2em 0 0;
     font-size: 2rem;
 }
 
-p{
+p {
     margin: 1.65em 0 0;
-    + ol, + ul{
+    + ol,
+    + ul {
         margin-top: 0;
     }
 }
 
-b, strong{
+b,
+strong {
     font-weight: 700;
 }
 
-blockquote{
+blockquote {
     position: relative;
     margin: 2.6em $gutter 2.2em;
     font-size: 2.2rem;
     font-weight: 700;
     line-height: 1.3;
-    &:before, &:after{
-        content: '';
+    &:before,
+    &:after {
+        content: "";
         position: absolute;
     }
-    &:before{
+    &:before {
         width: 25px;
         height: 19px;
         top: 3px;
         left: -$gutter;
         background: url(../../img/quote.svg);
     }
-    &:after{
+    &:after {
         width: 19px;
         height: 14px;
         bottom: 4px;
@@ -113,9 +122,9 @@ ul {
     margin: 1.65em 0 0;
     list-style: none;
 }
-li{
+li {
     position: relative;
-    &:before{
+    &:before {
         position: absolute;
         left: -15px;
         font-size: 1.3rem;
@@ -124,10 +133,10 @@ li{
     }
 }
 
-ul{
-    > li{
-        &:before{
-            content: '';
+ul {
+    > li {
+        &:before {
+            content: "";
             width: 5px;
             height: 5px;
             top: 13px;
@@ -135,7 +144,7 @@ ul{
             background: $primary;
         }
     }
-    ul{
+    ul {
         padding: 0 0 0 25px;
         margin: 1em 0;
     }
@@ -144,8 +153,8 @@ ol {
     counter-reset: ol-counter;
     > li {
         counter-increment: ol-counter;
-        &:before{
-            content: counter(ol-counter)'.';
+        &:before {
+            content: counter(ol-counter) ".";
             top: 5px;
         }
     }
@@ -155,7 +164,7 @@ ol {
     }
 }
 
-img{
+img {
     max-width: 100%;
     height: auto;
 }
@@ -178,12 +187,13 @@ hr {
 
 /******* LIENS / BOUTONS *******/
 
-a{
+a {
     font-weight: 700;
     word-break: break-all;
     color: $primary;
     transition: $transition;
-    &:focus, &:hover {
+    &:focus,
+    &:hover {
         color: $secondary;
     }
     &:focus {
@@ -196,11 +206,11 @@ a{
 
 /******* CLASSES GENERALES  *******/
 
-.intro{
+.intro {
     padding: 10px 0 35px;
 }
 
-.hidden{
+.hidden {
     display: none !important;
 }
 .visually-hidden {
@@ -258,37 +268,36 @@ a{
     transition: none !important;
 }
 
-
-@media (min-width: $phone){
-    h1{
+@media (min-width: $phone) {
+    h1 {
         font-size: 6rem;
     }
 
-    a{
+    a {
         word-break: initial;
     }
 }
 
-@media (min-width: $tablet){
-    h1{
+@media (min-width: $tablet) {
+    h1 {
         font-size: 7rem;
     }
 
-    h2{
+    h2 {
         font-size: 4.9rem;
     }
 
-    h3{
+    h3 {
         font-size: 3.5rem;
     }
 
-    h4{
+    h4 {
         font-size: 3rem;
     }
 }
 
-@media (min-width: $desktop-small){
-    h1{
+@media (min-width: $desktop-small) {
+    h1 {
         font-size: 8.6rem;
     }
 }

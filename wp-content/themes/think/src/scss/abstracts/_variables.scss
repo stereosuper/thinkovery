@@ -5,13 +5,12 @@
 $white: #fff;
 $black: #000;
 $txt: #404040;
-$bg: #F7F2EA;
-$primary: #1E5E32;
-$primary-light: #4D917E;
-$secondary: #65A3DA;
-$tertiary: #DF622D;
-$quaternary: #F8BA41;
-
+$bg: #f7f2ea;
+$primary: #1e5e32;
+$primary-light: #4d917e;
+$secondary: #65a3da;
+$tertiary: #df622d;
+$quaternary: #f8ba41;
 
 // TRANSITIONS //
 
@@ -24,11 +23,9 @@ $minions-easing: cubic-bezier(0.25, 0.46, 0.25, 1);
 
 $transition: $cut-duration ease-in-out;
 
-
 // FONTS //
 
-$sofia: 'sofia-pro', sans-serif;
-
+$sofia: "sofia-pro", sans-serif;
 
 // MEDIAQUERIES //
 
@@ -40,10 +37,9 @@ $phone-small: 400px;
 
 $retina: "only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi)";
 
-
 // GRID //
 
 $container: 1400px;
-$col: 100/4*1%;
+$col: 100/4 * 1%;
 $gutter: 44px;
 $line-height: 28px;

@@ -236,8 +236,8 @@ add_action( 'widgets_init', 'think_unregister_default_widgets' );
 /*-----------------------------------------------------------------------------------*/
 function think_scripts(){
     // header
-	wp_enqueue_style( 'think-style', get_template_directory_uri() . '/css/main.css', array(), THINK_VERSION );
-
+    wp_enqueue_style( 'think-style', get_template_directory_uri() . '/css/main.css', array(), THINK_VERSION );
+    
 	// footer
 	wp_deregister_script('jquery');
 	wp_enqueue_script( 'think-scripts', get_template_directory_uri() . '/js/main.js', array(), THINK_VERSION, true );
@@ -245,7 +245,6 @@ function think_scripts(){
     wp_deregister_script( 'wp-embed' );
 }
 add_action( 'wp_enqueue_scripts', 'think_scripts' );
-
 
 /*-----------------------------------------------------------------------------------*/
 /* TGMPA
