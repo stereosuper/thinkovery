@@ -869,6 +869,49 @@ var burgerHandler = function burgerHandler() {
 
 /***/ }),
 
+/***/ "./wp-content/themes/think/src/js/homeBorders.js":
+/*!*******************************************************!*\
+  !*** ./wp-content/themes/think/src/js/homeBorders.js ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var burgerHandler = function burgerHandler() {
+  var state = {
+    burgerActivated: false
+  };
+  var _document = document,
+      body = _document.body;
+  var isHome = body.classList.contains('home');
+  var borders = document.getElementById('borders');
+  if (!borders && !isHome) return;
+
+  var updateBorder = function updateBorder() {
+    var borderSection = borders.getAttribute('data-section');
+
+    switch (borderSection) {
+      case 'test-1':
+        // TODO: update borders with gsap
+        break;
+
+      case 'test-2':
+        // TODO: update borders with gsap
+        break;
+
+      default:
+        break;
+    }
+  };
+
+  borders.addEventListener('updateBorders', updateBorder, false);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (burgerHandler);
+
+/***/ }),
+
 /***/ "./wp-content/themes/think/src/js/main.js":
 /*!************************************************!*\
   !*** ./wp-content/themes/think/src/js/main.js ***!
@@ -885,6 +928,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_Scroll__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils/Scroll */ "./wp-content/themes/think/src/js/utils/Scroll.js");
 /* harmony import */ var _utils_Fallback__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./utils/Fallback */ "./wp-content/themes/think/src/js/utils/Fallback.js");
 /* harmony import */ var _burger__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./burger */ "./wp-content/themes/think/src/js/burger.js");
+/* harmony import */ var _homeBorders__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./homeBorders */ "./wp-content/themes/think/src/js/homeBorders.js");
+
 
 
 
@@ -901,6 +946,7 @@ var loadHandler = function loadHandler() {
   _utils_io__WEBPACK_IMPORTED_MODULE_2__["default"].init();
   _utils_Fallback__WEBPACK_IMPORTED_MODULE_4__["default"].init(); // Custom scripts
 
+  Object(_homeBorders__WEBPACK_IMPORTED_MODULE_6__["default"])();
   Object(_burger__WEBPACK_IMPORTED_MODULE_5__["default"])();
 };
 
@@ -1407,12 +1453,15 @@ function Io() {
   }; // Reveal minions
 
 
-  this.revealMinionsIn = function (entry) {
-    entry.classList.add('reveal-minions');
+  this.updateBorderIn = function (entry) {
+    var borders = document.getElementById('borders');
+    if (!borders) return;
+    borders.setAttribute('data-section', entry.id);
+    var event = Object(___WEBPACK_IMPORTED_MODULE_1__["createNewEvent"])('updateBorders');
+    borders.dispatchEvent(event);
   };
 
-  this.revealMinionsOut = function (entry) {
-    entry.classList.remove('reveal-minions');
+  this.updateBorderOut = function (entry) {// entry.classList.remove('reveal-minions');
   };
 }
 

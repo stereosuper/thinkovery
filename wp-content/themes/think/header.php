@@ -32,7 +32,6 @@
 			<iframe src='https://www.googletagmanager.com/ns.html?id=GTM-MKRJ9ZB' class='hidden'></iframe>
 		</noscript>
 		<!-- End Google Tag Manager (noscript) -->
-
 		<header role='banner' id="main-header">
 			<div class='container'>
 				<a href='<?php echo home_url('/'); ?>' class="logo" title='<?php bloginfo( 'name' ); ?>' rel='home'><?php bloginfo( 'name' ); ?></a>
@@ -46,7 +45,7 @@
 				<nav id="main-navigation" aria-expanded="false">
 					<div class="main-navigation-container">
 						<?php wp_nav_menu(array('theme_location' => 'primary', 'container' => null, 'menu_id' => '', 'menu_class' => 'menu')); ?>
-						<div id="borders">
+						<div id="menu-borders">
 							<span class="border first"></span>
 							<span class="border second"></span>
 							<span class="border third"></span>
@@ -60,3 +59,8 @@
 			</div>
 		</header>
 		<main role='main'>
+			<div id="borders">
+				<span class="border first"></span>
+				<span class="border second"></span>
+				<span class="border third"></span>
+			</div>

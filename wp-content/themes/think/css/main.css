@@ -600,35 +600,35 @@ label {
       opacity: 1;
       -webkit-transition:  opacity 0.3s 1.25s ease-out;
       transition:  opacity 0.3s 1.25s ease-out; }
-      #main-navigation.activated .main-navigation-container > #borders > .border::before, #main-navigation.activated .main-navigation-container > #borders > .border::after {
+      #main-navigation.activated .main-navigation-container > #menu-borders > .border::before, #main-navigation.activated .main-navigation-container > #menu-borders > .border::after {
         -webkit-transform: scale3d(1, 1, 1);
                 transform: scale3d(1, 1, 1); }
-      #main-navigation.activated .main-navigation-container > #borders > .first::before {
+      #main-navigation.activated .main-navigation-container > #menu-borders > .first::before {
         -webkit-transition:  -webkit-transform 0.5s 1.55s cubic-bezier(0.26, 1.09, 0.28, 0.99);
         transition:  -webkit-transform 0.5s 1.55s cubic-bezier(0.26, 1.09, 0.28, 0.99);
         transition:  transform 0.5s 1.55s cubic-bezier(0.26, 1.09, 0.28, 0.99);
         transition:  transform 0.5s 1.55s cubic-bezier(0.26, 1.09, 0.28, 0.99), -webkit-transform 0.5s 1.55s cubic-bezier(0.26, 1.09, 0.28, 0.99); }
-      #main-navigation.activated .main-navigation-container > #borders > .first::after {
+      #main-navigation.activated .main-navigation-container > #menu-borders > .first::after {
         -webkit-transition:  -webkit-transform 0.8s 1.95s cubic-bezier(0.26, 1.09, 0.28, 0.99);
         transition:  -webkit-transform 0.8s 1.95s cubic-bezier(0.26, 1.09, 0.28, 0.99);
         transition:  transform 0.8s 1.95s cubic-bezier(0.26, 1.09, 0.28, 0.99);
         transition:  transform 0.8s 1.95s cubic-bezier(0.26, 1.09, 0.28, 0.99), -webkit-transform 0.8s 1.95s cubic-bezier(0.26, 1.09, 0.28, 0.99); }
-      #main-navigation.activated .main-navigation-container > #borders > .second::before {
+      #main-navigation.activated .main-navigation-container > #menu-borders > .second::before {
         -webkit-transition:  -webkit-transform 0.23s 2.05s cubic-bezier(0.72, 0.01, 0.74, -0.09);
         transition:  -webkit-transform 0.23s 2.05s cubic-bezier(0.72, 0.01, 0.74, -0.09);
         transition:  transform 0.23s 2.05s cubic-bezier(0.72, 0.01, 0.74, -0.09);
         transition:  transform 0.23s 2.05s cubic-bezier(0.72, 0.01, 0.74, -0.09), -webkit-transform 0.23s 2.05s cubic-bezier(0.72, 0.01, 0.74, -0.09); }
-      #main-navigation.activated .main-navigation-container > #borders > .second::after {
+      #main-navigation.activated .main-navigation-container > #menu-borders > .second::after {
         -webkit-transition:  -webkit-transform 0.4s 2.35s cubic-bezier(0.72, 0.01, 0.74, -0.09);
         transition:  -webkit-transform 0.4s 2.35s cubic-bezier(0.72, 0.01, 0.74, -0.09);
         transition:  transform 0.4s 2.35s cubic-bezier(0.72, 0.01, 0.74, -0.09);
         transition:  transform 0.4s 2.35s cubic-bezier(0.72, 0.01, 0.74, -0.09), -webkit-transform 0.4s 2.35s cubic-bezier(0.72, 0.01, 0.74, -0.09); }
-      #main-navigation.activated .main-navigation-container > #borders > .third::before {
+      #main-navigation.activated .main-navigation-container > #menu-borders > .third::before {
         -webkit-transition:  -webkit-transform 0.23s 2.28s cubic-bezier(0.26, 1.09, 0.28, 0.99);
         transition:  -webkit-transform 0.23s 2.28s cubic-bezier(0.26, 1.09, 0.28, 0.99);
         transition:  transform 0.23s 2.28s cubic-bezier(0.26, 1.09, 0.28, 0.99);
         transition:  transform 0.23s 2.28s cubic-bezier(0.26, 1.09, 0.28, 0.99), -webkit-transform 0.23s 2.28s cubic-bezier(0.26, 1.09, 0.28, 0.99); }
-      #main-navigation.activated .main-navigation-container > #borders > .third::after {
+      #main-navigation.activated .main-navigation-container > #menu-borders > .third::after {
         -webkit-transition:  -webkit-transform 0.4s 2.75s cubic-bezier(0.26, 1.09, 0.28, 0.99);
         transition:  -webkit-transform 0.4s 2.75s cubic-bezier(0.26, 1.09, 0.28, 0.99);
         transition:  transform 0.4s 2.75s cubic-bezier(0.26, 1.09, 0.28, 0.99);
@@ -648,15 +648,16 @@ label {
   -webkit-transition:  opacity 0.3s ease-out;
   transition:  opacity 0.3s ease-out; }
 
-#borders {
+#menu-borders {
   position: absolute;
   width: 100%;
   height: 100%;
   top: 0;
-  left: 0; }
-  #borders > .border {
+  left: 0;
+  z-index: -1; }
+  #menu-borders > .border {
     position: absolute; }
-    #borders > .border::before, #borders > .border::after {
+    #menu-borders > .border::before, #menu-borders > .border::after {
       content: "";
       position: absolute;
       top: 0;
@@ -667,42 +668,42 @@ label {
       transition:  -webkit-transform 0.3s 0.3s ease-out;
       transition:  transform 0.3s 0.3s ease-out;
       transition:  transform 0.3s 0.3s ease-out, -webkit-transform 0.3s 0.3s ease-out; }
-    #borders > .border::before {
+    #menu-borders > .border::before {
       background: #ababab; }
-    #borders > .border::after {
+    #menu-borders > .border::after {
       background: #1e5e32; }
-  #borders > .first,
-  #borders > .third {
+  #menu-borders > .first,
+  #menu-borders > .third {
     width: 12px; }
-    #borders > .first::before, #borders > .first::after,
-    #borders > .third::before,
-    #borders > .third::after {
+    #menu-borders > .first::before, #menu-borders > .first::after,
+    #menu-borders > .third::before,
+    #menu-borders > .third::after {
       -webkit-transform: scale3d(1, 0, 1);
               transform: scale3d(1, 0, 1); }
-  #borders > .second,
-  #borders > .third {
+  #menu-borders > .second,
+  #menu-borders > .third {
     left: 0;
     bottom: 0; }
-  #borders > .first {
+  #menu-borders > .first {
     height: 100%;
     top: 0;
     right: 0;
     z-index: 2; }
-    #borders > .first::before, #borders > .first::after {
+    #menu-borders > .first::before, #menu-borders > .first::after {
       -webkit-transform-origin: 50% 0;
               transform-origin: 50% 0; }
-  #borders > .second {
+  #menu-borders > .second {
     width: 100%;
     height: 12px;
     z-index: 1; }
-    #borders > .second::before, #borders > .second::after {
+    #menu-borders > .second::before, #menu-borders > .second::after {
       -webkit-transform-origin: 100% 50%;
               transform-origin: 100% 50%;
       -webkit-transform: scale3d(0, 1, 1);
               transform: scale3d(0, 1, 1); }
-  #borders > .third {
+  #menu-borders > .third {
     height: 22vh; }
-    #borders > .third::before, #borders > .third::after {
+    #menu-borders > .third::before, #menu-borders > .third::after {
       -webkit-transform-origin: 50% 100%;
               transform-origin: 50% 100%; }
 
@@ -753,9 +754,14 @@ label {
         text-align: center;
         text-decoration: none;
         text-transform: lowercase;
-        font-weight: 400; }
+        font-weight: 400;
+        -webkit-transition:  color 0.05s ease-in-out, background 0.05s ease-in-out;
+        transition:  color 0.05s ease-in-out, background 0.05s ease-in-out; }
         .mlp-language-box > ul > li > a:not(.current-language-item) {
           color: #404040; }
+          .mlp-language-box > ul > li > a:not(.current-language-item):hover {
+            color: #fff;
+            background: #1e5e32; }
       .mlp-language-box > ul > li > .current-language-item {
         background: #1e5e32;
         color: #fff; }
@@ -930,9 +936,10 @@ label {
           transition:  transform 0.4s 0.115s cubic-bezier(0.26, 1.09, 0.28, 0.99);
           transition:  transform 0.4s 0.115s cubic-bezier(0.26, 1.09, 0.28, 0.99), -webkit-transform 0.4s 0.115s cubic-bezier(0.26, 1.09, 0.28, 0.99); }
   .mlp-language-box {
-    top: 0;
-    bottom: auto; }
-  #borders {
+    top: 12px;
+    bottom: auto;
+    opacity: 1; }
+  #menu-borders {
     display: none; }
   #burger {
     display: none; } }
@@ -1061,6 +1068,75 @@ label {
     color: #fff; }
 
 /* Home specific style */
+.border-test {
+  width: 100%;
+  height: 50vh; }
+  .border-test-1 {
+    background: blue; }
+  .border-test-2 {
+    background: purple; }
+  .border-test-3 {
+    background: red; }
+  .border-test-4 {
+    background: orange; }
+  .border-test-5 {
+    background: yellow; }
+
+#borders {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 10; }
+  #borders > .border {
+    position: absolute; }
+    #borders > .border::before, #borders > .border::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      -webkit-transition:  -webkit-transform 0.3s 0.3s ease-out;
+      transition:  -webkit-transform 0.3s 0.3s ease-out;
+      transition:  transform 0.3s 0.3s ease-out;
+      transition:  transform 0.3s 0.3s ease-out, -webkit-transform 0.3s 0.3s ease-out; }
+    #borders > .border::before {
+      background: #ababab; }
+    #borders > .border::after {
+      background: #1e5e32; }
+  #borders > .first,
+  #borders > .second,
+  #borders > .third {
+    right: 0; }
+  #borders > .first,
+  #borders > .third {
+    height: 12px; }
+  #borders > .second,
+  #borders > .third {
+    bottom: 0; }
+  #borders > .first {
+    width: 100%;
+    top: 0;
+    right: 0;
+    z-index: 2; }
+    #borders > .first::before, #borders > .first::after {
+      -webkit-transform-origin: 50% 0;
+              transform-origin: 50% 0; }
+  #borders > .second {
+    height: 100%;
+    width: 12px;
+    z-index: 1; }
+    #borders > .second::before, #borders > .second::after {
+      -webkit-transform-origin: 100% 50%;
+              transform-origin: 100% 50%; }
+  #borders > .third {
+    width: 42vw; }
+    #borders > .third::before, #borders > .third::after {
+      -webkit-transform-origin: 50% 100%;
+              transform-origin: 50% 100%; }
+
 /******* PRINT *******/
 @media print {
   *, *:before {

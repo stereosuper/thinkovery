@@ -1,5 +1,5 @@
 import 'intersection-observer';
-import { forEach } from '.';
+import { forEach, createNewEvent } from '.';
 
 function Io() {
     this.resized = true;
@@ -36,12 +36,16 @@ function Io() {
     };
 
     // Reveal minions
-    this.revealMinionsIn = entry => {
-        entry.classList.add('reveal-minions');
+    this.updateBorderIn = entry => {
+        const borders = document.getElementById('borders');
+        if (!borders) return;
+        borders.setAttribute('data-section', entry.id);
+        const event = createNewEvent('updateBorders');
+        borders.dispatchEvent(event);
     };
 
-    this.revealMinionsOut = entry => {
-        entry.classList.remove('reveal-minions');
+    this.updateBorderOut = entry => {
+        // entry.classList.remove('reveal-minions');
     };
 }
 

@@ -1,1 +1,97 @@
 /* Home specific style */
+.border-test {
+    width: 100%;
+    height: 50vh;
+    &-1 {
+        background: blue;
+    }
+    &-2 {
+        background: purple;
+    }
+    &-3 {
+        background: red;
+    }
+    &-4 {
+        background: orange;
+    }
+    &-5 {
+        background: yellow;
+    }
+}
+
+#borders {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    > .border {
+        position: absolute;
+        &::before,
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            transition: transition(
+                (
+                    transform: "#{$fade-duration}s #{$fade-duration}s"
+                ),
+                $fade-easing
+            );
+        }
+        &::before {
+            background: $light-grey;
+        }
+        &::after {
+            background: $primary;
+        }
+    }
+    > .first,
+    > .second,
+    > .third {
+        right: 0;
+    }
+    > .first,
+    > .third {
+        height: $border-size;
+        &::before,
+        &::after {
+            // transform: scale3d(0, 1, 1);
+        }
+    }
+    > .second,
+    > .third {
+        bottom: 0;
+    }
+    > .first {
+        width: 100%;
+        top: 0;
+        right: 0;
+        z-index: 2;
+        &::before,
+        &::after {
+            transform-origin: 50% 0;
+        }
+    }
+    > .second {
+        height: 100%;
+        width: $border-size;
+        z-index: 1;
+        &::before,
+        &::after {
+            transform-origin: 100% 50%;
+            // transform: scale3d(1, 0, 1);
+        }
+    }
+    > .third {
+        width: 42vw;
+        &::before,
+        &::after {
+            transform-origin: 50% 100%;
+        }
+    }
+}

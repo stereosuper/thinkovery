@@ -6,6 +6,7 @@ import scroll from './utils/Scroll';
 import fallback from './utils/Fallback';
 
 import burger from './burger';
+import homeBorders from './homeBorders';
 
 const loadHandler = () => {
     const noTransElem = [].slice.call(
@@ -20,6 +21,7 @@ const loadHandler = () => {
     fallback.init();
 
     // Custom scripts
+    homeBorders();
     burger();
 };
 
