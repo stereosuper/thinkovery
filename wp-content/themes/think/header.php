@@ -37,16 +37,19 @@
 			<div class='container'>
 				<a href='<?php echo home_url('/'); ?>' class="logo" title='<?php bloginfo( 'name' ); ?>' rel='home'><?php bloginfo( 'name' ); ?></a>
 				<button class='burger js-burger' type="button">
-					<span></span>
-					<span></span>
-					<span></span>
-					<span></span>
-					<span></span>
+					<span class="sesame-bun"></span>
+					<span class="steak"></span>
+					<span class="bun"></span>
+					<span class="first-cross-line"></span>
+					<span class="second-cross-line"></span>
 				</button>
 				<nav class="main-navigation js-main-navigation" aria-expanded="false">
 					<div class="main-navigation-container">
 						<?php wp_nav_menu(array('theme_location' => 'primary', 'container' => null, 'menu_id' => '', 'menu_class' => 'menu')); ?>
 					</div>
+					<?php 
+						mlp_show_linked_elements( array( 'link_text' => 'text', 'echo' => true, 'sort' => 'blogid', 'show_current_blog' => TRUE ) );
+					?>
 					<span class="line"></span>
 				</nav>
 			</div>

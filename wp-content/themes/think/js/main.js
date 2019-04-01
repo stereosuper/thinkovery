@@ -1162,7 +1162,7 @@ function Window() {
     m: 580,
     l: 780,
     xl: 960,
-    xxl: 1260
+    xxl: 1100
   };
   this.currentBreakpoint = '';
 }

@@ -442,8 +442,6 @@ a {
   width: 50%; }
 
 @media (min-width: 1100px) {
-  .container {
-    padding: 0 88px; }
   .col-3-desk {
     width: 75%; } }
 
@@ -615,7 +613,8 @@ label {
 
 .menu {
   margin: 0;
-  list-style-type: none; }
+  list-style-type: none;
+  font-size: 2rem; }
   .menu > li {
     padding: 0;
     margin: 0 0 28px; }
@@ -630,6 +629,38 @@ label {
       color: #1e5e32; }
     .menu > li:not(:last-child) > a {
       font-weight: 400; }
+
+.mlp-language-box {
+  right: 0;
+  bottom: 0;
+  position: absolute; }
+  .mlp-language-box > ul {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin: 0; }
+    .mlp-language-box > ul > li {
+      width: 3rem;
+      height: 3rem;
+      position: relative; }
+      .mlp-language-box > ul > li::before {
+        content: none; }
+      .mlp-language-box > ul > li > a {
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        text-align: center;
+        text-decoration: none;
+        text-transform: lowercase;
+        font-weight: 400; }
+        .mlp-language-box > ul > li > a:not(.current-language-item) {
+          color: #404040; }
+      .mlp-language-box > ul > li > .current-language-item {
+        background: #1e5e32;
+        color: #fff; }
 
 .burger {
   width: 30px;
@@ -660,82 +691,120 @@ label {
       background: #ababab; }
     .burger > span::after {
       background: #1e5e32; }
-    .burger > span:nth-child(1)::before, .burger > span:nth-child(2)::before, .burger > span:nth-child(3)::before {
+    .burger > span.sesame-bun::before, .burger > span.steak::before, .burger > span.bun::before {
       -webkit-transition:  -webkit-transform 0.23s 0.73s cubic-bezier(0.26, 1.09, 0.28, 0.99);
       transition:  -webkit-transform 0.23s 0.73s cubic-bezier(0.26, 1.09, 0.28, 0.99);
       transition:  transform 0.23s 0.73s cubic-bezier(0.26, 1.09, 0.28, 0.99);
       transition:  transform 0.23s 0.73s cubic-bezier(0.26, 1.09, 0.28, 0.99), -webkit-transform 0.23s 0.73s cubic-bezier(0.26, 1.09, 0.28, 0.99); }
-    .burger > span:nth-child(1)::after, .burger > span:nth-child(2)::after, .burger > span:nth-child(3)::after {
+    .burger > span.sesame-bun::after, .burger > span.steak::after, .burger > span.bun::after {
       -webkit-transition:  -webkit-transform 0.4s 0.78s cubic-bezier(0.26, 1.09, 0.28, 0.99);
       transition:  -webkit-transform 0.4s 0.78s cubic-bezier(0.26, 1.09, 0.28, 0.99);
       transition:  transform 0.4s 0.78s cubic-bezier(0.26, 1.09, 0.28, 0.99);
       transition:  transform 0.4s 0.78s cubic-bezier(0.26, 1.09, 0.28, 0.99), -webkit-transform 0.4s 0.78s cubic-bezier(0.26, 1.09, 0.28, 0.99); }
-    .burger > span:nth-child(1) {
+    .burger > span.sesame-bun {
       -webkit-transform: translate(0, -9px) scale3d(1, 1, 1);
               transform: translate(0, -9px) scale3d(1, 1, 1); }
-      .burger > span:nth-child(1)::before, .burger > span:nth-child(1)::after {
+      .burger > span.sesame-bun::before, .burger > span.sesame-bun::after {
         -webkit-transform-origin: 0 50%;
                 transform-origin: 0 50%; }
-    .burger > span:nth-child(2)::before, .burger > span:nth-child(2)::after {
+    .burger > span.steak::before, .burger > span.steak::after {
       -webkit-transform-origin: 100% 50%;
               transform-origin: 100% 50%; }
-    .burger > span:nth-child(3) {
+    .burger > span.bun {
       -webkit-transform: translate(0, 9px);
               transform: translate(0, 9px); }
-      .burger > span:nth-child(3)::before, .burger > span:nth-child(3)::after {
+      .burger > span.bun::before, .burger > span.bun::after {
         -webkit-transform-origin: 0 50%;
                 transform-origin: 0 50%; }
-    .burger > span:nth-child(4)::before, .burger > span:nth-child(4)::after, .burger > span:nth-child(5)::before, .burger > span:nth-child(5)::after {
+    .burger > span.first-cross-line::before, .burger > span.first-cross-line::after, .burger > span.second-cross-line::before, .burger > span.second-cross-line::after {
       -webkit-transform: scale3d(0, 1, 1);
               transform: scale3d(0, 1, 1); }
-    .burger > span:nth-child(4)::before, .burger > span:nth-child(5)::before {
+    .burger > span.first-cross-line::before, .burger > span.second-cross-line::before {
       -webkit-transition:  -webkit-transform 0.23s 0.4s cubic-bezier(0.26, 1.09, 0.28, 0.99);
       transition:  -webkit-transform 0.23s 0.4s cubic-bezier(0.26, 1.09, 0.28, 0.99);
       transition:  transform 0.23s 0.4s cubic-bezier(0.26, 1.09, 0.28, 0.99);
       transition:  transform 0.23s 0.4s cubic-bezier(0.26, 1.09, 0.28, 0.99), -webkit-transform 0.23s 0.4s cubic-bezier(0.26, 1.09, 0.28, 0.99); }
-    .burger > span:nth-child(4)::after, .burger > span:nth-child(5)::after {
+    .burger > span.first-cross-line::after, .burger > span.second-cross-line::after {
       -webkit-transition:  -webkit-transform 0.4s 0.3s cubic-bezier(0.26, 1.09, 0.28, 0.99);
       transition:  -webkit-transform 0.4s 0.3s cubic-bezier(0.26, 1.09, 0.28, 0.99);
       transition:  transform 0.4s 0.3s cubic-bezier(0.26, 1.09, 0.28, 0.99);
       transition:  transform 0.4s 0.3s cubic-bezier(0.26, 1.09, 0.28, 0.99), -webkit-transform 0.4s 0.3s cubic-bezier(0.26, 1.09, 0.28, 0.99); }
-    .burger > span:nth-child(4) {
+    .burger > span.first-cross-line {
       -webkit-transform: rotateZ(45deg);
               transform: rotateZ(45deg); }
-      .burger > span:nth-child(4)::before, .burger > span:nth-child(4)::after {
+      .burger > span.first-cross-line::before, .burger > span.first-cross-line::after {
         -webkit-transform-origin: 100% 50%;
                 transform-origin: 100% 50%; }
-    .burger > span:nth-child(5) {
+    .burger > span.second-cross-line {
       -webkit-transform: rotateZ(-45deg);
               transform: rotateZ(-45deg); }
-      .burger > span:nth-child(5)::before, .burger > span:nth-child(5)::after {
+      .burger > span.second-cross-line::before, .burger > span.second-cross-line::after {
         -webkit-transform-origin: 0 50%;
                 transform-origin: 0 50%; }
-  .burger.activated > span:nth-child(1)::before, .burger.activated > span:nth-child(1)::after, .burger.activated > span:nth-child(2)::before, .burger.activated > span:nth-child(2)::after, .burger.activated > span:nth-child(3)::before, .burger.activated > span:nth-child(3)::after {
+  .burger.activated > span.sesame-bun::before, .burger.activated > span.sesame-bun::after, .burger.activated > span.steak::before, .burger.activated > span.steak::after, .burger.activated > span.bun::before, .burger.activated > span.bun::after {
     -webkit-transform: scale3d(0, 1, 1);
             transform: scale3d(0, 1, 1); }
-  .burger.activated > span:nth-child(1)::before, .burger.activated > span:nth-child(2)::before, .burger.activated > span:nth-child(3)::before {
+  .burger.activated > span.sesame-bun::before, .burger.activated > span.steak::before, .burger.activated > span.bun::before {
     -webkit-transition:  -webkit-transform 0.23s 0.2s cubic-bezier(0.72, 0.01, 0.74, -0.09);
     transition:  -webkit-transform 0.23s 0.2s cubic-bezier(0.72, 0.01, 0.74, -0.09);
     transition:  transform 0.23s 0.2s cubic-bezier(0.72, 0.01, 0.74, -0.09);
     transition:  transform 0.23s 0.2s cubic-bezier(0.72, 0.01, 0.74, -0.09), -webkit-transform 0.23s 0.2s cubic-bezier(0.72, 0.01, 0.74, -0.09); }
-  .burger.activated > span:nth-child(1)::after, .burger.activated > span:nth-child(2)::after, .burger.activated > span:nth-child(3)::after {
+  .burger.activated > span.sesame-bun::after, .burger.activated > span.steak::after, .burger.activated > span.bun::after {
     -webkit-transition:  -webkit-transform 0.4s cubic-bezier(0.72, 0.01, 0.74, -0.09);
     transition:  -webkit-transform 0.4s cubic-bezier(0.72, 0.01, 0.74, -0.09);
     transition:  transform 0.4s cubic-bezier(0.72, 0.01, 0.74, -0.09);
     transition:  transform 0.4s cubic-bezier(0.72, 0.01, 0.74, -0.09), -webkit-transform 0.4s cubic-bezier(0.72, 0.01, 0.74, -0.09); }
-  .burger.activated > span:nth-child(4)::before, .burger.activated > span:nth-child(4)::after, .burger.activated > span:nth-child(5)::before, .burger.activated > span:nth-child(5)::after {
+  .burger.activated > span.first-cross-line::before, .burger.activated > span.first-cross-line::after, .burger.activated > span.second-cross-line::before, .burger.activated > span.second-cross-line::after {
     -webkit-transform: scale3d(1, 1, 1);
             transform: scale3d(1, 1, 1); }
-  .burger.activated > span:nth-child(4)::before, .burger.activated > span:nth-child(5)::before {
+  .burger.activated > span.first-cross-line::before, .burger.activated > span.second-cross-line::before {
     -webkit-transition:  -webkit-transform 0.23s 0.43s cubic-bezier(0.26, 1.09, 0.28, 0.99);
     transition:  -webkit-transform 0.23s 0.43s cubic-bezier(0.26, 1.09, 0.28, 0.99);
     transition:  transform 0.23s 0.43s cubic-bezier(0.26, 1.09, 0.28, 0.99);
     transition:  transform 0.23s 0.43s cubic-bezier(0.26, 1.09, 0.28, 0.99), -webkit-transform 0.23s 0.43s cubic-bezier(0.26, 1.09, 0.28, 0.99); }
-  .burger.activated > span:nth-child(4)::after, .burger.activated > span:nth-child(5)::after {
+  .burger.activated > span.first-cross-line::after, .burger.activated > span.second-cross-line::after {
     -webkit-transition:  -webkit-transform 0.4s 0.53s cubic-bezier(0.26, 1.09, 0.28, 0.99);
     transition:  -webkit-transform 0.4s 0.53s cubic-bezier(0.26, 1.09, 0.28, 0.99);
     transition:  transform 0.4s 0.53s cubic-bezier(0.26, 1.09, 0.28, 0.99);
     transition:  transform 0.4s 0.53s cubic-bezier(0.26, 1.09, 0.28, 0.99), -webkit-transform 0.4s 0.53s cubic-bezier(0.26, 1.09, 0.28, 0.99); }
+
+@media (min-width: 960px) {
+  .main-header {
+    padding-top: 84px; }
+  .main-navigation {
+    position: initial;
+    left: auto;
+    right: auto;
+    bottom: auto; }
+    .main-navigation > .line {
+      display: none; }
+  .main-navigation-container {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    padding: 0;
+    opacity: 1; }
+  .menu {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    font-size: 1.6rem; }
+    .menu > li {
+      margin-left: 22px;
+      margin-bottom: 0; }
+      .menu > li:first-child {
+        margin-left: 0; }
+  .mlp-language-box {
+    top: 0;
+    bottom: auto; }
+  .burger {
+    display: none; } }
+
+@media (min-width: 1100px) {
+  .menu > li {
+    margin-left: 44px; } }
 
 /* Footer */
 .main-footer {

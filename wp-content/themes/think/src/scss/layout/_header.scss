@@ -128,6 +128,7 @@ $header-height: 84px;
 .menu {
     margin: 0;
     list-style-type: none;
+    font-size: 2rem;
     > li {
         padding: 0;
         margin: 0 0 $line-height;
@@ -149,6 +150,43 @@ $header-height: 84px;
         &:not(:last-child) {
             > a {
                 font-weight: 400;
+            }
+        }
+    }
+}
+
+.mlp-language-box {
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    > ul {
+        display: flex;
+        margin: 0;
+        > li {
+            width: 3rem;
+            height: 3rem;
+            position: relative;
+            &::before {
+                content: none;
+            }
+            > a {
+                height: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                text-align: center;
+                text-decoration: none;
+                text-transform: lowercase;
+                font-weight: 400;
+                &:not(.current-language-item) {
+                    color: $text-color;
+                }
+            }
+            > .current-language-item {
+                background: $primary;
+                color: $white;
             }
         }
     }
@@ -186,9 +224,9 @@ $header-height: 84px;
         &::after {
             background: $primary;
         }
-        &:nth-child(1),
-        &:nth-child(2),
-        &:nth-child(3) {
+        &.sesame-bun,
+        &.steak,
+        &.bun {
             &::before {
                 transition: transition(
                     (
@@ -206,28 +244,28 @@ $header-height: 84px;
                 );
             }
         }
-        &:nth-child(1) {
+        &.sesame-bun {
             transform: translate(0, -9px) scale3d(1, 1, 1);
             &::before,
             &::after {
                 transform-origin: 0 50%;
             }
         }
-        &:nth-child(2) {
+        &.steak {
             &::before,
             &::after {
                 transform-origin: 100% 50%;
             }
         }
-        &:nth-child(3) {
+        &.bun {
             transform: translate(0, 9px);
             &::before,
             &::after {
                 transform-origin: 0 50%;
             }
         }
-        &:nth-child(4),
-        &:nth-child(5) {
+        &.first-cross-line,
+        &.second-cross-line {
             &::before,
             &::after {
                 transform: scale3d(0, 1, 1);
@@ -249,14 +287,14 @@ $header-height: 84px;
                 );
             }
         }
-        &:nth-child(4) {
+        &.first-cross-line {
             transform: rotateZ(45deg);
             &::before,
             &::after {
                 transform-origin: 100% 50%;
             }
         }
-        &:nth-child(5) {
+        &.second-cross-line {
             transform: rotateZ(-45deg);
             &::before,
             &::after {
@@ -266,9 +304,9 @@ $header-height: 84px;
     }
     &.activated {
         > span {
-            &:nth-child(1),
-            &:nth-child(2),
-            &:nth-child(3) {
+            &.sesame-bun,
+            &.steak,
+            &.bun {
                 &::before,
                 &::after {
                     transform: scale3d(0, 1, 1);
@@ -290,8 +328,8 @@ $header-height: 84px;
                     );
                 }
             }
-            &:nth-child(4),
-            &:nth-child(5) {
+            &.first-cross-line,
+            &.second-cross-line {
                 &::before,
                 &::after {
                     transform: scale3d(1, 1, 1);
@@ -313,6 +351,56 @@ $header-height: 84px;
                     );
                 }
             }
+        }
+    }
+}
+
+@media (min-width: $desktop-small) {
+    .main-header {
+        padding-top: $line-height * 3;
+    }
+    .main-navigation {
+        position: initial;
+        left: auto;
+        right: auto;
+        bottom: auto;
+        > .line {
+            display: none;
+        }
+    }
+    .main-navigation-container {
+        position: relative;
+        top: auto;
+        left: auto;
+        right: auto;
+        bottom: auto;
+        padding: 0;
+        opacity: 1;
+    }
+    .menu {
+        display: flex;
+        font-size: 1.6rem;
+        > li {
+            margin-left: $gutter / 2;
+            margin-bottom: 0;
+            &:first-child {
+                margin-left: 0;
+            }
+        }
+    }
+    .mlp-language-box {
+        top: 0;
+        bottom: auto;
+    }
+    .burger {
+        display: none;
+    }
+}
+
+@media (min-width: $desktop) {
+    .menu {
+        > li {
+            margin-left: $gutter;
         }
     }
 }
