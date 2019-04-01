@@ -95,6 +95,16 @@ $header-height: 84px;
                 );
             }
         }
+        .mlp-language-box {
+            opacity: 1;
+            transition: transition(
+                (
+                    opacity:
+                        "#{$fade-duration}s #{$cat-duration + 0.05 + $cat-duration + 0.1 + 0.3}s"
+                ),
+                $fade-easing
+            );
+        }
         .main-navigation-container {
             opacity: 1;
             transition: transition(
@@ -297,9 +307,16 @@ $header-height: 84px;
 }
 
 .mlp-language-box {
+    position: absolute;
     right: $border-size;
     bottom: $border-size;
-    position: absolute;
+    opacity: 0;
+    transition: transition(
+        (
+            opacity: "#{$fade-duration}s"
+        ),
+        $fade-easing
+    );
     > ul {
         display: flex;
         margin: 0;

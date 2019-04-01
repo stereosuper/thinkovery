@@ -592,6 +592,10 @@ label {
         transition:  background-color 0.4s 0.95s cubic-bezier(0.26, 1.09, 0.28, 0.99), -webkit-transform 0.4s 0.1s cubic-bezier(0.26, 1.09, 0.28, 0.99);
         transition:  background-color 0.4s 0.95s cubic-bezier(0.26, 1.09, 0.28, 0.99), transform 0.4s 0.1s cubic-bezier(0.26, 1.09, 0.28, 0.99);
         transition:  background-color 0.4s 0.95s cubic-bezier(0.26, 1.09, 0.28, 0.99), transform 0.4s 0.1s cubic-bezier(0.26, 1.09, 0.28, 0.99), -webkit-transform 0.4s 0.1s cubic-bezier(0.26, 1.09, 0.28, 0.99); }
+    #main-navigation.activated .mlp-language-box {
+      opacity: 1;
+      -webkit-transition:  opacity 0.3s 1.25s ease-out;
+      transition:  opacity 0.3s 1.25s ease-out; }
     #main-navigation.activated .main-navigation-container {
       opacity: 1;
       -webkit-transition:  opacity 0.3s 1.25s ease-out;
@@ -722,9 +726,12 @@ label {
       font-weight: 400; }
 
 .mlp-language-box {
+  position: absolute;
   right: 12px;
   bottom: 12px;
-  position: absolute; }
+  opacity: 0;
+  -webkit-transition:  opacity 0.3s ease-out;
+  transition:  opacity 0.3s ease-out; }
   .mlp-language-box > ul {
     display: -webkit-box;
     display: -ms-flexbox;
