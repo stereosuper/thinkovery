@@ -833,29 +833,14 @@ window.IntersectionObserverEntry = IntersectionObserverEntry;
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_Window__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/Window */ "./wp-content/themes/think/src/js/utils/Window.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
-
-function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 
 
 var burgerHandler = function burgerHandler() {
   var state = {
     burgerActivated: false
   };
-
-  var _document$getElements = document.getElementsByClassName('js-burger'),
-      _document$getElements2 = _slicedToArray(_document$getElements, 1),
-      burger = _document$getElements2[0];
-
-  var _document$getElements3 = document.getElementsByClassName('js-main-navigation'),
-      _document$getElements4 = _slicedToArray(_document$getElements3, 1),
-      mainNav = _document$getElements4[0];
-
+  var burger = document.getElementById('burger');
+  var mainNav = document.getElementById('main-navigation');
   if (!burger) return;
 
   var navigationToggle = function navigationToggle() {

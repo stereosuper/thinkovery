@@ -515,19 +515,19 @@ label {
   display: none; }
 
 /* Header */
-.main-header {
+#main-header {
   padding-top: 28px; }
-  .main-header > .container {
+  #main-header > .container {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between; }
-    .main-header > .container > .logo {
+    #main-header > .container > .logo {
       z-index: 3; }
 
-.main-navigation {
+#main-navigation {
   position: fixed;
   top: 0;
   left: 100%;
@@ -538,7 +538,7 @@ label {
   transition:  transform 0.23s 0.9s cubic-bezier(0.26, 1.09, 0.28, 0.99);
   transition:  transform 0.23s 0.9s cubic-bezier(0.26, 1.09, 0.28, 0.99), -webkit-transform 0.23s 0.9s cubic-bezier(0.26, 1.09, 0.28, 0.99);
   z-index: 2; }
-  .main-navigation > .line {
+  #main-navigation > .line-opening {
     position: absolute;
     top: 0;
     left: 0;
@@ -551,17 +551,17 @@ label {
     transition:  transform 0.4s 0.5s cubic-bezier(0.26, 1.09, 0.28, 0.99);
     transition:  transform 0.4s 0.5s cubic-bezier(0.26, 1.09, 0.28, 0.99), -webkit-transform 0.4s 0.5s cubic-bezier(0.26, 1.09, 0.28, 0.99);
     z-index: -1; }
-    .main-navigation > .line::before, .main-navigation > .line::after {
+    #main-navigation > .line-opening::before, #main-navigation > .line-opening::after {
       content: "";
       position: absolute;
       top: 0;
       bottom: 0; }
-    .main-navigation > .line::before {
+    #main-navigation > .line-opening::before {
       left: 0;
       right: 0;
       background: #ababab;
       z-index: -2; }
-    .main-navigation > .line::after {
+    #main-navigation > .line-opening::after {
       left: 100%;
       right: -100%;
       background: #1e5e32;
@@ -570,21 +570,21 @@ label {
       transition:  background-color 0.4s 0.1s cubic-bezier(0.72, 0.01, 0.74, -0.09), -webkit-transform 0s 1.3s cubic-bezier(0.72, 0.01, 0.74, -0.09);
       transition:  background-color 0.4s 0.1s cubic-bezier(0.72, 0.01, 0.74, -0.09), transform 0s 1.3s cubic-bezier(0.72, 0.01, 0.74, -0.09);
       transition:  background-color 0.4s 0.1s cubic-bezier(0.72, 0.01, 0.74, -0.09), transform 0s 1.3s cubic-bezier(0.72, 0.01, 0.74, -0.09), -webkit-transform 0s 1.3s cubic-bezier(0.72, 0.01, 0.74, -0.09); }
-  .main-navigation.activated {
+  #main-navigation.activated {
     -webkit-transform: translate3d(-100%, 0, 0);
             transform: translate3d(-100%, 0, 0);
     -webkit-transition:  -webkit-transform 0.23s cubic-bezier(0.26, 1.09, 0.28, 0.99);
     transition:  -webkit-transform 0.23s cubic-bezier(0.26, 1.09, 0.28, 0.99);
     transition:  transform 0.23s cubic-bezier(0.26, 1.09, 0.28, 0.99);
     transition:  transform 0.23s cubic-bezier(0.26, 1.09, 0.28, 0.99), -webkit-transform 0.23s cubic-bezier(0.26, 1.09, 0.28, 0.99); }
-    .main-navigation.activated > .line {
+    #main-navigation.activated > .line-opening {
       -webkit-transform: scale3d(1, 1, 1);
               transform: scale3d(1, 1, 1);
       -webkit-transition:  -webkit-transform 0.4s 0.45s cubic-bezier(0.72, 0.01, 0.74, -0.09);
       transition:  -webkit-transform 0.4s 0.45s cubic-bezier(0.72, 0.01, 0.74, -0.09);
       transition:  transform 0.4s 0.45s cubic-bezier(0.72, 0.01, 0.74, -0.09);
       transition:  transform 0.4s 0.45s cubic-bezier(0.72, 0.01, 0.74, -0.09), -webkit-transform 0.4s 0.45s cubic-bezier(0.72, 0.01, 0.74, -0.09); }
-      .main-navigation.activated > .line::after {
+      #main-navigation.activated > .line-opening::after {
         background-color: #f7f2ea;
         -webkit-transform: translate3d(-100%, 0, 0);
                 transform: translate3d(-100%, 0, 0);
@@ -592,10 +592,43 @@ label {
         transition:  background-color 0.4s 0.95s cubic-bezier(0.26, 1.09, 0.28, 0.99), -webkit-transform 0.4s 0.1s cubic-bezier(0.26, 1.09, 0.28, 0.99);
         transition:  background-color 0.4s 0.95s cubic-bezier(0.26, 1.09, 0.28, 0.99), transform 0.4s 0.1s cubic-bezier(0.26, 1.09, 0.28, 0.99);
         transition:  background-color 0.4s 0.95s cubic-bezier(0.26, 1.09, 0.28, 0.99), transform 0.4s 0.1s cubic-bezier(0.26, 1.09, 0.28, 0.99), -webkit-transform 0.4s 0.1s cubic-bezier(0.26, 1.09, 0.28, 0.99); }
-    .main-navigation.activated .main-navigation-container {
+    #main-navigation.activated .main-navigation-container {
       opacity: 1;
       -webkit-transition:  opacity 0.3s 1.25s ease-out;
       transition:  opacity 0.3s 1.25s ease-out; }
+      #main-navigation.activated .main-navigation-container > #borders > .border::before, #main-navigation.activated .main-navigation-container > #borders > .border::after {
+        -webkit-transform: scale3d(1, 1, 1);
+                transform: scale3d(1, 1, 1); }
+      #main-navigation.activated .main-navigation-container > #borders > .first::before {
+        -webkit-transition:  -webkit-transform 0.5s 1.55s cubic-bezier(0.72, 0.01, 0.74, -0.09);
+        transition:  -webkit-transform 0.5s 1.55s cubic-bezier(0.72, 0.01, 0.74, -0.09);
+        transition:  transform 0.5s 1.55s cubic-bezier(0.72, 0.01, 0.74, -0.09);
+        transition:  transform 0.5s 1.55s cubic-bezier(0.72, 0.01, 0.74, -0.09), -webkit-transform 0.5s 1.55s cubic-bezier(0.72, 0.01, 0.74, -0.09); }
+      #main-navigation.activated .main-navigation-container > #borders > .first::after {
+        -webkit-transition:  -webkit-transform 0.8s 2.05s cubic-bezier(0.26, 1.09, 0.28, 0.99);
+        transition:  -webkit-transform 0.8s 2.05s cubic-bezier(0.26, 1.09, 0.28, 0.99);
+        transition:  transform 0.8s 2.05s cubic-bezier(0.26, 1.09, 0.28, 0.99);
+        transition:  transform 0.8s 2.05s cubic-bezier(0.26, 1.09, 0.28, 0.99), -webkit-transform 0.8s 2.05s cubic-bezier(0.26, 1.09, 0.28, 0.99); }
+      #main-navigation.activated .main-navigation-container > #borders > .second::before {
+        -webkit-transition:  -webkit-transform 0.23s 2.05s cubic-bezier(0.26, 1.09, 0.28, 0.99);
+        transition:  -webkit-transform 0.23s 2.05s cubic-bezier(0.26, 1.09, 0.28, 0.99);
+        transition:  transform 0.23s 2.05s cubic-bezier(0.26, 1.09, 0.28, 0.99);
+        transition:  transform 0.23s 2.05s cubic-bezier(0.26, 1.09, 0.28, 0.99), -webkit-transform 0.23s 2.05s cubic-bezier(0.26, 1.09, 0.28, 0.99); }
+      #main-navigation.activated .main-navigation-container > #borders > .second::after {
+        -webkit-transition:  -webkit-transform 0.4s 2.35s cubic-bezier(0.72, 0.01, 0.74, -0.09);
+        transition:  -webkit-transform 0.4s 2.35s cubic-bezier(0.72, 0.01, 0.74, -0.09);
+        transition:  transform 0.4s 2.35s cubic-bezier(0.72, 0.01, 0.74, -0.09);
+        transition:  transform 0.4s 2.35s cubic-bezier(0.72, 0.01, 0.74, -0.09), -webkit-transform 0.4s 2.35s cubic-bezier(0.72, 0.01, 0.74, -0.09); }
+      #main-navigation.activated .main-navigation-container > #borders > .third::before {
+        -webkit-transition:  -webkit-transform 0.23s 2.28s cubic-bezier(0.72, 0.01, 0.74, -0.09);
+        transition:  -webkit-transform 0.23s 2.28s cubic-bezier(0.72, 0.01, 0.74, -0.09);
+        transition:  transform 0.23s 2.28s cubic-bezier(0.72, 0.01, 0.74, -0.09);
+        transition:  transform 0.23s 2.28s cubic-bezier(0.72, 0.01, 0.74, -0.09), -webkit-transform 0.23s 2.28s cubic-bezier(0.72, 0.01, 0.74, -0.09); }
+      #main-navigation.activated .main-navigation-container > #borders > .third::after {
+        -webkit-transition:  -webkit-transform 0.4s 2.75s cubic-bezier(0.26, 1.09, 0.28, 0.99);
+        transition:  -webkit-transform 0.4s 2.75s cubic-bezier(0.26, 1.09, 0.28, 0.99);
+        transition:  transform 0.4s 2.75s cubic-bezier(0.26, 1.09, 0.28, 0.99);
+        transition:  transform 0.4s 2.75s cubic-bezier(0.26, 1.09, 0.28, 0.99), -webkit-transform 0.4s 2.75s cubic-bezier(0.26, 1.09, 0.28, 0.99); }
 
 .main-navigation-container {
   display: -webkit-box;
@@ -610,6 +643,64 @@ label {
   opacity: 0;
   -webkit-transition:  opacity 0.3s ease-out;
   transition:  opacity 0.3s ease-out; }
+
+#borders {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0; }
+  #borders > .border {
+    position: absolute; }
+    #borders > .border::before, #borders > .border::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      -webkit-transition:  -webkit-transform 0.3s 0.3s ease-out;
+      transition:  -webkit-transform 0.3s 0.3s ease-out;
+      transition:  transform 0.3s 0.3s ease-out;
+      transition:  transform 0.3s 0.3s ease-out, -webkit-transform 0.3s 0.3s ease-out; }
+    #borders > .border::before {
+      background: #ababab; }
+    #borders > .border::after {
+      background: #1e5e32; }
+  #borders > .first,
+  #borders > .third {
+    width: 12px; }
+    #borders > .first::before, #borders > .first::after,
+    #borders > .third::before,
+    #borders > .third::after {
+      -webkit-transform: scale3d(1, 0, 1);
+              transform: scale3d(1, 0, 1); }
+  #borders > .second,
+  #borders > .third {
+    left: 0;
+    bottom: 0; }
+  #borders > .first {
+    height: 100%;
+    top: 0;
+    right: 0;
+    z-index: 2; }
+    #borders > .first::before, #borders > .first::after {
+      -webkit-transform-origin: 50% 0;
+              transform-origin: 50% 0; }
+  #borders > .second {
+    width: 100%;
+    height: 12px;
+    z-index: 1; }
+    #borders > .second::before, #borders > .second::after {
+      -webkit-transform-origin: 100% 50%;
+              transform-origin: 100% 50%;
+      -webkit-transform: scale3d(0, 1, 1);
+              transform: scale3d(0, 1, 1); }
+  #borders > .third {
+    height: 22vh; }
+    #borders > .third::before, #borders > .third::after {
+      -webkit-transform-origin: 50% 100%;
+              transform-origin: 50% 100%; }
 
 .menu {
   margin: 0;
@@ -631,8 +722,8 @@ label {
       font-weight: 400; }
 
 .mlp-language-box {
-  right: 0;
-  bottom: 0;
+  right: 12px;
+  bottom: 12px;
   position: absolute; }
   .mlp-language-box > ul {
     display: -webkit-box;
@@ -662,12 +753,12 @@ label {
         background: #1e5e32;
         color: #fff; }
 
-.burger {
+#burger {
   width: 30px;
   height: 30px;
   position: relative;
   z-index: 3; }
-  .burger > span {
+  #burger > span {
     width: 25px;
     height: 2px;
     position: absolute;
@@ -677,7 +768,7 @@ label {
     bottom: 0;
     margin: auto;
     background: transparent; }
-    .burger > span::before, .burger > span::after {
+    #burger > span::before, #burger > span::after {
       content: "";
       width: 100%;
       height: 100%;
@@ -687,96 +778,96 @@ label {
       border-radius: 5px;
       -webkit-transform-origin: 0 50%;
               transform-origin: 0 50%; }
-    .burger > span::before {
+    #burger > span::before {
       background: #ababab; }
-    .burger > span::after {
+    #burger > span::after {
       background: #1e5e32; }
-    .burger > span.sesame-bun::before, .burger > span.steak::before, .burger > span.bun::before {
+    #burger > span.sesame-bun::before, #burger > span.steak::before, #burger > span.bun::before {
       -webkit-transition:  -webkit-transform 0.23s 0.73s cubic-bezier(0.26, 1.09, 0.28, 0.99);
       transition:  -webkit-transform 0.23s 0.73s cubic-bezier(0.26, 1.09, 0.28, 0.99);
       transition:  transform 0.23s 0.73s cubic-bezier(0.26, 1.09, 0.28, 0.99);
       transition:  transform 0.23s 0.73s cubic-bezier(0.26, 1.09, 0.28, 0.99), -webkit-transform 0.23s 0.73s cubic-bezier(0.26, 1.09, 0.28, 0.99); }
-    .burger > span.sesame-bun::after, .burger > span.steak::after, .burger > span.bun::after {
+    #burger > span.sesame-bun::after, #burger > span.steak::after, #burger > span.bun::after {
       -webkit-transition:  -webkit-transform 0.4s 0.78s cubic-bezier(0.26, 1.09, 0.28, 0.99);
       transition:  -webkit-transform 0.4s 0.78s cubic-bezier(0.26, 1.09, 0.28, 0.99);
       transition:  transform 0.4s 0.78s cubic-bezier(0.26, 1.09, 0.28, 0.99);
       transition:  transform 0.4s 0.78s cubic-bezier(0.26, 1.09, 0.28, 0.99), -webkit-transform 0.4s 0.78s cubic-bezier(0.26, 1.09, 0.28, 0.99); }
-    .burger > span.sesame-bun {
+    #burger > span.sesame-bun {
       -webkit-transform: translate(0, -9px) scale3d(1, 1, 1);
               transform: translate(0, -9px) scale3d(1, 1, 1); }
-      .burger > span.sesame-bun::before, .burger > span.sesame-bun::after {
+      #burger > span.sesame-bun::before, #burger > span.sesame-bun::after {
         -webkit-transform-origin: 0 50%;
                 transform-origin: 0 50%; }
-    .burger > span.steak::before, .burger > span.steak::after {
+    #burger > span.steak::before, #burger > span.steak::after {
       -webkit-transform-origin: 100% 50%;
               transform-origin: 100% 50%; }
-    .burger > span.bun {
+    #burger > span.bun {
       -webkit-transform: translate(0, 9px);
               transform: translate(0, 9px); }
-      .burger > span.bun::before, .burger > span.bun::after {
+      #burger > span.bun::before, #burger > span.bun::after {
         -webkit-transform-origin: 0 50%;
                 transform-origin: 0 50%; }
-    .burger > span.first-cross-line::before, .burger > span.first-cross-line::after, .burger > span.second-cross-line::before, .burger > span.second-cross-line::after {
+    #burger > span.first-cross-line::before, #burger > span.first-cross-line::after, #burger > span.second-cross-line::before, #burger > span.second-cross-line::after {
       -webkit-transform: scale3d(0, 1, 1);
               transform: scale3d(0, 1, 1); }
-    .burger > span.first-cross-line::before, .burger > span.second-cross-line::before {
+    #burger > span.first-cross-line::before, #burger > span.second-cross-line::before {
       -webkit-transition:  -webkit-transform 0.23s 0.4s cubic-bezier(0.26, 1.09, 0.28, 0.99);
       transition:  -webkit-transform 0.23s 0.4s cubic-bezier(0.26, 1.09, 0.28, 0.99);
       transition:  transform 0.23s 0.4s cubic-bezier(0.26, 1.09, 0.28, 0.99);
       transition:  transform 0.23s 0.4s cubic-bezier(0.26, 1.09, 0.28, 0.99), -webkit-transform 0.23s 0.4s cubic-bezier(0.26, 1.09, 0.28, 0.99); }
-    .burger > span.first-cross-line::after, .burger > span.second-cross-line::after {
+    #burger > span.first-cross-line::after, #burger > span.second-cross-line::after {
       -webkit-transition:  -webkit-transform 0.4s 0.3s cubic-bezier(0.26, 1.09, 0.28, 0.99);
       transition:  -webkit-transform 0.4s 0.3s cubic-bezier(0.26, 1.09, 0.28, 0.99);
       transition:  transform 0.4s 0.3s cubic-bezier(0.26, 1.09, 0.28, 0.99);
       transition:  transform 0.4s 0.3s cubic-bezier(0.26, 1.09, 0.28, 0.99), -webkit-transform 0.4s 0.3s cubic-bezier(0.26, 1.09, 0.28, 0.99); }
-    .burger > span.first-cross-line {
+    #burger > span.first-cross-line {
       -webkit-transform: rotateZ(45deg);
               transform: rotateZ(45deg); }
-      .burger > span.first-cross-line::before, .burger > span.first-cross-line::after {
+      #burger > span.first-cross-line::before, #burger > span.first-cross-line::after {
         -webkit-transform-origin: 100% 50%;
                 transform-origin: 100% 50%; }
-    .burger > span.second-cross-line {
+    #burger > span.second-cross-line {
       -webkit-transform: rotateZ(-45deg);
               transform: rotateZ(-45deg); }
-      .burger > span.second-cross-line::before, .burger > span.second-cross-line::after {
+      #burger > span.second-cross-line::before, #burger > span.second-cross-line::after {
         -webkit-transform-origin: 0 50%;
                 transform-origin: 0 50%; }
-  .burger.activated > span.sesame-bun::before, .burger.activated > span.sesame-bun::after, .burger.activated > span.steak::before, .burger.activated > span.steak::after, .burger.activated > span.bun::before, .burger.activated > span.bun::after {
+  #burger.activated > span.sesame-bun::before, #burger.activated > span.sesame-bun::after, #burger.activated > span.steak::before, #burger.activated > span.steak::after, #burger.activated > span.bun::before, #burger.activated > span.bun::after {
     -webkit-transform: scale3d(0, 1, 1);
             transform: scale3d(0, 1, 1); }
-  .burger.activated > span.sesame-bun::before, .burger.activated > span.steak::before, .burger.activated > span.bun::before {
+  #burger.activated > span.sesame-bun::before, #burger.activated > span.steak::before, #burger.activated > span.bun::before {
     -webkit-transition:  -webkit-transform 0.23s 0.2s cubic-bezier(0.72, 0.01, 0.74, -0.09);
     transition:  -webkit-transform 0.23s 0.2s cubic-bezier(0.72, 0.01, 0.74, -0.09);
     transition:  transform 0.23s 0.2s cubic-bezier(0.72, 0.01, 0.74, -0.09);
     transition:  transform 0.23s 0.2s cubic-bezier(0.72, 0.01, 0.74, -0.09), -webkit-transform 0.23s 0.2s cubic-bezier(0.72, 0.01, 0.74, -0.09); }
-  .burger.activated > span.sesame-bun::after, .burger.activated > span.steak::after, .burger.activated > span.bun::after {
+  #burger.activated > span.sesame-bun::after, #burger.activated > span.steak::after, #burger.activated > span.bun::after {
     -webkit-transition:  -webkit-transform 0.4s cubic-bezier(0.72, 0.01, 0.74, -0.09);
     transition:  -webkit-transform 0.4s cubic-bezier(0.72, 0.01, 0.74, -0.09);
     transition:  transform 0.4s cubic-bezier(0.72, 0.01, 0.74, -0.09);
     transition:  transform 0.4s cubic-bezier(0.72, 0.01, 0.74, -0.09), -webkit-transform 0.4s cubic-bezier(0.72, 0.01, 0.74, -0.09); }
-  .burger.activated > span.first-cross-line::before, .burger.activated > span.first-cross-line::after, .burger.activated > span.second-cross-line::before, .burger.activated > span.second-cross-line::after {
+  #burger.activated > span.first-cross-line::before, #burger.activated > span.first-cross-line::after, #burger.activated > span.second-cross-line::before, #burger.activated > span.second-cross-line::after {
     -webkit-transform: scale3d(1, 1, 1);
             transform: scale3d(1, 1, 1); }
-  .burger.activated > span.first-cross-line::before, .burger.activated > span.second-cross-line::before {
+  #burger.activated > span.first-cross-line::before, #burger.activated > span.second-cross-line::before {
     -webkit-transition:  -webkit-transform 0.23s 0.43s cubic-bezier(0.26, 1.09, 0.28, 0.99);
     transition:  -webkit-transform 0.23s 0.43s cubic-bezier(0.26, 1.09, 0.28, 0.99);
     transition:  transform 0.23s 0.43s cubic-bezier(0.26, 1.09, 0.28, 0.99);
     transition:  transform 0.23s 0.43s cubic-bezier(0.26, 1.09, 0.28, 0.99), -webkit-transform 0.23s 0.43s cubic-bezier(0.26, 1.09, 0.28, 0.99); }
-  .burger.activated > span.first-cross-line::after, .burger.activated > span.second-cross-line::after {
+  #burger.activated > span.first-cross-line::after, #burger.activated > span.second-cross-line::after {
     -webkit-transition:  -webkit-transform 0.4s 0.53s cubic-bezier(0.26, 1.09, 0.28, 0.99);
     transition:  -webkit-transform 0.4s 0.53s cubic-bezier(0.26, 1.09, 0.28, 0.99);
     transition:  transform 0.4s 0.53s cubic-bezier(0.26, 1.09, 0.28, 0.99);
     transition:  transform 0.4s 0.53s cubic-bezier(0.26, 1.09, 0.28, 0.99), -webkit-transform 0.4s 0.53s cubic-bezier(0.26, 1.09, 0.28, 0.99); }
 
 @media (min-width: 960px) {
-  .main-header {
+  #main-header {
     padding-top: 84px; }
-  .main-navigation {
+  #main-navigation {
     position: initial;
     left: auto;
     right: auto;
     bottom: auto; }
-    .main-navigation > .line {
+    #main-navigation > .line-opening {
       display: none; }
   .main-navigation-container {
     position: relative;
@@ -799,7 +890,9 @@ label {
   .mlp-language-box {
     top: 0;
     bottom: auto; }
-  .burger {
+  #borders {
+    display: none; }
+  #burger {
     display: none; } }
 
 @media (min-width: 1100px) {

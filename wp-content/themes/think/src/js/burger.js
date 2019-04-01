@@ -5,8 +5,8 @@ const burgerHandler = () => {
         burgerActivated: false,
     };
 
-    const [burger] = document.getElementsByClassName('js-burger');
-    const [mainNav] = document.getElementsByClassName('js-main-navigation');
+    const burger = document.getElementById('burger');
+    const mainNav = document.getElementById('main-navigation');
 
     if (!burger) return;
 

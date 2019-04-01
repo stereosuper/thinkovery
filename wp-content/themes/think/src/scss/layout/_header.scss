@@ -1,7 +1,7 @@
 /* Header */
 $header-height: 84px;
 
-.main-header {
+#main-header {
     padding-top: $line-height;
     > .container {
         display: flex;
@@ -12,7 +12,7 @@ $header-height: 84px;
     }
 }
 
-.main-navigation {
+#main-navigation {
     position: fixed;
     top: 0;
     left: 100%;
@@ -25,7 +25,7 @@ $header-height: 84px;
         $cat-mouse-easing-out
     );
     z-index: 2;
-    > .line {
+    > .line-opening {
         position: absolute;
         top: 0;
         left: 0;
@@ -74,7 +74,7 @@ $header-height: 84px;
             ),
             $cat-mouse-easing-out
         );
-        > .line {
+        > .line-opening {
             transform: scale3d(1, 1, 1);
             transition: transition(
                 (
@@ -104,6 +104,74 @@ $header-height: 84px;
                 ),
                 $fade-easing
             );
+            > #borders {
+                > .border {
+                    &::before,
+                    &::after {
+                        transform: scale3d(1, 1, 1);
+                    }
+                }
+                > .first {
+                    &::before {
+                        transition: transition(
+                            (
+                                transform:
+                                    "#{$big-mouse-duration}s #{$cat-duration + 0.05 + $cat-duration + 0.1 + 0.3 + $fade-duration}s"
+                            ),
+                            $cat-mouse-easing-in
+                        );
+                    }
+                    &::after {
+                        transition: transition(
+                            (
+                                transform:
+                                    "#{$big-cat-duration}s #{$cat-duration + 0.05 + $cat-duration + 0.1 + 0.3 + $fade-duration + $big-mouse-duration}s"
+                            ),
+                            $cat-mouse-easing-out
+                        );
+                    }
+                }
+                > .second {
+                    &::before {
+                        transition: transition(
+                            (
+                                transform:
+                                    "#{$mouse-duration}s #{$cat-duration + 0.05 + $cat-duration + 0.1 + 0.3 + $fade-duration + $big-mouse-duration}s"
+                            ),
+                            $cat-mouse-easing-out
+                        );
+                    }
+                    &::after {
+                        transition: transition(
+                            (
+                                transform:
+                                    "#{$cat-duration}s #{$cat-duration + 0.05 + $cat-duration + 0.1 + 0.3 + $fade-duration + $big-cat-duration}s"
+                            ),
+                            $cat-mouse-easing-in
+                        );
+                    }
+                }
+                > .third {
+                    &::before {
+                        transition: transition(
+                            (
+                                transform:
+                                    "#{$mouse-duration}s #{$cat-duration + 0.05 + $cat-duration + 0.1 + 0.3 + $fade-duration + $big-mouse-duration + $mouse-duration}s"
+                            ),
+                            $cat-mouse-easing-in
+                        );
+                    }
+                    &::after {
+                        transition: transition(
+                            (
+                                transform:
+                                    "#{$cat-duration}s #{$cat-duration + 0.05 + $cat-duration + 0.1 + 0.3 + $fade-duration + $big-cat-duration + $cat-duration}s"
+                            ),
+                            $cat-mouse-easing-out
+                        );
+                    }
+                }
+            }
         }
     }
 }
@@ -123,6 +191,79 @@ $header-height: 84px;
         ),
         $fade-easing
     );
+}
+
+#borders {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    > .border {
+        position: absolute;
+        &::before,
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            transition: transition(
+                (
+                    transform: "#{$fade-duration}s #{$fade-duration}s"
+                ),
+                $fade-easing
+            );
+        }
+        &::before {
+            background: $light-grey;
+        }
+        &::after {
+            background: $primary;
+        }
+    }
+    > .first,
+    > .third {
+        width: $border-size;
+        &::before,
+        &::after {
+            transform: scale3d(1, 0, 1);
+        }
+    }
+    > .second,
+    > .third {
+        left: 0;
+        bottom: 0;
+    }
+    > .first {
+        height: 100%;
+        top: 0;
+        right: 0;
+        z-index: 2;
+        &::before,
+        &::after {
+            transform-origin: 50% 0;
+        }
+    }
+    > .second {
+        width: 100%;
+        height: $border-size;
+        z-index: 1;
+        &::before,
+        &::after {
+            transform-origin: 100% 50%;
+
+            transform: scale3d(0, 1, 1);
+        }
+    }
+    > .third {
+        height: 22vh;
+        &::before,
+        &::after {
+            transform-origin: 50% 100%;
+        }
+    }
 }
 
 .menu {
@@ -156,8 +297,8 @@ $header-height: 84px;
 }
 
 .mlp-language-box {
-    right: 0;
-    bottom: 0;
+    right: $border-size;
+    bottom: $border-size;
     position: absolute;
     > ul {
         display: flex;
@@ -192,7 +333,7 @@ $header-height: 84px;
     }
 }
 
-.burger {
+#burger {
     width: 30px;
     height: 30px;
     position: relative;
@@ -356,15 +497,15 @@ $header-height: 84px;
 }
 
 @media (min-width: $desktop-small) {
-    .main-header {
+    #main-header {
         padding-top: $line-height * 3;
     }
-    .main-navigation {
+    #main-navigation {
         position: initial;
         left: auto;
         right: auto;
         bottom: auto;
-        > .line {
+        > .line-opening {
             display: none;
         }
     }
@@ -392,7 +533,10 @@ $header-height: 84px;
         top: 0;
         bottom: auto;
     }
-    .burger {
+    #borders {
+        display: none;
+    }
+    #burger {
         display: none;
     }
 }
