@@ -286,11 +286,15 @@ blockquote {
     right: -44px;
     background: url(/wp-content/themes/think/img/quote-end.svg); }
 
-ol, ul {
+ol,
+ul {
   padding: 0;
   margin: 1.65em 0 0;
   list-style: none; }
-  ol ul, ol ol, ul ul, ul ol {
+  ol ul,
+  ol ol,
+  ul ul,
+  ul ol {
     padding: 0 0 0 15px;
     margin: 0 0 1.65em; }
 
@@ -444,25 +448,34 @@ a {
     width: 75%; } }
 
 /* Forms */
-input, textarea, select, button {
+input,
+textarea,
+select,
+button {
   -webkit-transition: 0.05s ease-in-out;
   transition: 0.05s ease-in-out; }
-  input:focus, textarea:focus, select:focus, button:focus {
+  input:focus,
+  textarea:focus,
+  select:focus,
+  button:focus {
     outline: 0; }
 
-input, textarea {
+input,
+textarea {
   padding: 16px 15px 10px;
   border: 0;
   font-size: 1.6rem;
   background: #f7f2ea; }
-  input:-webkit-autofill, textarea:-webkit-autofill {
+  input:-webkit-autofill,
+  textarea:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 1000px #fff inset;
             box-shadow: 0 0 0 1000px #fff inset; }
-  input:invalid, textarea:invalid {
+  input:invalid,
+  textarea:invalid {
     -webkit-box-shadow: none;
             box-shadow: none; }
 
-input[type=search]::-webkit-search-cancel-button, input[type=search]::-webkit-search-decoration {
+input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration {
   display: none; }
 
 select::-ms-expand {
@@ -486,7 +499,8 @@ label {
             transform-origin: 0 0;
     -webkit-transition: 0.05s ease-in-out;
     transition: 0.05s ease-in-out; }
-  .field input:focus + label, .field textarea:focus + label {
+  .field input:focus + label,
+  .field textarea:focus + label {
     -webkit-transform: scale(0.7) translate3d(0, -14px, 0);
             transform: scale(0.7) translate3d(0, -14px, 0); }
 
@@ -609,8 +623,13 @@ label {
       content: none; }
     .menu > li:last-child {
       margin-bottom: 0; }
-  .menu .page_item > a {
-    text-decoration: none; }
+    .menu > li > a {
+      color: #404040;
+      text-decoration: none; }
+    .menu > li:last-child > a {
+      color: #1e5e32; }
+    .menu > li:not(:last-child) > a {
+      font-weight: 400; }
 
 .burger {
   width: 30px;

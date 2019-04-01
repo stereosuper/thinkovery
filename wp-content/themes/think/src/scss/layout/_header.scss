@@ -83,7 +83,7 @@ $header-height: 84px;
                 $cat-mouse-easing-in
             );
             &::after {
-                background-color: $bg;
+                background-color: $bg-color;
                 transform: translate3d(-100%, 0, 0);
                 transition: transition(
                     (
@@ -137,10 +137,19 @@ $header-height: 84px;
         &:last-child {
             margin-bottom: 0;
         }
-    }
-    .page_item {
         > a {
+            color: $text-color;
             text-decoration: none;
+        }
+        &:last-child {
+            > a {
+                color: $primary;
+            }
+        }
+        &:not(:last-child) {
+            > a {
+                font-weight: 400;
+            }
         }
     }
 }

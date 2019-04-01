@@ -23,8 +23,8 @@ html {
 body {
     font: 1.8em / 1.6 $sofia;
     letter-spacing: -0.01em;
-    background: $bg;
-    color: $txt;
+    background: $bg-color;
+    color: $text-color;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -116,11 +116,13 @@ blockquote {
     }
 }
 
-ol, ul {
+ol,
+ul {
     padding: 0;
     margin: 1.65em 0 0;
     list-style: none;
-    ul, ol{
+    ul,
+    ol {
         padding: 0 0 0 15px;
         margin: 0 0 1.65em;
     }
