@@ -88,7 +88,7 @@ $header-height: 84px;
                 transition: transition(
                     (
                         background-color:
-                            "#{$cat-duration}s #{$cat-duration + 0.05 + $cat-duration + 0.1}s",
+                            "#{$cat-duration}s #{$cat-duration + 0.05 + $cat-duration + 0.2}s",
                         transform: "#{$cat-duration}s 0.1s"
                     ),
                     $cat-mouse-easing-out
@@ -128,14 +128,14 @@ $header-height: 84px;
                                 transform:
                                     "#{$big-mouse-duration}s #{$cat-duration + 0.05 + $cat-duration + 0.1 + 0.3 + $fade-duration}s"
                             ),
-                            $cat-mouse-easing-in
+                            $cat-mouse-easing-out
                         );
                     }
                     &::after {
                         transition: transition(
                             (
                                 transform:
-                                    "#{$big-cat-duration}s #{$cat-duration + 0.05 + $cat-duration + 0.1 + 0.3 + $fade-duration + $big-mouse-duration}s"
+                                    "#{$big-cat-duration}s #{$cat-duration + 0.05 + $cat-duration + 0.1 + 0.3 + $fade-duration + $cat-duration}s"
                             ),
                             $cat-mouse-easing-out
                         );
@@ -148,7 +148,7 @@ $header-height: 84px;
                                 transform:
                                     "#{$mouse-duration}s #{$cat-duration + 0.05 + $cat-duration + 0.1 + 0.3 + $fade-duration + $big-mouse-duration}s"
                             ),
-                            $cat-mouse-easing-out
+                            $cat-mouse-easing-in
                         );
                     }
                     &::after {
@@ -168,7 +168,7 @@ $header-height: 84px;
                                 transform:
                                     "#{$mouse-duration}s #{$cat-duration + 0.05 + $cat-duration + 0.1 + 0.3 + $fade-duration + $big-mouse-duration + $mouse-duration}s"
                             ),
-                            $cat-mouse-easing-in
+                            $cat-mouse-easing-out
                         );
                     }
                     &::after {
