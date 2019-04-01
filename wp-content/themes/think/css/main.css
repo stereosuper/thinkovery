@@ -891,9 +891,44 @@ label {
     font-size: 1.6rem; }
     .menu > li {
       margin-left: 22px;
-      margin-bottom: 0; }
+      margin-bottom: 0;
+      overflow: hidden; }
       .menu > li:first-child {
         margin-left: 0; }
+      .menu > li > a {
+        position: relative; }
+        .menu > li > a::before, .menu > li > a::after {
+          content: "";
+          height: 2px;
+          position: absolute;
+          bottom: -2px;
+          left: -100%;
+          right: 100%; }
+        .menu > li > a::before {
+          background: #ababab;
+          -webkit-transition:  -webkit-transform 0.23s cubic-bezier(0.26, 1.09, 0.28, 0.99);
+          transition:  -webkit-transform 0.23s cubic-bezier(0.26, 1.09, 0.28, 0.99);
+          transition:  transform 0.23s cubic-bezier(0.26, 1.09, 0.28, 0.99);
+          transition:  transform 0.23s cubic-bezier(0.26, 1.09, 0.28, 0.99), -webkit-transform 0.23s cubic-bezier(0.26, 1.09, 0.28, 0.99); }
+        .menu > li > a::after {
+          background: #1e5e32;
+          -webkit-transition:  -webkit-transform 0.4s 0.115s cubic-bezier(0.26, 1.09, 0.28, 0.99);
+          transition:  -webkit-transform 0.4s 0.115s cubic-bezier(0.26, 1.09, 0.28, 0.99);
+          transition:  transform 0.4s 0.115s cubic-bezier(0.26, 1.09, 0.28, 0.99);
+          transition:  transform 0.4s 0.115s cubic-bezier(0.26, 1.09, 0.28, 0.99), -webkit-transform 0.4s 0.115s cubic-bezier(0.26, 1.09, 0.28, 0.99); }
+        .menu > li > a:hover::before, .menu > li > a:hover::after {
+          -webkit-transform: translate3d(100%, 0, 0);
+                  transform: translate3d(100%, 0, 0); }
+        .menu > li > a:hover::before {
+          -webkit-transition:  -webkit-transform 0.23s cubic-bezier(0.26, 1.09, 0.28, 0.99);
+          transition:  -webkit-transform 0.23s cubic-bezier(0.26, 1.09, 0.28, 0.99);
+          transition:  transform 0.23s cubic-bezier(0.26, 1.09, 0.28, 0.99);
+          transition:  transform 0.23s cubic-bezier(0.26, 1.09, 0.28, 0.99), -webkit-transform 0.23s cubic-bezier(0.26, 1.09, 0.28, 0.99); }
+        .menu > li > a:hover::after {
+          -webkit-transition:  -webkit-transform 0.4s 0.115s cubic-bezier(0.26, 1.09, 0.28, 0.99);
+          transition:  -webkit-transform 0.4s 0.115s cubic-bezier(0.26, 1.09, 0.28, 0.99);
+          transition:  transform 0.4s 0.115s cubic-bezier(0.26, 1.09, 0.28, 0.99);
+          transition:  transform 0.4s 0.115s cubic-bezier(0.26, 1.09, 0.28, 0.99), -webkit-transform 0.4s 0.115s cubic-bezier(0.26, 1.09, 0.28, 0.99); }
   .mlp-language-box {
     top: 0;
     bottom: auto; }
