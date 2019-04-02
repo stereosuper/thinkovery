@@ -55,6 +55,26 @@ export const throttle = (callback, delay) => {
     };
 };
 
+export function Queue(...elements) {
+    // Initializing the queue with given arguments
+    this.elements = [...elements];
+
+    // Proxying the push/shift methods
+    this.push = (...args) => this.elements.push(...args);
+    this.shift = (...args) => this.elements.shift(...args);
+
+    // Add some length utility methods
+    Object.defineProperty(Queue.prototype, 'length', {
+        get() {
+            return this.elements.length;
+        },
+        set(length) {
+            this.elements.length = length;
+            return this.elements.length;
+        },
+    });
+}
+
 export default {
     forEach,
     reverseString,

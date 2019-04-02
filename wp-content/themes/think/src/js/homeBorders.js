@@ -1,10 +1,11 @@
-import { createNewEvent } from './utils';
+import { colors, easing } from './global';
+import { createNewEvent, Queue } from './utils';
 import { TweenMax, TimelineMax } from 'gsap';
 
 const burgerHandler = () => {
     const state = {
         isMoving: false,
-        queue: null,
+        queue: [],
     };
 
     const { body } = document;
@@ -17,35 +18,38 @@ const burgerHandler = () => {
     const bordersMouse = mouseWrapper.children;
     const bordersCat = catWrapper.children;
 
-    let tl = null;
+    const tl = new TimelineMax({ delay: 0.3, paused: true });
 
     const resetMotionState = () => {
-        state.isMoving = false;
-
-        if (state.queue) {
-            bordersWrapper.setAttribute('data-next-section', state.queue);
+        if (state.queue.length) {
+            bordersWrapper.setAttribute('data-next-section', state.queue[0]);
             const event = createNewEvent('updateBorders');
 
+            state.queue.shift();
             bordersWrapper.dispatchEvent(event);
+        } else {
+            state.isMoving = false;
         }
     };
 
-    const borderIntro = ({ cb }) => {
-        tl = new TimelineMax({ delay: 0.3, paused: true });
+    const borderIntro = () => {
+        tl.pause();
         tl.add(
             TweenMax.staggerTo(
                 [bordersMouse[2], bordersCat[2]],
-                1,
+                0.4,
                 {
                     transformOrigin: '0 50%',
                     scaleX: 0,
+                    ease: easing.catMouseEaseIn,
                     onComplete: () => {
                         TweenMax.staggerTo(
                             [bordersMouse[3], bordersCat[3]],
-                            1,
+                            0.4,
                             {
                                 transformOrigin: '50% 0%',
                                 scaleY: 0,
+                                ease: easing.catMouseEaseIn,
                             },
                             0.1
                         );
@@ -55,33 +59,35 @@ const burgerHandler = () => {
             ),
             TweenMax.staggerTo(
                 [bordersMouse[0], bordersCat[0]],
-                1,
+                0.23,
                 {
                     transformOrigin: '0% 50%',
                     scaleX: 1,
+                    ease: easing.catMouseEaseOut,
                     onComplete: () => {
-                        tl.add(
-                            TweenMax.staggerTo(
-                                [bordersMouse[1], bordersCat[1]],
-                                1,
-                                {
-                                    transformOrigin: '50% 0%',
-                                    scaleY: 1,
-                                },
-                                0.1
-                            )
+                        TweenMax.to(bordersCat, 1, {
+                            backgroundColor: colors.funGreen,
+                        });
+                        TweenMax.staggerTo(
+                            [bordersMouse[1], bordersCat[1]],
+                            0.23,
+                            {
+                                transformOrigin: '50% 0%',
+                                scaleY: 1,
+                                ease: easing.catMouseEaseOut,
+                            },
+                            0.1
                         );
-                        tl.add(
-                            TweenMax.staggerTo(
-                                [bordersMouse[2], bordersCat[2]],
-                                1,
-                                {
-                                    transformOrigin: '100% 50%',
-                                    scaleX: 0.5,
-                                    onComplete: cb,
-                                },
-                                0.1
-                            )
+                        TweenMax.staggerTo(
+                            [bordersMouse[2], bordersCat[2]],
+                            0.23,
+                            {
+                                transformOrigin: '100% 50%',
+                                scaleX: 0.5,
+                                ease: easing.catMouseEaseOut,
+                                onComplete: resetMotionState,
+                            },
+                            0.1
                         );
                     },
                 },
@@ -92,22 +98,24 @@ const burgerHandler = () => {
         tl.play();
     };
 
-    const borderLearningExperience = ({ cb }) => {
-        tl = new TimelineMax({ delay: 0.3, paused: true });
+    const borderLearningExperience = () => {
+        tl.pause();
         tl.add(
             TweenMax.staggerTo(
                 [bordersMouse[0], bordersCat[0]],
-                1,
+                0.4,
                 {
                     transformOrigin: '100% 50%',
                     scaleX: 0,
+                    ease: easing.catMouseEaseIn,
                     onComplete: () => {
                         TweenMax.staggerTo(
                             [bordersMouse[1], bordersCat[1]],
-                            1,
+                            0.4,
                             {
                                 transformOrigin: '50% 100%',
                                 scaleY: 0,
+                                ease: easing.catMouseEaseIn,
                             },
                             0.1
                         );
@@ -117,25 +125,265 @@ const burgerHandler = () => {
             ),
             TweenMax.staggerTo(
                 [bordersMouse[2], bordersCat[2]],
-                1,
+                0.23,
                 {
                     transformOrigin: '100% 50%',
                     scaleX: 1,
+                    ease: easing.catMouseEaseOut,
                     onComplete: () => {
+                        TweenMax.to(bordersCat, 1, {
+                            backgroundColor: colors.pictonBlue,
+                        });
                         TweenMax.staggerTo(
                             [bordersMouse[3], bordersCat[3]],
-                            1,
+                            0.23,
                             {
                                 transformOrigin: '50% 100%',
                                 scaleY: 1,
+                                ease: easing.catMouseEaseOut,
                                 onComplete: () => {
                                     TweenMax.staggerTo(
                                         [bordersMouse[0], bordersCat[0]],
-                                        1,
+                                        0.23,
                                         {
                                             transformOrigin: '0% 50%',
                                             scaleX: 0.25,
-                                            onComplete: cb,
+                                            ease: easing.catMouseEaseOut,
+                                            onComplete: resetMotionState,
+                                        },
+                                        0.1
+                                    );
+                                },
+                            },
+                            0.1
+                        );
+                    },
+                },
+                0.1
+            )
+        );
+
+        tl.play();
+    };
+
+    const borderOffers = () => {
+        tl.pause();
+        tl.add(
+            TweenMax.staggerTo(
+                [bordersMouse[2], bordersCat[2]],
+                0.4,
+                {
+                    transformOrigin: '0% 50%',
+                    scaleX: 0,
+                    ease: easing.catMouseEaseIn,
+                    onComplete: () => {
+                        TweenMax.staggerTo(
+                            [bordersMouse[3], bordersCat[3]],
+                            0.4,
+                            {
+                                transformOrigin: '50% 0%',
+                                scaleY: 0,
+                                ease: easing.catMouseEaseIn,
+                            },
+                            0.1
+                        );
+                    },
+                },
+                0.1
+            ),
+            TweenMax.staggerTo(
+                [bordersMouse[0], bordersCat[0]],
+                0.23,
+                {
+                    transformOrigin: '0% 50%',
+                    scaleX: 1,
+                    ease: easing.catMouseEaseOut,
+                    onComplete: () => {
+                        TweenMax.to(bordersCat, 1, {
+                            backgroundColor: colors.funGreen,
+                        });
+                        TweenMax.staggerTo(
+                            [bordersMouse[1], bordersCat[1]],
+                            0.23,
+                            {
+                                transformOrigin: '50% 0%',
+                                scaleY: 1,
+                                ease: easing.catMouseEaseOut,
+                                onComplete: () => {
+                                    TweenMax.staggerTo(
+                                        [bordersMouse[0], bordersCat[0]],
+                                        0.4,
+                                        {
+                                            transformOrigin: '100% 50%',
+                                            scaleX: 0,
+                                            ease: easing.catMouseEaseIn,
+                                        },
+                                        0.1
+                                    );
+                                    TweenMax.staggerTo(
+                                        [bordersMouse[2], bordersCat[2]],
+                                        0.23,
+                                        {
+                                            transformOrigin: '100% 50%',
+                                            scaleX: 0.75,
+                                            ease: easing.catMouseEaseOut,
+                                            onComplete: resetMotionState,
+                                        },
+                                        0.1
+                                    );
+                                },
+                            },
+                            0.1
+                        );
+                    },
+                },
+                0.1
+            )
+        );
+
+        tl.play();
+    };
+
+    const borderAboutUs = () => {
+        tl.pause();
+        tl.add(
+            TweenMax.staggerTo(
+                [bordersMouse[0], bordersCat[0]],
+                0.4,
+                {
+                    transformOrigin: '100% 50%',
+                    scaleX: 0,
+                    ease: easing.catMouseEaseIn,
+                    onComplete: () => {
+                        TweenMax.staggerTo(
+                            [bordersMouse[1], bordersCat[1]],
+                            0.4,
+                            {
+                                transformOrigin: '50% 100%',
+                                scaleY: 0,
+                                ease: easing.catMouseEaseIn,
+                            },
+                            0.1
+                        );
+                    },
+                },
+                0.1
+            ),
+            TweenMax.staggerTo(
+                [bordersMouse[2], bordersCat[2]],
+                0.23,
+                {
+                    transformOrigin: '100% 50%',
+                    scaleX: 1,
+                    ease: easing.catMouseEaseOut,
+                    onComplete: () => {
+                        TweenMax.to(bordersCat, 1, {
+                            backgroundColor: colors.persimmon,
+                        });
+                        TweenMax.staggerTo(
+                            [bordersMouse[3], bordersCat[3]],
+                            0.23,
+                            {
+                                transformOrigin: '50% 100%',
+                                scaleY: 1,
+                                ease: easing.catMouseEaseOut,
+                                onComplete: () => {
+                                    TweenMax.staggerTo(
+                                        [bordersMouse[2], bordersCat[2]],
+                                        0.23,
+                                        {
+                                            transformOrigin: '0% 50%',
+                                            scaleX: 0.25,
+                                            ease: easing.catMouseEaseOut,
+                                        },
+                                        0.1
+                                    );
+                                    TweenMax.staggerTo(
+                                        [bordersMouse[0], bordersCat[0]],
+                                        0.23,
+                                        {
+                                            transformOrigin: '0% 50%',
+                                            scaleX: 1,
+                                            ease: easing.catMouseEaseOut,
+                                            onComplete: resetMotionState,
+                                        },
+                                        0.1
+                                    );
+                                },
+                            },
+                            0.1
+                        );
+                    },
+                },
+                0.1
+            )
+        );
+
+        tl.play();
+    };
+
+    const borderExperiences = () => {
+        tl.pause();
+        tl.add(
+            TweenMax.staggerTo(
+                [bordersMouse[2], bordersCat[2]],
+                0.4,
+                {
+                    transformOrigin: '0% 50%',
+                    scaleX: 0,
+                    ease: easing.catMouseEaseIn,
+                    onComplete: () => {
+                        TweenMax.staggerTo(
+                            [bordersMouse[3], bordersCat[3]],
+                            0.4,
+                            {
+                                transformOrigin: '50% 0%',
+                                scaleY: 0,
+                                ease: easing.catMouseEaseIn,
+                            },
+                            0.1
+                        );
+                    },
+                },
+                0.1
+            ),
+            TweenMax.staggerTo(
+                [bordersMouse[0], bordersCat[0]],
+                0.23,
+                {
+                    transformOrigin: '0% 50%',
+                    scaleX: 1,
+                    ease: easing.catMouseEaseOut,
+                    onComplete: () => {
+                        TweenMax.to(bordersCat, 1, {
+                            backgroundColor: colors.darkOrange,
+                        });
+                        TweenMax.staggerTo(
+                            [bordersMouse[1], bordersCat[1]],
+                            0.23,
+                            {
+                                transformOrigin: '50% 0%',
+                                scaleY: 1,
+                                ease: easing.catMouseEaseOut,
+                                onComplete: () => {
+                                    TweenMax.staggerTo(
+                                        [bordersMouse[0], bordersCat[0]],
+                                        0.23,
+                                        {
+                                            transformOrigin: '100% 50%',
+                                            scaleX: 0.25,
+                                            ease: easing.catMouseEaseOut,
+                                        },
+                                        0.1
+                                    );
+                                    TweenMax.staggerTo(
+                                        [bordersMouse[2], bordersCat[2]],
+                                        0.23,
+                                        {
+                                            transformOrigin: '100% 50%',
+                                            scaleX: 1,
+                                            ease: easing.catMouseEaseOut,
+                                            onComplete: resetMotionState,
                                         },
                                         0.1
                                     );
@@ -158,20 +406,30 @@ const burgerHandler = () => {
         );
 
         if (!state.isMoving) {
+            tl.clear();
             state.isMoving = true;
-            state.queue = null;
+
             switch (borderNextSection) {
                 case 'home-intro':
-                    borderIntro({ cb: resetMotionState });
+                    borderIntro();
                     break;
                 case 'home-learning-experience':
-                    borderLearningExperience({ cb: resetMotionState });
+                    borderLearningExperience();
+                    break;
+                case 'home-offers':
+                    borderOffers();
+                    break;
+                case 'home-about-us':
+                    borderAboutUs();
+                    break;
+                case 'home-experiences':
+                    borderExperiences();
                     break;
                 default:
                     break;
             }
         } else {
-            state.queue = borderNextSection;
+            state.queue.push(borderNextSection);
         }
 
         bordersWrapper.setAttribute('data-active-section', borderNextSection);

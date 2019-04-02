@@ -3,6 +3,7 @@ import { forEach, createNewEvent } from '.';
 
 function Io() {
     this.resized = true;
+    const threshold = 0.3;
 
     this.init = () => {
         const objectsToIO = [].slice.call(
@@ -12,17 +13,17 @@ function Io() {
         const observer = new IntersectionObserver(
             entries => {
                 forEach(entries, entry => {
-                    if (entry.intersectionRatio > 0.15) {
+                    if (entry.intersectionRatio > threshold) {
                         this[`${entry.target.dataset.io}In`](entry.target);
                         if (entry.target.hasAttribute('data-io-single'))
                             observer.unobserve(entry.target);
-                    } else if (entry.intersectionRatio < 0.15) {
+                    } else if (entry.intersectionRatio < threshold) {
                         this[`${entry.target.dataset.io}Out`](entry.target);
                     }
                 });
             },
             {
-                threshold: 0.15,
+                threshold,
                 rootMargin: '-100px 0px',
             }
         );
