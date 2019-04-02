@@ -1,7 +1,8 @@
 /* Home specific style */
 .border-test {
     width: 100%;
-    height: 50vh;
+    height: 75vh;
+    margin-bottom: 25vh;
     &-1 {
         background: blue;
     }
@@ -27,72 +28,45 @@
     left: 0;
     pointer-events: none;
     z-index: 10;
-    > .border {
+    .border {
         position: absolute;
-        &::before,
-        &::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            transition: transition(
-                (
-                    transform: "#{$fade-duration}s #{$fade-duration}s"
-                ),
-                $fade-easing
-            );
-        }
-        &::before {
+    }
+    > .mouse {
+        > .border {
             background: $light-grey;
         }
-        &::after {
+    }
+    > .cat {
+        > .border {
             background: $primary;
         }
     }
-    > .first,
-    > .second,
-    > .third {
-        right: 0;
-    }
-    > .first,
-    > .third {
-        height: $border-size;
-        &::before,
-        &::after {
-            // transform: scale3d(0, 1, 1);
-        }
-    }
-    > .second,
-    > .third {
-        bottom: 0;
-    }
-    > .first {
+    .first,
+    .third {
         width: 100%;
+        height: $border-size;
+        transform: scale3d(0, 1, 1);
+    }
+    .second,
+    .fourth {
+        width: $border-size;
+        height: 100%;
+        transform: scale3d(1, 0, 1);
+    }
+    .first {
+        top: 0;
+        left: 0;
+    }
+    .second {
         top: 0;
         right: 0;
-        z-index: 2;
-        &::before,
-        &::after {
-            transform-origin: 50% 0;
-        }
     }
-    > .second {
-        height: 100%;
-        width: $border-size;
-        z-index: 1;
-        &::before,
-        &::after {
-            transform-origin: 100% 50%;
-            // transform: scale3d(1, 0, 1);
-        }
+    .third {
+        left: 0;
+        bottom: 0;
     }
-    > .third {
-        width: 42vw;
-        &::before,
-        &::after {
-            transform-origin: 50% 100%;
-        }
+    .fourth {
+        top: 0;
+        left: 0;
     }
 }

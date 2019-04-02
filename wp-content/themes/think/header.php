@@ -60,7 +60,16 @@
 		</header>
 		<main role='main'>
 			<div id="borders">
-				<span class="border first"></span>
-				<span class="border second"></span>
-				<span class="border third"></span>
+				<div class="mouse">
+					<span class="border first"></span>
+					<span class="border second"></span>
+					<span class="border third"></span>
+					<span class="border fourth"></span>
+				</div>
+				<div class="cat">
+					<span class="border first"></span>
+					<span class="border second"></span>
+					<span class="border third"></span>
+					<span class="border fourth"></span>
+				</div>
 			</div>

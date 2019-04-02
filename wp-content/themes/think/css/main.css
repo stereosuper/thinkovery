@@ -1070,7 +1070,8 @@ label {
 /* Home specific style */
 .border-test {
   width: 100%;
-  height: 50vh; }
+  height: 75vh;
+  margin-bottom: 25vh; }
   .border-test-1 {
     background: blue; }
   .border-test-2 {
@@ -1090,53 +1091,36 @@ label {
   left: 0;
   pointer-events: none;
   z-index: 10; }
-  #borders > .border {
+  #borders .border {
     position: absolute; }
-    #borders > .border::before, #borders > .border::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      -webkit-transition:  -webkit-transform 0.3s 0.3s ease-out;
-      transition:  -webkit-transform 0.3s 0.3s ease-out;
-      transition:  transform 0.3s 0.3s ease-out;
-      transition:  transform 0.3s 0.3s ease-out, -webkit-transform 0.3s 0.3s ease-out; }
-    #borders > .border::before {
-      background: #ababab; }
-    #borders > .border::after {
-      background: #1e5e32; }
-  #borders > .first,
-  #borders > .second,
-  #borders > .third {
-    right: 0; }
-  #borders > .first,
-  #borders > .third {
-    height: 12px; }
-  #borders > .second,
-  #borders > .third {
-    bottom: 0; }
-  #borders > .first {
+  #borders > .mouse > .border {
+    background: #ababab; }
+  #borders > .cat > .border {
+    background: #1e5e32; }
+  #borders .first,
+  #borders .third {
     width: 100%;
-    top: 0;
-    right: 0;
-    z-index: 2; }
-    #borders > .first::before, #borders > .first::after {
-      -webkit-transform-origin: 50% 0;
-              transform-origin: 50% 0; }
-  #borders > .second {
-    height: 100%;
+    height: 12px;
+    -webkit-transform: scale3d(0, 1, 1);
+            transform: scale3d(0, 1, 1); }
+  #borders .second,
+  #borders .fourth {
     width: 12px;
-    z-index: 1; }
-    #borders > .second::before, #borders > .second::after {
-      -webkit-transform-origin: 100% 50%;
-              transform-origin: 100% 50%; }
-  #borders > .third {
-    width: 42vw; }
-    #borders > .third::before, #borders > .third::after {
-      -webkit-transform-origin: 50% 100%;
-              transform-origin: 50% 100%; }
+    height: 100%;
+    -webkit-transform: scale3d(1, 0, 1);
+            transform: scale3d(1, 0, 1); }
+  #borders .first {
+    top: 0;
+    left: 0; }
+  #borders .second {
+    top: 0;
+    right: 0; }
+  #borders .third {
+    left: 0;
+    bottom: 0; }
+  #borders .fourth {
+    top: 0;
+    left: 0; }
 
 /******* PRINT *******/
 @media print {

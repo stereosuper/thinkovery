@@ -2,7 +2,9 @@
     "name": "think",
     "version": "0.0.0",
     "main": "index.js",
-    "dependencies": {},
+    "dependencies": {
+        "gsap": "^2.1.2"
+    },
     "devDependencies": {
         "@babel/core": "^7.4.0",
         "@babel/preset-env": "^7.4.2",
@@ -13,7 +15,6 @@
         "copy-webpack-plugin": "^5.0.2",
         "css-loader": "^2.1.1",
         "file-loader": "^3.0.1",
-        "gsap": "^2.1.2",
         "intersection-observer": "^0.5.1",
         "jquery-slim": "^3.0.0",
         "mini-css-extract-plugin": "^0.5.0",

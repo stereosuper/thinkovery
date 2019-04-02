@@ -39,7 +39,7 @@ function Io() {
     this.updateBorderIn = entry => {
         const borders = document.getElementById('borders');
         if (!borders) return;
-        borders.setAttribute('data-section', entry.id);
+        borders.setAttribute('data-next-section', entry.id);
         const event = createNewEvent('updateBorders');
         borders.dispatchEvent(event);
     };
