@@ -2,7 +2,7 @@
 
 .btn{
     display: inline-block;
-    padding: 8px 22px 12px;
+    padding: 9px 22px 11px;
     font-weight: 400;
     background: $tertiary;
     color: $white;
@@ -10,5 +10,80 @@
     &:hover, &:focus{
         background: $quaternary;
         color: $white;
+    }
+}
+
+.btn-invert{
+    display: inline-block;
+    padding: 15px 20px 20px;
+    position: relative;
+    font-size: 1.6rem;
+    text-align: left;
+    &:before, &:after{
+        content: '';
+        position: absolute;
+        background: currentColor;
+    }
+    &.btn-1{
+        &:before, &:after{
+            top: 0;
+            right: 0;
+        }
+        &:before{
+            width: 75%;
+            height: 3px;
+        }
+        &:after{
+            width: 3px;
+            height: 100%;
+        }
+    }
+    &.btn-2{
+        border-top: 3px solid;
+        border-left: 3px solid;
+        &:before{
+            bottom: 0;
+            left: 0;
+            width: 25%;
+            height: 3px;
+        }
+    }
+    &.btn-3{
+        &:before, &:after{
+            bottom: 0;
+            right: 0;
+        }
+        &:before{
+            width: 75%;
+            height: 3px;
+        }
+        &:after{
+            width: 3px;
+            height: 100%;
+        }
+    }
+    &.btn-4{
+        &:before, &:after{
+            top: 0;
+            left: 0;
+        }
+        &:before{
+            width: 75%;
+            height: 3px;
+        }
+        &:after{
+            width: 3px;
+            height: 100%;
+        }
+    }
+    > .icon{
+        margin: 0 0 0 5px;
+    }
+}
+
+
+@media (min-width: $desktop-small){
+    .btn-invert{
+        font-size: 1.8rem;
     }
 }

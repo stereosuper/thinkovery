@@ -3,7 +3,7 @@
         <footer role='contentinfo' class='main-footer'>
             <div class='newsletter-container'>
                 <div class='container'>
-                    <?php if( have_rows('newsletter', 'options') ): $news = get_field('newsletter', 'options'); ?>
+                    <?php $news = get_field('newsletter', 'options'); if( $news['newsletterTitle'] ):  ?>
                         <div class='newsletter-footer' id='newsletter'>
                             <p class='newsletter-title'><?php echo $news['newsletterTitle']; ?></p>
                             <p><?php echo $news['newsletterSubtitle']; ?></p>
@@ -12,7 +12,7 @@
                         </div>
                     <?php endif; ?>
                 
-                    <?php $contact = get_field('contact', 'options'); if( $contact ): ?>
+                    <?php $contact = get_field('contact', 'options'); if( $contact['text'] ): ?>
                         <div class='footer-contact'>
                             <p><?php echo $contact['text'] ?></p>
                             <?php if( $contact['btn'] ) : ?>
@@ -108,7 +108,7 @@
                         
                         <?php
                             $phone = get_field('tel', 'options');
-                            if( have_rows('tel', 'options') ):
+                            if( $phone['num'] ):
                         ?>
                             <a href='tel:<?php echo $phone['num']; ?>'>
                                 <?php echo $phone['displayNum'] ? $phone['displayNum'] : $phone['num']; ?>
@@ -132,6 +132,10 @@
                 <symbol id='icon-linkedin' viewBox='0 0 27 32'>
                     <title>LinkedIn</title>
                     <path d='M6.232 11.161v17.696h-5.893v-17.696h5.893zM6.607 5.696c0.018 1.696-1.268 3.054-3.321 3.054v0h-0.036c-1.982 0-3.25-1.357-3.25-3.054 0-1.732 1.321-3.054 3.321-3.054 2.018 0 3.268 1.321 3.286 3.054zM27.429 18.714v10.143h-5.875v-9.464c0-2.375-0.857-4-2.982-4-1.625 0-2.589 1.089-3.018 2.143-0.143 0.393-0.196 0.911-0.196 1.446v9.875h-5.875c0.071-16.036 0-17.696 0-17.696h5.875v2.571h-0.036c0.768-1.214 2.161-2.982 5.339-2.982 3.875 0 6.768 2.536 6.768 7.964z'/>
+                </symbol>
+                <symbol id="icon-arrow" viewBox="0 0 48 32">
+                    <path fill="none" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" stroke-width="4.8" d="M27.808 28.707l15.133-13.202-15.133-13.202"/>
+                    <path fill="none" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" stroke-width="4.8" d="M42.941 15.397h-41.93"/>
                 </symbol>
             </defs>
         </svg>
