@@ -10518,17 +10518,39 @@ var scrollBorders = function scrollBorders() {
       mouseWrapper = _bordersWrapper$getEl2[0];
 
   var bordersMouse = mouseWrapper.children;
-  var homeSections = [].slice.call(document.getElementsByClassName('js-home-section'));
-  var test = homeSections.map(function (border) {
-    return {
-      top: border.getBoundingClientRect().top,
-      height: border.getBoundingClientRect().height
-    };
-  });
-  _utils_Scroll__WEBPACK_IMPORTED_MODULE_2__["default"].addScrollFunction(function () {
-    var scrollTop = _utils_Scroll__WEBPACK_IMPORTED_MODULE_2__["default"].scrollTop; // for
-    // if (scrollTop+window.innerHeight >= ) {
-    // }
+  var homeSections = [].slice.call(document.getElementsByClassName('js-home-section')); // const test = homeSections.map(border => ({
+  //     top: border.getBoundingClientRect().top,
+  //     height: border.getBoundingClientRect().height,
+  // }));
+  // scroll.addScrollFunction(() => {
+  //     const { scrollTop } = scroll;
+  //     // for
+  //     // if (scrollTop+window.innerHeight >= ) {
+  //     // }
+  // });
+
+  var thresholdSamples = [];
+
+  for (var index = 0; index <= 100; index += 1) {
+    thresholdSamples.push(index / 100);
+  }
+
+  var observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: thresholdSamples
+  };
+
+  var intersectionCallback = function intersectionCallback(entries) {
+    Object(_utils__WEBPACK_IMPORTED_MODULE_3__["forEach"])(entries, function (entry) {
+      var ratio = Object(_utils__WEBPACK_IMPORTED_MODULE_3__["roundNumbers"])(entry.intersectionRatio, 2);
+      entry.target.innerText = ratio;
+    });
+  };
+
+  var observer = new IntersectionObserver(intersectionCallback, observerOptions);
+  Object(_utils__WEBPACK_IMPORTED_MODULE_3__["forEach"])(homeSections, function (section) {
+    observer.observe(section);
   });
 };
 
@@ -10910,17 +10932,17 @@ Window.prototype.destroyWindow = function destroyWindow() {
 /*!*******************************************************!*\
   !*** ./wp-content/themes/think/src/js/utils/index.js ***!
   \*******************************************************/
-/*! exports provided: forEach, reverseString, createNewEvent, requestAnimFrame, throttle, Queue, default */
+/*! exports provided: forEach, roundNumbers, reverseString, createNewEvent, requestAnimFrame, throttle, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "forEach", function() { return forEach; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "roundNumbers", function() { return roundNumbers; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "reverseString", function() { return reverseString; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createNewEvent", function() { return createNewEvent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "requestAnimFrame", function() { return requestAnimFrame; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "throttle", function() { return throttle; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Queue", function() { return Queue; });
 var forEach = function forEach(arr, callback) {
   var i = 0;
   var length = arr.length;
@@ -10929,6 +10951,10 @@ var forEach = function forEach(arr, callback) {
     callback(arr[i], i);
     i += 1;
   }
+};
+var roundNumbers = function roundNumbers(number, decimalNumber) {
+  var decimalsFactor = Math.pow(10, decimalNumber);
+  return Math.round(number * decimalsFactor) / decimalsFactor;
 };
 var reverseString = function reverseString(str) {
   return str.split('').reverse().join('');
@@ -10973,40 +10999,8 @@ var throttle = function throttle(callback, delay) {
     }
   };
 };
-function Queue() {
-  var _this2 = this;
-
-  for (var _len2 = arguments.length, elements = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-    elements[_key2] = arguments[_key2];
-  }
-
-  // Initializing the queue with given arguments
-  this.elements = [].concat(elements); // Proxying the push/shift methods
-
-  this.push = function () {
-    var _this2$elements;
-
-    return (_this2$elements = _this2.elements).push.apply(_this2$elements, arguments);
-  };
-
-  this.shift = function () {
-    var _this2$elements2;
-
-    return (_this2$elements2 = _this2.elements).shift.apply(_this2$elements2, arguments);
-  }; // Add some length utility methods
-
-
-  Object.defineProperty(Queue.prototype, 'length', {
-    get: function get() {
-      return this.elements.length;
-    },
-    set: function set(length) {
-      this.elements.length = length;
-      return this.elements.length;
-    }
-  });
-}
 /* harmony default export */ __webpack_exports__["default"] = ({
+  roundNumbers: roundNumbers,
   forEach: forEach,
   reverseString: reverseString,
   createNewEvent: createNewEvent,
