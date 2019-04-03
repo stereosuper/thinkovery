@@ -9513,12 +9513,12 @@ var formHandler = function formHandler() {
   if (!forms.length) return;
 
   var placeLabels = function placeLabels(e) {
-    e.target.closest('.field').classList.add('active');
+    if (e.target.value) e.target.classList.add('active');
   };
 
   forms.forEach(function (form) {
     form.querySelectorAll('.field').forEach(function (field) {
-      field.querySelector('input').addEventListener('focus', placeLabels);
+      field.querySelector('input').addEventListener('input', placeLabels);
     });
   });
 };

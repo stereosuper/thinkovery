@@ -23,6 +23,7 @@ textarea {
     border: 0;
     font-size: 1.6rem;
     background: $bg-color;
+    transition: $transition;
     &:-webkit-autofill {
         box-shadow: 0 0 0 1000px #fff inset;
     }
@@ -70,10 +71,13 @@ label {
     }
     input,
     textarea {
-        &:focus {
+        &:focus, &.active {
             + label {
                 transform: scale(0.7) translate3d(0, -14px, 0);
             }
+        }
+        &:focus{
+            background: rgba($bg-color, 0.7);
         }
     }
 }
@@ -120,6 +124,17 @@ label {
         .field{
             width: auto;
             margin: 0 6px 0 0;
+        }
+    }
+}
+
+@media (min-width: $desktop-small){
+    .newsletter{
+        input{
+            width: 205px;
+            &[type=email]{
+                width: 290px;
+            }
         }
     }
 }
