@@ -9499,6 +9499,34 @@ var burgerHandler = function burgerHandler() {
 
 /***/ }),
 
+/***/ "./wp-content/themes/think/src/js/form.js":
+/*!************************************************!*\
+  !*** ./wp-content/themes/think/src/js/form.js ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var formHandler = function formHandler() {
+  var forms = document.querySelectorAll('form');
+  if (!forms.length) return;
+
+  var placeLabels = function placeLabels(e) {
+    e.target.closest('.field').classList.add('active');
+  };
+
+  forms.forEach(function (form) {
+    form.querySelectorAll('.field').forEach(function (field) {
+      field.querySelector('input').addEventListener('focus', placeLabels);
+    });
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (formHandler);
+
+/***/ }),
+
 /***/ "./wp-content/themes/think/src/js/global/index.js":
 /*!********************************************************!*\
   !*** ./wp-content/themes/think/src/js/global/index.js ***!
@@ -9527,6 +9555,17 @@ var easing = {
   colors: colors,
   easing: easing
 });
+
+/***/ }),
+
+/***/ "./wp-content/themes/think/src/js/homeBorders.js":
+/*!*******************************************************!*\
+  !*** ./wp-content/themes/think/src/js/homeBorders.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nError: ENOENT: no such file or directory, open '/Users/elisabeth/Travail/Stereo/Thinkovery/wp-content/themes/think/src/js/homeBorders.js'");
 
 /***/ }),
 
@@ -9865,8 +9904,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_io__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils/io */ "./wp-content/themes/think/src/js/utils/io.js");
 /* harmony import */ var _utils_Scroll__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils/Scroll */ "./wp-content/themes/think/src/js/utils/Scroll.js");
 /* harmony import */ var _utils_Fallback__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./utils/Fallback */ "./wp-content/themes/think/src/js/utils/Fallback.js");
-/* harmony import */ var _burger__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./burger */ "./wp-content/themes/think/src/js/burger.js");
-/* harmony import */ var _ioBorders__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./ioBorders */ "./wp-content/themes/think/src/js/ioBorders.js");
+/* harmony import */ var _form__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./form */ "./wp-content/themes/think/src/js/form.js");
+/* harmony import */ var _burger__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./burger */ "./wp-content/themes/think/src/js/burger.js");
+/* harmony import */ var _newsletter__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./newsletter */ "./wp-content/themes/think/src/js/newsletter.js");
+/* harmony import */ var _ioBorders__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./ioBorders */ "./wp-content/themes/think/src/js/ioBorders.js");
+/* harmony import */ var _homeBorders__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./homeBorders */ "./wp-content/themes/think/src/js/homeBorders.js");
+/* harmony import */ var _homeBorders__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_homeBorders__WEBPACK_IMPORTED_MODULE_9__);
+
+
+
 
 
 
@@ -9884,8 +9930,11 @@ var loadHandler = function loadHandler() {
   _utils_io__WEBPACK_IMPORTED_MODULE_2__["default"].init();
   _utils_Fallback__WEBPACK_IMPORTED_MODULE_4__["default"].init(); // Custom scripts
 
-  Object(_ioBorders__WEBPACK_IMPORTED_MODULE_6__["default"])();
-  Object(_burger__WEBPACK_IMPORTED_MODULE_5__["default"])();
+  Object(_form__WEBPACK_IMPORTED_MODULE_5__["default"])();
+  Object(_burger__WEBPACK_IMPORTED_MODULE_6__["default"])();
+  Object(_newsletter__WEBPACK_IMPORTED_MODULE_7__["default"])();
+  _homeBorders__WEBPACK_IMPORTED_MODULE_9___default()();
+  Object(_ioBorders__WEBPACK_IMPORTED_MODULE_8__["default"])();
 };
 
 if (document.readyState === 'complete') {
@@ -9897,6 +9946,38 @@ if (document.readyState === 'complete') {
     }
   }, false);
 }
+
+/***/ }),
+
+/***/ "./wp-content/themes/think/src/js/newsletter.js":
+/*!******************************************************!*\
+  !*** ./wp-content/themes/think/src/js/newsletter.js ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var newsletterHandler = function newsletterHandler() {
+  var form = document.getElementById('newsletter-form');
+  if (!form.length) return;
+  var hiddenInput = form.querySelector('.gdpr');
+
+  var displayHiddenInput = function displayHiddenInput() {
+    hiddenInput.classList.add('visible');
+  };
+
+  var hideHiddenInput = function hideHiddenInput(e) {
+    if (!e.target.closest('#newsletter-form') && !hiddenInput.querySelector('input').checked) hiddenInput.classList.remove('visible');
+  };
+
+  form.querySelectorAll('input').forEach(function (input) {
+    input.addEventListener('focus', displayHiddenInput);
+  });
+  document.addEventListener('click', hideHiddenInput);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (newsletterHandler);
 
 /***/ }),
 

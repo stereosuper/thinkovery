@@ -32,6 +32,7 @@
 			<iframe src='https://www.googletagmanager.com/ns.html?id=GTM-MKRJ9ZB' class='hidden'></iframe>
 		</noscript>
 		<!-- End Google Tag Manager (noscript) -->
+
 		<header role='banner' id="main-header">
 			<div class='container'>
 				<a href='<?php echo home_url('/'); ?>' class="logo" title='<?php bloginfo( 'name' ); ?>' rel='home'><?php bloginfo( 'name' ); ?></a>
@@ -58,6 +59,7 @@
 				</nav>
 			</div>
 		</header>
+		
 		<main role='main'>
 			<div id="borders">
 				<div class="mouse">

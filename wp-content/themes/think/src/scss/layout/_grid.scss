@@ -6,13 +6,6 @@
     margin: 0 auto;
 }
 
-.col-1 {
-    width: $col;
-}
-.col-2 {
-    width: $col * 2;
-}
-
 @media (min-width: $desktop) {
     .col-3-desk {
         width: $col * 3;

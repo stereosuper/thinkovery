@@ -39,7 +39,7 @@
 
                             <div class='main-footer-middle'>
                                 <?php if( have_rows('footerMenu1', 'options') ): ?>
-                                    <div class='col-1'>
+                                    <div class='footer-col-small'>
                                         <span><?php echo $menus['footerMenu1Title']; ?></span>
                                         <ul>
                                             <?php while ( have_rows('footerMenu1', 'options') ) : the_row(); ?>
@@ -51,7 +51,7 @@
                                 <?php endif; ?>
 
                                 <?php if( have_rows('footerMenu2', 'options') ): ?>
-                                    <div class='col-1'>
+                                    <div class='footer-col-small'>
                                         <span><?php echo $menus['footerMenu2Title']; ?></span>
                                         <ul>
                                             <?php while ( have_rows('footerMenu2', 'options') ) : the_row(); ?>
@@ -76,7 +76,7 @@
                                     );
                                         
                                     if( $blogFooter->have_posts() ){ ?>
-                                        <div class='col-2'>
+                                        <div class='footer-col-big'>
                                             <span><?php echo $menus['footerBlogTitle']; ?></span>
                                             <ul>
                                                 <?php while( $blogFooter->have_posts() ){ $blogFooter->the_post(); ?>
@@ -92,7 +92,7 @@
                     
                     <div class='main-footer-bottom'>
                         <?php if( have_rows('social', 'options') ): ?>
-                            <div class='col-1'>
+                            <div class='container-social'>
                                 <span><?php echo $menus['footerSocialTitle']; ?></span>
                                 <ul class='social'>
                                     <?php while ( have_rows('social', 'options') ) : the_row(); ?>

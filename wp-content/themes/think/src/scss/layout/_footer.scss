@@ -1,7 +1,6 @@
 /* Footer */
 
 .main-footer {
-    display: none;
     margin: 7.5em 0 0;
     a:not(.btn) {
         color: inherit;
@@ -35,12 +34,8 @@
 }
 
 .footer-contact {
-    width: calc(#{$col} + #{$gutter});
     padding: $line-height $gutter;
-    position: absolute;
-    top: $line-height;
-    right: $gutter * 2;
-    z-index: 10;
+    margin: 2em 0 -5em;
     background: $bg-color;
     p {
         margin: 0 0 20px;
@@ -48,10 +43,16 @@
         font-weight: 700;
         line-height: 1.2;
     }
+    strong{
+        color: $primary;
+    }
+    br{
+        display: none;
+    }
 }
 
 .main-footer-container {
-    padding: 0 0 3.5em;
+    padding: 2em 0 3.5em;
     font-size: 1.6rem;
     background: $primary;
     color: $white;
@@ -69,20 +70,34 @@
 }
 .main-footer-middle {
     align-items: flex-start;
+    flex-wrap: wrap;
 }
+
+.footer-col-small{
+    width: 50%;
+    margin: 0 0 3em;
+}
+.footer-col-big{
+    width: 100%;
+}
+
 .main-footer-bottom {
+    flex-wrap: wrap;
     a {
         font-weight: 600;
         text-decoration: none;
-    }
-    .col-1 {
-        display: flex;
-        align-items: center;
     }
 }
 
 .main-footer-baseline {
     font-size: 2.2rem;
+}
+
+.container-social {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    margin: 0 0 $line-height;
 }
 
 .social {
@@ -103,5 +118,38 @@
         align-items: center;
         justify-content: center;
         border-radius: 50%;
+    }
+}
+
+
+@media (min-width: $desktop-small){
+    .footer-col-small{
+        width: 25%;
+        margin: 0;
+    }
+    .footer-col-big{
+        width: 50%;
+    }
+}
+
+@media (min-width: $desktop){
+    .footer-contact{
+        width: calc(#{$col} + #{$gutter});
+        position: absolute;
+        top: $line-height;
+        right: $gutter * 2;
+        z-index: 10;
+        br{
+            display: block;
+        }
+    }
+
+    .main-footer-container{
+        padding-top: 0;
+    }
+
+    .container-social {
+        width: 25%;
+        margin: 0;
     }
 }

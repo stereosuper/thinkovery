@@ -5,8 +5,12 @@ import io from './utils/io';
 import scroll from './utils/Scroll';
 import fallback from './utils/Fallback';
 
+import form from './form';
 import burger from './burger';
+import newsletter from './newsletter';
 import ioBorders from './ioBorders';
+import homeBorders from './homeBorders';
+
 
 const loadHandler = () => {
     const noTransElem = [].slice.call(
@@ -21,9 +25,13 @@ const loadHandler = () => {
     fallback.init();
 
     // Custom scripts
-    ioBorders();
+    form();
     burger();
+    newsletter();
+    homeBorders();
+    ioBorders();
 };
+
 
 if (document.readyState === 'complete') {
     loadHandler();
