@@ -9,7 +9,6 @@ import form from './form';
 import burger from './burger';
 import newsletter from './newsletter';
 import ioBorders from './ioBorders';
-import homeBorders from './homeBorders';
 
 
 const loadHandler = () => {
@@ -28,7 +27,6 @@ const loadHandler = () => {
     form();
     burger();
     newsletter();
-    homeBorders();
     ioBorders();
 };
 

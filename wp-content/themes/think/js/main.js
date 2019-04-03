@@ -9558,17 +9558,6 @@ var easing = {
 
 /***/ }),
 
-/***/ "./wp-content/themes/think/src/js/homeBorders.js":
-/*!*******************************************************!*\
-  !*** ./wp-content/themes/think/src/js/homeBorders.js ***!
-  \*******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nError: ENOENT: no such file or directory, open '/Users/elisabeth/Travail/Stereo/Thinkovery/wp-content/themes/think/src/js/homeBorders.js'");
-
-/***/ }),
-
 /***/ "./wp-content/themes/think/src/js/ioBorders.js":
 /*!*****************************************************!*\
   !*** ./wp-content/themes/think/src/js/ioBorders.js ***!
@@ -9908,9 +9897,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _burger__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./burger */ "./wp-content/themes/think/src/js/burger.js");
 /* harmony import */ var _newsletter__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./newsletter */ "./wp-content/themes/think/src/js/newsletter.js");
 /* harmony import */ var _ioBorders__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./ioBorders */ "./wp-content/themes/think/src/js/ioBorders.js");
-/* harmony import */ var _homeBorders__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./homeBorders */ "./wp-content/themes/think/src/js/homeBorders.js");
-/* harmony import */ var _homeBorders__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_homeBorders__WEBPACK_IMPORTED_MODULE_9__);
-
 
 
 
@@ -9933,7 +9919,6 @@ var loadHandler = function loadHandler() {
   Object(_form__WEBPACK_IMPORTED_MODULE_5__["default"])();
   Object(_burger__WEBPACK_IMPORTED_MODULE_6__["default"])();
   Object(_newsletter__WEBPACK_IMPORTED_MODULE_7__["default"])();
-  _homeBorders__WEBPACK_IMPORTED_MODULE_9___default()();
   Object(_ioBorders__WEBPACK_IMPORTED_MODULE_8__["default"])();
 };
 
