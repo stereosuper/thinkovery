@@ -2,7 +2,7 @@ import { TweenMax, TimelineMax } from 'gsap';
 import { colors, easing } from './global';
 import { createNewEvent } from './utils';
 
-const burgerHandler = () => {
+const ioBorders = () => {
     const state = {
         isMoving: false,
         queue: [],
@@ -15,7 +15,6 @@ const burgerHandler = () => {
     const bordersWrapper = document.getElementById('borders');
 
     if (!bordersWrapper && !isHome) return;
-    const [mouseWrapper] = bordersWrapper.getElementsByClassName('mouse');
     const [catWrapper] = bordersWrapper.getElementsByClassName('cat');
     const bordersCat = catWrapper.children;
 
@@ -341,4 +340,4 @@ const burgerHandler = () => {
     bordersWrapper.addEventListener('updateQueue', updateBorder, false);
 };
 
-export default burgerHandler;
+export default ioBorders;

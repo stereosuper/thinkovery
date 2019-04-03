@@ -9530,10 +9530,10 @@ var easing = {
 
 /***/ }),
 
-/***/ "./wp-content/themes/think/src/js/homeBorders.js":
-/*!*******************************************************!*\
-  !*** ./wp-content/themes/think/src/js/homeBorders.js ***!
-  \*******************************************************/
+/***/ "./wp-content/themes/think/src/js/ioBorders.js":
+/*!*****************************************************!*\
+  !*** ./wp-content/themes/think/src/js/ioBorders.js ***!
+  \*****************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -9554,7 +9554,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var burgerHandler = function burgerHandler() {
+var ioBorders = function ioBorders() {
   var state = {
     isMoving: false,
     queue: [],
@@ -9567,13 +9567,9 @@ var burgerHandler = function burgerHandler() {
   var bordersWrapper = document.getElementById('borders');
   if (!bordersWrapper && !isHome) return;
 
-  var _bordersWrapper$getEl = bordersWrapper.getElementsByClassName('mouse'),
+  var _bordersWrapper$getEl = bordersWrapper.getElementsByClassName('cat'),
       _bordersWrapper$getEl2 = _slicedToArray(_bordersWrapper$getEl, 1),
-      mouseWrapper = _bordersWrapper$getEl2[0];
-
-  var _bordersWrapper$getEl3 = bordersWrapper.getElementsByClassName('cat'),
-      _bordersWrapper$getEl4 = _slicedToArray(_bordersWrapper$getEl3, 1),
-      catWrapper = _bordersWrapper$getEl4[0];
+      catWrapper = _bordersWrapper$getEl2[0];
 
   var bordersCat = catWrapper.children;
   var tl = new gsap__WEBPACK_IMPORTED_MODULE_0__["TimelineMax"]({
@@ -9850,7 +9846,7 @@ var burgerHandler = function burgerHandler() {
   bordersWrapper.addEventListener('updateQueue', updateBorder, false);
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (burgerHandler);
+/* harmony default export */ __webpack_exports__["default"] = (ioBorders);
 
 /***/ }),
 
@@ -9870,7 +9866,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_Scroll__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils/Scroll */ "./wp-content/themes/think/src/js/utils/Scroll.js");
 /* harmony import */ var _utils_Fallback__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./utils/Fallback */ "./wp-content/themes/think/src/js/utils/Fallback.js");
 /* harmony import */ var _burger__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./burger */ "./wp-content/themes/think/src/js/burger.js");
-/* harmony import */ var _homeBorders__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./homeBorders */ "./wp-content/themes/think/src/js/homeBorders.js");
+/* harmony import */ var _ioBorders__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./ioBorders */ "./wp-content/themes/think/src/js/ioBorders.js");
 
 
 
@@ -9888,7 +9884,7 @@ var loadHandler = function loadHandler() {
   _utils_io__WEBPACK_IMPORTED_MODULE_2__["default"].init();
   _utils_Fallback__WEBPACK_IMPORTED_MODULE_4__["default"].init(); // Custom scripts
 
-  Object(_homeBorders__WEBPACK_IMPORTED_MODULE_6__["default"])();
+  Object(_ioBorders__WEBPACK_IMPORTED_MODULE_6__["default"])();
   Object(_burger__WEBPACK_IMPORTED_MODULE_5__["default"])();
 };
 
