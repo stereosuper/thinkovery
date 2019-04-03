@@ -9893,10 +9893,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_io__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils/io */ "./wp-content/themes/think/src/js/utils/io.js");
 /* harmony import */ var _utils_Scroll__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils/Scroll */ "./wp-content/themes/think/src/js/utils/Scroll.js");
 /* harmony import */ var _utils_Fallback__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./utils/Fallback */ "./wp-content/themes/think/src/js/utils/Fallback.js");
-/* harmony import */ var _form__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./form */ "./wp-content/themes/think/src/js/form.js");
-/* harmony import */ var _burger__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./burger */ "./wp-content/themes/think/src/js/burger.js");
-/* harmony import */ var _newsletter__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./newsletter */ "./wp-content/themes/think/src/js/newsletter.js");
-/* harmony import */ var _ioBorders__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./ioBorders */ "./wp-content/themes/think/src/js/ioBorders.js");
+/* harmony import */ var _scrollBorders__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./scrollBorders */ "./wp-content/themes/think/src/js/scrollBorders.js");
+/* harmony import */ var _ioBorders__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./ioBorders */ "./wp-content/themes/think/src/js/ioBorders.js");
+/* harmony import */ var _form__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./form */ "./wp-content/themes/think/src/js/form.js");
+/* harmony import */ var _newsletter__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./newsletter */ "./wp-content/themes/think/src/js/newsletter.js");
+/* harmony import */ var _burger__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./burger */ "./wp-content/themes/think/src/js/burger.js");
+
 
 
 
@@ -9916,10 +9918,11 @@ var loadHandler = function loadHandler() {
   _utils_io__WEBPACK_IMPORTED_MODULE_2__["default"].init();
   _utils_Fallback__WEBPACK_IMPORTED_MODULE_4__["default"].init(); // Custom scripts
 
-  Object(_form__WEBPACK_IMPORTED_MODULE_5__["default"])();
-  Object(_burger__WEBPACK_IMPORTED_MODULE_6__["default"])();
-  Object(_newsletter__WEBPACK_IMPORTED_MODULE_7__["default"])();
-  Object(_ioBorders__WEBPACK_IMPORTED_MODULE_8__["default"])();
+  Object(_scrollBorders__WEBPACK_IMPORTED_MODULE_5__["default"])();
+  Object(_ioBorders__WEBPACK_IMPORTED_MODULE_6__["default"])();
+  Object(_form__WEBPACK_IMPORTED_MODULE_7__["default"])();
+  Object(_newsletter__WEBPACK_IMPORTED_MODULE_8__["default"])();
+  Object(_burger__WEBPACK_IMPORTED_MODULE_9__["default"])();
 };
 
 if (document.readyState === 'complete') {
@@ -10474,6 +10477,62 @@ gsap_TweenLite_js__WEBPACK_IMPORTED_MODULE_0__["_gsScope"]._gsDefine("easing.Cus
 
 var CustomEase = gsap_TweenLite_js__WEBPACK_IMPORTED_MODULE_0__["globals"].CustomEase;
 
+
+/***/ }),
+
+/***/ "./wp-content/themes/think/src/js/scrollBorders.js":
+/*!*********************************************************!*\
+  !*** ./wp-content/themes/think/src/js/scrollBorders.js ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
+/* harmony import */ var _global__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./global */ "./wp-content/themes/think/src/js/global/index.js");
+/* harmony import */ var _utils_Scroll__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils/Scroll */ "./wp-content/themes/think/src/js/utils/Scroll.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils */ "./wp-content/themes/think/src/js/utils/index.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+var scrollBorders = function scrollBorders() {
+  var _document = document,
+      body = _document.body;
+  var isHome = body.classList.contains('home');
+  var bordersWrapper = document.getElementById('borders');
+  if (!bordersWrapper && !isHome) return;
+
+  var _bordersWrapper$getEl = bordersWrapper.getElementsByClassName('mouse'),
+      _bordersWrapper$getEl2 = _slicedToArray(_bordersWrapper$getEl, 1),
+      mouseWrapper = _bordersWrapper$getEl2[0];
+
+  var bordersMouse = mouseWrapper.children;
+  var homeSections = [].slice.call(document.getElementsByClassName('js-home-section'));
+  var test = homeSections.map(function (border) {
+    return {
+      top: border.getBoundingClientRect().top,
+      height: border.getBoundingClientRect().height
+    };
+  });
+  _utils_Scroll__WEBPACK_IMPORTED_MODULE_2__["default"].addScrollFunction(function () {
+    var scrollTop = _utils_Scroll__WEBPACK_IMPORTED_MODULE_2__["default"].scrollTop; // for
+    // if (scrollTop+window.innerHeight >= ) {
+    // }
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (scrollBorders);
 
 /***/ }),
 
