@@ -1,44 +1,48 @@
 /* Home specific style */
 
-.home-header, .home-section{
+.home-header,
+.home-section {
     padding: 5px 0 7em;
 }
 
-.home-header{
+.home-header {
     text-align: center;
-    > h1{
+    > h1 {
         margin: 0;
     }
 }
 
 .home-section {
-    &:nth-of-type(1){
-        h2, a{
+    &:nth-of-type(1) {
+        h2,
+        a {
             color: $secondary;
         }
-        .wrapper-img{
-            margin: 0 0 0 $gutter*-1;
+        .wrapper-img {
+            margin: 0 0 0 $gutter * -1;
             text-align: left;
         }
     }
-    &:nth-of-type(3){
-        h2, a{
+    &:nth-of-type(3) {
+        h2,
+        a {
             color: $tertiary;
         }
     }
-    &:nth-of-type(4){
-        h2, a{
+    &:nth-of-type(4) {
+        h2,
+        a {
             color: $tertiary-light;
         }
     }
-    h2{
+    h2 {
         font-size: 2.6rem;
         line-height: 1;
     }
-    .wrapper-img{
+    .wrapper-img {
         text-align: center;
     }
-    .wrapper-btn{
+    .wrapper-btn {
         margin: 2em 0 0;
         text-align: center;
     }
@@ -95,44 +99,45 @@
     }
 }
 
-
-@media (min-width: $desktop-small){
-    .home-header, .home-section{
+@media (min-width: $desktop-small) {
+    .home-header,
+    .home-section {
         display: flex;
         align-items: center;
         min-height: 85vh;
     }
 
-    .home-header{
+    .home-header {
         justify-content: center;
     }
 
-    .home-section{
+    .home-section {
         display: flex;
         align-items: center;
         min-height: 85vh;
-        &:nth-of-type(1), &:nth-of-type(3){
+        &:nth-of-type(1),
+        &:nth-of-type(3) {
             justify-content: flex-end;
         }
-        &:nth-of-type(2){
+        &:nth-of-type(2) {
             justify-content: center;
             text-align: center;
-            .wrapper-btn{
+            .wrapper-btn {
                 text-align: center;
             }
         }
-        h2{
+        h2 {
             font-size: 4.9rem;
         }
-        .wrapper-btn{
+        .wrapper-btn {
             text-align: right;
         }
-        .wrapper-img{
+        .wrapper-img {
             display: none;
         }
     }
 
-    .section-content{
+    .section-content {
         width: 50%;
     }
 }

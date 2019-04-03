@@ -9583,17 +9583,17 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var ioBorders = function ioBorders() {
+  var _document = document,
+      body = _document.body;
+  var isHome = body.classList.contains('home');
+  var bordersWrapper = document.getElementById('borders');
+  if (!bordersWrapper && !isHome) return;
   var state = {
     isMoving: false,
     queue: [],
     nextSection: null,
     speedFactor: 1
   };
-  var _document = document,
-      body = _document.body;
-  var isHome = body.classList.contains('home');
-  var bordersWrapper = document.getElementById('borders');
-  if (!bordersWrapper && !isHome) return;
 
   var _bordersWrapper$getEl = bordersWrapper.getElementsByClassName('cat'),
       _bordersWrapper$getEl2 = _slicedToArray(_bordersWrapper$getEl, 1),
@@ -10491,8 +10491,8 @@ var CustomEase = gsap_TweenLite_js__WEBPACK_IMPORTED_MODULE_0__["globals"].Custo
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
 /* harmony import */ var _global__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./global */ "./wp-content/themes/think/src/js/global/index.js");
-/* harmony import */ var _utils_Scroll__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils/Scroll */ "./wp-content/themes/think/src/js/utils/Scroll.js");
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils */ "./wp-content/themes/think/src/js/utils/index.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils */ "./wp-content/themes/think/src/js/utils/index.js");
+/* harmony import */ var _utils_Scroll__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils/Scroll */ "./wp-content/themes/think/src/js/utils/Scroll.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -10512,27 +10512,176 @@ var scrollBorders = function scrollBorders() {
   var isHome = body.classList.contains('home');
   var bordersWrapper = document.getElementById('borders');
   if (!bordersWrapper && !isHome) return;
+  var state = {
+    activeId: '',
+    observables: {}
+  };
 
   var _bordersWrapper$getEl = bordersWrapper.getElementsByClassName('mouse'),
       _bordersWrapper$getEl2 = _slicedToArray(_bordersWrapper$getEl, 1),
       mouseWrapper = _bordersWrapper$getEl2[0];
 
   var bordersMouse = mouseWrapper.children;
-  var homeSections = [].slice.call(document.getElementsByClassName('js-home-section')); // const test = homeSections.map(border => ({
-  //     top: border.getBoundingClientRect().top,
-  //     height: border.getBoundingClientRect().height,
-  // }));
-  // scroll.addScrollFunction(() => {
-  //     const { scrollTop } = scroll;
-  //     // for
-  //     // if (scrollTop+window.innerHeight >= ) {
-  //     // }
-  // });
+  var homeSections = [].slice.call(document.getElementsByClassName('js-home-section'));
+  var samplesNumber = 1000;
+  var borderMapping = {
+    top: {
+      index: 0,
+      origin: '0% 50%'
+    },
+    right: {
+      index: 1,
+      origin: '50% 0%'
+    },
+    left: {
+      index: 3,
+      origin: '50% 100%'
+    },
+    bottom: {
+      index: 2,
+      origin: '100% 50%'
+    }
+  };
+
+  var findActiveId = function findActiveId() {
+    var _Object$entries$reduc = Object.entries(state.observables).reduce(function (acc, currentObservable) {
+      var biggestRatio = acc;
+
+      if (currentObservable[1].ratio) {
+        biggestRatio = currentObservable;
+      }
+
+      return biggestRatio;
+    }, ['', {
+      ratio: 0
+    }]);
+
+    var _Object$entries$reduc2 = _slicedToArray(_Object$entries$reduc, 1);
+
+    state.activeId = _Object$entries$reduc2[0];
+  };
+
+  var pathIntro = function pathIntro() {};
+
+  var animatePath = function animatePath(_ref) {
+    var borders = _ref.borders;
+    var ratio = state.observables[state.activeId].ratio;
+    var ratioFactor = borders.reduce(function (acc, current) {
+      return acc + current.maxScale;
+    }, 0);
+    var pathRatio = 0;
+    Object(_utils__WEBPACK_IMPORTED_MODULE_2__["forEach"])(borders, function (border) {
+      var scale = ratio > pathRatio / ratioFactor ? Math.min(border.maxScale, (ratio - pathRatio / ratioFactor) * ratioFactor) : 0;
+      gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set(bordersMouse[borderMapping[border.position].index], {
+        transformOrigin: borderMapping[border.position].origin,
+        scaleX: border.position === 'top' || border.position === 'bottom' ? scale : 1,
+        scaleY: border.position === 'left' || border.position === 'right' ? scale : 1
+      });
+      pathRatio += border.maxScale;
+    });
+  };
+
+  var selectPath = function selectPath() {
+    switch (state.activeId) {
+      case 'home-intro':
+        animatePath({
+          borders: [{
+            position: 'left',
+            maxScale: 0
+          }, {
+            position: 'top',
+            maxScale: 1
+          }, {
+            position: 'right',
+            maxScale: 1
+          }, {
+            position: 'bottom',
+            maxScale: 0.5
+          }]
+        });
+        break;
+
+      case 'home-learning-experience':
+        animatePath({
+          borders: [{
+            position: 'right',
+            maxScale: 0
+          }, {
+            position: 'bottom',
+            maxScale: 1
+          }, {
+            position: 'left',
+            maxScale: 1
+          }, {
+            position: 'top',
+            maxScale: 0.25
+          }]
+        });
+        break;
+
+      case 'home-offers':
+        animatePath({
+          borders: [{
+            position: 'left',
+            maxScale: 0
+          }, {
+            position: 'top',
+            maxScale: 1
+          }, {
+            position: 'right',
+            maxScale: 1
+          }, {
+            position: 'bottom',
+            maxScale: 0.75
+          }]
+        });
+        break;
+
+      case 'home-about-us':
+        animatePath({
+          borders: [{
+            position: 'right',
+            maxScale: 0
+          }, {
+            position: 'bottom',
+            maxScale: 1
+          }, {
+            position: 'left',
+            maxScale: 1
+          }, {
+            position: 'top',
+            maxScale: 1
+          }]
+        });
+        break;
+
+      case 'home-experiences':
+        animatePath({
+          borders: [{
+            position: 'left',
+            maxScale: 0
+          }, {
+            position: 'top',
+            maxScale: 0
+          }, {
+            position: 'right',
+            maxScale: 1
+          }, {
+            position: 'bottom',
+            maxScale: 1
+          }]
+        });
+        break;
+
+      default:
+        break;
+    }
+  };
 
   var thresholdSamples = [];
 
-  for (var index = 0; index <= 100; index += 1) {
-    thresholdSamples.push(index / 100);
+  for (var index = 0; index <= samplesNumber; index += 1) {
+    thresholdSamples.push(index / samplesNumber);
   }
 
   var observerOptions = {
@@ -10542,15 +10691,30 @@ var scrollBorders = function scrollBorders() {
   };
 
   var intersectionCallback = function intersectionCallback(entries) {
-    Object(_utils__WEBPACK_IMPORTED_MODULE_3__["forEach"])(entries, function (entry) {
-      var ratio = Object(_utils__WEBPACK_IMPORTED_MODULE_3__["roundNumbers"])(entry.intersectionRatio, 2);
-      entry.target.innerText = ratio;
+    Object(_utils__WEBPACK_IMPORTED_MODULE_2__["forEach"])(entries, function (entry) {
+      var ratio = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["roundNumbers"])(entry.intersectionRatio, 5);
+
+      if (ratio > 0) {
+        state.observables[entry.target.id].ratio = ratio;
+      } else {
+        state.observables[entry.target.id].ratio = 0;
+      }
     });
   };
 
   var observer = new IntersectionObserver(intersectionCallback, observerOptions);
-  Object(_utils__WEBPACK_IMPORTED_MODULE_3__["forEach"])(homeSections, function (section) {
+  Object(_utils__WEBPACK_IMPORTED_MODULE_2__["forEach"])(homeSections, function (section) {
+    state.observables[section.id] = {
+      ratio: 0
+    };
     observer.observe(section);
+  });
+  _utils_Scroll__WEBPACK_IMPORTED_MODULE_3__["default"].addScrollFunction(function () {
+    findActiveId();
+
+    if (state.activeId) {
+      selectPath();
+    }
   });
 };
 
@@ -11029,7 +11193,7 @@ function Io() {
   var _this = this;
 
   this.resized = true;
-  var threshold = 0.3;
+  var threshold = 0.5;
 
   this.init = function () {
     var objectsToIO = [].slice.call(document.querySelectorAll('[data-io]'));

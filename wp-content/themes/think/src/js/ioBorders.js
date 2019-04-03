@@ -3,6 +3,11 @@ import { colors, easing } from './global';
 import { createNewEvent } from './utils';
 
 const ioBorders = () => {
+    const { body } = document;
+    const isHome = body.classList.contains('home');
+    const bordersWrapper = document.getElementById('borders');
+
+    if (!bordersWrapper && !isHome) return;
     const state = {
         isMoving: false,
         queue: [],
@@ -10,11 +15,6 @@ const ioBorders = () => {
         speedFactor: 1,
     };
 
-    const { body } = document;
-    const isHome = body.classList.contains('home');
-    const bordersWrapper = document.getElementById('borders');
-
-    if (!bordersWrapper && !isHome) return;
     const [catWrapper] = bordersWrapper.getElementsByClassName('cat');
     const bordersCat = catWrapper.children;
 

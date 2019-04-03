@@ -3,7 +3,7 @@ import { forEach, createNewEvent } from '.';
 
 function Io() {
     this.resized = true;
-    const threshold = 0.3;
+    const threshold = 0.5;
 
     this.init = () => {
         const objectsToIO = [].slice.call(
