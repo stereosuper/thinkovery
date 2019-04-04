@@ -1160,46 +1160,236 @@ label {
   padding: 15px 20px 20px;
   position: relative;
   font-size: 1.6rem;
-  text-align: left; }
-  .btn-invert:before, .btn-invert:after {
-    content: '';
+  text-align: left;
+  z-index: 1; }
+  .btn-invert:hover, .btn-invert:focus {
+    opacity: 0.8; }
+  .btn-invert .top, .btn-invert .bot, .btn-invert .right, .btn-invert .left {
     position: absolute;
-    background: currentColor; }
-  .btn-invert.btn-1:before, .btn-invert.btn-1:after {
-    top: 0;
-    right: 0; }
-  .btn-invert.btn-1:before {
-    width: 75%;
-    height: 3px; }
-  .btn-invert.btn-1:after {
-    width: 3px;
-    height: 100%; }
-  .btn-invert.btn-2 {
-    border-top: 3px solid;
-    border-left: 3px solid; }
-    .btn-invert.btn-2:before {
-      bottom: 0;
+    z-index: -1; }
+    .btn-invert .top:before, .btn-invert .top:after, .btn-invert .bot:before, .btn-invert .bot:after, .btn-invert .right:before, .btn-invert .right:after, .btn-invert .left:before, .btn-invert .left:after {
+      content: '';
+      position: absolute;
+      top: 0;
       left: 0;
-      width: 25%;
-      height: 3px; }
-  .btn-invert.btn-3:before, .btn-invert.btn-3:after {
-    bottom: 0;
+      right: 0;
+      bottom: 0;
+      background: currentColor;
+      -webkit-transform-origin: 0 0;
+              transform-origin: 0 0;
+      -webkit-transition: 0.15s cubic-bezier(0.72, 0.01, 0.74, -0.09);
+      transition: 0.15s cubic-bezier(0.72, 0.01, 0.74, -0.09); }
+  .btn-invert .top, .btn-invert .bot {
+    height: 3px;
+    left: 0;
     right: 0; }
-  .btn-invert.btn-3:before {
-    width: 75%;
-    height: 3px; }
-  .btn-invert.btn-3:after {
+    .btn-invert .top:before, .btn-invert .top:after, .btn-invert .bot:before, .btn-invert .bot:after {
+      -webkit-transform: scaleX(0);
+              transform: scaleX(0); }
+  .btn-invert .top {
+    top: 0; }
+  .btn-invert .bot {
+    bottom: 0; }
+  .btn-invert .right, .btn-invert .left {
     width: 3px;
-    height: 100%; }
-  .btn-invert.btn-4:before, .btn-invert.btn-4:after {
     top: 0;
+    bottom: 0; }
+    .btn-invert .right:before, .btn-invert .right:after, .btn-invert .left:before, .btn-invert .left:after {
+      -webkit-transform: scaleY(0);
+              transform: scaleY(0); }
+  .btn-invert .right {
+    right: 0; }
+  .btn-invert .left {
     left: 0; }
-  .btn-invert.btn-4:before {
-    width: 75%;
-    height: 3px; }
-  .btn-invert.btn-4:after {
-    width: 3px;
-    height: 100%; }
+  .btn-invert.btn-1 .top:before {
+    -webkit-transform-origin: 100% 0;
+            transform-origin: 100% 0;
+    -webkit-transform: scaleX(0.75);
+            transform: scaleX(0.75);
+    -webkit-transition-delay: 0.32s;
+            transition-delay: 0.32s; }
+  .btn-invert.btn-1 .right:before {
+    -webkit-transform-origin: 0 100%;
+            transform-origin: 0 100%;
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+    -webkit-transition-delay: 0.24s;
+            transition-delay: 0.24s; }
+  .btn-invert.btn-1 .bot:before {
+    -webkit-transform-origin: 100% 0;
+            transform-origin: 100% 0;
+    -webkit-transition-delay: 0.16s;
+            transition-delay: 0.16s; }
+  .btn-invert.btn-1 .left:before {
+    -webkit-transform-origin: 0 100%;
+            transform-origin: 0 100%;
+    -webkit-transition-delay: 0.08s;
+            transition-delay: 0.08s; }
+  .btn-invert.btn-1:hover .top:after, .btn-invert.btn-1:focus .top:after {
+    -webkit-transform: scaleX(0.25);
+            transform: scaleX(0.25);
+    -webkit-transition-delay: 0.32s;
+            transition-delay: 0.32s; }
+  .btn-invert.btn-1:hover .top:before, .btn-invert.btn-1:focus .top:before {
+    -webkit-transform: scaleX(0);
+            transform: scaleX(0);
+    -webkit-transition-delay: 0s;
+            transition-delay: 0s;
+    -webkit-transition-timing-function: cubic-bezier(0.26, 1.09, 0.28, 0.99);
+            transition-timing-function: cubic-bezier(0.26, 1.09, 0.28, 0.99); }
+  .btn-invert.btn-1:hover .right:before, .btn-invert.btn-1:focus .right:before {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+    -webkit-transition-delay: 0.08s;
+            transition-delay: 0.08s;
+    -webkit-transition-timing-function: cubic-bezier(0.26, 1.09, 0.28, 0.99);
+            transition-timing-function: cubic-bezier(0.26, 1.09, 0.28, 0.99); }
+  .btn-invert.btn-1:hover .bot:before, .btn-invert.btn-1:focus .bot:before {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+    -webkit-transition-delay: 0.16s;
+            transition-delay: 0.16s; }
+  .btn-invert.btn-1:hover .left:before, .btn-invert.btn-1:focus .left:before {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+    -webkit-transition-delay: 0.24s;
+            transition-delay: 0.24s; }
+  .btn-invert.btn-2 .top:before {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+    -webkit-transform-origin: 100% 0;
+            transform-origin: 100% 0;
+    -webkit-transition-delay: 0.16s;
+            transition-delay: 0.16s; }
+  .btn-invert.btn-2 .left:before {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+    -webkit-transition-delay: 0.24s;
+            transition-delay: 0.24s; }
+  .btn-invert.btn-2 .right:before {
+    -webkit-transition-delay: 0.08s;
+            transition-delay: 0.08s; }
+  .btn-invert.btn-2 .bot:before {
+    -webkit-transform-origin: 100% 0;
+            transform-origin: 100% 0; }
+  .btn-invert.btn-2:hover .top:before, .btn-invert.btn-2:focus .top:before {
+    -webkit-transform: scaleX(0);
+            transform: scaleX(0);
+    -webkit-transition-delay: 0.08s;
+            transition-delay: 0.08s;
+    -webkit-transition-timing-function: cubic-bezier(0.26, 1.09, 0.28, 0.99);
+            transition-timing-function: cubic-bezier(0.26, 1.09, 0.28, 0.99); }
+  .btn-invert.btn-2:hover .left:before, .btn-invert.btn-2:focus .left:before {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+    -webkit-transition-timing-function: cubic-bezier(0.26, 1.09, 0.28, 0.99);
+            transition-timing-function: cubic-bezier(0.26, 1.09, 0.28, 0.99);
+    -webkit-transition-delay: 0s;
+            transition-delay: 0s; }
+  .btn-invert.btn-2:hover .right:before, .btn-invert.btn-2:focus .right:before {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+    -webkit-transition-delay: 0.16s;
+            transition-delay: 0.16s; }
+  .btn-invert.btn-2:hover .bot:before, .btn-invert.btn-2:focus .bot:before {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+    -webkit-transition-delay: 0.24s;
+            transition-delay: 0.24s; }
+  .btn-invert.btn-3 .bot:before {
+    -webkit-transform-origin: 100% 0;
+            transform-origin: 100% 0;
+    -webkit-transform: scaleX(0.75);
+            transform: scaleX(0.75);
+    -webkit-transition-delay: 0.32s;
+            transition-delay: 0.32s; }
+  .btn-invert.btn-3 .right:before {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+    -webkit-transition-delay: 0.24s;
+            transition-delay: 0.24s; }
+  .btn-invert.btn-3 .top:before {
+    -webkit-transform-origin: 100% 0;
+            transform-origin: 100% 0;
+    -webkit-transition-delay: 0.16s;
+            transition-delay: 0.16s; }
+  .btn-invert.btn-3 .left:before {
+    -webkit-transition-delay: 0.08s;
+            transition-delay: 0.08s; }
+  .btn-invert.btn-3:hover .right:before, .btn-invert.btn-3:focus .right:before {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+    -webkit-transition-delay: 0.08s;
+            transition-delay: 0.08s; }
+  .btn-invert.btn-3:hover .bot:before, .btn-invert.btn-3:focus .bot:before {
+    -webkit-transform: scaleX(0);
+            transform: scaleX(0);
+    -webkit-transition-delay: 0s;
+            transition-delay: 0s; }
+  .btn-invert.btn-3:hover .bot:after, .btn-invert.btn-3:focus .bot:after {
+    -webkit-transform: scaleX(0.25);
+            transform: scaleX(0.25);
+    -webkit-transition-delay: 0.32s;
+            transition-delay: 0.32s; }
+  .btn-invert.btn-3:hover .top:before, .btn-invert.btn-3:focus .top:before {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+    -webkit-transition-delay: 0.16s;
+            transition-delay: 0.16s; }
+  .btn-invert.btn-3:hover .left:before, .btn-invert.btn-3:focus .left:before {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+    -webkit-transition-delay: 0.24s;
+            transition-delay: 0.24s; }
+  .btn-invert.btn-4 .top:before {
+    -webkit-transform: scaleX(0.75);
+            transform: scaleX(0.75);
+    -webkit-transition-delay: 0.32s;
+            transition-delay: 0.32s; }
+  .btn-invert.btn-4 .top:after {
+    -webkit-transform-origin: 100% 0;
+            transform-origin: 100% 0; }
+  .btn-invert.btn-4 .left:before {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+    -webkit-transform-origin: 0 100%;
+            transform-origin: 0 100%; }
+  .btn-invert.btn-4 .right:before {
+    -webkit-transform-origin: 0 100%;
+            transform-origin: 0 100%;
+    -webkit-transition-delay: 0.08s;
+            transition-delay: 0.08s; }
+  .btn-invert.btn-4 .bot:before {
+    -webkit-transition-delay: 0.16s;
+            transition-delay: 0.16s; }
+  .btn-invert.btn-4 .left:before {
+    -webkit-transition-delay: 0.24s;
+            transition-delay: 0.24s; }
+  .btn-invert.btn-4:hover .top:before, .btn-invert.btn-4:focus .top:before {
+    -webkit-transform: scaleX(0);
+            transform: scaleX(0);
+    -webkit-transition-delay: 0s;
+            transition-delay: 0s; }
+  .btn-invert.btn-4:hover .top:after, .btn-invert.btn-4:focus .top:after {
+    -webkit-transform: scaleX(0.25);
+            transform: scaleX(0.25);
+    -webkit-transition-delay: 0.32s;
+            transition-delay: 0.32s; }
+  .btn-invert.btn-4:hover .left:before, .btn-invert.btn-4:focus .left:before {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+    -webkit-transition-delay: 0.08s;
+            transition-delay: 0.08s; }
+  .btn-invert.btn-4:hover .bot:before, .btn-invert.btn-4:focus .bot:before {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+    -webkit-transition-delay: 0.16s;
+            transition-delay: 0.16s; }
+  .btn-invert.btn-4:hover .right:before, .btn-invert.btn-4:focus .right:before {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+    -webkit-transition-delay: 0.24s;
+            transition-delay: 0.24s; }
   .btn-invert > .icon {
     margin: 0 0 0 5px; }
 
@@ -1224,6 +1414,10 @@ label {
 .home-section:nth-of-type(1) .wrapper-img {
   margin: 0 0 0 -44px;
   text-align: left; }
+
+.home-section:nth-of-type(2) h2,
+.home-section:nth-of-type(2) a {
+  color: #1e5e32; }
 
 .home-section:nth-of-type(3) h2,
 .home-section:nth-of-type(3) a {
