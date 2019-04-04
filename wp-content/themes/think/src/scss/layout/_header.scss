@@ -2,13 +2,13 @@
 $header-height: 84px;
 
 #main-header {
-    padding-top: $line-height;
+    padding-top: $line-height*2;
     > .container {
         display: flex;
         justify-content: space-between;
-        > .logo {
-            z-index: 3;
-        }
+    }
+    .logo {
+        z-index: 3;
     }
 }
 
@@ -193,7 +193,7 @@ $header-height: 84px;
     left: 0;
     right: 0;
     bottom: 0;
-    padding: $header-height $gutter $line-height;
+    padding: $header-height+$line-height*2 $gutter $line-height;
     opacity: 0;
     transition: transition(
         (

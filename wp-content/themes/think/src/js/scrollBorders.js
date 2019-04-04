@@ -146,11 +146,7 @@ const scrollBorders = () => {
     const intersectionCallback = entries => {
         forEach(entries, entry => {
             const ratio = roundNumbers(entry.intersectionRatio, 5);
-            if (ratio > 0) {
-                state.observables[entry.target.id].ratio = ratio;
-            } else {
-                state.observables[entry.target.id].ratio = 0;
-            }
+            state.observables[entry.target.id].ratio = ratio > 0 ? ratio : 0;
         });
     };
 

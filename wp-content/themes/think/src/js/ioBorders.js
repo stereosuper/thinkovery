@@ -22,13 +22,13 @@ const ioBorders = () => {
 
     const processQueue = () => {
         state.isMoving = false;
-        if (state.queue.length) {
-            const event = createNewEvent('updateQueue');
-            [state.nextSection] = state.queue;
+        if (!state.queue.length) return
+        
+        const event = createNewEvent('updateQueue');
+        [state.nextSection] = state.queue;
 
-            state.queue.shift();
-            bordersWrapper.dispatchEvent(event);
-        }
+        state.queue.shift();
+        bordersWrapper.dispatchEvent(event);
     };
 
     const borderIntro = () => {
@@ -294,29 +294,29 @@ const ioBorders = () => {
     };
 
     const updateBorder = () => {
-        if (!state.isMoving) {
-            state.isMoving = true;
-            tl.clear();
+        if (state.isMoving) return;
+            
+        state.isMoving = true;
+        tl.clear();
 
-            switch (state.nextSection) {
-                case 'home-intro':
-                    borderIntro();
-                    break;
-                case 'home-learning-experience':
-                    borderLearningExperience();
-                    break;
-                case 'home-offers':
-                    borderOffers();
-                    break;
-                case 'home-about-us':
-                    borderAboutUs();
-                    break;
-                case 'home-experiences':
-                    borderExperiences();
-                    break;
-                default:
-                    break;
-            }
+        switch (state.nextSection) {
+            case 'home-intro':
+                borderIntro();
+                break;
+            case 'home-learning-experience':
+                borderLearningExperience();
+                break;
+            case 'home-offers':
+                borderOffers();
+                break;
+            case 'home-about-us':
+                borderAboutUs();
+                break;
+            case 'home-experiences':
+                borderExperiences();
+                break;
+            default:
+                break;
         }
     };
 

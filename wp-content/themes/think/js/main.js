@@ -9606,16 +9606,14 @@ var ioBorders = function ioBorders() {
 
   var processQueue = function processQueue() {
     state.isMoving = false;
+    if (!state.queue.length) return;
+    var event = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["createNewEvent"])('updateQueue');
 
-    if (state.queue.length) {
-      var event = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["createNewEvent"])('updateQueue');
+    var _state$queue = _slicedToArray(state.queue, 1);
 
-      var _state$queue = _slicedToArray(state.queue, 1);
-
-      state.nextSection = _state$queue[0];
-      state.queue.shift();
-      bordersWrapper.dispatchEvent(event);
-    }
+    state.nextSection = _state$queue[0];
+    state.queue.shift();
+    bordersWrapper.dispatchEvent(event);
   };
 
   var borderIntro = function borderIntro() {
@@ -9829,34 +9827,33 @@ var ioBorders = function ioBorders() {
   };
 
   var updateBorder = function updateBorder() {
-    if (!state.isMoving) {
-      state.isMoving = true;
-      tl.clear();
+    if (state.isMoving) return;
+    state.isMoving = true;
+    tl.clear();
 
-      switch (state.nextSection) {
-        case 'home-intro':
-          borderIntro();
-          break;
+    switch (state.nextSection) {
+      case 'home-intro':
+        borderIntro();
+        break;
 
-        case 'home-learning-experience':
-          borderLearningExperience();
-          break;
+      case 'home-learning-experience':
+        borderLearningExperience();
+        break;
 
-        case 'home-offers':
-          borderOffers();
-          break;
+      case 'home-offers':
+        borderOffers();
+        break;
 
-        case 'home-about-us':
-          borderAboutUs();
-          break;
+      case 'home-about-us':
+        borderAboutUs();
+        break;
 
-        case 'home-experiences':
-          borderExperiences();
-          break;
+      case 'home-experiences':
+        borderExperiences();
+        break;
 
-        default:
-          break;
-      }
+      default:
+        break;
     }
   };
 
@@ -9893,11 +9890,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_io__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils/io */ "./wp-content/themes/think/src/js/utils/io.js");
 /* harmony import */ var _utils_Scroll__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils/Scroll */ "./wp-content/themes/think/src/js/utils/Scroll.js");
 /* harmony import */ var _utils_Fallback__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./utils/Fallback */ "./wp-content/themes/think/src/js/utils/Fallback.js");
-/* harmony import */ var _scrollBorders__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./scrollBorders */ "./wp-content/themes/think/src/js/scrollBorders.js");
-/* harmony import */ var _ioBorders__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./ioBorders */ "./wp-content/themes/think/src/js/ioBorders.js");
-/* harmony import */ var _form__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./form */ "./wp-content/themes/think/src/js/form.js");
-/* harmony import */ var _newsletter__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./newsletter */ "./wp-content/themes/think/src/js/newsletter.js");
-/* harmony import */ var _burger__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./burger */ "./wp-content/themes/think/src/js/burger.js");
+/* harmony import */ var _form__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./form */ "./wp-content/themes/think/src/js/form.js");
+/* harmony import */ var _burger__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./burger */ "./wp-content/themes/think/src/js/burger.js");
+/* harmony import */ var _newsletter__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./newsletter */ "./wp-content/themes/think/src/js/newsletter.js");
+/* harmony import */ var _scrollBorders__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./scrollBorders */ "./wp-content/themes/think/src/js/scrollBorders.js");
+/* harmony import */ var _ioBorders__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./ioBorders */ "./wp-content/themes/think/src/js/ioBorders.js");
 
 
 
@@ -9918,11 +9915,11 @@ var loadHandler = function loadHandler() {
   _utils_io__WEBPACK_IMPORTED_MODULE_2__["default"].init();
   _utils_Fallback__WEBPACK_IMPORTED_MODULE_4__["default"].init(); // Custom scripts
 
-  Object(_scrollBorders__WEBPACK_IMPORTED_MODULE_5__["default"])();
-  Object(_ioBorders__WEBPACK_IMPORTED_MODULE_6__["default"])();
-  Object(_form__WEBPACK_IMPORTED_MODULE_7__["default"])();
-  Object(_newsletter__WEBPACK_IMPORTED_MODULE_8__["default"])();
-  Object(_burger__WEBPACK_IMPORTED_MODULE_9__["default"])();
+  Object(_form__WEBPACK_IMPORTED_MODULE_5__["default"])();
+  Object(_burger__WEBPACK_IMPORTED_MODULE_6__["default"])();
+  Object(_newsletter__WEBPACK_IMPORTED_MODULE_7__["default"])();
+  Object(_scrollBorders__WEBPACK_IMPORTED_MODULE_8__["default"])();
+  Object(_ioBorders__WEBPACK_IMPORTED_MODULE_9__["default"])();
 };
 
 if (document.readyState === 'complete') {
@@ -10693,12 +10690,7 @@ var scrollBorders = function scrollBorders() {
   var intersectionCallback = function intersectionCallback(entries) {
     Object(_utils__WEBPACK_IMPORTED_MODULE_2__["forEach"])(entries, function (entry) {
       var ratio = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["roundNumbers"])(entry.intersectionRatio, 5);
-
-      if (ratio > 0) {
-        state.observables[entry.target.id].ratio = ratio;
-      } else {
-        state.observables[entry.target.id].ratio = 0;
-      }
+      state.observables[entry.target.id].ratio = ratio > 0 ? ratio : 0;
     });
   };
 

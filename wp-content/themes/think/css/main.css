@@ -561,7 +561,7 @@ label {
 
 /* Header */
 #main-header {
-  padding-top: 28px; }
+  padding-top: 56px; }
   #main-header > .container {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -569,8 +569,8 @@ label {
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between; }
-    #main-header > .container > .logo {
-      z-index: 3; }
+  #main-header .logo {
+    z-index: 3; }
 
 #main-navigation {
   position: fixed;
@@ -688,7 +688,7 @@ label {
   left: 0;
   right: 0;
   bottom: 0;
-  padding: 84px 44px 28px;
+  padding: 140px 44px 28px;
   opacity: 0;
   -webkit-transition:  opacity 0.3s ease-out;
   transition:  opacity 0.3s ease-out; }
@@ -1043,9 +1043,6 @@ label {
 .main-footer-top,
 .main-footer-middle,
 .main-footer-bottom {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   padding: 3.5em 0 0; }
 
 .main-footer-top,
@@ -1054,12 +1051,18 @@ label {
       -ms-flex-align: center;
           align-items: center; }
 
+.main-footer-middle,
+.main-footer-bottom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap; }
+
 .main-footer-middle {
   -webkit-box-align: start;
       -ms-flex-align: start;
-          align-items: flex-start;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap; }
+          align-items: flex-start; }
 
 .footer-col-small {
   width: 50%;
@@ -1068,12 +1071,9 @@ label {
 .footer-col-big {
   width: 100%; }
 
-.main-footer-bottom {
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap; }
-  .main-footer-bottom a {
-    font-weight: 600;
-    text-decoration: none; }
+.main-footer-bottom a {
+  font-weight: 600;
+  text-decoration: none; }
 
 .main-footer-baseline {
   font-size: 2.2rem; }
@@ -1120,7 +1120,13 @@ label {
     width: 25%;
     margin: 0; }
   .footer-col-big {
-    width: 50%; } }
+    width: 50%; }
+  .main-footer-top {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; }
+  .footer-logo {
+    width: 25%; } }
 
 @media (min-width: 1100px) {
   .footer-contact {
