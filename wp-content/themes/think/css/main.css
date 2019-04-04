@@ -468,10 +468,6 @@ textarea {
   background: #f7f2ea;
   -webkit-transition: 0.05s ease-in-out;
   transition: 0.05s ease-in-out; }
-  input:-webkit-autofill,
-  textarea:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 1000px #fff inset;
-            box-shadow: 0 0 0 1000px #fff inset; }
   input:invalid,
   textarea:invalid {
     -webkit-box-shadow: none;
