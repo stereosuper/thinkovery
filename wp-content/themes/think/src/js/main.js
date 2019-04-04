@@ -10,6 +10,7 @@ import burger from './burger';
 import newsletter from './newsletter';
 import scrollBorders from './scrollBorders';
 import ioBorders from './ioBorders';
+import video from './video';
 
 const loadHandler = () => {
     const noTransElem = [].slice.call(
@@ -29,6 +30,7 @@ const loadHandler = () => {
     newsletter();
     scrollBorders();
     ioBorders();
+    video();
 };
 
 if (document.readyState === 'complete') {

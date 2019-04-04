@@ -412,6 +412,25 @@ a {
   -webkit-transition: none !important;
   transition: none !important; }
 
+.video {
+  width: 50%;
+  position: relative; }
+  .video:before {
+    content: '';
+    display: block;
+    padding: 0 0 56.25%; }
+  .video iframe, .video .cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0; }
+  .video iframe {
+    width: 100%;
+    height: 100%; }
+  .video .cover {
+    background: red; }
+
 @media (min-width: 580px) {
   h1 {
     font-size: 6rem;
@@ -1401,7 +1420,15 @@ label {
 .home-header {
   text-align: center; }
   .home-header > h1 {
-    margin: 0; }
+    position: relative;
+    margin: 0;
+    z-index: 1;
+    pointer-events: none; }
+  .home-header .video {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto; }
 
 .home-section:nth-of-type(1) h2,
 .home-section:nth-of-type(1) a {
