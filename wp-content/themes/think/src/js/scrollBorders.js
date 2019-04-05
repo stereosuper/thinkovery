@@ -6,12 +6,19 @@ import win from './utils/Window';
 const scrollBorders = () => {
     const bordersWrapper = document.getElementById('borders');
 
-    if ( !bordersWrapper && !document.body.classList.contains('home') ) return;
+    if (!bordersWrapper && !document.body.classList.contains('home')) return;
 
     const state = {
         display: false,
         activeId: '',
         activeSection: { id: '', ratio: 0 },
+    };
+
+    const borderMapping = {
+        top: { index: 0, origin: '0% 50%' },
+        right: { index: 1, origin: '50% 0%' },
+        left: { index: 3, origin: '50% 100%' },
+        bottom: { index: 2, origin: '100% 50%' },
     };
 
     const bordersMouse = bordersWrapper.querySelector('.mouse').children;
@@ -20,12 +27,6 @@ const scrollBorders = () => {
     );
 
     const samplesNumber = 1000;
-    const borderMapping = {
-        top: { index: 0, origin: '0% 50%' },
-        right: { index: 1, origin: '50% 0%' },
-        left: { index: 3, origin: '50% 100%' },
-        bottom: { index: 2, origin: '100% 50%' },
-    };
 
     const thresholdSamples = [];
 
@@ -36,8 +37,7 @@ const scrollBorders = () => {
         rootMargin: '0px',
         threshold: thresholdSamples,
     };
-    let observer;
-
+    let observer = null;
 
     const handleDisplay = () => {
         state.display = getComputedStyle(bordersWrapper).display !== 'none';
@@ -135,25 +135,21 @@ const scrollBorders = () => {
     };
 
     const intersectionCallback = entries => {
-        if ( !state.display ) return;
+        if (!state.display) return;
 
         forEach(entries, entry => {
-            if ( entry.intersectionRatio <= 0 ) return;
-            
+            if (entry.intersectionRatio <= 0) return;
+
             state.activeSection.id = entry.target.id;
             state.activeSection.ratio = entry.intersectionRatio;
         });
     };
 
-    
     for (index; index <= samplesNumber; index += 1) {
         thresholdSamples[index] = index / samplesNumber;
     }
 
-    observer = new IntersectionObserver(
-        intersectionCallback,
-        observerOptions
-    );
+    observer = new IntersectionObserver(intersectionCallback, observerOptions);
 
     forEach(homeSections, section => {
         observer.observe(section);
@@ -162,7 +158,7 @@ const scrollBorders = () => {
     handleDisplay();
 
     scroll.addScrollFunction(() => {
-        if ( !state.display && !state.activeSection.id ) return;
+        if (!state.display && !state.activeSection.id) return;
         selectPath();
     });
 

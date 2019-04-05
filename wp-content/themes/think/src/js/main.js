@@ -29,7 +29,7 @@ const loadHandler = () => {
     burger();
     newsletter();
     scrollBorders();
-    // ioBorders();
+    ioBorders();
     video();
 };
 

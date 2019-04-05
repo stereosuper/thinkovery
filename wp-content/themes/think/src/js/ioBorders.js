@@ -17,10 +17,205 @@ const ioBorders = () => {
         speedFactor: 1,
     };
 
+    const borderMapping = {
+        top: { index: 0, origin: '0% 50%' },
+        right: { index: 1, origin: '50% 0%' },
+        left: { index: 3, origin: '50% 100%' },
+        bottom: { index: 2, origin: '100% 50%' },
+    };
+
+    const bordersAnimations = {
+        intro: {
+            borders: [
+                {
+                    position: 'top',
+                    duration: 0.5,
+                    maxScale: 1,
+                    axis: 'x',
+                    easing: 'out',
+                },
+                {
+                    position: 'all',
+                    duration: 0.5,
+                    color: colors.funGreen,
+                    easing: 'out',
+                    nestNext: false,
+                },
+                {
+                    position: 'right',
+                    duration: 0.5,
+                    maxScale: 1,
+                    axis: 'y',
+                    easing: 'out',
+                },
+                {
+                    position: 'bottom',
+                    duration: 0.5,
+                    maxScale: 0.5,
+                    axis: 'x',
+                    easing: 'out',
+                },
+            ],
+        },
+        learningExperience: {
+            borders: [
+                {
+                    position: 'bottom',
+                    duration: 0.5,
+                    maxScale: 1,
+                    axis: 'x',
+                    easing: 'out',
+                },
+                {
+                    position: 'all',
+                    color: colors.pictonBlue,
+                    duration: 0.5,
+                    easing: 'out',
+                    nestNext: false,
+                },
+                {
+                    position: 'left',
+                    duration: 0.5,
+                    maxScale: 1,
+                    axis: 'y',
+                    easing: 'out',
+                },
+                {
+                    position: 'top',
+                    duration: 0.5,
+                    maxScale: 0.25,
+                    axis: 'x',
+                    easing: 'out',
+                },
+            ],
+        },
+        offers: {
+            borders: [
+                {
+                    position: 'top',
+                    duration: 0.5,
+                    maxScale: 1,
+                    axis: 'x',
+                    easing: 'out',
+                },
+                {
+                    position: 'all',
+                    color: colors.funGreen,
+                    duration: 0.5,
+                    easing: 'out',
+                    nestNext: false,
+                },
+                {
+                    position: 'right',
+                    duration: 0.5,
+                    maxScale: 1,
+                    axis: 'y',
+                    easing: 'out',
+                },
+                {
+                    position: 'top',
+                    duration: 0.5,
+                    maxScale: 0,
+                    axis: 'x',
+                    origin: '100% 50%',
+                    easing: 'out',
+                    nestNext: false,
+                },
+                {
+                    position: 'bottom',
+                    duration: 0.5,
+                    maxScale: 0.75,
+                    axis: 'x',
+                    easing: 'out',
+                },
+            ],
+        },
+        aboutUs: {
+            borders: [
+                {
+                    position: 'bottom',
+                    duration: 0.5,
+                    maxScale: 1,
+                    axis: 'x',
+                    easing: 'out',
+                },
+                {
+                    position: 'all',
+                    color: colors.persimmon,
+                    duration: 0.5,
+                    easing: 'out',
+                    nestNext: false,
+                },
+                {
+                    position: 'left',
+                    duration: 0.5,
+                    maxScale: 1,
+                    axis: 'y',
+                    easing: 'out',
+                },
+                {
+                    position: 'bottom',
+                    duration: 0.5,
+                    maxScale: 0.25,
+                    axis: 'x',
+                    origin: '0% 50%',
+                    easing: 'out',
+                    nestNext: false,
+                },
+                {
+                    position: 'top',
+                    duration: 0.5,
+                    maxScale: 1,
+                    axis: 'x',
+                    easing: 'out',
+                },
+            ],
+        },
+        experiences: {
+            borders: [
+                {
+                    position: 'top',
+                    duration: 0.5,
+                    maxScale: 1,
+                    axis: 'x',
+                    easing: 'out',
+                },
+                {
+                    position: 'all',
+                    color: colors.darkOrange,
+                    duration: 0.5,
+                    easing: 'out',
+                    nestNext: false,
+                },
+                {
+                    position: 'right',
+                    duration: 0.5,
+                    maxScale: 1,
+                    axis: 'y',
+                    easing: 'out',
+                },
+                {
+                    position: 'top',
+                    duration: 0.5,
+                    maxScale: 0.25,
+                    axis: 'x',
+                    origin: '100% 0%',
+                    easing: 'out',
+                    nestNext: false,
+                },
+                {
+                    position: 'bottom',
+                    duration: 0.5,
+                    maxScale: 1,
+                    axis: 'x',
+                    easing: 'out',
+                },
+            ],
+        },
+    };
+
     const [catWrapper] = bordersWrapper.getElementsByClassName('cat');
     const bordersCat = catWrapper.children;
-
-    const tl = new TimelineMax({ paused: true });
 
     const handleDisplay = () => {
         const { display } = getComputedStyle(bordersWrapper);
@@ -41,280 +236,87 @@ const ioBorders = () => {
         bordersWrapper.dispatchEvent(event);
     };
 
-    const borderIntro = () => {
-        TweenMax.to(bordersCat[2], 0.8 / state.speedFactor, {
-            transformOrigin: '0 50%',
-            scaleX: 0,
-            ease: easing.catMouseEaseIn,
-            onComplete: () => {
-                TweenMax.to(bordersCat[3], 0.8 / state.speedFactor, {
-                    transformOrigin: '50% 0%',
-                    scaleY: 0,
-                    ease: easing.catMouseEaseIn,
-                });
+    const animateBorder = ({ borders }) => {
+        const [
+            {
+                position,
+                duration,
+                color,
+                maxScale,
+                axis,
+                origin,
+                nestNext = true,
             },
-        });
-        TweenMax.to(bordersCat[0], 0.5 / state.speedFactor, {
-            transformOrigin: '0% 50%',
-            scaleX: 1,
-            ease: easing.catMouseEaseOut,
+            nextBorder,
+        ] = borders;
+
+        let ease = '';
+        if (easing === 'in') {
+            ease = easing.catMouseEaseIn;
+        } else if (easing === 'out') {
+            ease = easing.catMouseEaseOut;
+        }
+
+        const isAll = position === 'all';
+
+        let scaleX = null;
+        let scaleY = null;
+        if (!isAll) {
+            scaleX = axis === 'x' ? maxScale : 1;
+            scaleY = axis === 'y' ? maxScale : 1;
+        }
+
+        const tweenParams = {
+            transformOrigin:
+                origin || (!isAll ? borderMapping[position].origin : ''),
+            scaleX,
+            scaleY,
+            ease,
             onComplete: () => {
-                TweenMax.to(bordersCat, 0.5, {
-                    backgroundColor: colors.funGreen,
-                });
-                TweenMax.to(bordersCat[1], 0.5 / state.speedFactor, {
-                    transformOrigin: '50% 0%',
-                    scaleY: 1,
-                    ease: easing.catMouseEaseOut,
-                    onComplete: () => {
-                        TweenMax.to(bordersCat[2], 0.5 / state.speedFactor, {
-                            transformOrigin: '100% 50%',
-                            scaleX: 0.5,
-                            ease: easing.catMouseEaseOut,
-                            onComplete: processQueue,
-                        });
-                    },
-                });
+                if (!nestNext) return;
+                if (nextBorder) {
+                    borders.shift();
+                    animateBorder({ borders });
+                } else {
+                    processQueue();
+                }
             },
-        });
-    };
+        };
 
-    const borderLearningExperience = () => {
-        tl.pause();
-        tl.add(
-            TweenMax.to(bordersCat[0], 0.8 / state.speedFactor, {
-                transformOrigin: '100% 50%',
-                scaleX: 0,
-                ease: easing.catMouseEaseIn,
-                onComplete: () => {
-                    TweenMax.to(bordersCat[1], 0.8 / state.speedFactor, {
-                        transformOrigin: '50% 100%',
-                        scaleY: 0,
-                        ease: easing.catMouseEaseIn,
-                    });
-                },
-            }),
-            TweenMax.to(bordersCat[2], 0.5 / state.speedFactor, {
-                transformOrigin: '100% 50%',
-                scaleX: 1,
-                ease: easing.catMouseEaseOut,
-                onComplete: () => {
-                    TweenMax.to(bordersCat, 0.5, {
-                        backgroundColor: colors.pictonBlue,
-                    });
-                    TweenMax.to(bordersCat[3], 0.5 / state.speedFactor, {
-                        transformOrigin: '50% 100%',
-                        scaleY: 1,
-                        ease: easing.catMouseEaseOut,
-                        onComplete: () => {
-                            TweenMax.to(
-                                bordersCat[0],
-                                0.5 / state.speedFactor,
-                                {
-                                    transformOrigin: '0% 50%',
-                                    scaleX: 0.25,
-                                    ease: easing.catMouseEaseOut,
-                                    onComplete: processQueue,
-                                }
-                            );
-                        },
-                    });
-                },
-            })
+        if (color) {
+            tweenParams.backgroundColor = color;
+        }
+
+        TweenMax.to(
+            isAll ? bordersCat : bordersCat[borderMapping[position].index],
+            duration / state.speedFactor,
+            tweenParams
         );
-
-        tl.play();
-    };
-
-    const borderOffers = () => {
-        tl.pause();
-        tl.add(
-            TweenMax.to(bordersCat[2], 0.8 / state.speedFactor, {
-                transformOrigin: '0% 50%',
-                scaleX: 0,
-                ease: easing.catMouseEaseIn,
-                onComplete: () => {
-                    TweenMax.to(bordersCat[3], 0.8 / state.speedFactor, {
-                        transformOrigin: '50% 0%',
-                        scaleY: 0,
-                        ease: easing.catMouseEaseIn,
-                    });
-                },
-            }),
-            TweenMax.to(bordersCat[0], 0.5 / state.speedFactor, {
-                transformOrigin: '0% 50%',
-                scaleX: 1,
-                ease: easing.catMouseEaseOut,
-                onComplete: () => {
-                    TweenMax.to(bordersCat, 0.5, {
-                        backgroundColor: colors.funGreen,
-                    });
-                    TweenMax.to(bordersCat[1], 0.5 / state.speedFactor, {
-                        transformOrigin: '50% 0%',
-                        scaleY: 1,
-                        ease: easing.catMouseEaseOut,
-                        onComplete: () => {
-                            TweenMax.to(
-                                bordersCat[0],
-                                0.8 / state.speedFactor,
-                                {
-                                    transformOrigin: '100% 50%',
-                                    scaleX: 0,
-                                    ease: easing.catMouseEaseIn,
-                                }
-                            );
-                            TweenMax.to(
-                                bordersCat[2],
-                                0.5 / state.speedFactor,
-                                {
-                                    transformOrigin: '100% 50%',
-                                    scaleX: 0.75,
-                                    ease: easing.catMouseEaseOut,
-                                    onComplete: processQueue,
-                                }
-                            );
-                        },
-                    });
-                },
-            })
-        );
-
-        tl.play();
-    };
-
-    const borderAboutUs = () => {
-        tl.pause();
-        tl.add(
-            TweenMax.to(bordersCat[0], 0.8 / state.speedFactor, {
-                transformOrigin: '100% 50%',
-                scaleX: 0,
-                ease: easing.catMouseEaseIn,
-                onComplete: () => {
-                    TweenMax.to(bordersCat[1], 0.8 / state.speedFactor, {
-                        transformOrigin: '50% 100%',
-                        scaleY: 0,
-                        ease: easing.catMouseEaseIn,
-                    });
-                },
-            }),
-            TweenMax.to(bordersCat[2], 0.5 / state.speedFactor, {
-                transformOrigin: '100% 50%',
-                scaleX: 1,
-                ease: easing.catMouseEaseOut,
-                onComplete: () => {
-                    TweenMax.to(bordersCat, 0.5, {
-                        backgroundColor: colors.persimmon,
-                    });
-                    TweenMax.to(bordersCat[3], 0.5 / state.speedFactor, {
-                        transformOrigin: '50% 100%',
-                        scaleY: 1,
-                        ease: easing.catMouseEaseOut,
-                        onComplete: () => {
-                            TweenMax.to(
-                                bordersCat[2],
-                                0.5 / state.speedFactor,
-                                {
-                                    transformOrigin: '0% 50%',
-                                    scaleX: 0.25,
-                                    ease: easing.catMouseEaseOut,
-                                }
-                            );
-                            TweenMax.to(
-                                bordersCat[0],
-                                0.5 / state.speedFactor,
-                                {
-                                    transformOrigin: '0% 50%',
-                                    scaleX: 1,
-                                    ease: easing.catMouseEaseOut,
-                                    onComplete: processQueue,
-                                }
-                            );
-                        },
-                    });
-                },
-            })
-        );
-
-        tl.play();
-    };
-
-    const borderExperiences = () => {
-        tl.pause();
-        tl.add(
-            TweenMax.to(bordersCat[2], 0.8 / state.speedFactor, {
-                transformOrigin: '0% 50%',
-                scaleX: 0,
-                ease: easing.catMouseEaseIn,
-                onComplete: () => {
-                    TweenMax.to(bordersCat[3], 0.8 / state.speedFactor, {
-                        transformOrigin: '50% 0%',
-                        scaleY: 0,
-                        ease: easing.catMouseEaseIn,
-                    });
-                },
-            }),
-            TweenMax.to(bordersCat[0], 0.5 / state.speedFactor, {
-                transformOrigin: '0% 50%',
-                scaleX: 1,
-                ease: easing.catMouseEaseOut,
-                onComplete: () => {
-                    TweenMax.to(bordersCat, 0.5, {
-                        backgroundColor: colors.darkOrange,
-                    });
-                    TweenMax.to(bordersCat[1], 0.5 / state.speedFactor, {
-                        transformOrigin: '50% 0%',
-                        scaleY: 1,
-                        ease: easing.catMouseEaseOut,
-                        onComplete: () => {
-                            TweenMax.to(
-                                bordersCat[0],
-                                0.5 / state.speedFactor,
-                                {
-                                    transformOrigin: '100% 50%',
-                                    scaleX: 0.25,
-                                    ease: easing.catMouseEaseOut,
-                                }
-                            );
-                            TweenMax.to(
-                                bordersCat[2],
-                                0.5 / state.speedFactor,
-                                {
-                                    transformOrigin: '100% 50%',
-                                    scaleX: 1,
-                                    ease: easing.catMouseEaseOut,
-                                    onComplete: processQueue,
-                                }
-                            );
-                        },
-                    });
-                },
-            })
-        );
-
-        tl.play();
+        if (!nestNext && nextBorder) {
+            borders.shift();
+            animateBorder({ borders });
+        }
     };
 
     const updateBorder = () => {
         if (state.isMoving) return;
 
         state.isMoving = true;
-        tl.clear();
-
         switch (state.nextSection) {
             case 'home-intro':
-                borderIntro();
+                animateBorder(bordersAnimations.intro);
                 break;
             case 'home-learning-experience':
-                borderLearningExperience();
+                animateBorder(bordersAnimations.learningExperience);
                 break;
             case 'home-offers':
-                borderOffers();
+                animateBorder(bordersAnimations.offers);
                 break;
             case 'home-about-us':
-                borderAboutUs();
+                animateBorder(bordersAnimations.aboutUs);
                 break;
             case 'home-experiences':
-                borderExperiences();
+                animateBorder(bordersAnimations.experiences);
                 break;
             default:
                 break;
