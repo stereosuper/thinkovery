@@ -1,6 +1,7 @@
 import { TweenMax, TimelineMax } from 'gsap';
-import { colors, easing } from './global';
 import { createNewEvent } from './utils';
+import win from './utils/Window';
+import { colors, easing } from './global';
 
 const ioBorders = () => {
     const { body } = document;
@@ -9,6 +10,7 @@ const ioBorders = () => {
 
     if (!bordersWrapper && !isHome) return;
     const state = {
+        display: false,
         isMoving: false,
         queue: [],
         nextSection: null,
@@ -20,10 +22,18 @@ const ioBorders = () => {
 
     const tl = new TimelineMax({ paused: true });
 
+    const handleDisplay = () => {
+        const { display } = getComputedStyle(bordersWrapper);
+
+        state.display = display !== 'none';
+    };
+
+    handleDisplay();
+
     const processQueue = () => {
         state.isMoving = false;
-        if (!state.queue.length) return
-        
+        if (!state.queue.length) return;
+
         const event = createNewEvent('updateQueue');
         [state.nextSection] = state.queue;
 
@@ -32,50 +42,41 @@ const ioBorders = () => {
     };
 
     const borderIntro = () => {
-        tl.pause();
-        tl.add(
-            TweenMax.to(bordersCat[2], 0.8 / state.speedFactor, {
-                transformOrigin: '0 50%',
-                scaleX: 0,
-                ease: easing.catMouseEaseIn,
-                onComplete: () => {
-                    TweenMax.to(bordersCat[3], 0.8 / state.speedFactor, {
-                        transformOrigin: '50% 0%',
-                        scaleY: 0,
-                        ease: easing.catMouseEaseIn,
-                    });
-                },
-            }),
-            TweenMax.to(bordersCat[0], 0.5 / state.speedFactor, {
-                transformOrigin: '0% 50%',
-                scaleX: 1,
-                ease: easing.catMouseEaseOut,
-                onComplete: () => {
-                    TweenMax.to(bordersCat, 0.5, {
-                        backgroundColor: colors.funGreen,
-                    });
-                    TweenMax.to(bordersCat[1], 0.5 / state.speedFactor, {
-                        transformOrigin: '50% 0%',
-                        scaleY: 1,
-                        ease: easing.catMouseEaseOut,
-                        onComplete: () => {
-                            TweenMax.to(
-                                bordersCat[2],
-                                0.5 / state.speedFactor,
-                                {
-                                    transformOrigin: '100% 50%',
-                                    scaleX: 0.5,
-                                    ease: easing.catMouseEaseOut,
-                                    onComplete: processQueue,
-                                }
-                            );
-                        },
-                    });
-                },
-            })
-        );
-
-        tl.play();
+        TweenMax.to(bordersCat[2], 0.8 / state.speedFactor, {
+            transformOrigin: '0 50%',
+            scaleX: 0,
+            ease: easing.catMouseEaseIn,
+            onComplete: () => {
+                TweenMax.to(bordersCat[3], 0.8 / state.speedFactor, {
+                    transformOrigin: '50% 0%',
+                    scaleY: 0,
+                    ease: easing.catMouseEaseIn,
+                });
+            },
+        });
+        TweenMax.to(bordersCat[0], 0.5 / state.speedFactor, {
+            transformOrigin: '0% 50%',
+            scaleX: 1,
+            ease: easing.catMouseEaseOut,
+            onComplete: () => {
+                TweenMax.to(bordersCat, 0.5, {
+                    backgroundColor: colors.funGreen,
+                });
+                TweenMax.to(bordersCat[1], 0.5 / state.speedFactor, {
+                    transformOrigin: '50% 0%',
+                    scaleY: 1,
+                    ease: easing.catMouseEaseOut,
+                    onComplete: () => {
+                        TweenMax.to(bordersCat[2], 0.5 / state.speedFactor, {
+                            transformOrigin: '100% 50%',
+                            scaleX: 0.5,
+                            ease: easing.catMouseEaseOut,
+                            onComplete: processQueue,
+                        });
+                    },
+                });
+            },
+        });
     };
 
     const borderLearningExperience = () => {
@@ -295,7 +296,7 @@ const ioBorders = () => {
 
     const updateBorder = () => {
         if (state.isMoving) return;
-            
+
         state.isMoving = true;
         tl.clear();
 
@@ -326,6 +327,7 @@ const ioBorders = () => {
             const borderNextSection = bordersWrapper.getAttribute(
                 'data-next-section'
             );
+
             if (state.isMoving) {
                 state.queue.push(borderNextSection);
                 state.speedFactor = Math.max(1, state.queue.length * 0.75);
@@ -338,6 +340,13 @@ const ioBorders = () => {
     );
 
     bordersWrapper.addEventListener('updateQueue', updateBorder, false);
+
+    win.addResizeFunction(() => {
+        handleDisplay();
+        if (state.display && state.queue.length) {
+            processQueue();
+        }
+    });
 };
 
 export default ioBorders;

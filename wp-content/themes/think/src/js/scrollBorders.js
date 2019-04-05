@@ -1,7 +1,7 @@
 import { TweenMax } from 'gsap';
-import { easing } from './global';
 import { forEach, roundNumbers } from './utils';
 import scroll from './utils/Scroll';
+import win from './utils/Window';
 
 const scrollBorders = () => {
     const { body } = document;
@@ -10,6 +10,7 @@ const scrollBorders = () => {
 
     if (!bordersWrapper && !isHome) return;
     const state = {
+        display: false,
         activeId: '',
         observables: {},
     };
@@ -28,6 +29,14 @@ const scrollBorders = () => {
         bottom: { index: 2, origin: '100% 50%' },
     };
 
+    const handleDisplay = () => {
+        const { display } = getComputedStyle(bordersWrapper);
+
+        state.display = display !== 'none';
+    };
+
+    handleDisplay();
+
     const findActiveId = () => {
         [state.activeId] = Object.entries(state.observables).reduce(
             (acc, currentObservable) => {
@@ -40,8 +49,6 @@ const scrollBorders = () => {
             ['', { ratio: 0 }]
         );
     };
-
-    const pathIntro = () => {};
 
     const animatePath = ({ borders }) => {
         const { ratio } = state.observables[state.activeId];
@@ -144,10 +151,13 @@ const scrollBorders = () => {
     };
 
     const intersectionCallback = entries => {
-        forEach(entries, entry => {
-            const ratio = roundNumbers(entry.intersectionRatio, 5);
-            state.observables[entry.target.id].ratio = ratio > 0 ? ratio : 0;
-        });
+        if (state.display) {
+            forEach(entries, entry => {
+                const ratio = roundNumbers(entry.intersectionRatio, 5);
+                state.observables[entry.target.id].ratio =
+                    ratio > 0 ? ratio : 0;
+            });
+        }
     };
 
     const observer = new IntersectionObserver(
@@ -161,10 +171,16 @@ const scrollBorders = () => {
     });
 
     scroll.addScrollFunction(() => {
-        findActiveId();
-        if (state.activeId) {
-            selectPath();
+        if (state.display) {
+            findActiveId();
+            if (state.activeId) {
+                selectPath();
+            }
         }
+    });
+
+    win.addResizeFunction(() => {
+        handleDisplay();
     });
 };
 

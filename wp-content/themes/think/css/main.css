@@ -606,6 +606,8 @@ label {
     bottom: 0;
     -webkit-transform: scale3d(1, 0.02, 1);
             transform: scale3d(1, 0.02, 1);
+    -webkit-transform-origin: 50% 100%;
+            transform-origin: 50% 100%;
     -webkit-transition:  -webkit-transform 0.4s 0.5s cubic-bezier(0.26, 1.09, 0.28, 0.99);
     transition:  -webkit-transform 0.4s 0.5s cubic-bezier(0.26, 1.09, 0.28, 0.99);
     transition:  transform 0.4s 0.5s cubic-bezier(0.26, 1.09, 0.28, 0.99);
@@ -1158,6 +1160,50 @@ label {
     width: 25%;
     margin: 0; } }
 
+.borders {
+  display: none; }
+
+@media (min-width: 960px) {
+  .borders {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 15;
+    pointer-events: none; }
+    .borders .border {
+      position: absolute; }
+    .borders > .mouse > .border {
+      background: #ababab; }
+    .borders > .cat > .border {
+      background: #1e5e32; }
+    .borders .first,
+    .borders .third {
+      width: 100%;
+      height: 12px;
+      -webkit-transform: scale3d(0, 1, 1);
+              transform: scale3d(0, 1, 1); }
+    .borders .second,
+    .borders .fourth {
+      width: 12px;
+      height: 100%;
+      -webkit-transform: scale3d(1, 0, 1);
+              transform: scale3d(1, 0, 1); }
+    .borders .first {
+      top: 0;
+      left: 0; }
+    .borders .second {
+      top: 0;
+      right: 0; }
+    .borders .third {
+      left: 0;
+      bottom: 0; }
+    .borders .fourth {
+      top: 0;
+      left: 0; } }
+
 /* Buttons */
 .btn {
   display: inline-block;
@@ -1460,45 +1506,6 @@ label {
 .home-section .wrapper-btn {
   margin: 2em 0 0;
   text-align: center; }
-
-.borders {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  z-index: 10;
-  pointer-events: none; }
-  .borders .border {
-    position: absolute; }
-  .borders > .mouse > .border {
-    background: #ababab; }
-  .borders > .cat > .border {
-    background: #1e5e32; }
-  .borders .first,
-  .borders .third {
-    width: 100%;
-    height: 12px;
-    -webkit-transform: scale3d(0, 1, 1);
-            transform: scale3d(0, 1, 1); }
-  .borders .second,
-  .borders .fourth {
-    width: 12px;
-    height: 100%;
-    -webkit-transform: scale3d(1, 0, 1);
-            transform: scale3d(1, 0, 1); }
-  .borders .first {
-    top: 0;
-    left: 0; }
-  .borders .second {
-    top: 0;
-    right: 0; }
-  .borders .third {
-    left: 0;
-    bottom: 0; }
-  .borders .fourth {
-    top: 0;
-    left: 0; }
 
 @media (min-width: 960px) {
   .home-header,

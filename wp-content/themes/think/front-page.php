@@ -20,7 +20,7 @@
 
         <?php if( have_rows('sections') ) : $count = 0; ?>
             <?php while( have_rows('sections') ) : the_row(); $count ++; ?>
-                <section id="<?php the_sub_field('id'); ?>" class="home-section" data-io="updateBorder">
+                <section id="<?php the_sub_field('id'); ?>" class="js-home-section home-section" data-io="updateBorder">
                     <div class='wrapper-img'>
                         <?php echo wp_get_attachment_image( get_sub_field('img'), 'full' ); ?>
                     </div>

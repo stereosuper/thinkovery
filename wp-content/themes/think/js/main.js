@@ -9568,8 +9568,9 @@ var easing = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
-/* harmony import */ var _global__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./global */ "./wp-content/themes/think/src/js/global/index.js");
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils */ "./wp-content/themes/think/src/js/utils/index.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils */ "./wp-content/themes/think/src/js/utils/index.js");
+/* harmony import */ var _utils_Window__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils/Window */ "./wp-content/themes/think/src/js/utils/Window.js");
+/* harmony import */ var _global__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./global */ "./wp-content/themes/think/src/js/global/index.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -9582,6 +9583,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var ioBorders = function ioBorders() {
   var _document = document,
       body = _document.body;
@@ -9589,6 +9591,7 @@ var ioBorders = function ioBorders() {
   var bordersWrapper = document.getElementById('borders');
   if (!bordersWrapper && !isHome) return;
   var state = {
+    display: false,
     isMoving: false,
     queue: [],
     nextSection: null,
@@ -9604,10 +9607,19 @@ var ioBorders = function ioBorders() {
     paused: true
   });
 
+  var handleDisplay = function handleDisplay() {
+    var _getComputedStyle = getComputedStyle(bordersWrapper),
+        display = _getComputedStyle.display;
+
+    state.display = display !== 'none';
+  };
+
+  handleDisplay();
+
   var processQueue = function processQueue() {
     state.isMoving = false;
     if (!state.queue.length) return;
-    var event = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["createNewEvent"])('updateQueue');
+    var event = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["createNewEvent"])('updateQueue');
 
     var _state$queue = _slicedToArray(state.queue, 1);
 
@@ -9617,42 +9629,41 @@ var ioBorders = function ioBorders() {
   };
 
   var borderIntro = function borderIntro() {
-    tl.pause();
-    tl.add(gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(bordersCat[2], 0.8 / state.speedFactor, {
+    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(bordersCat[2], 0.8 / state.speedFactor, {
       transformOrigin: '0 50%',
       scaleX: 0,
-      ease: _global__WEBPACK_IMPORTED_MODULE_1__["easing"].catMouseEaseIn,
+      ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].catMouseEaseIn,
       onComplete: function onComplete() {
         gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(bordersCat[3], 0.8 / state.speedFactor, {
           transformOrigin: '50% 0%',
           scaleY: 0,
-          ease: _global__WEBPACK_IMPORTED_MODULE_1__["easing"].catMouseEaseIn
+          ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].catMouseEaseIn
         });
       }
-    }), gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(bordersCat[0], 0.5 / state.speedFactor, {
+    });
+    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(bordersCat[0], 0.5 / state.speedFactor, {
       transformOrigin: '0% 50%',
       scaleX: 1,
-      ease: _global__WEBPACK_IMPORTED_MODULE_1__["easing"].catMouseEaseOut,
+      ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].catMouseEaseOut,
       onComplete: function onComplete() {
         gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(bordersCat, 0.5, {
-          backgroundColor: _global__WEBPACK_IMPORTED_MODULE_1__["colors"].funGreen
+          backgroundColor: _global__WEBPACK_IMPORTED_MODULE_3__["colors"].funGreen
         });
         gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(bordersCat[1], 0.5 / state.speedFactor, {
           transformOrigin: '50% 0%',
           scaleY: 1,
-          ease: _global__WEBPACK_IMPORTED_MODULE_1__["easing"].catMouseEaseOut,
+          ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].catMouseEaseOut,
           onComplete: function onComplete() {
             gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(bordersCat[2], 0.5 / state.speedFactor, {
               transformOrigin: '100% 50%',
               scaleX: 0.5,
-              ease: _global__WEBPACK_IMPORTED_MODULE_1__["easing"].catMouseEaseOut,
+              ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].catMouseEaseOut,
               onComplete: processQueue
             });
           }
         });
       }
-    }));
-    tl.play();
+    });
   };
 
   var borderLearningExperience = function borderLearningExperience() {
@@ -9660,31 +9671,31 @@ var ioBorders = function ioBorders() {
     tl.add(gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(bordersCat[0], 0.8 / state.speedFactor, {
       transformOrigin: '100% 50%',
       scaleX: 0,
-      ease: _global__WEBPACK_IMPORTED_MODULE_1__["easing"].catMouseEaseIn,
+      ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].catMouseEaseIn,
       onComplete: function onComplete() {
         gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(bordersCat[1], 0.8 / state.speedFactor, {
           transformOrigin: '50% 100%',
           scaleY: 0,
-          ease: _global__WEBPACK_IMPORTED_MODULE_1__["easing"].catMouseEaseIn
+          ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].catMouseEaseIn
         });
       }
     }), gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(bordersCat[2], 0.5 / state.speedFactor, {
       transformOrigin: '100% 50%',
       scaleX: 1,
-      ease: _global__WEBPACK_IMPORTED_MODULE_1__["easing"].catMouseEaseOut,
+      ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].catMouseEaseOut,
       onComplete: function onComplete() {
         gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(bordersCat, 0.5, {
-          backgroundColor: _global__WEBPACK_IMPORTED_MODULE_1__["colors"].pictonBlue
+          backgroundColor: _global__WEBPACK_IMPORTED_MODULE_3__["colors"].pictonBlue
         });
         gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(bordersCat[3], 0.5 / state.speedFactor, {
           transformOrigin: '50% 100%',
           scaleY: 1,
-          ease: _global__WEBPACK_IMPORTED_MODULE_1__["easing"].catMouseEaseOut,
+          ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].catMouseEaseOut,
           onComplete: function onComplete() {
             gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(bordersCat[0], 0.5 / state.speedFactor, {
               transformOrigin: '0% 50%',
               scaleX: 0.25,
-              ease: _global__WEBPACK_IMPORTED_MODULE_1__["easing"].catMouseEaseOut,
+              ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].catMouseEaseOut,
               onComplete: processQueue
             });
           }
@@ -9699,36 +9710,36 @@ var ioBorders = function ioBorders() {
     tl.add(gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(bordersCat[2], 0.8 / state.speedFactor, {
       transformOrigin: '0% 50%',
       scaleX: 0,
-      ease: _global__WEBPACK_IMPORTED_MODULE_1__["easing"].catMouseEaseIn,
+      ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].catMouseEaseIn,
       onComplete: function onComplete() {
         gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(bordersCat[3], 0.8 / state.speedFactor, {
           transformOrigin: '50% 0%',
           scaleY: 0,
-          ease: _global__WEBPACK_IMPORTED_MODULE_1__["easing"].catMouseEaseIn
+          ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].catMouseEaseIn
         });
       }
     }), gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(bordersCat[0], 0.5 / state.speedFactor, {
       transformOrigin: '0% 50%',
       scaleX: 1,
-      ease: _global__WEBPACK_IMPORTED_MODULE_1__["easing"].catMouseEaseOut,
+      ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].catMouseEaseOut,
       onComplete: function onComplete() {
         gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(bordersCat, 0.5, {
-          backgroundColor: _global__WEBPACK_IMPORTED_MODULE_1__["colors"].funGreen
+          backgroundColor: _global__WEBPACK_IMPORTED_MODULE_3__["colors"].funGreen
         });
         gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(bordersCat[1], 0.5 / state.speedFactor, {
           transformOrigin: '50% 0%',
           scaleY: 1,
-          ease: _global__WEBPACK_IMPORTED_MODULE_1__["easing"].catMouseEaseOut,
+          ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].catMouseEaseOut,
           onComplete: function onComplete() {
             gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(bordersCat[0], 0.8 / state.speedFactor, {
               transformOrigin: '100% 50%',
               scaleX: 0,
-              ease: _global__WEBPACK_IMPORTED_MODULE_1__["easing"].catMouseEaseIn
+              ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].catMouseEaseIn
             });
             gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(bordersCat[2], 0.5 / state.speedFactor, {
               transformOrigin: '100% 50%',
               scaleX: 0.75,
-              ease: _global__WEBPACK_IMPORTED_MODULE_1__["easing"].catMouseEaseOut,
+              ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].catMouseEaseOut,
               onComplete: processQueue
             });
           }
@@ -9743,36 +9754,36 @@ var ioBorders = function ioBorders() {
     tl.add(gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(bordersCat[0], 0.8 / state.speedFactor, {
       transformOrigin: '100% 50%',
       scaleX: 0,
-      ease: _global__WEBPACK_IMPORTED_MODULE_1__["easing"].catMouseEaseIn,
+      ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].catMouseEaseIn,
       onComplete: function onComplete() {
         gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(bordersCat[1], 0.8 / state.speedFactor, {
           transformOrigin: '50% 100%',
           scaleY: 0,
-          ease: _global__WEBPACK_IMPORTED_MODULE_1__["easing"].catMouseEaseIn
+          ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].catMouseEaseIn
         });
       }
     }), gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(bordersCat[2], 0.5 / state.speedFactor, {
       transformOrigin: '100% 50%',
       scaleX: 1,
-      ease: _global__WEBPACK_IMPORTED_MODULE_1__["easing"].catMouseEaseOut,
+      ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].catMouseEaseOut,
       onComplete: function onComplete() {
         gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(bordersCat, 0.5, {
-          backgroundColor: _global__WEBPACK_IMPORTED_MODULE_1__["colors"].persimmon
+          backgroundColor: _global__WEBPACK_IMPORTED_MODULE_3__["colors"].persimmon
         });
         gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(bordersCat[3], 0.5 / state.speedFactor, {
           transformOrigin: '50% 100%',
           scaleY: 1,
-          ease: _global__WEBPACK_IMPORTED_MODULE_1__["easing"].catMouseEaseOut,
+          ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].catMouseEaseOut,
           onComplete: function onComplete() {
             gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(bordersCat[2], 0.5 / state.speedFactor, {
               transformOrigin: '0% 50%',
               scaleX: 0.25,
-              ease: _global__WEBPACK_IMPORTED_MODULE_1__["easing"].catMouseEaseOut
+              ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].catMouseEaseOut
             });
             gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(bordersCat[0], 0.5 / state.speedFactor, {
               transformOrigin: '0% 50%',
               scaleX: 1,
-              ease: _global__WEBPACK_IMPORTED_MODULE_1__["easing"].catMouseEaseOut,
+              ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].catMouseEaseOut,
               onComplete: processQueue
             });
           }
@@ -9787,36 +9798,36 @@ var ioBorders = function ioBorders() {
     tl.add(gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(bordersCat[2], 0.8 / state.speedFactor, {
       transformOrigin: '0% 50%',
       scaleX: 0,
-      ease: _global__WEBPACK_IMPORTED_MODULE_1__["easing"].catMouseEaseIn,
+      ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].catMouseEaseIn,
       onComplete: function onComplete() {
         gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(bordersCat[3], 0.8 / state.speedFactor, {
           transformOrigin: '50% 0%',
           scaleY: 0,
-          ease: _global__WEBPACK_IMPORTED_MODULE_1__["easing"].catMouseEaseIn
+          ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].catMouseEaseIn
         });
       }
     }), gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(bordersCat[0], 0.5 / state.speedFactor, {
       transformOrigin: '0% 50%',
       scaleX: 1,
-      ease: _global__WEBPACK_IMPORTED_MODULE_1__["easing"].catMouseEaseOut,
+      ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].catMouseEaseOut,
       onComplete: function onComplete() {
         gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(bordersCat, 0.5, {
-          backgroundColor: _global__WEBPACK_IMPORTED_MODULE_1__["colors"].darkOrange
+          backgroundColor: _global__WEBPACK_IMPORTED_MODULE_3__["colors"].darkOrange
         });
         gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(bordersCat[1], 0.5 / state.speedFactor, {
           transformOrigin: '50% 0%',
           scaleY: 1,
-          ease: _global__WEBPACK_IMPORTED_MODULE_1__["easing"].catMouseEaseOut,
+          ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].catMouseEaseOut,
           onComplete: function onComplete() {
             gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(bordersCat[0], 0.5 / state.speedFactor / state.speedFactor, {
               transformOrigin: '100% 50%',
               scaleX: 0.25,
-              ease: _global__WEBPACK_IMPORTED_MODULE_1__["easing"].catMouseEaseOut
+              ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].catMouseEaseOut
             });
             gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(bordersCat[2], 0.5 / state.speedFactor, {
               transformOrigin: '100% 50%',
               scaleX: 1,
-              ease: _global__WEBPACK_IMPORTED_MODULE_1__["easing"].catMouseEaseOut,
+              ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].catMouseEaseOut,
               onComplete: processQueue
             });
           }
@@ -9869,6 +9880,13 @@ var ioBorders = function ioBorders() {
     }
   }, false);
   bordersWrapper.addEventListener('updateQueue', updateBorder, false);
+  _utils_Window__WEBPACK_IMPORTED_MODULE_2__["default"].addResizeFunction(function () {
+    handleDisplay();
+
+    if (state.display && state.queue.length) {
+      processQueue();
+    }
+  });
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ioBorders);
@@ -10490,9 +10508,9 @@ var CustomEase = gsap_TweenLite_js__WEBPACK_IMPORTED_MODULE_0__["globals"].Custo
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
-/* harmony import */ var _global__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./global */ "./wp-content/themes/think/src/js/global/index.js");
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils */ "./wp-content/themes/think/src/js/utils/index.js");
-/* harmony import */ var _utils_Scroll__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils/Scroll */ "./wp-content/themes/think/src/js/utils/Scroll.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils */ "./wp-content/themes/think/src/js/utils/index.js");
+/* harmony import */ var _utils_Scroll__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils/Scroll */ "./wp-content/themes/think/src/js/utils/Scroll.js");
+/* harmony import */ var _utils_Window__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils/Window */ "./wp-content/themes/think/src/js/utils/Window.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -10513,6 +10531,7 @@ var scrollBorders = function scrollBorders() {
   var bordersWrapper = document.getElementById('borders');
   if (!bordersWrapper && !isHome) return;
   var state = {
+    display: false,
     activeId: '',
     observables: {}
   };
@@ -10543,6 +10562,15 @@ var scrollBorders = function scrollBorders() {
     }
   };
 
+  var handleDisplay = function handleDisplay() {
+    var _getComputedStyle = getComputedStyle(bordersWrapper),
+        display = _getComputedStyle.display;
+
+    state.display = display !== 'none';
+  };
+
+  handleDisplay();
+
   var findActiveId = function findActiveId() {
     var _Object$entries$reduc = Object.entries(state.observables).reduce(function (acc, currentObservable) {
       var biggestRatio = acc;
@@ -10561,8 +10589,6 @@ var scrollBorders = function scrollBorders() {
     state.activeId = _Object$entries$reduc2[0];
   };
 
-  var pathIntro = function pathIntro() {};
-
   var animatePath = function animatePath(_ref) {
     var borders = _ref.borders;
     var ratio = state.observables[state.activeId].ratio;
@@ -10570,7 +10596,7 @@ var scrollBorders = function scrollBorders() {
       return acc + current.maxScale;
     }, 0);
     var pathRatio = 0;
-    Object(_utils__WEBPACK_IMPORTED_MODULE_2__["forEach"])(borders, function (border) {
+    Object(_utils__WEBPACK_IMPORTED_MODULE_1__["forEach"])(borders, function (border) {
       var scale = ratio > pathRatio / ratioFactor ? Math.min(border.maxScale, (ratio - pathRatio / ratioFactor) * ratioFactor) : 0;
       gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set(bordersMouse[borderMapping[border.position].index], {
         transformOrigin: borderMapping[border.position].origin,
@@ -10691,25 +10717,32 @@ var scrollBorders = function scrollBorders() {
   };
 
   var intersectionCallback = function intersectionCallback(entries) {
-    Object(_utils__WEBPACK_IMPORTED_MODULE_2__["forEach"])(entries, function (entry) {
-      var ratio = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["roundNumbers"])(entry.intersectionRatio, 5);
-      state.observables[entry.target.id].ratio = ratio > 0 ? ratio : 0;
-    });
+    if (state.display) {
+      Object(_utils__WEBPACK_IMPORTED_MODULE_1__["forEach"])(entries, function (entry) {
+        var ratio = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["roundNumbers"])(entry.intersectionRatio, 5);
+        state.observables[entry.target.id].ratio = ratio > 0 ? ratio : 0;
+      });
+    }
   };
 
   var observer = new IntersectionObserver(intersectionCallback, observerOptions);
-  Object(_utils__WEBPACK_IMPORTED_MODULE_2__["forEach"])(homeSections, function (section) {
+  Object(_utils__WEBPACK_IMPORTED_MODULE_1__["forEach"])(homeSections, function (section) {
     state.observables[section.id] = {
       ratio: 0
     };
     observer.observe(section);
   });
-  _utils_Scroll__WEBPACK_IMPORTED_MODULE_3__["default"].addScrollFunction(function () {
-    findActiveId();
+  _utils_Scroll__WEBPACK_IMPORTED_MODULE_2__["default"].addScrollFunction(function () {
+    if (state.display) {
+      findActiveId();
 
-    if (state.activeId) {
-      selectPath();
+      if (state.activeId) {
+        selectPath();
+      }
     }
+  });
+  _utils_Window__WEBPACK_IMPORTED_MODULE_3__["default"].addResizeFunction(function () {
+    handleDisplay();
   });
 };
 

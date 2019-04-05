@@ -1,0 +1,57 @@
+.borders {
+    display: none;
+}
+
+@media (min-width: $desktop-small) {
+    .borders {
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 15;
+        pointer-events: none;
+        .border {
+            position: absolute;
+        }
+        > .mouse {
+            > .border {
+                background: $light-grey;
+            }
+        }
+        > .cat {
+            > .border {
+                background: $primary;
+            }
+        }
+        .first,
+        .third {
+            width: 100%;
+            height: $border-size;
+            transform: scale3d(0, 1, 1);
+        }
+        .second,
+        .fourth {
+            width: $border-size;
+            height: 100%;
+            transform: scale3d(1, 0, 1);
+        }
+        .first {
+            top: 0;
+            left: 0;
+        }
+        .second {
+            top: 0;
+            right: 0;
+        }
+        .third {
+            left: 0;
+            bottom: 0;
+        }
+        .fourth {
+            top: 0;
+            left: 0;
+        }
+    }
+}
