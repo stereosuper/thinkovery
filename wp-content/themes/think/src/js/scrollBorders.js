@@ -1,5 +1,5 @@
 import { TweenMax } from 'gsap';
-import { forEach, roundNumbers } from './utils';
+import { forEach } from './utils';
 import scroll from './utils/Scroll';
 import win from './utils/Window';
 
@@ -12,10 +12,10 @@ const scrollBorders = () => {
     const state = {
         display: false,
         activeId: '',
-        observables: {},
+        activeSection: { id: '', ratio: 0 },
     };
 
-    const [mouseWrapper] = bordersWrapper.getElementsByClassName('mouse');
+    const mouseWrapper = bordersWrapper.querySelector('.mouse');
     const bordersMouse = mouseWrapper.children;
     const homeSections = [].slice.call(
         document.getElementsByClassName('js-home-section')
@@ -35,23 +35,8 @@ const scrollBorders = () => {
         state.display = display !== 'none';
     };
 
-    handleDisplay();
-
-    const findActiveId = () => {
-        [state.activeId] = Object.entries(state.observables).reduce(
-            (acc, currentObservable) => {
-                let biggestRatio = acc;
-                if (currentObservable[1].ratio) {
-                    biggestRatio = currentObservable;
-                }
-                return biggestRatio;
-            },
-            ['', { ratio: 0 }]
-        );
-    };
-
     const animatePath = ({ borders }) => {
-        const { ratio } = state.observables[state.activeId];
+        const { ratio } = state.activeSection;
         const ratioFactor = borders.reduce(
             (acc, current) => acc + current.maxScale,
             0
@@ -82,7 +67,7 @@ const scrollBorders = () => {
     };
 
     const selectPath = () => {
-        switch (state.activeId) {
+        switch (state.activeSection.id) {
             case 'home-intro':
                 animatePath({
                     borders: [
@@ -140,7 +125,8 @@ const scrollBorders = () => {
 
     const thresholdSamples = [];
 
-    for (let index = 0; index <= samplesNumber; index += 1) {
+    let index = 0;
+    for (index; index <= samplesNumber; index += 1) {
         thresholdSamples.push(index / samplesNumber);
     }
 
@@ -151,13 +137,14 @@ const scrollBorders = () => {
     };
 
     const intersectionCallback = entries => {
-        if (state.display) {
-            forEach(entries, entry => {
-                const ratio = roundNumbers(entry.intersectionRatio, 5);
-                state.observables[entry.target.id].ratio =
-                    ratio > 0 ? ratio : 0;
-            });
-        }
+        if (!state.display) return;
+        forEach(entries, entry => {
+            const ratio = entry.intersectionRatio;
+            if (ratio > 0) {
+                state.activeSection.id = entry.target.id;
+                state.activeSection.ratio = ratio;
+            }
+        });
     };
 
     const observer = new IntersectionObserver(
@@ -166,16 +153,15 @@ const scrollBorders = () => {
     );
 
     forEach(homeSections, section => {
-        state.observables[section.id] = { ratio: 0 };
         observer.observe(section);
     });
 
+    handleDisplay();
+
     scroll.addScrollFunction(() => {
-        if (state.display) {
-            findActiveId();
-            if (state.activeId) {
-                selectPath();
-            }
+        if (!state.display) return;
+        if (state.activeSection.id) {
+            selectPath();
         }
     });
 

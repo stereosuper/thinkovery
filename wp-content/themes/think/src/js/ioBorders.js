@@ -268,7 +268,7 @@ const ioBorders = () => {
                         onComplete: () => {
                             TweenMax.to(
                                 bordersCat[0],
-                                0.5 / state.speedFactor / state.speedFactor,
+                                0.5 / state.speedFactor,
                                 {
                                     transformOrigin: '100% 50%',
                                     scaleX: 0.25,

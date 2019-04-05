@@ -9819,7 +9819,7 @@ var ioBorders = function ioBorders() {
           scaleY: 1,
           ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].catMouseEaseOut,
           onComplete: function onComplete() {
-            gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(bordersCat[0], 0.5 / state.speedFactor / state.speedFactor, {
+            gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(bordersCat[0], 0.5 / state.speedFactor, {
               transformOrigin: '100% 50%',
               scaleX: 0.25,
               ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].catMouseEaseOut
@@ -9938,8 +9938,8 @@ var loadHandler = function loadHandler() {
   Object(_form__WEBPACK_IMPORTED_MODULE_5__["default"])();
   Object(_burger__WEBPACK_IMPORTED_MODULE_6__["default"])();
   Object(_newsletter__WEBPACK_IMPORTED_MODULE_7__["default"])();
-  Object(_scrollBorders__WEBPACK_IMPORTED_MODULE_8__["default"])();
-  Object(_ioBorders__WEBPACK_IMPORTED_MODULE_9__["default"])();
+  Object(_scrollBorders__WEBPACK_IMPORTED_MODULE_8__["default"])(); // ioBorders();
+
   Object(_video__WEBPACK_IMPORTED_MODULE_10__["default"])();
 };
 
@@ -10511,14 +10511,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils */ "./wp-content/themes/think/src/js/utils/index.js");
 /* harmony import */ var _utils_Scroll__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils/Scroll */ "./wp-content/themes/think/src/js/utils/Scroll.js");
 /* harmony import */ var _utils_Window__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils/Window */ "./wp-content/themes/think/src/js/utils/Window.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
-
-function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 
 
 
@@ -10533,13 +10525,12 @@ var scrollBorders = function scrollBorders() {
   var state = {
     display: false,
     activeId: '',
-    observables: {}
+    activeSection: {
+      id: '',
+      ratio: 0
+    }
   };
-
-  var _bordersWrapper$getEl = bordersWrapper.getElementsByClassName('mouse'),
-      _bordersWrapper$getEl2 = _slicedToArray(_bordersWrapper$getEl, 1),
-      mouseWrapper = _bordersWrapper$getEl2[0];
-
+  var mouseWrapper = bordersWrapper.querySelector('.mouse');
   var bordersMouse = mouseWrapper.children;
   var homeSections = [].slice.call(document.getElementsByClassName('js-home-section'));
   var samplesNumber = 1000;
@@ -10569,29 +10560,9 @@ var scrollBorders = function scrollBorders() {
     state.display = display !== 'none';
   };
 
-  handleDisplay();
-
-  var findActiveId = function findActiveId() {
-    var _Object$entries$reduc = Object.entries(state.observables).reduce(function (acc, currentObservable) {
-      var biggestRatio = acc;
-
-      if (currentObservable[1].ratio) {
-        biggestRatio = currentObservable;
-      }
-
-      return biggestRatio;
-    }, ['', {
-      ratio: 0
-    }]);
-
-    var _Object$entries$reduc2 = _slicedToArray(_Object$entries$reduc, 1);
-
-    state.activeId = _Object$entries$reduc2[0];
-  };
-
   var animatePath = function animatePath(_ref) {
     var borders = _ref.borders;
-    var ratio = state.observables[state.activeId].ratio;
+    var ratio = state.activeSection.ratio;
     var ratioFactor = borders.reduce(function (acc, current) {
       return acc + current.maxScale;
     }, 0);
@@ -10608,7 +10579,7 @@ var scrollBorders = function scrollBorders() {
   };
 
   var selectPath = function selectPath() {
-    switch (state.activeId) {
+    switch (state.activeSection.id) {
       case 'home-intro':
         animatePath({
           borders: [{
@@ -10705,8 +10676,9 @@ var scrollBorders = function scrollBorders() {
   };
 
   var thresholdSamples = [];
+  var index = 0;
 
-  for (var index = 0; index <= samplesNumber; index += 1) {
+  for (index; index <= samplesNumber; index += 1) {
     thresholdSamples.push(index / samplesNumber);
   }
 
@@ -10717,28 +10689,27 @@ var scrollBorders = function scrollBorders() {
   };
 
   var intersectionCallback = function intersectionCallback(entries) {
-    if (state.display) {
-      Object(_utils__WEBPACK_IMPORTED_MODULE_1__["forEach"])(entries, function (entry) {
-        var ratio = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["roundNumbers"])(entry.intersectionRatio, 5);
-        state.observables[entry.target.id].ratio = ratio > 0 ? ratio : 0;
-      });
-    }
+    if (!state.display) return;
+    Object(_utils__WEBPACK_IMPORTED_MODULE_1__["forEach"])(entries, function (entry) {
+      var ratio = entry.intersectionRatio;
+
+      if (ratio > 0) {
+        state.activeSection.id = entry.target.id;
+        state.activeSection.ratio = ratio;
+      }
+    });
   };
 
   var observer = new IntersectionObserver(intersectionCallback, observerOptions);
   Object(_utils__WEBPACK_IMPORTED_MODULE_1__["forEach"])(homeSections, function (section) {
-    state.observables[section.id] = {
-      ratio: 0
-    };
     observer.observe(section);
   });
+  handleDisplay();
   _utils_Scroll__WEBPACK_IMPORTED_MODULE_2__["default"].addScrollFunction(function () {
-    if (state.display) {
-      findActiveId();
+    if (!state.display) return;
 
-      if (state.activeId) {
-        selectPath();
-      }
+    if (state.activeSection.id) {
+      selectPath();
     }
   });
   _utils_Window__WEBPACK_IMPORTED_MODULE_3__["default"].addResizeFunction(function () {

@@ -414,16 +414,21 @@ a {
 .video {
   position: relative; }
   .video:before {
-    content: '';
+    content: "";
     display: block;
     padding: 0 0 56.25%; }
-  .video iframe, .video .cover, .video .icon, .video .wrapper-icon-cover, .video .wrapper-player {
+  .video iframe,
+  .video .cover,
+  .video .icon,
+  .video .wrapper-icon-cover,
+  .video .wrapper-player {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0; }
-  .video iframe, .video .icon {
+  .video iframe,
+  .video .icon {
     width: 100%;
     height: 100%; }
   .video .cover {
@@ -431,7 +436,8 @@ a {
             box-shadow: 0 29px 35px rgba(64, 64, 64, 0.07);
     cursor: pointer;
     background: #f7f2ea; }
-  .video .wrapper-icon-cover, .video .wrapper-player {
+  .video .wrapper-icon-cover,
+  .video .wrapper-player {
     height: 0;
     margin: auto; }
   .video .wrapper-icon-cover {
@@ -995,15 +1001,15 @@ label {
           transition:  -webkit-transform 0.4s 0.115s cubic-bezier(0.26, 1.09, 0.28, 0.99);
           transition:  transform 0.4s 0.115s cubic-bezier(0.26, 1.09, 0.28, 0.99);
           transition:  transform 0.4s 0.115s cubic-bezier(0.26, 1.09, 0.28, 0.99), -webkit-transform 0.4s 0.115s cubic-bezier(0.26, 1.09, 0.28, 0.99); }
-        .menu > li > a:hover::before, .menu > li > a:hover::after {
+        .menu > li > a:hover::before, .menu > li > a:hover::after, .menu > li > a:focus::before, .menu > li > a:focus::after {
           -webkit-transform: translate3d(100%, 0, 0);
                   transform: translate3d(100%, 0, 0); }
-        .menu > li > a:hover::before {
+        .menu > li > a:hover::before, .menu > li > a:focus::before {
           -webkit-transition:  -webkit-transform 0.23s cubic-bezier(0.26, 1.09, 0.28, 0.99);
           transition:  -webkit-transform 0.23s cubic-bezier(0.26, 1.09, 0.28, 0.99);
           transition:  transform 0.23s cubic-bezier(0.26, 1.09, 0.28, 0.99);
           transition:  transform 0.23s cubic-bezier(0.26, 1.09, 0.28, 0.99), -webkit-transform 0.23s cubic-bezier(0.26, 1.09, 0.28, 0.99); }
-        .menu > li > a:hover::after {
+        .menu > li > a:hover::after, .menu > li > a:focus::after {
           -webkit-transition:  -webkit-transform 0.4s 0.115s cubic-bezier(0.26, 1.09, 0.28, 0.99);
           transition:  -webkit-transform 0.4s 0.115s cubic-bezier(0.26, 1.09, 0.28, 0.99);
           transition:  transform 0.4s 0.115s cubic-bezier(0.26, 1.09, 0.28, 0.99);
