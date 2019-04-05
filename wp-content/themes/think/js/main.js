@@ -10517,11 +10517,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var scrollBorders = function scrollBorders() {
-  var _document = document,
-      body = _document.body;
-  var isHome = body.classList.contains('home');
   var bordersWrapper = document.getElementById('borders');
-  if (!bordersWrapper && !isHome) return;
+  if (!bordersWrapper && !document.body.classList.contains('home')) return;
   var state = {
     display: false,
     activeId: '',
@@ -10552,15 +10549,16 @@ var scrollBorders = function scrollBorders() {
     }
   };
   var thresholdSamples = [];
+  var index = 0;
   var observerOptions = {
     root: null,
     rootMargin: '0px',
     threshold: thresholdSamples
   };
-  var index = 0;
+  var observer;
 
   var handleDisplay = function handleDisplay() {
-    state.display = getComputedStyle(bordersWrapper) !== 'none';
+    state.display = getComputedStyle(bordersWrapper).display !== 'none';
   };
 
   var animatePath = function animatePath(_ref) {
@@ -10681,21 +10679,18 @@ var scrollBorders = function scrollBorders() {
 
   var intersectionCallback = function intersectionCallback(entries) {
     if (!state.display) return;
-    var ratio = 0;
     Object(_utils__WEBPACK_IMPORTED_MODULE_1__["forEach"])(entries, function (entry) {
-      ratio = entry.intersectionRatio;
-      if (ratio <= 0) return;
+      if (entry.intersectionRatio <= 0) return;
       state.activeSection.id = entry.target.id;
-      state.activeSection.ratio = ratio;
+      state.activeSection.ratio = entry.intersectionRatio;
     });
   };
-
-  var observer = new IntersectionObserver(intersectionCallback, observerOptions);
 
   for (index; index <= samplesNumber; index += 1) {
     thresholdSamples[index] = index / samplesNumber;
   }
 
+  observer = new IntersectionObserver(intersectionCallback, observerOptions);
   Object(_utils__WEBPACK_IMPORTED_MODULE_1__["forEach"])(homeSections, function (section) {
     observer.observe(section);
   });

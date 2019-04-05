@@ -4,11 +4,10 @@ import scroll from './utils/Scroll';
 import win from './utils/Window';
 
 const scrollBorders = () => {
-    const { body } = document;
-    const isHome = body.classList.contains('home');
     const bordersWrapper = document.getElementById('borders');
 
-    if (!bordersWrapper && !isHome) return;
+    if ( !bordersWrapper && !document.body.classList.contains('home') ) return;
+
     const state = {
         display: false,
         activeId: '',
@@ -30,16 +29,18 @@ const scrollBorders = () => {
 
     const thresholdSamples = [];
 
+    let index = 0;
+
     const observerOptions = {
         root: null,
         rootMargin: '0px',
         threshold: thresholdSamples,
     };
+    let observer;
 
-    let index = 0;
 
     const handleDisplay = () => {
-        state.display = getComputedStyle(bordersWrapper) !== 'none';
+        state.display = getComputedStyle(bordersWrapper).display !== 'none';
     };
 
     const animatePath = ({ borders }) => {
@@ -59,6 +60,7 @@ const scrollBorders = () => {
                           (ratio - pathRatio / ratioFactor) * ratioFactor
                       )
                     : 0;
+
             TweenMax.set(bordersMouse[borderMapping[border.position].index], {
                 transformOrigin: borderMapping[border.position].origin,
                 scaleX:
@@ -70,6 +72,7 @@ const scrollBorders = () => {
                         ? scale
                         : 1,
             });
+
             pathRatio += border.maxScale;
         });
     };
@@ -132,28 +135,25 @@ const scrollBorders = () => {
     };
 
     const intersectionCallback = entries => {
-        if (!state.display) return;
+        if ( !state.display ) return;
 
-        let ratio = 0;
-        
         forEach(entries, entry => {
-            ratio = entry.intersectionRatio;
-            if (ratio <= 0) return;
-
+            if ( entry.intersectionRatio <= 0 ) return;
+            
             state.activeSection.id = entry.target.id;
-            state.activeSection.ratio = ratio;
+            state.activeSection.ratio = entry.intersectionRatio;
         });
     };
-
-    const observer = new IntersectionObserver(
-        intersectionCallback,
-        observerOptions
-    );
 
     
     for (index; index <= samplesNumber; index += 1) {
         thresholdSamples[index] = index / samplesNumber;
     }
+
+    observer = new IntersectionObserver(
+        intersectionCallback,
+        observerOptions
+    );
 
     forEach(homeSections, section => {
         observer.observe(section);
@@ -162,7 +162,7 @@ const scrollBorders = () => {
     handleDisplay();
 
     scroll.addScrollFunction(() => {
-        if (!state.display && !state.activeSection.id) return;
+        if ( !state.display && !state.activeSection.id ) return;
         selectPath();
     });
 
