@@ -15,8 +15,7 @@ const scrollBorders = () => {
         activeSection: { id: '', ratio: 0 },
     };
 
-    const mouseWrapper = bordersWrapper.querySelector('.mouse');
-    const bordersMouse = mouseWrapper.children;
+    const bordersMouse = bordersWrapper.querySelector('.mouse').children;
     const homeSections = [].slice.call(
         document.getElementsByClassName('js-home-section')
     );
@@ -29,10 +28,18 @@ const scrollBorders = () => {
         bottom: { index: 2, origin: '100% 50%' },
     };
 
-    const handleDisplay = () => {
-        const { display } = getComputedStyle(bordersWrapper);
+    const thresholdSamples = [];
 
-        state.display = display !== 'none';
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: thresholdSamples,
+    };
+
+    let index = 0;
+
+    const handleDisplay = () => {
+        state.display = getComputedStyle(bordersWrapper) !== 'none';
     };
 
     const animatePath = ({ borders }) => {
@@ -42,9 +49,10 @@ const scrollBorders = () => {
             0
         );
         let pathRatio = 0;
+        let scale = 0;
 
         forEach(borders, border => {
-            const scale =
+            scale =
                 ratio > pathRatio / ratioFactor
                     ? Math.min(
                           border.maxScale,
@@ -123,27 +131,17 @@ const scrollBorders = () => {
         }
     };
 
-    const thresholdSamples = [];
-
-    let index = 0;
-    for (index; index <= samplesNumber; index += 1) {
-        thresholdSamples.push(index / samplesNumber);
-    }
-
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: thresholdSamples,
-    };
-
     const intersectionCallback = entries => {
         if (!state.display) return;
+
+        let ratio = 0;
+        
         forEach(entries, entry => {
-            const ratio = entry.intersectionRatio;
-            if (ratio > 0) {
-                state.activeSection.id = entry.target.id;
-                state.activeSection.ratio = ratio;
-            }
+            ratio = entry.intersectionRatio;
+            if (ratio <= 0) return;
+
+            state.activeSection.id = entry.target.id;
+            state.activeSection.ratio = ratio;
         });
     };
 
@@ -152,6 +150,11 @@ const scrollBorders = () => {
         observerOptions
     );
 
+    
+    for (index; index <= samplesNumber; index += 1) {
+        thresholdSamples[index] = index / samplesNumber;
+    }
+
     forEach(homeSections, section => {
         observer.observe(section);
     });
@@ -159,10 +162,8 @@ const scrollBorders = () => {
     handleDisplay();
 
     scroll.addScrollFunction(() => {
-        if (!state.display) return;
-        if (state.activeSection.id) {
-            selectPath();
-        }
+        if (!state.display && !state.activeSection.id) return;
+        selectPath();
     });
 
     win.addResizeFunction(() => {

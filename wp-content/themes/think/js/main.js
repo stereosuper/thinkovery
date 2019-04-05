@@ -10530,8 +10530,7 @@ var scrollBorders = function scrollBorders() {
       ratio: 0
     }
   };
-  var mouseWrapper = bordersWrapper.querySelector('.mouse');
-  var bordersMouse = mouseWrapper.children;
+  var bordersMouse = bordersWrapper.querySelector('.mouse').children;
   var homeSections = [].slice.call(document.getElementsByClassName('js-home-section'));
   var samplesNumber = 1000;
   var borderMapping = {
@@ -10552,12 +10551,16 @@ var scrollBorders = function scrollBorders() {
       origin: '100% 50%'
     }
   };
+  var thresholdSamples = [];
+  var observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: thresholdSamples
+  };
+  var index = 0;
 
   var handleDisplay = function handleDisplay() {
-    var _getComputedStyle = getComputedStyle(bordersWrapper),
-        display = _getComputedStyle.display;
-
-    state.display = display !== 'none';
+    state.display = getComputedStyle(bordersWrapper) !== 'none';
   };
 
   var animatePath = function animatePath(_ref) {
@@ -10567,8 +10570,9 @@ var scrollBorders = function scrollBorders() {
       return acc + current.maxScale;
     }, 0);
     var pathRatio = 0;
+    var scale = 0;
     Object(_utils__WEBPACK_IMPORTED_MODULE_1__["forEach"])(borders, function (border) {
-      var scale = ratio > pathRatio / ratioFactor ? Math.min(border.maxScale, (ratio - pathRatio / ratioFactor) * ratioFactor) : 0;
+      scale = ratio > pathRatio / ratioFactor ? Math.min(border.maxScale, (ratio - pathRatio / ratioFactor) * ratioFactor) : 0;
       gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set(bordersMouse[borderMapping[border.position].index], {
         transformOrigin: borderMapping[border.position].origin,
         scaleX: border.position === 'top' || border.position === 'bottom' ? scale : 1,
@@ -10675,42 +10679,30 @@ var scrollBorders = function scrollBorders() {
     }
   };
 
-  var thresholdSamples = [];
-  var index = 0;
-
-  for (index; index <= samplesNumber; index += 1) {
-    thresholdSamples.push(index / samplesNumber);
-  }
-
-  var observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: thresholdSamples
-  };
-
   var intersectionCallback = function intersectionCallback(entries) {
     if (!state.display) return;
+    var ratio = 0;
     Object(_utils__WEBPACK_IMPORTED_MODULE_1__["forEach"])(entries, function (entry) {
-      var ratio = entry.intersectionRatio;
-
-      if (ratio > 0) {
-        state.activeSection.id = entry.target.id;
-        state.activeSection.ratio = ratio;
-      }
+      ratio = entry.intersectionRatio;
+      if (ratio <= 0) return;
+      state.activeSection.id = entry.target.id;
+      state.activeSection.ratio = ratio;
     });
   };
 
   var observer = new IntersectionObserver(intersectionCallback, observerOptions);
+
+  for (index; index <= samplesNumber; index += 1) {
+    thresholdSamples[index] = index / samplesNumber;
+  }
+
   Object(_utils__WEBPACK_IMPORTED_MODULE_1__["forEach"])(homeSections, function (section) {
     observer.observe(section);
   });
   handleDisplay();
   _utils_Scroll__WEBPACK_IMPORTED_MODULE_2__["default"].addScrollFunction(function () {
-    if (!state.display) return;
-
-    if (state.activeSection.id) {
-      selectPath();
-    }
+    if (!state.display && !state.activeSection.id) return;
+    selectPath();
   });
   _utils_Window__WEBPACK_IMPORTED_MODULE_3__["default"].addResizeFunction(function () {
     handleDisplay();
