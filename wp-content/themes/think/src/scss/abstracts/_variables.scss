@@ -14,6 +14,7 @@ $tertiary: #df622d;
 $tertiary-light: #EC8D28;
 $quaternary: #f8ba41;
 
+
 // TRANSITIONS //
 
 // Durations
@@ -35,20 +36,11 @@ $fade-easing: ease-out;
 
 $transition: $cut-duration ease-in-out;
 
+
 // FONTS //
 
 $sofia: "sofia-pro", sans-serif;
 
-// MEDIAQUERIES //
-
-$desktop-big: 1280px;
-$desktop: 1100px;
-$desktop-small: 960px;
-$tablet: 780px;
-$phone: 580px;
-$phone-small: 400px;
-
-$retina: "only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi)";
 
 // GRID //
 
@@ -57,3 +49,16 @@ $col: 100/4 * 1%;
 $gutter: 44px;
 $line-height: 28px;
 $border-size: 12px;
+
+
+// MEDIAQUERIES //
+
+$desktop-huge: $container + $gutter*4;
+$desktop-big: 1280px;
+$desktop: 1100px;
+$desktop-small: 960px;
+$tablet: 780px;
+$phone: 580px;
+$phone-small: 400px;
+
+$retina: "only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi)";
