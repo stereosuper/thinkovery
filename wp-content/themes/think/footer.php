@@ -35,6 +35,11 @@
                             </svg>
                         </div>
                         <strong class='main-footer-baseline'><?php echo get_bloginfo('description'); ?></strong>
+                        <svg class='icon'><use xlink:href='#icon-drop'/></svg>
+                        <svg class='icon'><use xlink:href='#icon-square'/></svg>
+                        <svg class='icon'><use xlink:href='#icon-triangle'/></svg>
+                        <svg class='icon'><use xlink:href='#icon-rectangle'/></svg>
+                        <svg class='icon'><use xlink:href='#icon-circle'/></svg>
                     </div>
 
 
