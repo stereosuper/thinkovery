@@ -5,17 +5,20 @@
     <?php if ( have_posts() ) : the_post(); ?>
     
 		<header id="home-intro" class="home-header" data-io="updateBorder">
+            <?php $video = get_field('video'); if( $video['id'] ) : ?>
+                <div class='js-video video' data-id='<?php echo $video['id']; ?>'>
+                    <div class='iframe'></div>
+                    <div class='cover'>
+                        <div class='wrapper-icon-cover'><svg class="icon"><use xlink:href="#icon-cover"></use></svg></div>
+                        <div class='wrapper-player'><svg class="icon"><use xlink:href="#icon-player"></use></svg></div>
+                    </div>
+                </div>
+            <?php endif; ?>
+
             <?php $title = get_field('title'); ?>
             <h1>
                 <?php echo $title['green'] ? $title['green'] . '<span>' . $title['black'] . '</span>' : get_the_title(); ?>
             </h1>
-
-            <?php $video = get_field('video'); if( $video['id'] ) : ?>
-                <div class='js-video video' data-id='<?php echo $video['id']; ?>'>
-                    <div class='iframe'></div>
-                    <div class='cover' style='background-image:url(<?php echo wp_get_attachment_url($video['img'], 'full'); ?>)'></div>
-                </div>
-            <?php endif; ?>
         </header>
 
         <?php if( have_rows('sections') ) : $count = 0; ?>

@@ -9,15 +9,9 @@
     text-align: center;
     > h1 {
         position: relative;
-        margin: 0;
+        margin: -22% 0 0;
         z-index: 1;
         pointer-events: none;
-    }
-    .video {
-        position: absolute;
-        left: 0;
-        right: 0;
-        margin: auto;
     }
 }
 
@@ -73,6 +67,13 @@
 
     .home-header {
         justify-content: center;
+        flex-wrap: wrap;
+        > h1{
+            margin-top: -42%;
+        }
+        .video{
+            width: 50%;
+        }
     }
 
     .home-section {
