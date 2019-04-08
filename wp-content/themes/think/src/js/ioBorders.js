@@ -7,9 +7,9 @@ const ioBorders = () => {
     const bordersWrapper = document.getElementById('borders');
 
     if (!bordersWrapper && !document.body.classList.contains('home')) return;
+    
     // Borders html elements
-    const [catWrapper] = bordersWrapper.getElementsByClassName('cat');
-    const bordersCat = catWrapper.children;
+    const bordersCat = bordersWrapper.querySelector('.cat').children;
 
     // Borders animations state
     const state = {
@@ -271,11 +271,12 @@ const ioBorders = () => {
      */
     const processQueue = () => {
         state.isMoving = false;
+        
         if (!state.queue.length) return;
 
         const event = createNewEvent('updateQueue');
-        [state.nextSection] = state.queue;
 
+        [state.nextSection] = state.queue;
         state.queue.shift();
         bordersWrapper.dispatchEvent(event);
     };
@@ -287,20 +288,19 @@ const ioBorders = () => {
      */
     const resetBorders = ({ borders }, cb) => {
         const [{ position, duration }, nextBorder] = borders;
+        
         TweenMax.to(bordersCat[borderMapping[position].index], duration, {
             transformOrigin: borderMapping.reset[position].origin,
             scaleX: position === 'top' || position === 'bottom' ? 0 : 1,
             scaleY: position === 'left' || position === 'right' ? 0 : 1,
             onComplete: () => {
-                if (nextBorder) {
+                nextBorder ?
                     resetBorders(
                         { borders: borders.slice(1, borders.length) },
                         cb
                     );
-                } else {
-                    cb();
-                }
-            },
+                : cb();
+            }
         });
     };
 
@@ -309,8 +309,7 @@ const ioBorders = () => {
      * @param {array} { borders }
      */
     const animateBorder = ({ borders }) => {
-        const [
-            {
+        const [{
                 position,
                 duration,
                 color,
@@ -318,9 +317,9 @@ const ioBorders = () => {
                 axis,
                 origin,
                 nestNext = true,
-            },
-            nextBorder,
-        ] = borders;
+            }, nextBorder] = borders;
+        
+        const isAll = position === 'all';
 
         let ease = '';
         if (easing === 'in') {
@@ -328,8 +327,6 @@ const ioBorders = () => {
         } else if (easing === 'out') {
             ease = easing.catMouseEaseOut;
         }
-
-        const isAll = position === 'all';
 
         let scaleX = null;
         let scaleY = null;
@@ -346,14 +343,13 @@ const ioBorders = () => {
             ease,
             onComplete: () => {
                 if (!nestNext) return;
-                if (nextBorder) {
+
+                nextBorder ?
                     animateBorder({
                         borders: borders.slice(1, borders.length),
                     });
-                } else {
-                    processQueue();
-                }
-            },
+                : processQueue();
+            }
         };
 
         if (color) {
@@ -365,7 +361,9 @@ const ioBorders = () => {
             duration / state.speedFactor,
             tweenParams
         );
+
         if (nestNext || !nextBorder) return;
+
         borders.shift();
         animateBorder({ borders });
     };
@@ -375,7 +373,9 @@ const ioBorders = () => {
      */
     const updateBorder = () => {
         if (state.isMoving) return;
+
         state.isMoving = true;
+
         switch (state.nextSection) {
             case 'home-intro':
                 resetBorders(bordersAnimationsReset.intro, () => {
@@ -432,6 +432,7 @@ const ioBorders = () => {
 
     win.addResizeFunction(() => {
         handleDisplay();
+        
         if (!state.display || !state.queue.length) return;
         processQueue();
     });
