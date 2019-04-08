@@ -35,7 +35,7 @@
 		</noscript>
 		<!-- End Google Tag Manager (noscript) -->
 
-		<header role='banner' id="main-header">
+		<header role='banner' class="main-header">
 			<div class='container'>
 				<a href='<?php echo home_url('/'); ?>' class="logo" title='<?php bloginfo( 'name' ); ?>' rel='home'>
 					<svg width="155" height="34" viewBox="0 0 155 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -44,7 +44,7 @@
 					</svg>
 				</a>
 
-				<button id='burger' type="button">
+				<button id="burger" class="burger" type="button">
 					<span class="sesame-bun"></span>
 					<span class="steak"></span>
 					<span class="bun"></span>
@@ -52,10 +52,10 @@
 					<span class="second-cross-line"></span>
 				</button>
 
-				<nav id="main-navigation" aria-expanded="false">
+				<nav id="main-navigation" class="main-navigation" aria-expanded="false">
 					<div class="main-navigation-container">
 						<?php wp_nav_menu(array('theme_location' => 'primary', 'container' => null, 'menu_id' => '', 'menu_class' => 'menu')); ?>
-						<div id="menu-borders">
+						<div class="menu-borders">
 							<span class="border first"></span>
 							<span class="border second"></span>
 							<span class="border third"></span>
