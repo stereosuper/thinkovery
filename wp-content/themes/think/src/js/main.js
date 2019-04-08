@@ -8,6 +8,7 @@ import fallback from './utils/Fallback';
 import form from './form';
 import burger from './burger';
 import newsletter from './newsletter';
+import makeBorders from './makeBorders';
 import scrollBorders from './scrollBorders';
 import ioBorders from './ioBorders';
 import video from './video';
@@ -26,10 +27,10 @@ const loadHandler = () => {
 
     // Custom scripts
     console.log(sessionStorage.getItem('loaded'));
-
-    form();
     burger();
+    form();
     newsletter();
+    makeBorders();
     scrollBorders();
     ioBorders();
     video();

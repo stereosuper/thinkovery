@@ -10049,9 +10049,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _form__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./form */ "./wp-content/themes/think/src/js/form.js");
 /* harmony import */ var _burger__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./burger */ "./wp-content/themes/think/src/js/burger.js");
 /* harmony import */ var _newsletter__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./newsletter */ "./wp-content/themes/think/src/js/newsletter.js");
-/* harmony import */ var _scrollBorders__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./scrollBorders */ "./wp-content/themes/think/src/js/scrollBorders.js");
-/* harmony import */ var _ioBorders__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./ioBorders */ "./wp-content/themes/think/src/js/ioBorders.js");
-/* harmony import */ var _video__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./video */ "./wp-content/themes/think/src/js/video.js");
+/* harmony import */ var _makeBorders__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./makeBorders */ "./wp-content/themes/think/src/js/makeBorders.js");
+/* harmony import */ var _scrollBorders__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./scrollBorders */ "./wp-content/themes/think/src/js/scrollBorders.js");
+/* harmony import */ var _ioBorders__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./ioBorders */ "./wp-content/themes/think/src/js/ioBorders.js");
+/* harmony import */ var _video__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./video */ "./wp-content/themes/think/src/js/video.js");
+
 
 
 
@@ -10074,12 +10076,13 @@ var loadHandler = function loadHandler() {
   _utils_Fallback__WEBPACK_IMPORTED_MODULE_4__["default"].init(); // Custom scripts
 
   console.log(sessionStorage.getItem('loaded'));
-  Object(_form__WEBPACK_IMPORTED_MODULE_5__["default"])();
   Object(_burger__WEBPACK_IMPORTED_MODULE_6__["default"])();
+  Object(_form__WEBPACK_IMPORTED_MODULE_5__["default"])();
   Object(_newsletter__WEBPACK_IMPORTED_MODULE_7__["default"])();
-  Object(_scrollBorders__WEBPACK_IMPORTED_MODULE_8__["default"])();
-  Object(_ioBorders__WEBPACK_IMPORTED_MODULE_9__["default"])();
-  Object(_video__WEBPACK_IMPORTED_MODULE_10__["default"])();
+  Object(_makeBorders__WEBPACK_IMPORTED_MODULE_8__["default"])();
+  Object(_scrollBorders__WEBPACK_IMPORTED_MODULE_9__["default"])();
+  Object(_ioBorders__WEBPACK_IMPORTED_MODULE_10__["default"])();
+  Object(_video__WEBPACK_IMPORTED_MODULE_11__["default"])();
 };
 
 if (document.readyState === 'complete') {
@@ -10091,6 +10094,51 @@ if (document.readyState === 'complete') {
     }
   }, false);
 }
+
+/***/ }),
+
+/***/ "./wp-content/themes/think/src/js/makeBorders.js":
+/*!*******************************************************!*\
+  !*** ./wp-content/themes/think/src/js/makeBorders.js ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var makeBorders = function makeBorders() {
+  var bordersContainer = document.getElementById('borders');
+  if (!bordersContainer && !document.body.classList.contains('home')) return; // Max elements number
+
+  var wrappersNumber = 2;
+  var bordersNumber = 4; // Html elements creation loop indexes
+
+  var indexWrappers = 0;
+  var indexBorders = 0; // Html elements variables
+
+  var wrapper = null;
+  var border = null; // Html elements classes
+
+  var wrappersClasses = ['mouse', 'cat'];
+  var bordersClasses = ['first', 'second', 'third', 'fourth']; // Borders wrappers' loop
+
+  for (indexWrappers; indexWrappers < wrappersNumber; indexWrappers += 1) {
+    wrapper = document.createElement('div');
+    wrapper.classList.add(wrappersClasses[indexWrappers]); // Borders' loop
+
+    indexBorders = 0;
+
+    for (indexBorders; indexBorders < bordersNumber; indexBorders += 1) {
+      border = document.createElement('span');
+      border.classList.add('border', bordersClasses[indexBorders]);
+      wrapper.appendChild(border);
+    }
+
+    bordersContainer.appendChild(wrapper);
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (makeBorders);
 
 /***/ }),
 

@@ -73,18 +73,5 @@
 		<main role='main' class='main'>
 			
 			<?php if( is_front_page() ) : ?>
-				<div id="borders" class="borders">
-					<div class="mouse">
-						<span class="border first"></span>
-						<span class="border second"></span>
-						<span class="border third"></span>
-						<span class="border fourth"></span>
-					</div>
-					<div class="cat">
-						<span class="border first"></span>
-						<span class="border second"></span>
-						<span class="border third"></span>
-						<span class="border fourth"></span>
-					</div>
-				</div>
+				<div id="borders" class="borders"></div>
 			<?php endif; ?>
