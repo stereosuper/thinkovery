@@ -1,6 +1,6 @@
         </main>
 
-        <footer role='contentinfo' class='main-footer'>
+        <footer role='contentinfo' class='main-footer js-load-hidden'>
             <div class='newsletter-container'>
                 <div class='container'>
                     <?php $news = get_field('newsletter', 'options'); if( $news['newsletterTitle'] ):  ?>
@@ -175,6 +175,8 @@
                 </symbol>
             </defs>
         </svg>
+
+        <script defer src='<?php echo get_template_directory_uri(); ?>/js/loader.js'></script>
 
         <?php wp_footer(); ?>
 

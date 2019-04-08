@@ -26,14 +26,13 @@ const loadHandler = () => {
     fallback.init();
 
     // Custom scripts
-    console.log(sessionStorage.getItem('loaded'));
     burger();
     form();
-    newsletter();
+    newsletter();    
+    video();
     makeBorders();
     scrollBorders();
     ioBorders();
-    video();
 };
 
 if (document.readyState === 'complete') {
