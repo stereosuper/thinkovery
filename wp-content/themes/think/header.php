@@ -11,6 +11,7 @@
 		<?php wp_head(); ?>
 
 		<script>document.getElementsByTagName('html')[0].className = 'js';</script>
+		<script async src='<?php echo get_template_directory_uri(); ?>/js/loader.js'></script>
 
 		<link rel="preload" href="https://use.typekit.net/uhd8avk.js" as="script">
 		<script src='https://use.typekit.net/uhd8avk.js'></script>

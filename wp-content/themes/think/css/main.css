@@ -494,6 +494,8 @@ a {
 /* Grid */
 .main {
   padding: 4em 0 0; }
+  .no-js .main, .loading .main {
+    opacity: 0; }
 
 .container {
   max-width: 1400px;
@@ -636,6 +638,8 @@ label {
   transition:  transform 0.23s 0.9s cubic-bezier(0.26, 1.09, 0.28, 0.99);
   transition:  transform 0.23s 0.9s cubic-bezier(0.26, 1.09, 0.28, 0.99), -webkit-transform 0.23s 0.9s cubic-bezier(0.26, 1.09, 0.28, 0.99);
   z-index: 2; }
+  .no-js .main-navigation, .loading .main-navigation {
+    opacity: 0; }
   .main-navigation > .line-opening {
     position: absolute;
     top: 0;
@@ -1051,6 +1055,8 @@ label {
 /* Footer */
 .main-footer {
   margin: 7.5em 0 0; }
+  .no-js .main-footer, .loading .main-footer {
+    opacity: 0; }
   .home .main-footer {
     margin-top: 0; }
   .main-footer a:not(.btn) {

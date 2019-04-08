@@ -7,6 +7,7 @@ const scrollBorders = () => {
     const bordersWrapper = document.getElementById('borders');
 
     if (!bordersWrapper && !document.body.classList.contains('home')) return;
+    
     // Borders html elements
     const bordersMouse = bordersWrapper.querySelector('.mouse').children;
     const homeSections = [].slice.call(

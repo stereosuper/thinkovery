@@ -25,6 +25,8 @@ const loadHandler = () => {
     fallback.init();
 
     // Custom scripts
+    console.log(sessionStorage.getItem('loaded'));
+
     form();
     burger();
     newsletter();

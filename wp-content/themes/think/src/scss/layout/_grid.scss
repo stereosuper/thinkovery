@@ -2,6 +2,9 @@
 
 .main{
     padding: 4em 0 0;
+    .no-js &, .loading &{
+        opacity: 0;
+    }
 }
 
 .container {

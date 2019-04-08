@@ -25,6 +25,9 @@ $header-height: 84px;
         $cat-mouse-easing-out
     );
     z-index: 2;
+    .no-js &, .loading &{
+        opacity: 0;
+    }
     > .line-opening {
         position: absolute;
         top: 0;

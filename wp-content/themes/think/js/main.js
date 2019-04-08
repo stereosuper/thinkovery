@@ -10073,6 +10073,7 @@ var loadHandler = function loadHandler() {
   _utils_io__WEBPACK_IMPORTED_MODULE_2__["default"].init();
   _utils_Fallback__WEBPACK_IMPORTED_MODULE_4__["default"].init(); // Custom scripts
 
+  console.log(sessionStorage.getItem('loaded'));
   Object(_form__WEBPACK_IMPORTED_MODULE_5__["default"])();
   Object(_burger__WEBPACK_IMPORTED_MODULE_6__["default"])();
   Object(_newsletter__WEBPACK_IMPORTED_MODULE_7__["default"])();
