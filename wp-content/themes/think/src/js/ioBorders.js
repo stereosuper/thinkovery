@@ -1,14 +1,17 @@
-import { TweenMax, TimelineMax } from 'gsap';
+import { TweenMax } from 'gsap';
 import { createNewEvent } from './utils';
 import win from './utils/Window';
 import { colors, easing } from './global';
 
 const ioBorders = () => {
-    const { body } = document;
-    const isHome = body.classList.contains('home');
     const bordersWrapper = document.getElementById('borders');
 
-    if (!bordersWrapper && !isHome) return;
+    if (!bordersWrapper && !document.body.classList.contains('home')) return;
+    // Borders html elements
+    const [catWrapper] = bordersWrapper.getElementsByClassName('cat');
+    const bordersCat = catWrapper.children;
+
+    // Borders animations state
     const state = {
         display: false,
         isMoving: false,
@@ -17,13 +20,55 @@ const ioBorders = () => {
         speedFactor: 1,
     };
 
+    // Borders transformations data
     const borderMapping = {
         top: { index: 0, origin: '0% 50%' },
         right: { index: 1, origin: '50% 0%' },
         left: { index: 3, origin: '50% 100%' },
         bottom: { index: 2, origin: '100% 50%' },
+        reset: {
+            top: { origin: '100% 50%' },
+            right: { origin: '50% 100%' },
+            bottom: { origin: '0% 50%' },
+            left: { origin: '50% 0%' },
+        },
     };
 
+    // Borders reset sequences
+    const bordersAnimationsReset = {
+        intro: {
+            borders: [
+                { position: 'bottom', duration: 0.5 },
+                { position: 'left', duration: 0.5 },
+            ],
+        },
+        learningExperience: {
+            borders: [
+                { position: 'top', duration: 0.5 },
+                { position: 'right', duration: 0.5 },
+            ],
+        },
+        offers: {
+            borders: [
+                { position: 'bottom', duration: 0.5 },
+                { position: 'left', duration: 0.5 },
+            ],
+        },
+        aboutUs: {
+            borders: [
+                { position: 'top', duration: 0.5 },
+                { position: 'right', duration: 0.5 },
+            ],
+        },
+        experiences: {
+            borders: [
+                { position: 'bottom', duration: 0.5 },
+                { position: 'left', duration: 0.5 },
+            ],
+        },
+    };
+
+    // Borders update sequences
     const bordersAnimations = {
         intro: {
             borders: [
@@ -214,17 +259,16 @@ const ioBorders = () => {
         },
     };
 
-    const [catWrapper] = bordersWrapper.getElementsByClassName('cat');
-    const bordersCat = catWrapper.children;
-
+    /**
+     * @description updates display state depending on borders style
+     */
     const handleDisplay = () => {
-        const { display } = getComputedStyle(bordersWrapper);
-
-        state.display = display !== 'none';
+        state.display = getComputedStyle(bordersWrapper).display !== 'none';
     };
 
-    handleDisplay();
-
+    /**
+     * @description queuing process if a border animation is currently playing
+     */
     const processQueue = () => {
         state.isMoving = false;
         if (!state.queue.length) return;
@@ -236,6 +280,34 @@ const ioBorders = () => {
         bordersWrapper.dispatchEvent(event);
     };
 
+    /**
+     * @description reset previous animation
+     * @param {array} { borders }
+     * @param {function} cb
+     */
+    const resetBorders = ({ borders }, cb) => {
+        const [{ position, duration }, nextBorder] = borders;
+        TweenMax.to(bordersCat[borderMapping[position].index], duration, {
+            transformOrigin: borderMapping.reset[position].origin,
+            scaleX: position === 'top' || position === 'bottom' ? 0 : 1,
+            scaleY: position === 'left' || position === 'right' ? 0 : 1,
+            onComplete: () => {
+                if (nextBorder) {
+                    resetBorders(
+                        { borders: borders.slice(1, borders.length) },
+                        cb
+                    );
+                } else {
+                    cb();
+                }
+            },
+        });
+    };
+
+    /**
+     * @description update next section borders
+     * @param {array} { borders }
+     */
     const animateBorder = ({ borders }) => {
         const [
             {
@@ -275,8 +347,9 @@ const ioBorders = () => {
             onComplete: () => {
                 if (!nestNext) return;
                 if (nextBorder) {
-                    borders.shift();
-                    animateBorder({ borders });
+                    animateBorder({
+                        borders: borders.slice(1, borders.length),
+                    });
                 } else {
                     processQueue();
                 }
@@ -292,36 +365,50 @@ const ioBorders = () => {
             duration / state.speedFactor,
             tweenParams
         );
-        if (!nestNext && nextBorder) {
-            borders.shift();
-            animateBorder({ borders });
-        }
+        if (nestNext || !nextBorder) return;
+        borders.shift();
+        animateBorder({ borders });
     };
 
+    /**
+     * @description border sections animation controller
+     */
     const updateBorder = () => {
         if (state.isMoving) return;
-
         state.isMoving = true;
         switch (state.nextSection) {
             case 'home-intro':
-                animateBorder(bordersAnimations.intro);
+                resetBorders(bordersAnimationsReset.intro, () => {
+                    animateBorder(bordersAnimations.intro);
+                });
                 break;
             case 'home-learning-experience':
-                animateBorder(bordersAnimations.learningExperience);
+                resetBorders(bordersAnimationsReset.learningExperience, () => {
+                    animateBorder(bordersAnimations.learningExperience);
+                });
                 break;
             case 'home-offers':
-                animateBorder(bordersAnimations.offers);
+                resetBorders(bordersAnimationsReset.offers, () => {
+                    animateBorder(bordersAnimations.offers);
+                });
                 break;
             case 'home-about-us':
-                animateBorder(bordersAnimations.aboutUs);
+                resetBorders(bordersAnimationsReset.aboutUs, () => {
+                    animateBorder(bordersAnimations.aboutUs);
+                });
                 break;
             case 'home-experiences':
-                animateBorder(bordersAnimations.experiences);
+                resetBorders(bordersAnimationsReset.experiences, () => {
+                    animateBorder(bordersAnimations.experiences);
+                });
                 break;
             default:
                 break;
         }
     };
+
+    // Main calls
+    handleDisplay();
 
     bordersWrapper.addEventListener(
         'updateBorders',
@@ -345,9 +432,8 @@ const ioBorders = () => {
 
     win.addResizeFunction(() => {
         handleDisplay();
-        if (state.display && state.queue.length) {
-            processQueue();
-        }
+        if (!state.display || !state.queue.length) return;
+        processQueue();
     });
 };
 

@@ -7,13 +7,28 @@ const scrollBorders = () => {
     const bordersWrapper = document.getElementById('borders');
 
     if (!bordersWrapper && !document.body.classList.contains('home')) return;
+    // Borders html elements
+    const bordersMouse = bordersWrapper.querySelector('.mouse').children;
+    const homeSections = [].slice.call(
+        document.getElementsByClassName('js-home-section')
+    );
 
+    // Constants used to create the intersection observer threshold array
+    const samplesNumber = 1000;
+    const thresholdSamples = [];
+    let index = 0;
+
+    // Intersection observer constants
+    let observer = null;
+
+    // Borders animations state
     const state = {
         display: false,
         activeId: '',
         activeSection: { id: '', ratio: 0 },
     };
 
+    // Borders transformations data
     const borderMapping = {
         top: { index: 0, origin: '0% 50%' },
         right: { index: 1, origin: '50% 0%' },
@@ -21,28 +36,24 @@ const scrollBorders = () => {
         bottom: { index: 2, origin: '100% 50%' },
     };
 
-    const bordersMouse = bordersWrapper.querySelector('.mouse').children;
-    const homeSections = [].slice.call(
-        document.getElementsByClassName('js-home-section')
-    );
-
-    const samplesNumber = 1000;
-
-    const thresholdSamples = [];
-
-    let index = 0;
-
+    // Intersection observer options
     const observerOptions = {
         root: null,
         rootMargin: '0px',
         threshold: thresholdSamples,
     };
-    let observer = null;
 
+    /**
+     * @description updates display state depending on borders style
+     */
     const handleDisplay = () => {
         state.display = getComputedStyle(bordersWrapper).display !== 'none';
     };
 
+    /**
+     * @description update next section borders' progress
+     * @param {array} { borders }
+     */
     const animatePath = ({ borders }) => {
         const { ratio } = state.activeSection;
         const ratioFactor = borders.reduce(
@@ -77,6 +88,9 @@ const scrollBorders = () => {
         });
     };
 
+    /**
+     * @description border sections path animation controller
+     */
     const selectPath = () => {
         switch (state.activeSection.id) {
             case 'home-intro':
@@ -134,6 +148,10 @@ const scrollBorders = () => {
         }
     };
 
+    /**
+     * @description intersection observer change callback
+     * @param {array} entries
+     */
     const intersectionCallback = entries => {
         if (!state.display) return;
 
@@ -145,6 +163,7 @@ const scrollBorders = () => {
         });
     };
 
+    // Main calls
     for (index; index <= samplesNumber; index += 1) {
         thresholdSamples[index] = index / samplesNumber;
     }

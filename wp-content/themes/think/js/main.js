@@ -9585,18 +9585,23 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var ioBorders = function ioBorders() {
-  var _document = document,
-      body = _document.body;
-  var isHome = body.classList.contains('home');
   var bordersWrapper = document.getElementById('borders');
-  if (!bordersWrapper && !isHome) return;
+  if (!bordersWrapper && !document.body.classList.contains('home')) return; // Borders html elements
+
+  var _bordersWrapper$getEl = bordersWrapper.getElementsByClassName('cat'),
+      _bordersWrapper$getEl2 = _slicedToArray(_bordersWrapper$getEl, 1),
+      catWrapper = _bordersWrapper$getEl2[0];
+
+  var bordersCat = catWrapper.children; // Borders animations state
+
   var state = {
     display: false,
     isMoving: false,
     queue: [],
     nextSection: null,
     speedFactor: 1
-  };
+  }; // Borders transformations data
+
   var borderMapping = {
     top: {
       index: 0,
@@ -9613,8 +9618,71 @@ var ioBorders = function ioBorders() {
     bottom: {
       index: 2,
       origin: '100% 50%'
+    },
+    reset: {
+      top: {
+        origin: '100% 50%'
+      },
+      right: {
+        origin: '50% 100%'
+      },
+      bottom: {
+        origin: '0% 50%'
+      },
+      left: {
+        origin: '50% 0%'
+      }
     }
-  };
+  }; // Borders reset sequences
+
+  var bordersAnimationsReset = {
+    intro: {
+      borders: [{
+        position: 'bottom',
+        duration: 0.5
+      }, {
+        position: 'left',
+        duration: 0.5
+      }]
+    },
+    learningExperience: {
+      borders: [{
+        position: 'top',
+        duration: 0.5
+      }, {
+        position: 'right',
+        duration: 0.5
+      }]
+    },
+    offers: {
+      borders: [{
+        position: 'bottom',
+        duration: 0.5
+      }, {
+        position: 'left',
+        duration: 0.5
+      }]
+    },
+    aboutUs: {
+      borders: [{
+        position: 'top',
+        duration: 0.5
+      }, {
+        position: 'right',
+        duration: 0.5
+      }]
+    },
+    experiences: {
+      borders: [{
+        position: 'bottom',
+        duration: 0.5
+      }, {
+        position: 'left',
+        duration: 0.5
+      }]
+    }
+  }; // Borders update sequences
+
   var bordersAnimations = {
     intro: {
       borders: [{
@@ -9776,21 +9844,17 @@ var ioBorders = function ioBorders() {
       }]
     }
   };
-
-  var _bordersWrapper$getEl = bordersWrapper.getElementsByClassName('cat'),
-      _bordersWrapper$getEl2 = _slicedToArray(_bordersWrapper$getEl, 1),
-      catWrapper = _bordersWrapper$getEl2[0];
-
-  var bordersCat = catWrapper.children;
+  /**
+   * @description updates display state depending on borders style
+   */
 
   var handleDisplay = function handleDisplay() {
-    var _getComputedStyle = getComputedStyle(bordersWrapper),
-        display = _getComputedStyle.display;
-
-    state.display = display !== 'none';
+    state.display = getComputedStyle(bordersWrapper).display !== 'none';
   };
+  /**
+   * @description queuing process if a border animation is currently playing
+   */
 
-  handleDisplay();
 
   var processQueue = function processQueue() {
     state.isMoving = false;
@@ -9803,21 +9867,57 @@ var ioBorders = function ioBorders() {
     state.queue.shift();
     bordersWrapper.dispatchEvent(event);
   };
+  /**
+   * @description reset previous animation
+   * @param {array} { borders }
+   * @param {function} cb
+   */
 
-  var animateBorder = function animateBorder(_ref) {
+
+  var resetBorders = function resetBorders(_ref, cb) {
     var borders = _ref.borders;
 
     var _borders = _slicedToArray(borders, 2),
         _borders$ = _borders[0],
         position = _borders$.position,
         duration = _borders$.duration,
-        color = _borders$.color,
-        maxScale = _borders$.maxScale,
-        axis = _borders$.axis,
-        origin = _borders$.origin,
-        _borders$$nestNext = _borders$.nestNext,
-        nestNext = _borders$$nestNext === void 0 ? true : _borders$$nestNext,
         nextBorder = _borders[1];
+
+    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(bordersCat[borderMapping[position].index], duration, {
+      transformOrigin: borderMapping.reset[position].origin,
+      scaleX: position === 'top' || position === 'bottom' ? 0 : 1,
+      scaleY: position === 'left' || position === 'right' ? 0 : 1,
+      onComplete: function onComplete() {
+        if (nextBorder) {
+          resetBorders({
+            borders: borders.slice(1, borders.length)
+          }, cb);
+        } else {
+          cb();
+        }
+      }
+    });
+  };
+  /**
+   * @description update next section borders
+   * @param {array} { borders }
+   */
+
+
+  var animateBorder = function animateBorder(_ref2) {
+    var borders = _ref2.borders;
+
+    var _borders2 = _slicedToArray(borders, 2),
+        _borders2$ = _borders2[0],
+        position = _borders2$.position,
+        duration = _borders2$.duration,
+        color = _borders2$.color,
+        maxScale = _borders2$.maxScale,
+        axis = _borders2$.axis,
+        origin = _borders2$.origin,
+        _borders2$$nestNext = _borders2$.nestNext,
+        nestNext = _borders2$$nestNext === void 0 ? true : _borders2$$nestNext,
+        nextBorder = _borders2[1];
 
     var ease = '';
 
@@ -9845,9 +9945,8 @@ var ioBorders = function ioBorders() {
         if (!nestNext) return;
 
         if (nextBorder) {
-          borders.shift();
           animateBorder({
-            borders: borders
+            borders: borders.slice(1, borders.length)
           });
         } else {
           processQueue();
@@ -9860,14 +9959,16 @@ var ioBorders = function ioBorders() {
     }
 
     gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(isAll ? bordersCat : bordersCat[borderMapping[position].index], duration / state.speedFactor, tweenParams);
-
-    if (!nestNext && nextBorder) {
-      borders.shift();
-      animateBorder({
-        borders: borders
-      });
-    }
+    if (nestNext || !nextBorder) return;
+    borders.shift();
+    animateBorder({
+      borders: borders
+    });
   };
+  /**
+   * @description border sections animation controller
+   */
+
 
   var updateBorder = function updateBorder() {
     if (state.isMoving) return;
@@ -9875,30 +9976,42 @@ var ioBorders = function ioBorders() {
 
     switch (state.nextSection) {
       case 'home-intro':
-        animateBorder(bordersAnimations.intro);
+        resetBorders(bordersAnimationsReset.intro, function () {
+          animateBorder(bordersAnimations.intro);
+        });
         break;
 
       case 'home-learning-experience':
-        animateBorder(bordersAnimations.learningExperience);
+        resetBorders(bordersAnimationsReset.learningExperience, function () {
+          animateBorder(bordersAnimations.learningExperience);
+        });
         break;
 
       case 'home-offers':
-        animateBorder(bordersAnimations.offers);
+        resetBorders(bordersAnimationsReset.offers, function () {
+          animateBorder(bordersAnimations.offers);
+        });
         break;
 
       case 'home-about-us':
-        animateBorder(bordersAnimations.aboutUs);
+        resetBorders(bordersAnimationsReset.aboutUs, function () {
+          animateBorder(bordersAnimations.aboutUs);
+        });
         break;
 
       case 'home-experiences':
-        animateBorder(bordersAnimations.experiences);
+        resetBorders(bordersAnimationsReset.experiences, function () {
+          animateBorder(bordersAnimations.experiences);
+        });
         break;
 
       default:
         break;
     }
-  };
+  }; // Main calls
 
+
+  handleDisplay();
   bordersWrapper.addEventListener('updateBorders', function () {
     var borderNextSection = bordersWrapper.getAttribute('data-next-section');
 
@@ -9913,10 +10026,8 @@ var ioBorders = function ioBorders() {
   bordersWrapper.addEventListener('updateQueue', updateBorder, false);
   _utils_Window__WEBPACK_IMPORTED_MODULE_2__["default"].addResizeFunction(function () {
     handleDisplay();
-
-    if (state.display && state.queue.length) {
-      processQueue();
-    }
+    if (!state.display || !state.queue.length) return;
+    processQueue();
   });
 };
 
@@ -10549,7 +10660,17 @@ __webpack_require__.r(__webpack_exports__);
 
 var scrollBorders = function scrollBorders() {
   var bordersWrapper = document.getElementById('borders');
-  if (!bordersWrapper && !document.body.classList.contains('home')) return;
+  if (!bordersWrapper && !document.body.classList.contains('home')) return; // Borders html elements
+
+  var bordersMouse = bordersWrapper.querySelector('.mouse').children;
+  var homeSections = [].slice.call(document.getElementsByClassName('js-home-section')); // Constants used to create the intersection observer threshold array
+
+  var samplesNumber = 1000;
+  var thresholdSamples = [];
+  var index = 0; // Intersection observer constants
+
+  var observer = null; // Borders animations state
+
   var state = {
     display: false,
     activeId: '',
@@ -10557,7 +10678,8 @@ var scrollBorders = function scrollBorders() {
       id: '',
       ratio: 0
     }
-  };
+  }; // Borders transformations data
+
   var borderMapping = {
     top: {
       index: 0,
@@ -10575,22 +10697,25 @@ var scrollBorders = function scrollBorders() {
       index: 2,
       origin: '100% 50%'
     }
-  };
-  var bordersMouse = bordersWrapper.querySelector('.mouse').children;
-  var homeSections = [].slice.call(document.getElementsByClassName('js-home-section'));
-  var samplesNumber = 1000;
-  var thresholdSamples = [];
-  var index = 0;
+  }; // Intersection observer options
+
   var observerOptions = {
     root: null,
     rootMargin: '0px',
     threshold: thresholdSamples
   };
-  var observer = null;
+  /**
+   * @description updates display state depending on borders style
+   */
 
   var handleDisplay = function handleDisplay() {
     state.display = getComputedStyle(bordersWrapper).display !== 'none';
   };
+  /**
+   * @description update next section borders' progress
+   * @param {array} { borders }
+   */
+
 
   var animatePath = function animatePath(_ref) {
     var borders = _ref.borders;
@@ -10610,6 +10735,10 @@ var scrollBorders = function scrollBorders() {
       pathRatio += border.maxScale;
     });
   };
+  /**
+   * @description border sections path animation controller
+   */
+
 
   var selectPath = function selectPath() {
     switch (state.activeSection.id) {
@@ -10707,6 +10836,11 @@ var scrollBorders = function scrollBorders() {
         break;
     }
   };
+  /**
+   * @description intersection observer change callback
+   * @param {array} entries
+   */
+
 
   var intersectionCallback = function intersectionCallback(entries) {
     if (!state.display) return;
@@ -10715,7 +10849,8 @@ var scrollBorders = function scrollBorders() {
       state.activeSection.id = entry.target.id;
       state.activeSection.ratio = entry.intersectionRatio;
     });
-  };
+  }; // Main calls
+
 
   for (index; index <= samplesNumber; index += 1) {
     thresholdSamples[index] = index / samplesNumber;
