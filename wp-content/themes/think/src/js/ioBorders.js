@@ -294,12 +294,14 @@ const ioBorders = () => {
             scaleX: position === 'top' || position === 'bottom' ? 0 : 1,
             scaleY: position === 'left' || position === 'right' ? 0 : 1,
             onComplete: () => {
-                nextBorder ?
+                if (nextBorder) {
                     resetBorders(
                         { borders: borders.slice(1, borders.length) },
                         cb
                     );
-                : cb();
+                }else{
+                    cb();
+                }
             }
         });
     };
@@ -344,11 +346,13 @@ const ioBorders = () => {
             onComplete: () => {
                 if (!nestNext) return;
 
-                nextBorder ?
+                if (nextBorder) {
                     animateBorder({
                         borders: borders.slice(1, borders.length),
                     });
-                : processQueue();
+                }else{
+                    processQueue();
+                }
             }
         };
 
