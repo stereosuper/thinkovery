@@ -9569,8 +9569,9 @@ var easing = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils */ "./wp-content/themes/think/src/js/utils/index.js");
-/* harmony import */ var _utils_Window__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils/Window */ "./wp-content/themes/think/src/js/utils/Window.js");
-/* harmony import */ var _global__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./global */ "./wp-content/themes/think/src/js/global/index.js");
+/* harmony import */ var _utils_Scroll__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils/Scroll */ "./wp-content/themes/think/src/js/utils/Scroll.js");
+/* harmony import */ var _utils_Window__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils/Window */ "./wp-content/themes/think/src/js/utils/Window.js");
+/* harmony import */ var _global__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./global */ "./wp-content/themes/think/src/js/global/index.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -9584,6 +9585,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var ioBorders = function ioBorders() {
   var bordersWrapper = document.getElementById('borders');
   if (!bordersWrapper && !document.body.classList.contains('home')) return; // Borders html elements
@@ -9591,6 +9593,7 @@ var ioBorders = function ioBorders() {
   var bordersCat = bordersWrapper.querySelector('.cat').children; // Borders animations state
 
   var state = {
+    init: false,
     display: false,
     isMoving: false,
     queue: [],
@@ -9690,7 +9693,7 @@ var ioBorders = function ioBorders() {
       }, {
         position: 'all',
         duration: 0.5,
-        color: _global__WEBPACK_IMPORTED_MODULE_3__["colors"].funGreen,
+        color: _global__WEBPACK_IMPORTED_MODULE_4__["colors"].funGreen,
         easing: 'out',
         nestNext: false
       }, {
@@ -9716,7 +9719,7 @@ var ioBorders = function ioBorders() {
         easing: 'out'
       }, {
         position: 'all',
-        color: _global__WEBPACK_IMPORTED_MODULE_3__["colors"].pictonBlue,
+        color: _global__WEBPACK_IMPORTED_MODULE_4__["colors"].pictonBlue,
         duration: 0.5,
         easing: 'out',
         nestNext: false
@@ -9743,7 +9746,7 @@ var ioBorders = function ioBorders() {
         easing: 'out'
       }, {
         position: 'all',
-        color: _global__WEBPACK_IMPORTED_MODULE_3__["colors"].funGreen,
+        color: _global__WEBPACK_IMPORTED_MODULE_4__["colors"].funGreen,
         duration: 0.5,
         easing: 'out',
         nestNext: false
@@ -9778,7 +9781,7 @@ var ioBorders = function ioBorders() {
         easing: 'out'
       }, {
         position: 'all',
-        color: _global__WEBPACK_IMPORTED_MODULE_3__["colors"].persimmon,
+        color: _global__WEBPACK_IMPORTED_MODULE_4__["colors"].persimmon,
         duration: 0.5,
         easing: 'out',
         nestNext: false
@@ -9813,7 +9816,7 @@ var ioBorders = function ioBorders() {
         easing: 'out'
       }, {
         position: 'all',
-        color: _global__WEBPACK_IMPORTED_MODULE_3__["colors"].darkOrange,
+        color: _global__WEBPACK_IMPORTED_MODULE_4__["colors"].darkOrange,
         duration: 0.5,
         easing: 'out',
         nestNext: false
@@ -9857,11 +9860,28 @@ var ioBorders = function ioBorders() {
     if (!state.queue.length) return;
     var event = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["createNewEvent"])('updateQueue');
 
+    if (state.queue.length > 2) {
+      state.queue.splice(0, state.queue.length - 1);
+    }
+
     var _state$queue = _slicedToArray(state.queue, 1);
 
     state.nextSection = _state$queue[0];
     state.queue.shift();
     bordersWrapper.dispatchEvent(event);
+  };
+  /**
+   * @description handle scroll speed
+   * @param {event} e
+   */
+
+
+  var handleWheel = function handleWheel(e) {
+    var deltaY = e.deltaY;
+    state.scrollSpeed = Math.abs(deltaY);
+    e.stopPropagation();
+    if (state.scrollSpeed >= 10 || state.isMoving) return;
+    processQueue();
   };
   /**
    * @description reset previous animation
@@ -9918,10 +9938,10 @@ var ioBorders = function ioBorders() {
     var isAll = position === 'all';
     var ease = '';
 
-    if (_global__WEBPACK_IMPORTED_MODULE_3__["easing"] === 'in') {
-      ease = _global__WEBPACK_IMPORTED_MODULE_3__["easing"].catMouseEaseIn;
-    } else if (_global__WEBPACK_IMPORTED_MODULE_3__["easing"] === 'out') {
-      ease = _global__WEBPACK_IMPORTED_MODULE_3__["easing"].catMouseEaseOut;
+    if (_global__WEBPACK_IMPORTED_MODULE_4__["easing"] === 'in') {
+      ease = _global__WEBPACK_IMPORTED_MODULE_4__["easing"].catMouseEaseIn;
+    } else if (_global__WEBPACK_IMPORTED_MODULE_4__["easing"] === 'out') {
+      ease = _global__WEBPACK_IMPORTED_MODULE_4__["easing"].catMouseEaseOut;
     }
 
     var scaleX = null;
@@ -10008,19 +10028,17 @@ var ioBorders = function ioBorders() {
 
 
   handleDisplay();
+  window.addEventListener('wheel', handleWheel, false);
   bordersWrapper.addEventListener('updateBorders', function () {
     var borderNextSection = bordersWrapper.getAttribute('data-next-section');
-
-    if (state.isMoving) {
-      state.queue.push(borderNextSection);
-      state.speedFactor = Math.max(1, state.queue.length * 0.75);
-    } else {
-      state.nextSection = borderNextSection;
-      updateBorder();
-    }
+    state.queue.push(borderNextSection);
+    state.speedFactor = Math.max(1, state.queue.length * 0.75);
+    if (state.init) return;
+    processQueue();
+    state.init = true;
   }, false);
   bordersWrapper.addEventListener('updateQueue', updateBorder, false);
-  _utils_Window__WEBPACK_IMPORTED_MODULE_2__["default"].addResizeFunction(function () {
+  _utils_Window__WEBPACK_IMPORTED_MODULE_3__["default"].addResizeFunction(function () {
     handleDisplay();
     if (!state.display || !state.queue.length) return;
     processQueue();

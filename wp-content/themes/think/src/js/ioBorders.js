@@ -1,5 +1,6 @@
 import { TweenMax } from 'gsap';
 import { createNewEvent } from './utils';
+import scroll from './utils/Scroll';
 import win from './utils/Window';
 import { colors, easing } from './global';
 
@@ -7,12 +8,13 @@ const ioBorders = () => {
     const bordersWrapper = document.getElementById('borders');
 
     if (!bordersWrapper && !document.body.classList.contains('home')) return;
-    
+
     // Borders html elements
     const bordersCat = bordersWrapper.querySelector('.cat').children;
 
     // Borders animations state
     const state = {
+        init: false,
         display: false,
         isMoving: false,
         queue: [],
@@ -271,14 +273,31 @@ const ioBorders = () => {
      */
     const processQueue = () => {
         state.isMoving = false;
-        
+
         if (!state.queue.length) return;
 
         const event = createNewEvent('updateQueue');
 
+        if (state.queue.length > 2) {
+            state.queue.splice(0, state.queue.length - 1);
+        }
+
         [state.nextSection] = state.queue;
         state.queue.shift();
         bordersWrapper.dispatchEvent(event);
+    };
+
+    /**
+     * @description handle scroll speed
+     * @param {event} e
+     */
+    const handleWheel = e => {
+        const { deltaY } = e;
+        state.scrollSpeed = Math.abs(deltaY);
+        e.stopPropagation();
+
+        if (state.scrollSpeed >= 10 || state.isMoving) return;
+        processQueue();
     };
 
     /**
@@ -288,7 +307,7 @@ const ioBorders = () => {
      */
     const resetBorders = ({ borders }, cb) => {
         const [{ position, duration }, nextBorder] = borders;
-        
+
         TweenMax.to(bordersCat[borderMapping[position].index], duration, {
             transformOrigin: borderMapping.reset[position].origin,
             scaleX: position === 'top' || position === 'bottom' ? 0 : 1,
@@ -299,10 +318,10 @@ const ioBorders = () => {
                         { borders: borders.slice(1, borders.length) },
                         cb
                     );
-                }else{
+                } else {
                     cb();
                 }
-            }
+            },
         });
     };
 
@@ -311,7 +330,8 @@ const ioBorders = () => {
      * @param {array} { borders }
      */
     const animateBorder = ({ borders }) => {
-        const [{
+        const [
+            {
                 position,
                 duration,
                 color,
@@ -319,8 +339,10 @@ const ioBorders = () => {
                 axis,
                 origin,
                 nestNext = true,
-            }, nextBorder] = borders;
-        
+            },
+            nextBorder,
+        ] = borders;
+
         const isAll = position === 'all';
 
         let ease = '';
@@ -350,10 +372,10 @@ const ioBorders = () => {
                     animateBorder({
                         borders: borders.slice(1, borders.length),
                     });
-                }else{
+                } else {
                     processQueue();
                 }
-            }
+            },
         };
 
         if (color) {
@@ -414,6 +436,8 @@ const ioBorders = () => {
     // Main calls
     handleDisplay();
 
+    window.addEventListener('wheel', handleWheel, false);
+
     bordersWrapper.addEventListener(
         'updateBorders',
         () => {
@@ -421,13 +445,12 @@ const ioBorders = () => {
                 'data-next-section'
             );
 
-            if (state.isMoving) {
-                state.queue.push(borderNextSection);
-                state.speedFactor = Math.max(1, state.queue.length * 0.75);
-            } else {
-                state.nextSection = borderNextSection;
-                updateBorder();
-            }
+            state.queue.push(borderNextSection);
+            state.speedFactor = Math.max(1, state.queue.length * 0.75);
+
+            if (state.init) return;
+            processQueue();
+            state.init = true;
         },
         false
     );
@@ -436,7 +459,7 @@ const ioBorders = () => {
 
     win.addResizeFunction(() => {
         handleDisplay();
-        
+
         if (!state.display || !state.queue.length) return;
         processQueue();
     });
