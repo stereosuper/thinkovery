@@ -8,8 +8,7 @@
             <?php $video = get_field('video'); if( $video['id'] ) : ?>
                 <div class='js-video video' data-id='<?php echo $video['id']; ?>'>
                     <div class='iframe'></div>
-                    <div class='cover'>
-                        <div class='wrapper-icon-cover'><svg class="icon"><use xlink:href="#icon-cover"></use></svg></div>
+                    <div class='cover' style='background-image:url(<?php echo wp_get_attachment_url($video['img'], 'full'); ?>)'>
                         <div class='wrapper-player'><svg class="icon"><use xlink:href="#icon-player"></use></svg></div>
                     </div>
                 </div>
