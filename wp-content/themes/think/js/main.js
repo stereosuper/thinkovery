@@ -10083,8 +10083,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+var state = {
+  preloaded: false,
+  loaded: false
+};
 
-var loadHandler = function loadHandler() {
+var preloadHandler = function preloadHandler() {
   var noTransElem = [].slice.call(document.getElementsByClassName('element-without-transition-on-resize')); // Stéréosuper js library init
 
   _utils_Scroll__WEBPACK_IMPORTED_MODULE_3__["default"].init();
@@ -10097,20 +10101,52 @@ var loadHandler = function loadHandler() {
   Object(_form__WEBPACK_IMPORTED_MODULE_5__["default"])();
   Object(_newsletter__WEBPACK_IMPORTED_MODULE_7__["default"])();
   Object(_video__WEBPACK_IMPORTED_MODULE_11__["default"])();
+};
+
+var loadHandler = function loadHandler() {
   Object(_makeBorders__WEBPACK_IMPORTED_MODULE_8__["default"])();
+};
+
+var animationHandler = function animationHandler() {
+  console.log('animations');
   Object(_scrollBorders__WEBPACK_IMPORTED_MODULE_9__["default"])();
   Object(_ioBorders__WEBPACK_IMPORTED_MODULE_10__["default"])();
 };
 
-if (document.readyState === 'complete') {
-  loadHandler();
-} else {
-  document.addEventListener('readystatechange', function () {
-    if (document.readyState === 'complete') {
-      loadHandler();
-    }
-  }, false);
-}
+var preload = function preload() {
+  var _document = document,
+      readyState = _document.readyState;
+
+  if (readyState === 'interactive' || readyState === 'complete') {
+    console.log('preload');
+    state.preloaded = true;
+    preloadHandler();
+  }
+};
+
+var load = function load() {
+  var _document2 = document,
+      readyState = _document2.readyState;
+
+  if (readyState === 'complete') {
+    console.log('load');
+    state.loaded = true;
+    loadHandler();
+  }
+};
+
+preload();
+load();
+document.addEventListener('readystatechange', function () {
+  if (!state.preloaded) {
+    preload();
+  }
+
+  if (!state.loaded) {
+    load();
+  }
+}, false);
+document.addEventListener('loaderHidden', animationHandler, false);
 
 /***/ }),
 

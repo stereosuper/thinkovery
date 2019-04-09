@@ -170,7 +170,7 @@
             </defs>
         </svg>
 
-        <script defer src='<?php echo get_template_directory_uri(); ?>/js/loader.js'></script>
+        <?php include 'includes/loading-script.php'; ?>
 
         <?php wp_footer(); ?>
 

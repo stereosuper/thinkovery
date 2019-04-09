@@ -13,7 +13,12 @@ import scrollBorders from './scrollBorders';
 import ioBorders from './ioBorders';
 import video from './video';
 
-const loadHandler = () => {
+const state = {
+    preloaded: false,
+    loaded: false,
+};
+
+const preloadHandler = () => {
     const noTransElem = [].slice.call(
         document.getElementsByClassName('element-without-transition-on-resize')
     );
@@ -28,23 +33,52 @@ const loadHandler = () => {
     // Custom scripts
     burger();
     form();
-    newsletter();    
+    newsletter();
     video();
+};
+
+const loadHandler = () => {
     makeBorders();
+};
+
+const animationHandler = () => {
+    console.log('animations');
     scrollBorders();
     ioBorders();
 };
 
-if (document.readyState === 'complete') {
-    loadHandler();
-} else {
-    document.addEventListener(
-        'readystatechange',
-        () => {
-            if (document.readyState === 'complete') {
-                loadHandler();
-            }
-        },
-        false
-    );
-}
+const preload = () => {
+    const { readyState } = document;
+    if (readyState === 'interactive' || readyState === 'complete') {
+        console.log('preload');
+        state.preloaded = true;
+        preloadHandler();
+    }
+};
+
+const load = () => {
+    const { readyState } = document;
+    if (readyState === 'complete') {
+        console.log('load');
+        state.loaded = true;
+        loadHandler();
+    }
+};
+
+preload();
+load();
+
+document.addEventListener(
+    'readystatechange',
+    () => {
+        if (!state.preloaded) {
+            preload();
+        }
+        if (!state.loaded) {
+            load();
+        }
+    },
+    false
+);
+
+document.addEventListener('loaderHidden', animationHandler, false);
