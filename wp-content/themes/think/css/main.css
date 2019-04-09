@@ -447,7 +447,8 @@ a {
     height: 0;
     width: 22%;
     padding: 0 0 22%;
-    margin: auto; }
+    margin: auto;
+    pointer-events: none; }
 
 .shape {
   width: 23px;
@@ -1532,7 +1533,15 @@ label {
     left: 0;
     right: 0;
     bottom: 0;
-    margin: auto; }
+    margin: auto;
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+    -webkit-transform: scale(0);
+            transform: scale(0); }
+  .home-header .video .cover, .home-header .video .iframe {
+    opacity: 0; }
+  .no-js .home-header .video .cover, .no-js .home-header .video .iframe, .home-header .video.on .cover, .home-header .video.on .iframe {
+    opacity: 1; }
 
 .home-section:nth-of-type(1) h2,
 .home-section:nth-of-type(1) a {

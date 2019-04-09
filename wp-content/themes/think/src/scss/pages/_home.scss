@@ -19,6 +19,18 @@
         right: 0;
         bottom: 0;
         margin: auto;
+        transform-origin: 50% 50%;
+        transform: scale(0);
+    }
+    .video{
+        .cover, .iframe{
+            opacity: 0;
+        }
+        .no-js &, &.on{
+            .cover, .iframe{
+                opacity: 1;
+            }
+        }
     }
 }
 

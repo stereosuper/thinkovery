@@ -10071,6 +10071,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _scrollBorders__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./scrollBorders */ "./wp-content/themes/think/src/js/scrollBorders.js");
 /* harmony import */ var _ioBorders__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./ioBorders */ "./wp-content/themes/think/src/js/ioBorders.js");
 /* harmony import */ var _video__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./video */ "./wp-content/themes/think/src/js/video.js");
+/* harmony import */ var _minions__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./minions */ "./wp-content/themes/think/src/js/minions.js");
+
 
 
 
@@ -10087,6 +10089,8 @@ var state = {
   preloaded: false,
   loaded: false
 };
+var _document = document,
+    readyState = _document.readyState;
 
 var preloadHandler = function preloadHandler() {
   var noTransElem = [].slice.call(document.getElementsByClassName('element-without-transition-on-resize')); // Stéréosuper js library init
@@ -10106,6 +10110,7 @@ var preloadHandler = function preloadHandler() {
 var animationHandler = function animationHandler() {
   Object(_scrollBorders__WEBPACK_IMPORTED_MODULE_9__["default"])();
   Object(_ioBorders__WEBPACK_IMPORTED_MODULE_10__["default"])();
+  Object(_minions__WEBPACK_IMPORTED_MODULE_12__["default"])();
 };
 
 var loadHandler = function loadHandler() {
@@ -10117,9 +10122,6 @@ var loadHandler = function loadHandler() {
 };
 
 var preload = function preload() {
-  var _document = document,
-      readyState = _document.readyState;
-
   if (readyState === 'interactive' || readyState === 'complete') {
     state.preloaded = true;
     preloadHandler();
@@ -10127,9 +10129,6 @@ var preload = function preload() {
 };
 
 var load = function load() {
-  var _document2 = document,
-      readyState = _document2.readyState;
-
   if (readyState === 'complete') {
     state.loaded = true;
     loadHandler();
@@ -10193,6 +10192,48 @@ var makeBorders = function makeBorders() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (makeBorders);
+
+/***/ }),
+
+/***/ "./wp-content/themes/think/src/js/minions.js":
+/*!***************************************************!*\
+  !*** ./wp-content/themes/think/src/js/minions.js ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
+
+
+var minionsHandler = function minionsHandler() {
+  var minions = document.querySelectorAll('.shape');
+  var video = document.getElementById('home-video');
+  var tl = new TimelineMax();
+  if (!minions.length) return;
+  tl.add([gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions, 0.3, {
+    scale: 1
+  }), gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[0], 0.3, {
+    x: '-200px'
+  }), gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[1], 0.3, {
+    x: '-100px',
+    y: '-50px'
+  }), gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[3], 0.3, {
+    x: '100px',
+    y: '-40px'
+  }), gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[4], 0.3, {
+    x: '190px',
+    y: '10px'
+  })]).to(minions[2], 0.3, {
+    scale: 2,
+    onComplete: function onComplete() {
+      if (video) video.classList.add('on');
+    }
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (minionsHandler);
 
 /***/ }),
 

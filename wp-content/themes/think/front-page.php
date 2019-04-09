@@ -6,17 +6,16 @@
     
 		<header id="home-intro" class="home-header" data-io="updateBorder">
             <?php $video = get_field('video'); if( $video['id'] ) : ?>
-                <div class='js-video video' data-id='<?php echo $video['id']; ?>'>
+                <div class='js-video video' data-id='<?php echo $video['id']; ?>' id='home-video'>
                     <div class='iframe'></div>
-                    <div class='cover' style='background-image:url(<?php echo wp_get_attachment_url($video['img'], 'full'); ?>)'>
-                        <div class='wrapper-player'><svg class="icon"><use xlink:href="#icon-player"></use></svg></div>
-                    </div>
+                    <div class='cover' style='background-image:url(<?php echo wp_get_attachment_url($video['img'], 'full'); ?>)'></div>
+                    <div class='wrapper-player'><svg class="icon"><use xlink:href="#icon-player"></use></svg></div>
 
-                    <svg class='shape'><use xlink:href='#icon-drop'/></svg>
-                    <svg class='shape'><use xlink:href='#icon-square'/></svg>
-                    <svg class='shape'><use xlink:href='#icon-triangle'/></svg>
-                    <svg class='shape'><use xlink:href='#icon-rectangle'/></svg>
                     <svg class='shape'><use xlink:href='#icon-circle'/></svg>
+                    <svg class='shape'><use xlink:href='#icon-drop'/></svg>
+                    <svg class='shape'><use xlink:href='#icon-triangle'/></svg>
+                    <svg class='shape'><use xlink:href='#icon-square'/></svg>
+                    <svg class='shape'><use xlink:href='#icon-rectangle'/></svg>
                 </div>
             <?php endif; ?>
 
