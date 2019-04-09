@@ -10108,7 +10108,6 @@ var loadHandler = function loadHandler() {
 };
 
 var animationHandler = function animationHandler() {
-  console.log('animations');
   Object(_scrollBorders__WEBPACK_IMPORTED_MODULE_9__["default"])();
   Object(_ioBorders__WEBPACK_IMPORTED_MODULE_10__["default"])();
 };
@@ -10118,7 +10117,6 @@ var preload = function preload() {
       readyState = _document.readyState;
 
   if (readyState === 'interactive' || readyState === 'complete') {
-    console.log('preload');
     state.preloaded = true;
     preloadHandler();
   }
@@ -10129,7 +10127,6 @@ var load = function load() {
       readyState = _document2.readyState;
 
   if (readyState === 'complete') {
-    console.log('load');
     state.loaded = true;
     loadHandler();
   }

@@ -42,7 +42,6 @@ const loadHandler = () => {
 };
 
 const animationHandler = () => {
-    console.log('animations');
     scrollBorders();
     ioBorders();
 };
@@ -50,7 +49,6 @@ const animationHandler = () => {
 const preload = () => {
     const { readyState } = document;
     if (readyState === 'interactive' || readyState === 'complete') {
-        console.log('preload');
         state.preloaded = true;
         preloadHandler();
     }
@@ -59,7 +57,6 @@ const preload = () => {
 const load = () => {
     const { readyState } = document;
     if (readyState === 'complete') {
-        console.log('load');
         state.loaded = true;
         loadHandler();
     }
