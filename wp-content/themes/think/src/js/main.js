@@ -37,13 +37,16 @@ const preloadHandler = () => {
     video();
 };
 
-const loadHandler = () => {
-    makeBorders();
-};
-
 const animationHandler = () => {
     scrollBorders();
     ioBorders();
+};
+
+const loadHandler = () => {
+    makeBorders();
+    if (sessionStorage.getItem('loaded')) {
+        animationHandler();
+    }
 };
 
 const preload = () => {

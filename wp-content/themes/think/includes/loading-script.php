@@ -119,11 +119,8 @@
         'readystatechange',
         () => {
             const ready = document.readyState;
-            // if ((ready !== 'interactive' && ready !== 'complete') || state.loaded) return;
             if (ready === 'complete' && !state.loadedStorage) {
                 state.loaded = true;
-            } else if (ready === 'complete') {
-                setTimeout(dispatchLoaded, 0);
             }
         },
         false

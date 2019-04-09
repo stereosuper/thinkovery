@@ -49,41 +49,48 @@ const endLoading = () => {
 const loaderAnimation = () => {
     setTimeout(() => {
         logo.querySelector('.circle').classList.add('hidden');
-        logo.querySelector('.square').classList.add('hidden');
     }, delayLong);
 
     setTimeout(() => {
-        logo.querySelector('.triangle').classList.remove('hidden');
+        logo.querySelector('.square').classList.remove('hidden');
     }, delayLong + delayShort);
 
     setTimeout(() => {
-        logo.querySelector('.triangle').classList.add('hidden');
+        logo.querySelector('.square').classList.add('hidden');
     }, delayLong * 2 + delayShort);
 
     setTimeout(() => {
-        logo.querySelector('.rectangle').classList.remove('hidden');
+        logo.querySelector('.triangle').classList.remove('hidden');
     }, delayLong * 2 + delayShort * 2);
 
     setTimeout(() => {
-        logo.querySelector('.rectangle').classList.add('hidden');
+        logo.querySelector('.triangle').classList.add('hidden');
     }, delayLong * 3 + delayShort * 2);
 
     setTimeout(() => {
-        logo.querySelector('.drop').classList.remove('hidden');
+        logo.querySelector('.rectangle').classList.remove('hidden');
     }, delayLong * 3 + delayShort * 3);
 
     setTimeout(() => {
-        logo.querySelector('.drop').classList.add('hidden');
+        logo.querySelector('.rectangle').classList.add('hidden');
     }, delayLong * 4 + delayShort * 3);
 
     setTimeout(() => {
-        logo.querySelector('.circle').classList.remove('hidden');
+        logo.querySelector('.drop').classList.remove('hidden');
     }, delayLong * 4 + delayShort * 4);
 
+    setTimeout(() => {
+        logo.querySelector('.drop').classList.add('hidden');
+    }, delayLong * 5 + delayShort * 4);
+
+    setTimeout(() => {
+        logo.querySelector('.circle').classList.remove('hidden');
+    }, delayLong * 5 + delayShort * 5);
+
     if (state.loaded) {
-        setTimeout(endLoading, delayLong * 4 + delayShort * 4);
+        setTimeout(endLoading, delayLong * 5 + delayShort * 5);
     } else {
-        setTimeout(loaderAnimation, delayLong * 4 + delayShort * 4);
+        setTimeout(loaderAnimation, delayLong * 5 + delayShort * 5);
     }
 };
 
@@ -111,11 +118,8 @@ document.addEventListener(
     'readystatechange',
     () => {
         const ready = document.readyState;
-        // if ((ready !== 'interactive' && ready !== 'complete') || state.loaded) return;
         if (ready === 'complete' && !state.loadedStorage) {
             state.loaded = true;
-        } else if (ready === 'complete') {
-            setTimeout(dispatchLoaded, 0);
         }
     },
     false

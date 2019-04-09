@@ -10103,13 +10103,17 @@ var preloadHandler = function preloadHandler() {
   Object(_video__WEBPACK_IMPORTED_MODULE_11__["default"])();
 };
 
-var loadHandler = function loadHandler() {
-  Object(_makeBorders__WEBPACK_IMPORTED_MODULE_8__["default"])();
-};
-
 var animationHandler = function animationHandler() {
   Object(_scrollBorders__WEBPACK_IMPORTED_MODULE_9__["default"])();
   Object(_ioBorders__WEBPACK_IMPORTED_MODULE_10__["default"])();
+};
+
+var loadHandler = function loadHandler() {
+  Object(_makeBorders__WEBPACK_IMPORTED_MODULE_8__["default"])();
+
+  if (sessionStorage.getItem('loaded')) {
+    animationHandler();
+  }
 };
 
 var preload = function preload() {
