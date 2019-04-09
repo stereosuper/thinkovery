@@ -20,8 +20,6 @@ const state = {
     loaded: false,
 };
 
-const { readyState } = document;
-
 
 const preloadHandler = () => {
     const noTransElem = [].slice.call(
@@ -56,6 +54,8 @@ const loadHandler = () => {
 };
 
 const preload = () => {
+    const { readyState } = document;
+
     if (readyState === 'interactive' || readyState === 'complete') {
         state.preloaded = true;
         preloadHandler();
@@ -63,7 +63,7 @@ const preload = () => {
 };
 
 const load = () => {
-    if (readyState === 'complete') {
+    if (document.readyState === 'complete') {
         state.loaded = true;
         loadHandler();
     }

@@ -10089,8 +10089,6 @@ var state = {
   preloaded: false,
   loaded: false
 };
-var _document = document,
-    readyState = _document.readyState;
 
 var preloadHandler = function preloadHandler() {
   var noTransElem = [].slice.call(document.getElementsByClassName('element-without-transition-on-resize')); // Stéréosuper js library init
@@ -10122,6 +10120,9 @@ var loadHandler = function loadHandler() {
 };
 
 var preload = function preload() {
+  var _document = document,
+      readyState = _document.readyState;
+
   if (readyState === 'interactive' || readyState === 'complete') {
     state.preloaded = true;
     preloadHandler();
@@ -10129,7 +10130,7 @@ var preload = function preload() {
 };
 
 var load = function load() {
-  if (readyState === 'complete') {
+  if (document.readyState === 'complete') {
     state.loaded = true;
     loadHandler();
   }
