@@ -10206,32 +10206,75 @@ var makeBorders = function makeBorders() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils */ "./wp-content/themes/think/src/js/utils/index.js");
+
 
 
 var minionsHandler = function minionsHandler() {
   var minions = document.querySelectorAll('.shape');
+  if (!minions.length) return;
   var video = document.getElementById('home-video');
   var tl = new TimelineMax();
-  if (!minions.length) return;
+  var wh = window.innerHeight;
+  var minionsTop = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["offset"])(minions[2]).top;
+  var windowBottom = wh - minionsTop;
   tl.add([gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions, 0.3, {
     scale: 1
-  }), gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[0], 0.3, {
+  }), gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[0], 0.5, {
     x: '-200px'
-  }), gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[1], 0.3, {
+  }), gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[1], 0.5, {
     x: '-100px',
     y: '-50px'
-  }), gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[3], 0.3, {
+  }), gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[3], 0.5, {
     x: '100px',
     y: '-40px'
-  }), gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[4], 0.3, {
+  }), gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[4], 0.5, {
     x: '190px',
     y: '10px'
-  })]).to(minions[2], 0.3, {
-    scale: 2,
+  })]).add([gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[2], 0.3, {
+    scale: 2.35,
     onComplete: function onComplete() {
-      if (video) video.classList.add('on');
+      if (video) {
+        video.classList.add('player-on');
+        video.classList.add('on');
+        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set(video.querySelector('.iframe'), {
+          opacity: 1,
+          delay: 0.5
+        });
+      }
+
+      gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[2], 0.2, {
+        scale: 2.15,
+        delay: 0.5,
+        onComplete: function onComplete() {
+          gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[2], 1, {
+            y: windowBottom - 40 + 'px',
+            rotation: 90
+          });
+        }
+      });
     }
-  });
+  }), gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[0], 1, {
+    y: windowBottom + 40 + 'px',
+    onComplete: function onComplete() {
+      minions[0].style.display = 'none';
+    }
+  }), gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[1], 1, {
+    y: windowBottom + 20 + 'px',
+    onComplete: function onComplete() {
+      minions[0].style.display = 'none';
+    }
+  }), gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[3], 1, {
+    y: windowBottom + 100 + 'px',
+    onComplete: function onComplete() {
+      minions[0].style.display = 'none';
+    }
+  }), gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[4], 1, {
+    y: windowBottom + 70 + 'px',
+    onComplete: function onComplete() {
+      minions[0].style.display = 'none';
+    }
+  })]);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (minionsHandler);
@@ -11389,7 +11432,7 @@ Window.prototype.destroyWindow = function destroyWindow() {
 /*!*******************************************************!*\
   !*** ./wp-content/themes/think/src/js/utils/index.js ***!
   \*******************************************************/
-/*! exports provided: forEach, roundNumbers, reverseString, createNewEvent, requestAnimFrame, throttle, default */
+/*! exports provided: forEach, roundNumbers, reverseString, createNewEvent, requestAnimFrame, throttle, offset, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11400,6 +11443,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createNewEvent", function() { return createNewEvent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "requestAnimFrame", function() { return requestAnimFrame; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "throttle", function() { return throttle; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "offset", function() { return offset; });
 var forEach = function forEach(arr, callback) {
   var i = 0;
   var length = arr.length;
@@ -11456,13 +11500,22 @@ var throttle = function throttle(callback, delay) {
     }
   };
 };
+var offset = function offset(elt) {
+  var rect = elt.getBoundingClientRect(),
+      bodyElt = document.body;
+  return {
+    top: rect.top + bodyElt.scrollTop,
+    left: rect.left + bodyElt.scrollLeft
+  };
+};
 /* harmony default export */ __webpack_exports__["default"] = ({
   roundNumbers: roundNumbers,
   forEach: forEach,
   reverseString: reverseString,
   createNewEvent: createNewEvent,
   requestAnimFrame: requestAnimFrame,
-  throttle: throttle
+  throttle: throttle,
+  offset: offset
 });
 
 /***/ }),
@@ -11552,13 +11605,12 @@ var videoHandler = function videoHandler() {
   global.onYouTubeIframeAPIReady = function () {
     var onPlayerReady = function onPlayerReady(wrapper) {
       wrapper.addEventListener('click', function () {
-        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(wrapper.querySelector('.cover'), 0.5, {
+        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to([wrapper.querySelector('.cover'), wrapper.querySelector('.wrapper-player')], 0.2, {
           opacity: 0,
           display: 'none'
         });
         players[wrapper.getAttribute('data-id')].playVideo();
       });
-      wrapper.querySelector('.cover').classList.add('on');
     };
 
     videos.forEach(function (elt) {

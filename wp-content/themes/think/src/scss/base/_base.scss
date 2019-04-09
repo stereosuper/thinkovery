@@ -306,6 +306,7 @@ a {
         cursor: pointer;
         background-size: cover;
         background-position: 50% 50%;
+        transition: $transition;
     }
     .wrapper-player {
         height: 0;
@@ -313,6 +314,7 @@ a {
         padding: 0 0 22%;
         margin: auto;
         pointer-events: none;
+        transition: $transition;
     }
 }
 
@@ -320,6 +322,7 @@ a {
     width: 23px;
     height: 23px;
     position: absolute;
+    pointer-events: none;
 }
 
 

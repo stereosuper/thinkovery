@@ -14,8 +14,8 @@
         pointer-events: none;
     }
     .shape{
-        top: 0;
-        left: 0;
+        top: 1px;
+        left: 10px;
         right: 0;
         bottom: 0;
         margin: auto;
@@ -23,11 +23,21 @@
         transform: scale(0);
     }
     .video{
-        .cover, .iframe{
+        .cover, .iframe, .wrapper-player{
             opacity: 0;
         }
+        .no-js &, &.player-on{
+            .wrapper-player{
+                opacity: 1;
+            }
+        }
         .no-js &, &.on{
-            .cover, .iframe{
+            .cover{
+                opacity: 1;
+            }
+        }
+        .no-js &{
+            .iframe{
                 opacity: 1;
             }
         }

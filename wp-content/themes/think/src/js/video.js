@@ -12,11 +12,9 @@ const videoHandler = () => {
     global.onYouTubeIframeAPIReady = () => {
         const onPlayerReady = (wrapper) => {
             wrapper.addEventListener('click', () => {
-                TweenMax.to(wrapper.querySelector('.cover'), 0.5, {opacity: 0, display: 'none'});
+                TweenMax.to([wrapper.querySelector('.cover'), wrapper.querySelector('.wrapper-player')], 0.2, {opacity: 0, display: 'none'});
                 players[wrapper.getAttribute('data-id')].playVideo();
             });
-            
-            wrapper.querySelector('.cover').classList.add('on');
         };
 
         videos.forEach(elt => {

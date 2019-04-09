@@ -145,8 +145,8 @@
                     <path d='M6.232 11.161v17.696h-5.893v-17.696h5.893zM6.607 5.696c0.018 1.696-1.268 3.054-3.321 3.054v0h-0.036c-1.982 0-3.25-1.357-3.25-3.054 0-1.732 1.321-3.054 3.321-3.054 2.018 0 3.268 1.321 3.286 3.054zM27.429 18.714v10.143h-5.875v-9.464c0-2.375-0.857-4-2.982-4-1.625 0-2.589 1.089-3.018 2.143-0.143 0.393-0.196 0.911-0.196 1.446v9.875h-5.875c0.071-16.036 0-17.696 0-17.696h5.875v2.571h-0.036c0.768-1.214 2.161-2.982 5.339-2.982 3.875 0 6.768 2.536 6.768 7.964z'/>
                 </symbol>
                 <symbol id="icon-arrow" viewBox="0 0 48 32">
-                    <path fill="none" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" stroke-width="4.8" d="M27.808 28.707l15.133-13.202-15.133-13.202"/>
-                    <path fill="none" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" stroke-width="4.8" d="M42.941 15.397h-41.93"/>
+                    <path fill="none" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" stroke-width="4.8" stroke="currentColor" d="M27.808 28.707l15.133-13.202-15.133-13.202"/>
+                    <path fill="none" stroke="currentColor" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" stroke-width="4.8" d="M42.941 15.397h-41.93"/>
                 </symbol>
                 <symbol id="icon-circle" viewBox="0 0 29 32">
                     <path fill="#4d917e" d="M14.527 3.61c-0.008 0-0.014 0-0.022 0v-3.4l-6.987 5.191 6.986 5.191v-3.248c0.008 0 0.014 0 0.022 0 5.811 0 10.522 4.637 10.522 10.356s-4.711 10.356-10.522 10.356-10.522-4.637-10.522-10.356c0-3.119 1.401-5.913 3.617-7.811l-3.077-2.287c-2.673 2.56-4.334 6.137-4.334 10.098 0 7.782 6.41 14.090 14.316 14.090s14.315-6.309 14.315-14.090-6.41-14.090-14.315-14.090z"/>
