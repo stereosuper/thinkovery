@@ -315,6 +315,13 @@ a {
     }
 }
 
+.shape{
+    width: 23px;
+    height: 23px;
+    position: absolute;
+}
+
+
 @media (min-width: $phone) {
     h1 {
         font-size: 6rem;

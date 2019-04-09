@@ -449,6 +449,11 @@ a {
     padding: 0 0 22%;
     margin: auto; }
 
+.shape {
+  width: 23px;
+  height: 23px;
+  position: absolute; }
+
 @media (min-width: 580px) {
   h1 {
     font-size: 6rem;
@@ -1522,6 +1527,12 @@ label {
     margin: -22% 0 0;
     z-index: 1;
     pointer-events: none; }
+  .home-header .shape {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto; }
 
 .home-section:nth-of-type(1) h2,
 .home-section:nth-of-type(1) a {

@@ -11,6 +11,12 @@
                     <div class='cover' style='background-image:url(<?php echo wp_get_attachment_url($video['img'], 'full'); ?>)'>
                         <div class='wrapper-player'><svg class="icon"><use xlink:href="#icon-player"></use></svg></div>
                     </div>
+
+                    <svg class='shape'><use xlink:href='#icon-drop'/></svg>
+                    <svg class='shape'><use xlink:href='#icon-square'/></svg>
+                    <svg class='shape'><use xlink:href='#icon-triangle'/></svg>
+                    <svg class='shape'><use xlink:href='#icon-rectangle'/></svg>
+                    <svg class='shape'><use xlink:href='#icon-circle'/></svg>
                 </div>
             <?php endif; ?>
 
