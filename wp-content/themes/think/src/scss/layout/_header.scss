@@ -25,7 +25,7 @@ $header-height: 84px;
         $cat-mouse-easing-out
     );
     z-index: 2;
-    .no-js &{
+    .no-js & {
         opacity: 1 !important;
     }
     > .line-opening {
@@ -554,19 +554,21 @@ $header-height: 84px;
         > li {
             margin-left: $gutter / 2;
             margin-bottom: 0;
-            overflow: hidden;
             &:first-child {
                 margin-left: 0;
             }
         }
         a {
+            display: inline-flex;
             position: relative;
+            padding-bottom: 2px;
+            overflow: hidden;
             &::before,
             &::after {
                 content: "";
                 height: 2px;
                 position: absolute;
-                bottom: -2px;
+                bottom: 0px;
                 left: -100%;
                 right: 100%;
             }

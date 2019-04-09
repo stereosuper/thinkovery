@@ -41,7 +41,12 @@
                                 <a href='<?php echo $btn['url']; ?>' class='btn-invert btn-<?php echo $count; ?>'>
                                     <?php echo $btn['title']; ?>
                                     <svg class="icon"><use xlink:href="#icon-arrow"></use></svg>
-                                    <div class='top'></div><div class='right'></div><div class='bot'></div><div class='left'></div>
+                                    <div class="departure">
+                                        <div class='top'></div><div class='right'></div><div class='bot'></div><div class='left'></div>
+                                    </div>
+                                    <div class="arrival">
+                                        <div class='top'></div><div class='right'></div><div class='bot'></div><div class='left'></div>
+                                    </div>
                                 </a>
                             </div>
                         <?php endif; ?>

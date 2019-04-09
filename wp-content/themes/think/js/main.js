@@ -10130,7 +10130,10 @@ var preload = function preload() {
 };
 
 var load = function load() {
-  if (document.readyState === 'complete') {
+  var _document2 = document,
+      readyState = _document2.readyState;
+
+  if (readyState === 'complete') {
     state.loaded = true;
     loadHandler();
   }

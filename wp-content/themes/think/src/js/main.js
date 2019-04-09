@@ -14,12 +14,10 @@ import ioBorders from './ioBorders';
 import video from './video';
 import minions from './minions';
 
-
 const state = {
     preloaded: false,
     loaded: false,
 };
-
 
 const preloadHandler = () => {
     const noTransElem = [].slice.call(
@@ -55,7 +53,6 @@ const loadHandler = () => {
 
 const preload = () => {
     const { readyState } = document;
-
     if (readyState === 'interactive' || readyState === 'complete') {
         state.preloaded = true;
         preloadHandler();
@@ -63,7 +60,8 @@ const preload = () => {
 };
 
 const load = () => {
-    if (document.readyState === 'complete') {
+    const { readyState } = document;
+    if (readyState === 'complete') {
         state.loaded = true;
         loadHandler();
     }
