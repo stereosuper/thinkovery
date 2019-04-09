@@ -5,7 +5,7 @@ export const colors = {
     pictonBlue: '#65a3da',
     persimmon: '#DF622D',
     darkOrange: '#EC8D28',
-    selectiveYellow: '#f8ba41',
+    selectiveYellow: '#f8ba41'
 };
 
 export const easing = {
@@ -16,7 +16,7 @@ export const easing = {
     catMouseEaseOut: CustomEase.create(
         'custom',
         'M0,0,C0.26,1.09,0.28,0.99,1,1'
-    ),
+    )
 };
 
 export default { colors, easing };

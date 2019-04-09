@@ -10210,74 +10210,161 @@ var makeBorders = function makeBorders() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils */ "./wp-content/themes/think/src/js/utils/index.js");
+/* harmony import */ var _global__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./global */ "./wp-content/themes/think/src/js/global/index.js");
+
 
 
 
 var minionsHandler = function minionsHandler() {
   var minions = document.querySelectorAll('.shape');
   if (!minions.length) return;
-  var video = document.getElementById('home-video');
-  var tl = new TimelineMax();
-  var wh = window.innerHeight;
-  var minionsTop = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["offset"])(minions[2]).top;
-  var windowBottom = wh - minionsTop;
-  tl.add([gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions, 0.3, {
-    scale: 1
-  }), gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[0], 0.5, {
-    x: '-200px'
-  }), gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[1], 0.5, {
-    x: '-100px',
-    y: '-50px'
-  }), gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[3], 0.5, {
-    x: '100px',
-    y: '-40px'
-  }), gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[4], 0.5, {
-    x: '190px',
-    y: '10px'
-  })]).add([gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[2], 0.3, {
-    scale: 2.35,
-    onComplete: function onComplete() {
-      if (video) {
-        video.classList.add('player-on');
-        video.classList.add('on');
-        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set(video.querySelector('.iframe'), {
-          opacity: 1,
-          delay: 0.5
-        });
-      }
+  var video = document.getElementById('home-video'); //const tl = new TimelineMax();
 
-      gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[2], 0.2, {
-        scale: 2.15,
-        delay: 0.5,
+  var wh = window.innerHeight;
+  var easeIn = Power2.easeOut;
+  var minionsTop = minions[2].getBoundingClientRect().top;
+  var windowBottom = wh - minionsTop - window.scrollY;
+  gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions, 0.3, {
+    scale: 1,
+    ease: easeIn,
+    onComplete: function onComplete() {
+      gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[2], 0.3, {
+        scale: 3,
         onComplete: function onComplete() {
-          gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[2], 1, {
-            y: windowBottom - 40 + 'px',
-            rotation: 90
+          gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[2], 0.2, {
+            scale: 2.15,
+            onComplete: function onComplete() {
+              gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[2], 0.7, {
+                y: windowBottom - 40,
+                rotation: 90,
+                ease: easeIn,
+                delay: 0.3
+              });
+            },
+            ease: easeIn
           });
-        }
+
+          if (video) {
+            video.classList.add('player-on');
+            video.classList.add('on');
+            gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set(video.querySelector('.iframe'), {
+              opacity: 1,
+              delay: 0.7
+            });
+          }
+        },
+        ease: easeIn
       });
     }
-  }), gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[0], 1, {
-    y: windowBottom + 40 + 'px',
+  });
+  gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[0], 1.4, {
+    bezier: {
+      curviness: 1,
+      values: [{
+        x: -100,
+        y: -30
+      }, {
+        x: -200,
+        y: 0
+      }, {
+        x: -250,
+        y: windowBottom / 3
+      }, {
+        x: -280,
+        y: windowBottom / 3 * 2
+      }, {
+        x: -290,
+        y: windowBottom + 40
+      }],
+      autoRotate: true
+    },
+    delay: 0.15,
+    ease: easeIn,
     onComplete: function onComplete() {
       minions[0].style.display = 'none';
     }
-  }), gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[1], 1, {
-    y: windowBottom + 20 + 'px',
+  });
+  gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[1], 1.4, {
+    bezier: {
+      curviness: 1,
+      values: [{
+        x: -50,
+        y: -70
+      }, {
+        x: -100,
+        y: -50
+      }, {
+        x: -140,
+        y: windowBottom / 3
+      }, {
+        x: -170,
+        y: windowBottom / 3 * 2
+      }, {
+        x: -180,
+        y: windowBottom + 20
+      }],
+      autoRotate: true
+    },
+    delay: 0.15,
+    ease: easeIn,
     onComplete: function onComplete() {
-      minions[0].style.display = 'none';
+      minions[1].style.display = 'none';
     }
-  }), gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[3], 1, {
-    y: windowBottom + 100 + 'px',
+  });
+  gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[3], 1.4, {
+    bezier: {
+      curviness: 1,
+      values: [{
+        x: 50,
+        y: -60
+      }, {
+        x: 100,
+        y: -40
+      }, {
+        x: 140,
+        y: windowBottom / 3
+      }, {
+        x: 170,
+        y: windowBottom / 3 * 2
+      }, {
+        x: 180,
+        y: windowBottom + 100
+      }],
+      autoRotate: true
+    },
+    delay: 0.15,
+    ease: easeIn,
     onComplete: function onComplete() {
-      minions[0].style.display = 'none';
+      minions[3].style.display = 'none';
     }
-  }), gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[4], 1, {
-    y: windowBottom + 70 + 'px',
+  });
+  gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[4], 1.4, {
+    bezier: {
+      curviness: 1,
+      values: [{
+        x: 100,
+        y: -10
+      }, {
+        x: 190,
+        y: 10
+      }, {
+        x: 250,
+        y: windowBottom / 3
+      }, {
+        x: 280,
+        y: windowBottom / 3 * 2
+      }, {
+        x: 290,
+        y: windowBottom + 70
+      }],
+      autoRotate: true
+    },
+    delay: 0.15,
+    ease: easeIn,
     onComplete: function onComplete() {
-      minions[0].style.display = 'none';
+      minions[4].style.display = 'none';
     }
-  })]);
+  });
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (minionsHandler);
@@ -11435,7 +11522,7 @@ Window.prototype.destroyWindow = function destroyWindow() {
 /*!*******************************************************!*\
   !*** ./wp-content/themes/think/src/js/utils/index.js ***!
   \*******************************************************/
-/*! exports provided: forEach, roundNumbers, reverseString, createNewEvent, requestAnimFrame, throttle, offset, default */
+/*! exports provided: forEach, roundNumbers, reverseString, createNewEvent, requestAnimFrame, throttle, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11446,7 +11533,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createNewEvent", function() { return createNewEvent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "requestAnimFrame", function() { return requestAnimFrame; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "throttle", function() { return throttle; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "offset", function() { return offset; });
 var forEach = function forEach(arr, callback) {
   var i = 0;
   var length = arr.length;
@@ -11503,22 +11589,13 @@ var throttle = function throttle(callback, delay) {
     }
   };
 };
-var offset = function offset(elt) {
-  var rect = elt.getBoundingClientRect(),
-      bodyElt = document.body;
-  return {
-    top: rect.top + bodyElt.scrollTop,
-    left: rect.left + bodyElt.scrollLeft
-  };
-};
 /* harmony default export */ __webpack_exports__["default"] = ({
   roundNumbers: roundNumbers,
   forEach: forEach,
   reverseString: reverseString,
   createNewEvent: createNewEvent,
   requestAnimFrame: requestAnimFrame,
-  throttle: throttle,
-  offset: offset
+  throttle: throttle
 });
 
 /***/ }),

@@ -307,6 +307,7 @@ a {
         background-size: cover;
         background-position: 50% 50%;
         transition: $transition;
+        transition-delay: 0.5s;
     }
     .wrapper-player {
         height: 0;

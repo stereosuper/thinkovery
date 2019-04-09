@@ -60,21 +60,11 @@ export const throttle = (callback, delay) => {
     };
 };
 
-export const offset = ( elt ) => {
-    const rect = elt.getBoundingClientRect(), bodyElt = document.body;
-    
-    return {
-        top: rect.top + bodyElt .scrollTop,
-        left: rect.left + bodyElt .scrollLeft
-    };
-};
-
 export default {
     roundNumbers,
     forEach,
     reverseString,
     createNewEvent,
     requestAnimFrame,
-    throttle,
-    offset
+    throttle
 };

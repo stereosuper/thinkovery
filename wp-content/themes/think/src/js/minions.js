@@ -1,5 +1,6 @@
 import { TweenMax } from 'gsap';
 import { offset } from './utils';
+import { easing } from './global';
 
 const minionsHandler = () => {
     const minions = document.querySelectorAll('.shape');
@@ -8,48 +9,35 @@ const minionsHandler = () => {
 
 
     const video = document.getElementById('home-video');
-    const tl = new TimelineMax();
+    //const tl = new TimelineMax();
     const wh = window.innerHeight;
+    const easeIn = Power2.easeOut;
     
-    const minionsTop = offset(minions[2]).top;
-    const windowBottom = wh - minionsTop;
+    const minionsTop = minions[2].getBoundingClientRect().top;
+    const windowBottom = wh - minionsTop - window.scrollY;
 
 
-    tl.add([
-
-        TweenMax.to(minions, 0.3, {scale: 1}),
-        TweenMax.to(minions[0], 0.5, {x: '-200px'}),
-        TweenMax.to(minions[1], 0.5, {x: '-100px', y: '-50px'}),
-        TweenMax.to(minions[3], 0.5, {x: '100px', y: '-40px'}),
-        TweenMax.to(minions[4], 0.5, {x: '190px', y: '10px'})
-
-    ]).add([
-
-        TweenMax.to(minions[2], 0.3, {scale: 2.35, onComplete: () => {
+    TweenMax.to(minions, 0.3, {scale: 1, ease: easeIn, onComplete: () => {
+        TweenMax.to(minions[2], 0.3, {scale: 3, onComplete: () => {
+            TweenMax.to(minions[2], 0.2, {scale: 2.15, onComplete: () => {
+                TweenMax.to(minions[2], 0.7, {y: windowBottom-40, rotation: 90, ease: easeIn, delay: 0.3});
+            }, ease: easeIn});
+        
             if( video ){
                 video.classList.add('player-on');
                 video.classList.add('on');
-                TweenMax.set(video.querySelector('.iframe'), {opacity: 1, delay: 0.5});
+                TweenMax.set(video.querySelector('.iframe'), {opacity: 1, delay: 0.7});
             }
+        }, ease: easeIn});
+    }});
 
-            TweenMax.to(minions[2], 0.2, {scale: 2.15, delay: 0.5, onComplete: () => {
-                TweenMax.to(minions[2], 1, {y: windowBottom-40 + 'px', rotation: 90});
-            }});
-        }}),
-        TweenMax.to(minions[0], 1, {y: windowBottom + 40 + 'px', onComplete: () => {
-            minions[0].style.display = 'none';
-        }}),
-        TweenMax.to(minions[1], 1, {y: windowBottom + 20 + 'px', onComplete: () => {
-            minions[0].style.display = 'none';
-        }}),
-        TweenMax.to(minions[3], 1, {y: windowBottom + 100 + 'px', onComplete: () => {
-            minions[0].style.display = 'none';
-        }}),
-        TweenMax.to(minions[4], 1, {y: windowBottom + 70 + 'px', onComplete: () => {
-            minions[0].style.display = 'none';
-        }})
+    TweenMax.to(minions[0], 1.4, {bezier: {curviness: 1, values: [{x: -100, y: -30}, {x: -200, y: 0}, {x: -250, y: windowBottom/3}, {x: -280, y: (windowBottom/3)*2}, {x: -290, y: windowBottom + 40}], autoRotate: true}, delay: 0.15, ease: easeIn, onComplete: () => { minions[0].style.display = 'none'; }});
 
-    ]);
+    TweenMax.to(minions[1], 1.4, {bezier: {curviness: 1, values: [{x: -50, y: -70}, {x: -100, y: -50}, {x: -140, y: windowBottom/3}, {x: -170, y: (windowBottom/3)*2}, {x: -180, y: windowBottom + 20}], autoRotate: true}, delay: 0.15, ease: easeIn, onComplete: () => { minions[1].style.display = 'none'; }});
+
+    TweenMax.to(minions[3], 1.4, {bezier: {curviness: 1, values: [{x: 50, y: -60}, {x: 100, y: -40}, {x: 140, y: windowBottom/3}, {x: 170, y: (windowBottom/3)*2}, {x: 180, y: windowBottom + 100}], autoRotate: true}, delay: 0.15, ease: easeIn, onComplete: () => { minions[3].style.display = 'none'; }});
+
+    TweenMax.to(minions[4], 1.4, {bezier: {curviness: 1, values: [{x: 100, y: -10}, {x: 190, y: 10}, {x: 250, y: windowBottom/3}, {x: 280, y: (windowBottom/3)*2}, {x: 290, y: windowBottom + 70}], autoRotate: true}, delay: 0.15, ease: easeIn, onComplete: () => { minions[4].style.display = 'none'; }});
     
 };
 

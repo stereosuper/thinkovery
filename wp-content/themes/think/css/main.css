@@ -444,7 +444,9 @@ a {
     background-size: cover;
     background-position: 50% 50%;
     -webkit-transition: 0.05s ease-in-out;
-    transition: 0.05s ease-in-out; }
+    transition: 0.05s ease-in-out;
+    -webkit-transition-delay: 0.5s;
+            transition-delay: 0.5s; }
   .video .wrapper-player {
     height: 0;
     width: 22%;
