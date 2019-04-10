@@ -19,7 +19,10 @@ const ioBorders = () => {
         isMoving: false,
         queue: [],
         nextSection: null,
-        speedFactor: 1,
+        ends: {
+            start: null,
+            end: null,
+        },
     };
 
     // Borders transformations data
@@ -34,6 +37,7 @@ const ioBorders = () => {
             bottom: { origin: '0% 50%' },
             left: { origin: '50% 0%' },
         },
+        byIndex: ['top', 'right', 'bottom', 'left'],
     };
 
     // Borders reset sequences
@@ -300,30 +304,111 @@ const ioBorders = () => {
         processQueue();
     };
 
-    /**
-     * @description reset previous animation
-     * @param {array} { borders }
-     * @param {function} cb
-     */
-    const resetBorders = ({ borders }, cb) => {
-        const [{ position, duration }, nextBorder] = borders;
+    const computeResetBorders = ({ defaultAnim, color, start, end }) => {
+        let returnBorders = { borders: [] };
 
-        TweenMax.to(bordersCat[borderMapping[position].index], duration, {
-            transformOrigin: borderMapping.reset[position].origin,
-            scaleX: position === 'top' || position === 'bottom' ? 0 : 1,
-            scaleY: position === 'left' || position === 'right' ? 0 : 1,
-            onComplete: () => {
-                if (nextBorder) {
-                    resetBorders(
-                        { borders: borders.slice(1, borders.length) },
-                        cb
-                    );
-                } else {
-                    cb();
+        if (state.ends.start !== null && state.ends.end !== null) {
+            const lastEndIndex = state.ends.end;
+            const newStartIndex = borderMapping[start.position].index;
+            const newEndIndex = borderMapping[end.position].index;
+            const lastStartIndex = state.ends.start;
+
+            let delta =
+                Math.abs(
+                    newEndIndex <= lastEndIndex
+                        ? newEndIndex + 4 - lastEndIndex
+                        : newEndIndex - lastEndIndex
+                ) + 1;
+            let index = 0;
+            for (index; index < delta; index += 1) {
+                const borderIndex = (lastEndIndex + index) % 4;
+
+                returnBorders.borders[index] = {
+                    position: borderMapping.byIndex[borderIndex],
+                    duration: 0.5,
+                    maxScale: index === delta - 1 ? end.scale : 1,
+                    axis: borderIndex % 2 ? 'y' : 'x',
+                    ease: 'out',
+                    nestNext: false,
+                };
+            }
+
+            delta =
+                Math.abs(
+                    newStartIndex <= lastStartIndex
+                        ? newStartIndex + 4 - lastStartIndex
+                        : newStartIndex - lastStartIndex
+                ) + 1;
+            for (index = 0; index < delta; index += 1) {
+                const borderIndex = (lastStartIndex + index) % 4;
+
+                let position = borderMapping.byIndex[borderIndex];
+                let maxScale = 0;
+                if (index === delta - 1) {
+                    position = borderMapping.byIndex[borderIndex];
+                    maxScale = start.scale;
                 }
-            },
-        });
+
+                const border = {
+                    position,
+                    duration: 0.5,
+                    maxScale,
+                    origin:
+                        borderMapping.reset[borderMapping.byIndex[borderIndex]]
+                            .origin,
+                    axis: borderIndex % 2 ? 'y' : 'x',
+                    ease: 'out',
+                };
+
+                const insertIndex = index * 2 + 1;
+                returnBorders.borders.splice(insertIndex, 0, border);
+
+                state.ends.end = newEndIndex;
+                state.ends.start = newStartIndex;
+            }
+
+            returnBorders.borders.splice(1, 0, {
+                position: 'all',
+                color,
+                duration: 0.5,
+                easing: 'out',
+                nestNext: false,
+            });
+        } else {
+            returnBorders = bordersAnimations[defaultAnim];
+        }
+        // returnBorders = bordersAnimations[defaultAnim];
+        return returnBorders;
     };
+
+    // /**
+    //  * @description reset previous animation
+    //  * @param {array} { borders }
+    //  * @param {function} cb
+    //  */
+    // const resetBorders = ({ borders }, cb) => {
+    //     if (!borders.length) {
+    //         cb();
+    //     } else {
+    //         const [{ position, duration }, nextBorder] = borders;
+
+    //         TweenMax.to(bordersCat[borderMapping[position].index], duration, {
+    //             transformOrigin: borderMapping.reset[position].origin,
+    //             scaleX: position === 'top' || position === 'bottom' ? 0 : 1,
+    //             scaleY: position === 'left' || position === 'right' ? 0 : 1,
+    //             onComplete: () => {
+    //                 if (nextBorder) {
+    //                     resetBorders(
+    //                         { borders: borders.slice(1, borders.length) },
+    //                         cb
+    //                     );
+    //                 } else {
+    //                     cb();
+    //                 }
+    //             },
+    //         });
+    //     }
+    // };
 
     /**
      * @description update next section borders
@@ -344,6 +429,10 @@ const ioBorders = () => {
         ] = borders;
 
         const isAll = position === 'all';
+
+        if (state.ends.start === null) {
+            state.ends.start = borderMapping[position].index;
+        }
 
         let ease = '';
         if (easing === 'in') {
@@ -366,13 +455,16 @@ const ioBorders = () => {
             scaleY,
             ease,
             onComplete: () => {
-                if (!nestNext) return;
+                if (!nestNext && nextBorder) return;
 
                 if (nextBorder) {
                     animateBorder({
                         borders: borders.slice(1, borders.length),
                     });
                 } else {
+                    if (state.ends.end === null) {
+                        state.ends.end = borderMapping[position].index;
+                    }
                     processQueue();
                 }
             },
@@ -384,7 +476,7 @@ const ioBorders = () => {
 
         TweenMax.to(
             isAll ? bordersCat : bordersCat[borderMapping[position].index],
-            duration / state.speedFactor,
+            duration,
             tweenParams
         );
 
@@ -404,33 +496,70 @@ const ioBorders = () => {
 
         switch (state.nextSection) {
             case 'home-intro':
-                resetBorders(bordersAnimationsReset.intro, () => {
-                    animateBorder(bordersAnimations.intro);
-                });
+                animateBorder(
+                    computeResetBorders({
+                        defaultAnim: 'intro',
+                        color: colors.funGreen,
+                        start: { position: 'top', scale: 1 },
+                        end: { position: 'bottom', scale: 0.5 },
+                    })
+                );
                 break;
             case 'home-learning-experience':
-                resetBorders(bordersAnimationsReset.learningExperience, () => {
-                    animateBorder(bordersAnimations.learningExperience);
-                });
+                animateBorder(
+                    computeResetBorders({
+                        defaultAnim: 'learningExperience',
+                        color: colors.pictonBlue,
+                        start: { position: 'bottom', scale: 1 },
+                        end: { position: 'top', scale: 0.25 },
+                    })
+                );
                 break;
             case 'home-offers':
-                resetBorders(bordersAnimationsReset.offers, () => {
-                    animateBorder(bordersAnimations.offers);
-                });
+                animateBorder(
+                    computeResetBorders({
+                        defaultAnim: 'offers',
+                        color: colors.funGreen,
+                        start: { position: 'right', scale: 1 },
+                        end: { position: 'bottom', scale: 0.75 },
+                    })
+                );
                 break;
             case 'home-about-us':
-                resetBorders(bordersAnimationsReset.aboutUs, () => {
-                    animateBorder(bordersAnimations.aboutUs);
-                });
+                animateBorder(
+                    computeResetBorders({
+                        defaultAnim: 'aboutUs',
+                        color: colors.persimmon,
+                        start: { position: 'bottom', scale: 0.25 },
+                        end: { position: 'top', scale: 1 },
+                    })
+                );
                 break;
             case 'home-experiences':
-                resetBorders(bordersAnimationsReset.experiences, () => {
-                    animateBorder(bordersAnimations.experiences);
-                });
+                animateBorder(
+                    computeResetBorders({
+                        defaultAnim: 'experiences',
+                        color: colors.darkOrange,
+                        start: { position: 'top', scale: 0.25 },
+                        end: { position: 'bottom', scale: 1 },
+                    })
+                );
                 break;
             default:
                 break;
         }
+    };
+
+    const addToQueue = () => {
+        const borderNextSection = bordersWrapper.getAttribute(
+            'data-next-section'
+        );
+
+        state.queue.push(borderNextSection);
+
+        if (state.init) return;
+        processQueue();
+        state.init = true;
     };
 
     // Main calls
@@ -438,24 +567,11 @@ const ioBorders = () => {
 
     window.addEventListener('wheel', handleWheel, false);
 
-    bordersWrapper.addEventListener(
-        'updateBorders',
-        () => {
-            const borderNextSection = bordersWrapper.getAttribute(
-                'data-next-section'
-            );
-
-            state.queue.push(borderNextSection);
-            state.speedFactor = Math.max(1, state.queue.length * 0.75);
-
-            if (state.init) return;
-            processQueue();
-            state.init = true;
-        },
-        false
-    );
+    bordersWrapper.addEventListener('updateBorders', addToQueue, false);
 
     bordersWrapper.addEventListener('updateQueue', updateBorder, false);
+
+    addToQueue();
 
     win.addResizeFunction(() => {
         handleDisplay();

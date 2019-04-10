@@ -9598,7 +9598,10 @@ var ioBorders = function ioBorders() {
     isMoving: false,
     queue: [],
     nextSection: null,
-    speedFactor: 1
+    ends: {
+      start: null,
+      end: null
+    }
   }; // Borders transformations data
 
   var borderMapping = {
@@ -9631,7 +9634,8 @@ var ioBorders = function ioBorders() {
       left: {
         origin: '50% 0%'
       }
-    }
+    },
+    byIndex: ['top', 'right', 'bottom', 'left']
   }; // Borders reset sequences
 
   var bordersAnimationsReset = {
@@ -9883,37 +9887,104 @@ var ioBorders = function ioBorders() {
     if (state.scrollSpeed >= 10 || state.isMoving) return;
     processQueue();
   };
-  /**
-   * @description reset previous animation
-   * @param {array} { borders }
-   * @param {function} cb
-   */
 
+  var computeResetBorders = function computeResetBorders(_ref) {
+    var defaultAnim = _ref.defaultAnim,
+        color = _ref.color,
+        start = _ref.start,
+        end = _ref.end;
+    var returnBorders = {
+      borders: []
+    };
 
-  var resetBorders = function resetBorders(_ref, cb) {
-    var borders = _ref.borders;
+    if (state.ends.start !== null && state.ends.end !== null) {
+      var lastEndIndex = state.ends.end;
+      var newStartIndex = borderMapping[start.position].index;
+      var newEndIndex = borderMapping[end.position].index;
+      var lastStartIndex = state.ends.start;
+      var delta = Math.abs(newEndIndex <= lastEndIndex ? newEndIndex + 4 - lastEndIndex : newEndIndex - lastEndIndex) + 1;
+      var index = 0;
 
-    var _borders = _slicedToArray(borders, 2),
-        _borders$ = _borders[0],
-        position = _borders$.position,
-        duration = _borders$.duration,
-        nextBorder = _borders[1];
-
-    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(bordersCat[borderMapping[position].index], duration, {
-      transformOrigin: borderMapping.reset[position].origin,
-      scaleX: position === 'top' || position === 'bottom' ? 0 : 1,
-      scaleY: position === 'left' || position === 'right' ? 0 : 1,
-      onComplete: function onComplete() {
-        if (nextBorder) {
-          resetBorders({
-            borders: borders.slice(1, borders.length)
-          }, cb);
-        } else {
-          cb();
-        }
+      for (index; index < delta; index += 1) {
+        var borderIndex = (lastEndIndex + index) % 4;
+        returnBorders.borders[index] = {
+          position: borderMapping.byIndex[borderIndex],
+          duration: 0.5,
+          maxScale: index === delta - 1 ? end.scale : 1,
+          axis: borderIndex % 2 ? 'y' : 'x',
+          ease: 'out',
+          nestNext: false
+        };
       }
-    });
-  };
+
+      delta = Math.abs(newStartIndex <= lastStartIndex ? newStartIndex + 4 - lastStartIndex : newStartIndex - lastStartIndex) + 1;
+
+      for (index = 0; index < delta; index += 1) {
+        var _borderIndex = (lastStartIndex + index) % 4;
+
+        var position = borderMapping.byIndex[_borderIndex];
+        var maxScale = 0;
+
+        if (index === delta - 1) {
+          position = borderMapping.byIndex[_borderIndex];
+          maxScale = start.scale;
+        }
+
+        var border = {
+          position: position,
+          duration: 0.5,
+          maxScale: maxScale,
+          origin: borderMapping.reset[borderMapping.byIndex[_borderIndex]].origin,
+          axis: _borderIndex % 2 ? 'y' : 'x',
+          ease: 'out'
+        };
+        var insertIndex = index * 2 + 1;
+        returnBorders.borders.splice(insertIndex, 0, border);
+        state.ends.end = newEndIndex;
+        state.ends.start = newStartIndex;
+      }
+
+      returnBorders.borders.splice(1, 0, {
+        position: 'all',
+        color: color,
+        duration: 0.5,
+        easing: 'out',
+        nestNext: false
+      });
+    } else {
+      returnBorders = bordersAnimations[defaultAnim];
+    } // returnBorders = bordersAnimations[defaultAnim];
+
+
+    return returnBorders;
+  }; // /**
+  //  * @description reset previous animation
+  //  * @param {array} { borders }
+  //  * @param {function} cb
+  //  */
+  // const resetBorders = ({ borders }, cb) => {
+  //     if (!borders.length) {
+  //         cb();
+  //     } else {
+  //         const [{ position, duration }, nextBorder] = borders;
+  //         TweenMax.to(bordersCat[borderMapping[position].index], duration, {
+  //             transformOrigin: borderMapping.reset[position].origin,
+  //             scaleX: position === 'top' || position === 'bottom' ? 0 : 1,
+  //             scaleY: position === 'left' || position === 'right' ? 0 : 1,
+  //             onComplete: () => {
+  //                 if (nextBorder) {
+  //                     resetBorders(
+  //                         { borders: borders.slice(1, borders.length) },
+  //                         cb
+  //                     );
+  //                 } else {
+  //                     cb();
+  //                 }
+  //             },
+  //         });
+  //     }
+  // };
+
   /**
    * @description update next section borders
    * @param {array} { borders }
@@ -9923,19 +9994,24 @@ var ioBorders = function ioBorders() {
   var animateBorder = function animateBorder(_ref2) {
     var borders = _ref2.borders;
 
-    var _borders2 = _slicedToArray(borders, 2),
-        _borders2$ = _borders2[0],
-        position = _borders2$.position,
-        duration = _borders2$.duration,
-        color = _borders2$.color,
-        maxScale = _borders2$.maxScale,
-        axis = _borders2$.axis,
-        origin = _borders2$.origin,
-        _borders2$$nestNext = _borders2$.nestNext,
-        nestNext = _borders2$$nestNext === void 0 ? true : _borders2$$nestNext,
-        nextBorder = _borders2[1];
+    var _borders = _slicedToArray(borders, 2),
+        _borders$ = _borders[0],
+        position = _borders$.position,
+        duration = _borders$.duration,
+        color = _borders$.color,
+        maxScale = _borders$.maxScale,
+        axis = _borders$.axis,
+        origin = _borders$.origin,
+        _borders$$nestNext = _borders$.nestNext,
+        nestNext = _borders$$nestNext === void 0 ? true : _borders$$nestNext,
+        nextBorder = _borders[1];
 
     var isAll = position === 'all';
+
+    if (state.ends.start === null) {
+      state.ends.start = borderMapping[position].index;
+    }
+
     var ease = '';
 
     if (_global__WEBPACK_IMPORTED_MODULE_4__["easing"] === 'in') {
@@ -9958,13 +10034,17 @@ var ioBorders = function ioBorders() {
       scaleY: scaleY,
       ease: ease,
       onComplete: function onComplete() {
-        if (!nestNext) return;
+        if (!nestNext && nextBorder) return;
 
         if (nextBorder) {
           animateBorder({
             borders: borders.slice(1, borders.length)
           });
         } else {
+          if (state.ends.end === null) {
+            state.ends.end = borderMapping[position].index;
+          }
+
           processQueue();
         }
       }
@@ -9974,7 +10054,7 @@ var ioBorders = function ioBorders() {
       tweenParams.backgroundColor = color;
     }
 
-    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(isAll ? bordersCat : bordersCat[borderMapping[position].index], duration / state.speedFactor, tweenParams);
+    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(isAll ? bordersCat : bordersCat[borderMapping[position].index], duration, tweenParams);
     if (nestNext || !nextBorder) return;
     borders.shift();
     animateBorder({
@@ -9992,52 +10072,99 @@ var ioBorders = function ioBorders() {
 
     switch (state.nextSection) {
       case 'home-intro':
-        resetBorders(bordersAnimationsReset.intro, function () {
-          animateBorder(bordersAnimations.intro);
-        });
+        animateBorder(computeResetBorders({
+          defaultAnim: 'intro',
+          color: _global__WEBPACK_IMPORTED_MODULE_4__["colors"].funGreen,
+          start: {
+            position: 'top',
+            scale: 1
+          },
+          end: {
+            position: 'bottom',
+            scale: 0.5
+          }
+        }));
         break;
 
       case 'home-learning-experience':
-        resetBorders(bordersAnimationsReset.learningExperience, function () {
-          animateBorder(bordersAnimations.learningExperience);
-        });
+        animateBorder(computeResetBorders({
+          defaultAnim: 'learningExperience',
+          color: _global__WEBPACK_IMPORTED_MODULE_4__["colors"].pictonBlue,
+          start: {
+            position: 'bottom',
+            scale: 1
+          },
+          end: {
+            position: 'top',
+            scale: 0.25
+          }
+        }));
         break;
 
       case 'home-offers':
-        resetBorders(bordersAnimationsReset.offers, function () {
-          animateBorder(bordersAnimations.offers);
-        });
+        animateBorder(computeResetBorders({
+          defaultAnim: 'offers',
+          color: _global__WEBPACK_IMPORTED_MODULE_4__["colors"].funGreen,
+          start: {
+            position: 'right',
+            scale: 1
+          },
+          end: {
+            position: 'bottom',
+            scale: 0.75
+          }
+        }));
         break;
 
       case 'home-about-us':
-        resetBorders(bordersAnimationsReset.aboutUs, function () {
-          animateBorder(bordersAnimations.aboutUs);
-        });
+        animateBorder(computeResetBorders({
+          defaultAnim: 'aboutUs',
+          color: _global__WEBPACK_IMPORTED_MODULE_4__["colors"].persimmon,
+          start: {
+            position: 'bottom',
+            scale: 0.25
+          },
+          end: {
+            position: 'top',
+            scale: 1
+          }
+        }));
         break;
 
       case 'home-experiences':
-        resetBorders(bordersAnimationsReset.experiences, function () {
-          animateBorder(bordersAnimations.experiences);
-        });
+        animateBorder(computeResetBorders({
+          defaultAnim: 'experiences',
+          color: _global__WEBPACK_IMPORTED_MODULE_4__["colors"].darkOrange,
+          start: {
+            position: 'top',
+            scale: 0.25
+          },
+          end: {
+            position: 'bottom',
+            scale: 1
+          }
+        }));
         break;
 
       default:
         break;
     }
+  };
+
+  var addToQueue = function addToQueue() {
+    var borderNextSection = bordersWrapper.getAttribute('data-next-section');
+    state.queue.push(borderNextSection);
+    if (state.init) return;
+    processQueue();
+    state.init = true;
   }; // Main calls
 
 
   handleDisplay();
   window.addEventListener('wheel', handleWheel, false);
-  bordersWrapper.addEventListener('updateBorders', function () {
-    var borderNextSection = bordersWrapper.getAttribute('data-next-section');
-    state.queue.push(borderNextSection);
-    state.speedFactor = Math.max(1, state.queue.length * 0.75);
-    if (state.init) return;
-    processQueue();
-    state.init = true;
-  }, false);
+  bordersWrapper.addEventListener('updateBorders', addToQueue, false);
   bordersWrapper.addEventListener('updateQueue', updateBorder, false);
+  addToQueue();
   _utils_Window__WEBPACK_IMPORTED_MODULE_3__["default"].addResizeFunction(function () {
     handleDisplay();
     if (!state.display || !state.queue.length) return;
