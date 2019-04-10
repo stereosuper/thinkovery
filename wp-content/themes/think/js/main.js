@@ -10210,163 +10210,236 @@ var makeBorders = function makeBorders() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils */ "./wp-content/themes/think/src/js/utils/index.js");
-/* harmony import */ var _global__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./global */ "./wp-content/themes/think/src/js/global/index.js");
+/* harmony import */ var _utils_Window__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils/Window */ "./wp-content/themes/think/src/js/utils/Window.js");
 
+ //import { easing } from './global';
 
 
 
 var minionsHandler = function minionsHandler() {
-  var minions = document.querySelectorAll('.shape');
-  if (!minions.length) return;
-  var video = document.getElementById('home-video');
-  var tlPlayer = new TimelineMax();
-  var wh = window.innerHeight;
+  var homeSections = [].slice.call(document.getElementsByClassName('js-home-section'));
+  if (!homeSections.length) return;
   var easeIn = Power2.easeOut;
-  var minionsTop = minions[2].getBoundingClientRect().top;
-  var windowBottom = wh - minionsTop - window.scrollY;
-  tlPlayer.to(minions, 0.3, {
-    scale: 1,
-    ease: easeIn
-  }).to(minions[2], 0.3, {
-    scale: 3,
-    onComplete: function onComplete() {
-      if (video) {
-        video.classList.add('player-on');
-        video.classList.add('on');
-        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set(video.querySelector('.iframe'), {
-          opacity: 1,
-          delay: 0.7
+  var wh = window.innerHeight;
+  var animsDone = []; // Constants used to create the intersection observer threshold array
+
+  var samplesNumber = 1000;
+  var thresholdSamples = [];
+  var index = 0;
+  var observer = null;
+
+  var headerAnim = function headerAnim() {
+    var minions = homeSections[0].querySelectorAll('.shape');
+    var video = document.getElementById('home-video');
+    if (!video || !minions.length) return;
+    var minionsTop = minions[2].getBoundingClientRect().top;
+    var windowBottom = wh - minionsTop - window.scrollY;
+    var tlPlayer = new TimelineMax();
+    tlPlayer.to(minions, 0.3, {
+      scale: 1,
+      ease: easeIn
+    }).to(minions[2], 0.3, {
+      scale: 3,
+      onComplete: function onComplete() {
+        if (video) {
+          video.classList.add('player-on');
+          video.classList.add('on');
+          gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set(video.querySelector('.iframe'), {
+            opacity: 1,
+            delay: 0.7
+          });
+        }
+      },
+      ease: easeIn
+    }).to(minions[2], 0.2, {
+      scale: 2.15,
+      ease: easeIn
+    }).to(minions[2], 0.7, {
+      y: windowBottom - 40,
+      rotation: 90,
+      ease: easeIn,
+      delay: 0.3
+    }).to(minions[2], 0.4, {
+      y: windowBottom - 50,
+      ease: easeIn,
+      onComplete: function onComplete() {
+        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[2], 0.4, {
+          y: windowBottom - 35,
+          ease: easeIn
+        });
+      },
+      repeat: -1,
+      repeatDelay: 3
+    });
+    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[0], 1.4, {
+      bezier: {
+        curviness: 1,
+        values: [{
+          x: -100,
+          y: -30
+        }, {
+          x: -200,
+          y: 0
+        }, {
+          x: -250,
+          y: windowBottom / 3
+        }, {
+          x: -280,
+          y: windowBottom / 3 * 2
+        }, {
+          x: -290,
+          y: windowBottom + 40
+        }],
+        autoRotate: true
+      },
+      delay: 0.15,
+      ease: easeIn,
+      onComplete: function onComplete() {
+        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[0], 0.3, {
+          opacity: 0
         });
       }
-    },
-    ease: easeIn
-  }).to(minions[2], 0.2, {
-    scale: 2.15,
-    ease: easeIn
-  }).to(minions[2], 0.7, {
-    y: windowBottom - 40,
-    rotation: 90,
-    ease: easeIn,
-    delay: 0.3
-  }).to(minions[2], 0.4, {
-    y: windowBottom - 50,
-    ease: easeIn,
-    onComplete: function onComplete() {
-      gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[2], 0.4, {
-        y: windowBottom - 35,
-        ease: easeIn
-      });
-    },
-    repeat: -1,
-    repeatDelay: 3
+    });
+    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[1], 1.4, {
+      bezier: {
+        curviness: 1,
+        values: [{
+          x: -50,
+          y: -70
+        }, {
+          x: -100,
+          y: -50
+        }, {
+          x: -140,
+          y: windowBottom / 3
+        }, {
+          x: -170,
+          y: windowBottom / 3 * 2
+        }, {
+          x: -180,
+          y: windowBottom + 20
+        }],
+        autoRotate: true
+      },
+      delay: 0.15,
+      ease: easeIn,
+      onComplete: function onComplete() {
+        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[1], 0.3, {
+          opacity: 0
+        });
+      }
+    });
+    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[3], 1.4, {
+      bezier: {
+        curviness: 1,
+        values: [{
+          x: 50,
+          y: -60
+        }, {
+          x: 100,
+          y: -40
+        }, {
+          x: 140,
+          y: windowBottom / 3
+        }, {
+          x: 170,
+          y: windowBottom / 3 * 2
+        }, {
+          x: 180,
+          y: windowBottom + 100
+        }],
+        autoRotate: true
+      },
+      delay: 0.15,
+      ease: easeIn,
+      onComplete: function onComplete() {
+        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[3], 0.3, {
+          opacity: 0
+        });
+      }
+    });
+    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[4], 1.4, {
+      bezier: {
+        curviness: 1,
+        values: [{
+          x: 100,
+          y: -10
+        }, {
+          x: 190,
+          y: 10
+        }, {
+          x: 250,
+          y: windowBottom / 3
+        }, {
+          x: 280,
+          y: windowBottom / 3 * 2
+        }, {
+          x: 290,
+          y: windowBottom + 70
+        }],
+        autoRotate: true
+      },
+      delay: 0.15,
+      ease: easeIn,
+      onComplete: function onComplete() {
+        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[4], 0.3, {
+          opacity: 0
+        });
+      }
+    });
+    animsDone['home-intro'] = true;
+  };
+
+  var learningAnim = function learningAnim() {
+    var minions = homeSections[1].querySelectorAll('.shape');
+    if (!minions.length) return;
+    var minionsTop = minions[2].getBoundingClientRect().top;
+    animsDone['home-learning-experience'] = true;
+  };
+
+  var intersectionCallback = function intersectionCallback(entries) {
+    Object(_utils__WEBPACK_IMPORTED_MODULE_1__["forEach"])(entries, function (entry) {
+      if (entry.intersectionRatio <= 0 || animsDone[entry.target.id]) return;
+
+      switch (entry.target.id) {
+        case 'home-intro':
+          headerAnim();
+          break;
+
+        case 'home-learning-experience':
+          learningAnim();
+          break;
+
+        case 'home-offers':
+          break;
+
+        case 'home-about-us':
+          break;
+
+        case 'home-experiences':
+          break;
+
+        default:
+          break;
+      }
+    });
+  };
+
+  for (index; index <= samplesNumber; index++) {
+    thresholdSamples[index] = index / samplesNumber;
+  }
+
+  observer = new IntersectionObserver(intersectionCallback, {
+    root: null,
+    rootMargin: '0px',
+    threshold: thresholdSamples
   });
-  gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[0], 1.4, {
-    bezier: {
-      curviness: 1,
-      values: [{
-        x: -100,
-        y: -30
-      }, {
-        x: -200,
-        y: 0
-      }, {
-        x: -250,
-        y: windowBottom / 3
-      }, {
-        x: -280,
-        y: windowBottom / 3 * 2
-      }, {
-        x: -290,
-        y: windowBottom + 40
-      }],
-      autoRotate: true
-    },
-    delay: 0.15,
-    ease: easeIn,
-    onComplete: function onComplete() {
-      minions[0].style.display = 'none';
-    }
+  Object(_utils__WEBPACK_IMPORTED_MODULE_1__["forEach"])(homeSections, function (section) {
+    observer.observe(section);
+    animsDone[section.id] = false;
   });
-  gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[1], 1.4, {
-    bezier: {
-      curviness: 1,
-      values: [{
-        x: -50,
-        y: -70
-      }, {
-        x: -100,
-        y: -50
-      }, {
-        x: -140,
-        y: windowBottom / 3
-      }, {
-        x: -170,
-        y: windowBottom / 3 * 2
-      }, {
-        x: -180,
-        y: windowBottom + 20
-      }],
-      autoRotate: true
-    },
-    delay: 0.15,
-    ease: easeIn,
-    onComplete: function onComplete() {
-      minions[1].style.display = 'none';
-    }
-  });
-  gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[3], 1.4, {
-    bezier: {
-      curviness: 1,
-      values: [{
-        x: 50,
-        y: -60
-      }, {
-        x: 100,
-        y: -40
-      }, {
-        x: 140,
-        y: windowBottom / 3
-      }, {
-        x: 170,
-        y: windowBottom / 3 * 2
-      }, {
-        x: 180,
-        y: windowBottom + 100
-      }],
-      autoRotate: true
-    },
-    delay: 0.15,
-    ease: easeIn,
-    onComplete: function onComplete() {
-      minions[3].style.display = 'none';
-    }
-  });
-  gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[4], 1.4, {
-    bezier: {
-      curviness: 1,
-      values: [{
-        x: 100,
-        y: -10
-      }, {
-        x: 190,
-        y: 10
-      }, {
-        x: 250,
-        y: windowBottom / 3
-      }, {
-        x: 280,
-        y: windowBottom / 3 * 2
-      }, {
-        x: 290,
-        y: windowBottom + 70
-      }],
-      autoRotate: true
-    },
-    delay: 0.15,
-    ease: easeIn,
-    onComplete: function onComplete() {
-      minions[4].style.display = 'none';
-    }
+  _utils_Window__WEBPACK_IMPORTED_MODULE_2__["default"].addResizeFunction(function () {
+    wh = window.innerHeight;
   });
 };
 

@@ -4,7 +4,7 @@
 
     <?php if ( have_posts() ) : the_post(); ?>
     
-		<header id="home-intro" class="home-header" data-io="updateBorder">
+		<header id="home-intro" class="home-header js-home-section" data-io="updateBorder">
             <?php $video = get_field('video'); if( $video['id'] ) : ?>
                 <div class='js-video video' data-id='<?php echo $video['id']; ?>' id='home-video'>
                     <div class='iframe'></div>
@@ -28,6 +28,13 @@
         <?php if( have_rows('sections') ) : $count = 0; ?>
             <?php while( have_rows('sections') ) : the_row(); $count ++; ?>
                 <section id="<?php the_sub_field('id'); ?>" class="js-home-section home-section" data-io="updateBorder">
+                    
+                    <svg class='shape'><use xlink:href='#icon-drop'/></svg>
+                    <svg class='shape'><use xlink:href='#icon-square'/></svg>
+                    <svg class='shape'><use xlink:href='#icon-triangle'/></svg>
+                    <svg class='shape'><use xlink:href='#icon-rectangle'/></svg>
+                    <svg class='shape'><use xlink:href='#icon-circle'/></svg>
+
                     <div class='wrapper-img'>
                         <?php echo wp_get_attachment_image( get_sub_field('img'), 'full' ); ?>
                     </div>
