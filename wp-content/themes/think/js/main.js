@@ -10218,44 +10218,47 @@ __webpack_require__.r(__webpack_exports__);
 var minionsHandler = function minionsHandler() {
   var minions = document.querySelectorAll('.shape');
   if (!minions.length) return;
-  var video = document.getElementById('home-video'); //const tl = new TimelineMax();
-
+  var video = document.getElementById('home-video');
+  var tlPlayer = new TimelineMax();
   var wh = window.innerHeight;
   var easeIn = Power2.easeOut;
   var minionsTop = minions[2].getBoundingClientRect().top;
   var windowBottom = wh - minionsTop - window.scrollY;
-  gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions, 0.3, {
+  tlPlayer.to(minions, 0.3, {
     scale: 1,
+    ease: easeIn
+  }).to(minions[2], 0.3, {
+    scale: 3,
+    onComplete: function onComplete() {
+      if (video) {
+        video.classList.add('player-on');
+        video.classList.add('on');
+        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set(video.querySelector('.iframe'), {
+          opacity: 1,
+          delay: 0.7
+        });
+      }
+    },
+    ease: easeIn
+  }).to(minions[2], 0.2, {
+    scale: 2.15,
+    ease: easeIn
+  }).to(minions[2], 0.7, {
+    y: windowBottom - 40,
+    rotation: 90,
+    ease: easeIn,
+    delay: 0.3
+  }).to(minions[2], 0.4, {
+    y: windowBottom - 50,
     ease: easeIn,
     onComplete: function onComplete() {
-      gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[2], 0.3, {
-        scale: 3,
-        onComplete: function onComplete() {
-          gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[2], 0.2, {
-            scale: 2.15,
-            onComplete: function onComplete() {
-              gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[2], 0.7, {
-                y: windowBottom - 40,
-                rotation: 90,
-                ease: easeIn,
-                delay: 0.3
-              });
-            },
-            ease: easeIn
-          });
-
-          if (video) {
-            video.classList.add('player-on');
-            video.classList.add('on');
-            gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set(video.querySelector('.iframe'), {
-              opacity: 1,
-              delay: 0.7
-            });
-          }
-        },
+      gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[2], 0.4, {
+        y: windowBottom - 35,
         ease: easeIn
       });
-    }
+    },
+    repeat: -1,
+    repeatDelay: 3
   });
   gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[0], 1.4, {
     bezier: {
