@@ -101,51 +101,45 @@
             }
         }
         .departure {
-            .top {
-                &::before,
-                &::after {
-                    transform: scaleX(0.75);
-                    transform-origin: 100% 0;
-                }
-                &::before {
-                    transition-delay: $btn-invert-delay * 4;
-                }
-                &::after {
-                    transition-delay: $btn-invert-delay * 6;
-                }
-            }
             .right {
                 &::before,
                 &::after {
                     transform: scaleY(1);
                 }
                 &::before {
+                    transition-delay: $btn-invert-delay;
+                }
+                &::after {
+                    transition-delay: $btn-invert-delay * 2;
+                }
+            }
+            .top {
+                &::before,
+                &::after {
+                    transform: scaleX(0.75);
+                    transform-origin: 100% 0;
+                    transition-timing-function: $cat-mouse-easing-out;
+                }
+                &::before {
                     transition-delay: $btn-invert-delay * 3;
                 }
                 &::after {
-                    transition-delay: $btn-invert-delay * 5;
+                    transition-delay: $btn-invert-delay * 4;
                 }
             }
         }
         .arrival {
-            .top {
+            .left {
                 &::before,
                 &::after {
                     transition-delay: $btn-invert-delay * 2;
                     transition-timing-function: $cat-mouse-easing-out;
                 }
             }
-            .left {
-                &::before,
-                &::after {
-                    transition-delay: $btn-invert-delay * 3;
-                    transition-timing-function: $cat-mouse-easing-out;
-                }
-            }
             .bot {
                 &::before,
                 &::after {
-                    transition-delay: $btn-invert-delay * 4;
+                    transition-delay: $btn-invert-delay * 3;
                     transition-timing-function: $cat-mouse-easing-out;
                 }
             }
@@ -171,40 +165,43 @@
                 }
             }
             .arrival {
-                .top {
+                .bot {
                     &::before,
                     &::after {
-                        transform: scaleX(0.25);
+                        transform: scaleX(1);
+                        transition-timing-function: $cat-mouse-easing-in;
                     }
                     &::before {
-                        transition-delay: $btn-invert-delay * 3;
+                        transition-delay: $btn-invert-delay;
                     }
                     &::after {
-                        transition-delay: $btn-invert-delay * 5;
+                        transition-delay: $btn-invert-delay * 2;
                     }
                 }
                 .left {
                     &::before,
                     &::after {
                         transform: scaleY(1);
+                        transition-timing-function: $cat-mouse-easing-out;
                     }
                     &::before {
-                        transition-delay: $btn-invert-delay * 2;
+                        transition-delay: $btn-invert-delay * 3;
                     }
                     &::after {
                         transition-delay: $btn-invert-delay * 4;
                     }
                 }
-                .bot {
+                .top {
                     &::before,
                     &::after {
-                        transform: scaleX(1);
+                        transform: scaleX(0.25);
+                        transition-timing-function: $cat-mouse-easing-out;
                     }
                     &::before {
-                        transition-delay: $btn-invert-delay;
+                        transition-delay: $btn-invert-delay * 4;
                     }
                     &::after {
-                        transition-delay: $btn-invert-delay * 3;
+                        transition-delay: $btn-invert-delay * 5;
                     }
                 }
             }
@@ -302,122 +299,213 @@
         }
     }
     &.btn-3 {
-        .bot {
-            &::before {
-                transform-origin: 100% 0;
-                transform: scaleX(0.75);
-                transition-delay: $btn-invert-delay * 4;
-            }
-        }
-        .right {
-            &::before {
-                transform: scaleY(1);
-                transition-delay: $btn-invert-delay * 3;
-            }
-        }
-        .top {
-            &::before {
-                transform-origin: 100% 0;
-                transition-delay: $btn-invert-delay * 2;
-            }
-        }
-        .left {
-            &::before {
-                transition-delay: $btn-invert-delay;
-            }
-        }
-        &:hover,
-        &:focus {
+        .departure {
             .right {
+                &::before,
+                &::after {
+                    transform: scaleY(1);
+                }
                 &::before {
-                    transform: scaleY(0);
                     transition-delay: $btn-invert-delay;
+                }
+                &::after {
+                    transition-delay: $btn-invert-delay * 2;
                 }
             }
             .bot {
+                &::before,
+                &::after {
+                    transform-origin: 100% 0;
+                    transform: scaleX(0.75);
+                    transition-timing-function: $cat-mouse-easing-out;
+                }
                 &::before {
-                    transform: scaleX(0);
-                    transition-delay: 0s;
+                    transition-delay: $btn-invert-delay * 3;
                 }
                 &::after {
-                    transform: scaleX(0.25);
                     transition-delay: $btn-invert-delay * 4;
                 }
             }
+        }
+        .arrival {
             .top {
-                &::before {
-                    transform: scaleX(1);
+                &::before,
+                &::after {
+                    transform-origin: 100% 0;
                     transition-delay: $btn-invert-delay * 2;
                 }
             }
             .left {
-                &::before {
-                    transform: scaleY(1);
-                    transition-delay: $btn-invert-delay * 3;
+                &::before,
+                &::after {
+                    transition-delay: $btn-invert-delay;
+                }
+            }
+        }
+        &:hover,
+        &:focus {
+            .departure {
+                .right {
+                    &::before,
+                    &::after {
+                        transform: scaleY(0);
+                        transition-delay: $btn-invert-delay * 2;
+                        transition-timing-function: $cat-mouse-easing-out;
+                    }
+                }
+                .bot {
+                    &::before,
+                    &::after {
+                        transform: scaleX(0);
+                        transition-delay: 0s;
+                    }
+                }
+            }
+            .arrival {
+                .top {
+                    &::before,
+                    &::after {
+                        transform: scaleX(1);
+                    }
+                    &::before {
+                        transition-delay: $btn-invert-delay;
+                    }
+                    &::after {
+                        transition-delay: $btn-invert-delay * 2;
+                    }
+                }
+                .left {
+                    &::before,
+                    &::after {
+                        transform: scaleY(1);
+                        transition-timing-function: $cat-mouse-easing-out;
+                    }
+                    &::before {
+                        transition-delay: $btn-invert-delay * 3;
+                    }
+                    &::after {
+                        transition-delay: $btn-invert-delay * 4;
+                    }
+                }
+                .bot {
+                    &::before,
+                    &::after {
+                        transform: scaleX(0.25);
+                        transition-timing-function: $cat-mouse-easing-out;
+                    }
+                    &::before {
+                        transition-delay: $btn-invert-delay * 4;
+                    }
+                    &::after {
+                        transition-delay: $btn-invert-delay * 5;
+                    }
                 }
             }
         }
     }
     &.btn-4 {
-        .top {
-            &::before {
-                transform: scaleX(0.75);
-                transition-delay: $btn-invert-delay * 4;
-            }
-            &::after {
-                transform-origin: 100% 0;
-            }
-        }
-        .left {
-            &::before {
-                transform: scaleY(1);
-                transform-origin: 0 100%;
-            }
-        }
-        .right {
-            &::before {
-                transform-origin: 0 100%;
-                transition-delay: $btn-invert-delay;
-            }
-        }
-        .bot {
-            &::before {
-                transition-delay: $btn-invert-delay * 2;
-            }
-        }
-        .left {
-            &::before {
-                transition-delay: $btn-invert-delay * 3;
-            }
-        }
-        &:hover,
-        &:focus {
-            .top {
-                &::before {
-                    transform: scaleX(0);
-                    transition-delay: 0s;
+        .departure {
+            .left {
+                &::before,
+                &::after {
+                    transform: scaleY(1);
+                    transform-origin: 0 100%;
                 }
                 &::after {
-                    transform: scaleX(0.25);
-                    transition-delay: $btn-invert-delay * 4;
+                    transition-delay: $btn-invert-delay;
                 }
             }
-            .left {
+            .top {
+                &::before,
+                &::after {
+                    transform: scaleX(0.75);
+                    transition-timing-function: $cat-mouse-easing-out;
+                }
                 &::before {
-                    transform: scaleY(0);
+                    transition-delay: $btn-invert-delay * 2;
+                }
+                &::after {
+                    transition-delay: $btn-invert-delay * 3;
+                }
+            }
+        }
+        .arrival {
+            .top {
+                &::before,
+                &::after {
+                    transform-origin: 100% 0;
+                }
+            }
+            .right {
+                &::before,
+                &::after {
+                    transform-origin: 0 100%;
                     transition-delay: $btn-invert-delay;
                 }
             }
             .bot {
-                &::before {
-                    transform: scaleX(1);
+                &::before,
+                &::after {
                     transition-delay: $btn-invert-delay * 2;
                 }
             }
-            .right {
-                &::before {
-                    transform: scaleY(1);
-                    transition-delay: $btn-invert-delay * 3;
+        }
+        &:hover,
+        &:focus {
+            .departure {
+                .top {
+                    &::before,
+                    &::after {
+                        transform: scaleX(0);
+                        transition-delay: 0s;
+                    }
+                }
+                .left {
+                    &::before,
+                    &::after {
+                        transform: scaleY(0);
+                        transition-delay: $btn-invert-delay;
+                    }
+                }
+            }
+            .arrival {
+                .bot {
+                    &::before,
+                    &::after {
+                        transform: scaleX(1);
+                    }
+                    &::before {
+                        transition-delay: $btn-invert-delay;
+                    }
+                    &::after {
+                        transition-delay: $btn-invert-delay * 2;
+                    }
+                }
+                .right {
+                    &::before,
+                    &::after {
+                        transform: scaleY(1);
+                        transition-timing-function: $cat-mouse-easing-out;
+                    }
+                    &::before {
+                        transition-delay: $btn-invert-delay * 3;
+                    }
+                    &::after {
+                        transition-delay: $btn-invert-delay * 4;
+                    }
+                }
+                .top {
+                    &::before,
+                    &::after {
+                        transform: scaleX(0.25);
+                        transition-timing-function: $cat-mouse-easing-out;
+                    }
+                    &::before {
+                        transition-delay: $btn-invert-delay * 4;
+                    }
+                    &::after {
+                        transition-delay: $btn-invert-delay * 5;
+                    }
                 }
             }
         }
