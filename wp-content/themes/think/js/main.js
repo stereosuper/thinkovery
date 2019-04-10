@@ -10345,28 +10345,36 @@ __webpack_require__.r(__webpack_exports__);
 
 var minionsHandler = function minionsHandler() {
   var homeSections = [].slice.call(document.getElementsByClassName('js-home-section'));
-  if (!homeSections.length) return;
+  var minions = document.querySelectorAll('.shape');
+  if (!homeSections.length || !minions.length) return;
   var easeIn = Power2.easeOut;
   var wh = window.innerHeight;
-  var animsDone = []; // Constants used to create the intersection observer threshold array
+  var ww = window.innerWidth;
+  var animsDone = [];
+  var headerBottom = wh - minions[2].getBoundingClientRect().top - window.scrollY; // Constants used to create the intersection observer threshold array
 
-  var samplesNumber = 1000;
+  var samplesNumber = 10;
   var thresholdSamples = [];
   var index = 0;
   var observer = null;
 
   var headerAnim = function headerAnim() {
-    var minions = homeSections[0].querySelectorAll('.shape');
     var video = document.getElementById('home-video');
-    if (!video || !minions.length) return;
-    var minionsTop = minions[2].getBoundingClientRect().top;
-    var windowBottom = wh - minionsTop - window.scrollY;
+    animsDone['home-intro'].running = true;
+
+    if (!video) {
+      // todo: placer les truc au bon endroit en set, au cas ou l'utilisateur arrive ailleurs sur la page
+      animsDone['home-intro'].done = true;
+      return;
+    }
+
     var tlPlayer = new TimelineMax();
-    tlPlayer.to(minions, 0.3, {
+    var tl = new TimelineMax();
+    tlPlayer.to(minions[2], 0.3, {
       scale: 1,
       ease: easeIn
     }).to(minions[2], 0.3, {
-      scale: 3,
+      scale: 4,
       onComplete: function onComplete() {
         if (video) {
           video.classList.add('player-on');
@@ -10379,26 +10387,29 @@ var minionsHandler = function minionsHandler() {
       },
       ease: easeIn
     }).to(minions[2], 0.2, {
-      scale: 2.15,
+      scale: 3,
       ease: easeIn
     }).to(minions[2], 0.7, {
-      y: windowBottom - 40,
+      y: headerBottom - 40,
       rotation: 90,
       ease: easeIn,
       delay: 0.3
     }).to(minions[2], 0.4, {
-      y: windowBottom - 50,
+      y: headerBottom - 50,
       ease: easeIn,
       onComplete: function onComplete() {
         gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[2], 0.4, {
-          y: windowBottom - 35,
+          y: headerBottom - 35,
           ease: easeIn
         });
       },
       repeat: -1,
       repeatDelay: 3
     });
-    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[0], 1.4, {
+    tl.add([gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions, 0.3, {
+      scale: 1,
+      ease: easeIn
+    }), gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[0], 1.4, {
       bezier: {
         curviness: 1,
         values: [{
@@ -10409,25 +10420,18 @@ var minionsHandler = function minionsHandler() {
           y: 0
         }, {
           x: -250,
-          y: windowBottom / 3
+          y: headerBottom / 3
         }, {
           x: -280,
-          y: windowBottom / 3 * 2
+          y: headerBottom / 3 * 2
         }, {
-          x: -290,
-          y: windowBottom + 40
-        }],
-        autoRotate: true
+          x: -240,
+          y: headerBottom + 100
+        }]
       },
       delay: 0.15,
-      ease: easeIn,
-      onComplete: function onComplete() {
-        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[0], 0.3, {
-          opacity: 0
-        });
-      }
-    });
-    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[1], 1.4, {
+      ease: easeIn
+    }), gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[1], 1.4, {
       bezier: {
         curviness: 1,
         values: [{
@@ -10438,25 +10442,18 @@ var minionsHandler = function minionsHandler() {
           y: -50
         }, {
           x: -140,
-          y: windowBottom / 3
+          y: headerBottom / 3
         }, {
           x: -170,
-          y: windowBottom / 3 * 2
+          y: headerBottom / 3 * 2
         }, {
-          x: -180,
-          y: windowBottom + 20
-        }],
-        autoRotate: true
+          x: -130,
+          y: headerBottom + 100
+        }]
       },
       delay: 0.15,
-      ease: easeIn,
-      onComplete: function onComplete() {
-        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[1], 0.3, {
-          opacity: 0
-        });
-      }
-    });
-    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[3], 1.4, {
+      ease: easeIn
+    }), gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[3], 1.4, {
       bezier: {
         curviness: 1,
         values: [{
@@ -10467,25 +10464,18 @@ var minionsHandler = function minionsHandler() {
           y: -40
         }, {
           x: 140,
-          y: windowBottom / 3
+          y: headerBottom / 3
         }, {
           x: 170,
-          y: windowBottom / 3 * 2
+          y: headerBottom / 3 * 2
         }, {
-          x: 180,
-          y: windowBottom + 100
-        }],
-        autoRotate: true
+          x: 130,
+          y: headerBottom + 100
+        }]
       },
       delay: 0.15,
-      ease: easeIn,
-      onComplete: function onComplete() {
-        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[3], 0.3, {
-          opacity: 0
-        });
-      }
-    });
-    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[4], 1.4, {
+      ease: easeIn
+    }), gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[4], 1.4, {
       bezier: {
         curviness: 1,
         values: [{
@@ -10496,37 +10486,66 @@ var minionsHandler = function minionsHandler() {
           y: 10
         }, {
           x: 250,
-          y: windowBottom / 3
+          y: headerBottom / 3
         }, {
           x: 280,
-          y: windowBottom / 3 * 2
+          y: headerBottom / 3 * 2
         }, {
-          x: 290,
-          y: windowBottom + 70
-        }],
-        autoRotate: true
+          x: 240,
+          y: headerBottom + 100
+        }]
       },
       delay: 0.15,
-      ease: easeIn,
+      ease: easeIn
+    })]).to(minions, 0.3, {
+      scale: 3,
       onComplete: function onComplete() {
-        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[4], 0.3, {
-          opacity: 0
-        });
-      }
+        animsDone['home-intro'].done = true;
+      },
+      ease: easeIn
     });
-    animsDone['home-intro'] = true;
   };
 
   var learningAnim = function learningAnim() {
-    var minions = homeSections[1].querySelectorAll('.shape');
-    if (!minions.length) return;
-    var minionsTop = minions[2].getBoundingClientRect().top;
-    animsDone['home-learning-experience'] = true;
+    var windowBottom = homeSections[1].getBoundingClientRect().top + window.pageYOffset;
+    console.log(window.pageYOffset);
+    animsDone['home-learning-experience'].running = true;
+    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[2], 0.3, {
+      y: headerBottom + 100,
+      ease: easeIn,
+      onComplete: function onComplete() {
+        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[0], 1.4, {
+          bezier: {
+            curviness: 1,
+            values: [{
+              x: -20,
+              y: windowBottom / 2
+            }, {
+              x: 200,
+              y: windowBottom - 40
+            }]
+          },
+          ease: easeIn
+        });
+      }
+    }); // TweenMax.to(minions[0], 1.4, {bezier: {curviness: 1, values: [{x: -20, y: windowBottom/2}, {x: 200, y: windowBottom - 40 + 'px'}]}, ease: easeIn});
+    // TweenMax.to(minions[1], 1.4, {bezier: {curviness: 1, values: [{x: -120, y: windowBottom/2}, {x: -100, y: windowBottom + 100 + 'px'}]}, ease: easeIn, onComplete: () => {  
+    //     TweenMax.to(minions[1], 0.3, {opacity: 0});
+    // }});
+    // TweenMax.to(minions[2], 1.4, {bezier: {curviness: 1, values: [{x: 20, y: windowBottom/2}, {x: 100, y: windowBottom + 70 + 'px'}]}, ease: easeIn, onComplete: () => {  
+    //     TweenMax.to(minions[2], 0.3, {opacity: 0});
+    // }});
+    // TweenMax.to(minions[3], 1.4, {bezier: {curviness: 1, values: [{x: 40, y: windowBottom/2}, {x: 150, y: windowBottom + 120 + 'px'}]}, ease: easeIn, onComplete: () => {  
+    //     TweenMax.to(minions[3], 0.3, {opacity: 0});
+    // }});
+    // TweenMax.to(minions[4], 1.4, {bezier: {curviness: 1, values: [{x: 30, y: windowBottom/2}, {x: 130, y: windowBottom + 100 + 'px'}]}, ease: easeIn, onComplete: () => {  
+    //     TweenMax.to(minions[4], 0.3, {opacity: 0});
+    // }});
   };
 
   var intersectionCallback = function intersectionCallback(entries) {
     Object(_utils__WEBPACK_IMPORTED_MODULE_1__["forEach"])(entries, function (entry) {
-      if (entry.intersectionRatio <= 0 || animsDone[entry.target.id]) return;
+      if (entry.intersectionRatio < 0.85 || animsDone[entry.target.id].running) return;
 
       switch (entry.target.id) {
         case 'home-intro':
@@ -10534,7 +10553,7 @@ var minionsHandler = function minionsHandler() {
           break;
 
         case 'home-learning-experience':
-          learningAnim();
+          if (animsDone['home-intro'].done) learningAnim();
           break;
 
         case 'home-offers':
@@ -10563,10 +10582,14 @@ var minionsHandler = function minionsHandler() {
   });
   Object(_utils__WEBPACK_IMPORTED_MODULE_1__["forEach"])(homeSections, function (section) {
     observer.observe(section);
-    animsDone[section.id] = false;
+    animsDone[section.id] = {
+      running: false,
+      done: false
+    };
   });
   _utils_Window__WEBPACK_IMPORTED_MODULE_2__["default"].addResizeFunction(function () {
     wh = window.innerHeight;
+    ww = window.innerWidth;
   });
 };
 

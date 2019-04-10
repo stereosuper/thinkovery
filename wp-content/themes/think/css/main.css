@@ -457,8 +457,8 @@ a {
     transition: 0.05s ease-in-out; }
 
 .shape {
-  width: 84px;
-  height: 84px;
+  width: 75px;
+  height: 75px;
   position: absolute;
   pointer-events: none; }
 
@@ -1657,7 +1657,8 @@ label {
 /* Home specific style */
 .home-header,
 .home-section {
-  padding: 5px 0 7em; }
+  padding: 5px 0 7em;
+  position: relative; }
 
 .home-header {
   text-align: center; }
@@ -1670,7 +1671,7 @@ label {
     width: 23px;
     height: 23px;
     top: 1px;
-    left: 10px;
+    left: 20px;
     right: 0;
     bottom: 0;
     margin: auto;

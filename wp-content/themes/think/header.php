@@ -35,7 +35,7 @@
 		</noscript>
 		<!-- End Google Tag Manager (noscript) -->
 
-		<header role='banner' class="main-header">
+		<header role='banner' class="main-header" id='header'>
 			<div class='container'>
 				<a href='<?php echo home_url('/'); ?>' class="logo" title='<?php bloginfo( 'name' ); ?>' rel='home'>
 					<svg width="155" height="34" viewBox="0 0 155 34" fill="none" xmlns="http://www.w3.org/2000/svg" id='logo'>
