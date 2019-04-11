@@ -51,6 +51,20 @@
                             </div>
                         <?php endif; ?>
                     </div>
+
+                    <?php if($count === 3) : ?>
+                        <svg class='shape s1'><use xlink:href='#icon-drop'/></svg>
+                        <svg class='shape s2'><use xlink:href='#icon-square'/></svg>
+                        <svg class='shape s3'><use xlink:href='#icon-square'/></svg>
+                        <svg class='shape s4'><use xlink:href='#icon-triangle'/></svg>
+                        <svg class='shape s5'><use xlink:href='#icon-triangle'/></svg>
+                        <svg class='shape s6'><use xlink:href='#icon-triangle'/></svg>
+                        <svg class='shape s7'><use xlink:href='#icon-rectangle'/></svg>
+                        <svg class='shape s8'><use xlink:href='#icon-rectangle'/></svg>
+                        <svg class='shape s9'><use xlink:href='#icon-rectangle'/></svg>
+                        <svg class='shape s10'><use xlink:href='#icon-circle'/></svg>
+                        <svg class='shape s11'><use xlink:href='#icon-circle'/></svg>
+                    <?php endif; ?>
                 </section>
             <?php endwhile; ?>
         <?php endif; ?>
