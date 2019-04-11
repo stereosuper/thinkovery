@@ -14,6 +14,7 @@ const videoHandler = () => {
             wrapper.addEventListener('click', () => {
                 TweenMax.to([wrapper.querySelector('.cover'), wrapper.querySelector('.wrapper-player')], 0.2, {opacity: 0, display: 'none'});
                 players[wrapper.getAttribute('data-id')].playVideo();
+                document.querySelector('[data-id="' + wrapper.getAttribute('data-id') + '"]').classList.add('playing');
             });
         };
 

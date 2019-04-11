@@ -279,8 +279,17 @@ a {
     transition: none !important;
 }
 
+.vieo-title{
+    transition: $transition;
+}
+
 .video {
     position: relative;
+    &.playing{
+        + .video-title{
+            opacity: 0.2;
+        }
+    }
     &:before {
         content: "";
         display: block;

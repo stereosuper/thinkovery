@@ -20,7 +20,7 @@
             <?php endif; ?>
 
             <?php $title = get_field('title'); ?>
-            <h1>
+            <h1 class='video-title'>
                 <?php echo $title['green'] ? $title['green'] . '<span>' . $title['black'] . '</span>' : get_the_title(); ?>
             </h1>
         </header>

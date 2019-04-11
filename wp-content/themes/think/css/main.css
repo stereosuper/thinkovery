@@ -418,8 +418,14 @@ a {
   -webkit-transition: none !important;
   transition: none !important; }
 
+.vieo-title {
+  -webkit-transition: 0.05s ease-in-out;
+  transition: 0.05s ease-in-out; }
+
 .video {
   position: relative; }
+  .video.playing + .video-title {
+    opacity: 0.2; }
   .video:before {
     content: "";
     display: block;

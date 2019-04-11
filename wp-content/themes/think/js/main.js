@@ -12200,6 +12200,7 @@ var videoHandler = function videoHandler() {
           display: 'none'
         });
         players[wrapper.getAttribute('data-id')].playVideo();
+        document.querySelector('[data-id="' + wrapper.getAttribute('data-id') + '"]').classList.add('playing');
       });
     };
 
