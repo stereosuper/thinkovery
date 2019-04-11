@@ -38,7 +38,7 @@ const minionsHandler = () => {
         const tlPlayer = new TimelineMax();
         const tl = new TimelineMax();
 
-        tlPlayer.to(minions[2], 0.3, {scale: 1, ease: easeIn})
+        tlPlayer.to(minions[2], 0.3, {scale: 1, opacity: 1, ease: easeIn})
         .to(minions[2], 0.3, {scale: 4, onComplete: () => {
             if( video ){
                 video.classList.add('player-on');
@@ -47,40 +47,41 @@ const minionsHandler = () => {
             }
         }, ease: easeIn})
         .to(minions[2], 0.2, {scale: 3, ease: easeIn})
-        .to(minions[2], 0.7, {y: headerBottom-40, rotation: 90, ease: easeIn, delay: 0.3})
+        .to(minions[2], 0.7, {x: -10, y: headerBottom-40, rotation: 90, ease: easeIn, delay: 0.3})
         .to(minions[2], 0.4, {y: headerBottom-50, ease: easeIn, onComplete: () => {
             TweenMax.to(minions[2], 0.4, {y: headerBottom-35, ease: easeIn}); 
         }, repeat: -1, repeatDelay: 3});
 
         tl
         .add([
-            TweenMax.to(minions, 0.3, {scale: 1, ease: easeIn}),
+            TweenMax.to([minions[0], minions[1], minions[3], minions[4]], 0.3, {opacity: 1, scale: 1, ease: easeIn, onComplete: () => {
+                TweenMax.to([minions[0], minions[1], minions[3], minions[4]], 1, {scale: 3, ease: easeIn});
+            }}),
             TweenMax.to(minions[0], 1.4, {bezier: {curviness: 1, values: [{x: -100, y: -30}, {x: -200, y: 0}, {x: -250, y: headerBottom/3}, {x: -280, y: (headerBottom/3)*2}, {x: -240, y: headerBottom + 100}]}, delay: 0.15, ease: easeIn}),
             TweenMax.to(minions[1], 1.4, {bezier: {curviness: 1, values: [{x: -50, y: -70}, {x: -100, y: -50}, {x: -140, y: headerBottom/3}, {x: -170, y: (headerBottom/3)*2}, {x: -130, y: headerBottom + 100}]}, delay: 0.15, ease: easeIn}),
             TweenMax.to(minions[3], 1.4, {bezier: {curviness: 1, values: [{x: 50, y: -60}, {x: 100, y: -40}, {x: 140, y: headerBottom/3}, {x: 170, y: (headerBottom/3)*2}, {x: 130, y: headerBottom + 100}]}, delay: 0.15, ease: easeIn}),
-            TweenMax.to(minions[4], 1.4, {bezier: {curviness: 1, values: [{x: 100, y: -10}, {x: 190, y: 10}, {x: 250, y: headerBottom/3}, {x: 280, y: (headerBottom/3)*2}, {x: 240, y: headerBottom + 100}]}, delay: 0.15, ease: easeIn})
-        ])
-        .to(minions, 0.3, {scale: 3, onComplete: () => {
-            animsDone['home-intro'].done = true;
-        }, ease: easeIn});
+            TweenMax.to(minions[4], 1.4, {bezier: {curviness: 1, values: [{x: 100, y: -10}, {x: 190, y: 10}, {x: 250, y: headerBottom/3}, {x: 280, y: (headerBottom/3)*2}, {x: 240, y: headerBottom + 100}]}, delay: 0.15, ease: easeIn, onComplete: () => {
+                animsDone['home-intro'].done = true;
+            }})
+        ]);
     };
 
     const learningAnim = () => {
-        const windowBottom = homeSections[1].offsetHeight - 100;
+        const windowBottom = homeSections[1].offsetHeight + ww/50;
         const duration = 1.4;
 
         animsDone['home-learning-experience'].running = true;
 
-        TweenMax.to(minions[2], 0.3, {y: headerBottom + 100, ease: easeIn, onComplete: () => {
-            TweenMax.to(minions[0], 1, {bezier: {curviness: 1, values: [{x: '+=60', y: '+=' + windowBottom/2}, {x: '+=200', y: '+=' + (windowBottom - 100)}]}, ease: easeIn});
+        TweenMax.to(minions[2], 0.3, {x: 0, y: headerBottom + 100, ease: easeIn, onComplete: () => {
+            TweenMax.to(minions[0], 1, {bezier: {curviness: 1, values: [{x: '+=60', y: '+=' + windowBottom/2}, {x: '+=200', y: '+=' + (windowBottom - 200)}]}, ease: easeIn});
 
-            TweenMax.to(minions[1], duration, {bezier: {curviness: 1, values: [{y: '+=' + windowBottom/2}, {x: '+=10', y: '+=' + (windowBottom + 110)}]}, ease: easeIn});
+            TweenMax.to(minions[1], duration, {bezier: {curviness: 1, values: [{y: '+=' + windowBottom/2}, {x: '+=10', y: '+=' + (windowBottom - 60)}]}, ease: easeIn});
 
-            TweenMax.to(minions[2], duration, {rotation: 0, bezier: {curviness: 1, values: [{y: '+=' + windowBottom/2}, {y: '+=' + (windowBottom + 140)}]}, ease: easeIn});
+            TweenMax.to(minions[2], duration, {rotation: 0, bezier: {curviness: 1, values: [{y: '+=' + windowBottom/2}, {y: '+=' + (windowBottom - 40)}]}, ease: easeIn});
 
-            TweenMax.to(minions[3], duration, {bezier: {curviness: 1, values: [{x: '+=80', y: '+=' + windowBottom/2}, {x: '-=10', y: '+=' + (windowBottom + 170)}]}, ease: easeIn});
+            TweenMax.to(minions[3], duration, {bezier: {curviness: 1, values: [{x: '+=80', y: '+=' + windowBottom/2}, {x: '-=10', y: '+=' + (windowBottom - 20)}]}, ease: easeIn});
 
-            TweenMax.to(minions[4], duration, {bezier: {curviness: 1, values: [{x: '+=80', y: '+=' + windowBottom/2}, {x: '-=20', y: '+=' + (windowBottom + 200)}]}, ease: easeIn, onComplete: () => {
+            TweenMax.to(minions[4], duration, {bezier: {curviness: 1, values: [{x: '+=80', y: '+=' + windowBottom/2}, {x: '-=20', y: '+=' + (windowBottom)}]}, ease: easeIn, onComplete: () => {
                 animsDone['home-learning-experience'].done = true;
             }});
         }});
@@ -92,12 +93,10 @@ const minionsHandler = () => {
 
         animsDone['home-offers'].running = true;
         
-        TweenMax.to(minions[3], duration, {y: '+=30', ease: easeIn});
-        TweenMax.to(minions[2], duration, {y: '+=60', ease: easeIn, delay: delay});
-        TweenMax.to(minions[1], duration, {y: '+=90', ease: easeIn, delay: delay*2});
-        TweenMax.to(minions[0], duration, {bezier: {curviness: 1, values: [{x: '-=60', y: '+=150'}, {x: '-=200', y: '+=300'}]}, ease: easeIn, delay: delay/*, onComplete: () => {
-            animsDone['home-offers'].done = true;
-        }*/});
+        TweenMax.to(minions[3], duration, {y: '+=20', ease: easeIn});
+        TweenMax.to(minions[2], duration, {y: '+=40', ease: easeIn, delay: delay});
+        TweenMax.to(minions[1], duration, {y: '+=60', ease: easeIn, delay: delay*2});
+        TweenMax.to(minions[0], duration, {bezier: {curviness: 1, values: [{x: '-=160', y: '+=100'}, {x: '-=200', y: '+=200'}]}, ease: easeIn, delay: delay});
     };
 
     const aboutAnim = () => {
@@ -151,10 +150,28 @@ const minionsHandler = () => {
         }, delay: delay*9});
         // rectangle 3
         TweenMax.to(minions[6], durationSmall, {scale: 1, opacity: 1, scaleX: -1, ease: easeIn, onComplete: () => {
-            TweenMax.to(minions[6], duration, {y: windowBottom - 59, ease: easeIn/*, onComplete: () => {
-                animsDone['home-about-us'].done = true;
-            }*/});
+            TweenMax.to(minions[6], duration, {y: windowBottom - 59, ease: easeIn});
         }, delay: delay*10});
+    };
+
+    const experiencesAnim = () => {
+        const morpion = document.getElementById('morpion');
+
+        if( !morpion ) return;
+
+        const minons = morpion.querySelectorAll('.shape');
+        const duration = 0.2;
+        const delay = 0.5;
+        const tl = new TimelineMax({delay: 0.8});
+
+        animsDone['home-experiences'].running = true;
+
+        morpion.classList.add('on');
+        tl.to(minons[1], duration, {scale: 1, opacity: 1, ease: easeIn})
+        .to(minons[0], duration, {scale: 1, opacity: 1, ease: easeIn, delay: delay})
+        .to(minons[2], duration, {scale: 1, opacity: 1, ease: easeIn, delay: delay})
+        .to(minons[4], duration, {scale: 1, opacity: 1, ease: easeIn, delay: delay})
+        .to(minons[3], duration, {scale: 1, opacity: 1, ease: easeIn, delay: delay});
     };
 
     const intersectionCallback = entries => {
@@ -175,6 +192,7 @@ const minionsHandler = () => {
                     aboutAnim();
                     break;
                 case 'home-experiences':
+                    experiencesAnim();
                     break;
                 default:
                     break;

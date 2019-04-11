@@ -10372,6 +10372,7 @@ var minionsHandler = function minionsHandler() {
     var tl = new TimelineMax();
     tlPlayer.to(minions[2], 0.3, {
       scale: 1,
+      opacity: 1,
       ease: easeIn
     }).to(minions[2], 0.3, {
       scale: 4,
@@ -10390,6 +10391,7 @@ var minionsHandler = function minionsHandler() {
       scale: 3,
       ease: easeIn
     }).to(minions[2], 0.7, {
+      x: -10,
       y: headerBottom - 40,
       rotation: 90,
       ease: easeIn,
@@ -10406,9 +10408,16 @@ var minionsHandler = function minionsHandler() {
       repeat: -1,
       repeatDelay: 3
     });
-    tl.add([gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions, 0.3, {
+    tl.add([gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to([minions[0], minions[1], minions[3], minions[4]], 0.3, {
+      opacity: 1,
       scale: 1,
-      ease: easeIn
+      ease: easeIn,
+      onComplete: function onComplete() {
+        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to([minions[0], minions[1], minions[3], minions[4]], 1, {
+          scale: 3,
+          ease: easeIn
+        });
+      }
     }), gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[0], 1.4, {
       bezier: {
         curviness: 1,
@@ -10496,21 +10505,19 @@ var minionsHandler = function minionsHandler() {
         }]
       },
       delay: 0.15,
-      ease: easeIn
-    })]).to(minions, 0.3, {
-      scale: 3,
+      ease: easeIn,
       onComplete: function onComplete() {
         animsDone['home-intro'].done = true;
-      },
-      ease: easeIn
-    });
+      }
+    })]);
   };
 
   var learningAnim = function learningAnim() {
-    var windowBottom = homeSections[1].offsetHeight - 100;
+    var windowBottom = homeSections[1].offsetHeight + ww / 50;
     var duration = 1.4;
     animsDone['home-learning-experience'].running = true;
     gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[2], 0.3, {
+      x: 0,
       y: headerBottom + 100,
       ease: easeIn,
       onComplete: function onComplete() {
@@ -10522,7 +10529,7 @@ var minionsHandler = function minionsHandler() {
               y: '+=' + windowBottom / 2
             }, {
               x: '+=200',
-              y: '+=' + (windowBottom - 100)
+              y: '+=' + (windowBottom - 200)
             }]
           },
           ease: easeIn
@@ -10534,7 +10541,7 @@ var minionsHandler = function minionsHandler() {
               y: '+=' + windowBottom / 2
             }, {
               x: '+=10',
-              y: '+=' + (windowBottom + 110)
+              y: '+=' + (windowBottom - 60)
             }]
           },
           ease: easeIn
@@ -10546,7 +10553,7 @@ var minionsHandler = function minionsHandler() {
             values: [{
               y: '+=' + windowBottom / 2
             }, {
-              y: '+=' + (windowBottom + 140)
+              y: '+=' + (windowBottom - 40)
             }]
           },
           ease: easeIn
@@ -10559,7 +10566,7 @@ var minionsHandler = function minionsHandler() {
               y: '+=' + windowBottom / 2
             }, {
               x: '-=10',
-              y: '+=' + (windowBottom + 170)
+              y: '+=' + (windowBottom - 20)
             }]
           },
           ease: easeIn
@@ -10572,7 +10579,7 @@ var minionsHandler = function minionsHandler() {
               y: '+=' + windowBottom / 2
             }, {
               x: '-=20',
-              y: '+=' + (windowBottom + 200)
+              y: '+=' + windowBottom
             }]
           },
           ease: easeIn,
@@ -10589,16 +10596,16 @@ var minionsHandler = function minionsHandler() {
     var delay = 0.05;
     animsDone['home-offers'].running = true;
     gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[3], duration, {
-      y: '+=30',
+      y: '+=20',
       ease: easeIn
     });
     gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[2], duration, {
-      y: '+=60',
+      y: '+=40',
       ease: easeIn,
       delay: delay
     });
     gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[1], duration, {
-      y: '+=90',
+      y: '+=60',
       ease: easeIn,
       delay: delay * 2
     });
@@ -10606,19 +10613,15 @@ var minionsHandler = function minionsHandler() {
       bezier: {
         curviness: 1,
         values: [{
-          x: '-=60',
-          y: '+=150'
+          x: '-=160',
+          y: '+=100'
         }, {
           x: '-=200',
-          y: '+=300'
+          y: '+=200'
         }]
       },
       ease: easeIn,
       delay: delay
-      /*, onComplete: () => {
-      animsDone['home-offers'].done = true;
-      }*/
-
     });
   };
 
@@ -10777,13 +10780,47 @@ var minionsHandler = function minionsHandler() {
         gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[6], duration, {
           y: windowBottom - 59,
           ease: easeIn
-          /*, onComplete: () => {
-          animsDone['home-about-us'].done = true;
-          }*/
-
         });
       },
       delay: delay * 10
+    });
+  };
+
+  var experiencesAnim = function experiencesAnim() {
+    var morpion = document.getElementById('morpion');
+    if (!morpion) return;
+    var minons = morpion.querySelectorAll('.shape');
+    var duration = 0.2;
+    var delay = 0.5;
+    var tl = new TimelineMax({
+      delay: 0.8
+    });
+    animsDone['home-experiences'].running = true;
+    morpion.classList.add('on');
+    tl.to(minons[1], duration, {
+      scale: 1,
+      opacity: 1,
+      ease: easeIn
+    }).to(minons[0], duration, {
+      scale: 1,
+      opacity: 1,
+      ease: easeIn,
+      delay: delay
+    }).to(minons[2], duration, {
+      scale: 1,
+      opacity: 1,
+      ease: easeIn,
+      delay: delay
+    }).to(minons[4], duration, {
+      scale: 1,
+      opacity: 1,
+      ease: easeIn,
+      delay: delay
+    }).to(minons[3], duration, {
+      scale: 1,
+      opacity: 1,
+      ease: easeIn,
+      delay: delay
     });
   };
 
@@ -10809,6 +10846,7 @@ var minionsHandler = function minionsHandler() {
           break;
 
         case 'home-experiences':
+          experiencesAnim();
           break;
 
         default:

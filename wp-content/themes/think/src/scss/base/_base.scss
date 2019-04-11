@@ -320,10 +320,7 @@ a {
 }
 
 .shape{
-    width: 75px;
-    height: 75px;
-    position: absolute;
-    pointer-events: none;
+    display: none;
 }
 
 
@@ -373,7 +370,7 @@ a {
     }
 }
 
-@media(min-width: $desktop){
+@media (min-width: $desktop){
     .wp-block-image{
         width: calc(129% + #{$gutter});
     }
@@ -382,5 +379,15 @@ a {
 @media (min-width: $desktop-huge){
     .wp-block-image{
         width: calc(133.33% + #{$gutter});
+    }
+}
+
+@media (min-width: $desktop-small) and (min-height: 630px){
+    .shape{
+        display: block;
+        width: 75px;
+        height: 75px;
+        position: absolute;
+        pointer-events: none;
     }
 }

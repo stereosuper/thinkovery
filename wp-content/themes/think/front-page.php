@@ -65,6 +65,17 @@
                         <svg class='shape s10'><use xlink:href='#icon-circle'/></svg>
                         <svg class='shape s11'><use xlink:href='#icon-circle'/></svg>
                     <?php endif; ?>
+
+                    <?php if($count === 4) : ?>
+                        <div class='morpion' id='morpion'>
+                            <div class='vertical'></div>
+                            <svg class='shape s1'><use xlink:href='#icon-drop'/></svg>
+                            <svg class='shape s2'><use xlink:href='#icon-rectangle'/></svg>
+                            <svg class='shape s3'><use xlink:href='#icon-rectangle'/></svg>
+                            <svg class='shape s4'><use xlink:href='#icon-rectangle'/></svg>
+                            <svg class='shape s5'><use xlink:href='#icon-circle'/></svg>
+                        </div>
+                    <?php endif; ?>
                 </section>
             <?php endwhile; ?>
         <?php endif; ?>
