@@ -1813,19 +1813,20 @@ label {
     .morpion.on:before, .morpion.on:after, .morpion.on .vertical:before, .morpion.on .vertical:after {
       -webkit-transform: scale(1);
               transform: scale(1); }
-    .morpion:before, .morpion:after {
+    .morpion:before, .morpion:after, .morpion .vertical:before, .morpion .vertical:after {
       content: '';
-      height: 1px;
       position: absolute;
-      left: 0;
-      right: 0;
-      background: #aeaeae;
       -webkit-transform-origin: 0 0;
               transform-origin: 0 0;
       -webkit-transform: scale(0);
               transform: scale(0);
       -webkit-transition: .5s ease-in;
       transition: .5s ease-in; }
+    .morpion:before, .morpion:after {
+      height: 1px;
+      left: 0;
+      right: 0;
+      background: repeating-linear-gradient(45deg, #aeaeae, #aeaeae 10px, transparent 10px, transparent 20px); }
     .morpion:before {
       top: 33.3%; }
     .morpion:after {
@@ -1833,18 +1834,10 @@ label {
       -webkit-transition-delay: 0.1s;
               transition-delay: 0.1s; }
     .morpion .vertical:before, .morpion .vertical:after {
-      content: '';
       width: 1px;
-      position: absolute;
       top: 0;
       bottom: 0;
-      background: #aeaeae;
-      -webkit-transform-origin: 0 0;
-              transform-origin: 0 0;
-      -webkit-transform: scale(0);
-              transform: scale(0);
-      -webkit-transition: .5s ease-in;
-      transition: .5s ease-in; }
+      background: repeating-linear-gradient(#aeaeae, #aeaeae 10px, transparent 10px, transparent 20px); }
     .morpion .vertical:before {
       left: 33.3%;
       -webkit-transition-delay: 0.2s;

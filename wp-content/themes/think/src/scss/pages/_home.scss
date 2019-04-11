@@ -202,16 +202,18 @@
                 transform: scale(1);
             }
         }
-        &:before, &:after{
+        &:before, &:after, .vertical:before, .vertical:after{
             content: '';
-            height: 1px;
             position: absolute;
-            left: 0;
-            right: 0;
-            background: $grey;
             transform-origin: 0 0;
             transform: scale(0);
             transition: .5s ease-in;
+        }
+        &:before, &:after{
+            height: 1px;
+            left: 0;
+            right: 0;
+            background: repeating-linear-gradient(45deg, $grey, $grey 10px, transparent 10px, transparent 20px);
         }
         &:before{
             top: 33.3%;
@@ -222,15 +224,10 @@
         }
         .vertical{
             &:before, &:after{
-                content: '';
                 width: 1px;
-                position: absolute;
                 top: 0;
                 bottom: 0;
-                background: $grey;
-                transform-origin: 0 0;
-                transform: scale(0);
-                transition: .5s ease-in;
+                background: repeating-linear-gradient($grey, $grey 10px, transparent 10px, transparent 20px);
             }
             &:before{
                 left: 33.3%;
