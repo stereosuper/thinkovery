@@ -9637,79 +9637,31 @@ var ioBorders = function ioBorders() {
       }
     },
     byIndex: ['top', 'right', 'bottom', 'left']
-  }; // Borders reset sequences
-
-  var bordersAnimationsReset = {
-    intro: {
-      borders: [{
-        position: 'bottom',
-        duration: 0.5
-      }, {
-        position: 'left',
-        duration: 0.5
-      }]
-    },
-    learningExperience: {
-      borders: [{
-        position: 'top',
-        duration: 0.5
-      }, {
-        position: 'right',
-        duration: 0.5
-      }]
-    },
-    offers: {
-      borders: [{
-        position: 'bottom',
-        duration: 0.5
-      }, {
-        position: 'left',
-        duration: 0.5
-      }]
-    },
-    aboutUs: {
-      borders: [{
-        position: 'top',
-        duration: 0.5
-      }, {
-        position: 'right',
-        duration: 0.5
-      }]
-    },
-    experiences: {
-      borders: [{
-        position: 'bottom',
-        duration: 0.5
-      }, {
-        position: 'left',
-        duration: 0.5
-      }]
-    }
   }; // Borders update sequences
 
   var bordersAnimations = {
     intro: {
       borders: [{
         position: 'top',
-        duration: 0.5,
+        duration: 0.6,
         maxScale: 1,
         axis: 'x',
         easing: 'out'
       }, {
         position: 'all',
-        duration: 0.5,
+        duration: 0.6,
         color: _global__WEBPACK_IMPORTED_MODULE_4__["colors"].funGreen,
         easing: 'out',
         nestNext: false
       }, {
         position: 'right',
-        duration: 0.5,
+        duration: 0.6,
         maxScale: 1,
         axis: 'y',
         easing: 'out'
       }, {
         position: 'bottom',
-        duration: 0.5,
+        duration: 0.6,
         maxScale: 0.5,
         axis: 'x',
         easing: 'out'
@@ -9718,25 +9670,25 @@ var ioBorders = function ioBorders() {
     learningExperience: {
       borders: [{
         position: 'bottom',
-        duration: 0.5,
+        duration: 0.65,
         maxScale: 1,
         axis: 'x',
         easing: 'out'
       }, {
         position: 'all',
         color: _global__WEBPACK_IMPORTED_MODULE_4__["colors"].pictonBlue,
-        duration: 0.5,
+        duration: 0.65,
         easing: 'out',
         nestNext: false
       }, {
         position: 'left',
-        duration: 0.5,
+        duration: 0.65,
         maxScale: 1,
         axis: 'y',
         easing: 'out'
       }, {
         position: 'top',
-        duration: 0.5,
+        duration: 0.65,
         maxScale: 0.25,
         axis: 'x',
         easing: 'out'
@@ -9745,25 +9697,25 @@ var ioBorders = function ioBorders() {
     offers: {
       borders: [{
         position: 'top',
-        duration: 0.5,
+        duration: 0.65,
         maxScale: 1,
         axis: 'x',
         easing: 'out'
       }, {
         position: 'all',
         color: _global__WEBPACK_IMPORTED_MODULE_4__["colors"].funGreen,
-        duration: 0.5,
+        duration: 0.65,
         easing: 'out',
         nestNext: false
       }, {
         position: 'right',
-        duration: 0.5,
+        duration: 0.65,
         maxScale: 1,
         axis: 'y',
         easing: 'out'
       }, {
         position: 'top',
-        duration: 0.5,
+        duration: 0.65,
         maxScale: 0,
         axis: 'x',
         origin: '100% 50%',
@@ -9771,7 +9723,7 @@ var ioBorders = function ioBorders() {
         nestNext: false
       }, {
         position: 'bottom',
-        duration: 0.5,
+        duration: 0.65,
         maxScale: 0.75,
         axis: 'x',
         easing: 'out'
@@ -9780,25 +9732,25 @@ var ioBorders = function ioBorders() {
     aboutUs: {
       borders: [{
         position: 'bottom',
-        duration: 0.5,
+        duration: 0.65,
         maxScale: 1,
         axis: 'x',
         easing: 'out'
       }, {
         position: 'all',
         color: _global__WEBPACK_IMPORTED_MODULE_4__["colors"].persimmon,
-        duration: 0.5,
+        duration: 0.65,
         easing: 'out',
         nestNext: false
       }, {
         position: 'left',
-        duration: 0.5,
+        duration: 0.65,
         maxScale: 1,
         axis: 'y',
         easing: 'out'
       }, {
         position: 'bottom',
-        duration: 0.5,
+        duration: 0.65,
         maxScale: 0.25,
         axis: 'x',
         origin: '0% 50%',
@@ -9806,7 +9758,7 @@ var ioBorders = function ioBorders() {
         nestNext: false
       }, {
         position: 'top',
-        duration: 0.5,
+        duration: 0.65,
         maxScale: 1,
         axis: 'x',
         easing: 'out'
@@ -9815,25 +9767,25 @@ var ioBorders = function ioBorders() {
     experiences: {
       borders: [{
         position: 'top',
-        duration: 0.5,
+        duration: 0.65,
         maxScale: 1,
         axis: 'x',
         easing: 'out'
       }, {
         position: 'all',
         color: _global__WEBPACK_IMPORTED_MODULE_4__["colors"].darkOrange,
-        duration: 0.5,
+        duration: 0.65,
         easing: 'out',
         nestNext: false
       }, {
         position: 'right',
-        duration: 0.5,
+        duration: 0.65,
         maxScale: 1,
         axis: 'y',
         easing: 'out'
       }, {
         position: 'top',
-        duration: 0.5,
+        duration: 0.65,
         maxScale: 0.25,
         axis: 'x',
         origin: '100% 0%',
@@ -9841,7 +9793,7 @@ var ioBorders = function ioBorders() {
         nestNext: false
       }, {
         position: 'bottom',
-        duration: 0.5,
+        duration: 0.65,
         maxScale: 1,
         axis: 'x',
         easing: 'out'
@@ -9902,7 +9854,8 @@ var ioBorders = function ioBorders() {
       var lastEndIndex = state.ends.end;
       var newStartIndex = borderMapping[start.position].index;
       var newEndIndex = borderMapping[end.position].index;
-      var lastStartIndex = state.ends.start;
+      var lastStartIndex = state.ends.start; // Head
+
       var delta = Math.abs(newEndIndex <= lastEndIndex ? newEndIndex + 4 - lastEndIndex : newEndIndex - lastEndIndex) + 1;
       var index = 0;
 
@@ -9910,13 +9863,14 @@ var ioBorders = function ioBorders() {
         var borderIndex = (lastEndIndex + index) % 4;
         returnBorders.borders[index] = {
           position: borderMapping.byIndex[borderIndex],
-          duration: 0.5,
+          duration: 0.65,
           maxScale: index === delta - 1 ? end.scale : 1,
           axis: borderIndex % 2 ? 'y' : 'x',
           ease: 'out',
           nestNext: false
         };
-      }
+      } // Tail
+
 
       delta = Math.abs(newStartIndex <= lastStartIndex ? newStartIndex + 4 - lastStartIndex : newStartIndex - lastStartIndex) + 1;
 
@@ -9933,11 +9887,11 @@ var ioBorders = function ioBorders() {
 
         var border = {
           position: position,
-          duration: 0.5,
+          duration: 0.65,
           maxScale: maxScale,
           origin: borderMapping.reset[borderMapping.byIndex[_borderIndex]].origin,
           axis: _borderIndex % 2 ? 'y' : 'x',
-          ease: 'out'
+          ease: 'inn'
         };
         var insertIndex = index * 2 + 1;
         returnBorders.borders.splice(insertIndex, 0, border);
