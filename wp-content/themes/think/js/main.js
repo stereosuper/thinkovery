@@ -9499,6 +9499,771 @@ var burgerHandler = function burgerHandler() {
 
 /***/ }),
 
+/***/ "./wp-content/themes/think/src/js/drawBorders.js":
+/*!*******************************************************!*\
+  !*** ./wp-content/themes/think/src/js/drawBorders.js ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils */ "./wp-content/themes/think/src/js/utils/index.js");
+/* harmony import */ var _utils_Scroll__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils/Scroll */ "./wp-content/themes/think/src/js/utils/Scroll.js");
+/* harmony import */ var _utils_Window__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils/Window */ "./wp-content/themes/think/src/js/utils/Window.js");
+/* harmony import */ var _global__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./global */ "./wp-content/themes/think/src/js/global/index.js");
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+var ioBorders = function ioBorders() {
+  var bordersWrapper = document.getElementById('borders');
+  if (!bordersWrapper) return; // Borders html elements
+
+  var bordersMouse = bordersWrapper.querySelector('.mouse').children;
+  var bordersCat = bordersWrapper.querySelector('.cat').children; // Borders transformations data
+
+  var borderMapping = {
+    top: {
+      index: 0,
+      origin: '0% 50%'
+    },
+    right: {
+      index: 1,
+      origin: '50% 0%'
+    },
+    left: {
+      index: 3,
+      origin: '50% 100%'
+    },
+    bottom: {
+      index: 2,
+      origin: '100% 50%'
+    },
+    reset: {
+      top: {
+        origin: '100% 50%'
+      },
+      right: {
+        origin: '50% 100%'
+      },
+      bottom: {
+        origin: '0% 50%'
+      },
+      left: {
+        origin: '50% 0%'
+      }
+    },
+    byIndex: ['top', 'right', 'bottom', 'left']
+  };
+  /**
+   * @description updates display state depending on borders style
+   */
+
+  var handleDisplay = function handleDisplay() {
+    return getComputedStyle(bordersWrapper).display !== 'none';
+  };
+  /**
+   * @description select borders children type
+   * @param {object} { type }
+   * @returns {array}
+   */
+
+
+  var selectBordersElements = function selectBordersElements(_ref) {
+    var type = _ref.type;
+    var bordersElements = [];
+
+    switch (type) {
+      case 'cat':
+        bordersElements = bordersCat;
+        break;
+
+      case 'mouse':
+        bordersElements = bordersMouse;
+        break;
+
+      default:
+        break;
+    }
+
+    return bordersElements;
+  };
+  /**
+   * @description update next section borders
+   * @param {array} { borders }
+   */
+
+
+  var animateBorder = function animateBorder(_ref2) {
+    var type = _ref2.type,
+        borders = _ref2.borders,
+        queueCallback = _ref2.queueCallback;
+    var bordersElements = selectBordersElements({
+      type: type
+    });
+
+    var _borders = _slicedToArray(borders, 2),
+        _borders$ = _borders[0],
+        position = _borders$.position,
+        duration = _borders$.duration,
+        color = _borders$.color,
+        maxScale = _borders$.maxScale,
+        axis = _borders$.axis,
+        origin = _borders$.origin,
+        _borders$$nestNext = _borders$.nestNext,
+        nestNext = _borders$$nestNext === void 0 ? true : _borders$$nestNext,
+        nextBorder = _borders[1];
+
+    var isAll = position === 'all';
+    var ease = '';
+
+    if (_global__WEBPACK_IMPORTED_MODULE_4__["easing"] === 'in') {
+      ease = _global__WEBPACK_IMPORTED_MODULE_4__["easing"].catMouseEaseIn;
+    } else if (_global__WEBPACK_IMPORTED_MODULE_4__["easing"] === 'out') {
+      ease = _global__WEBPACK_IMPORTED_MODULE_4__["easing"].catMouseEaseOut;
+    }
+
+    var scaleX = null;
+    var scaleY = null;
+
+    if (!isAll) {
+      scaleX = axis === 'x' ? maxScale : 1;
+      scaleY = axis === 'y' ? maxScale : 1;
+    }
+
+    var tweenParams = {
+      transformOrigin: origin || (!isAll ? borderMapping[position].origin : ''),
+      scaleX: scaleX,
+      scaleY: scaleY,
+      ease: ease,
+      onComplete: function onComplete() {
+        if (!nestNext && nextBorder) return;
+
+        if (nextBorder) {
+          animateBorder({
+            type: type,
+            borders: borders.slice(1, borders.length),
+            queueCallback: queueCallback
+          });
+        } else if (queueCallback) {
+          queueCallback();
+        }
+      }
+    };
+
+    if (color) {
+      tweenParams.backgroundColor = color;
+    }
+
+    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(isAll ? bordersElements : bordersElements[borderMapping[position].index], duration, tweenParams);
+    if (nestNext || !nextBorder) return;
+    borders.shift();
+    animateBorder({
+      type: type,
+      borders: borders,
+      queueCallback: queueCallback
+    });
+  };
+
+  var animateBordersHome = function animateBordersHome() {
+    // Borders animations state
+    var state = {
+      init: false,
+      display: false,
+      isMoving: false,
+      queue: [],
+      currentSection: null,
+      nextSection: null,
+      ends: {
+        start: null,
+        end: null
+      }
+    }; // Borders update sequences
+
+    var bordersAnimations = {
+      intro: {
+        borders: [{
+          position: 'top',
+          duration: 0.5,
+          maxScale: 1,
+          axis: 'x',
+          easing: 'out'
+        }, {
+          position: 'all',
+          duration: 0.5,
+          color: _global__WEBPACK_IMPORTED_MODULE_4__["colors"].funGreen,
+          easing: 'out',
+          nestNext: false
+        }, {
+          position: 'right',
+          duration: 0.5,
+          maxScale: 1,
+          axis: 'y',
+          easing: 'out'
+        }, {
+          position: 'bottom',
+          duration: 0.5,
+          maxScale: 0.5,
+          axis: 'x',
+          easing: 'out'
+        }]
+      },
+      learningExperience: {
+        borders: [{
+          position: 'bottom',
+          duration: 0.5,
+          maxScale: 1,
+          axis: 'x',
+          easing: 'out'
+        }, {
+          position: 'all',
+          color: _global__WEBPACK_IMPORTED_MODULE_4__["colors"].pictonBlue,
+          duration: 0.5,
+          easing: 'out',
+          nestNext: false
+        }, {
+          position: 'left',
+          duration: 0.5,
+          maxScale: 1,
+          axis: 'y',
+          easing: 'out'
+        }, {
+          position: 'top',
+          duration: 0.5,
+          maxScale: 0.25,
+          axis: 'x',
+          easing: 'out'
+        }]
+      },
+      offers: {
+        borders: [{
+          position: 'top',
+          duration: 0.5,
+          maxScale: 1,
+          axis: 'x',
+          easing: 'out'
+        }, {
+          position: 'all',
+          color: _global__WEBPACK_IMPORTED_MODULE_4__["colors"].funGreen,
+          duration: 0.5,
+          easing: 'out',
+          nestNext: false
+        }, {
+          position: 'right',
+          duration: 0.5,
+          maxScale: 1,
+          axis: 'y',
+          easing: 'out'
+        }, {
+          position: 'top',
+          duration: 0.5,
+          maxScale: 0,
+          axis: 'x',
+          origin: '100% 50%',
+          easing: 'in',
+          nestNext: false
+        }, {
+          position: 'bottom',
+          duration: 0.5,
+          maxScale: 0.75,
+          axis: 'x',
+          easing: 'out'
+        }]
+      },
+      aboutUs: {
+        borders: [{
+          position: 'bottom',
+          duration: 0.5,
+          maxScale: 1,
+          axis: 'x',
+          easing: 'out'
+        }, {
+          position: 'all',
+          color: _global__WEBPACK_IMPORTED_MODULE_4__["colors"].persimmon,
+          duration: 0.5,
+          easing: 'out',
+          nestNext: false
+        }, {
+          position: 'left',
+          duration: 0.5,
+          maxScale: 1,
+          axis: 'y',
+          easing: 'out'
+        }, {
+          position: 'bottom',
+          duration: 0.5,
+          maxScale: 0.25,
+          axis: 'x',
+          origin: '0% 50%',
+          easing: 'in',
+          nestNext: false
+        }, {
+          position: 'top',
+          duration: 0.5,
+          maxScale: 1,
+          axis: 'x',
+          easing: 'out'
+        }]
+      },
+      experiences: {
+        borders: [{
+          position: 'top',
+          duration: 0.5,
+          maxScale: 1,
+          axis: 'x',
+          easing: 'out'
+        }, {
+          position: 'all',
+          color: _global__WEBPACK_IMPORTED_MODULE_4__["colors"].darkOrange,
+          duration: 0.5,
+          easing: 'out',
+          nestNext: false
+        }, {
+          position: 'right',
+          duration: 0.5,
+          maxScale: 1,
+          axis: 'y',
+          easing: 'out'
+        }, {
+          position: 'top',
+          duration: 0.5,
+          maxScale: 0.25,
+          axis: 'x',
+          origin: '100% 0%',
+          easing: 'in',
+          nestNext: false
+        }, {
+          position: 'bottom',
+          duration: 0.5,
+          maxScale: 1,
+          axis: 'x',
+          easing: 'out'
+        }]
+      },
+      homeFooter: {
+        borders: [{
+          position: 'right',
+          duration: 0.5,
+          maxScale: 1,
+          axis: 'y',
+          easing: 'out'
+        }, {
+          position: 'all',
+          color: _global__WEBPACK_IMPORTED_MODULE_4__["colors"].funGreen,
+          duration: 0.5,
+          easing: 'out',
+          nestNext: false
+        }, {
+          position: 'bottom',
+          duration: 0.5,
+          maxScale: 1,
+          axis: 'x',
+          easing: 'out'
+        }, {
+          position: 'right',
+          duration: 0.5,
+          maxScale: 0.5,
+          axis: 'y',
+          origin: '50% 100%',
+          easing: 'in',
+          nestNext: false
+        }, {
+          position: 'left',
+          duration: 0.5,
+          maxScale: 1,
+          axis: 'y',
+          easing: 'out'
+        }]
+      }
+    };
+    /**
+     * @description queuing process if a border animation is currently playing
+     */
+
+    var processQueue = function processQueue() {
+      state.isMoving = false;
+      if (!state.queue.length) return;
+      var event = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["createNewEvent"])('updateQueue');
+
+      if (state.queue.length > 2) {
+        state.queue.splice(0, state.queue.length - 1);
+      }
+
+      var _state$queue = _slicedToArray(state.queue, 1);
+
+      state.nextSection = _state$queue[0];
+      state.queue.shift();
+      bordersWrapper.dispatchEvent(event);
+    };
+    /**
+     * @description handle scroll speed
+     * @param {event} e
+     */
+
+
+    var handleWheel = function handleWheel(e) {
+      var deltaY = e.deltaY;
+      state.scrollSpeed = Math.abs(deltaY);
+      e.stopPropagation();
+      if (state.scrollSpeed > 2 || state.isMoving) return;
+      processQueue();
+    };
+
+    var computeResetBorders = function computeResetBorders(_ref3) {
+      var defaultAnim = _ref3.defaultAnim,
+          color = _ref3.color,
+          start = _ref3.start,
+          end = _ref3.end;
+      var returnBorders = {
+        borders: []
+      };
+
+      if (state.ends.start !== null && state.ends.end !== null) {
+        var lastEndIndex = state.ends.end;
+        var newStartIndex = borderMapping[start.position].index;
+        var newEndIndex = borderMapping[end.position].index;
+        var lastStartIndex = state.ends.start; // Head
+
+        var delta = Math.abs(newEndIndex < lastEndIndex ? newEndIndex + 4 - lastEndIndex : newEndIndex - lastEndIndex) + 1;
+        var index = 0;
+
+        for (index; index < delta; index += 1) {
+          var borderIndex = (lastEndIndex + index) % 4;
+          returnBorders.borders[index] = {
+            position: borderMapping.byIndex[borderIndex],
+            duration: 0.5,
+            maxScale: index === delta - 1 ? end.scale : 1,
+            axis: borderIndex % 2 ? 'y' : 'x',
+            ease: 'out',
+            nestNext: false
+          };
+        } // Tail
+
+
+        delta = Math.abs(newStartIndex < lastStartIndex ? newStartIndex + 4 - lastStartIndex : newStartIndex - lastStartIndex) + 1;
+
+        for (index = 0; index < delta; index += 1) {
+          var _borderIndex = (lastStartIndex + index) % 4;
+
+          var position = borderMapping.byIndex[_borderIndex];
+          var maxScale = 0;
+
+          if (index === delta - 1) {
+            position = borderMapping.byIndex[_borderIndex];
+            maxScale = start.scale;
+          }
+
+          var border = {
+            position: position,
+            duration: 0.5,
+            maxScale: maxScale,
+            origin: borderMapping.reset[borderMapping.byIndex[_borderIndex]].origin,
+            axis: _borderIndex % 2 ? 'y' : 'x',
+            ease: 'in'
+          };
+          var insertIndex = index * 2 + 1;
+          returnBorders.borders.splice(insertIndex, 0, border);
+          state.ends.end = newEndIndex;
+          state.ends.start = newStartIndex;
+        }
+
+        returnBorders.borders.splice(1, 0, {
+          position: 'all',
+          color: color,
+          duration: 0.5,
+          easing: 'out',
+          nestNext: false
+        });
+      } else {
+        returnBorders = bordersAnimations[defaultAnim];
+        state.ends.start = borderMapping[returnBorders.borders[0].position].index;
+        state.ends.end = borderMapping[returnBorders.borders[returnBorders.borders.length - 1].position].index;
+      }
+
+      return returnBorders;
+    };
+    /**
+     * @description border sections animation controller
+     */
+
+
+    var updateBorder = function updateBorder() {
+      if (state.isMoving || state.currentSection && state.nextSection && state.currentSection === state.nextSection) return;
+      state.isMoving = true;
+
+      switch (state.nextSection) {
+        case 'home-intro':
+          animateBorder(_objectSpread({
+            type: 'cat'
+          }, computeResetBorders({
+            defaultAnim: 'intro',
+            color: _global__WEBPACK_IMPORTED_MODULE_4__["colors"].funGreen,
+            start: {
+              position: 'top',
+              scale: 1
+            },
+            end: {
+              position: 'bottom',
+              scale: 0.5
+            }
+          }), {
+            queueCallback: processQueue
+          }));
+          break;
+
+        case 'home-learning-experience':
+          animateBorder(_objectSpread({
+            type: 'cat'
+          }, computeResetBorders({
+            defaultAnim: 'learningExperience',
+            color: _global__WEBPACK_IMPORTED_MODULE_4__["colors"].pictonBlue,
+            start: {
+              position: 'bottom',
+              scale: 1
+            },
+            end: {
+              position: 'top',
+              scale: 0.25
+            }
+          }), {
+            queueCallback: processQueue
+          }));
+          break;
+
+        case 'home-offers':
+          animateBorder(_objectSpread({
+            type: 'cat'
+          }, computeResetBorders({
+            defaultAnim: 'offers',
+            color: _global__WEBPACK_IMPORTED_MODULE_4__["colors"].funGreen,
+            start: {
+              position: 'right',
+              scale: 1
+            },
+            end: {
+              position: 'bottom',
+              scale: 0.75
+            }
+          }), {
+            queueCallback: processQueue
+          }));
+          break;
+
+        case 'home-about-us':
+          animateBorder(_objectSpread({
+            type: 'cat'
+          }, computeResetBorders({
+            defaultAnim: 'aboutUs',
+            color: _global__WEBPACK_IMPORTED_MODULE_4__["colors"].persimmon,
+            start: {
+              position: 'bottom',
+              scale: 0.25
+            },
+            end: {
+              position: 'top',
+              scale: 1
+            }
+          }), {
+            queueCallback: processQueue
+          }));
+          break;
+
+        case 'home-experiences':
+          animateBorder(_objectSpread({
+            type: 'cat'
+          }, computeResetBorders({
+            defaultAnim: 'experiences',
+            color: _global__WEBPACK_IMPORTED_MODULE_4__["colors"].darkOrange,
+            start: {
+              position: 'top',
+              scale: 0.25
+            },
+            end: {
+              position: 'bottom',
+              scale: 1
+            }
+          }), {
+            queueCallback: processQueue
+          }));
+          break;
+
+        case 'home-footer':
+          animateBorder(_objectSpread({
+            type: 'cat'
+          }, computeResetBorders({
+            defaultAnim: 'homeFooter',
+            color: _global__WEBPACK_IMPORTED_MODULE_4__["colors"].funGreen,
+            start: {
+              position: 'right',
+              scale: 0.5
+            },
+            end: {
+              position: 'left',
+              scale: 1
+            }
+          }), {
+            queueCallback: processQueue
+          }));
+          break;
+
+        default:
+          break;
+      }
+
+      state.currentSection = state.nextSection;
+    };
+
+    var addToQueue = function addToQueue() {
+      if (!state.display) return;
+      var borderNextSection = bordersWrapper.getAttribute('data-next-section');
+      state.queue.push(borderNextSection);
+      if (state.init) return;
+      processQueue();
+      state.init = true;
+    }; // animateBordersHome main calls
+
+
+    state.display = handleDisplay();
+    window.addEventListener('wheel', handleWheel, false);
+    bordersWrapper.addEventListener('updateBorders', addToQueue, false);
+    bordersWrapper.addEventListener('updateQueue', updateBorder, false);
+    addToQueue();
+    _utils_Window__WEBPACK_IMPORTED_MODULE_3__["default"].addResizeFunction(function () {
+      state.display = handleDisplay();
+      if (!state.display || !state.queue.length) return;
+      processQueue();
+    });
+  };
+
+  var animateProgressBorders = function animateProgressBorders() {
+    var _document = document,
+        body = _document.body,
+        documentElement = _document.documentElement;
+    var pageHeight = Math.max(body.scrollHeight, body.offsetHeight, documentElement.clientHeight, documentElement.scrollHeight, documentElement.offsetHeight); // Borders animations state
+
+    var state = {
+      display: false,
+      ratio: 0
+    };
+    /**
+     * @description update next section borders' progress
+     * @param {array} { borders }
+     */
+
+    var animatePath = function animatePath(_ref4) {
+      var type = _ref4.type,
+          borders = _ref4.borders;
+      var bordersElements = selectBordersElements({
+        type: type
+      });
+      var ratio = state.ratio;
+      var ratioFactor = borders.reduce(function (acc, current) {
+        return acc + current.maxScale;
+      }, 0);
+      var pathRatio = 0;
+      var scale = 0;
+      Object(_utils__WEBPACK_IMPORTED_MODULE_1__["forEach"])(borders, function (border) {
+        scale = ratio > pathRatio / ratioFactor ? Math.min(border.maxScale, (ratio - pathRatio / ratioFactor) * ratioFactor) : 0;
+        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set(bordersElements[borderMapping[border.position].index], {
+          transformOrigin: borderMapping[border.position].origin,
+          scaleX: border.position === 'top' || border.position === 'bottom' ? scale : 1,
+          scaleY: border.position === 'left' || border.position === 'right' ? scale : 1
+        });
+        pathRatio += border.maxScale;
+      });
+    };
+    /**
+     * @description border sections path animation controller
+     */
+
+
+    var selectPath = function selectPath() {
+      animatePath({
+        type: 'cat',
+        borders: [{
+          position: 'left',
+          maxScale: 0
+        }, {
+          position: 'top',
+          maxScale: 1
+        }, {
+          position: 'right',
+          maxScale: 1
+        }, {
+          position: 'bottom',
+          maxScale: 0.5
+        }]
+      });
+    };
+
+    var drawProgress = function drawProgress() {
+      if (!state.display) return;
+      animateBorder({
+        type: 'mouse',
+        borders: [{
+          position: 'top',
+          duration: 0.5,
+          maxScale: 1,
+          axis: 'x',
+          easing: 'out'
+        }, {
+          position: 'right',
+          duration: 0.5,
+          maxScale: 1,
+          axis: 'y',
+          easing: 'out'
+        }, {
+          position: 'bottom',
+          duration: 0.5,
+          maxScale: 0.5,
+          axis: 'x',
+          easing: 'out'
+        }]
+      });
+      _utils_Scroll__WEBPACK_IMPORTED_MODULE_2__["default"].addScrollFunction(function () {
+        state.ratio = _utils_Scroll__WEBPACK_IMPORTED_MODULE_2__["default"].scrollTop / (pageHeight - window.innerHeight);
+        if (!state.display) return;
+        selectPath();
+      });
+    }; // animateProgressBorders main calls
+
+
+    state.display = handleDisplay();
+    drawProgress();
+    _utils_Window__WEBPACK_IMPORTED_MODULE_3__["default"].addResizeFunction(function () {
+      state.display = handleDisplay();
+      drawProgress();
+    });
+  }; // Main calls
+
+
+  if (document.body.classList.contains('home')) {
+    animateBordersHome();
+  } else {
+    animateProgressBorders();
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (ioBorders);
+
+/***/ }),
+
 /***/ "./wp-content/themes/think/src/js/form.js":
 /*!************************************************!*\
   !*** ./wp-content/themes/think/src/js/form.js ***!
@@ -9558,604 +10323,6 @@ var easing = {
 
 /***/ }),
 
-/***/ "./wp-content/themes/think/src/js/ioBorders.js":
-/*!*****************************************************!*\
-  !*** ./wp-content/themes/think/src/js/ioBorders.js ***!
-  \*****************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils */ "./wp-content/themes/think/src/js/utils/index.js");
-/* harmony import */ var _utils_Scroll__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils/Scroll */ "./wp-content/themes/think/src/js/utils/Scroll.js");
-/* harmony import */ var _utils_Window__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils/Window */ "./wp-content/themes/think/src/js/utils/Window.js");
-/* harmony import */ var _global__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./global */ "./wp-content/themes/think/src/js/global/index.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
-
-function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-
-
-
-var ioBorders = function ioBorders() {
-  var bordersWrapper = document.getElementById('borders');
-  if (!bordersWrapper && !document.body.classList.contains('home')) return; // Borders html elements
-
-  var bordersCat = bordersWrapper.querySelector('.cat').children; // Borders animations state
-
-  var state = {
-    init: false,
-    display: false,
-    isMoving: false,
-    queue: [],
-    currentSection: null,
-    nextSection: null,
-    ends: {
-      start: null,
-      end: null
-    }
-  }; // Borders transformations data
-
-  var borderMapping = {
-    top: {
-      index: 0,
-      origin: '0% 50%'
-    },
-    right: {
-      index: 1,
-      origin: '50% 0%'
-    },
-    left: {
-      index: 3,
-      origin: '50% 100%'
-    },
-    bottom: {
-      index: 2,
-      origin: '100% 50%'
-    },
-    reset: {
-      top: {
-        origin: '100% 50%'
-      },
-      right: {
-        origin: '50% 100%'
-      },
-      bottom: {
-        origin: '0% 50%'
-      },
-      left: {
-        origin: '50% 0%'
-      }
-    },
-    byIndex: ['top', 'right', 'bottom', 'left']
-  }; // Borders update sequences
-
-  var bordersAnimations = {
-    intro: {
-      borders: [{
-        position: 'top',
-        duration: 0.5,
-        maxScale: 1,
-        axis: 'x',
-        easing: 'out'
-      }, {
-        position: 'all',
-        duration: 0.5,
-        color: _global__WEBPACK_IMPORTED_MODULE_4__["colors"].funGreen,
-        easing: 'out',
-        nestNext: false
-      }, {
-        position: 'right',
-        duration: 0.5,
-        maxScale: 1,
-        axis: 'y',
-        easing: 'out'
-      }, {
-        position: 'bottom',
-        duration: 0.5,
-        maxScale: 0.5,
-        axis: 'x',
-        easing: 'out'
-      }]
-    },
-    learningExperience: {
-      borders: [{
-        position: 'bottom',
-        duration: 0.5,
-        maxScale: 1,
-        axis: 'x',
-        easing: 'out'
-      }, {
-        position: 'all',
-        color: _global__WEBPACK_IMPORTED_MODULE_4__["colors"].pictonBlue,
-        duration: 0.5,
-        easing: 'out',
-        nestNext: false
-      }, {
-        position: 'left',
-        duration: 0.5,
-        maxScale: 1,
-        axis: 'y',
-        easing: 'out'
-      }, {
-        position: 'top',
-        duration: 0.5,
-        maxScale: 0.25,
-        axis: 'x',
-        easing: 'out'
-      }]
-    },
-    offers: {
-      borders: [{
-        position: 'top',
-        duration: 0.5,
-        maxScale: 1,
-        axis: 'x',
-        easing: 'out'
-      }, {
-        position: 'all',
-        color: _global__WEBPACK_IMPORTED_MODULE_4__["colors"].funGreen,
-        duration: 0.5,
-        easing: 'out',
-        nestNext: false
-      }, {
-        position: 'right',
-        duration: 0.5,
-        maxScale: 1,
-        axis: 'y',
-        easing: 'out'
-      }, {
-        position: 'top',
-        duration: 0.5,
-        maxScale: 0,
-        axis: 'x',
-        origin: '100% 50%',
-        easing: 'out',
-        nestNext: false
-      }, {
-        position: 'bottom',
-        duration: 0.5,
-        maxScale: 0.75,
-        axis: 'x',
-        easing: 'out'
-      }]
-    },
-    aboutUs: {
-      borders: [{
-        position: 'bottom',
-        duration: 0.5,
-        maxScale: 1,
-        axis: 'x',
-        easing: 'out'
-      }, {
-        position: 'all',
-        color: _global__WEBPACK_IMPORTED_MODULE_4__["colors"].persimmon,
-        duration: 0.5,
-        easing: 'out',
-        nestNext: false
-      }, {
-        position: 'left',
-        duration: 0.5,
-        maxScale: 1,
-        axis: 'y',
-        easing: 'out'
-      }, {
-        position: 'bottom',
-        duration: 0.5,
-        maxScale: 0.25,
-        axis: 'x',
-        origin: '0% 50%',
-        easing: 'out',
-        nestNext: false
-      }, {
-        position: 'top',
-        duration: 0.5,
-        maxScale: 1,
-        axis: 'x',
-        easing: 'out'
-      }]
-    },
-    experiences: {
-      borders: [{
-        position: 'top',
-        duration: 0.5,
-        maxScale: 1,
-        axis: 'x',
-        easing: 'out'
-      }, {
-        position: 'all',
-        color: _global__WEBPACK_IMPORTED_MODULE_4__["colors"].darkOrange,
-        duration: 0.5,
-        easing: 'out',
-        nestNext: false
-      }, {
-        position: 'right',
-        duration: 0.5,
-        maxScale: 1,
-        axis: 'y',
-        easing: 'out'
-      }, {
-        position: 'top',
-        duration: 0.5,
-        maxScale: 0.25,
-        axis: 'x',
-        origin: '100% 0%',
-        easing: 'out',
-        nestNext: false
-      }, {
-        position: 'bottom',
-        duration: 0.5,
-        maxScale: 1,
-        axis: 'x',
-        easing: 'out'
-      }]
-    },
-    homeFooter: {
-      borders: [{
-        position: 'right',
-        duration: 0.5,
-        maxScale: 1,
-        axis: 'y',
-        easing: 'out'
-      }, {
-        position: 'all',
-        color: _global__WEBPACK_IMPORTED_MODULE_4__["colors"].funGreen,
-        duration: 0.5,
-        easing: 'out',
-        nestNext: false
-      }, {
-        position: 'bottom',
-        duration: 0.5,
-        maxScale: 1,
-        axis: 'x',
-        easing: 'out'
-      }, {
-        position: 'right',
-        duration: 0.5,
-        maxScale: 0.5,
-        axis: 'y',
-        origin: '50% 100%',
-        easing: 'in',
-        nestNext: false
-      }, {
-        position: 'left',
-        duration: 0.5,
-        maxScale: 1,
-        axis: 'y',
-        easing: 'out'
-      }]
-    }
-  };
-  /**
-   * @description updates display state depending on borders style
-   */
-
-  var handleDisplay = function handleDisplay() {
-    state.display = getComputedStyle(bordersWrapper).display !== 'none';
-  };
-  /**
-   * @description queuing process if a border animation is currently playing
-   */
-
-
-  var processQueue = function processQueue() {
-    state.isMoving = false;
-    if (!state.queue.length) return;
-    var event = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["createNewEvent"])('updateQueue');
-
-    if (state.queue.length > 2) {
-      state.queue.splice(0, state.queue.length - 1);
-    }
-
-    var _state$queue = _slicedToArray(state.queue, 1);
-
-    state.nextSection = _state$queue[0];
-    state.queue.shift();
-    bordersWrapper.dispatchEvent(event);
-  };
-  /**
-   * @description handle scroll speed
-   * @param {event} e
-   */
-
-
-  var handleWheel = function handleWheel(e) {
-    var deltaY = e.deltaY;
-    state.scrollSpeed = Math.abs(deltaY);
-    e.stopPropagation();
-    if (state.scrollSpeed > 2 || state.isMoving) return;
-    processQueue();
-  };
-
-  var computeResetBorders = function computeResetBorders(_ref) {
-    var defaultAnim = _ref.defaultAnim,
-        color = _ref.color,
-        start = _ref.start,
-        end = _ref.end;
-    var returnBorders = {
-      borders: []
-    };
-
-    if (state.ends.start !== null && state.ends.end !== null) {
-      var lastEndIndex = state.ends.end;
-      var newStartIndex = borderMapping[start.position].index;
-      var newEndIndex = borderMapping[end.position].index;
-      var lastStartIndex = state.ends.start; // Head
-
-      var delta = Math.abs(newEndIndex < lastEndIndex ? newEndIndex + 4 - lastEndIndex : newEndIndex - lastEndIndex) + 1;
-      var index = 0;
-
-      for (index; index < delta; index += 1) {
-        var borderIndex = (lastEndIndex + index) % 4;
-        returnBorders.borders[index] = {
-          position: borderMapping.byIndex[borderIndex],
-          duration: 0.5,
-          maxScale: index === delta - 1 ? end.scale : 1,
-          axis: borderIndex % 2 ? 'y' : 'x',
-          ease: 'out',
-          nestNext: false
-        };
-      } // Tail
-
-
-      delta = Math.abs(newStartIndex < lastStartIndex ? newStartIndex + 4 - lastStartIndex : newStartIndex - lastStartIndex) + 1;
-
-      for (index = 0; index < delta; index += 1) {
-        var _borderIndex = (lastStartIndex + index) % 4;
-
-        var position = borderMapping.byIndex[_borderIndex];
-        var maxScale = 0;
-
-        if (index === delta - 1) {
-          position = borderMapping.byIndex[_borderIndex];
-          maxScale = start.scale;
-        }
-
-        var border = {
-          position: position,
-          duration: 0.5,
-          maxScale: maxScale,
-          origin: borderMapping.reset[borderMapping.byIndex[_borderIndex]].origin,
-          axis: _borderIndex % 2 ? 'y' : 'x',
-          ease: 'in'
-        };
-        var insertIndex = index * 2 + 1;
-        returnBorders.borders.splice(insertIndex, 0, border);
-        state.ends.end = newEndIndex;
-        state.ends.start = newStartIndex;
-      }
-
-      returnBorders.borders.splice(1, 0, {
-        position: 'all',
-        color: color,
-        duration: 0.5,
-        easing: 'out',
-        nestNext: false
-      });
-    } else {
-      returnBorders = bordersAnimations[defaultAnim];
-    } // returnBorders = bordersAnimations[defaultAnim];
-
-
-    return returnBorders;
-  };
-  /**
-   * @description update next section borders
-   * @param {array} { borders }
-   */
-
-
-  var animateBorder = function animateBorder(_ref2) {
-    var borders = _ref2.borders;
-
-    var _borders = _slicedToArray(borders, 2),
-        _borders$ = _borders[0],
-        position = _borders$.position,
-        duration = _borders$.duration,
-        color = _borders$.color,
-        maxScale = _borders$.maxScale,
-        axis = _borders$.axis,
-        origin = _borders$.origin,
-        _borders$$nestNext = _borders$.nestNext,
-        nestNext = _borders$$nestNext === void 0 ? true : _borders$$nestNext,
-        nextBorder = _borders[1];
-
-    var isAll = position === 'all';
-
-    if (state.ends.start === null) {
-      state.ends.start = borderMapping[position].index;
-    }
-
-    var ease = '';
-
-    if (_global__WEBPACK_IMPORTED_MODULE_4__["easing"] === 'in') {
-      ease = _global__WEBPACK_IMPORTED_MODULE_4__["easing"].catMouseEaseIn;
-    } else if (_global__WEBPACK_IMPORTED_MODULE_4__["easing"] === 'out') {
-      ease = _global__WEBPACK_IMPORTED_MODULE_4__["easing"].catMouseEaseOut;
-    }
-
-    var scaleX = null;
-    var scaleY = null;
-
-    if (!isAll) {
-      scaleX = axis === 'x' ? maxScale : 1;
-      scaleY = axis === 'y' ? maxScale : 1;
-    }
-
-    var tweenParams = {
-      transformOrigin: origin || (!isAll ? borderMapping[position].origin : ''),
-      scaleX: scaleX,
-      scaleY: scaleY,
-      ease: ease,
-      onComplete: function onComplete() {
-        if (!nestNext && nextBorder) return;
-
-        if (nextBorder) {
-          animateBorder({
-            borders: borders.slice(1, borders.length)
-          });
-        } else {
-          if (state.ends.end === null) {
-            state.ends.end = borderMapping[position].index;
-          }
-
-          processQueue();
-        }
-      }
-    };
-
-    if (color) {
-      tweenParams.backgroundColor = color;
-    }
-
-    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(isAll ? bordersCat : bordersCat[borderMapping[position].index], duration, tweenParams);
-    if (nestNext || !nextBorder) return;
-    borders.shift();
-    animateBorder({
-      borders: borders
-    });
-  };
-  /**
-   * @description border sections animation controller
-   */
-
-
-  var updateBorder = function updateBorder() {
-    if (state.isMoving || state.currentSection && state.nextSection && state.currentSection === state.nextSection) return;
-    state.isMoving = true;
-
-    switch (state.nextSection) {
-      case 'home-intro':
-        animateBorder(computeResetBorders({
-          defaultAnim: 'intro',
-          color: _global__WEBPACK_IMPORTED_MODULE_4__["colors"].funGreen,
-          start: {
-            position: 'top',
-            scale: 1
-          },
-          end: {
-            position: 'bottom',
-            scale: 0.5
-          }
-        }));
-        break;
-
-      case 'home-learning-experience':
-        animateBorder(computeResetBorders({
-          defaultAnim: 'learningExperience',
-          color: _global__WEBPACK_IMPORTED_MODULE_4__["colors"].pictonBlue,
-          start: {
-            position: 'bottom',
-            scale: 1
-          },
-          end: {
-            position: 'top',
-            scale: 0.25
-          }
-        }));
-        break;
-
-      case 'home-offers':
-        animateBorder(computeResetBorders({
-          defaultAnim: 'offers',
-          color: _global__WEBPACK_IMPORTED_MODULE_4__["colors"].funGreen,
-          start: {
-            position: 'right',
-            scale: 1
-          },
-          end: {
-            position: 'bottom',
-            scale: 0.75
-          }
-        }));
-        break;
-
-      case 'home-about-us':
-        animateBorder(computeResetBorders({
-          defaultAnim: 'aboutUs',
-          color: _global__WEBPACK_IMPORTED_MODULE_4__["colors"].persimmon,
-          start: {
-            position: 'bottom',
-            scale: 0.25
-          },
-          end: {
-            position: 'top',
-            scale: 1
-          }
-        }));
-        break;
-
-      case 'home-experiences':
-        animateBorder(computeResetBorders({
-          defaultAnim: 'experiences',
-          color: _global__WEBPACK_IMPORTED_MODULE_4__["colors"].darkOrange,
-          start: {
-            position: 'top',
-            scale: 0.25
-          },
-          end: {
-            position: 'bottom',
-            scale: 1
-          }
-        }));
-        break;
-
-      case 'home-footer':
-        animateBorder(computeResetBorders({
-          defaultAnim: 'homeFooter',
-          color: _global__WEBPACK_IMPORTED_MODULE_4__["colors"].funGreen,
-          start: {
-            position: 'right',
-            scale: 0.5
-          },
-          end: {
-            position: 'left',
-            scale: 1
-          }
-        }));
-        break;
-
-      default:
-        break;
-    }
-
-    state.currentSection = state.nextSection;
-  };
-
-  var addToQueue = function addToQueue() {
-    var borderNextSection = bordersWrapper.getAttribute('data-next-section');
-    state.queue.push(borderNextSection);
-    if (state.init) return;
-    processQueue();
-    state.init = true;
-  }; // Main calls
-
-
-  handleDisplay();
-  window.addEventListener('wheel', handleWheel, false);
-  bordersWrapper.addEventListener('updateBorders', addToQueue, false);
-  bordersWrapper.addEventListener('updateQueue', updateBorder, false);
-  addToQueue();
-  _utils_Window__WEBPACK_IMPORTED_MODULE_3__["default"].addResizeFunction(function () {
-    handleDisplay();
-    if (!state.display || !state.queue.length) return;
-    processQueue();
-  });
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (ioBorders);
-
-/***/ }),
-
 /***/ "./wp-content/themes/think/src/js/main.js":
 /*!************************************************!*\
   !*** ./wp-content/themes/think/src/js/main.js ***!
@@ -10175,11 +10342,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _burger__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./burger */ "./wp-content/themes/think/src/js/burger.js");
 /* harmony import */ var _newsletter__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./newsletter */ "./wp-content/themes/think/src/js/newsletter.js");
 /* harmony import */ var _makeBorders__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./makeBorders */ "./wp-content/themes/think/src/js/makeBorders.js");
-/* harmony import */ var _scrollBorders__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./scrollBorders */ "./wp-content/themes/think/src/js/scrollBorders.js");
-/* harmony import */ var _ioBorders__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./ioBorders */ "./wp-content/themes/think/src/js/ioBorders.js");
-/* harmony import */ var _video__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./video */ "./wp-content/themes/think/src/js/video.js");
-/* harmony import */ var _minions__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./minions */ "./wp-content/themes/think/src/js/minions.js");
-
+/* harmony import */ var _drawBorders__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./drawBorders */ "./wp-content/themes/think/src/js/drawBorders.js");
+/* harmony import */ var _video__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./video */ "./wp-content/themes/think/src/js/video.js");
+/* harmony import */ var _minions__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./minions */ "./wp-content/themes/think/src/js/minions.js");
 
 
 
@@ -10209,13 +10374,12 @@ var preloadHandler = function preloadHandler() {
   Object(_burger__WEBPACK_IMPORTED_MODULE_6__["default"])();
   Object(_form__WEBPACK_IMPORTED_MODULE_5__["default"])();
   Object(_newsletter__WEBPACK_IMPORTED_MODULE_7__["default"])();
-  Object(_video__WEBPACK_IMPORTED_MODULE_11__["default"])();
+  Object(_video__WEBPACK_IMPORTED_MODULE_10__["default"])();
 };
 
 var animationHandler = function animationHandler() {
-  // scrollBorders();
-  Object(_ioBorders__WEBPACK_IMPORTED_MODULE_10__["default"])();
-  Object(_minions__WEBPACK_IMPORTED_MODULE_12__["default"])();
+  Object(_drawBorders__WEBPACK_IMPORTED_MODULE_9__["default"])();
+  Object(_minions__WEBPACK_IMPORTED_MODULE_11__["default"])();
 };
 
 var loadHandler = function loadHandler() {
@@ -13320,245 +13484,6 @@ MorphSVGPlugin.pathDataToBezier = function (data, vars) {
 };
 
 
-
-/***/ }),
-
-/***/ "./wp-content/themes/think/src/js/scrollBorders.js":
-/*!*********************************************************!*\
-  !*** ./wp-content/themes/think/src/js/scrollBorders.js ***!
-  \*********************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils */ "./wp-content/themes/think/src/js/utils/index.js");
-/* harmony import */ var _utils_Scroll__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils/Scroll */ "./wp-content/themes/think/src/js/utils/Scroll.js");
-/* harmony import */ var _utils_Window__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils/Window */ "./wp-content/themes/think/src/js/utils/Window.js");
-
-
-
-
-
-var scrollBorders = function scrollBorders() {
-  var bordersWrapper = document.getElementById('borders');
-  if (!bordersWrapper && !document.body.classList.contains('home')) return; // Borders html elements
-
-  var bordersMouse = bordersWrapper.querySelector('.mouse').children;
-  var homeSections = [].slice.call(document.getElementsByClassName('js-home-section')); // Constants used to create the intersection observer threshold array
-
-  var samplesNumber = 1000;
-  var thresholdSamples = [];
-  var index = 0; // Intersection observer constants
-
-  var observer = null; // Borders animations state
-
-  var state = {
-    display: false,
-    activeId: '',
-    activeSection: {
-      id: '',
-      ratio: 0
-    },
-    scrollTop: 0
-  }; // Borders transformations data
-
-  var borderMapping = {
-    top: {
-      index: 0,
-      origin: '0% 50%'
-    },
-    right: {
-      index: 1,
-      origin: '50% 0%'
-    },
-    left: {
-      index: 3,
-      origin: '50% 100%'
-    },
-    bottom: {
-      index: 2,
-      origin: '100% 50%'
-    }
-  }; // Intersection observer options
-
-  var observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: thresholdSamples
-  };
-  /**
-   * @description updates display state depending on borders style
-   */
-
-  var handleDisplay = function handleDisplay() {
-    state.display = getComputedStyle(bordersWrapper).display !== 'none';
-  };
-  /**
-   * @description update next section borders' progress
-   * @param {array} { borders }
-   */
-
-
-  var animatePath = function animatePath(_ref) {
-    var borders = _ref.borders;
-    var ratio = state.activeSection.ratio;
-    ratio *= 1.15;
-    var ratioFactor = borders.reduce(function (acc, current) {
-      return acc + current.maxScale;
-    }, 0);
-    var pathRatio = 0;
-    var scale = 0;
-    Object(_utils__WEBPACK_IMPORTED_MODULE_1__["forEach"])(borders, function (border) {
-      scale = ratio > pathRatio / ratioFactor ? Math.min(border.maxScale, (ratio - pathRatio / ratioFactor) * ratioFactor) : 0;
-      gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set(bordersMouse[borderMapping[border.position].index], {
-        transformOrigin: borderMapping[border.position].origin,
-        scaleX: border.position === 'top' || border.position === 'bottom' ? scale : 1,
-        scaleY: border.position === 'left' || border.position === 'right' ? scale : 1
-      });
-      pathRatio += border.maxScale;
-    });
-  };
-  /**
-   * @description border sections path animation controller
-   */
-
-
-  var selectPath = function selectPath() {
-    switch (state.activeSection.id) {
-      case 'home-intro':
-        animatePath({
-          borders: [{
-            position: 'left',
-            maxScale: 0
-          }, {
-            position: 'top',
-            maxScale: 1
-          }, {
-            position: 'right',
-            maxScale: 1
-          }, {
-            position: 'bottom',
-            maxScale: 0.5
-          }]
-        });
-        break;
-
-      case 'home-learning-experience':
-        animatePath({
-          borders: [{
-            position: 'right',
-            maxScale: 0
-          }, {
-            position: 'bottom',
-            maxScale: 1
-          }, {
-            position: 'left',
-            maxScale: 1
-          }, {
-            position: 'top',
-            maxScale: 0.25
-          }]
-        });
-        break;
-
-      case 'home-offers':
-        animatePath({
-          borders: [{
-            position: 'left',
-            maxScale: 0
-          }, {
-            position: 'top',
-            maxScale: 1
-          }, {
-            position: 'right',
-            maxScale: 1
-          }, {
-            position: 'bottom',
-            maxScale: 0.75
-          }]
-        });
-        break;
-
-      case 'home-about-us':
-        animatePath({
-          borders: [{
-            position: 'right',
-            maxScale: 0
-          }, {
-            position: 'bottom',
-            maxScale: 1
-          }, {
-            position: 'left',
-            maxScale: 1
-          }, {
-            position: 'top',
-            maxScale: 1
-          }]
-        });
-        break;
-
-      case 'home-experiences':
-        animatePath({
-          borders: [{
-            position: 'left',
-            maxScale: 0
-          }, {
-            position: 'top',
-            maxScale: 0
-          }, {
-            position: 'right',
-            maxScale: 1
-          }, {
-            position: 'bottom',
-            maxScale: 1
-          }]
-        });
-        break;
-
-      default:
-        break;
-    }
-  };
-  /**
-   * @description intersection observer change callback
-   * @param {array} entries
-   */
-
-
-  var intersectionCallback = function intersectionCallback(entries) {
-    if (!state.display) return;
-    Object(_utils__WEBPACK_IMPORTED_MODULE_1__["forEach"])(entries, function (entry) {
-      if (entry.intersectionRatio <= 0) return;
-      state.activeSection.id = entry.target.id;
-      state.activeSection.ratio = entry.intersectionRatio;
-    });
-  }; // Main calls
-
-
-  for (index; index <= samplesNumber; index += 1) {
-    thresholdSamples[index] = index / samplesNumber;
-  }
-
-  observer = new IntersectionObserver(intersectionCallback, observerOptions);
-  Object(_utils__WEBPACK_IMPORTED_MODULE_1__["forEach"])(homeSections, function (section) {
-    observer.observe(section);
-  });
-  handleDisplay();
-  _utils_Scroll__WEBPACK_IMPORTED_MODULE_2__["default"].addScrollFunction(function () {
-    var oldScrollTop = state.scrollTop;
-    state.scrollTop = _utils_Scroll__WEBPACK_IMPORTED_MODULE_2__["default"].scrollTop;
-    if (_utils_Scroll__WEBPACK_IMPORTED_MODULE_2__["default"].scrollTop - oldScrollTop <= 0) return;
-    if (!state.display && !state.activeSection.id) return;
-    selectPath();
-  });
-  _utils_Window__WEBPACK_IMPORTED_MODULE_3__["default"].addResizeFunction(function () {
-    handleDisplay();
-  });
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (scrollBorders);
 
 /***/ }),
 

@@ -79,7 +79,4 @@
 		</header>
 		
 		<main role='main' class='main js-load-hidden' style='opacity:0'>
-			
-			<?php if( is_front_page() ) : ?>
-				<div id="borders" class="borders"></div>
-			<?php endif; ?>
+			<div id="borders" class="borders"></div>

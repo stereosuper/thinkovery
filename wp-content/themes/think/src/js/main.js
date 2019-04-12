@@ -9,8 +9,7 @@ import form from './form';
 import burger from './burger';
 import newsletter from './newsletter';
 import makeBorders from './makeBorders';
-import scrollBorders from './scrollBorders';
-import ioBorders from './ioBorders';
+import drawBorders from './drawBorders';
 import video from './video';
 import minions from './minions';
 
@@ -39,8 +38,7 @@ const preloadHandler = () => {
 };
 
 const animationHandler = () => {
-    // scrollBorders();
-    ioBorders();
+    drawBorders();
     minions();
 };
 
