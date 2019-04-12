@@ -143,6 +143,7 @@ const ioBorders = () => {
                 start: null,
                 end: null,
             },
+            wheelTimeout: null,
         };
 
         // Borders update sequences
@@ -405,8 +406,15 @@ const ioBorders = () => {
             state.scrollSpeed = Math.abs(deltaY);
             e.stopPropagation();
 
-            if (state.scrollSpeed > 2 || state.isMoving) return;
-            processQueue();
+            if (state.isMoving) return;
+            if (state.scrollSpeed > 2) {
+                if (state.wheelTimeout) {
+                    clearTimeout(state.wheelTimeout);
+                }
+                state.wheelTimeout = setTimeout(() => {
+                    processQueue();
+                }, 100);
+            }
         };
 
         const computeResetBorders = ({ defaultAnim, color, start, end }) => {
@@ -755,7 +763,7 @@ const ioBorders = () => {
 
                 TweenMax.to(
                     bordersElements[borderMapping[border.position].index],
-                    state.init ? 0 : progressAnimationDuration,
+                    state.init ? 0.05 : progressAnimationDuration,
                     {
                         transformOrigin: borderMapping[border.position].origin,
                         scaleX:

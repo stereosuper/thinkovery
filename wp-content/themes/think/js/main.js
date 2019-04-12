@@ -9693,7 +9693,8 @@ var ioBorders = function ioBorders() {
       ends: {
         start: null,
         end: null
-      }
+      },
+      wheelTimeout: null
     }; // Borders update sequences
 
     var bordersAnimations = {
@@ -9921,8 +9922,17 @@ var ioBorders = function ioBorders() {
       var deltaY = e.deltaY;
       state.scrollSpeed = Math.abs(deltaY);
       e.stopPropagation();
-      if (state.scrollSpeed > 2 || state.isMoving) return;
-      processQueue();
+      if (state.isMoving) return;
+
+      if (state.scrollSpeed > 2) {
+        if (state.wheelTimeout) {
+          clearTimeout(state.wheelTimeout);
+        }
+
+        state.wheelTimeout = setTimeout(function () {
+          processQueue();
+        }, 100);
+      }
     };
 
     var computeResetBorders = function computeResetBorders(_ref3) {
@@ -10250,7 +10260,7 @@ var ioBorders = function ioBorders() {
       var scale = 0;
       Object(_utils__WEBPACK_IMPORTED_MODULE_1__["forEach"])(borders, function (border) {
         scale = ratio > pathRatio / ratioFactor ? Math.min(border.maxScale, (ratio - pathRatio / ratioFactor) * ratioFactor) : 0;
-        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(bordersElements[borderMapping[border.position].index], state.init ? 0 : progressAnimationDuration, {
+        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(bordersElements[borderMapping[border.position].index], state.init ? 0.05 : progressAnimationDuration, {
           transformOrigin: borderMapping[border.position].origin,
           scaleX: border.position === 'top' || border.position === 'bottom' ? scale : 1,
           scaleY: border.position === 'left' || border.position === 'right' ? scale : 1,
