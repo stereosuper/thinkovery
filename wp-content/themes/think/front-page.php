@@ -55,6 +55,20 @@
                         <?php endif; ?>
                     </div>
 
+                    <?php if($count === 1) : ?>
+                        <div class='plane-path' id='plane-path'>
+                            <div class='svg'>
+                                <svg width="1122" height="650" viewBox="0 0 1122 650" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path mask='url(#dash)' d="M0.685547 289.931C60.7015 218.061 278.522 -5.23507 445.677 12.5474C654.62 34.7754 778.747 293.364 604 361.5C495 404 465.692 304.054 484.5 264.5C533 162.5 684.239 205.476 710.912 429.979C736.477 645.15 840.707 647 915 647C980.5 647 1030 634 1060.5 621.5" stroke="#AEAEAE"/>
+                                    <mask id='dash'>
+                                        <path d="M0.685547 289.931C60.7015 218.061 278.522 -5.23507 445.677 12.5474C654.62 34.7754 778.747 293.364 604 361.5C495 404 465.692 304.054 484.5 264.5C533 162.5 684.239 205.476 710.912 429.979C736.477 645.15 840.707 647 915 647C980.5 647 1030 634 1060.5 621.5" stroke="#fff" stroke-dasharray="10 10"/>
+                                    </mask>
+                                </svg>
+                                <div class='plane' id='plane'></div>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+
                     <?php if($count === 3) : ?>
                         <svg class='shape s1'><use xlink:href='#icon-drop'/></svg>
                         <svg class='shape s2'><use xlink:href='#icon-square'/></svg>

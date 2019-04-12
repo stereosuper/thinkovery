@@ -2,6 +2,8 @@ import { TweenMax } from 'gsap';
 import { forEach } from './utils';
 //import { easing } from './global';
 import win from './utils/Window';
+import './plugins/DrawSVGPlugin';
+import './plugins/MorphSVGPlugin';
 
 const minionsHandler = () => {
     const homeSections = [].slice.call(
@@ -16,6 +18,8 @@ const minionsHandler = () => {
     let ww = window.innerWidth;
     let animsDone = [];
     const headerBottom = wh - minions[2].getBoundingClientRect().top - window.scrollY;
+    let planePath = document.getElementById('plane-path');
+    planePath = planePath ? planePath.querySelector('path') : undefined;
     
     // Constants used to create the intersection observer threshold array
     const samplesNumber = 10;
@@ -47,7 +51,9 @@ const minionsHandler = () => {
             }
         }, ease: easeIn})
         .to(minions[2], 0.2, {scale: 3, ease: easeIn})
-        .to(minions[2], 0.7, {x: -10, y: headerBottom-40, rotation: 90, ease: easeIn, delay: 0.3})
+        .to(minions[2], 0.7, {x: -10, y: headerBottom-40, rotation: 90, ease: easeIn, delay: 0.3, onComplete: () => {
+            animsDone['home-intro'].done = true;
+        }})
         .to(minions[2], 0.4, {y: headerBottom-50, ease: easeIn, onComplete: () => {
             TweenMax.to(minions[2], 0.4, {y: headerBottom-35, ease: easeIn}); 
         }, repeat: -1, repeatDelay: 3});
@@ -60,9 +66,7 @@ const minionsHandler = () => {
             TweenMax.to(minions[0], 1.4, {bezier: {curviness: 1, values: [{x: -100, y: -30}, {x: -200, y: 0}, {x: -250, y: headerBottom/3}, {x: -280, y: (headerBottom/3)*2}, {x: -240, y: headerBottom + 100}]}, delay: 0.15, ease: easeIn}),
             TweenMax.to(minions[1], 1.4, {bezier: {curviness: 1, values: [{x: -50, y: -70}, {x: -100, y: -50}, {x: -140, y: headerBottom/3}, {x: -170, y: (headerBottom/3)*2}, {x: -130, y: headerBottom + 100}]}, delay: 0.15, ease: easeIn}),
             TweenMax.to(minions[3], 1.4, {bezier: {curviness: 1, values: [{x: 50, y: -60}, {x: 100, y: -40}, {x: 140, y: headerBottom/3}, {x: 170, y: (headerBottom/3)*2}, {x: 130, y: headerBottom + 100}]}, delay: 0.15, ease: easeIn}),
-            TweenMax.to(minions[4], 1.4, {bezier: {curviness: 1, values: [{x: 100, y: -10}, {x: 190, y: 10}, {x: 250, y: headerBottom/3}, {x: 280, y: (headerBottom/3)*2}, {x: 240, y: headerBottom + 100}]}, delay: 0.15, ease: easeIn, onComplete: () => {
-                animsDone['home-intro'].done = true;
-            }})
+            TweenMax.to(minions[4], 1.4, {bezier: {curviness: 1, values: [{x: 100, y: -10}, {x: 190, y: 10}, {x: 250, y: headerBottom/3}, {x: 280, y: (headerBottom/3)*2}, {x: 240, y: headerBottom + 100}]}, delay: 0.15, ease: easeIn})
         ]);
     };
 
@@ -70,10 +74,15 @@ const minionsHandler = () => {
         const windowBottom = homeSections[1].offsetHeight + ww/50;
         const duration = 1.4;
 
+        const planePathBezier = planePath ? MorphSVGPlugin.pathDataToBezier(planePath) : '';
+        const plane = document.getElementById('plane');
+
+        const planeBottom = planePath.getBoundingClientRect().bottom - minions[0].getBoundingClientRect().bottom;
+
         animsDone['home-learning-experience'].running = true;
 
         TweenMax.to(minions[2], 0.3, {x: 0, y: headerBottom + 100, ease: easeIn, onComplete: () => {
-            TweenMax.to(minions[0], 1, {bezier: {curviness: 1, values: [{x: '+=60', y: '+=' + windowBottom/2}, {x: '+=200', y: '+=' + (windowBottom - 200)}]}, ease: easeIn});
+            TweenMax.to(minions[0], 1, {bezier: {curviness: 1, values: [{x: '+=60', y: '+=' + windowBottom/2}, {x: '+=200', y: '+=' + planeBottom}]}, ease: easeIn});
 
             TweenMax.to(minions[1], duration, {bezier: {curviness: 1, values: [{y: '+=' + windowBottom/2}, {x: '+=10', y: '+=' + (windowBottom - 60)}]}, ease: easeIn});
 
@@ -81,9 +90,16 @@ const minionsHandler = () => {
 
             TweenMax.to(minions[3], duration, {bezier: {curviness: 1, values: [{x: '+=80', y: '+=' + windowBottom/2}, {x: '-=10', y: '+=' + (windowBottom - 20)}]}, ease: easeIn});
 
-            TweenMax.to(minions[4], duration, {bezier: {curviness: 1, values: [{x: '+=80', y: '+=' + windowBottom/2}, {x: '-=20', y: '+=' + (windowBottom)}]}, ease: easeIn, onComplete: () => {
+            TweenMax.to(minions[4], duration, {bezier: {curviness: 1, values: [{x: '+=80', y: '+=' + windowBottom/2}, {x: '-=20', y: '+=' + windowBottom}]}, ease: easeIn});
+
+            if( plane ){
+                TweenMax.to(planePath, 1, {drawSVG: '100%'});
+                TweenMax.to(plane, 2, {bezier: {values: planePathBezier, type: 'cubic', autoRotate: true, ease: easeIn}, onComplete: () => {
+                    animsDone['home-learning-experience'].done = true;
+                }});
+            }else{
                 animsDone['home-learning-experience'].done = true;
-            }});
+            }
         }});
     };
 
@@ -91,12 +107,14 @@ const minionsHandler = () => {
         const duration = 0.3;
         const delay = 0.05;
 
+        const dropBottom = minions[4].getBoundingClientRect().bottom - minions[0].getBoundingClientRect().bottom;
+
         animsDone['home-offers'].running = true;
         
         TweenMax.to(minions[3], duration, {y: '+=20', ease: easeIn});
         TweenMax.to(minions[2], duration, {y: '+=40', ease: easeIn, delay: delay});
         TweenMax.to(minions[1], duration, {y: '+=60', ease: easeIn, delay: delay*2});
-        TweenMax.to(minions[0], duration, {bezier: {curviness: 1, values: [{x: '-=160', y: '+=100'}, {x: '-=200', y: '+=200'}]}, ease: easeIn, delay: delay});
+        TweenMax.to(minions[0], duration, {bezier: {curviness: 1, values: [{x: '-=160', y: '+=' + dropBottom/2}, {x: '-=200', y: '+=' + dropBottom}]}, ease: easeIn, delay: delay});
     };
 
     const aboutAnim = () => {
@@ -215,6 +233,8 @@ const minionsHandler = () => {
         observer.observe(section);
         animsDone[section.id] = {running: false, done: false};
     } );
+
+    TweenMax.set(planePath, {drawSVG: 0});
 
     win.addResizeFunction(() => {
         wh = window.innerHeight;

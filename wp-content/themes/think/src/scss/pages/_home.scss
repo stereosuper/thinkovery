@@ -78,7 +78,7 @@
     }
 }
 
-.morpion{
+.morpion, .plane-path, .plane{
     display: none;
 }
 
@@ -188,6 +188,29 @@
                 left: 167px;
             }
         }
+    }
+
+    .plane-path{
+        display: block;
+        max-width: 56%;
+        height: 650px;
+        position: absolute;
+        bottom: 7em;
+        right: 50%;
+        .svg{
+            display: inline-block;
+            position: relative;
+            float: right;
+        }
+    }
+    .plane{
+        display: block;
+        width: 79px;
+        height: 48px;
+        position: absolute;
+        top: -24px;
+        left: -40px;
+        background: url(../../img/plane.png);
     }
 
     .morpion{

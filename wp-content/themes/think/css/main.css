@@ -1718,7 +1718,7 @@ label {
   margin: 2em 0 0;
   text-align: center; }
 
-.morpion {
+.morpion, .plane-path, .plane {
   display: none; }
 
 @media (min-width: 960px) {
@@ -1809,6 +1809,25 @@ label {
     left: 180px; }
   .home-section:nth-of-type(3) .s11 {
     left: 167px; }
+  .plane-path {
+    display: block;
+    max-width: 56%;
+    height: 650px;
+    position: absolute;
+    bottom: 7em;
+    right: 50%; }
+    .plane-path .svg {
+      display: inline-block;
+      position: relative;
+      float: right; }
+  .plane {
+    display: block;
+    width: 79px;
+    height: 48px;
+    position: absolute;
+    top: -24px;
+    left: -40px;
+    background: url(/wp-content/themes/think/img/plane.png); }
   .morpion {
     display: block;
     width: 330px;
