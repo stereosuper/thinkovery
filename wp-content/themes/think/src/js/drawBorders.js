@@ -634,15 +634,106 @@ const ioBorders = () => {
 
         // Borders animations state
         const state = {
+            init: false,
             display: false,
             ratio: 0,
+            randomBorder: null,
         };
+
+        const bordersPatterns = [
+            [
+                {
+                    position: 'top',
+                    duration: 0.5,
+                    maxScale: 1,
+                    axis: 'x',
+                    easing: 'out',
+                },
+                {
+                    position: 'right',
+                    duration: 0.5,
+                    maxScale: 1,
+                    axis: 'y',
+                    easing: 'out',
+                },
+                {
+                    position: 'bottom',
+                    duration: 0.5,
+                    maxScale: 0.5,
+                    axis: 'x',
+                    easing: 'out',
+                },
+            ],
+            [
+                {
+                    position: 'bottom',
+                    duration: 0.5,
+                    maxScale: 1,
+                    axis: 'x',
+                    easing: 'out',
+                },
+                {
+                    position: 'left',
+                    duration: 0.5,
+                    maxScale: 0.75,
+                    axis: 'y',
+                    easing: 'out',
+                },
+            ],
+            [
+                {
+                    position: 'left',
+                    duration: 0.5,
+                    maxScale: 1,
+                    axis: 'y',
+                    easing: 'out',
+                },
+                {
+                    position: 'top',
+                    duration: 0.5,
+                    maxScale: 1,
+                    axis: 'x',
+                    easing: 'out',
+                },
+                {
+                    position: 'right',
+                    duration: 0.5,
+                    maxScale: 0.25,
+                    axis: 'y',
+                    easing: 'out',
+                },
+            ],
+            [
+                {
+                    position: 'right',
+                    duration: 0.5,
+                    maxScale: 1,
+                    axis: 'y',
+                    easing: 'out',
+                },
+                {
+                    position: 'bottom',
+                    duration: 0.5,
+                    maxScale: 1,
+                    axis: 'x',
+                    easing: 'out',
+                },
+                {
+                    position: 'left',
+                    duration: 0.5,
+                    maxScale: 0.25,
+                    axis: 'y',
+                    easing: 'out',
+                },
+            ],
+        ];
 
         /**
          * @description update next section borders' progress
          * @param {array} { borders }
          */
         const animatePath = ({ type, borders }) => {
+            const progressAnimationDuration = 0.23;
             const bordersElements = selectBordersElements({ type });
 
             const { ratio } = state;
@@ -662,8 +753,9 @@ const ioBorders = () => {
                           )
                         : 0;
 
-                TweenMax.set(
+                TweenMax.to(
                     bordersElements[borderMapping[border.position].index],
+                    state.init ? 0 : progressAnimationDuration,
                     {
                         transformOrigin: borderMapping[border.position].origin,
                         scaleX:
@@ -676,6 +768,11 @@ const ioBorders = () => {
                             border.position === 'right'
                                 ? scale
                                 : 1,
+                        onComplete: () => {
+                            if (!state.init) {
+                                state.init = true;
+                            }
+                        },
                     }
                 );
 
@@ -689,50 +786,34 @@ const ioBorders = () => {
         const selectPath = () => {
             animatePath({
                 type: 'cat',
-                borders: [
-                    { position: 'left', maxScale: 0 },
-                    { position: 'top', maxScale: 1 },
-                    { position: 'right', maxScale: 1 },
-                    { position: 'bottom', maxScale: 0.5 },
-                ],
+                borders: state.randomBorder,
             });
+        };
+
+        const computeRatioThenSelectPath = () => {
+            state.ratio = scroll.scrollTop / (pageHeight - window.innerHeight);
+            if (!state.display) return;
+            selectPath();
         };
 
         const drawProgress = () => {
             if (!state.display) return;
+            if (!state.randomBorder) {
+                const randomPatternIndex = Math.floor(
+                    Math.random() * bordersPatterns.length
+                );
+                state.randomBorder = bordersPatterns[randomPatternIndex];
+            }
+
             animateBorder({
                 type: 'mouse',
-                borders: [
-                    {
-                        position: 'top',
-                        duration: 0.5,
-                        maxScale: 1,
-                        axis: 'x',
-                        easing: 'out',
-                    },
-                    {
-                        position: 'right',
-                        duration: 0.5,
-                        maxScale: 1,
-                        axis: 'y',
-                        easing: 'out',
-                    },
-                    {
-                        position: 'bottom',
-                        duration: 0.5,
-                        maxScale: 0.5,
-                        axis: 'x',
-                        easing: 'out',
-                    },
-                ],
+                borders: state.randomBorder,
             });
 
-            scroll.addScrollFunction(() => {
-                state.ratio =
-                    scroll.scrollTop / (pageHeight - window.innerHeight);
-                if (!state.display) return;
-                selectPath();
-            });
+            scroll.addScrollFunction(computeRatioThenSelectPath);
+
+            if (state.init) return;
+            computeRatioThenSelectPath();
         };
 
         // animateProgressBorders main calls

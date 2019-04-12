@@ -10158,9 +10158,78 @@ var ioBorders = function ioBorders() {
     var pageHeight = Math.max(body.scrollHeight, body.offsetHeight, documentElement.clientHeight, documentElement.scrollHeight, documentElement.offsetHeight); // Borders animations state
 
     var state = {
+      init: false,
       display: false,
-      ratio: 0
+      ratio: 0,
+      randomBorder: null
     };
+    var bordersPatterns = [[{
+      position: 'top',
+      duration: 0.5,
+      maxScale: 1,
+      axis: 'x',
+      easing: 'out'
+    }, {
+      position: 'right',
+      duration: 0.5,
+      maxScale: 1,
+      axis: 'y',
+      easing: 'out'
+    }, {
+      position: 'bottom',
+      duration: 0.5,
+      maxScale: 0.5,
+      axis: 'x',
+      easing: 'out'
+    }], [{
+      position: 'bottom',
+      duration: 0.5,
+      maxScale: 1,
+      axis: 'x',
+      easing: 'out'
+    }, {
+      position: 'left',
+      duration: 0.5,
+      maxScale: 0.75,
+      axis: 'y',
+      easing: 'out'
+    }], [{
+      position: 'left',
+      duration: 0.5,
+      maxScale: 1,
+      axis: 'y',
+      easing: 'out'
+    }, {
+      position: 'top',
+      duration: 0.5,
+      maxScale: 1,
+      axis: 'x',
+      easing: 'out'
+    }, {
+      position: 'right',
+      duration: 0.5,
+      maxScale: 0.25,
+      axis: 'y',
+      easing: 'out'
+    }], [{
+      position: 'right',
+      duration: 0.5,
+      maxScale: 1,
+      axis: 'y',
+      easing: 'out'
+    }, {
+      position: 'bottom',
+      duration: 0.5,
+      maxScale: 1,
+      axis: 'x',
+      easing: 'out'
+    }, {
+      position: 'left',
+      duration: 0.5,
+      maxScale: 0.25,
+      axis: 'y',
+      easing: 'out'
+    }]];
     /**
      * @description update next section borders' progress
      * @param {array} { borders }
@@ -10169,6 +10238,7 @@ var ioBorders = function ioBorders() {
     var animatePath = function animatePath(_ref4) {
       var type = _ref4.type,
           borders = _ref4.borders;
+      var progressAnimationDuration = 0.23;
       var bordersElements = selectBordersElements({
         type: type
       });
@@ -10180,10 +10250,15 @@ var ioBorders = function ioBorders() {
       var scale = 0;
       Object(_utils__WEBPACK_IMPORTED_MODULE_1__["forEach"])(borders, function (border) {
         scale = ratio > pathRatio / ratioFactor ? Math.min(border.maxScale, (ratio - pathRatio / ratioFactor) * ratioFactor) : 0;
-        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set(bordersElements[borderMapping[border.position].index], {
+        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(bordersElements[borderMapping[border.position].index], state.init ? 0 : progressAnimationDuration, {
           transformOrigin: borderMapping[border.position].origin,
           scaleX: border.position === 'top' || border.position === 'bottom' ? scale : 1,
-          scaleY: border.position === 'left' || border.position === 'right' ? scale : 1
+          scaleY: border.position === 'left' || border.position === 'right' ? scale : 1,
+          onComplete: function onComplete() {
+            if (!state.init) {
+              state.init = true;
+            }
+          }
         });
         pathRatio += border.maxScale;
       });
@@ -10196,51 +10271,31 @@ var ioBorders = function ioBorders() {
     var selectPath = function selectPath() {
       animatePath({
         type: 'cat',
-        borders: [{
-          position: 'left',
-          maxScale: 0
-        }, {
-          position: 'top',
-          maxScale: 1
-        }, {
-          position: 'right',
-          maxScale: 1
-        }, {
-          position: 'bottom',
-          maxScale: 0.5
-        }]
+        borders: state.randomBorder
       });
+    };
+
+    var computeRatioThenSelectPath = function computeRatioThenSelectPath() {
+      state.ratio = _utils_Scroll__WEBPACK_IMPORTED_MODULE_2__["default"].scrollTop / (pageHeight - window.innerHeight);
+      if (!state.display) return;
+      selectPath();
     };
 
     var drawProgress = function drawProgress() {
       if (!state.display) return;
+
+      if (!state.randomBorder) {
+        var randomPatternIndex = Math.floor(Math.random() * bordersPatterns.length);
+        state.randomBorder = bordersPatterns[randomPatternIndex];
+      }
+
       animateBorder({
         type: 'mouse',
-        borders: [{
-          position: 'top',
-          duration: 0.5,
-          maxScale: 1,
-          axis: 'x',
-          easing: 'out'
-        }, {
-          position: 'right',
-          duration: 0.5,
-          maxScale: 1,
-          axis: 'y',
-          easing: 'out'
-        }, {
-          position: 'bottom',
-          duration: 0.5,
-          maxScale: 0.5,
-          axis: 'x',
-          easing: 'out'
-        }]
+        borders: state.randomBorder
       });
-      _utils_Scroll__WEBPACK_IMPORTED_MODULE_2__["default"].addScrollFunction(function () {
-        state.ratio = _utils_Scroll__WEBPACK_IMPORTED_MODULE_2__["default"].scrollTop / (pageHeight - window.innerHeight);
-        if (!state.display) return;
-        selectPath();
-      });
+      _utils_Scroll__WEBPACK_IMPORTED_MODULE_2__["default"].addScrollFunction(computeRatioThenSelectPath);
+      if (state.init) return;
+      computeRatioThenSelectPath();
     }; // animateProgressBorders main calls
 
 
