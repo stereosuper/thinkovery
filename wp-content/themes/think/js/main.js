@@ -10553,273 +10553,333 @@ var minionsHandler = function minionsHandler() {
   var easeIn = Power2.easeOut;
   var wh = window.innerHeight;
   var ww = window.innerWidth;
-  var animsDone = [];
+  var animsState = [];
   var headerBottom = wh - minions[2].getBoundingClientRect().top - window.scrollY;
   var planePath = document.getElementById('plane-path');
-  planePath = planePath ? planePath.querySelector('path') : undefined; // Constants used to create the intersection observer threshold array
+  planePath = planePath ? planePath.querySelector('path') : undefined;
+  var resizeTimer; // Constants used to create the intersection observer threshold array
 
   var samplesNumber = 10;
   var thresholdSamples = [];
   var index = 0;
   var observer = null;
 
-  var headerAnim = function headerAnim() {
+  var headerAnim = function headerAnim(anim) {
     var video = document.getElementById('home-video');
-    animsDone['home-intro'].running = true;
+    animsState['home-intro'].launched = true;
 
     if (!video) {
-      // todo: placer les truc au bon endroit en set, au cas ou l'utilisateur arrive ailleurs sur la page
-      animsDone['home-intro'].done = true;
+      animsState['home-intro'].done = true;
       return;
     }
 
     var tlPlayer = new TimelineMax();
-    var tl = new TimelineMax();
-    tlPlayer.to(minions[2], 0.3, {
-      scale: 1,
-      opacity: 1,
-      ease: easeIn
-    }).to(minions[2], 0.3, {
-      scale: 4,
-      onComplete: function onComplete() {
-        if (video) {
-          video.classList.add('player-on');
-          video.classList.add('on');
-          gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set(video.querySelector('.iframe'), {
-            opacity: 1,
-            delay: 0.7
+
+    if (anim) {
+      tlPlayer.to(minions[2], 0.3, {
+        scale: 1,
+        opacity: 1,
+        ease: easeIn
+      }).to(minions[2], 0.3, {
+        scale: 4,
+        onComplete: function onComplete() {
+          if (video) {
+            video.classList.add('player-on');
+            video.classList.add('on');
+            gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set(video.querySelector('.iframe'), {
+              opacity: 1,
+              delay: 0.7
+            });
+          }
+        },
+        ease: easeIn
+      }).to(minions[2], 0.2, {
+        scale: 3,
+        ease: easeIn
+      }).to(minions[2], 0.7, {
+        x: -10,
+        y: headerBottom - 40,
+        rotation: 90,
+        ease: easeIn,
+        delay: 0.3,
+        onComplete: function onComplete() {
+          animsState['home-intro'].done = true;
+        }
+      }).to(minions[2], 0.4, {
+        y: headerBottom - 50,
+        ease: easeIn,
+        onComplete: function onComplete() {
+          gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[2], 0.4, {
+            y: headerBottom - 35,
+            ease: easeIn
+          });
+        },
+        repeat: -1,
+        repeatDelay: 3
+      });
+      gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to([minions[0], minions[1], minions[3], minions[4]], 0.3, {
+        opacity: 1,
+        scale: 1,
+        ease: easeIn,
+        onComplete: function onComplete() {
+          gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to([minions[0], minions[1], minions[3], minions[4]], 1, {
+            scale: 3,
+            ease: easeIn
           });
         }
-      },
-      ease: easeIn
-    }).to(minions[2], 0.2, {
-      scale: 3,
-      ease: easeIn
-    }).to(minions[2], 0.7, {
-      x: -10,
-      y: headerBottom - 40,
-      rotation: 90,
-      ease: easeIn,
-      delay: 0.3,
-      onComplete: function onComplete() {
-        animsDone['home-intro'].done = true;
-      }
-    }).to(minions[2], 0.4, {
-      y: headerBottom - 50,
-      ease: easeIn,
-      onComplete: function onComplete() {
-        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[2], 0.4, {
-          y: headerBottom - 35,
-          ease: easeIn
-        });
-      },
-      repeat: -1,
-      repeatDelay: 3
-    });
-    tl.add([gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to([minions[0], minions[1], minions[3], minions[4]], 0.3, {
-      opacity: 1,
-      scale: 1,
-      ease: easeIn,
-      onComplete: function onComplete() {
-        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to([minions[0], minions[1], minions[3], minions[4]], 1, {
-          scale: 3,
-          ease: easeIn
-        });
-      }
-    }), gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[0], 1.4, {
-      bezier: {
-        curviness: 1,
-        values: [{
-          x: -100,
-          y: -30
-        }, {
-          x: -200,
-          y: 0
-        }, {
-          x: -250,
-          y: headerBottom / 3
-        }, {
-          x: -280,
-          y: headerBottom / 3 * 2
-        }, {
-          x: -240,
-          y: headerBottom + 100
-        }]
-      },
-      delay: 0.15,
-      ease: easeIn
-    }), gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[1], 1.4, {
-      bezier: {
-        curviness: 1,
-        values: [{
-          x: -50,
-          y: -70
-        }, {
-          x: -100,
-          y: -50
-        }, {
-          x: -140,
-          y: headerBottom / 3
-        }, {
-          x: -170,
-          y: headerBottom / 3 * 2
-        }, {
-          x: -130,
-          y: headerBottom + 100
-        }]
-      },
-      delay: 0.15,
-      ease: easeIn
-    }), gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[3], 1.4, {
-      bezier: {
-        curviness: 1,
-        values: [{
-          x: 50,
-          y: -60
-        }, {
-          x: 100,
-          y: -40
-        }, {
-          x: 140,
-          y: headerBottom / 3
-        }, {
-          x: 170,
-          y: headerBottom / 3 * 2
-        }, {
-          x: 130,
-          y: headerBottom + 100
-        }]
-      },
-      delay: 0.15,
-      ease: easeIn
-    }), gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[4], 1.4, {
-      bezier: {
-        curviness: 1,
-        values: [{
-          x: 100,
-          y: -10
-        }, {
-          x: 190,
-          y: 10
-        }, {
-          x: 250,
-          y: headerBottom / 3
-        }, {
-          x: 280,
-          y: headerBottom / 3 * 2
-        }, {
-          x: 240,
-          y: headerBottom + 100
-        }]
-      },
-      delay: 0.15,
-      ease: easeIn
-    })]);
+      });
+      gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[0], 1.4, {
+        bezier: {
+          curviness: 1,
+          values: [{
+            x: -100,
+            y: -30
+          }, {
+            x: -200,
+            y: 0
+          }, {
+            x: -250,
+            y: headerBottom / 3
+          }, {
+            x: -280,
+            y: headerBottom / 3 * 2
+          }, {
+            x: -240,
+            y: headerBottom + 100
+          }]
+        },
+        delay: 0.15,
+        ease: easeIn
+      });
+      gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[1], 1.4, {
+        bezier: {
+          curviness: 1,
+          values: [{
+            x: -50,
+            y: -70
+          }, {
+            x: -100,
+            y: -50
+          }, {
+            x: -140,
+            y: headerBottom / 3
+          }, {
+            x: -170,
+            y: headerBottom / 3 * 2
+          }, {
+            x: -130,
+            y: headerBottom + 100
+          }]
+        },
+        delay: 0.15,
+        ease: easeIn
+      });
+      gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[3], 1.4, {
+        bezier: {
+          curviness: 1,
+          values: [{
+            x: 50,
+            y: -60
+          }, {
+            x: 100,
+            y: -40
+          }, {
+            x: 140,
+            y: headerBottom / 3
+          }, {
+            x: 170,
+            y: headerBottom / 3 * 2
+          }, {
+            x: 130,
+            y: headerBottom + 100
+          }]
+        },
+        delay: 0.15,
+        ease: easeIn
+      });
+      gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[4], 1.4, {
+        bezier: {
+          curviness: 1,
+          values: [{
+            x: 100,
+            y: -10
+          }, {
+            x: 190,
+            y: 10
+          }, {
+            x: 250,
+            y: headerBottom / 3
+          }, {
+            x: 280,
+            y: headerBottom / 3 * 2
+          }, {
+            x: 240,
+            y: headerBottom + 100
+          }]
+        },
+        delay: 0.15,
+        ease: easeIn
+      });
+    } else {
+      gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].killAll();
+      video.classList.add('player-on');
+      video.classList.add('on');
+      gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set(video.querySelector('.iframe'), {
+        opacity: 1,
+        delay: 0.7
+      });
+      gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set(minions, {
+        opacity: 1,
+        scale: 3
+      }); // TweenMax.set(minions[0], {x: -240, y: headerBottom + 100});
+      // TweenMax.set(minions[1], {x: -130, y: headerBottom + 100});
+      // TweenMax.set(minions[2], {y: headerBottom-50});
+      // TweenMax.set(minions[3], {x: 130, y: headerBottom + 100});
+      // TweenMax.set(minions[4], {x: 240, y: headerBottom + 100});
+
+      animsState['home-intro'].done = true;
+    }
   };
 
-  var learningAnim = function learningAnim() {
+  var learningAnim = function learningAnim(anim) {
     var windowBottom = homeSections[1].offsetHeight + ww / 50;
     var duration = 1.4;
     var planePathBezier = planePath ? MorphSVGPlugin.pathDataToBezier(planePath) : '';
     var plane = document.getElementById('plane');
     var planeBottom = planePath.getBoundingClientRect().bottom - minions[0].getBoundingClientRect().bottom;
-    animsDone['home-learning-experience'].running = true;
-    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[2], 0.3, {
-      x: 0,
-      y: headerBottom + 100,
-      ease: easeIn,
-      onComplete: function onComplete() {
-        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[0], 1, {
-          bezier: {
-            curviness: 1,
-            values: [{
-              x: '+=60',
-              y: '+=' + windowBottom / 2
-            }, {
-              x: '+=200',
-              y: '+=' + planeBottom
-            }]
-          },
-          ease: easeIn
-        });
-        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[1], duration, {
-          bezier: {
-            curviness: 1,
-            values: [{
-              y: '+=' + windowBottom / 2
-            }, {
-              x: '+=10',
-              y: '+=' + (windowBottom - 60)
-            }]
-          },
-          ease: easeIn
-        });
-        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[2], duration, {
-          rotation: 0,
-          bezier: {
-            curviness: 1,
-            values: [{
-              y: '+=' + windowBottom / 2
-            }, {
-              y: '+=' + (windowBottom - 40)
-            }]
-          },
-          ease: easeIn
-        });
-        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[3], duration, {
-          bezier: {
-            curviness: 1,
-            values: [{
-              x: '+=80',
-              y: '+=' + windowBottom / 2
-            }, {
-              x: '-=10',
-              y: '+=' + (windowBottom - 20)
-            }]
-          },
-          ease: easeIn
-        });
-        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[4], duration, {
-          bezier: {
-            curviness: 1,
-            values: [{
-              x: '+=80',
-              y: '+=' + windowBottom / 2
-            }, {
-              x: '-=20',
-              y: '+=' + windowBottom
-            }]
-          },
-          ease: easeIn
-        });
+    animsState['home-learning-experience'].launched = true;
 
-        if (plane) {
-          gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(planePath, 1, {
-            drawSVG: '100%'
-          });
-          gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(plane, 2, {
+    if (anim) {
+      gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[2], 0.3, {
+        x: 0,
+        y: headerBottom + 100,
+        ease: easeIn,
+        onComplete: function onComplete() {
+          gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[0], 1, {
             bezier: {
-              values: planePathBezier,
-              type: 'cubic',
-              autoRotate: true,
-              ease: easeIn
+              curviness: 1,
+              values: [{
+                x: '+=60',
+                y: '+=' + windowBottom / 2
+              }, {
+                x: '+=200',
+                y: '+=' + planeBottom
+              }]
             },
-            onComplete: function onComplete() {
-              animsDone['home-learning-experience'].done = true;
-            }
+            ease: easeIn
           });
-        } else {
-          animsDone['home-learning-experience'].done = true;
+          gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[1], duration, {
+            bezier: {
+              curviness: 1,
+              values: [{
+                y: '+=' + windowBottom / 2
+              }, {
+                x: '+=10',
+                y: '+=' + (windowBottom - 60)
+              }]
+            },
+            ease: easeIn
+          });
+          gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[2], duration, {
+            rotation: 0,
+            bezier: {
+              curviness: 1,
+              values: [{
+                y: '+=' + windowBottom / 2
+              }, {
+                y: '+=' + (windowBottom - 40)
+              }]
+            },
+            ease: easeIn
+          });
+          gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[3], duration, {
+            bezier: {
+              curviness: 1,
+              values: [{
+                x: '+=80',
+                y: '+=' + windowBottom / 2
+              }, {
+                x: '-=10',
+                y: '+=' + (windowBottom - 20)
+              }]
+            },
+            ease: easeIn
+          });
+          gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[4], duration, {
+            bezier: {
+              curviness: 1,
+              values: [{
+                x: '+=80',
+                y: '+=' + windowBottom / 2
+              }, {
+                x: '-=20',
+                y: '+=' + windowBottom
+              }]
+            },
+            ease: easeIn
+          });
+
+          if (plane) {
+            gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(planePath, 1, {
+              drawSVG: '100%'
+            });
+            gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(plane, 2, {
+              bezier: {
+                values: planePathBezier,
+                type: 'cubic',
+                autoRotate: true,
+                ease: easeIn
+              },
+              onComplete: function onComplete() {
+                animsState['home-learning-experience'].done = true;
+              }
+            });
+          } else {
+            animsState['home-learning-experience'].done = true;
+          }
         }
-      }
-    });
+      });
+    } else {
+      if (!animsState['home-intro'].done) headerAnim(false);
+      gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].killAll();
+      gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set(minions[0], {
+        x: -40,
+        y: headerBottom + 100 + planeBottom
+      });
+      gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set(minions[1], {
+        x: -120,
+        y: headerBottom + 100 + windowBottom - 60
+      });
+      gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set(minions[2], {
+        y: headerBottom + 100 + windowBottom - 40
+      });
+      gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set(minions[3], {
+        x: 120,
+        y: headerBottom + 100 + windowBottom - 20
+      });
+      gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set(minions[4], {
+        x: 220,
+        y: headerBottom + 100 + windowBottom
+      });
+      gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set(planePath, {
+        drawSVG: '100%'
+      });
+      gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set(plane, {
+        bezier: {
+          values: planePathBezier,
+          type: 'cubic',
+          autoRotate: true
+        }
+      });
+      animsState['home-learning-experience'].done = true;
+    }
   };
 
   var offersAnim = function offersAnim() {
     var duration = 0.3;
     var delay = 0.05;
     var dropBottom = minions[4].getBoundingClientRect().bottom - minions[0].getBoundingClientRect().bottom;
-    animsDone['home-offers'].running = true;
+    animsState['home-offers'].launched = true;
     gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[3], duration, {
       y: '+=20',
       ease: easeIn
@@ -10856,7 +10916,7 @@ var minionsHandler = function minionsHandler() {
     var duration = 0.8;
     var durationSmall = 0.2;
     var delay = 0.2;
-    animsDone['home-about-us'].running = true; // arrow  1
+    animsState['home-about-us'].launched = true; // arrow  1
 
     gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[9], durationSmall, {
       scale: 1,
@@ -11020,7 +11080,7 @@ var minionsHandler = function minionsHandler() {
     var tl = new TimelineMax({
       delay: 0.8
     });
-    animsDone['home-experiences'].running = true;
+    animsState['home-experiences'].launched = true;
     morpion.classList.add('on');
     tl.to(minons[1], duration, {
       scale: 1,
@@ -11051,19 +11111,19 @@ var minionsHandler = function minionsHandler() {
 
   var intersectionCallback = function intersectionCallback(entries) {
     Object(_utils__WEBPACK_IMPORTED_MODULE_1__["forEach"])(entries, function (entry) {
-      if (entry.intersectionRatio < 0.7 || animsDone[entry.target.id].running) return;
+      if (entry.intersectionRatio < 0.7 || animsState[entry.target.id].launched) return;
 
       switch (entry.target.id) {
         case 'home-intro':
-          headerAnim();
+          headerAnim(true);
           break;
 
         case 'home-learning-experience':
-          if (animsDone['home-intro'].done) learningAnim();
+          if (animsState['home-intro'].done) learningAnim(true);
           break;
 
         case 'home-offers':
-          if (animsDone['home-learning-experience'].done) offersAnim();
+          if (animsState['home-learning-experience'].done) offersAnim();
           break;
 
         case 'home-about-us':
@@ -11091,8 +11151,8 @@ var minionsHandler = function minionsHandler() {
   });
   Object(_utils__WEBPACK_IMPORTED_MODULE_1__["forEach"])(homeSections, function (section) {
     observer.observe(section);
-    animsDone[section.id] = {
-      running: false,
+    animsState[section.id] = {
+      launched: false,
       done: false
     };
   });
@@ -11102,6 +11162,11 @@ var minionsHandler = function minionsHandler() {
   _utils_Window__WEBPACK_IMPORTED_MODULE_2__["default"].addResizeFunction(function () {
     wh = window.innerHeight;
     ww = window.innerWidth;
+    headerBottom = wh - minions[2].getBoundingClientRect().top - window.scrollY;
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () {
+      if (!animsState['home-learning-experience'].done) learningAnim(false);
+    }, 500);
   });
 };
 

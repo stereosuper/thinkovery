@@ -16,10 +16,11 @@ const minionsHandler = () => {
     const easeIn = Power2.easeOut;
     let wh = window.innerHeight;
     let ww = window.innerWidth;
-    let animsDone = [];
-    const headerBottom = wh - minions[2].getBoundingClientRect().top - window.scrollY;
+    let animsState = [];
+    let headerBottom = wh - minions[2].getBoundingClientRect().top - window.scrollY;
     let planePath = document.getElementById('plane-path');
     planePath = planePath ? planePath.querySelector('path') : undefined;
+    let resizeTimer;
     
     // Constants used to create the intersection observer threshold array
     const samplesNumber = 10;
@@ -28,49 +29,69 @@ const minionsHandler = () => {
     let observer = null;
 
 
-    const headerAnim = () => {
+    const headerAnim = ( anim ) => {
         const video = document.getElementById('home-video');
 
-        animsDone['home-intro'].running = true;
+        animsState['home-intro'].launched = true;
 
         if( !video ){
-            // todo: placer les truc au bon endroit en set, au cas ou l'utilisateur arrive ailleurs sur la page
-            animsDone['home-intro'].done = true;
+            animsState['home-intro'].done = true;
             return;
         }
         
         const tlPlayer = new TimelineMax();
-        const tl = new TimelineMax();
 
-        tlPlayer.to(minions[2], 0.3, {scale: 1, opacity: 1, ease: easeIn})
-        .to(minions[2], 0.3, {scale: 4, onComplete: () => {
-            if( video ){
-                video.classList.add('player-on');
-                video.classList.add('on');
-                TweenMax.set(video.querySelector('.iframe'), {opacity: 1, delay: 0.7});
-            }
-        }, ease: easeIn})
-        .to(minions[2], 0.2, {scale: 3, ease: easeIn})
-        .to(minions[2], 0.7, {x: -10, y: headerBottom-40, rotation: 90, ease: easeIn, delay: 0.3, onComplete: () => {
-            animsDone['home-intro'].done = true;
-        }})
-        .to(minions[2], 0.4, {y: headerBottom-50, ease: easeIn, onComplete: () => {
-            TweenMax.to(minions[2], 0.4, {y: headerBottom-35, ease: easeIn}); 
-        }, repeat: -1, repeatDelay: 3});
+        if( anim ){
 
-        tl
-        .add([
+            tlPlayer.to(minions[2], 0.3, {scale: 1, opacity: 1, ease: easeIn})
+            .to(minions[2], 0.3, {scale: 4, onComplete: () => {
+                if( video ){
+                    video.classList.add('player-on');
+                    video.classList.add('on');
+                    TweenMax.set(video.querySelector('.iframe'), {opacity: 1, delay: 0.7});
+                }
+            }, ease: easeIn})
+            .to(minions[2], 0.2, {scale: 3, ease: easeIn})
+            .to(minions[2], 0.7, {x: -10, y: headerBottom-40, rotation: 90, ease: easeIn, delay: 0.3, onComplete: () => {
+                animsState['home-intro'].done = true;
+            }})
+            .to(minions[2], 0.4, {y: headerBottom-50, ease: easeIn, onComplete: () => {
+                TweenMax.to(minions[2], 0.4, {y: headerBottom-35, ease: easeIn}); 
+            }, repeat: -1, repeatDelay: 3});
+    
             TweenMax.to([minions[0], minions[1], minions[3], minions[4]], 0.3, {opacity: 1, scale: 1, ease: easeIn, onComplete: () => {
                 TweenMax.to([minions[0], minions[1], minions[3], minions[4]], 1, {scale: 3, ease: easeIn});
-            }}),
-            TweenMax.to(minions[0], 1.4, {bezier: {curviness: 1, values: [{x: -100, y: -30}, {x: -200, y: 0}, {x: -250, y: headerBottom/3}, {x: -280, y: (headerBottom/3)*2}, {x: -240, y: headerBottom + 100}]}, delay: 0.15, ease: easeIn}),
-            TweenMax.to(minions[1], 1.4, {bezier: {curviness: 1, values: [{x: -50, y: -70}, {x: -100, y: -50}, {x: -140, y: headerBottom/3}, {x: -170, y: (headerBottom/3)*2}, {x: -130, y: headerBottom + 100}]}, delay: 0.15, ease: easeIn}),
-            TweenMax.to(minions[3], 1.4, {bezier: {curviness: 1, values: [{x: 50, y: -60}, {x: 100, y: -40}, {x: 140, y: headerBottom/3}, {x: 170, y: (headerBottom/3)*2}, {x: 130, y: headerBottom + 100}]}, delay: 0.15, ease: easeIn}),
-            TweenMax.to(minions[4], 1.4, {bezier: {curviness: 1, values: [{x: 100, y: -10}, {x: 190, y: 10}, {x: 250, y: headerBottom/3}, {x: 280, y: (headerBottom/3)*2}, {x: 240, y: headerBottom + 100}]}, delay: 0.15, ease: easeIn})
-        ]);
+            }});
+
+            TweenMax.to(minions[0], 1.4, {bezier: {curviness: 1, values: [{x: -100, y: -30}, {x: -200, y: 0}, {x: -250, y: headerBottom/3}, {x: -280, y: (headerBottom/3)*2}, {x: -240, y: headerBottom + 100}]}, delay: 0.15, ease: easeIn});
+
+            TweenMax.to(minions[1], 1.4, {bezier: {curviness: 1, values: [{x: -50, y: -70}, {x: -100, y: -50}, {x: -140, y: headerBottom/3}, {x: -170, y: (headerBottom/3)*2}, {x: -130, y: headerBottom + 100}]}, delay: 0.15, ease: easeIn});
+
+            TweenMax.to(minions[3], 1.4, {bezier: {curviness: 1, values: [{x: 50, y: -60}, {x: 100, y: -40}, {x: 140, y: headerBottom/3}, {x: 170, y: (headerBottom/3)*2}, {x: 130, y: headerBottom + 100}]}, delay: 0.15, ease: easeIn});
+
+            TweenMax.to(minions[4], 1.4, {bezier: {curviness: 1, values: [{x: 100, y: -10}, {x: 190, y: 10}, {x: 250, y: headerBottom/3}, {x: 280, y: (headerBottom/3)*2}, {x: 240, y: headerBottom + 100}]}, delay: 0.15, ease: easeIn});
+
+        }else{
+
+            TweenMax.killAll();
+
+            video.classList.add('player-on');
+            video.classList.add('on');
+            TweenMax.set(video.querySelector('.iframe'), {opacity: 1, delay: 0.7});
+            
+            TweenMax.set(minions, {opacity: 1, scale: 3});
+            // TweenMax.set(minions[0], {x: -240, y: headerBottom + 100});
+            // TweenMax.set(minions[1], {x: -130, y: headerBottom + 100});
+            // TweenMax.set(minions[2], {y: headerBottom-50});
+            // TweenMax.set(minions[3], {x: 130, y: headerBottom + 100});
+            // TweenMax.set(minions[4], {x: 240, y: headerBottom + 100});
+
+            animsState['home-intro'].done = true;
+
+        }
     };
 
-    const learningAnim = () => {
+    const learningAnim = ( anim ) => {
         const windowBottom = homeSections[1].offsetHeight + ww/50;
         const duration = 1.4;
 
@@ -79,28 +100,47 @@ const minionsHandler = () => {
 
         const planeBottom = planePath.getBoundingClientRect().bottom - minions[0].getBoundingClientRect().bottom;
 
-        animsDone['home-learning-experience'].running = true;
+        animsState['home-learning-experience'].launched = true;
 
-        TweenMax.to(minions[2], 0.3, {x: 0, y: headerBottom + 100, ease: easeIn, onComplete: () => {
-            TweenMax.to(minions[0], 1, {bezier: {curviness: 1, values: [{x: '+=60', y: '+=' + windowBottom/2}, {x: '+=200', y: '+=' + planeBottom}]}, ease: easeIn});
+        if( anim ){
 
-            TweenMax.to(minions[1], duration, {bezier: {curviness: 1, values: [{y: '+=' + windowBottom/2}, {x: '+=10', y: '+=' + (windowBottom - 60)}]}, ease: easeIn});
+            TweenMax.to(minions[2], 0.3, {x: 0, y: headerBottom + 100, ease: easeIn, onComplete: () => {
+                TweenMax.to(minions[0], 1, {bezier: {curviness: 1, values: [{x: '+=60', y: '+=' + windowBottom/2}, {x: '+=200', y: '+=' + planeBottom}]}, ease: easeIn});
+    
+                TweenMax.to(minions[1], duration, {bezier: {curviness: 1, values: [{y: '+=' + windowBottom/2}, {x: '+=10', y: '+=' + (windowBottom - 60)}]}, ease: easeIn});
+    
+                TweenMax.to(minions[2], duration, {rotation: 0, bezier: {curviness: 1, values: [{y: '+=' + windowBottom/2}, {y: '+=' + (windowBottom - 40)}]}, ease: easeIn});
+    
+                TweenMax.to(minions[3], duration, {bezier: {curviness: 1, values: [{x: '+=80', y: '+=' + windowBottom/2}, {x: '-=10', y: '+=' + (windowBottom - 20)}]}, ease: easeIn});
+    
+                TweenMax.to(minions[4], duration, {bezier: {curviness: 1, values: [{x: '+=80', y: '+=' + windowBottom/2}, {x: '-=20', y: '+=' + windowBottom}]}, ease: easeIn});
+    
+                if( plane ){
+                    TweenMax.to(planePath, 1, {drawSVG: '100%'});
+                    TweenMax.to(plane, 2, {bezier: {values: planePathBezier, type: 'cubic', autoRotate: true, ease: easeIn}, onComplete: () => {
+                        animsState['home-learning-experience'].done = true;
+                    }});
+                }else{
+                    animsState['home-learning-experience'].done = true;
+                }
+            }});
 
-            TweenMax.to(minions[2], duration, {rotation: 0, bezier: {curviness: 1, values: [{y: '+=' + windowBottom/2}, {y: '+=' + (windowBottom - 40)}]}, ease: easeIn});
+        }else{
 
-            TweenMax.to(minions[3], duration, {bezier: {curviness: 1, values: [{x: '+=80', y: '+=' + windowBottom/2}, {x: '-=10', y: '+=' + (windowBottom - 20)}]}, ease: easeIn});
+            if( !animsState['home-intro'].done ) headerAnim( false );
 
-            TweenMax.to(minions[4], duration, {bezier: {curviness: 1, values: [{x: '+=80', y: '+=' + windowBottom/2}, {x: '-=20', y: '+=' + windowBottom}]}, ease: easeIn});
+            TweenMax.killAll();
 
-            if( plane ){
-                TweenMax.to(planePath, 1, {drawSVG: '100%'});
-                TweenMax.to(plane, 2, {bezier: {values: planePathBezier, type: 'cubic', autoRotate: true, ease: easeIn}, onComplete: () => {
-                    animsDone['home-learning-experience'].done = true;
-                }});
-            }else{
-                animsDone['home-learning-experience'].done = true;
-            }
-        }});
+            TweenMax.set(minions[0], {x: -40, y: headerBottom + 100 + planeBottom});
+            TweenMax.set(minions[1], {x: -120, y: headerBottom + 100 + windowBottom - 60});
+            TweenMax.set(minions[2], {y: headerBottom + 100 + windowBottom - 40});
+            TweenMax.set(minions[3], {x: 120, y: headerBottom + 100 + windowBottom - 20});
+            TweenMax.set(minions[4], {x: 220, y: headerBottom + 100 + windowBottom});
+            TweenMax.set(planePath, {drawSVG: '100%'});
+            TweenMax.set(plane, {bezier: {values: planePathBezier, type: 'cubic', autoRotate: true}});
+
+            animsState['home-learning-experience'].done = true;
+        }
     };
 
     const offersAnim = () => {
@@ -109,7 +149,7 @@ const minionsHandler = () => {
 
         const dropBottom = minions[4].getBoundingClientRect().bottom - minions[0].getBoundingClientRect().bottom;
 
-        animsDone['home-offers'].running = true;
+        animsState['home-offers'].launched = true;
         
         TweenMax.to(minions[3], duration, {y: '+=20', ease: easeIn});
         TweenMax.to(minions[2], duration, {y: '+=40', ease: easeIn, delay: delay});
@@ -124,7 +164,7 @@ const minionsHandler = () => {
         const durationSmall = 0.2;
         const delay = 0.2;
 
-        animsDone['home-about-us'].running = true;
+        animsState['home-about-us'].launched = true;
 
         // arrow  1
         TweenMax.to(minions[9], durationSmall, {scale: 1, opacity: 1, ease: easeIn, onComplete: () => {
@@ -182,7 +222,7 @@ const minionsHandler = () => {
         const delay = 0.5;
         const tl = new TimelineMax({delay: 0.8});
 
-        animsDone['home-experiences'].running = true;
+        animsState['home-experiences'].launched = true;
 
         morpion.classList.add('on');
         tl.to(minons[1], duration, {scale: 1, opacity: 1, ease: easeIn})
@@ -194,17 +234,17 @@ const minionsHandler = () => {
 
     const intersectionCallback = entries => {
         forEach( entries, entry => {
-            if( entry.intersectionRatio < 0.7 || animsDone[entry.target.id].running ) return;
+            if( entry.intersectionRatio < 0.7 || animsState[entry.target.id].launched ) return;
 
             switch( entry.target.id ){
                 case 'home-intro':
-                    headerAnim();
+                    headerAnim( true );
                     break;
                 case 'home-learning-experience':
-                    if( animsDone['home-intro'].done ) learningAnim();
+                    if( animsState['home-intro'].done ) learningAnim( true );
                     break;
                 case 'home-offers':
-                    if( animsDone['home-learning-experience'].done ) offersAnim();
+                    if( animsState['home-learning-experience'].done ) offersAnim();
                     break;
                 case 'home-about-us':
                     aboutAnim();
@@ -231,7 +271,7 @@ const minionsHandler = () => {
 
     forEach( homeSections, section => {
         observer.observe(section);
-        animsDone[section.id] = {running: false, done: false};
+        animsState[section.id] = {launched: false, done: false};
     } );
 
     TweenMax.set(planePath, {drawSVG: 0});
@@ -239,6 +279,14 @@ const minionsHandler = () => {
     win.addResizeFunction(() => {
         wh = window.innerHeight;
         ww = window.innerWidth;
+        headerBottom = wh - minions[2].getBoundingClientRect().top - window.scrollY;
+
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+
+            if( !animsState['home-learning-experience'].done ) learningAnim( false );
+                    
+        }, 500);
     });
     
 };
