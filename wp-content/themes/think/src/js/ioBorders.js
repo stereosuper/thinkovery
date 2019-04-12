@@ -47,28 +47,28 @@ const ioBorders = () => {
             borders: [
                 {
                     position: 'top',
-                    duration: 0.6,
+                    duration: 0.5,
                     maxScale: 1,
                     axis: 'x',
                     easing: 'out',
                 },
                 {
                     position: 'all',
-                    duration: 0.6,
+                    duration: 0.5,
                     color: colors.funGreen,
                     easing: 'out',
                     nestNext: false,
                 },
                 {
                     position: 'right',
-                    duration: 0.6,
+                    duration: 0.5,
                     maxScale: 1,
                     axis: 'y',
                     easing: 'out',
                 },
                 {
                     position: 'bottom',
-                    duration: 0.6,
+                    duration: 0.5,
                     maxScale: 0.5,
                     axis: 'x',
                     easing: 'out',
@@ -79,7 +79,7 @@ const ioBorders = () => {
             borders: [
                 {
                     position: 'bottom',
-                    duration: 0.65,
+                    duration: 0.5,
                     maxScale: 1,
                     axis: 'x',
                     easing: 'out',
@@ -87,20 +87,20 @@ const ioBorders = () => {
                 {
                     position: 'all',
                     color: colors.pictonBlue,
-                    duration: 0.65,
+                    duration: 0.5,
                     easing: 'out',
                     nestNext: false,
                 },
                 {
                     position: 'left',
-                    duration: 0.65,
+                    duration: 0.5,
                     maxScale: 1,
                     axis: 'y',
                     easing: 'out',
                 },
                 {
                     position: 'top',
-                    duration: 0.65,
+                    duration: 0.5,
                     maxScale: 0.25,
                     axis: 'x',
                     easing: 'out',
@@ -111,7 +111,7 @@ const ioBorders = () => {
             borders: [
                 {
                     position: 'top',
-                    duration: 0.65,
+                    duration: 0.5,
                     maxScale: 1,
                     axis: 'x',
                     easing: 'out',
@@ -119,20 +119,20 @@ const ioBorders = () => {
                 {
                     position: 'all',
                     color: colors.funGreen,
-                    duration: 0.65,
+                    duration: 0.5,
                     easing: 'out',
                     nestNext: false,
                 },
                 {
                     position: 'right',
-                    duration: 0.65,
+                    duration: 0.5,
                     maxScale: 1,
                     axis: 'y',
                     easing: 'out',
                 },
                 {
                     position: 'top',
-                    duration: 0.65,
+                    duration: 0.5,
                     maxScale: 0,
                     axis: 'x',
                     origin: '100% 50%',
@@ -141,7 +141,7 @@ const ioBorders = () => {
                 },
                 {
                     position: 'bottom',
-                    duration: 0.65,
+                    duration: 0.5,
                     maxScale: 0.75,
                     axis: 'x',
                     easing: 'out',
@@ -152,7 +152,7 @@ const ioBorders = () => {
             borders: [
                 {
                     position: 'bottom',
-                    duration: 0.65,
+                    duration: 0.5,
                     maxScale: 1,
                     axis: 'x',
                     easing: 'out',
@@ -160,20 +160,20 @@ const ioBorders = () => {
                 {
                     position: 'all',
                     color: colors.persimmon,
-                    duration: 0.65,
+                    duration: 0.5,
                     easing: 'out',
                     nestNext: false,
                 },
                 {
                     position: 'left',
-                    duration: 0.65,
+                    duration: 0.5,
                     maxScale: 1,
                     axis: 'y',
                     easing: 'out',
                 },
                 {
                     position: 'bottom',
-                    duration: 0.65,
+                    duration: 0.5,
                     maxScale: 0.25,
                     axis: 'x',
                     origin: '0% 50%',
@@ -182,7 +182,7 @@ const ioBorders = () => {
                 },
                 {
                     position: 'top',
-                    duration: 0.65,
+                    duration: 0.5,
                     maxScale: 1,
                     axis: 'x',
                     easing: 'out',
@@ -193,7 +193,7 @@ const ioBorders = () => {
             borders: [
                 {
                     position: 'top',
-                    duration: 0.65,
+                    duration: 0.5,
                     maxScale: 1,
                     axis: 'x',
                     easing: 'out',
@@ -201,20 +201,20 @@ const ioBorders = () => {
                 {
                     position: 'all',
                     color: colors.darkOrange,
-                    duration: 0.65,
+                    duration: 0.5,
                     easing: 'out',
                     nestNext: false,
                 },
                 {
                     position: 'right',
-                    duration: 0.65,
+                    duration: 0.5,
                     maxScale: 1,
                     axis: 'y',
                     easing: 'out',
                 },
                 {
                     position: 'top',
-                    duration: 0.65,
+                    duration: 0.5,
                     maxScale: 0.25,
                     axis: 'x',
                     origin: '100% 0%',
@@ -223,9 +223,50 @@ const ioBorders = () => {
                 },
                 {
                     position: 'bottom',
-                    duration: 0.65,
+                    duration: 0.5,
                     maxScale: 1,
                     axis: 'x',
+                    easing: 'out',
+                },
+            ],
+        },
+        homeFooter: {
+            borders: [
+                {
+                    position: 'right',
+                    duration: 0.5,
+                    maxScale: 1,
+                    axis: 'y',
+                    easing: 'out',
+                },
+                {
+                    position: 'all',
+                    color: colors.funGreen,
+                    duration: 0.5,
+                    easing: 'out',
+                    nestNext: false,
+                },
+                {
+                    position: 'bottom',
+                    duration: 0.5,
+                    maxScale: 1,
+                    axis: 'x',
+                    easing: 'out',
+                },
+                {
+                    position: 'right',
+                    duration: 0.5,
+                    maxScale: 0.5,
+                    axis: 'y',
+                    origin: '50% 100%',
+                    easing: 'in',
+                    nestNext: false,
+                },
+                {
+                    position: 'left',
+                    duration: 0.5,
+                    maxScale: 1,
+                    axis: 'y',
                     easing: 'out',
                 },
             ],
@@ -283,7 +324,7 @@ const ioBorders = () => {
             // Head
             let delta =
                 Math.abs(
-                    newEndIndex <= lastEndIndex
+                    newEndIndex < lastEndIndex
                         ? newEndIndex + 4 - lastEndIndex
                         : newEndIndex - lastEndIndex
                 ) + 1;
@@ -293,7 +334,7 @@ const ioBorders = () => {
 
                 returnBorders.borders[index] = {
                     position: borderMapping.byIndex[borderIndex],
-                    duration: 0.65,
+                    duration: 0.5,
                     maxScale: index === delta - 1 ? end.scale : 1,
                     axis: borderIndex % 2 ? 'y' : 'x',
                     ease: 'out',
@@ -304,7 +345,7 @@ const ioBorders = () => {
             // Tail
             delta =
                 Math.abs(
-                    newStartIndex <= lastStartIndex
+                    newStartIndex < lastStartIndex
                         ? newStartIndex + 4 - lastStartIndex
                         : newStartIndex - lastStartIndex
                 ) + 1;
@@ -320,13 +361,13 @@ const ioBorders = () => {
 
                 const border = {
                     position,
-                    duration: 0.65,
+                    duration: 0.5,
                     maxScale,
                     origin:
                         borderMapping.reset[borderMapping.byIndex[borderIndex]]
                             .origin,
                     axis: borderIndex % 2 ? 'y' : 'x',
-                    ease: 'inn',
+                    ease: 'in',
                 };
 
                 const insertIndex = index * 2 + 1;
@@ -349,35 +390,6 @@ const ioBorders = () => {
         // returnBorders = bordersAnimations[defaultAnim];
         return returnBorders;
     };
-
-    // /**
-    //  * @description reset previous animation
-    //  * @param {array} { borders }
-    //  * @param {function} cb
-    //  */
-    // const resetBorders = ({ borders }, cb) => {
-    //     if (!borders.length) {
-    //         cb();
-    //     } else {
-    //         const [{ position, duration }, nextBorder] = borders;
-
-    //         TweenMax.to(bordersCat[borderMapping[position].index], duration, {
-    //             transformOrigin: borderMapping.reset[position].origin,
-    //             scaleX: position === 'top' || position === 'bottom' ? 0 : 1,
-    //             scaleY: position === 'left' || position === 'right' ? 0 : 1,
-    //             onComplete: () => {
-    //                 if (nextBorder) {
-    //                     resetBorders(
-    //                         { borders: borders.slice(1, borders.length) },
-    //                         cb
-    //                     );
-    //                 } else {
-    //                     cb();
-    //                 }
-    //             },
-    //         });
-    //     }
-    // };
 
     /**
      * @description update next section borders
@@ -517,6 +529,16 @@ const ioBorders = () => {
                         color: colors.darkOrange,
                         start: { position: 'top', scale: 0.25 },
                         end: { position: 'bottom', scale: 1 },
+                    })
+                );
+                break;
+            case 'home-footer':
+                animateBorder(
+                    computeResetBorders({
+                        defaultAnim: 'homeFooter',
+                        color: colors.funGreen,
+                        start: { position: 'right', scale: 0.5 },
+                        end: { position: 'left', scale: 1 },
                     })
                 );
                 break;

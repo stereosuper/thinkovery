@@ -58,7 +58,7 @@ const scrollBorders = () => {
      */
     const animatePath = ({ borders }) => {
         let { ratio } = state.activeSection;
-        ratio *= 1.25;
+        ratio *= 1.15;
         const ratioFactor = borders.reduce(
             (acc, current) => acc + current.maxScale,
             0

@@ -9643,25 +9643,25 @@ var ioBorders = function ioBorders() {
     intro: {
       borders: [{
         position: 'top',
-        duration: 0.6,
+        duration: 0.5,
         maxScale: 1,
         axis: 'x',
         easing: 'out'
       }, {
         position: 'all',
-        duration: 0.6,
+        duration: 0.5,
         color: _global__WEBPACK_IMPORTED_MODULE_4__["colors"].funGreen,
         easing: 'out',
         nestNext: false
       }, {
         position: 'right',
-        duration: 0.6,
+        duration: 0.5,
         maxScale: 1,
         axis: 'y',
         easing: 'out'
       }, {
         position: 'bottom',
-        duration: 0.6,
+        duration: 0.5,
         maxScale: 0.5,
         axis: 'x',
         easing: 'out'
@@ -9670,25 +9670,25 @@ var ioBorders = function ioBorders() {
     learningExperience: {
       borders: [{
         position: 'bottom',
-        duration: 0.65,
+        duration: 0.5,
         maxScale: 1,
         axis: 'x',
         easing: 'out'
       }, {
         position: 'all',
         color: _global__WEBPACK_IMPORTED_MODULE_4__["colors"].pictonBlue,
-        duration: 0.65,
+        duration: 0.5,
         easing: 'out',
         nestNext: false
       }, {
         position: 'left',
-        duration: 0.65,
+        duration: 0.5,
         maxScale: 1,
         axis: 'y',
         easing: 'out'
       }, {
         position: 'top',
-        duration: 0.65,
+        duration: 0.5,
         maxScale: 0.25,
         axis: 'x',
         easing: 'out'
@@ -9697,25 +9697,25 @@ var ioBorders = function ioBorders() {
     offers: {
       borders: [{
         position: 'top',
-        duration: 0.65,
+        duration: 0.5,
         maxScale: 1,
         axis: 'x',
         easing: 'out'
       }, {
         position: 'all',
         color: _global__WEBPACK_IMPORTED_MODULE_4__["colors"].funGreen,
-        duration: 0.65,
+        duration: 0.5,
         easing: 'out',
         nestNext: false
       }, {
         position: 'right',
-        duration: 0.65,
+        duration: 0.5,
         maxScale: 1,
         axis: 'y',
         easing: 'out'
       }, {
         position: 'top',
-        duration: 0.65,
+        duration: 0.5,
         maxScale: 0,
         axis: 'x',
         origin: '100% 50%',
@@ -9723,7 +9723,7 @@ var ioBorders = function ioBorders() {
         nestNext: false
       }, {
         position: 'bottom',
-        duration: 0.65,
+        duration: 0.5,
         maxScale: 0.75,
         axis: 'x',
         easing: 'out'
@@ -9732,25 +9732,25 @@ var ioBorders = function ioBorders() {
     aboutUs: {
       borders: [{
         position: 'bottom',
-        duration: 0.65,
+        duration: 0.5,
         maxScale: 1,
         axis: 'x',
         easing: 'out'
       }, {
         position: 'all',
         color: _global__WEBPACK_IMPORTED_MODULE_4__["colors"].persimmon,
-        duration: 0.65,
+        duration: 0.5,
         easing: 'out',
         nestNext: false
       }, {
         position: 'left',
-        duration: 0.65,
+        duration: 0.5,
         maxScale: 1,
         axis: 'y',
         easing: 'out'
       }, {
         position: 'bottom',
-        duration: 0.65,
+        duration: 0.5,
         maxScale: 0.25,
         axis: 'x',
         origin: '0% 50%',
@@ -9758,7 +9758,7 @@ var ioBorders = function ioBorders() {
         nestNext: false
       }, {
         position: 'top',
-        duration: 0.65,
+        duration: 0.5,
         maxScale: 1,
         axis: 'x',
         easing: 'out'
@@ -9767,25 +9767,25 @@ var ioBorders = function ioBorders() {
     experiences: {
       borders: [{
         position: 'top',
-        duration: 0.65,
+        duration: 0.5,
         maxScale: 1,
         axis: 'x',
         easing: 'out'
       }, {
         position: 'all',
         color: _global__WEBPACK_IMPORTED_MODULE_4__["colors"].darkOrange,
-        duration: 0.65,
+        duration: 0.5,
         easing: 'out',
         nestNext: false
       }, {
         position: 'right',
-        duration: 0.65,
+        duration: 0.5,
         maxScale: 1,
         axis: 'y',
         easing: 'out'
       }, {
         position: 'top',
-        duration: 0.65,
+        duration: 0.5,
         maxScale: 0.25,
         axis: 'x',
         origin: '100% 0%',
@@ -9793,9 +9793,44 @@ var ioBorders = function ioBorders() {
         nestNext: false
       }, {
         position: 'bottom',
-        duration: 0.65,
+        duration: 0.5,
         maxScale: 1,
         axis: 'x',
+        easing: 'out'
+      }]
+    },
+    homeFooter: {
+      borders: [{
+        position: 'right',
+        duration: 0.5,
+        maxScale: 1,
+        axis: 'y',
+        easing: 'out'
+      }, {
+        position: 'all',
+        color: _global__WEBPACK_IMPORTED_MODULE_4__["colors"].funGreen,
+        duration: 0.5,
+        easing: 'out',
+        nestNext: false
+      }, {
+        position: 'bottom',
+        duration: 0.5,
+        maxScale: 1,
+        axis: 'x',
+        easing: 'out'
+      }, {
+        position: 'right',
+        duration: 0.5,
+        maxScale: 0.5,
+        axis: 'y',
+        origin: '50% 100%',
+        easing: 'in',
+        nestNext: false
+      }, {
+        position: 'left',
+        duration: 0.5,
+        maxScale: 1,
+        axis: 'y',
         easing: 'out'
       }]
     }
@@ -9856,14 +9891,14 @@ var ioBorders = function ioBorders() {
       var newEndIndex = borderMapping[end.position].index;
       var lastStartIndex = state.ends.start; // Head
 
-      var delta = Math.abs(newEndIndex <= lastEndIndex ? newEndIndex + 4 - lastEndIndex : newEndIndex - lastEndIndex) + 1;
+      var delta = Math.abs(newEndIndex < lastEndIndex ? newEndIndex + 4 - lastEndIndex : newEndIndex - lastEndIndex) + 1;
       var index = 0;
 
       for (index; index < delta; index += 1) {
         var borderIndex = (lastEndIndex + index) % 4;
         returnBorders.borders[index] = {
           position: borderMapping.byIndex[borderIndex],
-          duration: 0.65,
+          duration: 0.5,
           maxScale: index === delta - 1 ? end.scale : 1,
           axis: borderIndex % 2 ? 'y' : 'x',
           ease: 'out',
@@ -9872,7 +9907,7 @@ var ioBorders = function ioBorders() {
       } // Tail
 
 
-      delta = Math.abs(newStartIndex <= lastStartIndex ? newStartIndex + 4 - lastStartIndex : newStartIndex - lastStartIndex) + 1;
+      delta = Math.abs(newStartIndex < lastStartIndex ? newStartIndex + 4 - lastStartIndex : newStartIndex - lastStartIndex) + 1;
 
       for (index = 0; index < delta; index += 1) {
         var _borderIndex = (lastStartIndex + index) % 4;
@@ -9887,11 +9922,11 @@ var ioBorders = function ioBorders() {
 
         var border = {
           position: position,
-          duration: 0.65,
+          duration: 0.5,
           maxScale: maxScale,
           origin: borderMapping.reset[borderMapping.byIndex[_borderIndex]].origin,
           axis: _borderIndex % 2 ? 'y' : 'x',
-          ease: 'inn'
+          ease: 'in'
         };
         var insertIndex = index * 2 + 1;
         returnBorders.borders.splice(insertIndex, 0, border);
@@ -9912,34 +9947,7 @@ var ioBorders = function ioBorders() {
 
 
     return returnBorders;
-  }; // /**
-  //  * @description reset previous animation
-  //  * @param {array} { borders }
-  //  * @param {function} cb
-  //  */
-  // const resetBorders = ({ borders }, cb) => {
-  //     if (!borders.length) {
-  //         cb();
-  //     } else {
-  //         const [{ position, duration }, nextBorder] = borders;
-  //         TweenMax.to(bordersCat[borderMapping[position].index], duration, {
-  //             transformOrigin: borderMapping.reset[position].origin,
-  //             scaleX: position === 'top' || position === 'bottom' ? 0 : 1,
-  //             scaleY: position === 'left' || position === 'right' ? 0 : 1,
-  //             onComplete: () => {
-  //                 if (nextBorder) {
-  //                     resetBorders(
-  //                         { borders: borders.slice(1, borders.length) },
-  //                         cb
-  //                     );
-  //                 } else {
-  //                     cb();
-  //                 }
-  //             },
-  //         });
-  //     }
-  // };
-
+  };
   /**
    * @description update next section borders
    * @param {array} { borders }
@@ -10101,6 +10109,21 @@ var ioBorders = function ioBorders() {
         }));
         break;
 
+      case 'home-footer':
+        animateBorder(computeResetBorders({
+          defaultAnim: 'homeFooter',
+          color: _global__WEBPACK_IMPORTED_MODULE_4__["colors"].funGreen,
+          start: {
+            position: 'right',
+            scale: 0.5
+          },
+          end: {
+            position: 'left',
+            scale: 1
+          }
+        }));
+        break;
+
       default:
         break;
     }
@@ -10190,7 +10213,7 @@ var preloadHandler = function preloadHandler() {
 };
 
 var animationHandler = function animationHandler() {
-  Object(_scrollBorders__WEBPACK_IMPORTED_MODULE_9__["default"])();
+  // scrollBorders();
   Object(_ioBorders__WEBPACK_IMPORTED_MODULE_10__["default"])();
   Object(_minions__WEBPACK_IMPORTED_MODULE_12__["default"])();
 };
@@ -11462,7 +11485,7 @@ var scrollBorders = function scrollBorders() {
   var animatePath = function animatePath(_ref) {
     var borders = _ref.borders;
     var ratio = state.activeSection.ratio;
-    ratio *= 1.25;
+    ratio *= 1.15;
     var ratioFactor = borders.reduce(function (acc, current) {
       return acc + current.maxScale;
     }, 0);

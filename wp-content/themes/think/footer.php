@@ -1,6 +1,6 @@
         </main>
 
-        <footer role='contentinfo' class='main-footer js-load-hidden'>
+        <footer role='contentinfo' class='main-footer js-load-hidden' data-io="updateBorder" data-section-name="home-footer">
             <div class='newsletter-container'>
                 <div class='container'>
                     <?php $news = get_field('newsletter', 'options'); if( $news['newsletterTitle'] ):  ?>

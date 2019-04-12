@@ -39,7 +39,7 @@ const preloadHandler = () => {
 };
 
 const animationHandler = () => {
-    scrollBorders();
+    // scrollBorders();
     ioBorders();
     minions();
 };
