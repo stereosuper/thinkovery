@@ -7,7 +7,7 @@ const scrollBorders = () => {
     const bordersWrapper = document.getElementById('borders');
 
     if (!bordersWrapper && !document.body.classList.contains('home')) return;
-    
+
     // Borders html elements
     const bordersMouse = bordersWrapper.querySelector('.mouse').children;
     const homeSections = [].slice.call(
@@ -27,6 +27,7 @@ const scrollBorders = () => {
         display: false,
         activeId: '',
         activeSection: { id: '', ratio: 0 },
+        scrollTop: 0,
     };
 
     // Borders transformations data
@@ -56,7 +57,8 @@ const scrollBorders = () => {
      * @param {array} { borders }
      */
     const animatePath = ({ borders }) => {
-        const { ratio } = state.activeSection;
+        let { ratio } = state.activeSection;
+        ratio *= 1.25;
         const ratioFactor = borders.reduce(
             (acc, current) => acc + current.maxScale,
             0
@@ -178,6 +180,9 @@ const scrollBorders = () => {
     handleDisplay();
 
     scroll.addScrollFunction(() => {
+        const oldScrollTop = state.scrollTop;
+        state.scrollTop = scroll.scrollTop;
+        if (scroll.scrollTop - oldScrollTop <= 0) return;
         if (!state.display && !state.activeSection.id) return;
         selectPath();
     });

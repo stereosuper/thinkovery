@@ -9597,6 +9597,7 @@ var ioBorders = function ioBorders() {
     display: false,
     isMoving: false,
     queue: [],
+    currentSection: null,
     nextSection: null,
     ends: {
       start: null,
@@ -9884,7 +9885,7 @@ var ioBorders = function ioBorders() {
     var deltaY = e.deltaY;
     state.scrollSpeed = Math.abs(deltaY);
     e.stopPropagation();
-    if (state.scrollSpeed >= 10 || state.isMoving) return;
+    if (state.scrollSpeed > 2 || state.isMoving) return;
     processQueue();
   };
 
@@ -10067,7 +10068,7 @@ var ioBorders = function ioBorders() {
 
 
   var updateBorder = function updateBorder() {
-    if (state.isMoving) return;
+    if (state.isMoving || state.currentSection && state.nextSection && state.currentSection === state.nextSection) return;
     state.isMoving = true;
 
     switch (state.nextSection) {
@@ -10149,6 +10150,8 @@ var ioBorders = function ioBorders() {
       default:
         break;
     }
+
+    state.currentSection = state.nextSection;
   };
 
   var addToQueue = function addToQueue() {
@@ -11461,7 +11464,8 @@ var scrollBorders = function scrollBorders() {
     activeSection: {
       id: '',
       ratio: 0
-    }
+    },
+    scrollTop: 0
   }; // Borders transformations data
 
   var borderMapping = {
@@ -11504,6 +11508,7 @@ var scrollBorders = function scrollBorders() {
   var animatePath = function animatePath(_ref) {
     var borders = _ref.borders;
     var ratio = state.activeSection.ratio;
+    ratio *= 1.25;
     var ratioFactor = borders.reduce(function (acc, current) {
       return acc + current.maxScale;
     }, 0);
@@ -11646,6 +11651,9 @@ var scrollBorders = function scrollBorders() {
   });
   handleDisplay();
   _utils_Scroll__WEBPACK_IMPORTED_MODULE_2__["default"].addScrollFunction(function () {
+    var oldScrollTop = state.scrollTop;
+    state.scrollTop = _utils_Scroll__WEBPACK_IMPORTED_MODULE_2__["default"].scrollTop;
+    if (_utils_Scroll__WEBPACK_IMPORTED_MODULE_2__["default"].scrollTop - oldScrollTop <= 0) return;
     if (!state.display && !state.activeSection.id) return;
     selectPath();
   });
@@ -12129,24 +12137,30 @@ function Io() {
   var _this = this;
 
   this.resized = true;
-  var threshold = 0.5;
+  var minThreshold = 0.75;
+  var indexThreshold = 0;
+  var thresholdsNumber = 10;
+  var thresholdSamples = [];
+
+  for (indexThreshold; indexThreshold <= thresholdsNumber; indexThreshold += 1) {
+    thresholdSamples[indexThreshold] = indexThreshold / thresholdsNumber;
+  }
 
   this.init = function () {
     var objectsToIO = [].slice.call(document.querySelectorAll('[data-io]'));
     var observer = new IntersectionObserver(function (entries) {
       Object(___WEBPACK_IMPORTED_MODULE_1__["forEach"])(entries, function (entry) {
-        if (entry.intersectionRatio > threshold) {
+        if (entry.intersectionRatio > minThreshold) {
           _this["".concat(entry.target.dataset.io, "In")](entry.target);
 
           if (entry.target.hasAttribute('data-io-single')) observer.unobserve(entry.target);
-        }
-        /*else if (entry.intersectionRatio < threshold) {
-          this[`${entry.target.dataset.io}Out`](entry.target);
-        }*/
+        } // else if (entry.intersectionRatio < threshold) {
+        //     this[`${entry.target.dataset.io}Out`](entry.target);
+        // }
 
       });
     }, {
-      threshold: threshold,
+      threshold: thresholdSamples,
       rootMargin: '-100px 0px'
     });
     Object(___WEBPACK_IMPORTED_MODULE_1__["forEach"])(objectsToIO, function (obj) {
@@ -12161,7 +12175,7 @@ function Io() {
     var borders = document.getElementById('borders');
     if (!borders) return;
     var event = Object(___WEBPACK_IMPORTED_MODULE_1__["createNewEvent"])('updateBorders');
-    borders.setAttribute('data-next-section', entry.id);
+    borders.setAttribute('data-next-section', entry.getAttribute('data-section-name'));
     borders.dispatchEvent(event);
   }; // this.updateBorderOut = entry => {
   // entry.classList.remove('reveal-minions');

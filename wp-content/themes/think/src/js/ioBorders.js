@@ -18,6 +18,7 @@ const ioBorders = () => {
         display: false,
         isMoving: false,
         queue: [],
+        currentSection: null,
         nextSection: null,
         ends: {
             start: null,
@@ -300,7 +301,7 @@ const ioBorders = () => {
         state.scrollSpeed = Math.abs(deltaY);
         e.stopPropagation();
 
-        if (state.scrollSpeed >= 10 || state.isMoving) return;
+        if (state.scrollSpeed > 2 || state.isMoving) return;
         processQueue();
     };
 
@@ -490,7 +491,13 @@ const ioBorders = () => {
      * @description border sections animation controller
      */
     const updateBorder = () => {
-        if (state.isMoving) return;
+        if (
+            state.isMoving ||
+            (state.currentSection &&
+                state.nextSection &&
+                state.currentSection === state.nextSection)
+        )
+            return;
 
         state.isMoving = true;
 
@@ -548,6 +555,7 @@ const ioBorders = () => {
             default:
                 break;
         }
+        state.currentSection = state.nextSection;
     };
 
     const addToQueue = () => {
