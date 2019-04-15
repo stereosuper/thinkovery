@@ -15,9 +15,6 @@
         pointer-events: none;
     }
     .video{
-        .cover, .iframe, .wrapper-player{
-            opacity: 0;
-        }
         .no-js &, &.player-on{
             .wrapper-player{
                 opacity: 1;
@@ -146,6 +143,11 @@
             opacity: 0;
             transform-origin: 50% 50%;
             transform: scale(0);
+        }
+        .video{
+            .cover, .iframe, .wrapper-player{
+                opacity: 0;
+            }
         }
     }
 
