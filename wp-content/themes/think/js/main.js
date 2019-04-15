@@ -10429,7 +10429,7 @@ var learningAnimHandler = function learningAnimHandler() {
         paused: true,
         repeat: -1
       });
-      tls[i].to(minion, 10, {
+      tls[i].to(minion, 50, {
         bezier: {
           values: pathBezier,
           type: 'cubic'

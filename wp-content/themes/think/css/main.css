@@ -373,6 +373,9 @@ a {
 .intro {
   padding: 10px 0 35px; }
 
+.intro-big {
+  font-size: 2rem; }
+
 .hidden {
   display: none !important; }
 
@@ -483,6 +486,8 @@ a {
   h3 {
     font-size: 3.5rem; }
   h4 {
+    font-size: 3rem; }
+  .intro-big {
     font-size: 3rem; } }
 
 @media (min-width: 960px) {

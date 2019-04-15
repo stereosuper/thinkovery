@@ -20,7 +20,7 @@ const learningAnimHandler = () => {
         forEach(minions, (minion, i) =>{
             tls[i] = new TimelineMax({paused: true, repeat: -1});
     
-            tls[i].to(minion, 10, {bezier: {values: pathBezier, type: 'cubic'}, ease: Linear.easeNone});
+            tls[i].to(minion, 50, {bezier: {values: pathBezier, type: 'cubic'}, ease: Linear.easeNone});
             tls[i].progress(i*0.2);
             tls[i].play();
             
