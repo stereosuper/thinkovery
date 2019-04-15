@@ -54,10 +54,6 @@
         height: 3px;
         left: 0;
         right: 0;
-        &::before,
-        &::after {
-            transform: scaleX(0);
-        }
     }
     .top {
         top: 0;
@@ -70,10 +66,6 @@
         width: 3px;
         top: 0;
         bottom: 0;
-        &::before,
-        &::after {
-            transform: scaleY(0);
-        }
     }
     .right {
         right: 0;
@@ -81,398 +73,51 @@
     .left {
         left: 0;
     }
-    &.btn-1 {
-        .right {
-            &::before,
-            &::after {
-                transform-origin: 0 100%;
-            }
-        }
+    > .icon {
+        margin: 0 0 0 5px;
+    }
+}
+
+@media (min-width: $desktop-small) {
+    .btn-invert {
+        .top,
         .bot {
             &::before,
             &::after {
-                transform-origin: 100% 0;
+                transform: scaleX(0);
             }
         }
-        .left {
+        .left,
+        .right {
             &::before,
             &::after {
-                transform-origin: 0 100%;
+                transform: scaleY(0);
             }
         }
-        .departure {
-            .right {
-                &::before,
-                &::after {
-                    transform: scaleY(1);
-                }
-                &::before {
-                    transition-delay: $btn-invert-delay;
-                }
-                &::after {
-                    transition-delay: $btn-invert-delay * 2;
-                }
-            }
-            .top {
-                &::before,
-                &::after {
-                    transform: scaleX(0.75);
-                    transform-origin: 100% 0;
-                    transition-timing-function: $cat-mouse-easing-out;
-                }
-                &::before {
-                    transition-delay: $btn-invert-delay * 3;
-                }
-                &::after {
-                    transition-delay: $btn-invert-delay * 4;
-                }
-            }
-        }
-        .arrival {
-            .left {
-                &::before,
-                &::after {
-                    transition-delay: $btn-invert-delay * 2;
-                    transition-timing-function: $cat-mouse-easing-out;
-                }
-            }
-            .bot {
-                &::before,
-                &::after {
-                    transition-delay: $btn-invert-delay * 3;
-                    transition-timing-function: $cat-mouse-easing-out;
-                }
-            }
-        }
-        &:hover,
-        &:focus {
-            .departure {
-                .top {
-                    &::before,
-                    &::after {
-                        transform: scaleX(0);
-                        transition-delay: 0s;
-                        transition-timing-function: $cat-mouse-easing-out;
-                    }
-                }
-                .right {
-                    &::before,
-                    &::after {
-                        transform: scaleY(0);
-                        transition-delay: $btn-invert-delay;
-                        transition-timing-function: $cat-mouse-easing-out;
-                    }
-                }
-            }
-            .arrival {
-                .bot {
-                    &::before,
-                    &::after {
-                        transform: scaleX(1);
-                        transition-timing-function: $cat-mouse-easing-in;
-                    }
-                    &::before {
-                        transition-delay: $btn-invert-delay;
-                    }
-                    &::after {
-                        transition-delay: $btn-invert-delay * 2;
-                    }
-                }
-                .left {
-                    &::before,
-                    &::after {
-                        transform: scaleY(1);
-                        transition-timing-function: $cat-mouse-easing-out;
-                    }
-                    &::before {
-                        transition-delay: $btn-invert-delay * 3;
-                    }
-                    &::after {
-                        transition-delay: $btn-invert-delay * 4;
-                    }
-                }
-                .top {
-                    &::before,
-                    &::after {
-                        transform: scaleX(0.25);
-                        transition-timing-function: $cat-mouse-easing-out;
-                    }
-                    &::before {
-                        transition-delay: $btn-invert-delay * 4;
-                    }
-                    &::after {
-                        transition-delay: $btn-invert-delay * 5;
-                    }
-                }
-            }
-        }
-    }
-    &.btn-2 {
-        .departure {
-            .top {
-                &::before,
-                &::after {
-                    transform: scaleX(1);
-                    transform-origin: 100% 0;
-                }
-                &::before {
-                    transition-delay: 0s;
-                }
-                &::after {
-                    transition-delay: $btn-invert-delay * 2;
-                }
-            }
-            .left {
-                &::before,
-                &::after {
-                    transform: scaleX(1);
-                    transition-timing-function: $cat-mouse-easing-out;
-                }
-                &::before {
-                    transition-delay: $btn-invert-delay * 2;
-                }
-                &::after {
-                    transition-delay: $btn-invert-delay * 4;
-                }
-            }
-        }
-        .arrival {
-            .right {
-                &::before,
-                &::after {
-                    transition-delay: $btn-invert-delay * 2;
-                    transition-timing-function: $cat-mouse-easing-out;
-                }
-            }
-            .bot {
-                &::before,
-                &::after {
-                    transform-origin: 100% 0;
-                }
-            }
-        }
-        &:hover,
-        &:focus {
-            .departure {
-                .top {
-                    &::before,
-                    &::after {
-                        transform: scaleX(0);
-                        transition-timing-function: $cat-mouse-easing-out;
-                    }
-                }
-                .left {
-                    &::before,
-                    &::after {
-                        transform: scaleY(0);
-                        transition-delay: 0s;
-                    }
-                }
-            }
-            .arrival {
-                .right {
-                    &::before,
-                    &::after {
-                        transform: scaleY(1);
-                    }
-                    &::before {
-                        transition-delay: 0s;
-                    }
-                    &::after {
-                        transition-delay: $btn-invert-delay * 2;
-                    }
-                }
-                .bot {
-                    &::before,
-                    &::after {
-                        transform: scaleX(1);
-                        transition-timing-function: $cat-mouse-easing-out;
-                    }
-                    &::before {
-                        transition-delay: $btn-invert-delay * 1;
-                    }
-                    &::after {
-                        transition-delay: $btn-invert-delay * 4;
-                    }
-                }
-            }
-        }
-    }
-    &.btn-3 {
-        .departure {
-            .right {
-                &::before,
-                &::after {
-                    transform: scaleY(1);
-                }
-                &::before {
-                    transition-delay: $btn-invert-delay;
-                }
-                &::after {
-                    transition-delay: $btn-invert-delay * 2;
-                }
-            }
-            .bot {
-                &::before,
-                &::after {
-                    transform-origin: 100% 0;
-                    transform: scaleX(0.75);
-                    transition-timing-function: $cat-mouse-easing-out;
-                }
-                &::before {
-                    transition-delay: $btn-invert-delay * 3;
-                }
-                &::after {
-                    transition-delay: $btn-invert-delay * 4;
-                }
-            }
-        }
-        .arrival {
-            .top {
-                &::before,
-                &::after {
-                    transform-origin: 100% 0;
-                    transition-delay: $btn-invert-delay * 2;
-                }
-            }
-            .left {
-                &::before,
-                &::after {
-                    transition-delay: $btn-invert-delay;
-                }
-            }
-        }
-        &:hover,
-        &:focus {
-            .departure {
-                .right {
-                    &::before,
-                    &::after {
-                        transform: scaleY(0);
-                        transition-delay: $btn-invert-delay * 2;
-                        transition-timing-function: $cat-mouse-easing-out;
-                    }
-                }
-                .bot {
-                    &::before,
-                    &::after {
-                        transform: scaleX(0);
-                        transition-delay: 0s;
-                    }
-                }
-            }
-            .arrival {
-                .top {
-                    &::before,
-                    &::after {
-                        transform: scaleX(1);
-                    }
-                    &::before {
-                        transition-delay: $btn-invert-delay;
-                    }
-                    &::after {
-                        transition-delay: $btn-invert-delay * 2;
-                    }
-                }
-                .left {
-                    &::before,
-                    &::after {
-                        transform: scaleY(1);
-                        transition-timing-function: $cat-mouse-easing-out;
-                    }
-                    &::before {
-                        transition-delay: $btn-invert-delay * 3;
-                    }
-                    &::after {
-                        transition-delay: $btn-invert-delay * 4;
-                    }
-                }
-                .bot {
-                    &::before,
-                    &::after {
-                        transform: scaleX(0.25);
-                        transition-timing-function: $cat-mouse-easing-out;
-                    }
-                    &::before {
-                        transition-delay: $btn-invert-delay * 4;
-                    }
-                    &::after {
-                        transition-delay: $btn-invert-delay * 5;
-                    }
-                }
-            }
-        }
-    }
-    &.btn-4 {
-        .departure {
-            .left {
-                &::before,
-                &::after {
-                    transform: scaleY(1);
-                    transform-origin: 0 100%;
-                }
-                &::after {
-                    transition-delay: $btn-invert-delay;
-                }
-            }
-            .top {
-                &::before,
-                &::after {
-                    transform: scaleX(0.75);
-                    transition-timing-function: $cat-mouse-easing-out;
-                }
-                &::before {
-                    transition-delay: $btn-invert-delay * 2;
-                }
-                &::after {
-                    transition-delay: $btn-invert-delay * 3;
-                }
-            }
-        }
-        .arrival {
-            .top {
-                &::before,
-                &::after {
-                    transform-origin: 100% 0;
-                }
-            }
+        &.btn-1 {
             .right {
                 &::before,
                 &::after {
                     transform-origin: 0 100%;
-                    transition-delay: $btn-invert-delay;
                 }
             }
             .bot {
                 &::before,
                 &::after {
-                    transition-delay: $btn-invert-delay * 2;
+                    transform-origin: 100% 0;
                 }
             }
-        }
-        &:hover,
-        &:focus {
+            .left {
+                &::before,
+                &::after {
+                    transform-origin: 0 100%;
+                }
+            }
             .departure {
-                .top {
+                .right {
                     &::before,
                     &::after {
-                        transform: scaleX(0);
-                        transition-delay: 0s;
-                    }
-                }
-                .left {
-                    &::before,
-                    &::after {
-                        transform: scaleY(0);
-                        transition-delay: $btn-invert-delay;
-                    }
-                }
-            }
-            .arrival {
-                .bot {
-                    &::before,
-                    &::after {
-                        transform: scaleX(1);
+                        transform: scaleY(1);
                     }
                     &::before {
                         transition-delay: $btn-invert-delay;
@@ -481,10 +126,11 @@
                         transition-delay: $btn-invert-delay * 2;
                     }
                 }
-                .right {
+                .top {
                     &::before,
                     &::after {
-                        transform: scaleY(1);
+                        transform: scaleX(0.75);
+                        transform-origin: 100% 0;
                         transition-timing-function: $cat-mouse-easing-out;
                     }
                     &::before {
@@ -494,24 +140,389 @@
                         transition-delay: $btn-invert-delay * 4;
                     }
                 }
-                .top {
+            }
+            .arrival {
+                .left {
                     &::before,
                     &::after {
-                        transform: scaleX(0.25);
+                        transition-delay: $btn-invert-delay * 2;
                         transition-timing-function: $cat-mouse-easing-out;
                     }
-                    &::before {
-                        transition-delay: $btn-invert-delay * 4;
-                    }
+                }
+                .bot {
+                    &::before,
                     &::after {
-                        transition-delay: $btn-invert-delay * 5;
+                        transition-delay: $btn-invert-delay * 3;
+                        transition-timing-function: $cat-mouse-easing-out;
+                    }
+                }
+            }
+            &:hover,
+            &:focus {
+                .departure {
+                    .top {
+                        &::before,
+                        &::after {
+                            transform: scaleX(0);
+                            transition-delay: 0s;
+                            transition-timing-function: $cat-mouse-easing-out;
+                        }
+                    }
+                    .right {
+                        &::before,
+                        &::after {
+                            transform: scaleY(0);
+                            transition-delay: $btn-invert-delay;
+                            transition-timing-function: $cat-mouse-easing-out;
+                        }
+                    }
+                }
+                .arrival {
+                    .bot {
+                        &::before,
+                        &::after {
+                            transform: scaleX(1);
+                            transition-timing-function: $cat-mouse-easing-in;
+                        }
+                        &::before {
+                            transition-delay: $btn-invert-delay;
+                        }
+                        &::after {
+                            transition-delay: $btn-invert-delay * 2;
+                        }
+                    }
+                    .left {
+                        &::before,
+                        &::after {
+                            transform: scaleY(1);
+                            transition-timing-function: $cat-mouse-easing-out;
+                        }
+                        &::before {
+                            transition-delay: $btn-invert-delay * 3;
+                        }
+                        &::after {
+                            transition-delay: $btn-invert-delay * 4;
+                        }
+                    }
+                    .top {
+                        &::before,
+                        &::after {
+                            transform: scaleX(0.25);
+                            transition-timing-function: $cat-mouse-easing-out;
+                        }
+                        &::before {
+                            transition-delay: $btn-invert-delay * 4;
+                        }
+                        &::after {
+                            transition-delay: $btn-invert-delay * 5;
+                        }
                     }
                 }
             }
         }
-    }
-    > .icon {
-        margin: 0 0 0 5px;
+        &.btn-2 {
+            .departure {
+                .top {
+                    &::before,
+                    &::after {
+                        transform: scaleX(1);
+                        transform-origin: 100% 0;
+                    }
+                    &::before {
+                        transition-delay: 0s;
+                    }
+                    &::after {
+                        transition-delay: $btn-invert-delay * 2;
+                    }
+                }
+                .left {
+                    &::before,
+                    &::after {
+                        transform: scaleX(1);
+                        transition-timing-function: $cat-mouse-easing-out;
+                    }
+                    &::before {
+                        transition-delay: $btn-invert-delay * 2;
+                    }
+                    &::after {
+                        transition-delay: $btn-invert-delay * 4;
+                    }
+                }
+            }
+            .arrival {
+                .right {
+                    &::before,
+                    &::after {
+                        transition-delay: $btn-invert-delay * 2;
+                        transition-timing-function: $cat-mouse-easing-out;
+                    }
+                }
+                .bot {
+                    &::before,
+                    &::after {
+                        transform-origin: 100% 0;
+                    }
+                }
+            }
+            &:hover,
+            &:focus {
+                .departure {
+                    .top {
+                        &::before,
+                        &::after {
+                            transform: scaleX(0);
+                            transition-timing-function: $cat-mouse-easing-out;
+                        }
+                    }
+                    .left {
+                        &::before,
+                        &::after {
+                            transform: scaleY(0);
+                            transition-delay: 0s;
+                        }
+                    }
+                }
+                .arrival {
+                    .right {
+                        &::before,
+                        &::after {
+                            transform: scaleY(1);
+                        }
+                        &::before {
+                            transition-delay: 0s;
+                        }
+                        &::after {
+                            transition-delay: $btn-invert-delay * 2;
+                        }
+                    }
+                    .bot {
+                        &::before,
+                        &::after {
+                            transform: scaleX(1);
+                            transition-timing-function: $cat-mouse-easing-out;
+                        }
+                        &::before {
+                            transition-delay: $btn-invert-delay * 1;
+                        }
+                        &::after {
+                            transition-delay: $btn-invert-delay * 4;
+                        }
+                    }
+                }
+            }
+        }
+        &.btn-3 {
+            .departure {
+                .right {
+                    &::before,
+                    &::after {
+                        transform: scaleY(1);
+                    }
+                    &::before {
+                        transition-delay: $btn-invert-delay;
+                    }
+                    &::after {
+                        transition-delay: $btn-invert-delay * 2;
+                    }
+                }
+                .bot {
+                    &::before,
+                    &::after {
+                        transform-origin: 100% 0;
+                        transform: scaleX(0.75);
+                        transition-timing-function: $cat-mouse-easing-out;
+                    }
+                    &::before {
+                        transition-delay: $btn-invert-delay * 3;
+                    }
+                    &::after {
+                        transition-delay: $btn-invert-delay * 4;
+                    }
+                }
+            }
+            .arrival {
+                .top {
+                    &::before,
+                    &::after {
+                        transform-origin: 100% 0;
+                        transition-delay: $btn-invert-delay * 2;
+                    }
+                }
+                .left {
+                    &::before,
+                    &::after {
+                        transition-delay: $btn-invert-delay;
+                    }
+                }
+            }
+            &:hover,
+            &:focus {
+                .departure {
+                    .right {
+                        &::before,
+                        &::after {
+                            transform: scaleY(0);
+                            transition-delay: $btn-invert-delay * 2;
+                            transition-timing-function: $cat-mouse-easing-out;
+                        }
+                    }
+                    .bot {
+                        &::before,
+                        &::after {
+                            transform: scaleX(0);
+                            transition-delay: 0s;
+                        }
+                    }
+                }
+                .arrival {
+                    .top {
+                        &::before,
+                        &::after {
+                            transform: scaleX(1);
+                        }
+                        &::before {
+                            transition-delay: $btn-invert-delay;
+                        }
+                        &::after {
+                            transition-delay: $btn-invert-delay * 2;
+                        }
+                    }
+                    .left {
+                        &::before,
+                        &::after {
+                            transform: scaleY(1);
+                            transition-timing-function: $cat-mouse-easing-out;
+                        }
+                        &::before {
+                            transition-delay: $btn-invert-delay * 3;
+                        }
+                        &::after {
+                            transition-delay: $btn-invert-delay * 4;
+                        }
+                    }
+                    .bot {
+                        &::before,
+                        &::after {
+                            transform: scaleX(0.25);
+                            transition-timing-function: $cat-mouse-easing-out;
+                        }
+                        &::before {
+                            transition-delay: $btn-invert-delay * 4;
+                        }
+                        &::after {
+                            transition-delay: $btn-invert-delay * 5;
+                        }
+                    }
+                }
+            }
+        }
+        &.btn-4 {
+            .departure {
+                .left {
+                    &::before,
+                    &::after {
+                        transform: scaleY(1);
+                        transform-origin: 0 100%;
+                    }
+                    &::after {
+                        transition-delay: $btn-invert-delay;
+                    }
+                }
+                .top {
+                    &::before,
+                    &::after {
+                        transform: scaleX(0.75);
+                        transition-timing-function: $cat-mouse-easing-out;
+                    }
+                    &::before {
+                        transition-delay: $btn-invert-delay * 2;
+                    }
+                    &::after {
+                        transition-delay: $btn-invert-delay * 3;
+                    }
+                }
+            }
+            .arrival {
+                .top {
+                    &::before,
+                    &::after {
+                        transform-origin: 100% 0;
+                    }
+                }
+                .right {
+                    &::before,
+                    &::after {
+                        transform-origin: 0 100%;
+                        transition-delay: $btn-invert-delay;
+                    }
+                }
+                .bot {
+                    &::before,
+                    &::after {
+                        transition-delay: $btn-invert-delay * 2;
+                    }
+                }
+            }
+            &:hover,
+            &:focus {
+                .departure {
+                    .top {
+                        &::before,
+                        &::after {
+                            transform: scaleX(0);
+                            transition-delay: 0s;
+                        }
+                    }
+                    .left {
+                        &::before,
+                        &::after {
+                            transform: scaleY(0);
+                            transition-delay: $btn-invert-delay;
+                        }
+                    }
+                }
+                .arrival {
+                    .bot {
+                        &::before,
+                        &::after {
+                            transform: scaleX(1);
+                        }
+                        &::before {
+                            transition-delay: $btn-invert-delay;
+                        }
+                        &::after {
+                            transition-delay: $btn-invert-delay * 2;
+                        }
+                    }
+                    .right {
+                        &::before,
+                        &::after {
+                            transform: scaleY(1);
+                            transition-timing-function: $cat-mouse-easing-out;
+                        }
+                        &::before {
+                            transition-delay: $btn-invert-delay * 3;
+                        }
+                        &::after {
+                            transition-delay: $btn-invert-delay * 4;
+                        }
+                    }
+                    .top {
+                        &::before,
+                        &::after {
+                            transform: scaleX(0.25);
+                            transition-timing-function: $cat-mouse-easing-out;
+                        }
+                        &::before {
+                            transition-delay: $btn-invert-delay * 4;
+                        }
+                        &::after {
+                            transition-delay: $btn-invert-delay * 5;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 

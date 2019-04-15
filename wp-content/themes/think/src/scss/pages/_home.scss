@@ -8,25 +8,29 @@
 
 .home-header {
     text-align: center;
-    > h1 {
-        position: relative;
-        margin: -22% 0 0;
+    h1 {
+        position: absolute;
+        top: 100%;
+        margin: 0;
+        transform: translateY(-37%);
         z-index: 1;
         pointer-events: none;
     }
-    .video{
-        .no-js &, &.player-on{
-            .wrapper-player{
+    .video {
+        .no-js &,
+        &.player-on {
+            .wrapper-player {
                 opacity: 1;
             }
         }
-        .no-js &, &.on{
-            .cover{
+        .no-js &,
+        &.on {
+            .cover {
                 opacity: 1;
             }
         }
-        .no-js &{
-            .iframe{
+        .no-js & {
+            .iframe {
                 opacity: 1;
             }
         }
@@ -75,10 +79,19 @@
     }
 }
 
-.morpion, .plane-path, .plane{
+.morpion,
+.plane-path,
+.plane {
     display: none;
 }
 
+@media (min-width: $phone-small) {
+    .home-header {
+        h1 {
+            transform: translateY(-58%);
+        }
+    }
+}
 
 @media (min-width: $desktop-small) {
     .home-header,
@@ -91,10 +104,14 @@
     .home-header {
         justify-content: center;
         flex-wrap: wrap;
-        > h1{
-            margin-top: -42%;
+        h1 {
+            width: 97vw;
+            max-width: $container;
+            padding: 0 $gutter;
+            left: 50%;
+            transform: translate(-50%, -54%);
         }
-        .video{
+        .video {
             width: 50%;
         }
     }
@@ -106,6 +123,9 @@
         &:nth-of-type(1),
         &:nth-of-type(3) {
             justify-content: flex-end;
+        }
+        &:nth-of-type(1) {
+            padding-bottom: 10em;
         }
         &:nth-of-type(2) {
             justify-content: center;
@@ -130,9 +150,9 @@
     }
 }
 
-@media (min-width: $desktop-small) and (min-height: 630px){
-    .home-header{
-        .shape{
+@media (min-width: $desktop-small) and (min-height: 630px) {
+    .home-header {
+        .shape {
             width: 23px;
             height: 23px;
             top: 1px;
@@ -144,68 +164,70 @@
             transform-origin: 50% 50%;
             transform: scale(0);
         }
-        .video{
-            .cover, .iframe, .wrapper-player{
+        .video {
+            .cover,
+            .iframe,
+            .wrapper-player {
                 opacity: 0;
             }
         }
     }
 
-    .home-section{
-        &:nth-of-type(3){
-            .shape{
+    .home-section {
+        &:nth-of-type(3) {
+            .shape {
                 top: 0;
                 left: 0;
                 opacity: 0;
                 transform: scale(0);
             }
-            .s1{
+            .s1 {
                 left: 58px;
             }
-            .s3{
+            .s3 {
                 left: 285px;
             }
-            .s4{
+            .s4 {
                 left: 244px;
             }
-            .s5{
+            .s5 {
                 left: 225px;
             }
-            .s6{
+            .s6 {
                 left: 320px;
             }
-            .s7{
+            .s7 {
                 left: 17px;
             }
-            .s8{
+            .s8 {
                 left: 118px;
             }
-            .s9{
+            .s9 {
                 left: 110px;
             }
-            .s10{
+            .s10 {
                 left: 180px;
             }
-            .s11{
+            .s11 {
                 left: 167px;
             }
         }
     }
 
-    .plane-path{
+    .plane-path {
         display: block;
         max-width: 56%;
         height: 650px;
         position: absolute;
         bottom: 7em;
         right: 50%;
-        .svg{
+        .svg {
             display: inline-block;
             position: relative;
             float: right;
         }
     }
-    .plane{
+    .plane {
         display: block;
         width: 79px;
         height: 48px;
@@ -215,72 +237,99 @@
         background: url(../../img/plane.png);
     }
 
-    .morpion{
+    .morpion {
         display: block;
         width: 330px;
         height: 330px;
         position: absolute;
-        top: 20%;
-        right: 0;
-        &.on{
-            &:before, &:after, .vertical:before, .vertical:after{
+        top: 10%;
+        right: 7.5%;
+        &.on {
+            &:before,
+            &:after,
+            .vertical:before,
+            .vertical:after {
                 transform: scale(1);
             }
         }
-        &:before, &:after, .vertical:before, .vertical:after{
-            content: '';
+        &:before,
+        &:after,
+        .vertical:before,
+        .vertical:after {
+            content: "";
             position: absolute;
             transform-origin: 0 0;
             transform: scale(0);
-            transition: .5s ease-in;
+            transition: 0.5s ease-in;
         }
-        &:before, &:after{
+        &:before,
+        &:after {
             height: 1px;
             left: 0;
             right: 0;
-            background: repeating-linear-gradient(45deg, $grey, $grey 10px, transparent 10px, transparent 20px);
+            background: repeating-linear-gradient(
+                45deg,
+                $grey,
+                $grey 10px,
+                transparent 10px,
+                transparent 20px
+            );
         }
-        &:before{
+        &:before {
             top: 33.3%;
         }
-        &:after{
+        &:after {
             top: 66.6%;
             transition-delay: 0.1s;
         }
-        .vertical{
-            &:before, &:after{
+        .vertical {
+            &:before,
+            &:after {
                 width: 1px;
                 top: 0;
                 bottom: 0;
-                background: repeating-linear-gradient($grey, $grey 10px, transparent 10px, transparent 20px);
+                background: repeating-linear-gradient(
+                    $grey,
+                    $grey 10px,
+                    transparent 10px,
+                    transparent 20px
+                );
             }
-            &:before{
+            &:before {
                 left: 33.3%;
                 transition-delay: 0.2s;
             }
-            &:after{
+            &:after {
                 left: 66.6%;
                 transition-delay: 0.3s;
             }
         }
-        .shape{
+        .shape {
             margin: 18px;
             opacity: 0;
             transform: scale(0);
         }
-        .s2{
+        .s2 {
             top: 33.3%;
             left: 33.3%;
         }
-        .s3{
+        .s3 {
             top: 66.6%;
         }
-        .s4{
+        .s4 {
             left: 66.6%;
         }
-        .s5{
+        .s5 {
             top: 33.3%;
             left: 66.6%;
+        }
+    }
+}
+
+@media (min-width: $desktop-small) {
+    .home-header {
+        h1 {
+            transform: translate(-50%, -110%);
         }
     }
 }
