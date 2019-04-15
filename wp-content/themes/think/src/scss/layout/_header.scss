@@ -290,19 +290,35 @@ $header-height: 84px;
         &:before {
             content: none;
         }
+        &:after{
+            content: '';
+            width: 5px;
+            height: 5px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -12px;
+            margin: auto;
+            border-radius: 50%;
+            background: $primary;
+            opacity: 0;
+        }
         &:last-child {
             margin-bottom: 0;
+            font-weight: 700;
             a {
                 color: $primary;
             }
         }
-        &:not(:last-child) {
-            a {
-                font-weight: 400;
-            }
+    }
+    .current-menu-item{
+        font-weight: 700;
+        &:after{
+            opacity: 1;
         }
     }
     a {
+        font-weight: inherit;
         color: $text-color;
         text-decoration: none;
     }

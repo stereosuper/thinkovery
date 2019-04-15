@@ -853,13 +853,29 @@ label {
     margin: 0 0 28px; }
     .menu > li:before {
       content: none; }
+    .menu > li:after {
+      content: '';
+      width: 5px;
+      height: 5px;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -12px;
+      margin: auto;
+      border-radius: 50%;
+      background: #1e5e32;
+      opacity: 0; }
     .menu > li:last-child {
-      margin-bottom: 0; }
+      margin-bottom: 0;
+      font-weight: 700; }
       .menu > li:last-child a {
         color: #1e5e32; }
-    .menu > li:not(:last-child) a {
-      font-weight: 400; }
+  .menu .current-menu-item {
+    font-weight: 700; }
+    .menu .current-menu-item:after {
+      opacity: 1; }
   .menu a {
+    font-weight: inherit;
     color: #404040;
     text-decoration: none; }
 
