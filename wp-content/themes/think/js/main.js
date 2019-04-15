@@ -10395,6 +10395,71 @@ var easing = {
 
 /***/ }),
 
+/***/ "./wp-content/themes/think/src/js/learningAnim.js":
+/*!********************************************************!*\
+  !*** ./wp-content/themes/think/src/js/learningAnim.js ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils */ "./wp-content/themes/think/src/js/utils/index.js");
+/* harmony import */ var _utils_Window__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils/Window */ "./wp-content/themes/think/src/js/utils/Window.js");
+/* harmony import */ var _plugins_DrawSVGPlugin__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./plugins/DrawSVGPlugin */ "./wp-content/themes/think/src/js/plugins/DrawSVGPlugin.js");
+/* harmony import */ var _plugins_MorphSVGPlugin__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./plugins/MorphSVGPlugin */ "./wp-content/themes/think/src/js/plugins/MorphSVGPlugin.js");
+
+
+
+
+
+
+var learningAnimHandler = function learningAnimHandler() {
+  var schema = document.getElementById('learning-anim');
+  if (!schema) return;
+  var pathBezier = MorphSVGPlugin.pathDataToBezier(schema.querySelector('circle'));
+  var minions = schema.querySelectorAll('.shape');
+  var tls = [];
+  var resizeTimer;
+
+  var init = function init() {
+    Object(_utils__WEBPACK_IMPORTED_MODULE_1__["forEach"])(minions, function (minion, i) {
+      tls[i] = new gsap__WEBPACK_IMPORTED_MODULE_0__["TimelineMax"]({
+        paused: true,
+        repeat: -1
+      });
+      tls[i].to(minion, 10, {
+        bezier: {
+          values: pathBezier,
+          type: 'cubic'
+        },
+        ease: Linear.easeNone
+      });
+      tls[i].progress(i * 0.2);
+      tls[i].play();
+      gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set(minion, {
+        opacity: 1
+      });
+    });
+  }; // launch anim if schema is visible (window width > 960)
+
+
+  if (getComputedStyle(schema).display !== 'none') init();
+  _utils_Window__WEBPACK_IMPORTED_MODULE_2__["default"].addResizeFunction(function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () {
+      if (getComputedStyle(schema).display !== 'none') {
+        init();
+      }
+    }, 500);
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (learningAnimHandler);
+
+/***/ }),
+
 /***/ "./wp-content/themes/think/src/js/main.js":
 /*!************************************************!*\
   !*** ./wp-content/themes/think/src/js/main.js ***!
@@ -10417,6 +10482,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _drawBorders__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./drawBorders */ "./wp-content/themes/think/src/js/drawBorders.js");
 /* harmony import */ var _video__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./video */ "./wp-content/themes/think/src/js/video.js");
 /* harmony import */ var _minions__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./minions */ "./wp-content/themes/think/src/js/minions.js");
+/* harmony import */ var _learningAnim__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./learningAnim */ "./wp-content/themes/think/src/js/learningAnim.js");
+
 
 
 
@@ -10434,8 +10501,12 @@ var state = {
   loaded: false
 };
 
-var preloadHandler = function preloadHandler() {
-  var noTransElem = [].slice.call(document.getElementsByClassName('element-without-transition-on-resize')); // Stéréosuper js library init
+var preload = function preload() {
+  var _document = document,
+      readyState = _document.readyState;
+  if (readyState !== 'interactive' && readyState !== 'complete') return;
+  var noTransElem = [].slice.call(document.getElementsByClassName('element-without-transition-on-resize'));
+  state.preloaded = true; // Stéréosuper js library init
 
   _utils_Scroll__WEBPACK_IMPORTED_MODULE_3__["default"].init();
   _utils_Window__WEBPACK_IMPORTED_MODULE_1__["default"].setNoTransitionElts(noTransElem);
@@ -10452,33 +10523,16 @@ var preloadHandler = function preloadHandler() {
 var animationHandler = function animationHandler() {
   Object(_drawBorders__WEBPACK_IMPORTED_MODULE_9__["default"])();
   Object(_minions__WEBPACK_IMPORTED_MODULE_11__["default"])();
+  Object(_learningAnim__WEBPACK_IMPORTED_MODULE_12__["default"])();
 };
 
-var loadHandler = function loadHandler() {
+var load = function load() {
+  if (document.readyState !== 'complete') return;
+  state.loaded = true;
   Object(_makeBorders__WEBPACK_IMPORTED_MODULE_8__["default"])();
 
   if (sessionStorage.getItem('loaded')) {
     animationHandler();
-  }
-};
-
-var preload = function preload() {
-  var _document = document,
-      readyState = _document.readyState;
-
-  if (readyState === 'interactive' || readyState === 'complete') {
-    state.preloaded = true;
-    preloadHandler();
-  }
-};
-
-var load = function load() {
-  var _document2 = document,
-      readyState = _document2.readyState;
-
-  if (readyState === 'complete') {
-    state.loaded = true;
-    loadHandler();
   }
 };
 
@@ -10564,9 +10618,9 @@ __webpack_require__.r(__webpack_exports__);
 
 var minionsHandler = function minionsHandler() {
   var homeSections = [].slice.call(document.getElementsByClassName('js-home-section'));
-  var minions = homeSections[0].querySelectorAll('.shape');
   var video = document.getElementById('home-video');
-  if (!homeSections.length || !minions.length || !video) return;
+  if (!homeSections.length || !video) return;
+  var minions = homeSections[0].querySelectorAll('.shape');
   var easeIn = Power2.easeOut;
   var wh = window.innerHeight;
   var ww = window.innerWidth;

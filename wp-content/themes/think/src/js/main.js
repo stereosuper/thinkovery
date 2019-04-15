@@ -12,16 +12,24 @@ import makeBorders from './makeBorders';
 import drawBorders from './drawBorders';
 import video from './video';
 import minions from './minions';
+import learningAnim from './learningAnim';
+
 
 const state = {
     preloaded: false,
     loaded: false,
 };
 
-const preloadHandler = () => {
+const preload = () => {
+    const { readyState } = document;
+
+    if (readyState !== 'interactive' && readyState !== 'complete') return;
+
     const noTransElem = [].slice.call(
         document.getElementsByClassName('element-without-transition-on-resize')
     );
+
+    state.preloaded = true;
 
     // Stéréosuper js library init
     scroll.init();
@@ -40,45 +48,32 @@ const preloadHandler = () => {
 const animationHandler = () => {
     drawBorders();
     minions();
+    learningAnim();
 };
 
-const loadHandler = () => {
+const load = () => {
+    if (document.readyState !== 'complete') return;
+
+    state.loaded = true;
     makeBorders();
+
     if (sessionStorage.getItem('loaded')) {
         animationHandler();
     }
 };
 
-const preload = () => {
-    const { readyState } = document;
-    if (readyState === 'interactive' || readyState === 'complete') {
-        state.preloaded = true;
-        preloadHandler();
-    }
-};
-
-const load = () => {
-    const { readyState } = document;
-    if (readyState === 'complete') {
-        state.loaded = true;
-        loadHandler();
-    }
-};
 
 preload();
 load();
 
-document.addEventListener(
-    'readystatechange',
-    () => {
-        if (!state.preloaded) {
-            preload();
-        }
-        if (!state.loaded) {
-            load();
-        }
-    },
-    false
-);
+document.addEventListener('readystatechange', () => {
+    if (!state.preloaded) {
+        preload();
+    }
+    
+    if (!state.loaded) {
+        load();
+    }
+}, false);
 
 document.addEventListener('loaderHidden', animationHandler, false);

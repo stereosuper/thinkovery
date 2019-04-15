@@ -53,10 +53,13 @@ h1 {
     }
 }
 
-h2 {
+h2, .h2 {
     margin: 1.85em 0 0;
     font-size: 3.5rem;
     line-height: 1.2;
+}
+.h2{
+    font-weight: 800; 
 }
 
 h3 {
@@ -349,7 +352,7 @@ a {
         font-size: 7rem;
     }
 
-    h2 {
+    h2, .h2 {
         font-size: 4.9rem;
     }
 
@@ -367,6 +370,14 @@ a {
         font-size: 8.6rem;
     }
 
+    .intro-big{
+        padding: 1em $gutter*2 2.5em 0;
+        font-size: 4rem;
+        .h2{
+            margin: 1.1em 0 0;
+        }
+    }
+
     .wp-block-image{
         .alignright{
             margin: 0 0 2em $gutter;
@@ -380,6 +391,10 @@ a {
 }
 
 @media (min-width: $desktop){
+    .intro-big{
+        width: $col*3;
+    }
+
     .wp-block-image{
         width: calc(129% + #{$gutter});
     }

@@ -8,11 +8,11 @@ const minionsHandler = () => {
     const homeSections = [].slice.call(
         document.getElementsByClassName('js-home-section')
     );
-    const minions = homeSections[0].querySelectorAll('.shape');
     const video = document.getElementById('home-video');
 
-    if( !homeSections.length || !minions.length || !video ) return;
-
+    if( !homeSections.length || !video ) return;
+    
+    const minions = homeSections[0].querySelectorAll('.shape');
     const easeIn = Power2.easeOut;
     let wh = window.innerHeight;
     let ww = window.innerWidth;

@@ -235,10 +235,13 @@ h1 {
   h1 > span {
     color: #404040; }
 
-h2 {
+h2, .h2 {
   margin: 1.85em 0 0;
   font-size: 3.5rem;
   line-height: 1.2; }
+
+.h2 {
+  font-weight: 800; }
 
 h3 {
   margin: 1.6em 0 0;
@@ -475,7 +478,7 @@ a {
 @media (min-width: 780px) {
   h1 {
     font-size: 7rem; }
-  h2 {
+  h2, .h2 {
     font-size: 4.9rem; }
   h3 {
     font-size: 3.5rem; }
@@ -485,6 +488,11 @@ a {
 @media (min-width: 960px) {
   h1 {
     font-size: 8.6rem; }
+  .intro-big {
+    padding: 1em 88px 2.5em 0;
+    font-size: 4rem; }
+    .intro-big .h2 {
+      margin: 1.1em 0 0; }
   .wp-block-image .alignright {
     margin: 0 0 2em 44px;
     float: right; }
@@ -493,6 +501,8 @@ a {
     float: left; } }
 
 @media (min-width: 1100px) {
+  .intro-big {
+    width: 75%; }
   .wp-block-image {
     width: calc(129% + 44px); } }
 
@@ -1923,6 +1933,80 @@ label {
   .home-header h1 {
     -webkit-transform: translate(-50%, -110%);
             transform: translate(-50%, -110%); } }
+
+/* Learning experience specific style */
+.learning-anim {
+  display: none; }
+
+@media (min-width: 960px) {
+  .learning-elts-title {
+    padding-right: 88px; }
+  .learning-elts {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end; }
+    .learning-elts > div {
+      width: 25%;
+      padding: 0 0 0 88px; }
+    .learning-elts h3 {
+      font-size: 2.6rem;
+      color: #1e5e32; }
+  .learning-anim-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin: 8em 0 5em; }
+    .learning-anim-container > div {
+      width: 50%; }
+    .learning-anim-container h2 {
+      margin-top: 0; }
+  .learning-anim {
+    display: block;
+    width: 370px;
+    height: 370px;
+    position: relative; }
+    .learning-anim .shape {
+      position: absolute;
+      top: -37px;
+      left: -37px;
+      opacity: 0; }
+    .learning-anim .circle {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto; }
+    .learning-anim .border {
+      width: 656px;
+      height: 656px;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      bottom: 0;
+      margin: auto 0 auto -328px;
+      opacity: 0.2; }
+  .learning-bottom > div {
+    padding: 0 0 0 88px; } }
+
+@media (min-width: 1100px) {
+  .learning-elts-title {
+    max-width: 75%; }
+  .learning-bottom {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end; }
+    .learning-bottom > div {
+      width: 75%; } }
 
 /******* PRINT *******/
 @media print {

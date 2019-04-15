@@ -1,0 +1,87 @@
+/* Learning experience specific style */
+
+.learning-anim{
+    display: none;
+}
+
+@media (min-width: $desktop-small){
+    .learning-elts-title{
+        padding-right: $gutter*2;
+    }
+
+    .learning-elts{
+        display: flex;
+        justify-content: flex-end;
+        > div{
+            width: 25%;
+            padding: 0 0 0 $gutter*2;
+        }
+        h3{
+            font-size: 2.6rem;
+            color: $primary;
+        }
+    }
+
+    .learning-anim-container{
+        display: flex;
+        align-items: center;
+        margin: 8em 0 5em;
+        > div{
+            width: 50%;
+        }
+        h2{
+            margin-top: 0;
+        }
+    }
+
+    .learning-anim{
+        display: block;
+        width: 370px;
+        height: 370px;
+        position: relative;
+        .shape{
+            position: absolute;
+            top: -37px;
+            left: -37px;
+            opacity: 0;
+        }
+        .circle{
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+        }
+        .border{
+            width: 656px;
+            height: 656px;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            bottom: 0;
+            margin: auto 0 auto -328px;
+            opacity: 0.2;
+        }
+    }
+
+    .learning-bottom{
+        > div{
+            padding: 0 0 0 $gutter*2;
+        }
+    }
+}
+
+@media (min-width: $desktop){
+    .learning-elts-title{
+        max-width: 75%;
+    }
+
+    .learning-bottom{
+        display: flex;
+        justify-content: flex-end;
+        > div{
+            width: 75%;
+        }
+    }
+}
