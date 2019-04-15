@@ -144,6 +144,7 @@ const ioBorders = () => {
                 end: null,
             },
             wheelTimeout: null,
+            resizeTimeout: null,
         };
 
         // Borders update sequences
@@ -598,8 +599,6 @@ const ioBorders = () => {
         };
 
         const addToQueue = () => {
-            if (!state.display) return;
-
             const borderNextSection = bordersWrapper.getAttribute(
                 'data-next-section'
             );
@@ -625,8 +624,14 @@ const ioBorders = () => {
         win.addResizeFunction(() => {
             state.display = handleDisplay();
 
+            if (state.resizeTimeout) {
+                clearTimeout(state.resizeTimeout);
+            }
+
             if (!state.display || !state.queue.length) return;
-            processQueue();
+            state.resizeTimeout = setTimeout(() => {
+                processQueue();
+            }, 100);
         });
     };
 
