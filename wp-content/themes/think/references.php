@@ -5,7 +5,7 @@ Template Name: Reference
 
 get_header(); ?>
 
-<div class='container'>
+<div class='container clearfix'>
 
 	<?php if ( have_posts() ) : the_post(); ?>
 
