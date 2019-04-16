@@ -105,11 +105,11 @@
         justify-content: center;
         flex-wrap: wrap;
         h1 {
-            width: 97vw;
+            width: 95.9vw;
             max-width: $container;
             padding: 0 $gutter;
             left: 50%;
-            transform: translate(-50%, -54%);
+            transform: translate(-50%, -52%);
         }
         .video {
             width: 50%;
@@ -222,7 +222,6 @@
         bottom: 7em;
         right: 50%;
         .svg {
-            display: inline-block;
             position: relative;
             float: right;
         }
@@ -326,7 +325,7 @@
     }
 }
 
-@media (min-width: $desktop-small) {
+@media (min-width: $desktop-big) {
     .home-header {
         h1 {
             transform: translate(-50%, -110%);

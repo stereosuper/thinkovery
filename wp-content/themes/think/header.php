@@ -64,15 +64,15 @@
 				<nav id="main-navigation" class="main-navigation" aria-expanded="false" style='opacity:0'>
 					<div class="main-navigation-container">
 						<?php wp_nav_menu(array('theme_location' => 'primary', 'container' => null, 'menu_id' => '', 'menu_class' => 'menu')); ?>
-						<div class="menu-borders">
-							<span class="border first"></span>
-							<span class="border second"></span>
-							<span class="border third"></span>
-						</div>
 					</div>
 					<?php 
 						mlp_show_linked_elements( array( 'link_text' => 'text', 'echo' => true, 'sort' => 'blogid', 'show_current_blog' => TRUE ) );
 					?>
+					<div class="menu-borders">
+						<span class="border first"></span>
+						<span class="border second"></span>
+						<span class="border third"></span>
+					</div>
 					<span class="line-opening"></span>
 				</nav>
 			</div>

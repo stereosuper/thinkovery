@@ -20,7 +20,7 @@ $header-height: 84px;
     bottom: 0;
     transition: transition(
         (
-            transform: "#{$mouse-duration}s #{0.1 + $cat-duration + $cat-duration}s"
+            transform: "#{$mouse-duration}s #{0.1 + $cat-duration * 3}s"
         ),
         $cat-mouse-easing-out
     );
@@ -38,7 +38,7 @@ $header-height: 84px;
         transform-origin: 50% 100%;
         transition: transition(
             (
-                transform: "#{$cat-duration}s #{0.1 + $cat-duration}s"
+                transform: "#{$cat-duration}s #{0.1 + $cat-duration * 2}s"
             ),
             $cat-mouse-easing-out
         );
@@ -62,8 +62,8 @@ $header-height: 84px;
             background: $primary;
             transition: transition(
                 (
-                    background-color: "#{$cat-duration}s 0.1s",
-                    transform: "0s #{0.1 + $cat-duration + $cat-duration + $cat-duration}s"
+                    background-color: "#{$cat-duration}s #{0.1 + $mouse-duration}s",
+                    transform: "0s #{0.1 + $cat-duration * 4}s"
                 ),
                 $cat-mouse-easing-in
             );
@@ -133,16 +133,16 @@ $header-height: 84px;
                             transform:
                                 "#{$big-mouse-duration}s #{$cat-duration + 0.05 + $cat-duration + 0.1 + 0.3 + $fade-duration}s"
                         ),
-                        $cat-mouse-easing-out
+                        $cat-mouse-easing-in
                     );
                 }
                 &::after {
                     transition: transition(
                         (
                             transform:
-                                "#{$big-cat-duration}s #{$cat-duration + 0.05 + $cat-duration + 0.1 + 0.3 + $fade-duration + $cat-duration}s"
+                                "#{$big-cat-duration}s #{$cat-duration + 0.05 + $cat-duration + 0.1 + 0.3 + $fade-duration}s"
                         ),
-                        $cat-mouse-easing-out
+                        $cat-mouse-easing-in
                     );
                 }
             }
@@ -153,7 +153,7 @@ $header-height: 84px;
                             transform:
                                 "#{$mouse-duration}s #{$cat-duration + 0.05 + $cat-duration + 0.1 + 0.3 + $fade-duration + $big-mouse-duration}s"
                         ),
-                        $cat-mouse-easing-in
+                        $cat-mouse-easing-out
                     );
                 }
                 &::after {
@@ -162,7 +162,7 @@ $header-height: 84px;
                             transform:
                                 "#{$cat-duration}s #{$cat-duration + 0.05 + $cat-duration + 0.1 + 0.3 + $fade-duration + $big-cat-duration}s"
                         ),
-                        $cat-mouse-easing-in
+                        $cat-mouse-easing-out
                     );
                 }
             }
@@ -213,7 +213,7 @@ $header-height: 84px;
     position: absolute;
     top: 0;
     left: 0;
-    z-index: -1;
+    z-index: 1;
     > .border {
         position: absolute;
         &::before,
@@ -226,9 +226,9 @@ $header-height: 84px;
             bottom: 0;
             transition: transition(
                 (
-                    transform: "#{$fade-duration}s #{$fade-duration}s"
+                    transform: "#{$mouse-duration}s"
                 ),
-                $fade-easing
+                $cat-mouse-easing-out
             );
         }
         &::before {
@@ -259,6 +259,7 @@ $header-height: 84px;
         &::before,
         &::after {
             transform-origin: 50% 0;
+            transition-delay: #{$mouse-duration * 2}s;
         }
     }
     > .second {
@@ -269,6 +270,7 @@ $header-height: 84px;
         &::after {
             transform-origin: 100% 50%;
             transform: scale3d(0, 1, 1);
+            transition-delay: #{$mouse-duration}s;
         }
     }
     > .third {
@@ -290,8 +292,8 @@ $header-height: 84px;
         &:before {
             content: none;
         }
-        &:after{
-            content: '';
+        &:after {
+            content: "";
             width: 5px;
             height: 5px;
             position: absolute;
@@ -311,9 +313,9 @@ $header-height: 84px;
             }
         }
     }
-    .current-menu-item{
+    .current-menu-item {
         font-weight: 700;
-        &:after{
+        &:after {
             opacity: 1;
         }
     }
