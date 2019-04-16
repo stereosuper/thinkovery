@@ -216,7 +216,10 @@ function think_post_type(){
         'public' => true,
         'menu_icon' => 'dashicons-portfolio',
         'show_in_rest' => true,
-        'supports' => array('title', 'editor', 'thumbnail', 'excerpt', 'revisions')
+        'supports' => array('title', 'editor', 'thumbnail', 'excerpt', 'revisions'),
+        'rewrite' => array(
+            'with_front' => false,
+        )
     ));
 }
 add_action( 'init', 'think_post_type' );

@@ -4,8 +4,11 @@
 
 	<?php if ( have_posts() ) : the_post(); ?>
 
+		<?php the_post_thumbnail(); ?>	
+
+		<?php echo wp_get_attachment_image(get_field('logo'), 'full'); ?>
+
 		<h1><?php the_title(); ?></h1>
-		<time><?php echo get_the_date(); ?></time>
 
 		<?php the_content(); ?>
 
