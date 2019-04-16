@@ -14,7 +14,6 @@ import video from './video';
 import minions from './minions';
 import learningAnim from './learningAnim';
 
-
 const state = {
     preloaded: false,
     loaded: false,
@@ -62,18 +61,21 @@ const load = () => {
     }
 };
 
-
 preload();
 load();
 
-document.addEventListener('readystatechange', () => {
-    if (!state.preloaded) {
-        preload();
-    }
-    
-    if (!state.loaded) {
-        load();
-    }
-}, false);
+document.addEventListener(
+    'readystatechange',
+    () => {
+        if (!state.preloaded) {
+            preload();
+        }
+
+        if (!state.loaded) {
+            load();
+        }
+    },
+    false
+);
 
 document.addEventListener('loaderHidden', animationHandler, false);

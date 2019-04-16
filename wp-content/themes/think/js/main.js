@@ -10386,7 +10386,8 @@ var colors = {
 };
 var easing = {
   catMouseEaseIn: _plugins_CustomEase__WEBPACK_IMPORTED_MODULE_0__["CustomEase"].create('custom', 'M0,0,C0.72,0.01,0.74,-0.09,1,1'),
-  catMouseEaseOut: _plugins_CustomEase__WEBPACK_IMPORTED_MODULE_0__["CustomEase"].create('custom', 'M0,0,C0.26,1.09,0.28,0.99,1,1')
+  catMouseEaseOut: _plugins_CustomEase__WEBPACK_IMPORTED_MODULE_0__["CustomEase"].create('custom', 'M0,0,C0.26,1.09,0.28,0.99,1,1'),
+  easePop: _plugins_CustomEase__WEBPACK_IMPORTED_MODULE_0__["CustomEase"].create('custom', 'M0,0 C0.154,0 0.422,0.014 0.532,0.148 0.654,0.296 0.676,0.764 0.756,0.874 0.831,0.977 0.904,1 1,1')
 };
 /* harmony default export */ __webpack_exports__["default"] = ({
   colors: colors,
@@ -10606,10 +10607,12 @@ var makeBorders = function makeBorders() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils */ "./wp-content/themes/think/src/js/utils/index.js");
-/* harmony import */ var _utils_Window__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils/Window */ "./wp-content/themes/think/src/js/utils/Window.js");
-/* harmony import */ var _plugins_DrawSVGPlugin__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./plugins/DrawSVGPlugin */ "./wp-content/themes/think/src/js/plugins/DrawSVGPlugin.js");
-/* harmony import */ var _plugins_MorphSVGPlugin__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./plugins/MorphSVGPlugin */ "./wp-content/themes/think/src/js/plugins/MorphSVGPlugin.js");
+/* harmony import */ var _plugins_MorphSVGPlugin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./plugins/MorphSVGPlugin */ "./wp-content/themes/think/src/js/plugins/MorphSVGPlugin.js");
+/* harmony import */ var _plugins_DrawSVGPlugin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./plugins/DrawSVGPlugin */ "./wp-content/themes/think/src/js/plugins/DrawSVGPlugin.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils */ "./wp-content/themes/think/src/js/utils/index.js");
+/* harmony import */ var _utils_Window__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./utils/Window */ "./wp-content/themes/think/src/js/utils/Window.js");
+/* harmony import */ var _global__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./global */ "./wp-content/themes/think/src/js/global/index.js");
+
 
 
 
@@ -10622,8 +10625,16 @@ var minionsHandler = function minionsHandler() {
   if (!homeSections.length || !video) return; // Intervals
 
   var scrollDowninterval = null; // Easing functions
+  // In
 
-  var easeOut = gsap__WEBPACK_IMPORTED_MODULE_0__["Power2"].easeOut;
+  var Pow1In = gsap__WEBPACK_IMPORTED_MODULE_0__["Power1"].easeIn;
+  var SineIn = gsap__WEBPACK_IMPORTED_MODULE_0__["Sine"].easeIn; // Out
+
+  var Pow2Out = gsap__WEBPACK_IMPORTED_MODULE_0__["Power2"].easeOut; // In Out
+
+  var Pow1InOut = gsap__WEBPACK_IMPORTED_MODULE_0__["Power1"].easeInOut;
+  var Pow4InOut = gsap__WEBPACK_IMPORTED_MODULE_0__["Power4"].easeInOut;
+  var backInOut = gsap__WEBPACK_IMPORTED_MODULE_0__["Back"].easeInOut;
   var minions = homeSections[0].querySelectorAll('.shape');
   var wh = window.innerHeight;
   var ww = window.innerWidth;
@@ -10658,7 +10669,7 @@ var minionsHandler = function minionsHandler() {
       ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Power4"].easeIn
     }).to(minions[2], 0.2, {
       scale: 3,
-      ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Power2"].easeOut
+      ease: Pow2Out
     }).to(minions[2], 1, {
       x: -10,
       y: headerBottom - 50,
@@ -10686,7 +10697,7 @@ var minionsHandler = function minionsHandler() {
     });
     gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to([minions[0], minions[1], minions[3], minions[4]], 0.4, {
       scale: 3,
-      ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Power1"].easeIn
+      ease: Pow1In
     });
     gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[0], 0.9, {
       bezier: {
@@ -10703,7 +10714,7 @@ var minionsHandler = function minionsHandler() {
         }]
       },
       delay: 0.15,
-      ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Power2"].easeOut
+      ease: Pow2Out
     });
     gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[1], 0.9, {
       bezier: {
@@ -10720,7 +10731,7 @@ var minionsHandler = function minionsHandler() {
         }]
       },
       delay: 0.15,
-      ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Power2"].easeOut
+      ease: Pow2Out
     });
     gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[3], 0.9, {
       bezier: {
@@ -10737,7 +10748,7 @@ var minionsHandler = function minionsHandler() {
         }]
       },
       delay: 0.15,
-      ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Power2"].easeOut
+      ease: Pow2Out
     });
     gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[4], 0.9, {
       bezier: {
@@ -10754,7 +10765,7 @@ var minionsHandler = function minionsHandler() {
         }]
       },
       delay: 0.15,
-      ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Power2"].easeOut
+      ease: Pow2Out
     }); // TweenMax.killAll();
     // video.classList.add('player-on');
     // video.classList.add('on');
@@ -10765,8 +10776,7 @@ var minionsHandler = function minionsHandler() {
 
   var learningAnim = function learningAnim() {
     var windowBottom = homeSections[1].offsetHeight + ww / 50;
-    var duration = 1.4;
-    var planePathBezier = planePath ? _plugins_MorphSVGPlugin__WEBPACK_IMPORTED_MODULE_4__["MorphSVGPlugin"].pathDataToBezier(planePath) : '';
+    var planePathBezier = planePath ? _plugins_MorphSVGPlugin__WEBPACK_IMPORTED_MODULE_1__["MorphSVGPlugin"].pathDataToBezier(planePath) : '';
     var plane = document.getElementById('plane');
     var planeBottom = planePath.getBoundingClientRect().bottom - minions[0].getBoundingClientRect().bottom;
     animsState['home-learning-experience'].launched = true;
@@ -10775,10 +10785,11 @@ var minionsHandler = function minionsHandler() {
       clearInterval(scrollDowninterval);
     }
 
-    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[2], 0.3, {
+    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[2], 0.7, {
       x: 0,
       y: headerBottom + 100,
-      ease: easeOut,
+      rotation: 0,
+      ease: backInOut.config(2),
       onComplete: function onComplete() {
         gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[0], 1, {
           bezier: {
@@ -10791,9 +10802,10 @@ var minionsHandler = function minionsHandler() {
               y: "+=".concat(planeBottom)
             }]
           },
-          ease: easeOut
+          ease: backInOut.config(1),
+          delay: 0.23
         });
-        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[1], duration, {
+        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[1], 1.2, {
           bezier: {
             curviness: 1,
             values: [{
@@ -10803,10 +10815,11 @@ var minionsHandler = function minionsHandler() {
               y: "+=".concat(windowBottom - 60)
             }]
           },
-          ease: easeOut
+          ease: Pow4InOut,
+          delay: 0.23
         });
-        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[2], duration, {
-          rotation: 0,
+        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[2], 1.4, {
+          rotation: 360,
           bezier: {
             curviness: 1,
             values: [{
@@ -10815,49 +10828,65 @@ var minionsHandler = function minionsHandler() {
               y: "+=".concat(windowBottom - 40)
             }]
           },
-          ease: easeOut
+          ease: backInOut.config(1.1),
+          delay: 0.23
         });
-        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[3], duration, {
+        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set(minions[3], {
+          x: 153,
+          y: headerBottom + 123,
+          transformOrigin: '100% 100%'
+        });
+        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[3], 1.2, {
           bezier: {
             curviness: 1,
             values: [{
               x: '+=80',
-              y: "+=".concat(windowBottom / 2)
+              y: "+=".concat(windowBottom / 2),
+              rotation: 0
             }, {
-              x: '-=10',
-              y: "+=".concat(windowBottom - 20)
-            }]
-          },
-          ease: easeOut
-        });
-        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[4], duration, {
-          bezier: {
-            curviness: 1,
-            values: [{
-              x: '+=80',
-              y: "+=".concat(windowBottom / 2)
+              x: '+=20',
+              y: "+=".concat(windowBottom - 20),
+              rotation: 30
             }, {
               x: '-=20',
-              y: "+=".concat(windowBottom)
+              y: "+=".concat(windowBottom - 18),
+              rotation: 0
             }]
           },
-          ease: easeOut
+          ease: Pow1InOut,
+          delay: 0.23
+        });
+        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[4], 1.5, {
+          bezier: {
+            curviness: 1,
+            values: [{
+              x: '+=80',
+              y: "+=".concat(windowBottom / 2),
+              rotation: -180
+            }, {
+              x: '-=20',
+              y: "+=".concat(windowBottom),
+              rotation: -720
+            }]
+          },
+          ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Power4"].easeOut,
+          delay: 0.23
         });
 
         if (plane) {
-          gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(planePath, 1, {
-            drawSVG: '100%'
-          });
           gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(plane, 2, {
             bezier: {
               values: planePathBezier,
               type: 'cubic',
               autoRotate: true,
-              ease: easeOut
+              ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Expo"].easeOut
             },
             onComplete: function onComplete() {
               animsState['home-learning-experience'].done = true;
             }
+          });
+          gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(planePath, 2, {
+            drawSVG: '100%'
           });
         } else {
           animsState['home-learning-experience'].done = true;
@@ -10880,21 +10909,7 @@ var minionsHandler = function minionsHandler() {
     var delay = 0.05;
     var dropBottom = minions[4].getBoundingClientRect().bottom - minions[0].getBoundingClientRect().bottom;
     animsState['home-offers'].launched = true;
-    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[3], duration, {
-      y: '+=20',
-      ease: easeOut
-    });
-    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[2], duration, {
-      y: '+=40',
-      ease: easeOut,
-      delay: delay
-    });
-    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[1], duration, {
-      y: '+=60',
-      ease: easeOut,
-      delay: delay * 2
-    });
-    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[0], duration, {
+    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[0], 0.5, {
       bezier: {
         curviness: 1,
         values: [{
@@ -10905,166 +10920,193 @@ var minionsHandler = function minionsHandler() {
           y: "+=".concat(dropBottom)
         }]
       },
-      ease: easeOut,
+      ease: backInOut.config(1),
       delay: delay
+    });
+    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[1], 0.5, {
+      y: '+=60',
+      ease: Pow4InOut,
+      delay: delay * 2
+    });
+    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[2], 0.5, {
+      rotation: 0,
+      y: '+=40',
+      ease: backInOut.config(1.5),
+      delay: delay
+    });
+    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[3], 0.5, {
+      y: '+=20',
+      ease: Pow1InOut
     });
   };
 
   var aboutAnim = function aboutAnim() {
-    var minions = homeSections[3].querySelectorAll('.shape');
+    var minionsThirdSection = homeSections[3].querySelectorAll('.shape');
     var windowBottom = homeSections[3].offsetHeight - 300;
     var duration = 0.8;
-    var durationSmall = 0.2;
-    var delay = 0.2;
+    var durationSmall = 0.25;
+    var delay = 0.25;
+    var delayFall = 0.07;
     animsState['home-about-us'].launched = true; // arrow  1
 
-    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[9], durationSmall, {
+    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsThirdSection[9], durationSmall, {
       scale: 1,
       opacity: 1,
-      ease: easeOut,
+      ease: _global__WEBPACK_IMPORTED_MODULE_5__["easing"].easePop,
       onComplete: function onComplete() {
-        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[9], duration, {
+        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsThirdSection[9], duration, {
           y: windowBottom,
-          rotation: -110,
-          ease: easeOut
+          rotation: -470,
+          ease: SineIn,
+          delay: delayFall
         });
       }
     }); // triangle 1
 
-    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[3], durationSmall, {
+    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsThirdSection[3], durationSmall, {
       scale: 1,
       opacity: 1,
-      ease: easeOut,
+      ease: _global__WEBPACK_IMPORTED_MODULE_5__["easing"].easePop,
       onComplete: function onComplete() {
-        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[3], duration, {
+        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsThirdSection[3], duration, {
           y: windowBottom,
           rotation: -90,
-          ease: easeOut
+          ease: SineIn,
+          delay: delayFall
         });
       },
       delay: delay
     }); // drop
 
-    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[0], durationSmall, {
+    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsThirdSection[0], durationSmall, {
       scale: 1,
       opacity: 1,
-      ease: easeOut,
+      ease: _global__WEBPACK_IMPORTED_MODULE_5__["easing"].easePop,
       onComplete: function onComplete() {
-        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[0], duration, {
+        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsThirdSection[0], duration, {
           y: windowBottom,
-          ease: easeOut
+          ease: Pow1In,
+          delay: delayFall
         });
       },
       delay: delay * 2
     }); // square 1
 
-    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[1], durationSmall, {
+    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsThirdSection[1], durationSmall, {
       scale: 1,
       opacity: 1,
-      ease: easeOut,
+      ease: _global__WEBPACK_IMPORTED_MODULE_5__["easing"].easePop,
       onComplete: function onComplete() {
-        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[1], duration, {
+        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsThirdSection[1], duration, {
           y: windowBottom + 5,
           rotation: 45,
-          ease: easeOut
+          ease: SineIn,
+          delay: delayFall
         });
       },
       delay: delay * 3
     }); // rectangle 1
 
-    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[7], durationSmall, {
+    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsThirdSection[7], durationSmall, {
       scale: 1,
       opacity: 1,
       scaleX: -1,
-      ease: easeOut,
+      ease: _global__WEBPACK_IMPORTED_MODULE_5__["easing"].easePop,
       onComplete: function onComplete() {
-        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[7], duration, {
+        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsThirdSection[7], duration, {
           y: windowBottom,
-          ease: easeOut
+          ease: SineIn,
+          delay: delayFall
         });
       },
       delay: delay * 4
     }); // triangle 2
 
-    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[5], durationSmall, {
+    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsThirdSection[5], durationSmall, {
       scale: 1,
       opacity: 1,
-      ease: easeOut,
+      ease: _global__WEBPACK_IMPORTED_MODULE_5__["easing"].easePop,
       onComplete: function onComplete() {
-        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[5], duration, {
+        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsThirdSection[5], duration, {
           y: windowBottom,
           rotation: -90,
-          ease: easeOut
+          ease: SineIn,
+          delay: delayFall
         });
       },
-      delay: delay * 5
+      delay: delay * 4.5
     }); // square 2
 
-    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[2], durationSmall, {
+    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsThirdSection[2], durationSmall, {
       scale: 1,
       opacity: 1,
-      ease: easeOut,
+      ease: _global__WEBPACK_IMPORTED_MODULE_5__["easing"].easePop,
       onComplete: function onComplete() {
-        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[2], duration, {
+        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsThirdSection[2], duration, {
           y: windowBottom - 31,
           rotation: -7,
-          ease: easeOut
+          ease: SineIn,
+          delay: delayFall
         });
       },
-      delay: delay * 6
+      delay: delay * 6.5
     }); // rectangle 2
 
-    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[8], durationSmall, {
+    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsThirdSection[8], durationSmall, {
       scale: 1,
       opacity: 1,
       scaleX: -1,
-      ease: easeOut,
+      ease: _global__WEBPACK_IMPORTED_MODULE_5__["easing"].easePop,
       onComplete: function onComplete() {
-        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[8], duration, {
+        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsThirdSection[8], duration, {
           y: windowBottom - 75,
-          ease: easeOut
+          ease: SineIn,
+          delay: delayFall
         });
       },
-      delay: delay * 7
+      delay: delay * 7.5
     }); // arrow  2
 
-    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[10], durationSmall, {
+    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsThirdSection[10], durationSmall, {
       scale: 1,
       opacity: 1,
-      ease: easeOut,
+      ease: _global__WEBPACK_IMPORTED_MODULE_5__["easing"].easePop,
       onComplete: function onComplete() {
-        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[10], duration, {
+        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsThirdSection[10], duration, {
           y: windowBottom - 65,
-          rotation: -140,
-          ease: easeOut
+          rotation: -860,
+          ease: SineIn,
+          delay: delayFall
         });
       },
       delay: delay * 8
     }); // triangle 3
 
-    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[4], durationSmall, {
+    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsThirdSection[4], durationSmall, {
       scale: 1,
       opacity: 1,
-      ease: easeOut,
+      ease: _global__WEBPACK_IMPORTED_MODULE_5__["easing"].easePop,
       onComplete: function onComplete() {
-        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[4], duration, {
+        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsThirdSection[4], duration, {
           y: windowBottom - 55,
           rotation: -135,
-          ease: easeOut
+          ease: SineIn,
+          delay: delayFall
         });
       },
       delay: delay * 9
     }); // rectangle 3
 
-    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[6], durationSmall, {
+    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsThirdSection[6], durationSmall, {
       scale: 1,
       opacity: 1,
       scaleX: -1,
-      ease: easeOut,
+      ease: _global__WEBPACK_IMPORTED_MODULE_5__["easing"].easePop,
       onComplete: function onComplete() {
-        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[6], duration, {
+        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsThirdSection[6], duration, {
           y: windowBottom - 59,
-          ease: easeOut
+          ease: SineIn,
+          delay: delayFall
         });
       },
       delay: delay * 10
@@ -11075,7 +11117,7 @@ var minionsHandler = function minionsHandler() {
     var morpion = document.getElementById('morpion');
     if (!morpion) return;
     var minons = morpion.querySelectorAll('.shape');
-    var duration = 0.2;
+    var duration = 0.15;
     var delay = 0.5;
     var tl = new gsap__WEBPACK_IMPORTED_MODULE_0__["TimelineMax"]({
       delay: 0.8
@@ -11085,32 +11127,47 @@ var minionsHandler = function minionsHandler() {
     tl.to(minons[1], duration, {
       scale: 1,
       opacity: 1,
-      ease: easeOut
+      ease: backInOut.config(0.5)
     }).to(minons[0], duration, {
       scale: 1,
       opacity: 1,
-      ease: easeOut,
+      ease: backInOut.config(0.5),
       delay: delay
     }).to(minons[2], duration, {
       scale: 1,
       opacity: 1,
-      ease: easeOut,
+      ease: backInOut.config(0.5),
       delay: delay
     }).to(minons[4], duration, {
       scale: 1,
       opacity: 1,
-      ease: easeOut,
+      ease: backInOut.config(0.5),
       delay: delay
     }).to(minons[3], duration, {
       scale: 1,
       opacity: 1,
-      ease: easeOut,
-      delay: delay
+      ease: backInOut.config(0.5),
+      delay: delay,
+      onComplete: function onComplete() {
+        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to([minons[1], minons[2], minons[3]], duration, {
+          rotation: 10,
+          scale: 1.1,
+          ease: backInOut.config(0.5),
+          delay: delay,
+          onComplete: function onComplete() {
+            gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to([minons[1], minons[2], minons[3]], duration, {
+              rotation: 0,
+              scale: 1,
+              ease: backInOut.config(2)
+            });
+          }
+        });
+      }
     });
   };
 
   var intersectionCallback = function intersectionCallback(entries) {
-    Object(_utils__WEBPACK_IMPORTED_MODULE_1__["forEach"])(entries, function (entry) {
+    Object(_utils__WEBPACK_IMPORTED_MODULE_3__["forEach"])(entries, function (entry) {
       if (entry.intersectionRatio < 0.7 || animsState[entry.target.id].launched) return;
 
       switch (entry.target.id) {
@@ -11152,7 +11209,7 @@ var minionsHandler = function minionsHandler() {
       rootMargin: '0px',
       threshold: thresholdSamples
     });
-    Object(_utils__WEBPACK_IMPORTED_MODULE_1__["forEach"])(homeSections, function (section) {
+    Object(_utils__WEBPACK_IMPORTED_MODULE_3__["forEach"])(homeSections, function (section) {
       observer.observe(section);
       animsState[section.id] = {
         launched: false,
@@ -11175,7 +11232,7 @@ var minionsHandler = function minionsHandler() {
     gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set(planePath, {
       drawSVG: 0
     });
-    Object(_utils__WEBPACK_IMPORTED_MODULE_1__["forEach"])(homeSections, function (section) {
+    Object(_utils__WEBPACK_IMPORTED_MODULE_3__["forEach"])(homeSections, function (section) {
       animsState[section.id] = {
         launched: false,
         done: false
@@ -11185,7 +11242,7 @@ var minionsHandler = function minionsHandler() {
 
 
   if (getComputedStyle(minions[0]).display !== 'none') initAnims();
-  _utils_Window__WEBPACK_IMPORTED_MODULE_2__["default"].addResizeFunction(function () {
+  _utils_Window__WEBPACK_IMPORTED_MODULE_4__["default"].addResizeFunction(function () {
     wh = window.innerHeight;
     ww = window.innerWidth;
     headerBottom = wh - (video.getBoundingClientRect().top + video.offsetHeight / 2) - window.scrollY;

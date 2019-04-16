@@ -66,5 +66,5 @@ export default {
     reverseString,
     createNewEvent,
     requestAnimFrame,
-    throttle
+    throttle,
 };
