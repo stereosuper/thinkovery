@@ -20,15 +20,19 @@ get_header(); ?>
 		<?php endif; ?>
 
 		<?php if( have_rows('elements') ): ?>
-			<div class='learning-elts'>
+			<div class='learning-elts' id='learning-elts'>
 				<?php while ( have_rows('elements') ): the_row(); ?>
 					<?php if( have_rows('items') ): ?>
-						<?php while ( have_rows('items') ) : the_row(); ?>
-							<div>
-								<h3><?php the_sub_field('title'); ?></h3>
-								<p><?php the_sub_field('text'); ?></p>
-							</div>
-						<?php endwhile; ?>
+						<?php get_template_part('img/learning-visual.svg'); ?>
+						
+						<div class='learning-elts-container'>
+							<?php while ( have_rows('items') ) : the_row(); ?>
+								<div>
+									<h3><?php the_sub_field('title'); ?></h3>
+									<p><?php the_sub_field('text'); ?></p>
+								</div>
+							<?php endwhile; ?>
+						</div>
 					<?php endif; ?>
 				<?php endwhile; ?>
 			</div>

@@ -4,21 +4,42 @@
     display: none;
 }
 
+.learning-elts{
+    padding: 30px 0 0;
+    text-align: right;
+}
+.learning-elts-container{
+    text-align: left;
+    h3{
+        font-size: 2.4rem;
+        color: $primary;
+    }
+}
+.etls-svg{
+    width: 95%;
+    max-width: 1112px;
+}
+
+
+@media (min-width: $tablet){
+    .learning-elts-container{
+        h3{
+            font-size: 2.6rem;
+        }
+    }
+}
+
 @media (min-width: $desktop-small){
     .learning-elts-title{
         padding-right: $gutter*2;
     }
 
-    .learning-elts{
+    .learning-elts-container{
         display: flex;
         justify-content: flex-end;
         > div{
             width: 25%;
-            padding: 0 0 0 $gutter*2;
-        }
-        h3{
-            font-size: 2.6rem;
-            color: $primary;
+            padding: 0 0 0 30px;
         }
     }
 
@@ -75,6 +96,12 @@
 @media (min-width: $desktop){
     .learning-elts-title{
         max-width: 75%;
+    }
+
+    .learning-elts-container{
+        > div{
+            padding: 0 0 0 $gutter*2;
+        }
     }
 
     .learning-bottom{

@@ -1979,22 +1979,37 @@ label {
 .learning-anim {
   display: none; }
 
+.learning-elts {
+  padding: 30px 0 0;
+  text-align: right; }
+
+.learning-elts-container {
+  text-align: left; }
+  .learning-elts-container h3 {
+    font-size: 2.4rem;
+    color: #1e5e32; }
+
+.etls-svg {
+  width: 95%;
+  max-width: 1112px; }
+
+@media (min-width: 780px) {
+  .learning-elts-container h3 {
+    font-size: 2.6rem; } }
+
 @media (min-width: 960px) {
   .learning-elts-title {
     padding-right: 88px; }
-  .learning-elts {
+  .learning-elts-container {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: end;
         -ms-flex-pack: end;
             justify-content: flex-end; }
-    .learning-elts > div {
+    .learning-elts-container > div {
       width: 25%;
-      padding: 0 0 0 88px; }
-    .learning-elts h3 {
-      font-size: 2.6rem;
-      color: #1e5e32; }
+      padding: 0 0 0 30px; }
   .learning-anim-container {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -2039,6 +2054,8 @@ label {
 @media (min-width: 1100px) {
   .learning-elts-title {
     max-width: 75%; }
+  .learning-elts-container > div {
+    padding: 0 0 0 88px; }
   .learning-bottom {
     display: -webkit-box;
     display: -ms-flexbox;
