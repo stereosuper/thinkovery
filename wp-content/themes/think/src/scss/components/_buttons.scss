@@ -1,7 +1,7 @@
 /* Buttons */
 
 .btn {
-    display: inline-block;
+    display: inline-flex;
     padding: 9px 22px 11px;
     font-weight: 400;
     background: $tertiary;
@@ -15,11 +15,14 @@
 }
 
 .btn-invert {
-    display: inline-block;
-    padding: 15px 20px 20px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 20px 18px;
     position: relative;
     font-size: 1.6rem;
     text-align: left;
+    word-break: break-word;
     z-index: 1;
     &:hover,
     &:focus {
@@ -74,7 +77,7 @@
         left: 0;
     }
     > .icon {
-        margin: 0 0 0 5px;
+        margin: 2px 0 0 5px;
     }
 }
 

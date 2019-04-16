@@ -235,7 +235,8 @@ h1 {
   h1 > span {
     color: #404040; }
 
-h2, .h2 {
+h2,
+.h2 {
   margin: 1.85em 0 0;
   font-size: 3.5rem;
   line-height: 1.2; }
@@ -351,7 +352,8 @@ hr {
 .wp-block-image {
   max-width: none;
   margin: 2.5em 0 0; }
-  .wp-block-image .alignright, .wp-block-image .alignleft {
+  .wp-block-image .alignright,
+  .wp-block-image .alignleft {
     margin: 0;
     float: none; }
 
@@ -481,7 +483,8 @@ a {
 @media (min-width: 780px) {
   h1 {
     font-size: 7rem; }
-  h2, .h2 {
+  h2,
+  .h2 {
     font-size: 4.9rem; }
   h3 {
     font-size: 3.5rem; }
@@ -1331,7 +1334,9 @@ label {
 
 /* Buttons */
 .btn {
-  display: inline-block;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   padding: 9px 22px 11px;
   font-weight: 400;
   background: #df622d;
@@ -1342,11 +1347,20 @@ label {
     color: #fff; }
 
 .btn-invert {
-  display: inline-block;
-  padding: 15px 20px 20px;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 15px 20px 18px;
   position: relative;
   font-size: 1.6rem;
   text-align: left;
+  word-break: break-word;
   z-index: 1; }
   .btn-invert:hover, .btn-invert:focus {
     opacity: 0.8; }
@@ -1402,7 +1416,7 @@ label {
   .btn-invert .left {
     left: 0; }
   .btn-invert > .icon {
-    margin: 0 0 0 5px; }
+    margin: 2px 0 0 5px; }
 
 @media (min-width: 960px) {
   .btn-invert .top::before, .btn-invert .top::after,

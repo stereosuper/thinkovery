@@ -53,13 +53,14 @@ h1 {
     }
 }
 
-h2, .h2 {
+h2,
+.h2 {
     margin: 1.85em 0 0;
     font-size: 3.5rem;
     line-height: 1.2;
 }
-.h2{
-    font-weight: 800; 
+.h2 {
+    font-weight: 800;
 }
 
 h3 {
@@ -191,10 +192,11 @@ hr {
     background: $black;
 }
 
-.wp-block-image{
+.wp-block-image {
     max-width: none;
     margin: 2.5em 0 0;
-    .alignright, .alignleft{
+    .alignright,
+    .alignleft {
         margin: 0;
         float: none;
     }
@@ -225,7 +227,7 @@ a {
     padding: 10px 0 35px;
 }
 
-.intro-big{
+.intro-big {
     font-size: 2rem;
 }
 
@@ -286,14 +288,14 @@ a {
     transition: none !important;
 }
 
-.vieo-title{
+.vieo-title {
     transition: $transition;
 }
 
 .video {
     position: relative;
-    &.playing{
-        + .video-title{
+    &.playing {
+        + .video-title {
             opacity: 0.2;
         }
     }
@@ -335,10 +337,9 @@ a {
     }
 }
 
-.shape{
+.shape {
     display: none;
 }
-
 
 @media (min-width: $phone) {
     h1 {
@@ -356,7 +357,8 @@ a {
         font-size: 7rem;
     }
 
-    h2, .h2 {
+    h2,
+    .h2 {
         font-size: 4.9rem;
     }
 
@@ -368,7 +370,7 @@ a {
         font-size: 3rem;
     }
 
-    .intro-big{
+    .intro-big {
         font-size: 3rem;
     }
 }
@@ -378,44 +380,44 @@ a {
         font-size: 8.6rem;
     }
 
-    .intro-big{
-        padding: 1em $gutter*2 2.5em 0;
+    .intro-big {
+        padding: 1em $gutter * 2 2.5em 0;
         font-size: 4rem;
-        .h2{
+        .h2 {
             margin: 1.1em 0 0;
         }
     }
 
-    .wp-block-image{
-        .alignright{
+    .wp-block-image {
+        .alignright {
             margin: 0 0 2em $gutter;
             float: right;
         }
-        .alignleft{
-            margin: 0 $gutter 2em $gutter*-1;
+        .alignleft {
+            margin: 0 $gutter 2em $gutter * -1;
             float: left;
         }
     }
 }
 
-@media (min-width: $desktop){
-    .intro-big{
-        width: $col*3;
+@media (min-width: $desktop) {
+    .intro-big {
+        width: $col * 3;
     }
 
-    .wp-block-image{
+    .wp-block-image {
         width: calc(129% + #{$gutter});
     }
 }
 
-@media (min-width: $desktop-huge){
-    .wp-block-image{
+@media (min-width: $desktop-huge) {
+    .wp-block-image {
         width: calc(133.33% + #{$gutter});
     }
 }
 
-@media (min-width: $desktop-small) and (min-height: 630px){
-    .shape{
+@media (min-width: $desktop-small) and (min-height: 630px) {
+    .shape {
         display: block;
         width: 75px;
         height: 75px;
