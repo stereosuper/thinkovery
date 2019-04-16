@@ -209,26 +209,28 @@ add_action( 'widgets_init', 'think_unregister_default_widgets' );
 /*-----------------------------------------------------------------------------------*/
 /* Post types
 /*-----------------------------------------------------------------------------------*/
-// function think_post_type(){
-//     register_post_type( 'resource', array(
-//         'label' => 'Resources',
-//         'singular_label' => 'Resource',
-//         'public' => true,
-//         'menu_icon' => 'dashicons-portfolio',
-//         'supports' => array('title', 'editor', 'thumbnail', 'excerpt', 'revisions'),
-//     ));
-// }
-// add_action( 'init', 'think_post_type' );
+function think_post_type(){
+    register_post_type( 'reference', array(
+        'label' => 'References',
+        'singular_label' => 'Reference',
+        'public' => true,
+        'menu_icon' => 'dashicons-portfolio',
+        'show_in_rest' => true,
+        'supports' => array('title', 'editor', 'thumbnail', 'excerpt', 'revisions')
+    ));
+}
+add_action( 'init', 'think_post_type' );
 
-// function think_taxonomies(){
-//     register_taxonomy( 'resource_cat', array('resource'), array(
-//         'label' => 'Categories',
-//         'singular_label' => 'Category',
-//         'hierarchical' => true,
-//         'show_admin_column' => true
-//     ) );
-// }
-// add_action( 'init', 'think_taxonomies' );
+function think_taxonomies(){
+    register_taxonomy( 'reference_cat', array('reference'), array(
+        'label' => 'Tags',
+        'singular_label' => 'Tag',
+        'hierarchical' => false,
+        'show_admin_column' => true,
+        'show_in_rest' => true
+    ) );
+}
+add_action( 'init', 'think_taxonomies' );
 
 
 /*-----------------------------------------------------------------------------------*/
