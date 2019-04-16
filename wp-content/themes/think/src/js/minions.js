@@ -227,7 +227,7 @@ const minionsHandler = () => {
                 });
 
                 TweenMax.to(minions[2], 1.4, {
-                    rotation: 360,
+                    rotation: 60,
                     bezier: {
                         curviness: 1,
                         values: [
@@ -322,7 +322,7 @@ const minionsHandler = () => {
     };
 
     const offersAnim = () => {
-        const duration = 0.3;
+        const duration = 0.5;
         const delay = 0.05;
 
         const dropBottom =
@@ -331,7 +331,7 @@ const minionsHandler = () => {
 
         animsState['home-offers'].launched = true;
 
-        TweenMax.to(minions[0], 0.5, {
+        TweenMax.to(minions[0], duration, {
             bezier: {
                 curviness: 1,
                 values: [
@@ -342,18 +342,18 @@ const minionsHandler = () => {
             ease: backInOut.config(1),
             delay,
         });
-        TweenMax.to(minions[1], 0.5, {
+        TweenMax.to(minions[1], duration, {
             y: '+=60',
             ease: Pow4InOut,
             delay: delay * 2,
         });
-        TweenMax.to(minions[2], 0.5, {
+        TweenMax.to(minions[2], duration, {
             rotation: 0,
             y: '+=40',
             ease: backInOut.config(1.5),
             delay,
         });
-        TweenMax.to(minions[3], 0.5, { y: '+=20', ease: Pow1InOut });
+        TweenMax.to(minions[3], duration, { y: '+=20', ease: Pow1InOut });
     };
 
     const aboutAnim = () => {
@@ -380,6 +380,7 @@ const minionsHandler = () => {
                 });
             },
         });
+
         // triangle 1
         TweenMax.to(minionsThirdSection[3], durationSmall, {
             scale: 1,
@@ -395,6 +396,7 @@ const minionsHandler = () => {
             },
             delay,
         });
+
         // drop
         TweenMax.to(minionsThirdSection[0], durationSmall, {
             scale: 1,
@@ -409,6 +411,7 @@ const minionsHandler = () => {
             },
             delay: delay * 2,
         });
+
         // square 1
         TweenMax.to(minionsThirdSection[1], durationSmall, {
             scale: 1,
@@ -424,6 +427,7 @@ const minionsHandler = () => {
             },
             delay: delay * 3,
         });
+
         // rectangle 1
         TweenMax.to(minionsThirdSection[7], durationSmall, {
             scale: 1,
@@ -439,6 +443,7 @@ const minionsHandler = () => {
             },
             delay: delay * 4,
         });
+
         // triangle 2
         TweenMax.to(minionsThirdSection[5], durationSmall, {
             scale: 1,
@@ -454,6 +459,7 @@ const minionsHandler = () => {
             },
             delay: delay * 4.5,
         });
+
         // square 2
         TweenMax.to(minionsThirdSection[2], durationSmall, {
             scale: 1,
@@ -469,6 +475,7 @@ const minionsHandler = () => {
             },
             delay: delay * 6.5,
         });
+
         // rectangle 2
         TweenMax.to(minionsThirdSection[8], durationSmall, {
             scale: 1,
@@ -484,6 +491,7 @@ const minionsHandler = () => {
             },
             delay: delay * 7.5,
         });
+
         // arrow  2
         TweenMax.to(minionsThirdSection[10], durationSmall, {
             scale: 1,
@@ -499,6 +507,7 @@ const minionsHandler = () => {
             },
             delay: delay * 8,
         });
+
         // triangle 3
         TweenMax.to(minionsThirdSection[4], durationSmall, {
             scale: 1,
@@ -514,6 +523,7 @@ const minionsHandler = () => {
             },
             delay: delay * 9,
         });
+
         // rectangle 3
         TweenMax.to(minionsThirdSection[6], durationSmall, {
             scale: 1,
@@ -536,7 +546,7 @@ const minionsHandler = () => {
 
         if (!morpion) return;
 
-        const minons = morpion.querySelectorAll('.shape');
+        const minionsMorpion = morpion.querySelectorAll('.shape');
         const duration = 0.15;
         const delay = 0.5;
         const tl = new TimelineMax({ delay: 0.8 });
@@ -544,52 +554,64 @@ const minionsHandler = () => {
         animsState['home-experiences'].launched = true;
 
         morpion.classList.add('on');
-        tl.to(minons[1], duration, {
+        tl.to(minionsMorpion[1], duration, {
             scale: 1,
             opacity: 1,
             ease: backInOut.config(0.5),
         })
-            .to(minons[0], duration, {
+            .to(minionsMorpion[0], duration, {
                 scale: 1,
                 opacity: 1,
                 ease: backInOut.config(0.5),
                 delay,
             })
-            .to(minons[2], duration, {
+            .to(minionsMorpion[2], duration, {
                 scale: 1,
                 opacity: 1,
                 ease: backInOut.config(0.5),
                 delay,
             })
-            .to(minons[4], duration, {
+            .to(minionsMorpion[4], duration, {
                 scale: 1,
                 opacity: 1,
                 ease: backInOut.config(0.5),
                 delay,
             })
-            .to(minons[3], duration, {
+            .to(minionsMorpion[3], duration, {
                 scale: 1,
                 opacity: 1,
                 ease: backInOut.config(0.5),
                 delay,
                 onComplete: () => {
-                    TweenMax.to([minons[1], minons[2], minons[3]], duration, {
-                        rotation: 10,
-                        scale: 1.1,
-                        ease: backInOut.config(0.5),
-                        delay,
-                        onComplete: () => {
-                            TweenMax.to(
-                                [minons[1], minons[2], minons[3]],
-                                duration,
-                                {
-                                    rotation: 0,
-                                    scale: 1,
-                                    ease: backInOut.config(2),
-                                }
-                            );
-                        },
-                    });
+                    TweenMax.to(
+                        [
+                            minionsMorpion[1],
+                            minionsMorpion[2],
+                            minionsMorpion[3],
+                        ],
+                        duration,
+                        {
+                            rotation: 10,
+                            scale: 1.1,
+                            ease: backInOut.config(0.5),
+                            delay,
+                            onComplete: () => {
+                                TweenMax.to(
+                                    [
+                                        minionsMorpion[1],
+                                        minionsMorpion[2],
+                                        minionsMorpion[3],
+                                    ],
+                                    duration,
+                                    {
+                                        rotation: 0,
+                                        scale: 1,
+                                        ease: backInOut.config(2),
+                                    }
+                                );
+                            },
+                        }
+                    );
                 },
             });
     };
