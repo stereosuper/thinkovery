@@ -797,7 +797,8 @@ label {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 1; }
+  z-index: 1;
+  pointer-events: none; }
   .menu-borders > .border {
     position: absolute; }
     .menu-borders > .border::before, .menu-borders > .border::after {
@@ -2067,37 +2068,36 @@ label {
       width: 75%; } }
 
 /* References specific style */
-.reference-list {
+.references-list {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 75%;
-  float: right;
+  width: 100%;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
-  margin: 6.5em 0 0; }
+  margin: 56px 0 0; }
 
-.reference-item {
-  width: 32%;
-  position: relative;
-  margin: 0 0 15px 1.33%;
+.references-item,
+.references-quote {
+  width: 100%;
+  margin: 0 0 15px 0;
   -webkit-box-shadow: 0 15px 40px 0 rgba(0, 0, 0, 0.1);
           box-shadow: 0 15px 40px 0 rgba(0, 0, 0, 0.1); }
-  .reference-item::before {
+  .references-item::before,
+  .references-quote::before {
     content: none; }
-  .reference-item::after {
+
+.references-item {
+  position: relative; }
+  .references-item::after {
     content: "";
     display: block;
     height: 0;
     padding: 0 0 76%; }
-  .reference-item:nth-of-type(3n + 2) {
-    margin-top: -6.5em; }
-  .reference-item:nth-of-type(3n + 3) {
-    margin-top: -13em; }
-  .reference-item > a {
+  .references-item > a {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -2113,11 +2113,60 @@ label {
         -ms-flex-align: center;
             align-items: center;
     background: #f7f2ea; }
-    .reference-item > a > img {
+    .references-item > a > img {
       width: auto;
       height: auto;
       max-width: 55%;
       max-height: 50%; }
+
+.references-quote {
+  padding: 28px 44px 56px;
+  background: #1e5e32;
+  color: #fff; }
+  .references-quote .icon {
+    display: block;
+    width: 3.8rem;
+    height: 2.9rem;
+    margin: 0 auto; }
+  .references-quote > .quote {
+    margin: 28px 0 42px;
+    font-size: 2.6rem; }
+    .references-quote > .quote::before, .references-quote > .quote::after {
+      content: none; }
+    .references-quote > .quote > p {
+      margin: 0; }
+  .references-quote > .source-name {
+    font-size: 2rem;
+    font-weight: 700;
+    font-style: normal;
+    letter-spacing: -0.01em; }
+  .references-quote > .source-position,
+  .references-quote > .source-company {
+    margin: 0;
+    font-size: 1.6rem; }
+  .references-quote > .source-company {
+    font-style: italic; }
+
+@media (min-width: 960px) {
+  .references-list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 75%;
+    float: right;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    margin: 6.5em 0 0; }
+  .references-item {
+    width: 32%;
+    margin: 0 0 15px 1.33%; }
+    .references-item:nth-of-type(3n + 2) {
+      margin-top: -6.5em; }
+    .references-item:nth-of-type(3n + 3) {
+      margin-top: -13em; } }
 
 /******* PRINT *******/
 @media print {
