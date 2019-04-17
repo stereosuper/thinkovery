@@ -32,19 +32,23 @@ $source_company = get_field('references_source_company');
                     </li>
                     <?php if ($references_index === 7 && $quote): ?>
                         <li class='references-quote'>
-                            <svg class="icon"><use href="#icon-quote"/></svg>
-                            <blockquote class="quote">
-                                <p><?php echo $quote ?></p>
-                            </blockquote>
-                            <?php if ($source_name): ?>
-                                <cite class="source-name"><?php echo $source_name ?></cite>
-                            <?php endif; ?>
-                            <?php if ($source_position): ?>
-                                <p class="source-position"><?php echo $source_position ?></p>
-                            <?php endif; ?>
-                            <?php if ($source_company): ?>
-                                <p class="source-company"><?php echo $source_company ?></p>
-                            <?php endif; ?>
+                            <div class="quote-content-wrapper">
+                                <div class="quote-content">
+                                    <svg class="icon"><use href="#icon-quote"/></svg>
+                                    <blockquote class="quote">
+                                        <p><?php echo $quote ?></p>
+                                    </blockquote>
+                                    <?php if ($source_name): ?>
+                                        <cite class="source-name"><?php echo $source_name ?></cite>
+                                    <?php endif; ?>
+                                    <?php if ($source_position): ?>
+                                        <p class="source-position"><?php echo $source_position ?></p>
+                                    <?php endif; ?>
+                                    <?php if ($source_company): ?>
+                                        <p class="source-company"><?php echo $source_company ?></p>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
                         </li>
                 <?php
                         endif;

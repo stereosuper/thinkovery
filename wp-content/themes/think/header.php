@@ -53,7 +53,7 @@
 					</svg>
 				</a>
 
-				<button id="burger" class="burger" type="button">
+				<button id="burger" class="burger js-load-hidden" style="opacity:0" type="button">
 					<span class="sesame-bun"></span>
 					<span class="steak"></span>
 					<span class="bun"></span>
@@ -61,7 +61,7 @@
 					<span class="second-cross-line"></span>
 				</button>
 
-				<nav id="main-navigation" class="main-navigation" aria-expanded="false" style='opacity:0'>
+				<nav id="main-navigation" class="main-navigation" aria-expanded="false" style="opacity:0">
 					<div class="main-navigation-container">
 						<?php wp_nav_menu(array('theme_location' => 'primary', 'container' => null, 'menu_id' => '', 'menu_class' => 'menu')); ?>
 					</div>

@@ -538,10 +538,12 @@ a {
   padding: 0 44px;
   margin: 0 auto; }
 
-@media (min-width: 1100px) {
+@media (min-width: 960px) {
   .col-2-desk {
     width: 50%;
-    padding: 0 44px 0 0; }
+    padding: 0 44px 0 0; } }
+
+@media (min-width: 1100px) {
   .col-3-desk {
     width: 75%; } }
 
@@ -1768,7 +1770,7 @@ label {
 
 .home-section:nth-of-type(4) h2,
 .home-section:nth-of-type(4) a {
-  color: #EC8D28; }
+  color: #ec8d28; }
 
 .home-section h2 {
   font-size: 2.6rem;
@@ -2073,8 +2075,12 @@ label {
   display: -ms-flexbox;
   display: flex;
   width: 100%;
+  max-width: 310px;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
@@ -2083,7 +2089,7 @@ label {
 .references-item,
 .references-quote {
   width: 100%;
-  margin: 0 0 15px 0;
+  margin: 0 0 16px 0;
   -webkit-box-shadow: 0 15px 40px 0 rgba(0, 0, 0, 0.1);
           box-shadow: 0 15px 40px 0 rgba(0, 0, 0, 0.1); }
   .references-item::before,
@@ -2120,53 +2126,143 @@ label {
       max-height: 50%; }
 
 .references-quote {
-  padding: 28px 44px 56px;
-  background: #1e5e32;
   color: #fff; }
+  .references-quote .quote-content {
+    padding: 28px 44px 56px;
+    background: #1e5e32; }
   .references-quote .icon {
     display: block;
     width: 3.8rem;
     height: 2.9rem;
     margin: 0 auto; }
-  .references-quote > .quote {
+  .references-quote .quote {
     margin: 28px 0 42px;
     font-size: 2.6rem; }
-    .references-quote > .quote::before, .references-quote > .quote::after {
+    .references-quote .quote::before, .references-quote .quote::after {
       content: none; }
-    .references-quote > .quote > p {
+    .references-quote .quote > p {
       margin: 0; }
-  .references-quote > .source-name {
+  .references-quote .source-name {
     font-size: 2rem;
     font-weight: 700;
     font-style: normal;
     letter-spacing: -0.01em; }
-  .references-quote > .source-position,
-  .references-quote > .source-company {
+  .references-quote .source-position,
+  .references-quote .source-company {
     margin: 0;
     font-size: 1.6rem; }
-  .references-quote > .source-company {
+  .references-quote .source-company {
     font-style: italic; }
+
+@media (min-width: 580px) {
+  .references-list {
+    max-width: 636px; }
+  .references-item {
+    width: calc(50% - 8px); }
+    .references-item:nth-child(-n + 9):nth-child(odd), .references-item:nth-child(n + 9):nth-child(even) {
+      margin-right: 16px; }
+  .references-quote {
+    width: 100%; } }
 
 @media (min-width: 960px) {
   .references-list {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    width: 75%;
-    float: right;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
     -webkit-box-align: start;
         -ms-flex-align: start;
             align-items: flex-start;
-    margin: 6.5em 0 0; }
-  .references-item {
+    width: 100%;
+    max-width: none;
+    float: right;
+    margin: 10em 0 0; }
+  .references-item,
+  .references-quote {
     width: 32%;
-    margin: 0 0 15px 1.33%; }
-    .references-item:nth-of-type(3n + 2) {
-      margin-top: -6.5em; }
-    .references-item:nth-of-type(3n + 3) {
-      margin-top: -13em; } }
+    margin: 0 0 16px 1.33%; }
+  .references-item:nth-child(-n + 9):nth-child(odd), .references-item:nth-child(n + 9):nth-child(even) {
+    margin-right: 0; }
+  .references-item:nth-child(3n + 2):nth-child(-n + 11) {
+    margin-top: -6.5em; }
+  .references-item:nth-child(3n):nth-child(-n + 11) {
+    margin-top: -13em; }
+  .references-item:nth-child(3n + 1):nth-child(n + 11) {
+    margin-top: -6.5em; }
+  .references-item:nth-child(3n + 2):nth-child(n + 12) {
+    margin-top: -13em; }
+  .references-item:nth-child(11) {
+    margin-right: 32%; }
+  .references-quote {
+    position: relative;
+    margin-top: -13em; }
+    .references-quote::after {
+      content: "";
+      display: block;
+      height: 0;
+      padding: 0 0 76%; }
+    .references-quote > .quote-content-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0; }
+      .references-quote > .quote-content-wrapper::after {
+        content: "";
+        display: block;
+        height: 0;
+        padding: 0;
+        padding-bottom: calc(152% + 16px); }
+    .references-quote .quote-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 20px 36px 28px; }
+    .references-quote .quote {
+      margin: 28px 0 28px;
+      font-size: 2.1rem;
+      line-break: loose;
+      -webkit-hyphens: auto;
+          -ms-hyphens: auto;
+              hyphens: auto; }
+    .references-quote .source-name {
+      font-size: 1.8rem; }
+    .references-quote .source-position,
+    .references-quote .source-company {
+      font-size: 1.4rem; } }
+
+@media (min-width: 1100px) {
+  .references-quote .quote {
+    margin: 28px 0 56px;
+    font-size: 2.6rem; }
+  .references-quote .source-name {
+    font-size: 2rem; }
+  .references-quote .source-position,
+  .references-quote .source-company {
+    font-size: 1.6rem; } }
+
+@media (min-width: 1280px) {
+  .references-list {
+    width: 75%;
+    margin: 6.5em 0 0; }
+  .references-quote .quote {
+    font-size: 2.1rem; }
+  .references-quote .source-name {
+    font-size: 1.8rem; }
+  .references-quote .source-position,
+  .references-quote .source-company {
+    font-size: 1.4rem; } }
+
+@media (min-width: 1400px) {
+  .references-quote .quote {
+    margin: 14px 0 28px;
+    font-size: 2.6rem;
+    line-break: normal;
+    -webkit-hyphens: none;
+        -ms-hyphens: none;
+            hyphens: none; }
+  .references-quote .source-name {
+    font-size: 2rem; }
+  .references-quote .source-position,
+  .references-quote .source-company {
+    font-size: 1.6rem; } }
 
 /******* PRINT *******/
 @media print {

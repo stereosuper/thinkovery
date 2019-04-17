@@ -1,8 +1,8 @@
 /* Grid */
 
-.main{
+.main {
     padding: 4em 0 0;
-    .no-js &{
+    .no-js & {
         opacity: 1 !important;
     }
 }
@@ -13,13 +13,14 @@
     margin: 0 auto;
 }
 
-
-@media (min-width: $desktop) {
+@media (min-width: $desktop-small) {
     .col-2-desk {
         width: $col * 2;
         padding: 0 $gutter 0 0;
     }
+}
 
+@media (min-width: $desktop) {
     .col-3-desk {
         width: $col * 3;
     }

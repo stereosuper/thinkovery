@@ -1,9 +1,11 @@
 /* References specific style */
-
+$references-offset-grid: 8px;
 .references-list {
     display: flex;
     width: 100%;
+    max-width: 310px;
     flex-wrap: wrap;
+    justify-content: flex-start;
     align-items: flex-start;
     margin: $line-height * 2 0 0;
 }
@@ -11,7 +13,7 @@
 .references-item,
 .references-quote {
     width: 100%;
-    margin: 0 0 15px 0;
+    margin: 0 0 $references-offset-grid * 2 0;
     box-shadow: 0 15px 40px 0 rgba(#000, 0.1);
     &::before {
         content: none;
@@ -46,16 +48,18 @@
 }
 
 .references-quote {
-    padding: $line-height $gutter $line-height * 2;
-    background: $primary;
     color: $white;
+    .quote-content {
+        padding: $line-height $gutter $line-height * 2;
+        background: $primary;
+    }
     .icon {
         display: block;
         width: 3.8rem;
         height: 2.9rem;
         margin: 0 auto;
     }
-    > .quote {
+    .quote {
         margin: $line-height 0 $line-height * 1.5;
         font-size: 2.6rem;
         &::before,
@@ -66,40 +70,168 @@
             margin: 0;
         }
     }
-    > .source-name {
+    .source-name {
         font-size: 2rem;
         font-weight: 700;
         font-style: normal;
         letter-spacing: -0.01em;
     }
-    > .source-position,
-    > .source-company {
+    .source-position,
+    .source-company {
         margin: 0;
         font-size: 1.6rem;
     }
-    > .source-company {
+    .source-company {
         font-style: italic;
+    }
+}
+
+@media (min-width: $phone) {
+    .references-list {
+        max-width: #{310px * 2 + $references-offset-grid * 2};
+    }
+    .references-item {
+        width: calc(50% - #{$references-offset-grid});
+        &:nth-child(-n + 9):nth-child(odd),
+        &:nth-child(n + 9):nth-child(even) {
+            margin-right: #{$references-offset-grid * 2};
+        }
+    }
+    .references-quote {
+        width: 100%;
     }
 }
 
 @media (min-width: $desktop-small) {
     .references-list {
-        display: flex;
-        width: $col * 3;
-        float: right;
-        flex-wrap: wrap;
         align-items: flex-start;
-        margin: 6.5em 0 0;
+        width: 100%;
+        max-width: none;
+        float: right;
+        margin: 10em 0 0;
     }
-
-    .references-item {
+    .references-item,
+    .references-quote {
         width: 32%;
-        margin: 0 0 15px 1.33%;
-        &:nth-of-type(3n + 2) {
+        margin: 0 0 #{$references-offset-grid * 2} 1.33%;
+    }
+    .references-item {
+        &:nth-child(-n + 9):nth-child(odd),
+        &:nth-child(n + 9):nth-child(even) {
+            margin-right: 0;
+        }
+        &:nth-child(3n + 2):nth-child(-n + 11) {
             margin-top: -6.5em;
         }
-        &:nth-of-type(3n + 3) {
+        &:nth-child(3n):nth-child(-n + 11) {
             margin-top: -13em;
+        }
+        &:nth-child(3n + 1):nth-child(n + 11) {
+            margin-top: -6.5em;
+        }
+        &:nth-child(3n + 2):nth-child(n + 12) {
+            margin-top: -13em;
+        }
+        &:nth-child(11) {
+            margin-right: 32%;
+        }
+    }
+    .references-quote {
+        position: relative;
+        margin-top: -13em;
+        &::after {
+            content: "";
+            display: block;
+            height: 0;
+            padding: 0 0 76%;
+        }
+        > .quote-content-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            &::after {
+                content: "";
+                display: block;
+                height: 0;
+                padding: 0;
+                padding-bottom: calc(152% + #{$references-offset-grid * 2});
+            }
+        }
+        .quote-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: #{$line-height - $references-offset-grid} #{$gutter - $references-offset-grid}
+                $line-height;
+        }
+        .quote {
+            margin: $line-height 0 $line-height;
+            font-size: 2.1rem;
+            line-break: loose;
+            hyphens: auto;
+        }
+        .source-name {
+            font-size: 1.8rem;
+        }
+        .source-position,
+        .source-company {
+            font-size: 1.4rem;
+        }
+    }
+}
+
+@media (min-width: $desktop) {
+    .references-quote {
+        .quote {
+            margin: $line-height 0 $line-height * 2;
+            font-size: 2.6rem;
+        }
+        .source-name {
+            font-size: 2rem;
+        }
+        .source-position,
+        .source-company {
+            font-size: 1.6rem;
+        }
+    }
+}
+
+@media (min-width: $desktop-big) {
+    .references-list {
+        width: $col * 3;
+        margin: 6.5em 0 0;
+    }
+    .references-quote {
+        .quote {
+            font-size: 2.1rem;
+        }
+        .source-name {
+            font-size: 1.8rem;
+        }
+        .source-position,
+        .source-company {
+            font-size: 1.4rem;
+        }
+    }
+}
+
+@media (min-width: $container) {
+    .references-quote {
+        .quote {
+            margin: $line-height * 0.5 0 $line-height;
+            font-size: 2.6rem;
+            line-break: normal;
+            hyphens: none;
+        }
+        .source-name {
+            font-size: 2rem;
+        }
+        .source-position,
+        .source-company {
+            font-size: 1.6rem;
         }
     }
 }
