@@ -2086,10 +2086,10 @@ label {
   margin: 0 0 15px 1.33%;
   -webkit-box-shadow: 0 15px 40px 0 rgba(0, 0, 0, 0.1);
           box-shadow: 0 15px 40px 0 rgba(0, 0, 0, 0.1); }
-  .reference-item:before {
+  .reference-item::before {
     content: none; }
-  .reference-item:after {
-    content: '';
+  .reference-item::after {
+    content: "";
     display: block;
     height: 0;
     padding: 0 0 76%; }
@@ -2113,6 +2113,11 @@ label {
         -ms-flex-align: center;
             align-items: center;
     background: #f7f2ea; }
+    .reference-item > a > img {
+      width: auto;
+      height: auto;
+      max-width: 55%;
+      max-height: 50%; }
 
 /******* PRINT *******/
 @media print {

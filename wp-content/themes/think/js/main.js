@@ -10912,7 +10912,7 @@ var minionsHandler = function minionsHandler() {
           delay: 0.23
         });
         gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[2], 1.4, {
-          rotation: 60,
+          rotation: 450,
           bezier: {
             curviness: 1,
             values: [{
@@ -11022,7 +11022,7 @@ var minionsHandler = function minionsHandler() {
       delay: delay * 2
     });
     gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[2], duration, {
-      rotation: 0,
+      rotation: 360,
       y: '+=40',
       ease: backInOut.config(1.5),
       delay: delay

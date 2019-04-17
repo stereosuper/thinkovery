@@ -227,7 +227,7 @@ const minionsHandler = () => {
                 });
 
                 TweenMax.to(minions[2], 1.4, {
-                    rotation: 60,
+                    rotation: 450,
                     bezier: {
                         curviness: 1,
                         values: [
@@ -348,7 +348,7 @@ const minionsHandler = () => {
             delay: delay * 2,
         });
         TweenMax.to(minions[2], duration, {
-            rotation: 0,
+            rotation: 360,
             y: '+=40',
             ease: backInOut.config(1.5),
             delay,
