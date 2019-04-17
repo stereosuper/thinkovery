@@ -2,10 +2,10 @@
 
 .main-footer {
     margin: 7.5em 0 0;
-    .no-js &{
+    .no-js & {
         opacity: 1 !important;
     }
-    .home &{
+    .home & {
         margin-top: 0;
     }
     a:not(.btn) {
@@ -49,10 +49,10 @@
         font-weight: 700;
         line-height: 1.2;
     }
-    strong{
+    strong {
         color: $primary;
     }
-    br{
+    br {
         display: none;
     }
 }
@@ -69,30 +69,38 @@
 .main-footer-bottom {
     padding: 3.5em 0 0;
 }
+
 .main-footer-top,
 .main-footer-bottom {
     align-items: center;
 }
+
+.footer-logo {
+    margin: $line-height 0;
+}
+
 .main-footer-middle,
-.main-footer-bottom{
+.main-footer-bottom {
     display: flex;
     flex-wrap: wrap;
 }
+
 .main-footer-middle {
     align-items: flex-start;
 }
 
-.footer-col-small{
+.footer-col-small {
     width: 50%;
     margin: 0 0 3em;
 }
-.footer-col-big{
+
+.footer-col-big {
     width: 100%;
 }
 
-.footer-shapes{
+.footer-shapes {
     margin: 10px 0 0 -6px;
-    .icon{
+    .icon {
         width: 23px;
         height: 23px;
         margin: 0 6px;
@@ -141,61 +149,55 @@
     }
 }
 
-
-@media (min-width: $desktop-small){
-    .footer-col-small{
+@media (min-width: $desktop-small) {
+    .footer-col-small {
         width: 25%;
         margin: 0;
     }
-    .footer-col-big{
+    .footer-col-big {
         width: 50%;
     }
-
-    .main-footer-baseline{
+    .main-footer-baseline {
         margin-top: 0;
     }
-
-    .footer-shapes{
+    .footer-shapes {
         margin: 0;
     }
-
-    .main-footer-top{
+    .main-footer-top {
         display: flex;
     }
-    .footer-logo{
+    .footer-logo {
         width: 25%;
+        margin: 0;
     }
 }
 
-@media (min-width: $desktop){
-    .footer-contact{
+@media (min-width: $desktop) {
+    .footer-contact {
         width: 25%;
         margin-top: 0.4em;
         position: absolute;
         top: $line-height;
         right: $gutter * 2;
         z-index: 10;
-        br{
+        br {
             display: block;
         }
     }
-
-    .main-footer-baseline{
+    .main-footer-baseline {
         max-width: 22%;
     }
-
-    .main-footer-container{
+    .main-footer-container {
         padding-top: 0;
     }
-
     .container-social {
         width: 25%;
         margin: 0;
     }
 }
 
-@media (min-width: $desktop-big){
-    .main-footer-baseline{
+@media (min-width: $desktop-big) {
+    .main-footer-baseline {
         max-width: 100%;
     }
 }

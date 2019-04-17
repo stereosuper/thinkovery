@@ -1164,6 +1164,9 @@ label {
       -ms-flex-align: center;
           align-items: center; }
 
+.footer-logo {
+  margin: 28px 0; }
+
 .main-footer-middle,
 .main-footer-bottom {
   display: -webkit-box;
@@ -1253,7 +1256,8 @@ label {
     display: -ms-flexbox;
     display: flex; }
   .footer-logo {
-    width: 25%; } }
+    width: 25%;
+    margin: 0; } }
 
 @media (min-width: 1100px) {
   .footer-contact {
