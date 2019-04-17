@@ -1,72 +1,71 @@
 /* Learning experience specific style */
 
-.learning-anim{
+.learning-anim {
     display: none;
 }
 
-.learning-elts{
+.learning-elts {
     padding: 30px 0 0;
     text-align: right;
 }
-.learning-elts-container{
+.learning-elts-container {
     text-align: left;
-    h3{
+    h3 {
         font-size: 2.4rem;
         color: $primary;
     }
 }
-.etls-svg{
+.elts-svg {
     width: 95%;
     max-width: 1112px;
 }
 
-
-@media (min-width: $tablet){
-    .learning-elts-container{
-        h3{
+@media (min-width: $tablet) {
+    .learning-elts-container {
+        h3 {
             font-size: 2.6rem;
         }
     }
 }
 
-@media (min-width: $desktop-small){
-    .learning-elts-title{
-        padding-right: $gutter*2;
+@media (min-width: $desktop-small) {
+    .learning-elts-title {
+        padding-right: $gutter * 2;
     }
 
-    .learning-elts-container{
+    .learning-elts-container {
         display: flex;
         justify-content: flex-end;
-        > div{
+        > div {
             width: 25%;
             padding: 0 0 0 30px;
         }
     }
 
-    .learning-anim-container{
+    .learning-anim-container {
         display: flex;
         align-items: center;
         margin: 8em 0 5em;
-        > div{
+        > div {
             width: 50%;
         }
-        h2{
+        h2 {
             margin-top: 0;
         }
     }
 
-    .learning-anim{
+    .learning-anim {
         display: block;
         width: 370px;
         height: 370px;
         position: relative;
-        .shape{
+        .shape {
             position: absolute;
             top: -37px;
             left: -37px;
             opacity: 0;
         }
-        .circle{
+        .circle {
             position: absolute;
             top: 0;
             left: 0;
@@ -74,7 +73,7 @@
             bottom: 0;
             margin: auto;
         }
-        .border{
+        .border {
             width: 656px;
             height: 656px;
             position: absolute;
@@ -86,28 +85,28 @@
         }
     }
 
-    .learning-bottom{
-        > div{
-            padding: 0 0 0 $gutter*2;
+    .learning-bottom {
+        > div {
+            padding: 0 0 0 $gutter * 2;
         }
     }
 }
 
-@media (min-width: $desktop){
-    .learning-elts-title{
+@media (min-width: $desktop) {
+    .learning-elts-title {
         max-width: 75%;
     }
 
-    .learning-elts-container{
-        > div{
-            padding: 0 0 0 $gutter*2;
+    .learning-elts-container {
+        > div {
+            padding: 0 0 0 $gutter * 2;
         }
     }
 
-    .learning-bottom{
+    .learning-bottom {
         display: flex;
         justify-content: flex-end;
-        > div{
+        > div {
             width: 75%;
         }
     }
