@@ -25,7 +25,7 @@
 					$accordion_text = get_sub_field('text');
 					$accordion_question_answer_list = get_sub_field('question_answer');
 					?>
-					<section class="accordion-module">
+					<section class="accordion-module js-accordion-module">
 						<h2><?php echo $accordion_title ?></h2>
 						<p><?php echo $accordion_text ?></p>
 						<?php
@@ -37,8 +37,8 @@
 							$answer = get_sub_field('answer');
 							?>
 							<li>
-								<h3><?php echo $question ?></h3>
-								<p><?php echo $answer ?></p>
+								<h3><?php echo $question ?><span class="indicator"></span></h3>
+								<div class="answer js-answer"><?php echo $answer ?></div>
 							</li>
 							<?php
 							endwhile; ?>

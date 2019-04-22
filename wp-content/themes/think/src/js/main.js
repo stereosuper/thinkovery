@@ -5,8 +5,9 @@ import io from './utils/io';
 import scroll from './utils/Scroll';
 import fallback from './utils/Fallback';
 
-import form from './form';
 import burger from './burger';
+import accordion from './accordion';
+import form from './form';
 import newsletter from './newsletter';
 import makeBorders from './makeBorders';
 import drawBorders from './drawBorders';
@@ -39,6 +40,7 @@ const preload = () => {
 
     // Custom scripts
     burger();
+    accordion();
     form();
     newsletter();
     video();
