@@ -10468,11 +10468,11 @@ var learningAnimHandler = function learningAnimHandler() {
     var index = 0;
     var observer = null;
     var path = svg.querySelector('.path');
-    var shwadow1 = svg.querySelector('.shadow1');
-    var shwadow2 = svg.querySelector('.shadow2');
-    var shwadow3 = svg.querySelector('.shadow3');
-    var shwadow4 = svg.querySelector('.shadow4');
-    var shwadow5 = svg.querySelector('.shadow5');
+    var shadow1 = svg.querySelector('.shadow1');
+    var shadow2 = svg.querySelector('.shadow2');
+    var shadow3 = svg.querySelector('.shadow3');
+    var shadow4 = svg.querySelector('.shadow4');
+    var shadow5 = svg.querySelector('.shadow5');
     var img1 = svg.querySelector('.img1');
     var img2 = svg.querySelector('.img2');
     var img3 = svg.querySelector('.img3');
@@ -10483,11 +10483,11 @@ var learningAnimHandler = function learningAnimHandler() {
       gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(path, 2, {
         drawSVG: '100%'
       });
-      gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(shwadow1, 0.2, {
+      gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(shadow1, 0.2, {
         opacity: 0.6,
         delay: 0.4
       });
-      gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(shwadow2, 0.2, {
+      gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(shadow2, 0.2, {
         opacity: 0.6,
         delay: 0.5
       });
@@ -10495,11 +10495,11 @@ var learningAnimHandler = function learningAnimHandler() {
         opacity: 1,
         delay: 0.6
       });
-      gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(shwadow3, 0.2, {
+      gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(shadow3, 0.2, {
         opacity: 0.6,
         delay: 0.9
       });
-      gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(shwadow4, 0.2, {
+      gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(shadow4, 0.2, {
         opacity: 0.6,
         delay: 1
       });
@@ -10507,7 +10507,7 @@ var learningAnimHandler = function learningAnimHandler() {
         opacity: 1,
         delay: 1.1
       });
-      gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(shwadow5, 0.2, {
+      gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(shadow5, 0.2, {
         opacity: 0.6,
         delay: 1.7
       });
@@ -10527,7 +10527,7 @@ var learningAnimHandler = function learningAnimHandler() {
     gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set(path, {
       drawSVG: 0
     });
-    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set([shwadow1, shwadow2, shwadow3, shwadow4, shwadow5], {
+    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set([shadow1, shadow2, shadow3, shadow4, shadow5], {
       opacity: 0
     });
     gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set([img1, img2, img3], {

@@ -59,11 +59,11 @@ const learningAnimHandler = () => {
         let observer = null;
 
         const path = svg.querySelector('.path');
-        const shwadow1 = svg.querySelector('.shadow1');
-        const shwadow2 = svg.querySelector('.shadow2');
-        const shwadow3 = svg.querySelector('.shadow3');
-        const shwadow4 = svg.querySelector('.shadow4');
-        const shwadow5 = svg.querySelector('.shadow5');
+        const shadow1 = svg.querySelector('.shadow1');
+        const shadow2 = svg.querySelector('.shadow2');
+        const shadow3 = svg.querySelector('.shadow3');
+        const shadow4 = svg.querySelector('.shadow4');
+        const shadow5 = svg.querySelector('.shadow5');
         const img1 = svg.querySelector('.img1');
         const img2 = svg.querySelector('.img2');
         const img3 = svg.querySelector('.img3');
@@ -75,13 +75,13 @@ const learningAnimHandler = () => {
             animLaunched = true;
 
             TweenMax.to(path, 2, {drawSVG: '100%'});
-            TweenMax.to(shwadow1, 0.2, {opacity: 0.6, delay: 0.4});
-            TweenMax.to(shwadow2, 0.2, {opacity: 0.6, delay: 0.5});
+            TweenMax.to(shadow1, 0.2, {opacity: 0.6, delay: 0.4});
+            TweenMax.to(shadow2, 0.2, {opacity: 0.6, delay: 0.5});
             TweenMax.to(img1, 0.3, {opacity: 1, delay: 0.6});
-            TweenMax.to(shwadow3, 0.2, {opacity: 0.6, delay: 0.9});
-            TweenMax.to(shwadow4, 0.2, {opacity: 0.6, delay: 1});
+            TweenMax.to(shadow3, 0.2, {opacity: 0.6, delay: 0.9});
+            TweenMax.to(shadow4, 0.2, {opacity: 0.6, delay: 1});
             TweenMax.to(img2, 0.3, {opacity: 1, delay: 1.1});
-            TweenMax.to(shwadow5, 0.2, {opacity: 0.6, delay: 1.7});
+            TweenMax.to(shadow5, 0.2, {opacity: 0.6, delay: 1.7});
             TweenMax.to(img3, 0.3, {opacity: 1, delay: 1.7});
         };
 
@@ -94,7 +94,7 @@ const learningAnimHandler = () => {
 
 
         TweenMax.set(path, {drawSVG: 0});
-        TweenMax.set([shwadow1, shwadow2, shwadow3, shwadow4, shwadow5], {opacity: 0});
+        TweenMax.set([shadow1, shadow2, shadow3, shadow4, shadow5], {opacity: 0});
         TweenMax.set([img1, img2, img3], {opacity: 0});
 
         for (index; index <= samplesNumber; index++) {
