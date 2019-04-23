@@ -1325,6 +1325,9 @@ label {
       top: 0;
       left: 0; } }
 
+.accordion-module > ul {
+  margin-top: 56px; }
+
 .accordion-module li {
   padding: 10px 20px 20px;
   margin-bottom: 28px;
@@ -1338,12 +1341,14 @@ label {
     padding-right: 44px;
     margin: 0;
     position: relative;
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: #1e5e32;
     cursor: pointer; }
   .accordion-module li > .answer {
     max-height: 0;
     margin: 0;
+    font-size: 1.6rem;
+    opacity: 0;
     overflow: hidden; }
   .accordion-module li .indicator {
     position: absolute;
@@ -1363,10 +1368,17 @@ label {
       background: #aeaeae; }
     .accordion-module li .indicator::before {
       -webkit-transform: rotateZ(90deg);
-              transform: rotateZ(90deg); }
+              transform: rotateZ(90deg);
+      -webkit-transition:  opacity 0.3s ease-out;
+      transition:  opacity 0.3s ease-out; }
   .accordion-module li.activated .indicator::before {
-    -webkit-transform: rotateZ(0);
-            transform: rotateZ(0); }
+    opacity: 0; }
+
+@media (min-width: 960px) {
+  .accordion-module li > h3 {
+    font-size: 2rem; }
+  .accordion-module li > .answer {
+    font-size: 1.8rem; } }
 
 /* Buttons */
 .btn {

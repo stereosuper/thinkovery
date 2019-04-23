@@ -1,4 +1,10 @@
 import { CustomEase } from '../plugins/CustomEase';
+import { Power2 } from 'gsap/TweenLite';
+
+export const globalStyles = {
+    gutter: 44,
+    lineHeight: 28,
+};
 
 export const colors = {
     funGreen: '#1e5e32',
@@ -21,6 +27,7 @@ export const easing = {
         'custom',
         'M0,0 C0.154,0 0.422,0.014 0.532,0.148 0.654,0.296 0.676,0.764 0.756,0.874 0.831,0.977 0.904,1 1,1'
     ),
+    easeFade: Power2.easeInOut,
 };
 
 export default { colors, easing };

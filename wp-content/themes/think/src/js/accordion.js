@@ -1,10 +1,9 @@
+import 'gsap/ScrollToPlugin';
 import { forEach } from './utils';
+import { TweenMax } from 'gsap';
+import { easing, globalStyles } from './global';
 
 const burgerHandler = () => {
-    const state = {
-        burgerActivated: false,
-    };
-
     const accordions = document.querySelectorAll('.js-accordion-module');
 
     if (!accordions.length) return;
@@ -32,14 +31,37 @@ const burgerHandler = () => {
                     forEach(titles, tabToReset => {
                         const resetParents = tabToReset.parentElement;
                         resetParents.classList.remove('activated');
-                        resetParents.querySelector(
-                            '.js-answer'
-                        ).style.maxHeight = 0;
+                        TweenMax.to(
+                            resetParents.querySelector('.js-answer'),
+                            0.3,
+                            {
+                                maxHeight: 0,
+                                opacity: 0,
+                                ease: easing.easeFade,
+                            }
+                        );
                     });
 
                     if (!alreadyActivated) {
-                        answer.style.maxHeight = `${maxHeight}px`;
+                        TweenMax.to(answer, 0.3, {
+                            maxHeight,
+                            opacity: 1,
+                            ease: easing.easeFade,
+                        });
                         parent.classList.add('activated');
+
+                        setTimeout(() => {
+                            const offset =
+                                title.getBoundingClientRect().top +
+                                window.scrollY;
+                            TweenMax.to(window, 0.5, {
+                                scrollTo: {
+                                    y: offset,
+                                    offsetY: globalStyles.lineHeight,
+                                },
+                                ease: easing.easeFade,
+                            });
+                        }, 500);
                     }
                 },
                 false
