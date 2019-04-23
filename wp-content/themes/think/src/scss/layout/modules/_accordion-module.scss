@@ -1,4 +1,7 @@
 .accordion-module {
+    > h2 {
+        margin-top: 0;
+    }
     > ul {
         margin-top: $line-height * 2;
     }

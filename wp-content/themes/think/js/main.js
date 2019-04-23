@@ -9708,7 +9708,7 @@ var burgerHandler = function burgerHandler() {
               },
               ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].easeFade
             });
-          }, 500);
+          }, 600);
         }
       }, false);
     });

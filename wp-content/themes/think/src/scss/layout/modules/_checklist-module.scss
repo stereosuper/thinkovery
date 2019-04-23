@@ -1,0 +1,13 @@
+.checklist-module {
+    li {
+        position: relative;
+        &::before {
+            content: none;
+        }
+        .icon {
+            position: absolute;
+            top: 7px;
+            right: calc(100% + 7px);
+        }
+    }
+}

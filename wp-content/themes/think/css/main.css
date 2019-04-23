@@ -1325,6 +1325,9 @@ label {
       top: 0;
       left: 0; } }
 
+.accordion-module > h2 {
+  margin-top: 0; }
+
 .accordion-module > ul {
   margin-top: 56px; }
 
@@ -1379,6 +1382,41 @@ label {
     font-size: 2rem; }
   .accordion-module li > .answer {
     font-size: 1.8rem; } }
+
+.quote-module {
+  text-align: center; }
+  .quote-module > .icon {
+    display: block;
+    width: 40px;
+    height: 29px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    color: #1e5e32; }
+  .quote-module > .quote {
+    font-size: 2.6rem;
+    margin: 28px 0; }
+    .quote-module > .quote::before, .quote-module > .quote::after {
+      content: none; }
+    .quote-module > .quote > p {
+      margin-top: 0; }
+  .quote-module .source-name {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1e5e32; }
+  .quote-module .source-position {
+    margin-top: 0;
+    font-size: 1.6rem;
+    font-style: italic; }
+
+.checklist-module li {
+  position: relative; }
+  .checklist-module li::before {
+    content: none; }
+  .checklist-module li .icon {
+    position: absolute;
+    top: 7px;
+    right: calc(100% + 7px); }
 
 /* Buttons */
 .btn {
@@ -2308,6 +2346,9 @@ label {
   .references-quote .source-position,
   .references-quote .source-company {
     font-size: 1.6rem; } }
+
+.single-reference .module {
+  margin: 56px 0; }
 
 /******* PRINT *******/
 @media print {

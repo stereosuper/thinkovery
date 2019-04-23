@@ -10,10 +10,11 @@
 @import "abstracts/placeholders";
 
 @import "layout/grid", "layout/forms", "layout/header", "layout/footer", "layout/borders",
-    "layout/modules";
+    "layout/modules/accordion-module", "layout/modules/quote-module",
+    "layout/modules/checklist-module";
 
 @import "components/buttons";
 
-@import "pages/home", "pages/learning", "pages/references";
+@import "pages/home", "pages/learning", "pages/references", "pages/single-reference";
 
 @import "base/print";

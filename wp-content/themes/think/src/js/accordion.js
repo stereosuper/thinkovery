@@ -61,7 +61,7 @@ const burgerHandler = () => {
                                 },
                                 ease: easing.easeFade,
                             });
-                        }, 500);
+                        }, 600);
                     }
                 },
                 false
