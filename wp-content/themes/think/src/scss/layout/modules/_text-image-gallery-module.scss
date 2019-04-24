@@ -1,0 +1,22 @@
+.text-image-gallery-module {
+    > .title {
+        margin-top: 0;
+    }
+    > .gallery {
+        margin-top: $line-height * 2;
+    }
+    .gallery-item {
+        margin-bottom: $line-height * 2;
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+        .gallery-item-text {
+            margin-top: $line-height;
+        }
+    }
+    .fifty-fifty {
+        .first-fifty {
+            margin-bottom: $line-height * 2;
+        }
+    }
+}

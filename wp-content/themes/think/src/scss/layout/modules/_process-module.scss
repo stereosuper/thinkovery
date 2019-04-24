@@ -1,0 +1,42 @@
+.process-module {
+    > .title {
+        margin-top: 0;
+    }
+    > .process-list {
+        margin-top: $line-height * 2;
+    }
+    .process-step {
+        margin-bottom: $line-height * 2;
+        &:last-child {
+            margin-bottom: 0;
+        }
+        &::before {
+            content: none;
+        }
+        > .icon {
+            &.drop {
+                width: 65px;
+                height: 79px;
+            }
+            &.square {
+                width: 84px;
+                height: 84px;
+            }
+            &.triangle {
+                width: 65px;
+                height: 75px;
+            }
+            &.rectangle {
+                width: 55px;
+                height: 73px;
+            }
+            &.circle {
+                width: 68px;
+                height: 75px;
+            }
+        }
+        > .step-title {
+            margin-top: $line-height;
+        }
+    }
+}

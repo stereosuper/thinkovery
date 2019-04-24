@@ -1,4 +1,7 @@
 .checklist-module {
+    > .title {
+        margin-top: 0;
+    }
     li {
         position: relative;
         &::before {

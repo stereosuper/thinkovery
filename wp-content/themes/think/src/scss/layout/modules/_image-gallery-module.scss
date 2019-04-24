@@ -1,0 +1,17 @@
+.image-gallery-module {
+    > .title {
+        margin-top: 0;
+    }
+    > .gallery {
+        margin-top: $line-height * 2;
+    }
+    .item {
+        margin-bottom: $line-height;
+        &:last-child {
+            margin-bottom: 0;
+        }
+        &::before {
+            content: none;
+        }
+    }
+}

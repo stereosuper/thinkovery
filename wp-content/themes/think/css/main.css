@@ -1325,7 +1325,7 @@ label {
       top: 0;
       left: 0; } }
 
-.accordion-module > h2 {
+.accordion-module > .title {
   margin-top: 0; }
 
 .accordion-module > ul {
@@ -1409,6 +1409,9 @@ label {
     font-size: 1.6rem;
     font-style: italic; }
 
+.checklist-module > .title {
+  margin-top: 0; }
+
 .checklist-module li {
   position: relative; }
   .checklist-module li::before {
@@ -1417,6 +1420,65 @@ label {
     position: absolute;
     top: 7px;
     right: calc(100% + 7px); }
+
+.image-gallery-module > .title {
+  margin-top: 0; }
+
+.image-gallery-module > .gallery {
+  margin-top: 56px; }
+
+.image-gallery-module .item {
+  margin-bottom: 28px; }
+  .image-gallery-module .item:last-child {
+    margin-bottom: 0; }
+  .image-gallery-module .item::before {
+    content: none; }
+
+.text-image-gallery-module > .title {
+  margin-top: 0; }
+
+.text-image-gallery-module > .gallery {
+  margin-top: 56px; }
+
+.text-image-gallery-module .gallery-item {
+  margin-bottom: 56px; }
+  .text-image-gallery-module .gallery-item:last-of-type {
+    margin-bottom: 0; }
+  .text-image-gallery-module .gallery-item .gallery-item-text {
+    margin-top: 28px; }
+
+.text-image-gallery-module .fifty-fifty .first-fifty {
+  margin-bottom: 56px; }
+
+.process-module > .title {
+  margin-top: 0; }
+
+.process-module > .process-list {
+  margin-top: 56px; }
+
+.process-module .process-step {
+  margin-bottom: 56px; }
+  .process-module .process-step:last-child {
+    margin-bottom: 0; }
+  .process-module .process-step::before {
+    content: none; }
+  .process-module .process-step > .icon.drop {
+    width: 65px;
+    height: 79px; }
+  .process-module .process-step > .icon.square {
+    width: 84px;
+    height: 84px; }
+  .process-module .process-step > .icon.triangle {
+    width: 65px;
+    height: 75px; }
+  .process-module .process-step > .icon.rectangle {
+    width: 55px;
+    height: 73px; }
+  .process-module .process-step > .icon.circle {
+    width: 68px;
+    height: 75px; }
+  .process-module .process-step > .step-title {
+    margin-top: 28px; }
 
 /* Buttons */
 .btn {
@@ -2348,7 +2410,7 @@ label {
     font-size: 1.6rem; } }
 
 .single-reference .module {
-  margin: 56px 0; }
+  margin: 0 0 84px; }
 
 /******* PRINT *******/
 @media print {

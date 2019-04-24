@@ -49,7 +49,7 @@
                         {
                             "key": "field_5cbdaab2a8c42",
                             "label": "Titre",
-                            "name": "title",
+                            "name": "image_gallery_title",
                             "type": "text",
                             "instructions": "",
                             "required": 0,
@@ -68,7 +68,7 @@
                         {
                             "key": "field_5cbdada4bbcef",
                             "label": "Texte",
-                            "name": "text",
+                            "name": "image_gallery_text",
                             "type": "textarea",
                             "instructions": "",
                             "required": 0,
@@ -87,7 +87,7 @@
                         {
                             "key": "field_5cbdadb3bbcf0",
                             "label": "Images",
-                            "name": "images",
+                            "name": "image_gallery_images",
                             "type": "repeater",
                             "instructions": "",
                             "required": 0,
@@ -142,7 +142,7 @@
                         {
                             "key": "field_5cbdc02ddf625",
                             "label": "Titre",
-                            "name": "title",
+                            "name": "text_image_gallery_title",
                             "type": "text",
                             "instructions": "",
                             "required": 0,
@@ -161,7 +161,7 @@
                         {
                             "key": "field_5cbdc02ddf626",
                             "label": "Texte",
-                            "name": "text",
+                            "name": "text_image_gallery_text",
                             "type": "textarea",
                             "instructions": "",
                             "required": 0,
@@ -180,7 +180,7 @@
                         {
                             "key": "field_5cbdc02ddf627",
                             "label": "Dispositions",
-                            "name": "dispositions",
+                            "name": "text_image_gallery_layouts",
                             "type": "flexible_content",
                             "instructions": "",
                             "required": 0,
@@ -193,14 +193,14 @@
                             "layouts": {
                                 "5cbdc144e5367": {
                                     "key": "5cbdc144e5367",
-                                    "name": "image_left",
+                                    "name": "image_left_layout",
                                     "label": "Image à gauche",
                                     "display": "block",
                                     "sub_fields": [
                                         {
                                             "key": "field_5cbdc2d7df629",
                                             "label": "Image",
-                                            "name": "image",
+                                            "name": "left_image",
                                             "type": "image",
                                             "instructions": "",
                                             "required": 0,
@@ -210,9 +210,9 @@
                                                 "class": "",
                                                 "id": ""
                                             },
-                                            "return_format": "",
+                                            "return_format": "array",
                                             "preview_size": "thumbnail",
-                                            "library": "",
+                                            "library": "all",
                                             "min_width": "",
                                             "min_height": "",
                                             "min_size": "",
@@ -224,7 +224,7 @@
                                         {
                                             "key": "field_5cbdc32cdf62a",
                                             "label": "Texte",
-                                            "name": "text",
+                                            "name": "left_text",
                                             "type": "textarea",
                                             "instructions": "",
                                             "required": 0,
@@ -246,14 +246,14 @@
                                 },
                                 "layout_5cbdc348df62b": {
                                     "key": "layout_5cbdc348df62b",
-                                    "name": "image_right",
+                                    "name": "image_right_layout",
                                     "label": "Image à droite",
                                     "display": "block",
                                     "sub_fields": [
                                         {
                                             "key": "field_5cbdc348df62c",
                                             "label": "Image",
-                                            "name": "image",
+                                            "name": "right_image",
                                             "type": "image",
                                             "instructions": "",
                                             "required": 0,
@@ -263,9 +263,9 @@
                                                 "class": "",
                                                 "id": ""
                                             },
-                                            "return_format": "",
+                                            "return_format": "array",
                                             "preview_size": "thumbnail",
-                                            "library": "",
+                                            "library": "all",
                                             "min_width": "",
                                             "min_height": "",
                                             "min_size": "",
@@ -277,7 +277,7 @@
                                         {
                                             "key": "field_5cbdc348df62d",
                                             "label": "Texte",
-                                            "name": "text",
+                                            "name": "right_text",
                                             "type": "textarea",
                                             "instructions": "",
                                             "required": 0,
@@ -299,14 +299,14 @@
                                 },
                                 "layout_5cbdc361df62e": {
                                     "key": "layout_5cbdc361df62e",
-                                    "name": "image_center",
+                                    "name": "image_center_layout",
                                     "label": "Image au centre",
                                     "display": "block",
                                     "sub_fields": [
                                         {
                                             "key": "field_5cbdc361df62f",
                                             "label": "Image",
-                                            "name": "image",
+                                            "name": "center_image",
                                             "type": "image",
                                             "instructions": "",
                                             "required": 0,
@@ -316,9 +316,9 @@
                                                 "class": "",
                                                 "id": ""
                                             },
-                                            "return_format": "",
+                                            "return_format": "array",
                                             "preview_size": "thumbnail",
-                                            "library": "",
+                                            "library": "all",
                                             "min_width": "",
                                             "min_height": "",
                                             "min_size": "",
@@ -330,7 +330,7 @@
                                         {
                                             "key": "field_5cbdc361df630",
                                             "label": "Texte",
-                                            "name": "text",
+                                            "name": "center_text",
                                             "type": "textarea",
                                             "instructions": "",
                                             "required": 0,
@@ -352,7 +352,7 @@
                                 },
                                 "layout_5cbdc370df631": {
                                     "key": "layout_5cbdc370df631",
-                                    "name": "fifty_fifty",
+                                    "name": "fifty_fifty_layout",
                                     "label": "50 \/ 50",
                                     "display": "block",
                                     "sub_fields": [
@@ -464,7 +464,7 @@
                         {
                             "key": "field_5cbdbde511053",
                             "label": "Titre",
-                            "name": "title",
+                            "name": "accordion_title",
                             "type": "text",
                             "instructions": "",
                             "required": 0,
@@ -483,7 +483,7 @@
                         {
                             "key": "field_5cbdbde511054",
                             "label": "Texte",
-                            "name": "text",
+                            "name": "accordion_text",
                             "type": "textarea",
                             "instructions": "",
                             "required": 0,
@@ -502,7 +502,7 @@
                         {
                             "key": "field_5cbdbde511055",
                             "label": "Question \/ Réponse",
-                            "name": "question_answer",
+                            "name": "accordion_question_answer",
                             "type": "repeater",
                             "instructions": "",
                             "required": 0,
@@ -590,7 +590,7 @@
                         {
                             "key": "field_5cbdb5a7ecd6c",
                             "label": "Texte",
-                            "name": "text",
+                            "name": "catch_phrase_text",
                             "type": "textarea",
                             "instructions": "",
                             "required": 0,
@@ -638,7 +638,7 @@
                         {
                             "key": "field_5cbdb91294a5c",
                             "label": "Nom",
-                            "name": "source_name",
+                            "name": "quote_source_name",
                             "type": "text",
                             "instructions": "",
                             "required": 0,
@@ -657,7 +657,7 @@
                         {
                             "key": "field_5cbdb91294a5d",
                             "label": "Poste",
-                            "name": "source_position",
+                            "name": "quote_source_position",
                             "type": "text",
                             "instructions": "",
                             "required": 0,
@@ -679,14 +679,14 @@
                 },
                 "layout_5cbdc9cb9e58b": {
                     "key": "layout_5cbdc9cb9e58b",
-                    "name": "checklist_module",
-                    "label": "Checklist",
+                    "name": "process_module",
+                    "label": "Process",
                     "display": "block",
                     "sub_fields": [
                         {
                             "key": "field_5cbdc9cc9e58c",
                             "label": "Titre",
-                            "name": "title",
+                            "name": "process_title",
                             "type": "text",
                             "instructions": "",
                             "required": 0,
@@ -704,8 +704,123 @@
                         },
                         {
                             "key": "field_5cbdca029e58f",
+                            "label": "Étapes",
+                            "name": "process_steps",
+                            "type": "repeater",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "collapsed": "",
+                            "min": 0,
+                            "max": 5,
+                            "layout": "",
+                            "button_label": "",
+                            "sub_fields": [
+                                {
+                                    "key": "field_5cbf12ae5f89c",
+                                    "label": "Type de l'étape",
+                                    "name": "step_type",
+                                    "type": "radio",
+                                    "instructions": "",
+                                    "required": 1,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "conseil": "Conseil",
+                                        "conception": "Conception",
+                                        "realisation": "Réalisation",
+                                        "communication": "Communication",
+                                        "evaluation": "Évaluation"
+                                    },
+                                    "allow_null": 0,
+                                    "other_choice": 0,
+                                    "default_value": "",
+                                    "layout": "vertical",
+                                    "return_format": "value",
+                                    "save_other_choice": 0
+                                },
+                                {
+                                    "key": "field_5cbdca149e590",
+                                    "label": "Titre de l'étape",
+                                    "name": "step_title",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": "",
+                                    "maxlength": ""
+                                },
+                                {
+                                    "key": "field_5cbf129a5f89b",
+                                    "label": "Texte de l'étape",
+                                    "name": "step_text",
+                                    "type": "wysiwyg",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "tabs": "all",
+                                    "toolbar": "full",
+                                    "media_upload": 1,
+                                    "delay": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_5cbf11ea5f897": {
+                    "key": "layout_5cbf11ea5f897",
+                    "name": "checklist_module",
+                    "label": "Checklist",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_5cbf11eb5f898",
+                            "label": "Titre",
+                            "name": "checklist_title",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        },
+                        {
+                            "key": "field_5cbf11eb5f899",
                             "label": "Liste",
-                            "name": "list",
+                            "name": "checklist_list",
                             "type": "repeater",
                             "instructions": "",
                             "required": 0,
@@ -722,7 +837,7 @@
                             "button_label": "",
                             "sub_fields": [
                                 {
-                                    "key": "field_5cbdca149e590",
+                                    "key": "field_5cbf11eb5f89a",
                                     "label": "Item",
                                     "name": "item",
                                     "type": "wysiwyg",
@@ -769,5 +884,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1555958848
+    "modified": 1556026378
 }
