@@ -4,10 +4,10 @@
 .home-section {
     padding: 5px 0 7em;
     position: relative;
+    text-align: center;
 }
 
 .home-header {
-    text-align: center;
     h1 {
         position: absolute;
         top: 100%;
@@ -120,6 +120,7 @@
         display: flex;
         align-items: center;
         min-height: 85vh;
+        text-align: left;
         &:nth-of-type(1),
         &:nth-of-type(3) {
             justify-content: flex-end;

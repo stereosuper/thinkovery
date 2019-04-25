@@ -294,7 +294,7 @@ a {
 
 .video {
     position: relative;
-    &.playing {
+    &.playing, &:hover {
         .video-title {
             opacity: 0.2;
         }
