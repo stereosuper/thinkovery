@@ -9669,95 +9669,48 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var burgerHandler = function burgerHandler() {
-  var accordions = document.querySelectorAll('.js-accordion-module');
+  var accordions = document.querySelectorAll('.wp-block-stereoberg-question-answer');
   if (!accordions.length) return;
   Object(_utils__WEBPACK_IMPORTED_MODULE_1__["forEach"])(accordions, function (accordion) {
-    var titles = accordion.querySelectorAll('h3');
-    Object(_utils__WEBPACK_IMPORTED_MODULE_1__["forEach"])(titles, function (title) {
-      title.addEventListener('click', function () {
-        var parent = title.parentElement;
-        var answer = title.parentElement.querySelector('.js-answer');
-        var maxHeight = 0;
-        Object(_utils__WEBPACK_IMPORTED_MODULE_1__["forEach"])(answer.children, function (child) {
-          maxHeight += child.getBoundingClientRect().height;
+    var title = accordion.querySelector('h3');
+    title.addEventListener('click', function () {
+      var parent = title.parentElement;
+      var answer = title.parentElement.querySelector('.js-answer');
+      var maxHeight = 0;
+      Object(_utils__WEBPACK_IMPORTED_MODULE_1__["forEach"])(answer.children, function (child) {
+        maxHeight += child.getBoundingClientRect().height;
+      });
+      var alreadyActivated = parent.classList.contains('activated');
+      Object(_utils__WEBPACK_IMPORTED_MODULE_1__["forEach"])(accordions, function (resetParent) {
+        resetParent.classList.remove('activated');
+        gsap__WEBPACK_IMPORTED_MODULE_2__["TweenMax"].to(resetParent.querySelector('.js-answer'), 0.3, {
+          maxHeight: 0,
+          opacity: 0,
+          ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].easeFade
         });
-        var alreadyActivated = parent.classList.contains('activated');
-        Object(_utils__WEBPACK_IMPORTED_MODULE_1__["forEach"])(titles, function (tabToReset) {
-          var resetParents = tabToReset.parentElement;
-          resetParents.classList.remove('activated');
-          gsap__WEBPACK_IMPORTED_MODULE_2__["TweenMax"].to(resetParents.querySelector('.js-answer'), 0.3, {
-            maxHeight: 0,
-            opacity: 0,
-            ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].easeFade
-          });
-        });
+      });
 
-        if (!alreadyActivated) {
-          gsap__WEBPACK_IMPORTED_MODULE_2__["TweenMax"].to(answer, 0.3, {
-            maxHeight: maxHeight,
-            opacity: 1,
+      if (!alreadyActivated) {
+        gsap__WEBPACK_IMPORTED_MODULE_2__["TweenMax"].to(answer, 0.3, {
+          maxHeight: maxHeight,
+          opacity: 1,
+          ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].easeFade
+        });
+        parent.classList.add('activated');
+        setTimeout(function () {
+          var offset = title.getBoundingClientRect().top + window.scrollY;
+          gsap__WEBPACK_IMPORTED_MODULE_2__["TweenMax"].to(window, 0.5, {
+            scrollTo: {
+              y: offset,
+              offsetY: _global__WEBPACK_IMPORTED_MODULE_3__["globalStyles"].lineHeight
+            },
             ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].easeFade
           });
-          parent.classList.add('activated');
-          setTimeout(function () {
-            var offset = title.getBoundingClientRect().top + window.scrollY;
-            gsap__WEBPACK_IMPORTED_MODULE_2__["TweenMax"].to(window, 0.5, {
-              scrollTo: {
-                y: offset,
-                offsetY: _global__WEBPACK_IMPORTED_MODULE_3__["globalStyles"].lineHeight
-              },
-              ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].easeFade
-            });
-          }, 600);
-        }
-      }, false);
-    });
+        }, 600);
+      }
+    }, false);
   });
-}; // if (body.hasClass('single-job')) {
-//     const tabs = $('.js-job-details-tab');
-//     if (tabs.length) {
-//         tabs.on('click', 'h2', function tabState() {
-//             if (window.innerWidth <= 767) {
-//                 const tab = $(this).parent();
-//                 const currentIndex = tab.index();
-//                 let height = 0;
-//                 tabs.each((index, tabToReset) => {
-//                     if (index !== currentIndex) {
-//                         const jTabToReset = $(tabToReset);
-//                         jTabToReset.css({
-//                             maxHeight: jTabToReset.find('h2').outerHeight(true),
-//                         });
-//                         jTabToReset.removeClass('active');
-//                     }
-//                 });
-//                 if (tab.hasClass('active')) {
-//                     height = $(this).outerHeight(true);
-//                 } else {
-//                     tab.children().each((index, child) => {
-//                         height += $(child).outerHeight(true);
-//                     });
-//                 }
-//                 tab.css({ maxHeight: height });
-//                 const duration = tab.css('transition-duration');
-//                 let delay = 0;
-//                 if (duration.indexOf('ms') !== -1) {
-//                     delay += parseInt(duration.replace('ms'), 10);
-//                 } else {
-//                     delay += parseFloat(duration.replace('s')) * 1000;
-//                 }
-//                 setTimeout(() => {
-//                     const offset = tab.offset().top - header.outerHeight();
-//                     TweenMax.to(window, 0.5, {
-//                         scrollTo: { y: offset },
-//                         ease: Cubic.easeOut,
-//                     });
-//                 }, delay);
-//                 tab.toggleClass('active');
-//             }
-//         });
-//     }
-// }
-
+};
 
 /* harmony default export */ __webpack_exports__["default"] = (burgerHandler);
 

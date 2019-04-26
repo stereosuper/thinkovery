@@ -1332,35 +1332,46 @@ label {
       top: 0;
       left: 0; } }
 
-.accordion-module > .title {
-  margin-top: 0; }
-
-.accordion-module > ul {
-  margin-top: 56px; }
-
-.accordion-module li {
-  padding: 10px 20px 20px;
+.wp-block-stereoberg-question-answer {
+  padding: 10px 20px 15px;
   margin-bottom: 28px;
   -webkit-box-shadow: 0px 29px 35px rgba(64, 64, 64, 0.07);
           box-shadow: 0px 29px 35px rgba(64, 64, 64, 0.07); }
-  .accordion-module li:last-child {
+  .wp-block-stereoberg-question-answer:last-child {
     margin-bottom: 0; }
-  .accordion-module li::before {
+  .wp-block-stereoberg-question-answer::before {
     content: none; }
-  .accordion-module li > h3 {
+  .wp-block-stereoberg-question-answer > h3 {
     padding-right: 44px;
     margin: 0;
     position: relative;
     font-size: 1.8rem;
     color: #1e5e32;
     cursor: pointer; }
-  .accordion-module li > .answer {
+    .wp-block-stereoberg-question-answer > h3::before, .wp-block-stereoberg-question-answer > h3::after {
+      content: "";
+      width: 15px;
+      height: 3px;
+      position: absolute;
+      top: 50%;
+      right: 0;
+      background: #aeaeae;
+      -webkit-transform: translateY(-50%);
+              transform: translateY(-50%); }
+    .wp-block-stereoberg-question-answer > h3::before {
+      -webkit-transform: translateY(-50%) rotateZ(90deg);
+              transform: translateY(-50%) rotateZ(90deg);
+      -webkit-transition:  opacity 0.3s ease-out;
+      transition:  opacity 0.3s ease-out; }
+  .wp-block-stereoberg-question-answer > .answer {
     max-height: 0;
     margin: 0;
     font-size: 1.6rem;
     opacity: 0;
     overflow: hidden; }
-  .accordion-module li .indicator {
+    .wp-block-stereoberg-question-answer > .answer > p {
+      margin: 0; }
+  .wp-block-stereoberg-question-answer .indicator {
     position: absolute;
     width: 15px;
     height: 3px;
@@ -1368,26 +1379,13 @@ label {
     right: 0;
     -webkit-transform: translateY(-50%);
             transform: translateY(-50%); }
-    .accordion-module li .indicator::before, .accordion-module li .indicator::after {
-      content: "";
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      background: #aeaeae; }
-    .accordion-module li .indicator::before {
-      -webkit-transform: rotateZ(90deg);
-              transform: rotateZ(90deg);
-      -webkit-transition:  opacity 0.3s ease-out;
-      transition:  opacity 0.3s ease-out; }
-  .accordion-module li.activated .indicator::before {
+  .wp-block-stereoberg-question-answer.activated h3::before {
     opacity: 0; }
 
 @media (min-width: 960px) {
-  .accordion-module li > h3 {
+  .wp-block-stereoberg-question-answer > h3 {
     font-size: 2rem; }
-  .accordion-module li > .answer {
+  .wp-block-stereoberg-question-answer > .answer {
     font-size: 1.8rem; } }
 
 .quote-module {
