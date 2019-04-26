@@ -58,6 +58,9 @@ h2,
     margin: 1.85em 0 0;
     font-size: 3.5rem;
     line-height: 1.2;
+    > .color {
+        color: $text-color;
+    }
 }
 .h2 {
     font-weight: 800;
@@ -71,6 +74,13 @@ h3 {
 h4 {
     margin: 2em 0 0;
     font-size: 2.7rem;
+}
+
+h3,
+h4 {
+    > .color {
+        color: $primary;
+    }
 }
 
 h5 {
@@ -294,7 +304,8 @@ a {
 
 .video {
     position: relative;
-    &.playing, &:hover {
+    &.playing,
+    &:hover {
         .video-title {
             opacity: 0.2;
         }
