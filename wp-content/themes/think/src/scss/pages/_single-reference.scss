@@ -3,3 +3,56 @@
         margin: 0 0 $line-height * 3;
     }
 }
+
+.ref-cover{
+    position: relative;
+    margin: 0 $gutter*-1;
+    > img{
+        width: 100%;
+    }
+}
+
+.ref-logo{
+    width: calc(#{$col/2} + #{$gutter});
+    padding: $line-height 0;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    text-align: center;
+    background: $bg-color;
+    > img{
+        max-width: 62%;
+    }
+}
+
+.ref-tags{
+    display: flex;
+    margin: $line-height 0 0;
+    font-size: 1.6rem;
+    > a{
+        display: block;
+        padding: 1px 10px 2px;
+        margin: 0 10px 0 0;
+        font-weight: 400;
+        text-decoration: none;
+        color: #fff;
+        background: $text-color;
+    }
+}
+
+.ref-title{
+    margin: $line-height 0;
+}
+
+
+@media (min-width: $desktop-small){
+    .ref-tags{
+        padding: 0 0 0 $border-size;
+        margin-left:  $col/2;
+    }
+
+    .ref-title{
+        padding: 0 0 0 $border-size/2;
+        margin-left: $col/2;
+    }
+}

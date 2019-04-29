@@ -9,12 +9,9 @@
 
 @import "abstracts/placeholders";
 
-@import "layout/grid", "layout/forms", "layout/header", "layout/footer", "layout/borders",
-    "layout/modules/question-answer-module", "layout/modules/quote-module",
-    "layout/modules/checklist-module", "layout/modules/image-gallery-module",
-    "layout/modules/text-image-gallery-module", "layout/modules/process-module";
+@import "layout/grid", "layout/forms", "layout/header", "layout/footer", "layout/borders";
 
-@import "components/buttons";
+@import "components/buttons", "components/accordion", "components/quote", "components/checklist", "components/image-gallery", "components/text-image-gallery", "components/process", "components/gallery";
 
 @import "pages/home", "pages/learning", "pages/references", "pages/single-reference";
 

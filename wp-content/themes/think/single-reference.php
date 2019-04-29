@@ -4,16 +4,22 @@
 
 	<?php if ( have_posts() ) : the_post(); ?>
 
-		<?php the_post_thumbnail(); ?>	
+		<div class='ref-cover'>
+			<?php the_post_thumbnail(); ?>
+			<div class='ref-logo'>
+				<?php echo wp_get_attachment_image(get_field('logo'), 'full'); ?>
+			</div>
+		</div>
 
-		<?php echo wp_get_attachment_image(get_field('logo'), 'full'); ?>
+		<div class='ref-tags'>
+			<?php echo get_the_term_list( get_the_ID(), 'reference_tag', '', '' ); ?>
+		</div>
 
-		<h1><?php the_title(); ?></h1>
+		<h1 class='ref-title'><?php the_title(); ?></h1>
 
 		<?php the_content(); ?>
 
-		<?php 
-		if( have_rows('modules') ):
+		<?php /* if( have_rows('modules') ):
 			while (have_rows('modules')):
 				the_row();
 				if (get_row_layout() == 'image_gallery_module'):
@@ -233,8 +239,7 @@
 					endif;
 				endif;
 			endwhile;
-		endif;
-		?>
+		endif; */ ?>
 	<?php else : ?>
 				
 		<h1>404</h1>

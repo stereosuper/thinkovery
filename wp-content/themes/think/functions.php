@@ -227,10 +227,17 @@ function think_post_type(){
 add_action( 'init', 'think_post_type' );
 
 function think_taxonomies(){
-    register_taxonomy( 'reference_cat', array('reference'), array(
+    register_taxonomy( 'reference_tag', array('reference'), array(
         'label' => 'Tags',
         'singular_label' => 'Tag',
         'hierarchical' => false,
+        'show_admin_column' => true,
+        'show_in_rest' => true
+    ) );
+    register_taxonomy( 'reference_cat', array('reference'), array(
+        'label' => 'Categories',
+        'singular_label' => 'Categorie',
+        'hierarchical' => true,
         'show_admin_column' => true,
         'show_in_rest' => true
     ) );

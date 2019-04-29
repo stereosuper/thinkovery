@@ -518,11 +518,11 @@ a {
 @media (min-width: 1100px) {
   .intro-big {
     width: 75%; }
-  .wp-block-image {
+  .col-3-dek .wp-block-image {
     width: calc(129% + 44px); } }
 
 @media (min-width: 1576px) {
-  .wp-block-image {
+  .col-3-dek .wp-block-image {
     width: calc(133.33% + 44px); } }
 
 @media (min-width: 960px) and (min-height: 630px) {
@@ -1332,159 +1332,6 @@ label {
       top: 0;
       left: 0; } }
 
-.wp-block-stereoberg-question-answer {
-  padding: 10px 20px 15px;
-  margin-bottom: 28px;
-  -webkit-box-shadow: 0px 29px 35px rgba(64, 64, 64, 0.07);
-          box-shadow: 0px 29px 35px rgba(64, 64, 64, 0.07); }
-  .wp-block-stereoberg-question-answer:last-child {
-    margin-bottom: 0; }
-  .wp-block-stereoberg-question-answer::before {
-    content: none; }
-  .wp-block-stereoberg-question-answer > h3 {
-    padding-right: 44px;
-    margin: 0;
-    position: relative;
-    font-size: 1.8rem;
-    color: #1e5e32;
-    cursor: pointer; }
-    .wp-block-stereoberg-question-answer > h3::before, .wp-block-stereoberg-question-answer > h3::after {
-      content: "";
-      width: 15px;
-      height: 3px;
-      position: absolute;
-      top: 50%;
-      right: 0;
-      background: #aeaeae;
-      -webkit-transform: translateY(-50%);
-              transform: translateY(-50%); }
-    .wp-block-stereoberg-question-answer > h3::before {
-      -webkit-transform: translateY(-50%) rotateZ(90deg);
-              transform: translateY(-50%) rotateZ(90deg);
-      -webkit-transition:  opacity 0.3s ease-out;
-      transition:  opacity 0.3s ease-out; }
-  .wp-block-stereoberg-question-answer > .answer {
-    max-height: 0;
-    margin: 0;
-    font-size: 1.6rem;
-    opacity: 0;
-    overflow: hidden; }
-    .wp-block-stereoberg-question-answer > .answer > p {
-      margin: 0; }
-  .wp-block-stereoberg-question-answer .indicator {
-    position: absolute;
-    width: 15px;
-    height: 3px;
-    top: 50%;
-    right: 0;
-    -webkit-transform: translateY(-50%);
-            transform: translateY(-50%); }
-  .wp-block-stereoberg-question-answer.activated h3::before {
-    opacity: 0; }
-
-@media (min-width: 960px) {
-  .wp-block-stereoberg-question-answer > h3 {
-    font-size: 2rem; }
-  .wp-block-stereoberg-question-answer > .answer {
-    font-size: 1.8rem; } }
-
-.quote-module {
-  text-align: center; }
-  .quote-module > .icon {
-    display: block;
-    width: 40px;
-    height: 29px;
-    margin: 0 auto;
-    left: 0;
-    right: 0;
-    color: #1e5e32; }
-  .quote-module > .quote {
-    font-size: 2.6rem;
-    margin: 28px 0; }
-    .quote-module > .quote::before, .quote-module > .quote::after {
-      content: none; }
-    .quote-module > .quote > p {
-      margin-top: 0; }
-  .quote-module .source-name {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #1e5e32; }
-  .quote-module .source-position {
-    margin-top: 0;
-    font-size: 1.6rem;
-    font-style: italic; }
-
-.checklist-module > .title {
-  margin-top: 0; }
-
-.checklist-module li {
-  position: relative; }
-  .checklist-module li::before {
-    content: none; }
-  .checklist-module li .icon {
-    position: absolute;
-    top: 7px;
-    right: calc(100% + 7px); }
-
-.image-gallery-module > .title {
-  margin-top: 0; }
-
-.image-gallery-module > .gallery {
-  margin-top: 56px; }
-
-.image-gallery-module .item {
-  margin-bottom: 28px; }
-  .image-gallery-module .item:last-child {
-    margin-bottom: 0; }
-  .image-gallery-module .item::before {
-    content: none; }
-
-.text-image-gallery-module > .title {
-  margin-top: 0; }
-
-.text-image-gallery-module > .gallery {
-  margin-top: 56px; }
-
-.text-image-gallery-module .gallery-item {
-  margin-bottom: 56px; }
-  .text-image-gallery-module .gallery-item:last-of-type {
-    margin-bottom: 0; }
-  .text-image-gallery-module .gallery-item .gallery-item-text {
-    margin-top: 28px; }
-
-.text-image-gallery-module .fifty-fifty .first-fifty {
-  margin-bottom: 56px; }
-
-.process-module > .title {
-  margin-top: 0; }
-
-.process-module > .process-list {
-  margin-top: 56px; }
-
-.process-module .process-step {
-  margin-bottom: 56px; }
-  .process-module .process-step:last-child {
-    margin-bottom: 0; }
-  .process-module .process-step::before {
-    content: none; }
-  .process-module .process-step > .icon.drop {
-    width: 65px;
-    height: 79px; }
-  .process-module .process-step > .icon.square {
-    width: 84px;
-    height: 84px; }
-  .process-module .process-step > .icon.triangle {
-    width: 65px;
-    height: 75px; }
-  .process-module .process-step > .icon.rectangle {
-    width: 55px;
-    height: 73px; }
-  .process-module .process-step > .icon.circle {
-    width: 68px;
-    height: 75px; }
-  .process-module .process-step > .step-title {
-    margin-top: 28px; }
-
 /* Buttons */
 .btn {
   display: -webkit-inline-box;
@@ -1878,6 +1725,162 @@ label {
 @media (min-width: 960px) {
   .btn-invert {
     font-size: 1.8rem; } }
+
+.wp-block-stereoberg-question-answer {
+  padding: 10px 20px 15px;
+  margin-bottom: 28px;
+  -webkit-box-shadow: 0px 29px 35px rgba(64, 64, 64, 0.07);
+          box-shadow: 0px 29px 35px rgba(64, 64, 64, 0.07); }
+  .wp-block-stereoberg-question-answer:last-child {
+    margin-bottom: 0; }
+  .wp-block-stereoberg-question-answer::before {
+    content: none; }
+  .wp-block-stereoberg-question-answer > h3 {
+    padding-right: 44px;
+    margin: 0;
+    position: relative;
+    font-size: 1.8rem;
+    color: #1e5e32;
+    cursor: pointer; }
+    .wp-block-stereoberg-question-answer > h3::before, .wp-block-stereoberg-question-answer > h3::after {
+      content: "";
+      width: 15px;
+      height: 3px;
+      position: absolute;
+      top: 50%;
+      right: 0;
+      background: #aeaeae;
+      -webkit-transform: translateY(-50%);
+              transform: translateY(-50%); }
+    .wp-block-stereoberg-question-answer > h3::before {
+      -webkit-transform: translateY(-50%) rotateZ(90deg);
+              transform: translateY(-50%) rotateZ(90deg);
+      -webkit-transition:  opacity 0.3s ease-out;
+      transition:  opacity 0.3s ease-out; }
+  .wp-block-stereoberg-question-answer > .answer {
+    max-height: 0;
+    margin: 0;
+    font-size: 1.6rem;
+    opacity: 0;
+    overflow: hidden; }
+    .wp-block-stereoberg-question-answer > .answer > p {
+      margin: 0; }
+  .wp-block-stereoberg-question-answer .indicator {
+    position: absolute;
+    width: 15px;
+    height: 3px;
+    top: 50%;
+    right: 0;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%); }
+  .wp-block-stereoberg-question-answer.activated h3::before {
+    opacity: 0; }
+
+@media (min-width: 960px) {
+  .wp-block-stereoberg-question-answer > h3 {
+    font-size: 2rem; }
+  .wp-block-stereoberg-question-answer > .answer {
+    font-size: 1.8rem; } }
+
+.quote-module {
+  text-align: center; }
+  .quote-module > .icon {
+    display: block;
+    width: 40px;
+    height: 29px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    color: #1e5e32; }
+  .quote-module > .quote {
+    font-size: 2.6rem;
+    margin: 28px 0; }
+    .quote-module > .quote::before, .quote-module > .quote::after {
+      content: none; }
+    .quote-module > .quote > p {
+      margin-top: 0; }
+  .quote-module .source-name {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1e5e32; }
+  .quote-module .source-position {
+    margin-top: 0;
+    font-size: 1.6rem;
+    font-style: italic; }
+
+.checklist-module > .title {
+  margin-top: 0; }
+
+.checklist-module li {
+  position: relative; }
+  .checklist-module li::before {
+    content: none; }
+  .checklist-module li .icon {
+    position: absolute;
+    top: 7px;
+    right: calc(100% + 7px); }
+
+.image-gallery-module > .title {
+  margin-top: 0; }
+
+.image-gallery-module > .gallery {
+  margin-top: 56px; }
+
+.image-gallery-module .item {
+  margin-bottom: 28px; }
+  .image-gallery-module .item:last-child {
+    margin-bottom: 0; }
+  .image-gallery-module .item::before {
+    content: none; }
+
+.text-image-gallery-module > .title {
+  margin-top: 0; }
+
+.text-image-gallery-module > .gallery {
+  margin-top: 56px; }
+
+.text-image-gallery-module .gallery-item {
+  margin-bottom: 56px; }
+  .text-image-gallery-module .gallery-item:last-of-type {
+    margin-bottom: 0; }
+  .text-image-gallery-module .gallery-item .gallery-item-text {
+    margin-top: 28px; }
+
+.text-image-gallery-module .fifty-fifty .first-fifty {
+  margin-bottom: 56px; }
+
+.process-module > .title {
+  margin-top: 0; }
+
+.process-module > .process-list {
+  margin-top: 56px; }
+
+.process-module .process-step {
+  margin-bottom: 56px; }
+  .process-module .process-step:last-child {
+    margin-bottom: 0; }
+  .process-module .process-step::before {
+    content: none; }
+  .process-module .process-step > .icon.drop {
+    width: 65px;
+    height: 79px; }
+  .process-module .process-step > .icon.square {
+    width: 84px;
+    height: 84px; }
+  .process-module .process-step > .icon.triangle {
+    width: 65px;
+    height: 75px; }
+  .process-module .process-step > .icon.rectangle {
+    width: 55px;
+    height: 73px; }
+  .process-module .process-step > .icon.circle {
+    width: 68px;
+    height: 75px; }
+  .process-module .process-step > .step-title {
+    margin-top: 28px; }
+
+.wp-block-gallery > li:before {
+  content: none; }
 
 /* Home specific style */
 .home-header,
@@ -2419,6 +2422,49 @@ label {
 
 .single-reference .module {
   margin: 0 0 84px; }
+
+.ref-cover {
+  position: relative;
+  margin: 0 -44px; }
+  .ref-cover > img {
+    width: 100%; }
+
+.ref-logo {
+  width: calc(12.5% + 44px);
+  padding: 28px 0;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  text-align: center;
+  background: #f7f2ea; }
+  .ref-logo > img {
+    max-width: 62%; }
+
+.ref-tags {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 28px 0 0;
+  font-size: 1.6rem; }
+  .ref-tags > a {
+    display: block;
+    padding: 1px 10px 2px;
+    margin: 0 10px 0 0;
+    font-weight: 400;
+    text-decoration: none;
+    color: #fff;
+    background: #404040; }
+
+.ref-title {
+  margin: 28px 0; }
+
+@media (min-width: 960px) {
+  .ref-tags {
+    padding: 0 0 0 12px;
+    margin-left: 12.5%; }
+  .ref-title {
+    padding: 0 0 0 6px;
+    margin-left: 12.5%; } }
 
 /******* PRINT *******/
 @media print {
