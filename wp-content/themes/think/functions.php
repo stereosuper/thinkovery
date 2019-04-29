@@ -2,6 +2,8 @@
 
 define( 'THINK_VERSION', 2.0 );
 
+require_once(WPMU_PLUGIN_DIR . '/class-tgm-plugin-activation.php');
+
 
 /*-----------------------------------------------------------------------------------*/
 /* General
@@ -260,6 +262,13 @@ function think_register_required_plugins(){
             'name'        => 'Advanced Custom Fields PRO',
             'slug'        => 'advanced-custom-fields-pro',
             'source'     => get_template_directory_uri() . '/plugins/advanced-custom-fields-pro.zip',
+            'required'    => true,
+            'force_activation' => false
+        ),
+        array(
+            'name'        => 'Stereoberg',
+            'slug'        => 'stereoberg',
+            'source'     => get_template_directory_uri() . '/plugins/stereoberg.zip',
             'required'    => true,
             'force_activation' => false
         ),
