@@ -356,14 +356,6 @@ hr {
   margin: 3em auto 5em;
   background: #000; }
 
-.wp-block-image {
-  max-width: none;
-  margin: 2.5em 0 0; }
-  .wp-block-image .alignright,
-  .wp-block-image .alignleft {
-    margin: 0;
-    float: none; }
-
 /******* LIENS / BOUTONS *******/
 a {
   font-weight: 700;
@@ -507,23 +499,11 @@ a {
     padding: 1em 88px 2.5em 0;
     font-size: 4rem; }
     .intro-big .h2 {
-      margin: 1.1em 0 0; }
-  .wp-block-image .alignright {
-    margin: 0 0 2em 44px;
-    float: right; }
-  .wp-block-image .alignleft {
-    margin: 0 44px 2em -44px;
-    float: left; } }
+      margin: 1.1em 0 0; } }
 
 @media (min-width: 1100px) {
   .intro-big {
-    width: 75%; }
-  .col-3-dek .wp-block-image {
-    width: calc(129% + 44px); } }
-
-@media (min-width: 1576px) {
-  .col-3-dek .wp-block-image {
-    width: calc(133.33% + 44px); } }
+    width: 75%; } }
 
 @media (min-width: 960px) and (min-height: 630px) {
   .shape {
@@ -1332,6 +1312,53 @@ label {
       top: 0;
       left: 0; } }
 
+.editor > * {
+  clear: both; }
+
+.editor .center {
+  margin-left: auto;
+  margin-right: auto; }
+
+.editor .right {
+  float: right; }
+
+.wp-block-image {
+  max-width: none;
+  margin: 2.5em 0 0; }
+  .wp-block-image .alignright, .wp-block-image .alignleft {
+    margin: 0;
+    float: none; }
+  .wp-block-image figcaption {
+    padding: 5px 0 0 44px;
+    font-size: 1.8rem;
+    font-style: italic;
+    text-align: left;
+    color: #404040; }
+
+.wp-block-gallery {
+  margin-top: 56px;
+  margin-bottom: 56px; }
+
+@media (min-width: 960px) {
+  .editor .medium {
+    width: 75%;
+    padding-left: 6px;
+    padding-right: 6px; }
+  .wp-block-image .alignright {
+    margin: 0 0 2em 44px;
+    float: right; }
+  .wp-block-image .alignleft {
+    margin: 0 44px 2em -44px;
+    float: left; } }
+
+@media (min-width: 1100px) {
+  .col-3-dek .wp-block-image {
+    width: calc(129% + 44px); } }
+
+@media (min-width: 1576px) {
+  .col-3-dek .wp-block-image {
+    width: calc(133.33% + 44px); } }
+
 /* Buttons */
 .btn {
   display: -webkit-inline-box;
@@ -1726,13 +1753,13 @@ label {
   .btn-invert {
     font-size: 1.8rem; } }
 
+.editor .wp-block-stereoberg-question-answer {
+  padding: 10px 20px 15px; }
+
 .wp-block-stereoberg-question-answer {
-  padding: 10px 20px 15px;
-  margin-bottom: 28px;
-  -webkit-box-shadow: 0px 29px 35px rgba(64, 64, 64, 0.07);
-          box-shadow: 0px 29px 35px rgba(64, 64, 64, 0.07); }
-  .wp-block-stereoberg-question-answer:last-child {
-    margin-bottom: 0; }
+  margin-top: 28px;
+  -webkit-box-shadow: 0 15px 35px rgba(64, 64, 64, 0.07);
+          box-shadow: 0 15px 35px rgba(64, 64, 64, 0.07); }
   .wp-block-stereoberg-question-answer::before {
     content: none; }
   .wp-block-stereoberg-question-answer > h3 {
@@ -1744,7 +1771,7 @@ label {
     cursor: pointer; }
     .wp-block-stereoberg-question-answer > h3::before, .wp-block-stereoberg-question-answer > h3::after {
       content: "";
-      width: 15px;
+      width: 12px;
       height: 3px;
       position: absolute;
       top: 50%;

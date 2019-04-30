@@ -17,7 +17,9 @@
 
 		<h1 class='ref-title'><?php the_title(); ?></h1>
 
-		<?php the_content(); ?>
+		<div class='editor'>
+			<?php the_content(); ?>
+		</div>
 
 		<?php /* if( have_rows('modules') ):
 			while (have_rows('modules')):

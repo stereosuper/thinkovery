@@ -202,16 +202,6 @@ hr {
     background: $black;
 }
 
-.wp-block-image {
-    max-width: none;
-    margin: 2.5em 0 0;
-    .alignright,
-    .alignleft {
-        margin: 0;
-        float: none;
-    }
-}
-
 /******* LIENS / BOUTONS *******/
 
 a {
@@ -398,36 +388,11 @@ a {
             margin: 1.1em 0 0;
         }
     }
-
-    .wp-block-image {
-        .alignright {
-            margin: 0 0 2em $gutter;
-            float: right;
-        }
-        .alignleft {
-            margin: 0 $gutter 2em $gutter * -1;
-            float: left;
-        }
-    }
 }
 
 @media (min-width: $desktop) {
     .intro-big {
         width: $col * 3;
-    }
-
-    .wp-block-image {
-        .col-3-dek &{
-            width: calc(129% + #{$gutter});
-        }
-    }
-}
-
-@media (min-width: $desktop-huge) {
-    .wp-block-image {
-        .col-3-dek &{
-            width: calc(133.33% + #{$gutter});
-        }
     }
 }
 
