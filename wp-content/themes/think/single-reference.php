@@ -12,7 +12,12 @@
 		</div>
 
 		<div class='ref-tags'>
-			<?php echo get_the_term_list( get_the_ID(), 'reference_tag', '', '' ); ?>
+			<?php
+				$tags = wp_get_object_terms( get_the_ID(), 'reference_tag' );
+				foreach( $tags as $tag ){
+					echo '<span>' . $tag->name . '</span>';
+				}
+			?>
 		</div>
 
 		<h1 class='ref-title'><?php the_title(); ?></h1>

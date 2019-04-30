@@ -126,6 +126,7 @@ blockquote {
         top: 3px;
         left: -$gutter;
         background: url(../../img/quote.svg);
+        background-size: cover;
     }
     &:after {
         width: 19px;

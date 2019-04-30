@@ -293,7 +293,8 @@ blockquote {
     height: 19px;
     top: 3px;
     left: -44px;
-    background: url(/wp-content/themes/think/img/quote.svg); }
+    background: url(/wp-content/themes/think/img/quote.svg);
+    background-size: cover; }
   blockquote:after {
     width: 19px;
     height: 14px;
@@ -1361,6 +1362,34 @@ label {
     margin-right: 0;
     margin-left: 0;
     clear: both; }
+
+.wp-block-stereoberg-blockquote {
+  max-width: 570px;
+  margin: 0 auto;
+  text-align: center; }
+  .wp-block-stereoberg-blockquote .quote {
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 2.6rem; }
+    .wp-block-stereoberg-blockquote .quote:before {
+      display: block;
+      width: 38px;
+      height: 30px;
+      position: static;
+      margin: 0 auto; }
+    .wp-block-stereoberg-blockquote .quote:after {
+      content: none; }
+    .wp-block-stereoberg-blockquote .quote p {
+      margin-top: 1.25em; }
+  .wp-block-stereoberg-blockquote .name {
+    display: block;
+    margin: 28px 0 0;
+    font-size: 2rem;
+    font-style: normal;
+    color: #1e5e32; }
+  .wp-block-stereoberg-blockquote .position {
+    font-size: 1.6rem;
+    font-weight: 400; }
 
 @media (min-width: 960px) {
   .editor .big {
@@ -2512,7 +2541,7 @@ label {
   display: flex;
   margin: 28px 0 0;
   font-size: 1.6rem; }
-  .ref-tags > a {
+  .ref-tags > span {
     display: block;
     padding: 1px 10px 2px;
     margin: 0 10px 0 0;
