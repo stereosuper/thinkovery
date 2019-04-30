@@ -18,13 +18,12 @@ const burgerHandler = () => {
             () => {
                 const parent = title.parentElement;
                 const answer = title.parentElement.querySelector('.js-answer');
-
+                const alreadyActivated = parent.classList.contains('activated');
                 let maxHeight = 0;
+
                 forEach(answer.children, child => {
                     maxHeight += child.getBoundingClientRect().height;
                 });
-
-                const alreadyActivated = parent.classList.contains('activated');
 
                 forEach(accordions, resetParent => {
                     resetParent.classList.remove('activated');
@@ -35,26 +34,25 @@ const burgerHandler = () => {
                     });
                 });
 
-                if (!alreadyActivated) {
-                    TweenMax.to(answer, 0.3, {
-                        maxHeight,
-                        opacity: 1,
-                        ease: easing.easeFade,
-                    });
-                    parent.classList.add('activated');
+                if (alreadyActivated) return;
 
-                    setTimeout(() => {
-                        const offset =
-                            title.getBoundingClientRect().top + window.scrollY;
-                        TweenMax.to(window, 0.5, {
-                            scrollTo: {
-                                y: offset,
-                                offsetY: globalStyles.lineHeight,
-                            },
-                            ease: easing.easeFade,
-                        });
-                    }, 600);
-                }
+                TweenMax.to(answer, 0.3, {
+                    maxHeight,
+                    opacity: 1,
+                    ease: easing.easeFade,
+                });
+                parent.classList.add('activated');
+
+                // setTimeout(() => {
+                //     const offset = title.getBoundingClientRect().top + window.scrollY;
+                //     TweenMax.to(window, 0.5, {
+                //         scrollTo: {
+                //             y: offset,
+                //             offsetY: globalStyles.lineHeight,
+                //         },
+                //         ease: easing.easeFade,
+                //     });
+                // }, 600);
             },
             false
         );

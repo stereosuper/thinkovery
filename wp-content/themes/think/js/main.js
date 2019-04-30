@@ -9676,11 +9676,11 @@ var burgerHandler = function burgerHandler() {
     title.addEventListener('click', function () {
       var parent = title.parentElement;
       var answer = title.parentElement.querySelector('.js-answer');
+      var alreadyActivated = parent.classList.contains('activated');
       var maxHeight = 0;
       Object(_utils__WEBPACK_IMPORTED_MODULE_1__["forEach"])(answer.children, function (child) {
         maxHeight += child.getBoundingClientRect().height;
       });
-      var alreadyActivated = parent.classList.contains('activated');
       Object(_utils__WEBPACK_IMPORTED_MODULE_1__["forEach"])(accordions, function (resetParent) {
         resetParent.classList.remove('activated');
         gsap__WEBPACK_IMPORTED_MODULE_2__["TweenMax"].to(resetParent.querySelector('.js-answer'), 0.3, {
@@ -9689,25 +9689,22 @@ var burgerHandler = function burgerHandler() {
           ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].easeFade
         });
       });
-
-      if (!alreadyActivated) {
-        gsap__WEBPACK_IMPORTED_MODULE_2__["TweenMax"].to(answer, 0.3, {
-          maxHeight: maxHeight,
-          opacity: 1,
-          ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].easeFade
-        });
-        parent.classList.add('activated');
-        setTimeout(function () {
-          var offset = title.getBoundingClientRect().top + window.scrollY;
-          gsap__WEBPACK_IMPORTED_MODULE_2__["TweenMax"].to(window, 0.5, {
-            scrollTo: {
-              y: offset,
-              offsetY: _global__WEBPACK_IMPORTED_MODULE_3__["globalStyles"].lineHeight
-            },
-            ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].easeFade
-          });
-        }, 600);
-      }
+      if (alreadyActivated) return;
+      gsap__WEBPACK_IMPORTED_MODULE_2__["TweenMax"].to(answer, 0.3, {
+        maxHeight: maxHeight,
+        opacity: 1,
+        ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].easeFade
+      });
+      parent.classList.add('activated'); // setTimeout(() => {
+      //     const offset = title.getBoundingClientRect().top + window.scrollY;
+      //     TweenMax.to(window, 0.5, {
+      //         scrollTo: {
+      //             y: offset,
+      //             offsetY: globalStyles.lineHeight,
+      //         },
+      //         ease: easing.easeFade,
+      //     });
+      // }, 600);
     }, false);
   });
 };
