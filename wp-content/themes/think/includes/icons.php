@@ -12,6 +12,10 @@
             <title>LinkedIn</title>
             <path d='M6.232 11.161v17.696h-5.893v-17.696h5.893zM6.607 5.696c0.018 1.696-1.268 3.054-3.321 3.054v0h-0.036c-1.982 0-3.25-1.357-3.25-3.054 0-1.732 1.321-3.054 3.321-3.054 2.018 0 3.268 1.321 3.286 3.054zM27.429 18.714v10.143h-5.875v-9.464c0-2.375-0.857-4-2.982-4-1.625 0-2.589 1.089-3.018 2.143-0.143 0.393-0.196 0.911-0.196 1.446v9.875h-5.875c0.071-16.036 0-17.696 0-17.696h5.875v2.571h-0.036c0.768-1.214 2.161-2.982 5.339-2.982 3.875 0 6.768 2.536 6.768 7.964z'/>
         </symbol>
+        <symbol id="icon-facebook" viewBox="0 0 19 32">
+            <title>Facebook</title>
+            <path d="M17.125 0.214v4.714h-2.804c-2.196 0-2.607 1.054-2.607 2.571v3.375h5.232l-0.696 5.286h-4.536v13.554h-5.464v-13.554h-4.554v-5.286h4.554v-3.893c0-4.518 2.768-6.982 6.804-6.982 1.929 0 3.589 0.143 4.071 0.214z"/>
+        </symbol>
         <symbol id="icon-arrow" viewBox="0 0 48 32">
             <path fill="none" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" stroke-width="4.8" stroke="currentColor" d="M27.808 28.707l15.133-13.202-15.133-13.202"/>
             <path fill="none" stroke="currentColor" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" stroke-width="4.8" d="M42.941 15.397h-41.93"/>
