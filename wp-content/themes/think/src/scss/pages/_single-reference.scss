@@ -44,6 +44,39 @@
     margin: $line-height 0;
 }
 
+.ref-similar{
+    display: flex;
+    justify-content: space-between;
+    margin: $line-height*3 0 0;
+    flex-wrap: wrap;
+    > .h3{
+        width: 100%;
+        margin: 0 0 $line-height;
+        text-align: center;
+    }
+    > a{
+        display: flex;
+        width: 100%;
+        padding: 20px;
+        margin: 0 0 20px;
+        justify-content: center;
+        align-items: center;
+        background: $bg-color;
+        box-shadow: 0 29px 35px rgba(64, 64, 64, 0.07);
+    }
+    img{
+        max-width: 50%;
+    }
+}
+
+
+@media (min-width: $phone){
+    .ref-similar{
+        > a{
+            width: 46%;
+        }
+    }
+}
 
 @media (min-width: $desktop-small){
     .ref-tags{
@@ -54,5 +87,17 @@
     .ref-title{
         padding: 0 0 0 $border-size/2;
         margin-left: $col/2;
+    }
+
+    .ref-similar{
+        width: calc(#{$col*3} + #{$gutter});
+        > .h3{
+            width: 30%;
+            margin: 0;
+            text-align: right;
+        }
+        > a{
+            width: 30%;
+        }
     }
 }

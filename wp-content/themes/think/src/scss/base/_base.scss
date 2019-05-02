@@ -34,12 +34,12 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6, .h3 {
     letter-spacing: -0.03em;
 }
 
 h1,
-h2 {
+h2, .h3 {
     color: $primary;
 }
 
@@ -62,13 +62,14 @@ h2,
         color: $text-color;
     }
 }
-.h2 {
-    font-weight: 800;
-}
 
-h3 {
+h3, .h3 {
     margin: 1.6em 0 0;
     font-size: 3rem;
+}
+
+.h2, .h3 {
+    font-weight: 800;
 }
 
 h4 {
@@ -377,7 +378,7 @@ a {
         font-size: 4.9rem;
     }
 
-    h3 {
+    h3, .h3 {
         font-size: 3.5rem;
     }
 

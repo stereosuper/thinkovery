@@ -26,6 +26,20 @@
 			<?php the_content(); ?>
 		</div>
 
+		<?php $similars = get_field('similars'); if( $similars ) : ?>
+			
+			<div class='ref-similar'>
+				<p class='h3'><?php _e('Etudes de cas similaires', 'think') ?></p>
+
+				<?php foreach( $similars as $post ) : setup_postdata($post); ?>
+					<a href='<?php the_permalink(); ?>' title='<?php the_title(); ?>'>
+						<?php echo wp_get_attachment_image(get_field('logo'), 'full'); ?>
+					</a>
+				<?php endforeach; ?>
+			</div>
+
+		<?php wp_reset_postdata(); endif; ?>
+
 		<?php /* if( have_rows('modules') ):
 			while (have_rows('modules')):
 				the_row();
@@ -247,10 +261,6 @@
 				endif;
 			endwhile;
 		endif; */ ?>
-	<?php else : ?>
-				
-		<h1>404</h1>
-
 	<?php endif; ?>
 
 </article>
