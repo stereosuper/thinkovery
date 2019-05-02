@@ -19,11 +19,7 @@ const burgerHandler = () => {
                 const parent = title.parentElement;
                 const answer = title.parentElement.querySelector('.js-answer');
                 const alreadyActivated = parent.classList.contains('activated');
-                let maxHeight = 0;
-
-                forEach(answer.children, child => {
-                    maxHeight += child.getBoundingClientRect().height;
-                });
+                let maxHeight = title.parentElement.querySelector('.answer-content').getBoundingClientRect().height;
 
                 forEach(accordions, resetParent => {
                     resetParent.classList.remove('activated');

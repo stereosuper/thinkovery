@@ -223,6 +223,18 @@ function think_post_type(){
             'with_front' => false,
         )
     ));
+    register_post_type( 'job', array(
+        'label' => 'Jobs',
+        'singular_label' => 'Job',
+        'public' => true,
+        'publicly_queryable' => false,
+        'menu_icon' => 'dashicons-businessman',
+        'show_in_rest' => true,
+        'supports' => array('title', 'editor', 'thumbnail', 'excerpt', 'revisions'),
+        'rewrite' => array(
+            'with_front' => false,
+        )
+    ));
 }
 add_action( 'init', 'think_post_type' );
 

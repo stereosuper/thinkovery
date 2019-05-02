@@ -9677,10 +9677,7 @@ var burgerHandler = function burgerHandler() {
       var parent = title.parentElement;
       var answer = title.parentElement.querySelector('.js-answer');
       var alreadyActivated = parent.classList.contains('activated');
-      var maxHeight = 0;
-      Object(_utils__WEBPACK_IMPORTED_MODULE_1__["forEach"])(answer.children, function (child) {
-        maxHeight += child.getBoundingClientRect().height;
-      });
+      var maxHeight = title.parentElement.querySelector('.answer-content').getBoundingClientRect().height;
       Object(_utils__WEBPACK_IMPORTED_MODULE_1__["forEach"])(accordions, function (resetParent) {
         resetParent.classList.remove('activated');
         gsap__WEBPACK_IMPORTED_MODULE_2__["TweenMax"].to(resetParent.querySelector('.js-answer'), 0.3, {
