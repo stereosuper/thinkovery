@@ -181,6 +181,19 @@ ol {
         }
     }
 }
+.checklist{
+    > li{
+        margin: 0 0 $line-height;
+        &:before{
+            width: 15px;
+            height: 11px;
+            top: 10px;
+            left: -25px;
+            background: url(../../img/check.svg);
+            background-size: cover;
+        }
+    }
+}
 
 img {
     max-width: 100%;

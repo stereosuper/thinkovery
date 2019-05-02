@@ -339,6 +339,16 @@ ol {
       content: counter(ol-counter) ".";
       top: 5px; }
 
+.checklist > li {
+  margin: 0 0 28px; }
+  .checklist > li:before {
+    width: 15px;
+    height: 11px;
+    top: 10px;
+    left: -25px;
+    background: url(/wp-content/themes/think/img/check.svg);
+    background-size: cover; }
+
 img {
   max-width: 100%;
   height: auto; }
@@ -1415,7 +1425,11 @@ label {
   .wp-block-column:not(:first-child), .wp-block-column:nth-child(2n) {
     margin-left: 44px; }
   .wp-block-column:not(:last-child), .wp-block-column:nth-child(odd) {
-    margin-right: 44px; } }
+    margin-right: 44px; }
+  .wp-block-stereoberg-checklist > h2 {
+    width: 75%; }
+  .wp-block-stereoberg-checklist > ul {
+    margin-left: 35%; } }
 
 @media (min-width: 960px) {
   .editor .big {

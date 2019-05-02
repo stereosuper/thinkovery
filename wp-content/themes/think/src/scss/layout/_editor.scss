@@ -136,6 +136,15 @@
             margin-right: $gutter;
         }
     }
+
+    .wp-block-stereoberg-checklist{
+        > h2{
+            width: 75%;
+        }
+        > ul{
+            margin-left: 35%;
+        }
+    }
 }
 
 @media (min-width: $desktop-small) {
