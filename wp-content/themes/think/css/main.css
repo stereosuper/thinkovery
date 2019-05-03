@@ -1437,6 +1437,10 @@ label {
 .wp-block-gallery .blocks-gallery-image:last-child, .wp-block-gallery .blocks-gallery-item:last-child {
   margin-right: 0; }
 
+.wp-block-image .aligncenter, .wp-block-image .alignleft, .wp-block-image .alignright, .wp-block-image.is-resized {
+  width: 100%;
+  table-layout: fixed; }
+
 @media (min-width: 780px) {
   .wp-block-columns {
     display: -webkit-box;
