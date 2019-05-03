@@ -108,12 +108,12 @@ const minionsHandler = () => {
             opacity: 1,
         });
 
-        TweenMax.to([minions[0], minions[1], minions[3], minions[4]], 0.4, {
+        TweenMax.to([minions[0], minions[1], minions[3], minions[4]], 0.5, {
             scale: 3,
             ease: Pow1In,
         });
 
-        TweenMax.to(minions[0], 0.9, {
+        TweenMax.to(minions[0], 1.2, {
             bezier: {
                 curviness: 1,
                 values: [
@@ -126,7 +126,7 @@ const minionsHandler = () => {
             ease: Pow2Out,
         });
 
-        TweenMax.to(minions[1], 0.9, {
+        TweenMax.to(minions[1], 1.2, {
             bezier: {
                 curviness: 1,
                 values: [
@@ -139,7 +139,7 @@ const minionsHandler = () => {
             ease: Pow2Out,
         });
 
-        TweenMax.to(minions[3], 0.9, {
+        TweenMax.to(minions[3], 1.2, {
             bezier: {
                 curviness: 1,
                 values: [
@@ -152,7 +152,7 @@ const minionsHandler = () => {
             ease: Pow2Out,
         });
 
-        TweenMax.to(minions[4], 0.9, {
+        TweenMax.to(minions[4], 1.2, {
             bezier: {
                 curviness: 1,
                 values: [
