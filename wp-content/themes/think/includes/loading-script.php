@@ -10,39 +10,39 @@
         loadedStorage: false,
     };
 
-    const forEach = (arr, callback) => {
+    function forEach(arr, callback){
         let i = 0;
-        const { length } = arr;
+        const length = arr.length;
         while (i < length) {
             callback(arr[i], i);
             i += 1;
         }
-    };
+    }
 
-    const createNewEvent = eventName => {
+    function createNewEvent(eventName){
         let e = new Event(eventName);
         if (typeof Event !== 'function') {
             e = document.createEvent('Event');
             e.initEvent(eventName, true, true);
         }
         return e;
-    };
+    }
 
-    const dispatchLoaded = () => {
+    function dispatchLoaded(){
         const loaderEvent = createNewEvent('loaderHidden');
         document.dispatchEvent(loaderEvent);
-    };
+    }
 
-    const documentLoadedClass = () => {
+    function documentLoadedClass(){
         document.documentElement.classList.add('loaded');
-    };
+    }
 
-    const endLoading = () => {
-        forEach(hiddenElts, elt => {
+    function endLoading(){
+        forEach(hiddenElts, function(elt){
             elt.style.opacity = 1;
         });
 
-        setTimeout(() => {
+        setTimeout(function(){
             nav.style.opacity = 1;
         }, 500);
 
@@ -52,65 +52,63 @@
         documentLoadedClass();
     };
 
-    const loaderAnimation = () => {
-        setTimeout(() => {
+    function loaderAnimation(){
+        setTimeout(function(){
             logoLoader.querySelector('.circle').classList.add('hidden');
         }, delayLong);
 
-        setTimeout(() => {
+        setTimeout(function(){
             logoLoader.querySelector('.square').classList.remove('hidden');
         }, delayLong + delayShort);
 
-        setTimeout(() => {
+        setTimeout(function(){
             logoLoader.querySelector('.square').classList.add('hidden');
         }, delayLong * 2 + delayShort);
 
-        setTimeout(() => {
+        setTimeout(function(){
             logoLoader.querySelector('.triangle').classList.remove('hidden');
         }, delayLong * 2 + delayShort * 2);
 
-        setTimeout(() => {
+        setTimeout(function(){
             logoLoader.querySelector('.triangle').classList.add('hidden');
         }, delayLong * 3 + delayShort * 2);
 
-        setTimeout(() => {
+        setTimeout(function(){
             logoLoader.querySelector('.rectangle').classList.remove('hidden');
         }, delayLong * 3 + delayShort * 3);
 
-        setTimeout(() => {
+        setTimeout(function(){
             logoLoader.querySelector('.rectangle').classList.add('hidden');
         }, delayLong * 4 + delayShort * 3);
 
-        setTimeout(() => {
+        setTimeout(function(){
             logoLoader.querySelector('.drop').classList.remove('hidden');
         }, delayLong * 4 + delayShort * 4);
 
-        setTimeout(() => {
+        setTimeout(function(){
             logoLoader.querySelector('.drop').classList.add('hidden');
         }, delayLong * 5 + delayShort * 4);
 
-        setTimeout(() => {
+        setTimeout(function(){
             logoLoader.querySelector('.circle').classList.remove('hidden');
         }, delayLong * 5 + delayShort * 5);
 
         if (state.loaded) {
-            setTimeout(() => {
+            setTimeout(function(){
                 logoLoader.style.opacity = 0;
-                setTimeout(() => {
-                    endLoading();
-                }, 500);
+                setTimeout(endLoading, 500);
             }, delayLong * 5 + delayShort * 5);
         } else {
             setTimeout(loaderAnimation, delayLong * 5 + delayShort * 5);
         }
     };
 
-    const handleLoader = () => {
+    function handleLoader(){
         if (sessionStorage.getItem('loaded') || !logoLoader || !nav) {
             state.loadedStorage = true;
             if (logoLoader) logoLoader.style.opacity = 0;
 
-            forEach(hiddenElts, elt => {
+            forEach(hiddenElts, function(elt){
                 elt.style.opacity = 1;
             });
 
@@ -125,14 +123,10 @@
 
     handleLoader();
 
-    document.addEventListener(
-        'readystatechange',
-        () => {
-            const ready = document.readyState;
-            if (ready === 'complete' && !state.loadedStorage) {
-                state.loaded = true;
-            }
-        },
-        false
-    );
+    document.addEventListener('readystatechange', function(){
+        const ready = document.readyState;
+        if (ready === 'complete' && !state.loadedStorage) {
+            state.loaded = true;
+        }
+    }, false);
 </script>

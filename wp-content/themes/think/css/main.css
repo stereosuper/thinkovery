@@ -2621,11 +2621,13 @@ label {
   display: -ms-flexbox;
   display: flex;
   margin: 28px 0 0;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   font-size: 1.6rem; }
   .ref-tags > span {
     display: block;
     padding: 1px 10px 2px;
-    margin: 0 10px 0 0;
+    margin: 0 10px 10px 0;
     font-weight: 400;
     text-decoration: none;
     color: #fff;
