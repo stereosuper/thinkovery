@@ -2184,6 +2184,10 @@ label {
     -webkit-transform: translateY(-58%);
             transform: translateY(-58%); } }
 
+@media (min-width: 960px) and (max-height: 960px) {
+  .home .main {
+    padding-top: 0; } }
+
 @media (min-width: 960px) {
   .home-header,
   .home-section {
