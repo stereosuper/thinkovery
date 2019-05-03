@@ -10602,6 +10602,9 @@ var ioBorders = function ioBorders() {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./wp-content/themes/think/src/js/utils/index.js");
+
+
 var formHandler = function formHandler() {
   var forms = document.querySelectorAll('form');
   if (!forms.length) return;
@@ -10610,8 +10613,8 @@ var formHandler = function formHandler() {
     if (e.target.value) e.target.classList.add('active');
   };
 
-  forms.forEach(function (form) {
-    form.querySelectorAll('.field').forEach(function (field) {
+  Object(_utils__WEBPACK_IMPORTED_MODULE_0__["forEach"])(forms, function (form) {
+    Object(_utils__WEBPACK_IMPORTED_MODULE_0__["forEach"])(form.querySelectorAll('.field'), function (field) {
       field.querySelector('input').addEventListener('input', placeLabels);
     });
   });
@@ -11661,6 +11664,26 @@ var minionsHandler = function minionsHandler() {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./wp-content/themes/think/src/js/utils/index.js");
+ // IE11 closest polyfill
+
+if (!Element.prototype.matches) {
+  Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
+}
+
+if (!Element.prototype.closest) {
+  Element.prototype.closest = function (s) {
+    var el = this;
+
+    do {
+      if (el.matches(s)) return el;
+      el = el.parentElement || el.parentNode;
+    } while (el !== null && el.nodeType === 1);
+
+    return null;
+  };
+}
+
 var newsletterHandler = function newsletterHandler() {
   var form = document.getElementById('newsletter-form');
   if (!form.length) return;
@@ -11674,7 +11697,7 @@ var newsletterHandler = function newsletterHandler() {
     if (!e.target.closest('#newsletter-form') && !hiddenInput.querySelector('input').checked) hiddenInput.classList.remove('visible');
   };
 
-  form.querySelectorAll('input').forEach(function (input) {
+  Object(_utils__WEBPACK_IMPORTED_MODULE_0__["forEach"])(form.querySelectorAll('input'), function (input) {
     input.addEventListener('focus', displayHiddenInput);
   });
   document.addEventListener('click', hideHiddenInput);
@@ -14501,16 +14524,37 @@ var roundNumbers = function roundNumbers(number, decimalNumber) {
 var reverseString = function reverseString(str) {
   return str.split('').reverse().join('');
 };
-var createNewEvent = function createNewEvent(eventName) {
-  var e = new Event(eventName);
+var newEvent;
 
-  if (typeof Event !== 'function') {
-    e = document.createEvent('Event');
-    e.initEvent(eventName, true, true);
-  }
+if (typeof window.CustomEvent === "function") {
+  newEvent = function newEvent(eventName) {
+    var e = new Event(eventName);
 
-  return e;
-};
+    if (typeof Event !== 'function') {
+      e = document.createEvent('Event');
+      e.initEvent(eventName, true, true);
+    }
+
+    return e;
+  };
+} else {
+  // ie 11
+  newEvent = function newEvent(event, params) {
+    params = params || {
+      bubbles: false,
+      cancelable: false,
+      detail: undefined
+    };
+    var evt = document.createEvent('CustomEvent');
+    evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
+    return evt;
+  };
+
+  newEvent.prototype = window.Event.prototype;
+  window.CustomEvent = newEvent;
+}
+
+var createNewEvent = newEvent;
 var requestAnimFrame = function requestAnimFrame(cb) {
   var anim = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame;
   return anim(cb);
@@ -14631,6 +14675,8 @@ function Io() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils */ "./wp-content/themes/think/src/js/utils/index.js");
+
 
 
 var videoHandler = function videoHandler() {
@@ -14652,7 +14698,7 @@ var videoHandler = function videoHandler() {
       });
     };
 
-    videos.forEach(function (elt) {
+    Object(_utils__WEBPACK_IMPORTED_MODULE_1__["forEach"])(videos, function (elt) {
       players[elt.getAttribute('data-id')] = new YT.Player(elt.querySelector('.iframe'), {
         videoId: elt.getAttribute('data-id'),
         events: {

@@ -1,4 +1,5 @@
 import { TweenMax } from 'gsap';
+import { forEach } from './utils';
 
 const videoHandler = () => {
     const tag = document.createElement('script');
@@ -29,7 +30,7 @@ const videoHandler = () => {
             });
         };
 
-        videos.forEach(elt => {
+        forEach(videos, elt => {
             players[elt.getAttribute('data-id')] = new YT.Player(
                 elt.querySelector('.iframe'),
                 {

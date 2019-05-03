@@ -18,14 +18,29 @@ export const reverseString = str =>
         .reverse()
         .join('');
 
-export const createNewEvent = eventName => {
-    let e = new Event(eventName);
-    if (typeof Event !== 'function') {
-        e = document.createEvent('Event');
-        e.initEvent(eventName, true, true);
-    }
-    return e;
-};
+let newEvent;
+if ( typeof window.CustomEvent === "function" ){
+    newEvent = eventName => {
+        let e = new Event(eventName);
+        if (typeof Event !== 'function') {
+            e = document.createEvent('Event');
+            e.initEvent(eventName, true, true);
+        }
+        return e;
+    };
+}else{
+    // ie 11
+    newEvent  = ( event, params ) => {
+        params = params || { bubbles: false, cancelable: false, detail: undefined };
+        var evt = document.createEvent( 'CustomEvent' );
+        evt.initCustomEvent( event, params.bubbles, params.cancelable, params.detail );
+        return evt;
+    };
+
+    newEvent.prototype = window.Event.prototype;
+    window.CustomEvent = newEvent;
+}
+export const createNewEvent = newEvent;
 
 export const requestAnimFrame = cb => {
     const anim =
