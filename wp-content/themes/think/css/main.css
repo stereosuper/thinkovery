@@ -654,6 +654,15 @@ label {
     max-width: 55%; } }
 
 /* Header */
+.logo-loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -webkit-transition:  opacity 0.3s ease-out;
+  transition:  opacity 0.3s ease-out; }
+
 .main-header {
   padding-top: 56px; }
   .main-header > .container {

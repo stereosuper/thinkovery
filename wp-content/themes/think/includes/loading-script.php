@@ -1,5 +1,5 @@
 <script>
-    const logo = document.getElementById('logo');
+    const logoLoader = document.getElementById('logo-loader');
     const nav = document.getElementById('main-navigation');
     const hiddenElts = document.getElementsByClassName('js-load-hidden');
     const delayLong = 250;
@@ -33,6 +33,10 @@
         document.dispatchEvent(loaderEvent);
     };
 
+    const documentLoadedClass = () => {
+        document.documentElement.classList.add('loaded');
+    };
+
     const endLoading = () => {
         forEach(hiddenElts, elt => {
             elt.style.opacity = 1;
@@ -45,70 +49,76 @@
         sessionStorage.setItem('loaded', 'true');
 
         dispatchLoaded();
+        documentLoadedClass();
     };
 
     const loaderAnimation = () => {
         setTimeout(() => {
-            logo.querySelector('.circle').classList.add('hidden');
+            logoLoader.querySelector('.circle').classList.add('hidden');
         }, delayLong);
 
         setTimeout(() => {
-            logo.querySelector('.square').classList.remove('hidden');
+            logoLoader.querySelector('.square').classList.remove('hidden');
         }, delayLong + delayShort);
 
         setTimeout(() => {
-            logo.querySelector('.square').classList.add('hidden');
+            logoLoader.querySelector('.square').classList.add('hidden');
         }, delayLong * 2 + delayShort);
 
         setTimeout(() => {
-            logo.querySelector('.triangle').classList.remove('hidden');
+            logoLoader.querySelector('.triangle').classList.remove('hidden');
         }, delayLong * 2 + delayShort * 2);
 
         setTimeout(() => {
-            logo.querySelector('.triangle').classList.add('hidden');
+            logoLoader.querySelector('.triangle').classList.add('hidden');
         }, delayLong * 3 + delayShort * 2);
 
         setTimeout(() => {
-            logo.querySelector('.rectangle').classList.remove('hidden');
+            logoLoader.querySelector('.rectangle').classList.remove('hidden');
         }, delayLong * 3 + delayShort * 3);
 
         setTimeout(() => {
-            logo.querySelector('.rectangle').classList.add('hidden');
+            logoLoader.querySelector('.rectangle').classList.add('hidden');
         }, delayLong * 4 + delayShort * 3);
 
         setTimeout(() => {
-            logo.querySelector('.drop').classList.remove('hidden');
+            logoLoader.querySelector('.drop').classList.remove('hidden');
         }, delayLong * 4 + delayShort * 4);
 
         setTimeout(() => {
-            logo.querySelector('.drop').classList.add('hidden');
+            logoLoader.querySelector('.drop').classList.add('hidden');
         }, delayLong * 5 + delayShort * 4);
 
         setTimeout(() => {
-            logo.querySelector('.circle').classList.remove('hidden');
+            logoLoader.querySelector('.circle').classList.remove('hidden');
         }, delayLong * 5 + delayShort * 5);
 
         if (state.loaded) {
-            setTimeout(endLoading, delayLong * 5 + delayShort * 5);
+            setTimeout(() => {
+                logoLoader.style.opacity = 0;
+                setTimeout(() => {
+                    endLoading();
+                }, 500);
+            }, delayLong * 5 + delayShort * 5);
         } else {
             setTimeout(loaderAnimation, delayLong * 5 + delayShort * 5);
         }
     };
 
     const handleLoader = () => {
-        if (sessionStorage.getItem('loaded') || !logo || !nav) {
+        if (sessionStorage.getItem('loaded') || !logoLoader || !nav) {
             state.loadedStorage = true;
+            if (logoLoader) logoLoader.style.opacity = 0;
+
             forEach(hiddenElts, elt => {
                 elt.style.opacity = 1;
             });
 
             if (nav) nav.style.opacity = 1;
 
-            if (logo) {
-                logo.querySelector('.square').classList.add('hidden');
-                logo.querySelector('.circle').classList.remove('hidden');
-            }
+            documentLoadedClass();
         } else {
+            if (logoLoader) logoLoader.style.opacity = 1;
             loaderAnimation();
         }
     };
