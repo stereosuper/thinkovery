@@ -1,0 +1,137 @@
+.about-section1, .about-section2{
+    margin: 8em 0 0;
+    text-align: center;
+    > div{
+        &:last-child{
+            margin: $line-height 0 0;
+        }
+    }
+}
+
+.about-section2{
+    h2{
+        margin-top: 0;
+    }
+    .size-medium{
+        display: block;
+        margin: 20px auto 0;
+    }
+}
+
+.about-section3, .about-section4{
+    text-align: center;
+}
+
+.about-section3{
+    margin: 8em 0 0;
+}
+
+.about-section4{
+    margin: 10em 0 0;
+    .btn-invert{
+        margin: $line-height 0 0;
+        color: $primary;
+    }
+}
+
+
+@media (min-width: $tablet){
+    .about-section1, .about-section2{
+        text-align: left;
+    }
+
+    .about-section2{
+        padding: 0 0 5em;
+        > div{
+            &:last-child{
+                position: relative;
+            }
+        }
+        .size-medium{
+            border: 10px solid $bg-color;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            transform: translate3d(0, 50%, 0);
+        }
+    }
+}
+
+@media (min-width: $desktop-small){
+    .about-section1, .about-section2{
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        > div{
+            width: 50%;
+        }
+    }
+
+    .about-section1{
+        > div{
+            &:first-child{
+                padding: 0 #{$gutter + $border-size} 0 0;
+            }
+            &:last-child{
+                margin: 0 $gutter*-1 0 0;
+            }
+        }
+    }
+
+    .about-section2{
+        > div{
+            &:first-child{
+                padding: 0 0 0 #{$gutter + $border-size};
+                order: 2;
+            }
+            &:last-child{
+                margin: 12.5em 0 0 $gutter*-1;
+                order: 1;
+            }
+        }
+        .size-medium{
+            transform: translate3d(50%, 50%, 0);
+        }
+    }
+
+    .about-section3, .about-section4{
+        > div{
+            width: 75%;
+            padding: 0 $gutter;
+            margin: 0 auto;
+        }
+    }
+}
+
+@media (min-width: $desktop){
+    .about-section1{
+        h2{
+            width: 80%;
+        }
+    }
+
+    .about-section2{
+        h2{
+            width: 75%;
+        }
+    }
+}
+
+@media (min-width: $desktop-big){
+    .about-section1{
+        > div{
+            &:first-child{
+                padding-top: #{$line-height + $border-size};
+            }
+        }
+        h2{
+            width: 65%;
+        }
+    }
+
+    .about-section3, .about-section4{
+        > div{
+            width: 50%;
+        }
+    }
+}
