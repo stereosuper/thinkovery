@@ -11039,9 +11039,13 @@ var minionsHandler = function minionsHandler() {
       delay: 0.3,
       onStart: function onStart() {
         animsState['home-intro'].done = true;
-        scrollDowninterval = setInterval(function () {
-          gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[2], 2, {
+
+        var scrollDownAnimation = function scrollDownAnimation() {
+          var duration = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 2;
+          gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[2], duration, {
+            x: -10,
             y: headerBottom - 70,
+            rotation: 90,
             ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Power2"].easeInOut,
             onComplete: function onComplete() {
               gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[2], 0.3, {
@@ -11050,7 +11054,29 @@ var minionsHandler = function minionsHandler() {
               });
             }
           });
-        }, 3000);
+        };
+
+        var scrollDownLoop = function scrollDownLoop() {
+          var time = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 3000;
+          scrollDowninterval = setInterval(scrollDownAnimation, time);
+        };
+
+        video.addEventListener('mouseover', function () {
+          if (scrollDowninterval) {
+            clearInterval(scrollDowninterval);
+          }
+
+          gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[2], 0.2, {
+            x: 0,
+            y: 0,
+            rotation: 0
+          });
+        }, false);
+        video.addEventListener('mouseleave', function () {
+          scrollDownAnimation(0.3);
+          scrollDownLoop();
+        }, false);
+        scrollDownLoop();
       }
     });
     gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set([minions[0], minions[1], minions[3], minions[4]], {
@@ -11561,7 +11587,7 @@ var minionsHandler = function minionsHandler() {
   var initAnims = function initAnims() {
     animsLaunched = true;
 
-    for (index; index <= samplesNumber; index++) {
+    for (index; index <= samplesNumber; index += 1) {
       thresholdSamples[index] = index / samplesNumber;
     }
 
@@ -14607,7 +14633,7 @@ var videoHandler = function videoHandler() {
           display: 'none'
         });
         players[wrapper.getAttribute('data-id')].playVideo();
-        document.querySelector('[data-id="' + wrapper.getAttribute('data-id') + '"]').classList.add('playing');
+        document.querySelector("[data-id=\"".concat(wrapper.getAttribute('data-id'), "\"]")).classList.add('playing');
       });
     };
 
@@ -14615,7 +14641,7 @@ var videoHandler = function videoHandler() {
       players[elt.getAttribute('data-id')] = new YT.Player(elt.querySelector('.iframe'), {
         videoId: elt.getAttribute('data-id'),
         events: {
-          'onReady': onPlayerReady(elt)
+          onReady: onPlayerReady(elt)
         }
       });
     });

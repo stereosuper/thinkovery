@@ -4,8 +4,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 const config = (env, options) => {
-    console.log(path.resolve(__dirname, './js'));
-
     const MODE = options.mode;
     return {
         cache: false,
@@ -38,7 +36,7 @@ const config = (env, options) => {
                         {
                             loader: 'postcss-loader',
                             options: {
-                                plugins: loader => [
+                                plugins: () => [
                                     require('autoprefixer')({
                                         browsers: ['last 2 versions'],
                                     }),
@@ -89,4 +87,30 @@ const config = (env, options) => {
     };
 };
 
-module.exports = config;
+const loader = (env, options) => {
+    const MODE = options.mode;
+    return {
+        entry: './wp-content/themes/think/src/js/loading-script.js',
+        output: {
+            path: path.resolve(__dirname),
+            filename: './wp-content/themes/think/js/loading-script.js',
+            publicPath: '/wp-content/themes/think/js',
+        },
+        watch: true,
+        devtool: MODE === 'development' ? 'source-map' : '',
+        module: {
+            rules: [
+                {
+                    test: /\.js$/,
+                    exclude: /node_modules/,
+                    loader: 'babel-loader',
+                },
+            ],
+        },
+        node: {
+            fs: 'empty', // avoids error messages
+        },
+    };
+};
+
+module.exports = [config, loader];

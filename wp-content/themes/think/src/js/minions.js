@@ -88,10 +88,11 @@ const minionsHandler = () => {
                 delay: 0.3,
                 onStart: () => {
                     animsState['home-intro'].done = true;
-
-                    scrollDowninterval = setInterval(() => {
-                        TweenMax.to(minions[2], 2, {
+                    const scrollDownAnimation = (duration = 2) => {
+                        TweenMax.to(minions[2], duration, {
+                            x: -10,
                             y: headerBottom - 70,
+                            rotation: 90,
                             ease: Power2.easeInOut,
                             onComplete: () => {
                                 TweenMax.to(minions[2], 0.3, {
@@ -100,7 +101,39 @@ const minionsHandler = () => {
                                 });
                             },
                         });
-                    }, 3000);
+                    };
+
+                    const scrollDownLoop = (time = 3000) => {
+                        scrollDowninterval = setInterval(
+                            scrollDownAnimation,
+                            time
+                        );
+                    };
+
+                    video.addEventListener(
+                        'mouseover',
+                        () => {
+                            if (scrollDowninterval) {
+                                clearInterval(scrollDowninterval);
+                            }
+                            TweenMax.to(minions[2], 0.2, {
+                                x: 0,
+                                y: 0,
+                                rotation: 0,
+                            });
+                        },
+                        false
+                    );
+
+                    video.addEventListener(
+                        'mouseleave',
+                        () => {
+                            scrollDownAnimation(0.3);
+                            scrollDownLoop();
+                        },
+                        false
+                    );
+                    scrollDownLoop();
                 },
             });
 
@@ -650,7 +683,7 @@ const minionsHandler = () => {
     const initAnims = () => {
         animsLaunched = true;
 
-        for (index; index <= samplesNumber; index++) {
+        for (index; index <= samplesNumber; index += 1) {
             thresholdSamples[index] = index / samplesNumber;
         }
 
