@@ -12,6 +12,11 @@
                         <?php echo $title['green'] ? $title['green'] . '<span>' . $title['black'] . '</span>' : get_the_title(); ?>
                     </h1>
                     <div class="iframe"></div>
+                    <button class="cross js-cross" type="button">
+                        <span class="cross-line first-cross-line"></span>
+                        <span class="cross-line second-cross-line"></span>
+                    </button>
+                    <div class="player-background js-cross" type="button"></div>
                     <div class="cover" style="background-image:url(<?php echo wp_get_attachment_url($video['img'], 'full'); ?>)"></div>
                     <div class='wrapper-player'><svg class="icon"><use xlink:href="#icon-player"></use></svg></div>
                     

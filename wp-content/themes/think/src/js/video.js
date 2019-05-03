@@ -10,33 +10,49 @@ const videoHandler = () => {
 
     const players = [];
 
-    global.onYouTubeIframeAPIReady = () => {
-        const onPlayerReady = wrapper => {
-            wrapper.addEventListener('click', () => {
-                TweenMax.to(
-                    [
-                        wrapper.querySelector('.cover'),
-                        wrapper.querySelector('.wrapper-player'),
-                    ],
-                    0.2,
-                    { opacity: 0, display: 'none' }
+    window.onYouTubeIframeAPIReady = () => {
+        const onPlayerReady = ({ id, videoElement }) => {
+            const cover = videoElement.querySelector('.cover');
+            const wrapperPlayer = videoElement.querySelector('.wrapper-player');
+            const crosses = videoElement.querySelectorAll('.js-cross');
+
+            const videoElementsOpacity = ({ opacity }) => {
+                TweenMax.to([cover, wrapperPlayer], 0.3, { opacity });
+            };
+
+            cover.addEventListener(
+                'click',
+                () => {
+                    videoElementsOpacity({ opacity: 0 });
+
+                    players[id].playVideo();
+                    videoElement.classList.add('playing');
+                },
+                false
+            );
+
+            forEach(crosses, cross => {
+                cross.addEventListener(
+                    'click',
+                    () => {
+                        players[id].pauseVideo();
+                        videoElement.classList.remove('playing');
+
+                        videoElementsOpacity({ opacity: 1 });
+                    },
+                    false
                 );
-                players[wrapper.getAttribute('data-id')].playVideo();
-                document
-                    .querySelector(
-                        `[data-id="${wrapper.getAttribute('data-id')}"]`
-                    )
-                    .classList.add('playing');
             });
         };
 
-        forEach(videos, elt => {
-            players[elt.getAttribute('data-id')] = new YT.Player(
-                elt.querySelector('.iframe'),
+        forEach(videos, videoElement => {
+            const id = videoElement.getAttribute('data-id');
+            players[id] = new window.YT.Player(
+                videoElement.querySelector('.iframe'),
                 {
-                    videoId: elt.getAttribute('data-id'),
+                    videoId: id,
                     events: {
-                        onReady: onPlayerReady(elt),
+                        onReady: onPlayerReady({ videoElement, id }),
                     },
                 }
             );
