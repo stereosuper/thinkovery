@@ -403,6 +403,14 @@ a {
             margin: 1.1em 0 0;
         }
     }
+
+    .shape {
+        display: block;
+        width: 75px;
+        height: 75px;
+        position: absolute;
+        pointer-events: none;
+    }
 }
 
 @media (min-width: $desktop) {
@@ -411,7 +419,7 @@ a {
     }
 }
 
-@media (min-width: $desktop-small) and (min-height: 630px) {
+@media (min-height: 630px) {
     .shape {
         display: block;
         width: 75px;
