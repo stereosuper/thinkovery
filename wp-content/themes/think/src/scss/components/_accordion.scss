@@ -10,6 +10,13 @@
     &::before {
         content: none;
     }
+    &.activated {
+        h3 {
+            &::before {
+                opacity: 0;
+            }
+        }
+    }
     > h3 {
         padding-right: $gutter;
         margin: 0;
@@ -56,15 +63,14 @@
         right: 0;
         transform: translateY(-50%);
     }
-    &.activated {
-        h3 {
-            &::before {
-                opacity: 0;
-            }
-        }
+    .answer-content{
+        padding: 1px 0 $line-height;
     }
 }
 
+.job-accordion-title{
+    margin-bottom: $line-height*2;
+}
 .job-accordion{
     h4{
         font-size: 1.8rem;

@@ -16,7 +16,7 @@ get_header(); ?>
 
             <?php $jobsQuery = new WP_Query(array('post_type' => 'job', 'posts_per_page' => -1));
             if( $jobsQuery->have_posts() ): ?>
-                <h2 class='medium center'><?php _e("Offres d'emploi", 'think'); ?></h2>
+                <h2 class='medium center job-accordion-title'><?php _e("Offres d'emploi", 'think'); ?></h2>
                 <?php while( $jobsQuery->have_posts() ): $jobsQuery->the_post(); ?>
                     <div class="wp-block-stereoberg-question-answer medium job-accordion">
                         <h3><?php the_title(); ?></h3>
