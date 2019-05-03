@@ -527,7 +527,8 @@ a {
 /* Placeholders */
 /* Grid */
 .main {
-  padding: 4em 0 0; }
+  padding: 4em 0 0;
+  overflow: hidden; }
   .no-js .main {
     opacity: 1 !important; }
 
