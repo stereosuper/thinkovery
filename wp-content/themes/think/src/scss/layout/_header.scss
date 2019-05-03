@@ -547,10 +547,7 @@ $header-height: 84px;
         padding-top: $line-height * 3;
     }
     .main-navigation {
-        position: initial;
-        left: auto;
-        right: auto;
-        bottom: auto;
+        position: static;
         > .line-opening {
             display: none;
         }
@@ -558,10 +555,6 @@ $header-height: 84px;
     .main-navigation-container {
         padding: 0;
         position: relative;
-        top: auto;
-        left: auto;
-        right: auto;
-        bottom: auto;
         opacity: 1;
     }
     .menu {
@@ -584,7 +577,7 @@ $header-height: 84px;
                 content: "";
                 height: 2px;
                 position: absolute;
-                bottom: 0px;
+                bottom: 0;
                 left: -100%;
                 right: 100%;
             }

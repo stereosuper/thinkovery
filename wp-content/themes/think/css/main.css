@@ -1036,19 +1036,12 @@ label {
   .main-header {
     padding-top: 84px; }
   .main-navigation {
-    position: initial;
-    left: auto;
-    right: auto;
-    bottom: auto; }
+    position: static; }
     .main-navigation > .line-opening {
       display: none; }
   .main-navigation-container {
     padding: 0;
     position: relative;
-    top: auto;
-    left: auto;
-    right: auto;
-    bottom: auto;
     opacity: 1; }
   .menu {
     display: -webkit-box;
@@ -1071,7 +1064,7 @@ label {
         content: "";
         height: 2px;
         position: absolute;
-        bottom: 0px;
+        bottom: 0;
         left: -100%;
         right: 100%; }
       .menu a::before {
