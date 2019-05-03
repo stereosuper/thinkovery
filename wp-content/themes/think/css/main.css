@@ -1427,6 +1427,16 @@ label {
 .wp-block-column:not(:last-child), .wp-block-column:nth-child(odd) {
   margin-right: 0; }
 
+.wp-block-gallery .blocks-gallery-image, .wp-block-gallery .blocks-gallery-item {
+  margin-right: 15px; }
+
+@media (min-width: 600px) {
+  .wp-block-gallery.columns-3 .blocks-gallery-image, .wp-block-gallery.columns-3 .blocks-gallery-item {
+    margin-right: 15px; } }
+
+.wp-block-gallery .blocks-gallery-image:last-child, .wp-block-gallery .blocks-gallery-item:last-child {
+  margin-right: 0; }
+
 @media (min-width: 780px) {
   .wp-block-columns {
     display: -webkit-box;
@@ -2242,9 +2252,132 @@ label {
     .home-section .wrapper-img {
       display: none; }
   .section-content {
-    width: 50%; } }
+    width: 50%; }
+  .home-header .shape {
+    width: 23px;
+    height: 23px;
+    top: 1px;
+    left: 20px;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    opacity: 0;
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+    -webkit-transform: scale(0);
+            transform: scale(0); }
+  .home-header .video .cover,
+  .home-header .video .iframe,
+  .home-header .video .wrapper-player {
+    opacity: 0; }
+  .home-section:nth-of-type(3) .shape {
+    top: 0;
+    left: 0;
+    opacity: 0;
+    -webkit-transform: scale(0);
+            transform: scale(0); }
+  .home-section:nth-of-type(3) .s1 {
+    left: 58px; }
+  .home-section:nth-of-type(3) .s3 {
+    left: 285px; }
+  .home-section:nth-of-type(3) .s4 {
+    left: 244px; }
+  .home-section:nth-of-type(3) .s5 {
+    left: 225px; }
+  .home-section:nth-of-type(3) .s6 {
+    left: 320px; }
+  .home-section:nth-of-type(3) .s7 {
+    left: 17px; }
+  .home-section:nth-of-type(3) .s8 {
+    left: 118px; }
+  .home-section:nth-of-type(3) .s9 {
+    left: 110px; }
+  .home-section:nth-of-type(3) .s10 {
+    left: 180px; }
+  .home-section:nth-of-type(3) .s11 {
+    left: 167px; }
+  .plane-path {
+    display: block;
+    max-width: 56%;
+    height: 650px;
+    position: absolute;
+    bottom: 7em;
+    right: 50%; }
+    .plane-path .svg {
+      position: relative;
+      float: right; }
+  .plane {
+    display: block;
+    width: 79px;
+    height: 48px;
+    position: absolute;
+    top: -24px;
+    left: -40px;
+    background: url(/wp-content/themes/think/img/plane.png); }
+  .morpion {
+    display: block;
+    width: 330px;
+    height: 330px;
+    position: absolute;
+    top: 10%;
+    right: 7.5%; }
+    .morpion.on:before, .morpion.on:after,
+    .morpion.on .vertical:before,
+    .morpion.on .vertical:after {
+      -webkit-transform: scale(1);
+              transform: scale(1); }
+    .morpion:before, .morpion:after,
+    .morpion .vertical:before,
+    .morpion .vertical:after {
+      content: "";
+      position: absolute;
+      -webkit-transform-origin: 0 0;
+              transform-origin: 0 0;
+      -webkit-transform: scale(0);
+              transform: scale(0);
+      -webkit-transition: 0.5s ease-in;
+      transition: 0.5s ease-in; }
+    .morpion:before, .morpion:after {
+      height: 1px;
+      left: 0;
+      right: 0;
+      background: repeating-linear-gradient(45deg, #aeaeae, #aeaeae 10px, transparent 10px, transparent 20px); }
+    .morpion:before {
+      top: 33.3%; }
+    .morpion:after {
+      top: 66.6%;
+      -webkit-transition-delay: 0.1s;
+              transition-delay: 0.1s; }
+    .morpion .vertical:before, .morpion .vertical:after {
+      width: 1px;
+      top: 0;
+      bottom: 0;
+      background: repeating-linear-gradient(#aeaeae, #aeaeae 10px, transparent 10px, transparent 20px); }
+    .morpion .vertical:before {
+      left: 33.3%;
+      -webkit-transition-delay: 0.2s;
+              transition-delay: 0.2s; }
+    .morpion .vertical:after {
+      left: 66.6%;
+      -webkit-transition-delay: 0.3s;
+              transition-delay: 0.3s; }
+    .morpion .shape {
+      margin: 18px;
+      opacity: 0;
+      -webkit-transform: scale(0);
+              transform: scale(0); }
+    .morpion .s2 {
+      top: 33.3%;
+      left: 33.3%; }
+    .morpion .s3 {
+      top: 66.6%; }
+    .morpion .s4 {
+      left: 66.6%; }
+    .morpion .s5 {
+      top: 33.3%;
+      left: 66.6%; } }
 
-@media (min-width: 960px) and (min-height: 630px) {
+@media (min-height: 630px) {
   .home-header .shape {
     width: 23px;
     height: 23px;

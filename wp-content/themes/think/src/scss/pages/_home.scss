@@ -219,9 +219,182 @@
     .section-content {
         width: 50%;
     }
+
+    .home-header {
+        .shape {
+            width: 23px;
+            height: 23px;
+            top: 1px;
+            left: 20px;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            opacity: 0;
+            transform-origin: 50% 50%;
+            transform: scale(0);
+        }
+        .video {
+            .cover,
+            .iframe,
+            .wrapper-player {
+                opacity: 0;
+            }
+        }
+    }
+
+    .home-section {
+        &:nth-of-type(3) {
+            .shape {
+                top: 0;
+                left: 0;
+                opacity: 0;
+                transform: scale(0);
+            }
+            .s1 {
+                left: 58px;
+            }
+            .s3 {
+                left: 285px;
+            }
+            .s4 {
+                left: 244px;
+            }
+            .s5 {
+                left: 225px;
+            }
+            .s6 {
+                left: 320px;
+            }
+            .s7 {
+                left: 17px;
+            }
+            .s8 {
+                left: 118px;
+            }
+            .s9 {
+                left: 110px;
+            }
+            .s10 {
+                left: 180px;
+            }
+            .s11 {
+                left: 167px;
+            }
+        }
+    }
+
+    .plane-path {
+        display: block;
+        max-width: 56%;
+        height: 650px;
+        position: absolute;
+        bottom: 7em;
+        right: 50%;
+        .svg {
+            position: relative;
+            float: right;
+        }
+    }
+    .plane {
+        display: block;
+        width: 79px;
+        height: 48px;
+        position: absolute;
+        top: -24px;
+        left: -40px;
+        background: url(../../img/plane.png);
+    }
+
+    .morpion {
+        display: block;
+        width: 330px;
+        height: 330px;
+        position: absolute;
+        top: 10%;
+        right: 7.5%;
+        &.on {
+            &:before,
+            &:after,
+            .vertical:before,
+            .vertical:after {
+                transform: scale(1);
+            }
+        }
+        &:before,
+        &:after,
+        .vertical:before,
+        .vertical:after {
+            content: "";
+            position: absolute;
+            transform-origin: 0 0;
+            transform: scale(0);
+            transition: 0.5s ease-in;
+        }
+        &:before,
+        &:after {
+            height: 1px;
+            left: 0;
+            right: 0;
+            background: repeating-linear-gradient(
+                45deg,
+                $grey,
+                $grey 10px,
+                transparent 10px,
+                transparent 20px
+            );
+        }
+        &:before {
+            top: 33.3%;
+        }
+        &:after {
+            top: 66.6%;
+            transition-delay: 0.1s;
+        }
+        .vertical {
+            &:before,
+            &:after {
+                width: 1px;
+                top: 0;
+                bottom: 0;
+                background: repeating-linear-gradient(
+                    $grey,
+                    $grey 10px,
+                    transparent 10px,
+                    transparent 20px
+                );
+            }
+            &:before {
+                left: 33.3%;
+                transition-delay: 0.2s;
+            }
+            &:after {
+                left: 66.6%;
+                transition-delay: 0.3s;
+            }
+        }
+        .shape {
+            margin: 18px;
+            opacity: 0;
+            transform: scale(0);
+        }
+        .s2 {
+            top: 33.3%;
+            left: 33.3%;
+        }
+        .s3 {
+            top: 66.6%;
+        }
+        .s4 {
+            left: 66.6%;
+        }
+        .s5 {
+            top: 33.3%;
+            left: 66.6%;
+        }
+    }
 }
 
-@media (min-width: $desktop-small) and (min-height: 630px) {
+@media (min-height: 630px) {
     .home-header {
         .shape {
             width: 23px;

@@ -124,6 +124,20 @@
 }
 
 
+// gutemberg shitty styles shitty fix for edge
+.wp-block-gallery .blocks-gallery-image, .wp-block-gallery .blocks-gallery-item{
+    margin-right: 15px;
+}
+@media (min-width: 600px){
+    .wp-block-gallery.columns-3 .blocks-gallery-image, .wp-block-gallery.columns-3 .blocks-gallery-item {
+        margin-right: 15px;
+    }
+}
+.wp-block-gallery .blocks-gallery-image:last-child, .wp-block-gallery .blocks-gallery-item:last-child{
+    margin-right: 0;
+}
+//
+
 @media (min-width: $tablet){
     .wp-block-columns{
         display: flex;
