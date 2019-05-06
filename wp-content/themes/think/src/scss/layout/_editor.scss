@@ -30,10 +30,10 @@
         float: none;
     }
     // and another one for ie11
-    .alignleft, .alignright, &.is-resized{
-        width: 100%;
-        table-layout: fixed;
-    }
+    // .alignleft, .alignright, &.is-resized{
+    //     width: 100%;
+    //     table-layout: fixed;
+    // }
     figcaption{
         padding: 5px 0 0 $gutter;
         font-size: 1.8rem;
@@ -222,7 +222,7 @@
 
 @media (min-width: $desktop) {
     .wp-block-image {
-        .col-3-dek &{
+        .col-3-desk &{
             width: calc(129% + #{$gutter});
         }
     }
@@ -246,8 +246,11 @@
 
 @media (min-width: $desktop-huge) {
     .wp-block-image {
-        .col-3-dek &{
-            width: calc(133.33% + #{$gutter});
+        .col-3-desk &{
+            width: calc(133.33% + #{$gutter*2});
+        }
+        &.alignwide{
+            margin-left: -$gutter;
         }
     }
 }

@@ -407,27 +407,19 @@ a {
         }
     }
 
-    .shape {
-        display: block;
-        width: 75px;
-        height: 75px;
-        position: absolute;
-        pointer-events: none;
+    @media (min-height: 630px) {
+        .shape {
+            display: block;
+            width: 75px;
+            height: 75px;
+            position: absolute;
+            pointer-events: none;
+        }
     }
 }
 
 @media (min-width: $desktop) {
     .intro-big {
         width: $col * 3;
-    }
-}
-
-@media (min-height: 630px) {
-    .shape {
-        display: block;
-        width: 75px;
-        height: 75px;
-        position: absolute;
-        pointer-events: none;
     }
 }
