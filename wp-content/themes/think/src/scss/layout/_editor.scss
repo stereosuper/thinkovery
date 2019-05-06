@@ -29,6 +29,11 @@
         margin: 0;
         float: none;
     }
+    // and another one for ie11
+    .alignleft, .alignright, &.is-resized{
+        width: 100%;
+        table-layout: fixed;
+    }
     figcaption{
         padding: 5px 0 0 $gutter;
         font-size: 1.8rem;
@@ -135,11 +140,6 @@
 }
 .wp-block-gallery .blocks-gallery-image:last-child, .wp-block-gallery .blocks-gallery-item:last-child{
     margin-right: 0;
-}
-// and another one for ie11
-.wp-block-image .aligncenter, .wp-block-image .alignleft, .wp-block-image .alignright, .wp-block-image.is-resized{
-    width: 100%;
-    table-layout: fixed;
 }
 
 @media (min-width: $tablet){

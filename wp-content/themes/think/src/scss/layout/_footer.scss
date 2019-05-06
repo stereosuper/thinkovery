@@ -1,12 +1,8 @@
 /* Footer */
 
 .main-footer {
-    margin: 7.5em 0 0;
     .no-js & {
         opacity: 1 !important;
-    }
-    .home & {
-        margin-top: 0;
     }
     a:not(.btn) {
         color: inherit;
