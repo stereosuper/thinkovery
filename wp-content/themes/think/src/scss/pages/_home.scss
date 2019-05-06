@@ -155,14 +155,6 @@
     }
 }
 
-@media (min-width: $desktop-small) and (max-height: $desktop-big-v) {
-    .home {
-        .main {
-            padding-top: 0;
-        }
-    }
-}
-
 @media (min-width: $desktop-small) {
     .home-header,
     .home-section {
@@ -220,7 +212,7 @@
         width: 50%;
     }
 
-    @media (min-height: 630px) {
+    @media (min-height: $desktop-v) {
         .home-header {
             .shape {
                 width: 23px;
@@ -392,6 +384,13 @@
                 top: 33.3%;
                 left: 66.6%;
             }
+        }
+    }
+
+    @media (max-height: $desktop-big-v) {
+        .home-header {
+            margin-top: -4em;
+            margin-bottom: 4em;
         }
     }
 }
