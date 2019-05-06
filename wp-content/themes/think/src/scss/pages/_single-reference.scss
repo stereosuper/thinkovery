@@ -93,6 +93,10 @@
         align-items: center;
         background: $tertiary;
         color: #fff;
+        &:hover,
+        &:focus {
+            background: $quaternary;
+        }
     }
 }
 .ref-share-list{

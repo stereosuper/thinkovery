@@ -2899,6 +2899,8 @@ label {
             align-items: center;
     background: #df622d;
     color: #fff; }
+    .ref-share a:hover, .ref-share a:focus {
+      background: #f8ba41; }
 
 .ref-share-list {
   display: -webkit-box;
