@@ -727,6 +727,10 @@ const minionsHandler = () => {
             (video.getBoundingClientRect().top + video.offsetHeight / 2) -
             window.scrollY;
 
+        if (scrollDowninterval) {
+            clearInterval(scrollDowninterval);
+        }
+
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(() => {
             if (getComputedStyle(minions[0]).display !== 'none') {

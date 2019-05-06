@@ -11636,6 +11636,11 @@ var minionsHandler = function minionsHandler() {
     wh = window.innerHeight;
     ww = window.innerWidth;
     headerBottom = wh - (video.getBoundingClientRect().top + video.offsetHeight / 2) - window.scrollY;
+
+    if (scrollDowninterval) {
+      clearInterval(scrollDowninterval);
+    }
+
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(function () {
       if (getComputedStyle(minions[0]).display !== 'none') {
