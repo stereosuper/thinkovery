@@ -289,7 +289,7 @@ function think_register_required_plugins(){
             'slug'        => 'stereoberg',
             'source'     => get_template_directory_uri() . '/plugins/stereoberg.zip',
             'required'    => true,
-            'version' => '1.0.6',
+            'version' => '1.0.7',
             'force_activation' => false
         ),
         array(
