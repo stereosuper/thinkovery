@@ -3,6 +3,23 @@
     "title": "[options] Général",
     "fields": [
         {
+            "key": "field_5cd1498f1e48b",
+            "label": "Les classes gutenberg",
+            "name": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "small: largeur du bloc à 50%\r\nmedium: largeur du bloc à 75%\r\ncenter: bloc centré\r\nright: bloc ferré à droite\r\nsteps: à ajouter sur les blocs de colonne des catégories, pour un affichage responsive optimal",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
             "key": "field_5c9ce7d723dbd",
             "label": "Téléphone",
             "name": "tel",
@@ -150,5 +167,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1555428316
+    "modified": 1557219851
 }

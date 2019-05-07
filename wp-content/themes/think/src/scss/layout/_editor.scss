@@ -128,6 +128,13 @@
     }
 }
 
+.wp-block-stereoberg-step{
+    width: 25%;
+    padding: 0 $gutter;
+    float: right;
+    clear: none;
+}
+
 
 // gutemberg shitty styles shitty fix for edge
 .wp-block-gallery .blocks-gallery-image, .wp-block-gallery .blocks-gallery-item{
@@ -145,6 +152,9 @@
 @media (min-width: $tablet){
     .wp-block-columns{
         display: flex;
+        &.steps, .steps &{
+            display: block;
+        }
     }
     .wp-block-column{
         &:not(:first-child), &:nth-child(2n){
@@ -152,6 +162,20 @@
         }
         &:not(:last-child), &:nth-child(odd){
             margin-right: $gutter;
+        }
+        .steps &{
+            max-width: $col*3;
+            margin-left: auto;
+            margin-right: auto;
+            &:not(:first-child), &:nth-child(2n){
+                margin-left: auto;
+            }
+            &:not(:last-child), &:nth-child(odd){
+                margin-right: auto;
+            }
+            .wp-block-column{
+                max-width: 100%;
+            }
         }
     }
 
@@ -221,6 +245,22 @@
 }
 
 @media (min-width: $desktop) {
+    .wp-block-columns{
+        &.steps, .steps &{
+            display: flex;
+        }
+    }
+    .wp-block-column{
+        .steps &{
+            &:not(:first-child), &:nth-child(2n){
+                margin-left: $gutter;
+            }
+            &:not(:last-child), &:nth-child(odd){
+                margin-right: $gutter;
+            }
+        }
+    }
+
     .wp-block-image {
         .col-3-desk &{
             width: calc(129% + #{$gutter});
