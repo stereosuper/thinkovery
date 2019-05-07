@@ -1,7 +1,22 @@
 .wp-block-gallery{
+    margin-top: $line-height*2;
+    margin-bottom: $line-height*2;
     > li{
         &:before{
             content: none;
         }
     }
+}
+
+// gutemberg shitty styles shitty fix for edge
+.wp-block-gallery .blocks-gallery-image, .wp-block-gallery .blocks-gallery-item{
+    margin-right: 15px;
+}
+@media (min-width: 600px){
+    .wp-block-gallery.columns-3 .blocks-gallery-image, .wp-block-gallery.columns-3 .blocks-gallery-item {
+        margin-right: 15px;
+    }
+}
+.wp-block-gallery .blocks-gallery-image:last-child, .wp-block-gallery .blocks-gallery-item:last-child{
+    margin-right: 0;
 }
