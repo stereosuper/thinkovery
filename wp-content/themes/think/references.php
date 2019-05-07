@@ -28,6 +28,33 @@ $source_company = get_field('references_source_company');
                     <li class='references-item'>
                         <a href='<?php the_permalink(); ?>' title='<?php the_title(); ?>'>
                             <?php echo wp_get_attachment_image(get_field('logo'), 'full'); ?>
+                            <?php
+                                $cats = get_the_terms($post, 'reference_cat');
+                                if( $cats ) : ?>
+                                    <div class='icons'>
+                                    <?php foreach( $cats as $cat ) :
+                                        switch( $cat->slug ){
+                                            case 'communication':
+                                                echo '<svg class="icon"><use href="#icon-rectangle"/></svg>';
+                                                break;
+                                            case 'conseil':
+                                                echo '<svg class="icon"><use href="#icon-drop"/></svg>';
+                                                break;
+                                            case 'conception':
+                                                echo '<svg class="icon"><use href="#icon-square"/></svg>';
+                                                break;
+                                            case 'evaluation':
+                                                echo '<svg class="icon"><use href="#icon-circle"/></svg>';
+                                                break;
+                                            case 'realisation':
+                                                echo '<svg class="icon"><use href="#icon-triangle"/></svg>';
+                                                break;
+                                        }
+                                    endforeach; ?>
+                                    </div>
+                                <?php endif;
+                            ?>
+                            <div class='top'></div><div class='bot'></div><div class='left'></div>
                         </a>
                     </li>
                     <?php if ($references_index === 7 && $quote): ?>
