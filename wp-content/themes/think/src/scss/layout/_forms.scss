@@ -22,22 +22,34 @@ textarea {
     padding: 16px 15px 10px;
     border: 0;
     font-size: 1.6rem;
-    background: $bg-color;
+    background: #fff;
     transition: $transition;
     &:invalid {
         // FF red borders
         box-shadow: none;
     }
+    &:focus{
+        background: rgba(#fff, 0.9);
+    }
 }
 
 input {
+    width: 380px;
     // hide the symbols of input search
-    &[type="search"] {
+    &[type=email]{
+        width: 330px;
+    }
+    &[type=search] {
         &::-webkit-search-cancel-button,
         &::-webkit-search-decoration {
             display: none;
         }
     }
+}
+
+textarea{
+    width: 100%;
+    height: 200px;
 }
 
 select {
@@ -55,8 +67,16 @@ label {
     font-size: 1.6rem;
 }
 
+.field-flex{
+    display: flex;
+    .field{
+        margin-right: 12px;
+    }
+}
+
 .field {
     position: relative;
+    margin: 0 0 12px;
     > label {
         position: absolute;
         top: 12px;
@@ -72,9 +92,6 @@ label {
             + label {
                 transform: scale(0.7) translate3d(0, -14px, 0);
             }
-        }
-        &:focus{
-            background: rgba($bg-color, 0.7);
         }
     }
 }

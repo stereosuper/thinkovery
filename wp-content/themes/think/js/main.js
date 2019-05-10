@@ -10615,7 +10615,7 @@ var formHandler = function formHandler() {
 
   Object(_utils__WEBPACK_IMPORTED_MODULE_0__["forEach"])(forms, function (form) {
     Object(_utils__WEBPACK_IMPORTED_MODULE_0__["forEach"])(form.querySelectorAll('.field'), function (field) {
-      field.querySelector('input').addEventListener('input', placeLabels);
+      field.querySelector('input, textarea').addEventListener('input', placeLabels);
     });
   });
 };

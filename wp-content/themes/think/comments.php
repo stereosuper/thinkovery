@@ -56,35 +56,38 @@
 
 			<?php if( !$user_ID ) : ?>
 
-				<div class='field field-block'>
+				<div class='field'>
 					<input type='text' name='author' id='author' value='<?php echo $comment_author; ?>' required>
 					<label for='author' class='required'>
 						<?php _e('Name', 'thinkovery'); ?>*
 					</label>
 				</div>
-				<div class='field p-right'>
-					<input type='email' name='email' id='email' value='<?php echo $comment_author_email; ?>' required>
-					<label for='email' class='required'>
-						<?php _e('Email', 'thinkovery'); ?>*
-					</label>
-				</div><div class='field'>
-					<input type='url' name='url' id='url' value='<?php echo $comment_author_url; ?>'>
-					<label for='url'>
-						<?php _e('Website', 'thinkovery'); ?> <i>(<?php _e('optionnal', 'thinkovery'); ?>)</i>
-					</label>
+				<div class='field-flex'>
+					<div class='field'>
+						<input type='email' name='email' id='email' value='<?php echo $comment_author_email; ?>' required>
+						<label for='email' class='required'>
+							<?php _e('Email', 'thinkovery'); ?>*
+						</label>
+					</div>
+					<div class='field'>
+						<input type='url' name='url' id='url' value='<?php echo $comment_author_url; ?>'>
+						<label for='url'>
+							<?php _e('Website', 'thinkovery'); ?> <i>(<?php _e('optionnal', 'thinkovery'); ?>)</i>
+						</label>
+					</div>
 				</div>
 
 			<?php endif; ?>
 
-			<div class='field-full'>
+			<div class='field'>
 				<textarea name='comment' id='comment' required></textarea>
 				<label for='comment' class='required'>
 					<?php _e('Comment', 'thinkovery'); ?>*
 				</label>
 			</div>
 
-			<button name='submit' type='submit' class='btn btn-medium'>
-				<?php _e('Send', 'thinkovery'); ?><svg class='icon'><use xlink:href='#icon-arrow-right'/></svg><i></i>
+			<button name='submit' type='submit' class='btn'>
+				<?php _e('Send', 'thinkovery'); ?>
 			</button>
 			<input type='hidden' name='comment_post_ID' value='<?php echo $id; ?>'/>
 

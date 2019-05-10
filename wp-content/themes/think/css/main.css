@@ -531,16 +531,27 @@ textarea {
   padding: 16px 15px 10px;
   border: 0;
   font-size: 1.6rem;
-  background: #f7f2ea;
+  background: #fff;
   -webkit-transition: 0.05s ease-in-out;
   transition: 0.05s ease-in-out; }
   input:invalid,
   textarea:invalid {
     -webkit-box-shadow: none;
             box-shadow: none; }
+  input:focus,
+  textarea:focus {
+    background: rgba(255, 255, 255, 0.9); }
 
-input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration {
-  display: none; }
+input {
+  width: 380px; }
+  input[type=email] {
+    width: 330px; }
+  input[type=search]::-webkit-search-cancel-button, input[type=search]::-webkit-search-decoration {
+    display: none; }
+
+textarea {
+  width: 100%;
+  height: 200px; }
 
 select::-ms-expand {
   display: none; }
@@ -551,8 +562,16 @@ button {
 label {
   font-size: 1.6rem; }
 
+.field-flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+  .field-flex .field {
+    margin-right: 12px; }
+
 .field {
-  position: relative; }
+  position: relative;
+  margin: 0 0 12px; }
   .field > label {
     position: absolute;
     top: 12px;
@@ -568,9 +587,6 @@ label {
   .field textarea.active + label {
     -webkit-transform: scale(0.7) translate3d(0, -14px, 0);
             transform: scale(0.7) translate3d(0, -14px, 0); }
-  .field input:focus,
-  .field textarea:focus {
-    background: rgba(247, 242, 234, 0.7); }
 
 /* Header */
 .logo-loader {
@@ -2372,16 +2388,17 @@ label {
     .newsletter-post .newsletter-input-hidden label {
       color: #fff;
       opacity: 1; }
-  .newsletter-post input {
-    background: #fff; }
-    .newsletter-post input:focus {
-      background: rgba(255, 255, 255, 0.9); }
   .newsletter-post label {
     color: #404040;
     opacity: 0.4; }
 
+.newsletter-footer input {
+  background: #f7f2ea; }
+  .newsletter-footer input:focus {
+    background: rgba(247, 242, 234, 0.7); }
+
 @media (min-width: 400px) {
-  .main-footer .newsletter-fields .field {
+  .newsletter-footer .newsletter-fields .field {
     width: calc(50% - 3px); } }
 
 @media (min-width: 580px) {
@@ -2399,6 +2416,8 @@ label {
     .newsletter-fields .field {
       width: auto;
       margin: 0 6px 0 0; }
+      .newsletter-footer .newsletter-fields .field {
+        width: auto; }
   .newsletter-post .newsletter-title {
     font-size: 5.5rem; } }
 

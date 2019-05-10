@@ -11,7 +11,7 @@ const formHandler = () => {
 
     forEach(forms, form => {
         forEach(form.querySelectorAll('.field'), field => {
-            field.querySelector('input').addEventListener('input', placeLabels);
+            field.querySelector('input, textarea').addEventListener('input', placeLabels);
         });
     });
 };

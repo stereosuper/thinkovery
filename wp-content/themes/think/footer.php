@@ -4,7 +4,7 @@
             <div class='newsletter-container'>
                 <div class='container'>
                     <?php $news = get_field('newsletter', 'options'); if( $news['newsletterTitle'] ):  ?>
-                        <div class='newsletter' id='newsletter'>
+                        <div class='newsletter newsletter-footer' id='newsletter'>
                             <p class='newsletter-title'><?php echo $news['newsletterTitle']; ?></p>
                             <p><?php echo $news['newsletterSubtitle']; ?></p>
                             

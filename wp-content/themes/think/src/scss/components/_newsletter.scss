@@ -67,21 +67,24 @@
             opacity: 1;
         }
     }
-    input{
-        background: #fff;
-        &:focus{
-            background: rgba(#fff, 0.9);
-        }
-    }
     label{
         color: $text-color;
         opacity: 0.4;
     }
 }
 
+.newsletter-footer{
+    input{
+        background: $bg-color;
+        &:focus{
+            background: rgba($bg-color, 0.7);
+        }
+    }
+}
+
 
 @media (min-width: $phone-small){
-    .main-footer{
+    .newsletter-footer{
         .newsletter-fields{
             .field{
                 width: calc(50% - 3px);
@@ -109,6 +112,9 @@
         .field{
             width: auto;
             margin: 0 6px 0 0;
+            .newsletter-footer &{
+                width: auto;
+            }
         }
     }
 
