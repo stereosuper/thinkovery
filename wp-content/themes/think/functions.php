@@ -27,12 +27,6 @@ add_theme_support( 'title-tag' );
 // Admin bar
 show_admin_bar(false);
 
-// Disable Tags
-function think_unregister_tags(){
-    unregister_taxonomy_for_object_type('post_tag', 'post');
-}
-add_action( 'init', 'think_unregister_tags' );
-
 
 /*-----------------------------------------------------------------------------------*/
 /* Clean WordPress head and remove some stuff for security
@@ -72,7 +66,6 @@ add_filter( 'login_errors', 'think_login_errors' );
 // Remove some useless admin stuff
 function think_remove_submenus() {
   $page = remove_submenu_page( 'themes.php', 'themes.php' );
-  remove_menu_page( 'edit-comments.php' );
 }
 add_action( 'admin_menu', 'think_remove_submenus', 999 );
 function think_remove_top_menus( $wp_admin_bar ){
@@ -247,8 +240,15 @@ function think_taxonomies(){
         'show_in_rest' => true
     ) );
     register_taxonomy( 'reference_cat', array('reference'), array(
-        'label' => 'Categories',
-        'singular_label' => 'Categorie',
+        'label' => 'Secteurs',
+        'singular_label' => 'Secteur',
+        'hierarchical' => true,
+        'show_admin_column' => true,
+        'show_in_rest' => true
+    ) );
+    register_taxonomy( 'sector', array('post'), array(
+        'label' => 'Secteurs',
+        'singular_label' => 'Secteur',
         'hierarchical' => true,
         'show_admin_column' => true,
         'show_in_rest' => true

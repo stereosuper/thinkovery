@@ -11,7 +11,7 @@
 			</div>
 		</div>
 
-		<div class='ref-tags'>
+		<div class='tags ref-tags'>
 			<?php
 				$tags = wp_get_object_terms( get_the_ID(), 'reference_tag' );
 				foreach( $tags as $tag ){

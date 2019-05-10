@@ -247,6 +247,10 @@
         .col-3-desk &{
             width: calc(129% + #{$gutter});
         }
+        .single-post &{
+            width: calc(100% + #{$gutter*2});
+            margin-left: -$gutter;
+        }
     }
 
     .wp-block-columns{
@@ -270,6 +274,10 @@
     .wp-block-image {
         .col-3-desk &{
             width: calc(133.33% + #{$gutter*2});
+        }
+        .single-post &{
+            width: calc(100% + #{$gutter*2});
+            margin-left: -$gutter;
         }
         &.alignwide{
             margin-left: -$gutter;
