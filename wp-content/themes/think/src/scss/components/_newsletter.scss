@@ -1,0 +1,137 @@
+.newsletter-container {
+    padding: 40px 0;
+    background: $white;
+}
+
+.newsletter{
+    p {
+        margin-top: 0;
+    }
+    .mc4wp-form {
+        margin: 20px 0 0;
+    }
+}
+
+.newsletter-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: $primary;
+}
+
+.newsletter-fields{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    label {
+        pointer-events: none;
+    }
+    input{
+        width: 100%;
+    }
+    .field {
+        width: 100%;
+        margin: 0 0 6px;
+    }
+}
+
+.newsletter-input-hidden {
+    display: none;
+    padding: 10px 0 0;
+    line-height: 1.2;
+    &.visible{
+        display: block;
+    }
+    label{
+        font-size: 1.2rem;
+    }
+}
+
+.newsletter-post{
+    padding: $line-height 40px 40px;
+    margin: 5em 0 0;
+    background: $primary;
+    color: #fff;
+    .newsletter-title{
+        font-size: 3rem;
+        font-weight: 700;
+        line-height: 1.1;
+        color: #fff;
+    }
+    .mc4wp-form{
+        margin: $line-height*1.5 0 0;
+    }
+    .newsletter-input-hidden {
+        max-width: 100%;
+        label{
+            color: #fff;
+            opacity: 1;
+        }
+    }
+    input{
+        background: #fff;
+        &:focus{
+            background: rgba(#fff, 0.9);
+        }
+    }
+    label{
+        color: $text-color;
+        opacity: 0.4;
+    }
+}
+
+
+@media (min-width: $phone-small){
+    .main-footer{
+        .newsletter-fields{
+            .field{
+                width: calc(50% - 3px);
+            }
+        }
+    }
+}
+
+@media (min-width: $phone){
+    .newsletter-post{
+        padding: $line-height 60px 40px;
+        margin-top: 10em;
+    }
+
+    .newsletter-fields{
+        .field{
+            width: calc(50% - 3px);
+        }
+    }
+}
+
+@media (min-width: $tablet){
+    .newsletter-fields{
+        justify-content: flex-start;
+        .field{
+            width: auto;
+            margin: 0 6px 0 0;
+        }
+    }
+
+    .newsletter-post{
+        .newsletter-title{
+            font-size: 5.5rem;
+        }
+    }
+}
+
+@media (min-width: $desktop-small){
+    .newsletter-fields{
+        input{
+            width: 205px;
+            &[type=email]{
+                width: 290px;
+            }
+        }
+    }
+}
+
+@media (min-width: $desktop){
+    .newsletter-input-hidden{
+        max-width: 55%;
+    }
+}

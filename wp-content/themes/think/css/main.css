@@ -572,55 +572,6 @@ label {
   .field textarea:focus {
     background: rgba(247, 242, 234, 0.7); }
 
-.newsletter {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between; }
-  .newsletter label {
-    pointer-events: none; }
-  .newsletter input {
-    width: 100%; }
-  .newsletter .field {
-    width: 100%;
-    margin: 0 0 6px; }
-
-.newsletter-input-hidden {
-  display: none;
-  padding: 10px 0 0;
-  line-height: 1.2; }
-  .newsletter-input-hidden.visible {
-    display: block; }
-  .newsletter-input-hidden label {
-    font-size: 1.2rem; }
-
-@media (min-width: 400px) {
-  .newsletter .field {
-    width: calc(50% - 3px); } }
-
-@media (min-width: 780px) {
-  .newsletter {
-    -webkit-box-pack: start;
-        -ms-flex-pack: start;
-            justify-content: flex-start; }
-    .newsletter .field {
-      width: auto;
-      margin: 0 6px 0 0; } }
-
-@media (min-width: 960px) {
-  .newsletter input {
-    width: 205px; }
-    .newsletter input[type=email] {
-      width: 290px; } }
-
-@media (min-width: 1100px) {
-  .newsletter-input-hidden {
-    max-width: 55%; } }
-
 /* Header */
 .logo-loader {
   position: absolute;
@@ -1084,21 +1035,6 @@ label {
 .main-footer .container {
   position: relative; }
 
-.newsletter-container {
-  padding: 40px 0;
-  background: #fff; }
-
-.newsletter-footer p {
-  margin-top: 0; }
-
-.newsletter-footer .mc4wp-form {
-  margin: 20px 0 0; }
-
-.newsletter-title {
-  font-size: 2.2rem;
-  font-weight: 700;
-  color: #1e5e32; }
-
 .footer-contact {
   padding: 35px 44px 30px;
   margin: 2em 0 -5em;
@@ -1537,15 +1473,13 @@ label {
   padding: 45px 30px;
   margin: 0 0 28px;
   background: #fff; }
-  .post:first-child {
+  .post:first-child:not(.simple) {
     background: #65a3da;
     color: #fff; }
-    .post:first-child h2 {
+    .post:first-child:not(.simple) h2 {
       font-size: 5.6rem; }
-    .post:first-child a, .post:first-child .post-duration {
+    .post:first-child:not(.simple) a, .post:first-child:not(.simple) .post-duration {
       color: #fff; }
-  .related-posts .post {
-    width: 48.5%; }
   .post h2, .post h3 {
     margin: 28px 0 0;
     font-size: 2.6rem; }
@@ -1614,6 +1548,8 @@ label {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   font-size: 1.6rem; }
+  .single-post .tags {
+    margin-top: 56px; }
   .tags > span, .tags > a {
     display: block;
     padding: 1px 10px 3px;
@@ -1625,11 +1561,27 @@ label {
   .tags > a:hover, .tags > a:focus {
     opacity: 0.7; }
 
+.related-posts h2 {
+  text-align: center; }
+
+.related-posts > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 56px 0 0;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap; }
+
 @media (min-width: 780px) {
   .post {
     width: 48.5%; }
     .post:first-child {
-      width: 100%; } }
+      width: 100%; }
+    .related-posts .post {
+      width: 48.5%; } }
 
 @media (min-width: 1100px) {
   .post {
@@ -1637,7 +1589,9 @@ label {
     .post:nth-child(5n), .post:nth-child(5n + 1) {
       width: 48.5%; }
     .post:first-child {
-      width: 100%; } }
+      width: 100%; }
+    .related-posts .post {
+      width: 48.5%; } }
 
 /* Buttons */
 .btn {
@@ -2359,6 +2313,104 @@ label {
 @media (min-width: 780px) {
   .wp-block-stereoberg-video:before {
     padding: 0 0 23%; } }
+
+.newsletter-container {
+  padding: 40px 0;
+  background: #fff; }
+
+.newsletter p {
+  margin-top: 0; }
+
+.newsletter .mc4wp-form {
+  margin: 20px 0 0; }
+
+.newsletter-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #1e5e32; }
+
+.newsletter-fields {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between; }
+  .newsletter-fields label {
+    pointer-events: none; }
+  .newsletter-fields input {
+    width: 100%; }
+  .newsletter-fields .field {
+    width: 100%;
+    margin: 0 0 6px; }
+
+.newsletter-input-hidden {
+  display: none;
+  padding: 10px 0 0;
+  line-height: 1.2; }
+  .newsletter-input-hidden.visible {
+    display: block; }
+  .newsletter-input-hidden label {
+    font-size: 1.2rem; }
+
+.newsletter-post {
+  padding: 28px 40px 40px;
+  margin: 5em 0 0;
+  background: #1e5e32;
+  color: #fff; }
+  .newsletter-post .newsletter-title {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.1;
+    color: #fff; }
+  .newsletter-post .mc4wp-form {
+    margin: 42px 0 0; }
+  .newsletter-post .newsletter-input-hidden {
+    max-width: 100%; }
+    .newsletter-post .newsletter-input-hidden label {
+      color: #fff;
+      opacity: 1; }
+  .newsletter-post input {
+    background: #fff; }
+    .newsletter-post input:focus {
+      background: rgba(255, 255, 255, 0.9); }
+  .newsletter-post label {
+    color: #404040;
+    opacity: 0.4; }
+
+@media (min-width: 400px) {
+  .main-footer .newsletter-fields .field {
+    width: calc(50% - 3px); } }
+
+@media (min-width: 580px) {
+  .newsletter-post {
+    padding: 28px 60px 40px;
+    margin-top: 10em; }
+  .newsletter-fields .field {
+    width: calc(50% - 3px); } }
+
+@media (min-width: 780px) {
+  .newsletter-fields {
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start; }
+    .newsletter-fields .field {
+      width: auto;
+      margin: 0 6px 0 0; }
+  .newsletter-post .newsletter-title {
+    font-size: 5.5rem; } }
+
+@media (min-width: 960px) {
+  .newsletter-fields input {
+    width: 205px; }
+    .newsletter-fields input[type=email] {
+      width: 290px; } }
+
+@media (min-width: 1100px) {
+  .newsletter-input-hidden {
+    max-width: 55%; } }
 
 /* Home specific style */
 .home-header,

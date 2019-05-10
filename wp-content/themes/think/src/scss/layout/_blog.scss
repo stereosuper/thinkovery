@@ -44,7 +44,7 @@
     padding: 45px 30px;
     margin: 0 0 $line-height;
     background: #fff;
-    &:first-child{
+    &:first-child:not(.simple){
         background: $secondary;
         color: #fff;
         h2{
@@ -53,9 +53,6 @@
         a, .post-duration{
             color: #fff;
         }
-    }
-    .related-posts &{
-        width: 48.5%;
     }
     h2, h3{
         margin: $line-height 0 0;
@@ -130,6 +127,9 @@
     margin: $line-height 0 0;
     flex-wrap: wrap;
     font-size: 1.6rem;
+    .single-post &{
+        margin-top: $line-height*2;
+    }
     > span, > a{
         display: block;
         padding: 1px 10px 3px;
@@ -146,12 +146,27 @@
     }
 }
 
+.related-posts{
+    h2{
+        text-align: center;
+    }
+    > div{
+        display: flex;
+        justify-content: space-between;
+        margin: $line-height*2 0 0;
+        flex-wrap: wrap;
+    }
+}
+
 
 @media (min-width: $tablet){
     .post{
         width: 48.5%;
         &:first-child{
             width: 100%;
+        }
+        .related-posts &{
+            width: 48.5%;
         }
     }
 }
@@ -164,6 +179,9 @@
         }
         &:first-child{
             width: 100%;
+        }
+        .related-posts &{
+            width: 48.5%;
         }
     }
 }

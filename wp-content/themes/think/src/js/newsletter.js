@@ -19,25 +19,29 @@ if (!Element.prototype.closest) {
 }
 
 const newsletterHandler = () => {
-    const form = document.getElementById('newsletter-form');
+    const forms = document.querySelectorAll('form');
 
-    if( !form.length ) return;
+    if( !forms.length ) return;
 
-    const hiddenInput = form.querySelector('.gdpr');
+    forEach(forms, form => {
+        const hiddenInput = form.querySelector('.gdpr');
 
-    const displayHiddenInput = () => {
-        hiddenInput.classList.add('visible');
-    };
+        if( !hiddenInput ) return;
 
-    const hideHiddenInput = (e) => {
-        if( !e.target.closest('#newsletter-form') && !hiddenInput.querySelector('input').checked ) hiddenInput.classList.remove('visible');
-    };
+        const displayHiddenInput = () => {
+            hiddenInput.classList.add('visible');
+        };
 
-    forEach(form.querySelectorAll('input'), input =>{
-        input.addEventListener('focus', displayHiddenInput);
+        const hideHiddenInput = (e) => {
+            if( !e.target.closest('form') && !hiddenInput.querySelector('input').checked ) hiddenInput.classList.remove('visible');
+        };
+
+        forEach(form.querySelectorAll('input'), input => {
+            input.addEventListener('focus', displayHiddenInput);
+        });
+
+        document.addEventListener('click', hideHiddenInput);
     });
-
-    document.addEventListener('click', hideHiddenInput);
 };
 
 export default newsletterHandler;

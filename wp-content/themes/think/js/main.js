@@ -11690,22 +11690,25 @@ if (!Element.prototype.closest) {
 }
 
 var newsletterHandler = function newsletterHandler() {
-  var form = document.getElementById('newsletter-form');
-  if (!form.length) return;
-  var hiddenInput = form.querySelector('.gdpr');
+  var forms = document.querySelectorAll('form');
+  if (!forms.length) return;
+  Object(_utils__WEBPACK_IMPORTED_MODULE_0__["forEach"])(forms, function (form) {
+    var hiddenInput = form.querySelector('.gdpr');
+    if (!hiddenInput) return;
 
-  var displayHiddenInput = function displayHiddenInput() {
-    hiddenInput.classList.add('visible');
-  };
+    var displayHiddenInput = function displayHiddenInput() {
+      hiddenInput.classList.add('visible');
+    };
 
-  var hideHiddenInput = function hideHiddenInput(e) {
-    if (!e.target.closest('#newsletter-form') && !hiddenInput.querySelector('input').checked) hiddenInput.classList.remove('visible');
-  };
+    var hideHiddenInput = function hideHiddenInput(e) {
+      if (!e.target.closest('form') && !hiddenInput.querySelector('input').checked) hiddenInput.classList.remove('visible');
+    };
 
-  Object(_utils__WEBPACK_IMPORTED_MODULE_0__["forEach"])(form.querySelectorAll('input'), function (input) {
-    input.addEventListener('focus', displayHiddenInput);
+    Object(_utils__WEBPACK_IMPORTED_MODULE_0__["forEach"])(form.querySelectorAll('input'), function (input) {
+      input.addEventListener('focus', displayHiddenInput);
+    });
+    document.addEventListener('click', hideHiddenInput);
   });
-  document.addEventListener('click', hideHiddenInput);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (newsletterHandler);

@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<article class='container signle-post'>
+<article class='container'>
 
 	<?php if ( have_posts() ) : the_post(); ?>
 
@@ -48,6 +48,15 @@
 		<?php get_template_part('includes/post-related'); ?>
 		
 		<div class='col-3-desk'>
+			<?php $news = get_field('newsletter', 'options'); if( $news['newsletterTitle'] ):  ?>
+				<div class='newsletter newsletter-post' id='newsletter-post'>
+					<p class='newsletter-title'><?php echo $news['newsletterTitle']; ?></p>
+					<p><?php echo $news['newsletterSubtitle']; ?></p>
+								
+					<?php echo do_shortcode('[mc4wp_form id="2057048" element_id="newsletter-post-form"]'); ?>
+				</div>
+			<?php endif; ?>
+			
 			<div class='comments'><?php comments_template(); ?></div>
 		</div>
 	

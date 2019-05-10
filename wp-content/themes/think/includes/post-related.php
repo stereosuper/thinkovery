@@ -23,10 +23,10 @@
 		));
 
 		if ($relatedQuery->have_posts()) {
-			echo '<div class="related-posts"><h2>' . __('Related Posts', 'thinkovery') . '</h2>';
+			echo '<div class="related-posts"><h2>' . __('Related Posts', 'thinkovery') . '</h2><div>';
 			while( $relatedQuery->have_posts() ) : $relatedQuery->the_post(); ?>
-				<div class='post'>
-                    <div>
+				<div class='post simple'>
+                    <div class='cats'>
                         <?php $cats = get_the_category(); if( $cats ){
                             $count = 0;
                             foreach( $cats as $cat ){
@@ -57,7 +57,7 @@
                     </div>
 				</div>
 			<?php endwhile;
-			echo '</div>';
+			echo '</div></div>';
 		}
 	}
 
