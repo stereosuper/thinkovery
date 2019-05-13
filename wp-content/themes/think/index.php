@@ -22,7 +22,7 @@
 								$count = 0;
 								foreach( $cats as $cat ){
 									$count ++;
-									if( $count > 1 ) echo ' - ';
+									if( $count > 1 ) echo ' <br>';
 									echo '<a href="' . get_category_link( $cat->term_id ) . '">' . $cat->cat_name . '</a>';
 								}
 							} ?>

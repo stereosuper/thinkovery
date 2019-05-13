@@ -15,6 +15,9 @@ import video from './video';
 import minions from './minions';
 import learningAnim from './learningAnim';
 
+import collant from 'collant';
+import imagesLoaded from 'imagesloaded';
+
 const state = {
     preloaded: false,
     loaded: false,
@@ -61,6 +64,13 @@ const load = () => {
     if (sessionStorage.getItem('loaded')) {
         animationHandler();
     }
+
+    // blog sticky share
+    imagesLoaded( document.getElementById('article'), () => {
+        collant(document.getElementById('share'), 0, {
+            minimumWidth: 1100
+        });
+    } );
 };
 
 preload();

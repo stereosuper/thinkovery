@@ -3,7 +3,9 @@
     "version": "0.0.0",
     "main": "index.js",
     "dependencies": {
+        "collant": "^1.2.1",
         "gsap": "^2.1.2",
+        "imagesloaded": "^4.1.4",
         "intersection-observer": "^0.5.1"
     },
     "devDependencies": {

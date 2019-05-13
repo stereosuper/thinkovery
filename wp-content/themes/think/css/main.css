@@ -549,6 +549,8 @@ input {
     width: 330px; }
   input[type=search]::-webkit-search-cancel-button, input[type=search]::-webkit-search-decoration {
     display: none; }
+  input[type=checkbox], input[type=radio] {
+    width: auto; }
 
 textarea {
   width: 100%;
@@ -562,6 +564,8 @@ button {
 
 label {
   font-size: 1.6rem; }
+  label a {
+    color: inherit; }
 
 .field-flex {
   display: -webkit-box;
@@ -1547,18 +1551,45 @@ label {
     height: 17px;
     margin: 0 5px 0 0; }
 
-.single-post h1 {
-  margin: 0; }
+.article {
+  padding-top: 56px; }
+  .article h1 {
+    margin: 0; }
+  .article .col-3-desk {
+    margin: 0 auto; }
 
-.single-post .col-3-desk {
-  margin: 0 auto; }
+.wrapper-collant {
+  padding-bottom: 80px;
+  position: relative; }
+
+.collant {
+  position: fixed !important; }
+
+.collant-stuck {
+  position: absolute; }
 
 .share {
-  position: fixed;
-  left: 44px; }
+  position: absolute;
+  bottom: 0; }
 
-.share-list > li:before {
-  content: none; }
+.share-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center; }
+  .share-list > li {
+    margin: 0 14px 0 0; }
+    .share-list > li:before {
+      content: none; }
+  .share-list a {
+    display: block;
+    width: 44px;
+    height: 44px;
+    line-height: 42px;
+    background: #df622d;
+    color: #fff; }
+    .share-list a:hover, .share-list a:focus {
+      background: #f8ba41; }
 
 .tags {
   display: -webkit-box;
@@ -1622,13 +1653,42 @@ label {
   font-style: italic;
   color: #aeaeae; }
 
+.author-wrapper p {
+  margin-top: 0; }
+
+.author-img {
+  width: 85px;
+  height: 85px;
+  min-width: 85px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 25px 0 0; }
+
+.author-title {
+  margin: 2em 0 28px;
+  font-size: 2.6rem; }
+
+.author-name {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1e5e32; }
+
 @media (min-width: 780px) {
   .post {
     width: 48.5%; }
     .post:first-child {
       width: 100%; }
     .related-posts .post {
-      width: 48.5%; } }
+      width: 48.5%; }
+  .author-wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center; }
+  .author-title {
+    margin-left: 110px; } }
 
 @media (min-width: 1100px) {
   .post {
@@ -1638,7 +1698,17 @@ label {
     .post:first-child {
       width: 100%; }
     .related-posts .post {
-      width: 48.5%; } }
+      width: 48.5%; }
+  .wrapper-collant {
+    padding-bottom: 0; }
+  .share {
+    top: auto;
+    bottom: auto;
+    margin: 35px 0 0; }
+  .share-list {
+    display: block; }
+    .share-list > li {
+      margin: 0 0 15px; } }
 
 /* Buttons */
 .btn {
