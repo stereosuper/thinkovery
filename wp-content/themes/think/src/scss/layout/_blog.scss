@@ -158,6 +158,40 @@
     }
 }
 
+.comments{
+    h3{
+        margin: 3.5em 0 $line-height*1.5;
+    }
+}
+.comments-list{
+    > li{
+        padding: $line-height*1.5 0 0;
+        &:before{
+            content: none;
+        }
+        &:after{
+            content: '';
+            display: block;
+            width: 330px;
+            height: 1px;
+            margin: $line-height*1.5 auto 0;
+            background: $text-color;
+            opacity: 0.5;
+        }
+    }
+}
+.comment-author{
+    font-size: 2rem;
+    font-weight: 700;
+    color: $primary;
+}
+.comment-date{
+    display: block;
+    font-size: 1.6rem;
+    font-style: italic;
+    color: $grey;
+}
+
 
 @media (min-width: $tablet){
     .post{

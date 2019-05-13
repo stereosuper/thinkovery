@@ -543,7 +543,8 @@ textarea {
     background: rgba(255, 255, 255, 0.9); }
 
 input {
-  width: 380px; }
+  width: 380px;
+  max-width: 100%; }
   input[type=email] {
     width: 330px; }
   input[type=search]::-webkit-search-cancel-button, input[type=search]::-webkit-search-decoration {
@@ -565,11 +566,14 @@ label {
 .field-flex {
   display: -webkit-box;
   display: -ms-flexbox;
-  display: flex; }
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap; }
   .field-flex .field {
     margin-right: 12px; }
 
 .field {
+  max-width: 100%;
   position: relative;
   margin: 0 0 12px; }
   .field > label {
@@ -1590,6 +1594,33 @@ label {
   margin: 56px 0 0;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap; }
+
+.comments h3 {
+  margin: 3.5em 0 42px; }
+
+.comments-list > li {
+  padding: 42px 0 0; }
+  .comments-list > li:before {
+    content: none; }
+  .comments-list > li:after {
+    content: '';
+    display: block;
+    width: 330px;
+    height: 1px;
+    margin: 42px auto 0;
+    background: #404040;
+    opacity: 0.5; }
+
+.comment-author {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1e5e32; }
+
+.comment-date {
+  display: block;
+  font-size: 1.6rem;
+  font-style: italic;
+  color: #aeaeae; }
 
 @media (min-width: 780px) {
   .post {

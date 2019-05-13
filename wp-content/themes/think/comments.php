@@ -11,14 +11,13 @@
 <?php if($comments) : ?>
 	<h2 id='comments'><?php _e('Comments', 'thinkovery'); ?></h2>
 
-	<ul>
+	<ul class='comments-list'>
 		<?php foreach($comments as $comment) : ?>
 
 			<li id='comment-<?php comment_ID(); ?>'>
-				<div class='img'><?php echo get_avatar($comment->comment_author_email); ?></div>
 				<?php $author = $comment->comment_author_url ? "<a href='". $comment->comment_author_url ."' target='_blank' class='comment-author'>". $comment->comment_author ."</a>" : "<span class='comment-author'>" . $comment->comment_author . "</span>"; ?>
 				<?php echo $author; ?>
-				le <time datetime='<?php comment_date('Y-m-d') ?>'><?php comment_date('j F Y') ?></time>
+				<time datetime='<?php comment_date('Y-m-d') ?>' class='comment-date'><?php comment_date('j F Y') ?></time>
 				<i><?php edit_comment_link('Edit Comment', '', ''); ?></i>
 			 	<?php if($comment->comment_approved == '0') : ?>
 					<i><?php _e('Your comment is being verified', 'thinkovery'); ?></i>
@@ -43,7 +42,7 @@
 			<p>Connecté en tant que
 				<a href='<?php echo get_option('siteurl'); ?>/wp-admin/profile.php'><?php echo $user_identity; ?></a>.
 				<a href='<?php echo get_option('siteurl'); ?>/wp-login.php?action=logout'>Déconnection</a>
-			</p>
+			</p><br>
 		<?php } ?>
 
 		<?php global $errorComment; if($errorComment){ ?>
