@@ -5,7 +5,13 @@
 	<h1 class='blog-title'><?php single_post_title(); ?></h1>
 
 	<div class='blog-nav' id='blog-nav'>
-		<ul class='blog-cats'><?php wp_list_categories( array('title_li' => '') ); ?></ul>
+		<div class='blog-cats' id='blog-cats'>
+			<ul>
+				<li class='active'><?php _e('All posts', 'think'); ?></li>
+				<?php wp_list_categories( array('title_li' => '') ); ?>
+			</ul>
+			<svg class="icon"><use href="#icon-down"/></svg>
+		</div>
 		<?php get_search_form(); ?>
 	</div>
 

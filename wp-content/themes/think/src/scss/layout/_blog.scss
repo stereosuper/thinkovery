@@ -8,75 +8,80 @@
     flex-wrap: wrap;
 }
 
-.blog-list{
-    > .post:first-child{
-        background: $secondary;
-        color: #fff;
-        h2{
-            font-size: 5.6rem;
-        }
-        a, .post-duration{
-            color: #fff;
-        }
-    }
-    .newsletter{
-        width: 100%;
-        margin: 0 0 $line-height;
-    }
-}
-
-.blog-nav, .blog-cats{
-    display: flex;
-    align-items: center;
-}
 .blog-nav{
-    padding: 30px $gutter 16px 0;
-    justify-content: space-between;
+    position: relative;
+    margin: 0 $gutter*-1;
+    padding: 30px $gutter 26px;
     background: #fff;
 }
 .blog-cats{
-    flex-wrap: wrap;
-    margin: 0;
+    height: 30px;
+    overflow: hidden;
+    position: absolute;
+    top: 30px;
+    left: $gutter;
+    z-index: 1;
     font-size: 1.2rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;
+    background: #fff;
+    cursor: pointer;
     transition: $transition;
+    &.on{
+        height: auto;
+    }
     .off &{
         opacity: 0.4;
     }
-    > li{
+    > ul{
+        margin: 0;
+    }
+    li{
         margin: 0 $gutter/2 10px $gutter/2;
         &:before{
             content: none;
         }
     }
+    .active{
+        font-weight: 700;
+    }
     a{
-        font-weight: 400;
+        font-weight: 500;
         text-decoration: none;
         color: inherit;
+        &:hover, &:focus{
+            color: $primary;
+        }
+    }
+    .icon{
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        top: 4px;
+        right: 9px;
     }
 }
 .blog-search{
     display: flex;
     position: relative;
-    margin: 0 0 10px;
-    &.on{
-        input{
-            display: block;
-        }
-    }
+    justify-content: flex-end;
+    margin: 70px 0 10px auto;
     input{
-        display: none;
+        width: 100%;
         max-width: none;
         padding-top: 10px;
+        padding-right: 40px;
         position: absolute;
-        right: 20px;
+        right: 0;
+        left: 0;
         top: -16px;
         background: $bg-color;
     }
     button{
         width: 15px;
         height: 15px;
+        position: relative;
+        margin: 0 10px 0 0;
         line-height: 0;
     }
     .icon{
@@ -105,6 +110,32 @@
         }
     }
 }
+
+.blog-list{
+    > .post:first-child{
+        background: $secondary;
+        color: #fff;
+        a, .post-duration{
+            color: #fff;
+        }
+        a{
+            &:hover, &:focus{
+                opacity: 0.7;
+            }
+        }
+        .tags{
+            > a{
+                background: #fff;
+                color: $text-color;
+            }
+        }
+    }
+    .newsletter{
+        width: 100%;
+        margin: 0 0 $line-height;
+    }
+}
+
 .post-cats{
     display: flex;
     justify-content: space-between;
@@ -278,11 +309,33 @@
 }
 
 
+@media (min-width: $phone){
+    .blog-nav{
+        display: flex;
+        padding: 30px $gutter 16px $gutter/2;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .blog-search{
+        margin-top: 0;
+        input{
+            width: 220px;
+            left: auto;
+        }
+    }
+}
+
 @media (min-width: $tablet){
     .blog-list{
         > .post{
             &:first-child{
                 width: 100%;
+                padding-left: 60px;
+                padding-right: 60px;
+            }
+            h2{
+                font-size: 4rem;
             }
         }
     }
@@ -298,6 +351,45 @@
     
     .author-title{
         margin-left: 110px;
+    }
+}
+
+@media (min-width: $desktop-small){
+    .blog-list{
+        > .post:first-child{
+            p{
+                width: 75%;
+            }
+            h2{
+                font-size: 5.6rem;
+            }
+        }
+    }
+
+    .blog-cats{
+        height: auto;
+        position: static;
+        cursor: auto;
+        > ul{
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .icon{
+            display: none;
+        }
+    }
+
+    .blog-search{
+        z-index: 2;
+        &.on{
+            input{
+                display: block;
+            }
+        }
+        input{
+            display: none;
+        }
     }
 }
 

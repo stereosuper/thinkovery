@@ -76,6 +76,13 @@ const load = () => {
             });
         } );
     }
+
+    const cats = document.getElementById('blog-cats');
+    if( cats ){
+        cats.addEventListener('click', () => {
+            cats.classList.toggle('on');
+        });
+    }
 };
 
 

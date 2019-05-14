@@ -11426,6 +11426,14 @@ var load = function load() {
       });
     });
   }
+
+  var cats = document.getElementById('blog-cats');
+
+  if (cats) {
+    cats.addEventListener('click', function () {
+      cats.classList.toggle('on');
+    });
+  }
 };
 
 preload();
