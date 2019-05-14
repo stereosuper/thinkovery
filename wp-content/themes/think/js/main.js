@@ -11355,10 +11355,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _video__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./video */ "./wp-content/themes/think/src/js/video.js");
 /* harmony import */ var _minions__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./minions */ "./wp-content/themes/think/src/js/minions.js");
 /* harmony import */ var _learningAnim__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./learningAnim */ "./wp-content/themes/think/src/js/learningAnim.js");
-/* harmony import */ var collant__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! collant */ "./node_modules/collant/dist/index.js");
-/* harmony import */ var collant__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(collant__WEBPACK_IMPORTED_MODULE_14__);
-/* harmony import */ var imagesloaded__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! imagesloaded */ "./node_modules/imagesloaded/imagesloaded.js");
-/* harmony import */ var imagesloaded__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(imagesloaded__WEBPACK_IMPORTED_MODULE_15__);
+/* harmony import */ var _search__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./search */ "./wp-content/themes/think/src/js/search.js");
+/* harmony import */ var collant__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! collant */ "./node_modules/collant/dist/index.js");
+/* harmony import */ var collant__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(collant__WEBPACK_IMPORTED_MODULE_15__);
+/* harmony import */ var imagesloaded__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! imagesloaded */ "./node_modules/imagesloaded/imagesloaded.js");
+/* harmony import */ var imagesloaded__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(imagesloaded__WEBPACK_IMPORTED_MODULE_16__);
+
 
 
 
@@ -11396,6 +11398,7 @@ var preload = function preload() {
   Object(_burger__WEBPACK_IMPORTED_MODULE_5__["default"])();
   Object(_accordion__WEBPACK_IMPORTED_MODULE_6__["default"])();
   Object(_form__WEBPACK_IMPORTED_MODULE_7__["default"])();
+  Object(_search__WEBPACK_IMPORTED_MODULE_14__["default"])();
   Object(_newsletter__WEBPACK_IMPORTED_MODULE_8__["default"])();
   Object(_video__WEBPACK_IMPORTED_MODULE_11__["default"])();
 };
@@ -11416,23 +11419,20 @@ var load = function load() {
   } // blog sticky share
 
 
-  imagesloaded__WEBPACK_IMPORTED_MODULE_15___default()(document.getElementById('article'), function () {
-    collant__WEBPACK_IMPORTED_MODULE_14___default()(document.getElementById('share'), 0, {
-      minimumWidth: 1100
+  if (document.getElementById('article')) {
+    imagesloaded__WEBPACK_IMPORTED_MODULE_16___default()(document.getElementById('article'), function () {
+      collant__WEBPACK_IMPORTED_MODULE_15___default()(document.getElementById('share'), 0, {
+        minimumWidth: 1100
+      });
     });
-  });
+  }
 };
 
 preload();
 load();
 document.addEventListener('readystatechange', function () {
-  if (!state.preloaded) {
-    preload();
-  }
-
-  if (!state.loaded) {
-    load();
-  }
+  if (!state.preloaded) preload();
+  if (!state.loaded) load();
 }, false);
 document.addEventListener('loaderHidden', animationHandler, false);
 
@@ -14635,6 +14635,43 @@ MorphSVGPlugin.pathDataToBezier = function (data, vars) {
 };
 
 
+
+/***/ }),
+
+/***/ "./wp-content/themes/think/src/js/search.js":
+/*!**************************************************!*\
+  !*** ./wp-content/themes/think/src/js/search.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./wp-content/themes/think/src/js/utils/index.js");
+
+
+var searchHandler = function searchHandler() {
+  var form = document.getElementById('searchform');
+  var blogNav = document.getElementById('blog-nav');
+  if (!form || !blogNav) return;
+  var input = form.querySelector('input');
+  form.addEventListener('submit', function (e) {
+    if (!form.classList.contains('on')) {
+      e.preventDefault();
+      form.classList.add('on');
+      form.querySelector('input').focus();
+      blogNav.classList.add('off');
+    }
+  });
+  input.addEventListener('blur', function (e) {
+    if (e.relatedTarget !== form.querySelector('#search')) {
+      form.classList.remove('on');
+      blogNav.classList.remove('off');
+    }
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (searchHandler);
 
 /***/ }),
 

@@ -4,7 +4,7 @@
 
 	<h1 class='blog-title'><?php single_post_title(); ?></h1>
 
-	<div class='blog-nav'>
+	<div class='blog-nav' id='blog-nav'>
 		<ul class='blog-cats'><?php wp_list_categories( array('title_li' => '') ); ?></ul>
 		<?php get_search_form(); ?>
 	</div>
@@ -14,6 +14,17 @@
 		<div class='blog-list'>
 
 			<?php while ( have_posts() ) : the_post(); $countPosts ++; ?>
+
+				<?php if( $countPosts == 10) : ?>
+					<?php $news = get_field('newsletter', 'options'); if( $news['newsletterTitle'] ):  ?>
+						<div class='newsletter newsletter-post' id='newsletter-post'>
+							<p class='newsletter-title'><?php echo $news['newsletterTitle']; ?></p>
+							<p><?php echo $news['newsletterSubtitle']; ?></p>
+
+							<?php echo do_shortcode('[mc4wp_form id="2057048" element_id="newsletter-post-form"]'); ?>
+						</div>
+					<?php endif; ?>
+				<?php endif; ?>
 				
 				<div class='post'>
 					<div class='post-cats'>
@@ -89,12 +100,7 @@
 
 		</div>
 
-		<?php previous_posts_link('Articles suivants'); ?>
-		<?php next_posts_link('Articles précédents'); ?>
-
-		<div class='pagination'>
-			<?php echo paginate_links( array( 'prev_text' => '<b>‹</b> <span>' . 'Précédent' . '</span>', 'next_text'  => '<span>' . 'Suivant' . '</span> <b>›</b>' ) ); ?>
-		</div>
+		<?php echo do_shortcode('[ajax_load_more container_type="div" post_type="post" pause="true" scroll="false" posts_per_page="16"]'); ?>
 	
 	<?php else : ?>
 				

@@ -14,9 +14,11 @@ import drawBorders from './drawBorders';
 import video from './video';
 import minions from './minions';
 import learningAnim from './learningAnim';
+import search from './search';
 
 import collant from 'collant';
 import imagesLoaded from 'imagesloaded';
+
 
 const state = {
     preloaded: false,
@@ -26,7 +28,7 @@ const state = {
 const preload = () => {
     const { readyState } = document;
 
-    if (readyState !== 'interactive' && readyState !== 'complete') return;
+    if( readyState !== 'interactive' && readyState !== 'complete' ) return;
 
     const noTransElem = [].slice.call(
         document.getElementsByClassName('element-without-transition-on-resize')
@@ -45,6 +47,7 @@ const preload = () => {
     burger();
     accordion();
     form();
+    search();
     newsletter();
     video();
 };
@@ -56,38 +59,34 @@ const animationHandler = () => {
 };
 
 const load = () => {
-    if (document.readyState !== 'complete') return;
+    if( document.readyState !== 'complete' ) return;
 
     state.loaded = true;
     makeBorders();
 
-    if (sessionStorage.getItem('loaded')) {
+    if( sessionStorage.getItem('loaded') ){
         animationHandler();
     }
 
     // blog sticky share
-    imagesLoaded( document.getElementById('article'), () => {
-        collant(document.getElementById('share'), 0, {
-            minimumWidth: 1100
-        });
-    } );
+    if( document.getElementById('article') ){
+        imagesLoaded( document.getElementById('article'), () => {
+            collant(document.getElementById('share'), 0, {
+                minimumWidth: 1100
+            });
+        } );
+    }
 };
+
 
 preload();
 load();
 
-document.addEventListener(
-    'readystatechange',
-    () => {
-        if (!state.preloaded) {
-            preload();
-        }
+document.addEventListener('readystatechange', () => {
 
-        if (!state.loaded) {
-            load();
-        }
-    },
-    false
-);
+    if( !state.preloaded ) preload();
+    if( !state.loaded ) load();
+
+}, false);
 
 document.addEventListener('loaderHidden', animationHandler, false);

@@ -41,6 +41,7 @@ input {
         width: 330px;
     }
     &[type=search] {
+        width: 200px;
         &::-webkit-search-cancel-button,
         &::-webkit-search-decoration {
             display: none;
