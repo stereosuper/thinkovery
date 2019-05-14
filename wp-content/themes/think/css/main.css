@@ -1472,6 +1472,7 @@ label {
   left: 44px;
   z-index: 1;
   font-size: 1.2rem;
+  font-weight: 500;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   background: #fff;
@@ -1480,6 +1481,8 @@ label {
   transition: 0.05s ease-in-out; }
   .blog-cats.on {
     height: auto; }
+    .blog-cats.on a {
+      pointer-events: auto; }
   .off .blog-cats {
     opacity: 0.4; }
   .blog-cats > ul {
@@ -1488,10 +1491,11 @@ label {
     margin: 0 22px 10px 22px; }
     .blog-cats li:before {
       content: none; }
-  .blog-cats .active {
+  .blog-cats .current-cat {
     font-weight: 700; }
   .blog-cats a {
-    font-weight: 500;
+    pointer-events: none;
+    font-weight: inherit;
     text-decoration: none;
     color: inherit; }
     .blog-cats a:hover, .blog-cats a:focus {
@@ -1778,6 +1782,8 @@ label {
           flex-wrap: wrap; }
     .blog-cats .icon {
       display: none; }
+    .blog-cats a {
+      pointer-events: auto; }
   .blog-search {
     z-index: 2; }
     .blog-search.on input {

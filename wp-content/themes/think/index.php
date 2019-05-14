@@ -7,7 +7,7 @@
 	<div class='blog-nav' id='blog-nav'>
 		<div class='blog-cats' id='blog-cats'>
 			<ul>
-				<li class='active'><?php _e('All posts', 'think'); ?></li>
+				<li class='current-cat'><?php _e('All posts', 'think'); ?></li>
 				<?php wp_list_categories( array('title_li' => '') ); ?>
 			</ul>
 			<svg class="icon"><use href="#icon-down"/></svg>

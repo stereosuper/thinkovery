@@ -2,24 +2,20 @@
 
 <div class='container'>
 
-	<?php if ( have_posts() ) : $countPosts = 0; ?>
+	<h1 class='blog-title'><?php single_cat_title(); ?></h1>
 
-		<?php global $wp_query;
-		$results = $wp_query->found_posts;
-		$results = $results > 1 ? $results . ' results' : $results . ' result'; ?>
-
-		<h1 class='blog-title'><?php echo __('The search for', 'think') . ' "' . get_search_query() .'" ' . __('returned', 'think') . ' ' . $results; ?></h1>
-
-		<div class='blog-nav' id='blog-nav'>
-			<div class='blog-cats' id='blog-cats'>
-				<ul>
-					<li class='current-cat'><?php _e('All posts', 'think'); ?></li>
-					<?php wp_list_categories( array('title_li' => '') ); ?>
-				</ul>
-				<svg class="icon"><use href="#icon-down"/></svg>
-			</div>
-			<?php get_search_form(); ?>
+	<div class='blog-nav' id='blog-nav'>
+		<div class='blog-cats' id='blog-cats'>
+			<ul>
+				<li><a href='<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>'><?php _e('All posts', 'think'); ?></a></li>
+				<?php wp_list_categories( array('title_li' => '') ); ?>
+			</ul>
+			<svg class="icon"><use href="#icon-down"/></svg>
 		</div>
+		<?php get_search_form(); ?>
+	</div>
+
+	<?php if ( have_posts() ) : $countPosts = 0; ?>
 
 		<div class='blog-list'>
 
@@ -117,12 +113,7 @@
 	
 	<?php else : ?>
 				
-		<h1><?php echo __('The search for', 'think') . ' "' . get_search_query() .'" ' . __("didn't return any results", 'think'); ?></h1>
-
-		<div class='blog-nav' id='blog-nav'>
-			<ul class='blog-cats'><?php wp_list_categories( array('title_li' => '') ); ?></ul>
-			<?php get_search_form(); ?>
-		</div>
+		<p><?php _e('No posts yet'); ?></p>
 
 	<?php endif; ?>
 

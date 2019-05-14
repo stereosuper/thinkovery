@@ -22,6 +22,7 @@
     left: $gutter;
     z-index: 1;
     font-size: 1.2rem;
+    font-weight: 500;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     background: #fff;
@@ -29,6 +30,9 @@
     transition: $transition;
     &.on{
         height: auto;
+        a{
+            pointer-events: auto;
+        }
     }
     .off &{
         opacity: 0.4;
@@ -42,11 +46,12 @@
             content: none;
         }
     }
-    .active{
+    .current-cat{
         font-weight: 700;
     }
     a{
-        font-weight: 500;
+        pointer-events: none;
+        font-weight: inherit;
         text-decoration: none;
         color: inherit;
         &:hover, &:focus{
@@ -377,6 +382,9 @@
         }
         .icon{
             display: none;
+        }
+        a{
+            pointer-events: auto;
         }
     }
 
