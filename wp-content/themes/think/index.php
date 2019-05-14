@@ -100,7 +100,10 @@
 
 		</div>
 
-		<?php echo do_shortcode('[ajax_load_more container_type="div" post_type="post" pause="true" scroll="false" posts_per_page="16"]'); ?>
+		<?php
+			$moreText = __('Load more posts', 'think');
+			echo do_shortcode('[ajax_load_more container_type="div" post_type="post" pause="true" scroll="false" posts_per_page="15" button_label="' . $moreText . '"]');
+		?>
 	
 	<?php else : ?>
 				

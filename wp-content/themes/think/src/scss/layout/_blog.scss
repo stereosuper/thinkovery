@@ -9,7 +9,7 @@
 }
 
 .blog-list{
-    > .post:first-child:not(.simple){
+    > .post:first-child{
         background: $secondary;
         color: #fff;
         h2{
@@ -289,9 +289,6 @@
 
     .post{
         width: 48.5%;
-        &:first-child, .related-posts &{
-            width: 48.5%;
-        }
     }
 
     .author-wrapper{
@@ -305,11 +302,24 @@
 }
 
 @media (min-width: $desktop){
+    .blog-list{
+        > .post{
+            &:nth-child(5), &:nth-child(6), &:nth-child(5n+14), &:nth-child(5n+15){
+                width: 48.5%;
+            }
+        }
+    }
+
+    .alm-reveal{
+        > .post{
+            &:nth-child(5n+1), &:nth-child(5n+2){
+                width: 48.5%;
+            }
+        }
+    }
+
     .post{
         width: 31.5%;
-        &:nth-child(5), &:nth-child(6), &:nth-child(5n+14), &:nth-child(5n+15){
-            width: 48.5%;
-        }
         &:first-child{
             width: 31.5%;
         }
