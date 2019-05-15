@@ -238,20 +238,47 @@
                     "delay": 0
                 },
                 {
-                    "key": "field_5ccc001e2b669",
-                    "label": "Vidéo",
+                    "key": "field_5cdc363cd2521",
+                    "label": "ID de la video",
                     "name": "video",
-                    "type": "oembed",
+                    "type": "text",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "",
+                        "width": "50",
                         "class": "",
                         "id": ""
                     },
-                    "width": "",
-                    "height": ""
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_5cdc37b2d0ca1",
+                    "label": "Cover",
+                    "name": "img",
+                    "type": "image",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "url",
+                    "preview_size": "thumbnail",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": ""
                 }
             ]
         },
@@ -343,5 +370,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1556873354
+    "modified": 1557936560
 }

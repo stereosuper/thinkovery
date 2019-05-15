@@ -3405,7 +3405,7 @@ label {
 .about-section1, .about-section2 {
   margin: 8em 0 0;
   text-align: center; }
-  .about-section1 > div:last-child, .about-section2 > div:last-child {
+  .about-section1 > .content:last-child, .about-section2 > .content:last-child {
     margin: 28px 0 0; }
 
 .about-section2 h2 {
@@ -3432,7 +3432,7 @@ label {
     text-align: left; }
   .about-section2 {
     padding: 0 0 5em; }
-    .about-section2 > div:last-child {
+    .about-section2 > .content:last-child {
       position: relative; }
     .about-section2 .size-medium {
       border: 10px solid #f7f2ea;
@@ -3453,18 +3453,18 @@ label {
     -webkit-box-align: start;
         -ms-flex-align: start;
             align-items: flex-start; }
-    .about-section1 > div, .about-section2 > div {
+    .about-section1 > .content, .about-section2 > .content {
       width: 50%; }
-  .about-section1 > div:first-child {
+  .about-section1 > .content:first-child {
     padding: 0 56px 0 0; }
-  .about-section1 > div:last-child {
+  .about-section1 > .content:last-child {
     margin: 0 -44px 0 0; }
-  .about-section2 > div:first-child {
+  .about-section2 > .content:first-child {
     padding: 0 0 0 56px;
     -webkit-box-ordinal-group: 3;
         -ms-flex-order: 2;
             order: 2; }
-  .about-section2 > div:last-child {
+  .about-section2 > .content:last-child {
     margin: 12.5em 0 0 -44px;
     -webkit-box-ordinal-group: 2;
         -ms-flex-order: 1;
@@ -3472,7 +3472,7 @@ label {
   .about-section2 .size-medium {
     -webkit-transform: translate3d(50%, 50%, 0);
             transform: translate3d(50%, 50%, 0); }
-  .about-section3 > div, .about-section4 > div {
+  .about-section3 > .content, .about-section4 > .content {
     width: 75%;
     padding: 0 44px;
     margin: 0 auto; } }
@@ -3484,11 +3484,11 @@ label {
     width: 75%; } }
 
 @media (min-width: 1280px) {
-  .about-section1 > div:first-child {
+  .about-section1 > .content:first-child {
     padding-top: 40px; }
   .about-section1 h2 {
     width: 65%; }
-  .about-section3 > div, .about-section4 > div {
+  .about-section3 > .content, .about-section4 > .content {
     width: 50%; } }
 
 /******* PRINT *******/

@@ -13,21 +13,21 @@ get_header(); ?>
 
         <?php if( have_rows('section1')) : $section1 = get_field('section1'); ?>
             <section class='about-section1'>
-                <div>
+                <div class='content'>
                     <h2><?php echo $section1['title']; ?></h2>
                     <?php echo $section1['text']; ?>
                 </div>
-                <div><?php echo wp_get_attachment_image($section1['img'], 'large'); ?></div>
+                <div class='content'><?php echo wp_get_attachment_image($section1['img'], 'large'); ?></div>
             </section>
         <?php endif; ?>
 
         <?php if( have_rows('section2')) : $section2 = get_field('section2'); ?>
             <section class='about-section2'>
-                <div>
+                <div class='content'>
                     <h2><?php echo $section2['title']; ?></h2>
                     <?php echo $section2['text']; ?>
                 </div>
-                <div>
+                <div class='content'>
                     <?php echo wp_get_attachment_image($section2['img'], 'large'); ?>
                     <?php echo wp_get_attachment_image($section2['imgSmall'], 'medium'); ?>
                 </div>
@@ -36,16 +36,29 @@ get_header(); ?>
 
         <?php if( have_rows('section3')) : $section3 = get_field('section3'); ?>
             <section class='about-section3'>
-                <div>
+                <div class='content'>
                     <h2><?php echo $section3['title']; ?></h2>
                     <?php echo $section3['text']; ?>
                 </div>
+                <?php if( $section3['video'] ) : ?>
+                    <div class='wp-block-stereoberg-video js-video video' data-id='<?php echo $section3['video']; ?>'>
+                        <div class="iframe"></div>
+                        <button class="cross js-cross" type="button">
+                            <span class="cross-line first-cross-line"></span>
+                            <span class="cross-line second-cross-line"></span>
+                        </button>
+                        <div class="cover" style="background-image:url(<?php echo $section3['img']; ?>)"></div>
+                        <div class="play"></div>
+                        <button class="cross js-cross" type="button"><span class="cross-line first-cross-line"></span><span class="cross-line second-cross-line"></span></button>
+                        <div class="player-background js-cross"></div>
+                    </div>
+                <?php endif; ?>
             </section>
         <?php endif; ?>
 
         <?php if( have_rows('section4')) : $section4 = get_field('section4'); ?>
             <section class='about-section4'>
-                <div>
+                <div class='content'>
                     <h2><?php echo $section4['title']; ?></h2>
                     <?php echo $section4['text']; ?>
                     
