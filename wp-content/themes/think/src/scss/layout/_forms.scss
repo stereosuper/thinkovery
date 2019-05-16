@@ -60,6 +60,17 @@ textarea{
     height: 200px;
 }
 
+.select{
+    display: inline-block;
+    position: relative;
+    .icon{
+        width: 11px;
+        position: absolute;
+        top: 17px;
+        right: 15px;
+        pointer-events: none;
+    }
+}
 select {
     padding: 16px 50px 17px 15px;
     border: 0;

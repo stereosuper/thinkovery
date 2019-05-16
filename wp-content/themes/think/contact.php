@@ -18,16 +18,22 @@ get_header(); ?>
         <div class='container'>
             <div class='col-3-desk'>
                 <?php $address = get_field('address', 'options'); if( $address['address'] ) : ?>
-                    <span><a href='<?php echo $address['link']; ?>'><?php echo $address['address']; ?></a></span>
+                    <span>
+                        <svg class='icon'><use xlink:href='#icon-location'/></svg>
+                        <a href='<?php echo $address['link']; ?>'><?php echo $address['address']; ?></a>
+                    </span>
                 <?php endif; ?>
 
                 <?php
                     $phone = get_field('tel', 'options');
                     if( $phone['num'] ):
                 ?>
-                    <span><a href='tel:<?php echo $phone['num']; ?>'>
-                        <?php echo $phone['displayNum'] ? $phone['displayNum'] : $phone['num']; ?>
-                    </a></span>
+                    <span>
+                        <svg class='icon'><use xlink:href='#icon-phone'/></svg>
+                        <a href='tel:<?php echo $phone['num']; ?>'>
+                            <?php echo $phone['displayNum'] ? $phone['displayNum'] : $phone['num']; ?>
+                        </a>
+                    </span>
                 <?php endif; ?>
             </div>
         </div>
