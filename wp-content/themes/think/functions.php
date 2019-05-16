@@ -310,6 +310,12 @@ function think_register_required_plugins(){
             'required'    => false,
             'force_activation' => false
         ),
+        array(
+            'name'        => 'Contact Form',
+            'slug'        => 'contact-form-7',
+            'required'    => false,
+            'force_activation' => false
+        ),
     );
     
 	$config = array(

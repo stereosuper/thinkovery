@@ -547,19 +547,32 @@ input {
   max-width: 100%; }
   input[type=email] {
     width: 330px; }
+  input[type=tel] {
+    width: 180px; }
   input[type=search] {
     width: 220px; }
     input[type=search]::-webkit-search-cancel-button, input[type=search]::-webkit-search-decoration {
       display: none; }
-  input[type=checkbox], input[type=radio] {
+  input[type=checkbox], input[type=radio], input[type=submit] {
     width: auto; }
 
 textarea {
   width: 100%;
   height: 200px; }
 
-select::-ms-expand {
-  display: none; }
+select {
+  padding: 16px 50px 17px 15px;
+  border: 0;
+  font-size: 1.6rem;
+  font-style: italic;
+  color: rgba(64, 64, 64, 0.4);
+  line-height: 1;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background: #fff; }
+  select::-ms-expand {
+    display: none; }
 
 button {
   border: 0; }
@@ -582,6 +595,9 @@ label {
   max-width: 100%;
   position: relative;
   margin: 0 0 12px; }
+  .field.active label {
+    -webkit-transform: scale(0.7) translate3d(0, -14px, 0);
+            transform: scale(0.7) translate3d(0, -14px, 0); }
   .field > label {
     position: absolute;
     top: 12px;
@@ -592,9 +608,8 @@ label {
             transform-origin: 0 0;
     -webkit-transition: 0.05s ease-in-out;
     transition: 0.05s ease-in-out; }
-  .field input:focus + label, .field input.active + label,
-  .field textarea:focus + label,
-  .field textarea.active + label {
+  .field input:focus + label,
+  .field textarea:focus + label {
     -webkit-transform: scale(0.7) translate3d(0, -14px, 0);
             transform: scale(0.7) translate3d(0, -14px, 0); }
 
@@ -1830,7 +1845,7 @@ label {
       margin: 0 0 15px; } }
 
 /* Buttons */
-.btn {
+.btn, .wpcf7-submit {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -1839,7 +1854,7 @@ label {
   background: #df622d;
   color: #fff;
   text-decoration: none; }
-  .btn:hover, .btn:focus {
+  .btn:hover, .btn:focus, .wpcf7-submit:hover, .wpcf7-submit:focus {
     background: #f8ba41;
     color: #fff; }
 
@@ -3505,6 +3520,63 @@ label {
   .about-section1 h2 {
     width: 65%; }
   .about-section3 > .content, .about-section4 > .content {
+    width: 50%; } }
+
+.page-template-contact .main {
+  padding-bottom: 0; }
+
+.page-template-contact .col-3-desk {
+  margin: 0 auto; }
+
+.contact-infos {
+  padding: 20px 0;
+  margin: 56px 0 0;
+  font-size: 1.4rem;
+  background: #df622d; }
+  .contact-infos span {
+    display: block;
+    margin: 10px 0; }
+  .contact-infos a {
+    color: #fff; }
+
+.contact-form {
+  padding: 84px 0 112px;
+  overflow: hidden;
+  background: #1e5e32; }
+  .contact-form input[type=email] {
+    width: 380px; }
+  .contact-form form {
+    max-width: 650px; }
+  .contact-form .wpcf7-submit {
+    float: right; }
+  .contact-form .wpcf7-response-output {
+    padding: 0;
+    border: 0;
+    margin-left: 0;
+    margin-right: 0;
+    clear: both;
+    color: #fff; }
+  .contact-form span.wpcf7-not-valid-tip {
+    color: #fff; }
+
+@media (min-width: 580px) {
+  .contact-infos .col-3-desk {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between; } }
+
+@media (min-width: 780px) {
+  .contact-infos .col-3-desk {
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start; }
+  .contact-infos span {
     width: 50%; } }
 
 /******* PRINT *******/

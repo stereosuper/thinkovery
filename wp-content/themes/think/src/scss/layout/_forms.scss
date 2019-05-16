@@ -40,6 +40,9 @@ input {
     &[type=email]{
         width: 330px;
     }
+    &[type=tel]{
+        width: 180px;
+    }
     &[type=search] {
         width: 220px;
         &::-webkit-search-cancel-button,
@@ -47,7 +50,7 @@ input {
             display: none;
         }
     }
-    &[type=checkbox], &[type=radio]{
+    &[type=checkbox], &[type=radio], &[type=submit]{
         width: auto;
     }
 }
@@ -58,6 +61,14 @@ textarea{
 }
 
 select {
+    padding: 16px 50px 17px 15px;
+    border: 0;
+    font-size: 1.6rem;
+    font-style: italic;
+    color: rgba($text-color, 0.4);
+    line-height: 1;
+    appearance: none;
+    background: #fff;
     // hide the arrow on edge + ie
     &::-ms-expand {
         display: none;
@@ -87,6 +98,11 @@ label {
     max-width: 100%;
     position: relative;
     margin: 0 0 12px;
+    &.active{
+        label {
+            transform: scale(0.7) translate3d(0, -14px, 0);
+        }
+    }
     > label {
         position: absolute;
         top: 12px;
@@ -98,7 +114,7 @@ label {
     }
     input,
     textarea {
-        &:focus, &.active {
+        &:focus {
             + label {
                 transform: scale(0.7) translate3d(0, -14px, 0);
             }

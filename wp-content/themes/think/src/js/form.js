@@ -1,18 +1,32 @@
 import { forEach } from './utils';
 
 const formHandler = () => {
-    const forms = document.querySelectorAll('form');
+    const fields = document.querySelectorAll('.field');
 
-    if( !forms.length ) return;
+    if( !fields.length ) return;
 
-    const placeLabels = (e) => {
-        if( e.target.value ) e.target.classList.add('active');
+    const checkIfEmpty = (input) => {
+        input.value ? input.closest('.field').classList.add('active') : input.closest('.field').classList.remove('active');
     };
 
-    forEach(forms, form => {
-        forEach(form.querySelectorAll('.field'), field => {
-            field.querySelector('input, textarea').addEventListener('input', placeLabels);
-        });
+    const placeLabelsIn = (e) => {
+        e.target.closest('.field').classList.add('active');
+    };
+
+    const placeLabelsOut = (e) => {
+        checkIfEmpty( e.target );
+    };
+
+    let input;
+
+    forEach(fields, field => {
+        input = field.querySelector('input, textarea');
+
+        if( !input ) return;
+
+        checkIfEmpty( input );
+        input.addEventListener('focusin', placeLabelsIn);
+        input.addEventListener('focusout', placeLabelsOut);
     });
 };
 

@@ -11115,17 +11115,28 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var formHandler = function formHandler() {
-  var forms = document.querySelectorAll('form');
-  if (!forms.length) return;
+  var fields = document.querySelectorAll('.field');
+  if (!fields.length) return;
 
-  var placeLabels = function placeLabels(e) {
-    if (e.target.value) e.target.classList.add('active');
+  var checkIfEmpty = function checkIfEmpty(input) {
+    input.value ? input.closest('.field').classList.add('active') : input.closest('.field').classList.remove('active');
   };
 
-  Object(_utils__WEBPACK_IMPORTED_MODULE_0__["forEach"])(forms, function (form) {
-    Object(_utils__WEBPACK_IMPORTED_MODULE_0__["forEach"])(form.querySelectorAll('.field'), function (field) {
-      field.querySelector('input, textarea').addEventListener('input', placeLabels);
-    });
+  var placeLabelsIn = function placeLabelsIn(e) {
+    e.target.closest('.field').classList.add('active');
+  };
+
+  var placeLabelsOut = function placeLabelsOut(e) {
+    checkIfEmpty(e.target);
+  };
+
+  var input;
+  Object(_utils__WEBPACK_IMPORTED_MODULE_0__["forEach"])(fields, function (field) {
+    input = field.querySelector('input, textarea');
+    if (!input) return;
+    checkIfEmpty(input);
+    input.addEventListener('focusin', placeLabelsIn);
+    input.addEventListener('focusout', placeLabelsOut);
   });
 };
 
@@ -11376,6 +11387,24 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+ // IE11 closest polyfill
+
+if (!Element.prototype.matches) {
+  Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
+}
+
+if (!Element.prototype.closest) {
+  Element.prototype.closest = function (s) {
+    var el = this;
+
+    do {
+      if (el.matches(s)) return el;
+      el = el.parentElement || el.parentNode;
+    } while (el !== null && el.nodeType === 1);
+
+    return null;
+  };
+}
 
 var state = {
   preloaded: false,
@@ -12200,24 +12229,7 @@ var minionsHandler = function minionsHandler() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./wp-content/themes/think/src/js/utils/index.js");
- // IE11 closest polyfill
 
-if (!Element.prototype.matches) {
-  Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
-}
-
-if (!Element.prototype.closest) {
-  Element.prototype.closest = function (s) {
-    var el = this;
-
-    do {
-      if (el.matches(s)) return el;
-      el = el.parentElement || el.parentNode;
-    } while (el !== null && el.nodeType === 1);
-
-    return null;
-  };
-}
 
 var newsletterHandler = function newsletterHandler() {
   var forms = document.querySelectorAll('form');
