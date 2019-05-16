@@ -21,10 +21,37 @@
 			</div>
 
 			<div class='col-3-desk'>
-				<div>
-					<?php echo get_the_date(); $cats = get_the_category(); if( $cats ){
+				<div class='single-meta'>
+					<?php
+						$sectors = get_the_terms($post, 'sector');
+						if( $sectors ) : ?>
+							<div class='icons'>
+								<?php foreach( $sectors as $sector ) :
+									switch( $sector->slug ){
+										case 'communication':
+											echo '<svg class="icon"><use href="#icon-rectangle"/></svg>';
+											break;
+										case 'conseil':
+											echo '<svg class="icon"><use href="#icon-drop"/></svg>';
+											break;
+										case 'conception':
+											echo '<svg class="icon"><use href="#icon-square"/></svg>';
+											break;
+										case 'evaluation':
+											echo '<svg class="icon"><use href="#icon-circle"/></svg>';
+											break;
+										case 'realisation':
+											echo '<svg class="icon"><use href="#icon-triangle"/></svg>';
+											break;
+									}
+								endforeach; ?>
+							</div>
+						<?php endif;
+					?>
+					<span><?php echo get_the_date(); ?></span>
+					<?php $cats = get_the_category(); if( $cats ){
 						foreach( $cats as $cat ){
-							echo ' - <a href="' . get_category_link( $cat->term_id ) . '">' . $cat->cat_name . '</a>';
+							echo '&nbsp;-&nbsp;<a href="' . get_category_link( $cat->term_id ) . '">' . $cat->cat_name . '</a>';
 						}
 					} ?>
 				</div>
