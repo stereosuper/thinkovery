@@ -21,7 +21,7 @@ const minionsHandler = () => {
     );
     const video = document.getElementById('home-video');
 
-    if (!homeSections.length || !video) return;
+    if( !homeSections.length || !video ) return;
 
     // Intervals
     let scrollDowninterval = null;
@@ -43,10 +43,8 @@ const minionsHandler = () => {
     let wh = window.innerHeight;
     let ww = window.innerWidth;
     const animsState = [];
-    let headerBottom =
-        wh -
-        (video.getBoundingClientRect().top + video.offsetHeight / 2) -
-        window.scrollY;
+    let headerBottom = wh/2 - 80 - window.scrollY;
+    let videoBottom = wh - (video.getBoundingClientRect().top + video.offsetHeight / 2) - window.scrollY;
     let planePath = document.getElementById('plane-path');
     planePath = planePath ? planePath.querySelector('path') : undefined;
     let resizeTimer;
@@ -58,8 +56,30 @@ const minionsHandler = () => {
     let index = 0;
     let observer = null;
 
+    let learningFirstPartDone = false;
+
+
     const headerAnim = () => {
         const tlPlayer = new TimelineMax();
+
+        const scrollDownAnimation = (duration = 0.7) => {
+            TweenMax.to(minions[2], duration, {
+                x: -10,
+                y: videoBottom - 70,
+                rotation: 90,
+                ease: Power2.easeInOut,
+                onComplete: () => {
+                    TweenMax.to(minions[2], 0.3, {
+                        y: videoBottom - 50,
+                        ease: Back.easeOut.config(1.2),
+                    });
+                },
+            });
+        };
+
+        const scrollDownLoop = () => {
+            scrollDowninterval = setInterval(scrollDownAnimation, 2000);
+        };
 
         animsState['home-intro'].launched = true;
 
@@ -82,57 +102,26 @@ const minionsHandler = () => {
             .to(minions[2], 0.2, { scale: 3, ease: Pow2Out })
             .to(minions[2], 1, {
                 x: -10,
-                y: headerBottom - 50,
+                y: videoBottom - 50,
                 rotation: 90,
                 ease: Elastic.easeOut.config(1.1, 0.9),
                 delay: 0.3,
                 onStart: () => {
                     animsState['home-intro'].done = true;
-                    const scrollDownAnimation = (duration = 2) => {
-                        TweenMax.to(minions[2], duration, {
-                            x: -10,
-                            y: headerBottom - 70,
-                            rotation: 90,
-                            ease: Power2.easeInOut,
-                            onComplete: () => {
-                                TweenMax.to(minions[2], 0.3, {
-                                    y: headerBottom - 50,
-                                    ease: Back.easeOut.config(1.2),
-                                });
-                            },
-                        });
-                    };
 
-                    const scrollDownLoop = (time = 3000) => {
-                        scrollDowninterval = setInterval(
-                            scrollDownAnimation,
-                            time
-                        );
-                    };
+                    video.addEventListener('mouseover', () => {
+                        if( scrollDowninterval ){
+                            clearInterval(scrollDowninterval);
+                        }
 
-                    video.addEventListener(
-                        'mouseover',
-                        () => {
-                            if (scrollDowninterval) {
-                                clearInterval(scrollDowninterval);
-                            }
-                            TweenMax.to(minions[2], 0.2, {
-                                x: 0,
-                                y: 0,
-                                rotation: 0,
-                            });
-                        },
-                        false
-                    );
+                        TweenMax.to(minions[2], 0.2, {x: 0, y: 0, rotation: 0});
+                    }, false);
 
-                    video.addEventListener(
-                        'mouseleave',
-                        () => {
-                            scrollDownAnimation(0.3);
-                            scrollDownLoop();
-                        },
-                        false
-                    );
+                    video.addEventListener('mouseleave', () => {
+                        scrollDownAnimation(0.3);
+                        scrollDownLoop();
+                    }, false);
+
                     scrollDownLoop();
                 },
             });
@@ -146,7 +135,7 @@ const minionsHandler = () => {
             ease: Pow1In,
         });
 
-        TweenMax.to(minions[0], 1.2, {
+        TweenMax.to(minions[0], 1.8, {
             bezier: {
                 curviness: 1,
                 values: [
@@ -159,7 +148,7 @@ const minionsHandler = () => {
             ease: Pow2Out,
         });
 
-        TweenMax.to(minions[1], 1.2, {
+        TweenMax.to(minions[1], 1.8, {
             bezier: {
                 curviness: 1,
                 values: [
@@ -172,7 +161,7 @@ const minionsHandler = () => {
             ease: Pow2Out,
         });
 
-        TweenMax.to(minions[3], 1.2, {
+        TweenMax.to(minions[3], 1.8, {
             bezier: {
                 curviness: 1,
                 values: [
@@ -185,7 +174,7 @@ const minionsHandler = () => {
             ease: Pow2Out,
         });
 
-        TweenMax.to(minions[4], 1.2, {
+        TweenMax.to(minions[4], 1.8, {
             bezier: {
                 curviness: 1,
                 values: [
@@ -197,174 +186,156 @@ const minionsHandler = () => {
             delay: 0.15,
             ease: Pow2Out,
         });
-
-        // TweenMax.killAll();
-        // video.classList.add('player-on');
-        // video.classList.add('on');
-        // TweenMax.set(video.querySelector('.iframe'), {opacity: 1, delay: 0.7});
-        // TweenMax.set(minions, {opacity: 1, scale: 3});
-        // animsState['home-intro'].done = true;
     };
 
-    const learningAnim = () => {
-        const windowBottom = homeSections[1].offsetHeight + ww / 50;
-        const planePathBezier = planePath
-            ? MorphSVGPlugin.pathDataToBezier(planePath)
-            : '';
-        const plane = document.getElementById('plane');
+    const learningAnim = ( ratio ) => {
+        if( !animsState['home-learning-experience'].launched ){
+            animsState['home-learning-experience'].launched = true;
 
-        const planeBottom =
-            planePath.getBoundingClientRect().bottom -
-            minions[0].getBoundingClientRect().bottom;
+            if( scrollDowninterval ){
+                clearInterval(scrollDowninterval);
+            }
 
-        animsState['home-learning-experience'].launched = true;
+            TweenMax.to(minions[2], 0.7, {
+                x: 0,
+                y: headerBottom + 100,
+                rotation: 0,
+                ease: backInOut.config(2),
+                onComplete: () => {
+                    learningFirstPartDone = true;
+                }
+            });
 
-        if (scrollDowninterval) {
-            clearInterval(scrollDowninterval);
-        }
+        }else if( ratio > 0.75 && learningFirstPartDone ){
+            animsState['home-learning-experience'].bis = true;
 
-        TweenMax.to(minions[2], 0.7, {
-            x: 0,
-            y: headerBottom + 100,
-            rotation: 0,
-            ease: backInOut.config(2),
-            onComplete: () => {
-                TweenMax.to(minions[0], 1, {
-                    bezier: {
-                        curviness: 1,
-                        values: [
-                            {
-                                x: '+=60',
-                                y: `+=${windowBottom / 2}`,
-                            },
-                            {
-                                x: '+=200',
-                                y: `+=${planeBottom}`,
-                            },
-                        ],
-                    },
-                    ease: backInOut.config(1),
-                    delay: 0.23,
-                });
+            const windowBottom = homeSections[1].offsetHeight + ww / 50;
+            const planePathBezier = planePath ? MorphSVGPlugin.pathDataToBezier(planePath) : '';
+            const plane = document.getElementById('plane');
 
-                TweenMax.to(minions[1], 1.2, {
-                    bezier: {
-                        curviness: 1,
-                        values: [
-                            { y: `+=${windowBottom / 2}` },
-                            { x: '+=10', y: `+=${windowBottom - 60}` },
-                        ],
-                    },
-                    ease: Pow4InOut,
-                    delay: 0.23,
-                });
+            const planeBottom = planePath.getBoundingClientRect().bottom - minions[0].getBoundingClientRect().bottom;
 
-                TweenMax.to(minions[2], 1.4, {
-                    rotation: 450,
-                    bezier: {
-                        curviness: 1,
-                        values: [
-                            { y: `+=${windowBottom / 2}` },
-                            { y: `+=${windowBottom - 40}` },
-                        ],
-                    },
-                    ease: backInOut.config(1.1),
-                    delay: 0.23,
-                });
+            if( scrollDowninterval ){
+                clearInterval(scrollDowninterval);
+            }
 
-                TweenMax.set(minions[3], {
-                    x: 153,
-                    y: headerBottom + 123,
-                    transformOrigin: '100% 100%',
-                });
-
-                TweenMax.to(minions[3], 1.2, {
-                    bezier: {
-                        curviness: 1,
-                        values: [
-                            {
-                                x: '+=80',
-                                y: `+=${windowBottom / 2}`,
-                                rotation: 0,
-                            },
-                            {
-                                x: '+=20',
-                                y: `+=${windowBottom - 20}`,
-                                rotation: 30,
-                            },
-                            {
-                                x: '-=20',
-                                y: `+=${windowBottom - 18}`,
-                                rotation: 0,
-                            },
-                        ],
-                    },
-                    ease: Pow1InOut,
-                    delay: 0.23,
-                });
-
-                TweenMax.to(minions[4], 1.5, {
-                    bezier: {
-                        curviness: 1,
-                        values: [
-                            {
-                                x: '+=80',
-                                y: `+=${windowBottom / 2}`,
-                                rotation: -180,
-                            },
-                            {
-                                x: '-=20',
-                                y: `+=${windowBottom}`,
-                                rotation: -720,
-                            },
-                        ],
-                    },
-                    ease: Power4.easeOut,
-                    delay: 0.23,
-                });
-
-                if (plane) {
-                    TweenMax.to(plane, 2, {
+            TweenMax.to(planePath, 1.5, { drawSVG: '100%' });
+            TweenMax.to(plane, 1.5, {
+                bezier: {
+                    values: planePathBezier,
+                    type: 'cubic',
+                    autoRotate: true,
+                    ease: Expo.easeOut,
+                },
+                onComplete: () => {
+                    TweenMax.to(minions[0], 1, {
                         bezier: {
-                            values: planePathBezier,
-                            type: 'cubic',
-                            autoRotate: true,
-                            ease: Expo.easeOut,
+                            curviness: 1,
+                            values: [
+                                {
+                                    x: '+=60',
+                                    y: `+=${windowBottom / 2}`,
+                                },
+                                {
+                                    x: '+=200',
+                                    y: `+=${planeBottom}`,
+                                },
+                            ],
                         },
+                        ease: backInOut.config(1)
+                    });
+
+                    TweenMax.to(minions[1], 1.2, {
+                        bezier: {
+                            curviness: 1,
+                            values: [
+                                { y: `+=${windowBottom / 2}` },
+                                { x: '+=10', y: `+=${windowBottom - 60}` },
+                            ],
+                        },
+                        ease: Pow4InOut
+                    });
+
+                    TweenMax.to(minions[2], 1.4, {
+                        rotation: 450,
+                        bezier: {
+                            curviness: 1,
+                            values: [
+                                { y: `+=${windowBottom / 2}` },
+                                { y: `+=${windowBottom - 40}` },
+                            ],
+                        },
+                        ease: backInOut.config(1.1)
+                    });
+
+                    TweenMax.set(minions[3], {
+                        x: 153,
+                        y: headerBottom + 123,
+                        transformOrigin: '100% 100%',
+                    });
+
+                    TweenMax.to(minions[3], 1.2, {
+                        bezier: {
+                            curviness: 1,
+                            values: [
+                                {
+                                    x: '+=80',
+                                    y: `+=${windowBottom / 2}`,
+                                    rotation: 0,
+                                },
+                                {
+                                    x: '+=20',
+                                    y: `+=${windowBottom - 20}`,
+                                    rotation: 30,
+                                },
+                                {
+                                    x: '-=20',
+                                    y: `+=${windowBottom - 18}`,
+                                    rotation: 0,
+                                },
+                            ],
+                        },
+                        ease: Pow1InOut
+                    });
+
+                    TweenMax.to(minions[4], 1.5, {
+                        bezier: {
+                            curviness: 1,
+                            values: [
+                                {
+                                    x: '+=80',
+                                    y: `+=${windowBottom / 2}`,
+                                    rotation: -180,
+                                },
+                                {
+                                    x: '-=20',
+                                    y: `+=${windowBottom}`,
+                                    rotation: -720,
+                                },
+                            ],
+                        },
+                        ease: Power4.easeOut,
                         onComplete: () => {
                             animsState['home-learning-experience'].done = true;
-                        },
+                        }
                     });
-                    TweenMax.to(planePath, 2, { drawSVG: '100%' });
-                } else {
-                    animsState['home-learning-experience'].done = true;
-                }
-            },
-        });
-
-        // if( !animsState['home-intro'].done ) headerAnim( false );
-        // TweenMax.killAll();
-        // TweenMax.set(minions[0], {x: -40, y: headerBottom + 100 + planeBottom});
-        // TweenMax.set(minions[1], {x: -120, y: headerBottom + 100 + windowBottom - 60});
-        // TweenMax.set(minions[2], {y: headerBottom + 100 + windowBottom - 40, rotation: 0});
-        // TweenMax.set(minions[3], {x: 120, y: headerBottom + 100 + windowBottom - 20});
-        // TweenMax.set(minions[4], {x: 220, y: headerBottom + 100 + windowBottom});
-        // TweenMax.set(planePath, {drawSVG: '100%'});
-        // TweenMax.set(plane, {bezier: {values: planePathBezier, type: 'cubic', autoRotate: true}});
-        // animsState['home-learning-experience'].done = true;
+                },
+            });
+        }
     };
 
     const offersAnim = () => {
         const duration = 0.5;
         const delay = 0.05;
 
-        const dropBottom =
-            minions[4].getBoundingClientRect().bottom -
-            minions[0].getBoundingClientRect().bottom;
+        const dropBottom = minions[4].getBoundingClientRect().bottom - minions[0].getBoundingClientRect().bottom;
+
+        const newDrop = minions[0].cloneNode(true);
+        document.getElementById('shapes').appendChild(newDrop);
 
         animsState['home-offers'].launched = true;
 
-        TweenMax.to(minions[0], duration, {
+        TweenMax.to(newDrop, duration, {
             bezier: {
                 curviness: 1,
                 values: [
@@ -651,28 +622,24 @@ const minionsHandler = () => {
 
     const intersectionCallback = entries => {
         forEach(entries, entry => {
-            if (
-                entry.intersectionRatio < 0.7 ||
-                animsState[entry.target.id].launched
-            )
-                return;
+
+            if( entry.intersectionRatio < 0.7 ) return;
 
             switch (entry.target.id) {
                 case 'home-intro':
-                    headerAnim();
+                    if( !animsState[entry.target.id].launched ) headerAnim();
                     break;
                 case 'home-learning-experience':
-                    if (animsState['home-intro'].done) learningAnim();
+                    if( !animsState[entry.target.id].bis && animsState['home-intro'].done ) learningAnim(entry.intersectionRatio);
                     break;
                 case 'home-offers':
-                    if (animsState['home-learning-experience'].done)
-                        offersAnim();
+                    if( !animsState[entry.target.id].launched && animsState['home-learning-experience'].done ) offersAnim();
                     break;
                 case 'home-about-us':
-                    aboutAnim();
+                    if( !animsState[entry.target.id].launched ) aboutAnim();
                     break;
                 case 'home-experiences':
-                    experiencesAnim();
+                    if( !animsState[entry.target.id].launched ) experiencesAnim();
                     break;
                 default:
                     break;
@@ -683,7 +650,7 @@ const minionsHandler = () => {
     const initAnims = () => {
         animsLaunched = true;
 
-        for (index; index <= samplesNumber; index += 1) {
+        for( index; index <= samplesNumber; index++ ){
             thresholdSamples[index] = index / samplesNumber;
         }
 
@@ -695,7 +662,7 @@ const minionsHandler = () => {
 
         forEach(homeSections, section => {
             observer.observe(section);
-            animsState[section.id] = { launched: false, done: false };
+            animsState[section.id] = { launched: false, done: false, bis: false };
         });
 
         TweenMax.set(planePath, { drawSVG: 0 });
@@ -717,30 +684,27 @@ const minionsHandler = () => {
     };
 
     // launch anims if minions are visible (window width > 960)
-    if (getComputedStyle(minions[0]).display !== 'none') initAnims();
+    if( getComputedStyle(minions[0]).display !== 'none' ) initAnims();
 
     win.addResizeFunction(() => {
         wh = window.innerHeight;
         ww = window.innerWidth;
-        headerBottom =
-            wh -
-            (video.getBoundingClientRect().top + video.offsetHeight / 2) -
-            window.scrollY;
+        headerBottom = wh - (video.getBoundingClientRect().top + video.offsetHeight / 2) - window.scrollY;
 
-        if (scrollDowninterval) {
+        if( scrollDowninterval ){
             clearInterval(scrollDowninterval);
         }
 
-        clearTimeout(resizeTimer);
+        clearTimeout( resizeTimer );
         resizeTimer = setTimeout(() => {
-            if (getComputedStyle(minions[0]).display !== 'none') {
-                if (!animsLaunched) {
-                    // if you're not in mobile or tablet but you started with a small screen and now have a bigger one let's launch anims
-                    initAnims();
-                } else {
-                    // if anims were launched let's do it again so elements will be placed ok
-                    restartAnims();
-                }
+            if( getComputedStyle(minions[0]).display === 'none' ) return;
+                
+            if( !animsLaunched ){
+                // if you're not in mobile or tablet but you started with a small screen and now have a bigger one let's launch anims
+                initAnims();
+            }else{
+                // if anims were launched let's do it again so elements will be placed ok
+                restartAnims();
             }
         }, 500);
     });
