@@ -24,7 +24,12 @@
     &.playing,
     &:hover {
         .video-title {
-            opacity: 0.2;
+            opacity: 0;
+        }
+        .home-header &{
+            .cover{
+                opacity: 1;
+            }
         }
     }
     .no-js &, &.player-on {
@@ -74,6 +79,9 @@
         cursor: pointer;
         background-size: cover;
         background-position: 50% 50%;
+        .home-header &{
+            opacity: 0;
+        }
     }
     .wrapper-player {
         height: 0;

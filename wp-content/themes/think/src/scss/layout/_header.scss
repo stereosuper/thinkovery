@@ -542,7 +542,8 @@ $header-height: 84px;
     }
 }
 
-@media (min-width: $desktop-small) {
+
+@media (min-width: 1160px) {
     .main-header {
         padding-top: $line-height * 3;
     }
@@ -561,7 +562,7 @@ $header-height: 84px;
         display: flex;
         font-size: 1.6rem;
         > li {
-            margin-left: $gutter / 2;
+            margin-left: $gutter;
             margin-bottom: 0;
             &:first-child {
                 margin-left: 0;
@@ -634,13 +635,5 @@ $header-height: 84px;
     }
     .burger {
         display: none;
-    }
-}
-
-@media (min-width: $desktop) {
-    .menu {
-        > li {
-            margin-left: $gutter;
-        }
     }
 }

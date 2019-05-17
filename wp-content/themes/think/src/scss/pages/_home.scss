@@ -10,11 +10,14 @@
 .home-header {
     h1 {
         position: absolute;
-        top: 100%;
+        top: 0;
         margin: 0;
-        transform: translateY(-37%);
+        transform: translateY(-78%);
         z-index: 1;
         pointer-events: none;
+    }
+    .video{
+        margin: 7em 0 0;
     }
 }
 
@@ -66,20 +69,13 @@
     display: none;
 }
 
-@media (min-width: $phone-small) {
-    .home-header {
-        h1 {
-            transform: translateY(-58%);
-        }
-    }
-}
 
 @media (min-width: $desktop-small) {
     .home-header,
     .home-section {
         display: flex;
-        align-items: center;
         min-height: 85vh;
+        align-items: center;
     }
 
     .home-header {
@@ -90,17 +86,16 @@
             max-width: $container;
             padding: 0 $gutter;
             left: 50%;
-            transform: translate(-50%, -52%);
+            line-height: 1;
+            transform: translate(-50%, -70%);
         }
         .video {
             width: 50%;
+            margin: 11em 0 0;
         }
     }
 
     .home-section {
-        display: flex;
-        align-items: center;
-        min-height: 85vh;
         text-align: left;
         &:nth-of-type(1),
         &:nth-of-type(3) {
@@ -307,10 +302,10 @@
     }
 }
 
-@media (min-width: $desktop-big) {
-    .home-header {
-        h1 {
-            transform: translate(-50%, -110%);
-        }
-    }
-}
+// @media (min-width: $desktop-big) {
+//     .home-header {
+//         h1 {
+//             transform: translate(-50%, -110%);
+//         }
+//     }
+// }
