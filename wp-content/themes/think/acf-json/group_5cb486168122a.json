@@ -37,25 +37,6 @@
             "layout": "block",
             "sub_fields": [
                 {
-                    "key": "field_5cb487a2b8007",
-                    "label": "Titre",
-                    "name": "title",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "maxlength": ""
-                },
-                {
                     "key": "field_5cb487a8b8008",
                     "label": "Items",
                     "name": "items",
@@ -117,9 +98,9 @@
             ]
         },
         {
-            "key": "field_5cb48832aa24d",
-            "label": "Texte de l'animaton",
-            "name": "animationText",
+            "key": "field_5cb4886daa250",
+            "label": "Texte milieu de page",
+            "name": "middleText",
             "type": "wysiwyg",
             "instructions": "",
             "required": 0,
@@ -136,9 +117,9 @@
             "delay": 0
         },
         {
-            "key": "field_5cb4886daa250",
-            "label": "Texte bas de page",
-            "name": "bottomText",
+            "key": "field_5cb48832aa24d",
+            "label": "Texte de l'animaton",
+            "name": "animationText",
             "type": "wysiwyg",
             "instructions": "",
             "required": 0,
@@ -172,5 +153,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1556872950
+    "modified": 1558430614
 }

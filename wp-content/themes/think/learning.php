@@ -15,10 +15,6 @@ get_header(); ?>
 			<?php the_content(); ?>
 		</div>
 
-		<?php $elts = get_field('elements'); if( $elts['title'] ) : ?>
-			<h2 class='learning-elts-title'><?php echo $elts['title']; ?></h2>
-		<?php endif; ?>
-
 		<?php if( have_rows('elements') ): ?>
 			<div class='learning-elts' id='learning-elts'>
 				<?php while ( have_rows('elements') ): the_row(); ?>
@@ -37,6 +33,10 @@ get_header(); ?>
 				<?php endwhile; ?>
 			</div>
 		<?php endif; ?>
+
+		<div class='learning-middle'>
+			<div><?php the_field('middleText'); ?></div>
+		</div>
 		
 		<div class='learning-anim-container'>
 			<div class='learning-anim-wrapper'>
@@ -59,10 +59,6 @@ get_header(); ?>
 				</div>
 			</div>
 			<div><?php the_field('animationText'); ?></div>
-		</div>
-
-		<div class='learning-bottom'>
-			<div><?php the_field('bottomText'); ?></div>
 		</div>
 	
 	<?php endif; ?>

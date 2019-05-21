@@ -5,7 +5,7 @@
 }
 
 .learning-elts {
-    padding: 30px 0 0;
+    //padding: 30px 0 0;
     text-align: right;
 }
 .learning-elts-container {
@@ -60,6 +60,9 @@
         height: 370px;
         position: relative;
         .shape {
+            display: block;
+            width: 75px;
+            height: 75px;
             position: absolute;
             top: -37px;
             left: -37px;
@@ -85,7 +88,7 @@
         }
     }
 
-    .learning-bottom {
+    .learning-middle {
         > div {
             padding: 0 0 0 $gutter * 2;
         }
@@ -103,7 +106,7 @@
         }
     }
 
-    .learning-bottom {
+    .learning-middle {
         display: flex;
         justify-content: flex-end;
         > div {
