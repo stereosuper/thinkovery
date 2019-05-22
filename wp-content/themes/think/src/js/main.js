@@ -15,6 +15,7 @@ import video from './video';
 import minions from './minions';
 import learningAnim from './learningAnim';
 import search from './search';
+import memory from './memory';
 
 import collant from 'collant';
 import imagesLoaded from 'imagesloaded';
@@ -68,6 +69,7 @@ const preload = () => {
     search();
     newsletter();
     video();
+    memory();
 };
 
 const animationHandler = () => {

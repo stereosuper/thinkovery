@@ -1,0 +1,93 @@
+.memory-wrapper{
+    position: relative;
+}
+
+.memory{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    perspective: 1000px;
+    &.off{
+        pointer-events: none;
+    }
+    > .card{
+        width: 15%;
+        position: relative;
+        margin: $gutter*2 2.5% 0;
+        z-index: 1;
+        box-shadow: 0 29px 35px rgba(64, 64, 64, 0.07);
+        background: $bg-color;
+        transform-origin: 50% 50%;
+        transform-style: preserve-3d;
+        transform: rotate3d(0, 1, 0, -180deg);
+        transition: 0.3s ease-in-out;
+        cursor: pointer;
+        &:after{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+            background: $bg-color;
+            backface-visibility: hidden;
+            transform: rotate3d(0, 1, 0, 180deg);
+        }
+        &:hover{
+            transform: rotate3d(0, 1, 0, -180deg) translate3d(0, -20px, 0);
+            transition: 0.2s ease-in-out;
+        }
+        &.on, &.first, &.done{
+            transform: rotate3d(0, 1, 0, 0) translate3d(0, -30px, 0);
+            cursor: auto;
+        }
+        &.done{
+            box-shadow: none;
+        }
+    }
+    .front{
+        display: flex;
+        height: 280px;
+        justify-content: center;
+        align-items: center;
+        backface-visibility: hidden;
+    }
+    .icon{
+        width: 75px;
+        height: 75px;
+    }
+}
+
+.memory-success{
+    width: 50%;
+    padding: 65px 45px;
+    position: absolute;
+    top: 37%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    pointer-events: none;
+    box-shadow: 0 29px 35px rgba(64, 64, 64, 0.07);
+    background: $bg-color;
+    opacity: 0;
+    transition: 0.3s ease-in-out;
+    &.on{
+        pointer-events: auto;
+        opacity: 1;
+    }
+    > h2{
+        margin: 0 0 5px;
+        font-size: 2.6rem;
+        color: $text-color;
+    }
+    p{
+        margin: 0;
+    }
+    a{
+        color: $tertiary-light;
+        &:hover, &:focus{
+            color: $quaternary;
+        }
+    }
+}
