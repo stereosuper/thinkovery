@@ -11456,6 +11456,15 @@ var load = function load() {
     });
   }
 
+  if (document.getElementById('offers')) {
+    imagesloaded__WEBPACK_IMPORTED_MODULE_16___default()(document.getElementById('offers'), function () {
+      collant__WEBPACK_IMPORTED_MODULE_15___default()(document.getElementById('menu'), 0, {
+        minimumWidth: 960
+      });
+    });
+  } // blog categories
+
+
   var cats = document.getElementById('blog-cats');
 
   if (cats) {

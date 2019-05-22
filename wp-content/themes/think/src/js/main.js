@@ -95,6 +95,15 @@ const load = () => {
         } );
     }
 
+    if( document.getElementById('offers') ){
+        imagesLoaded( document.getElementById('offers'), () => {
+            collant(document.getElementById('menu'), 0, {
+                minimumWidth: 960
+            });
+        } );
+    }
+
+    // blog categories
     const cats = document.getElementById('blog-cats');
     if( cats ){
         cats.addEventListener('click', () => {
