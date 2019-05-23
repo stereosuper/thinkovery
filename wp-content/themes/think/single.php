@@ -89,15 +89,6 @@
 					<?php endif; ?>
 				</div>
 			</div>
-
-			<?php $news = get_field('newsletter', 'options'); if( $news['newsletterTitle'] ):  ?>
-				<div class='newsletter newsletter-post' id='newsletter-post'>
-					<p class='newsletter-title'><?php echo $news['newsletterTitle']; ?></p>
-					<p><?php echo $news['newsletterSubtitle']; ?></p>
-								
-					<?php echo do_shortcode('[mc4wp_form id="2057048" element_id="newsletter-post-form"]'); ?>
-				</div>
-			<?php endif; ?>
 			
 			<div class='comments'><?php comments_template(); ?></div>
 		</div>
