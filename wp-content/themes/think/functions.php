@@ -152,6 +152,21 @@ if(function_exists('acf_add_options_page')){
     ));
 }
 
+function think_mod_newsletter( $atts, $content = '' ) {
+    $news = get_field('newsletter', 'options');
+
+    $attributes = shortcode_atts( array(
+        'id' => ''
+    ), $atts, 'mod_newsletter' );
+
+    $mod_newsletter = "<div class='newsletter newsletter-post' id='newsletter-post'>
+        <p class='newsletter-title'>" . $news['newsletterTitle'] . "</p>
+        <p>" . $news['newsletterSubtitle'] . "</p>" . do_shortcode('[mc4wp_form id="'. $attributes['id'] .'" element_id="newsletter-post-form"]') . "</div>";
+
+    return $mod_newsletter;
+}
+add_shortcode( 'mod_newsletter', 'think_mod_newsletter' );
+
 
 /*-----------------------------------------------------------------------------------*/
 /* Menus
