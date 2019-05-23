@@ -1,19 +1,27 @@
-.memory-wrapper{
-    position: relative;
+.memory, .memory-success{
+    display: none
 }
 
-.memory{
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    perspective: 1000px;
-    &.off{
-        pointer-events: none;
-    }
-    > .card{
-        width: 15%;
+
+@media (min-width: $desktop-small){
+    .memory-wrapper{
         position: relative;
-        margin: $gutter*2 2.5% 0;
+    }
+
+    .memory{
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        perspective: 1000px;
+        &.off{
+            pointer-events: none;
+        }
+    }
+
+    .card{
+        width: 18%;
+        position: relative;
+        margin: $gutter*2 0 0;
         z-index: 1;
         box-shadow: 0 29px 35px rgba(64, 64, 64, 0.07);
         background: $bg-color;
@@ -45,49 +53,65 @@
         &.done{
             box-shadow: none;
         }
+        .front{
+            display: flex;
+            height: 240px;
+            justify-content: center;
+            align-items: center;
+            backface-visibility: hidden;
+        }
+        .icon{
+            width: 60px;
+            height: 60px;
+        }
     }
-    .front{
-        display: flex;
-        height: 280px;
-        justify-content: center;
-        align-items: center;
-        backface-visibility: hidden;
-    }
-    .icon{
-        width: 75px;
-        height: 75px;
+
+    .memory-success{
+        display: block;
+        width: 50%;
+        padding: 65px 45px;
+        position: absolute;
+        top: 37%;
+        left: 0;
+        right: 0;
+        margin: auto;
+        pointer-events: none;
+        box-shadow: 0 29px 35px rgba(64, 64, 64, 0.07);
+        background: $bg-color;
+        opacity: 0;
+        transition: 0.3s ease-in-out;
+        &.on{
+            pointer-events: auto;
+            opacity: 1;
+        }
+        > h2{
+            margin: 0 0 5px;
+            font-size: 2.6rem;
+            color: $text-color;
+        }
+        p{
+            margin: 0;
+        }
+        a{
+            color: $tertiary-light;
+            &:hover, &:focus{
+                color: $quaternary;
+            }
+        }
     }
 }
 
-.memory-success{
-    width: 50%;
-    padding: 65px 45px;
-    position: absolute;
-    top: 37%;
-    left: 0;
-    right: 0;
-    margin: auto;
-    pointer-events: none;
-    box-shadow: 0 29px 35px rgba(64, 64, 64, 0.07);
-    background: $bg-color;
-    opacity: 0;
-    transition: 0.3s ease-in-out;
-    &.on{
-        pointer-events: auto;
-        opacity: 1;
-    }
-    > h2{
-        margin: 0 0 5px;
-        font-size: 2.6rem;
-        color: $text-color;
-    }
-    p{
-        margin: 0;
-    }
-    a{
-        color: $tertiary-light;
-        &:hover, &:focus{
-            color: $quaternary;
+@media (min-width: $desktop){
+    .card{
+        width: 15%;
+        margin-left: 2.5%;
+        margin-right: 2.5%;
+        .front{
+            height: 280px;
+        }
+        .icon{
+            width: 75px;
+            height: 75px;
         }
     }
 }

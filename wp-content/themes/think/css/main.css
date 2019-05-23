@@ -3724,26 +3724,29 @@ label {
     top: 10%;
     left: 8%; } }
 
-.memory-wrapper {
-  position: relative; }
+.memory, .memory-success {
+  display: none; }
 
-.memory {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-perspective: 1000px;
-          perspective: 1000px; }
-  .memory.off {
-    pointer-events: none; }
-  .memory > .card {
-    width: 15%;
+@media (min-width: 960px) {
+  .memory-wrapper {
+    position: relative; }
+  .memory {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-perspective: 1000px;
+            perspective: 1000px; }
+    .memory.off {
+      pointer-events: none; }
+  .card {
+    width: 18%;
     position: relative;
-    margin: 88px 2.5% 0;
+    margin: 88px 0 0;
     z-index: 1;
     -webkit-box-shadow: 0 29px 35px rgba(64, 64, 64, 0.07);
             box-shadow: 0 29px 35px rgba(64, 64, 64, 0.07);
@@ -3757,7 +3760,7 @@ label {
     -webkit-transition: 0.3s ease-in-out;
     transition: 0.3s ease-in-out;
     cursor: pointer; }
-    .memory > .card:after {
+    .card:after {
       content: '';
       position: absolute;
       top: 0;
@@ -3770,63 +3773,74 @@ label {
               backface-visibility: hidden;
       -webkit-transform: rotate3d(0, 1, 0, 180deg);
               transform: rotate3d(0, 1, 0, 180deg); }
-    .memory > .card:hover {
+    .card:hover {
       -webkit-transform: rotate3d(0, 1, 0, -180deg) translate3d(0, -20px, 0);
               transform: rotate3d(0, 1, 0, -180deg) translate3d(0, -20px, 0);
       -webkit-transition: 0.2s ease-in-out;
       transition: 0.2s ease-in-out; }
-    .memory > .card.on, .memory > .card.first, .memory > .card.done {
+    .card.on, .card.first, .card.done {
       -webkit-transform: rotate3d(0, 1, 0, 0) translate3d(0, -30px, 0);
               transform: rotate3d(0, 1, 0, 0) translate3d(0, -30px, 0);
       cursor: auto; }
-    .memory > .card.done {
+    .card.done {
       -webkit-box-shadow: none;
               box-shadow: none; }
-  .memory .front {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    height: 280px;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-backface-visibility: hidden;
-            backface-visibility: hidden; }
-  .memory .icon {
-    width: 75px;
-    height: 75px; }
+    .card .front {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      height: 240px;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      -webkit-backface-visibility: hidden;
+              backface-visibility: hidden; }
+    .card .icon {
+      width: 60px;
+      height: 60px; }
+  .memory-success {
+    display: block;
+    width: 50%;
+    padding: 65px 45px;
+    position: absolute;
+    top: 37%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    pointer-events: none;
+    -webkit-box-shadow: 0 29px 35px rgba(64, 64, 64, 0.07);
+            box-shadow: 0 29px 35px rgba(64, 64, 64, 0.07);
+    background: #f7f2ea;
+    opacity: 0;
+    -webkit-transition: 0.3s ease-in-out;
+    transition: 0.3s ease-in-out; }
+    .memory-success.on {
+      pointer-events: auto;
+      opacity: 1; }
+    .memory-success > h2 {
+      margin: 0 0 5px;
+      font-size: 2.6rem;
+      color: #404040; }
+    .memory-success p {
+      margin: 0; }
+    .memory-success a {
+      color: #ec8d28; }
+      .memory-success a:hover, .memory-success a:focus {
+        color: #f8ba41; } }
 
-.memory-success {
-  width: 50%;
-  padding: 65px 45px;
-  position: absolute;
-  top: 37%;
-  left: 0;
-  right: 0;
-  margin: auto;
-  pointer-events: none;
-  -webkit-box-shadow: 0 29px 35px rgba(64, 64, 64, 0.07);
-          box-shadow: 0 29px 35px rgba(64, 64, 64, 0.07);
-  background: #f7f2ea;
-  opacity: 0;
-  -webkit-transition: 0.3s ease-in-out;
-  transition: 0.3s ease-in-out; }
-  .memory-success.on {
-    pointer-events: auto;
-    opacity: 1; }
-  .memory-success > h2 {
-    margin: 0 0 5px;
-    font-size: 2.6rem;
-    color: #404040; }
-  .memory-success p {
-    margin: 0; }
-  .memory-success a {
-    color: #ec8d28; }
-    .memory-success a:hover, .memory-success a:focus {
-      color: #f8ba41; }
+@media (min-width: 1100px) {
+  .card {
+    width: 15%;
+    margin-left: 2.5%;
+    margin-right: 2.5%; }
+    .card .front {
+      height: 280px; }
+    .card .icon {
+      width: 75px;
+      height: 75px; } }
 
 /******* PRINT *******/
 @media print {
