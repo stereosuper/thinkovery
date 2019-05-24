@@ -19,13 +19,13 @@ const makeBorders = () => {
     const bordersClasses = ['first', 'second', 'third', 'fourth'];
 
     // Borders wrappers' loop
-    for (indexWrappers; indexWrappers < wrappersNumber; indexWrappers += 1) {
+    for (indexWrappers; indexWrappers < wrappersNumber; indexWrappers ++) {
         wrapper = document.createElement('div');
         wrapper.classList.add(wrappersClasses[indexWrappers]);
 
         // Borders' loop
         indexBorders = 0;
-        for (indexBorders; indexBorders < bordersNumber; indexBorders += 1) {
+        for (indexBorders; indexBorders < bordersNumber; indexBorders ++) {
             border = document.createElement('span');
             border.classList.add('border', bordersClasses[indexBorders]);
 
