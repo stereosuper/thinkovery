@@ -300,22 +300,8 @@ function think_register_required_plugins(){
             'force_activation' => false
         ),
         array(
-            'name'        => 'Stereoberg',
-            'slug'        => 'stereoberg',
-            'source'     => get_template_directory_uri() . '/plugins/stereoberg.zip',
-            'required'    => true,
-            'version' => '1.0.7',
-            'force_activation' => false
-        ),
-        array(
-            'name'        => 'SecuPress Free — Sécurité WordPress 1.3.3',
-            'slug'        => 'secupress',
-            'required'    => false,
-            'force_activation' => false
-        ),
-        array(
-            'name'        => 'EWWW Image Optimizer',
-            'slug'        => 'ewww-image-optimizer',
+            'name'        => 'Ajax Load More',
+            'slug'        => 'ajax-load-more',
             'required'    => false,
             'force_activation' => false
         ),
@@ -328,6 +314,50 @@ function think_register_required_plugins(){
         array(
             'name'        => 'Contact Form',
             'slug'        => 'contact-form-7',
+            'required'    => false,
+            'force_activation' => false
+        ),
+        array(
+            'name'        => 'EWWW Image Optimizer',
+            'slug'        => 'ewww-image-optimizer',
+            'required'    => false,
+            'force_activation' => false
+        ),
+        array(
+            'name'        => 'Loco Translate',
+            'slug'        => 'loco-translate',
+            'required'    => false,
+            'force_activation' => false
+        ),
+        array(
+            'name'        => 'Mailchimp for WordPress',
+            'slug'        => 'mailchimp-for-wp',
+            'required'    => false,
+            'force_activation' => false
+        ),
+        array(
+            'name'        => 'MultilingualPress',
+            'slug'        => 'multilingual-press',
+            'required'    => false,
+            'force_activation' => false
+        ),
+        array(
+            'name'        => 'Stereoberg',
+            'slug'        => 'stereoberg',
+            'source'     => get_template_directory_uri() . '/plugins/stereoberg.zip',
+            'required'    => true,
+            'version' => '1.0.7',
+            'force_activation' => false
+        ),
+        array(
+            'name'        => 'SecuPress Free — Sécurité WordPress',
+            'slug'        => 'secupress',
+            'required'    => false,
+            'force_activation' => false
+        ),
+        array(
+            'name'        => 'Yoast SEO',
+            'slug'        => 'wordpress-seo',
             'required'    => false,
             'force_activation' => false
         ),
