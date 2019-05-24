@@ -132,9 +132,15 @@
             </div>
         </footer>
 
-        <?php include 'includes/icons.php'; ?>
-        <?php include 'includes/loading-script.php'; ?>
+
+        <?php get_template_part('includes/icons'); ?>
+        
+        <script>
+            <?php echo file_get_contents(get_template_directory_uri() . '/js/loading-script.js'); ?>
+        </script>
+
         <?php wp_footer(); ?>
+
         <!-- Start of HubSpot Embed Code -->
         <script id='hs-script-loader' async defer src='//js.hs-scripts.com/4019924.js'></script>
         <!-- End of HubSpot Embed Code -->
