@@ -39,7 +39,7 @@
 	$relatedQuery = new WP_Query($args);
 
 	if( $relatedQuery->have_posts() ) :
-		echo '<div class="related-posts"><h2>' . __('Related Posts', 'thinkovery') . '</h2><div>';
+		echo '<div class="related-posts"><h2>' . __('Related Posts', 'think') . '</h2><div>';
 		while( $relatedQuery->have_posts() ) : $relatedQuery->the_post(); ?>
 			<div class='post simple'>
 				<div class='cats'>

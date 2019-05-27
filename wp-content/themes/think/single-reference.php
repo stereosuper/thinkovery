@@ -27,7 +27,7 @@
 		</div>
 		
 		<div class='ref-share'>
-			<p class='ref-share-title'><?php _e('Partager cet article', 'think'); ?></p>
+			<p class='ref-share-title'><?php _e('Share this post', 'think'); ?></p>
 			<ul class='ref-share-list'>
 				<li>
 					<a href='https://www.facebook.com/sharer.php?u=<?php the_permalink(); ?>&t=<?php the_title(); ?>' rel='nofollow' target='blank' title='Share on Facebook'><svg class="icon"><use xlink:href="#icon-facebook"/></svg></a>
@@ -44,7 +44,7 @@
 		<?php $similars = get_field('similars'); if( $similars ) : ?>
 			
 			<div class='ref-similar'>
-				<p class='h3'><?php _e('Etudes de cas similaires', 'think') ?></p>
+				<p class='h3'><?php _e('Similar study cases', 'think') ?></p>
 
 				<?php foreach( $similars as $post ) : setup_postdata($post); ?>
 					<a href='<?php the_permalink(); ?>' title='<?php the_title(); ?>'>
