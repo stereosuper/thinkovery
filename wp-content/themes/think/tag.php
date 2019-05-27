@@ -2,12 +2,12 @@
 
 <div class='container'>
 
-	<h1 class='blog-title'><?php single_post_title(); ?></h1>
+	<h1 class='blog-title'><?php single_tag_title(); ?></h1>
 
 	<div class='blog-nav' id='blog-nav'>
 		<div class='blog-cats' id='blog-cats'>
 			<ul>
-				<li class='current-cat'><?php _e('All posts', 'think'); ?></li>
+				<li><a href='<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>'><?php _e('All posts', 'think'); ?></a></li>
 				<?php wp_list_categories( array('title_li' => '') ); ?>
 			</ul>
 			<svg class="icon"><use href="#icon-down"/></svg>
@@ -107,8 +107,10 @@
 		</div>
 
 		<?php
-			$moreText = __('Load more posts', 'think');
-			echo do_shortcode('[ajax_load_more container_type="div" post_type="post" pause="true" scroll="false" posts_per_page="15" offset="17" button_label="' . $moreText . '"]');
+			if( $countPosts > 17) :
+				$moreText = __('Load more posts', 'think');
+				echo do_shortcode('[ajax_load_more container_type="div" post_type="post" pause="true" scroll="false" posts_per_page="15" offset="17" button_label="' . $moreText . '" taxonomy_operator="IN" taxonomy="'.get_queried_object()->taxonomy.'" taxonomy_terms="'.get_queried_object()->slug.'"]');
+			endif;
 		?>
 	
 	<?php else : ?>

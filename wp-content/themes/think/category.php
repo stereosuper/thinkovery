@@ -107,8 +107,10 @@
 		</div>
 
 		<?php
-			$moreText = __('Load more posts', 'think');
-			echo do_shortcode('[ajax_load_more container_type="div" post_type="post" pause="true" scroll="false" posts_per_page="15" button_label="' . $moreText . '"]');
+			if( $countPosts > 17) :
+				$moreText = __('Load more posts', 'think');
+				echo do_shortcode('[ajax_load_more container_type="div" post_type="post" pause="true" scroll="false" posts_per_page="15" offset="17" button_label="' . $moreText . '" taxonomy_operator="IN" taxonomy="'.get_queried_object()->taxonomy.'" taxonomy_terms="'.get_queried_object()->slug.'"]');
+			endif;
 		?>
 	
 	<?php else : ?>

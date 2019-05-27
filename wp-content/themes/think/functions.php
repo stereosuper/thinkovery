@@ -169,6 +169,18 @@ add_shortcode( 'mod_newsletter', 'think_mod_newsletter' );
 
 
 /*-----------------------------------------------------------------------------------*/
+/* Blog
+/*-----------------------------------------------------------------------------------*/
+function think_search_filter( $query ){
+    if( $query->is_search ){
+        $query->set('post_type', 'post');
+    }
+    return $query;
+}
+if( !is_admin() ) add_filter('pre_get_posts', 'think_search_filter');
+
+
+/*-----------------------------------------------------------------------------------*/
 /* Menus
 /*-----------------------------------------------------------------------------------*/
 register_nav_menus( array('primary' => 'Primary Menu') );
