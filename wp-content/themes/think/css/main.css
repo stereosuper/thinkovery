@@ -2656,6 +2656,10 @@ label {
   .newsletter-footer input:focus {
     background: rgba(247, 242, 234, 0.7); }
 
+.mc4wp-response {
+  font-size: 1.4rem;
+  padding: 5px 0 0; }
+
 @media (min-width: 400px) {
   .newsletter-footer .newsletter-fields .field {
     width: calc(50% - 3px); } }
