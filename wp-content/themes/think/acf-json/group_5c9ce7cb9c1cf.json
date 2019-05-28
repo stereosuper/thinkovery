@@ -1,23 +1,6 @@
 {
     "key": "group_5c9ce7cb9c1cf",
     "title": "[options] Général",
-    "location": [
-        [
-            {
-                "param": "options_page",
-                "operator": "==",
-                "value": "acf-options-theme-options"
-            }
-        ]
-    ],
-    "menu_order": 0,
-    "position": "normal",
-    "style": "default",
-    "label_placement": "top",
-    "instruction_placement": "label",
-    "hide_on_screen": "",
-    "active": 1,
-    "description": "",
     "fields": [
         {
             "key": "field_5cd1498f1e48b",
@@ -32,7 +15,7 @@
                 "class": "",
                 "id": ""
             },
-            "message": "small: largeur du bloc à 50%\r\nmedium: largeur du bloc à 75%\r\ncenter: bloc centré\r\nright: bloc ferré à droite\r\nsteps: à ajouter sur les blocs de colonne des catégories, pour un affichage responsive optimal",
+            "message": "small: largeur du bloc à 50%\r\nmedium: largeur du bloc à 75%\r\ncenter: bloc centré\r\nright: bloc ferré à droite\r\nsteps: à ajouter sur les blocs de colonne des catégories, pour un affichage responsive optimal\r\n\r\nshortcode newsletter: [mod_newsletter id=\"2057048\"]",
             "new_lines": "wpautop",
             "esc_html": 0
         },
@@ -219,5 +202,22 @@
             ]
         }
     ],
-    "modified": 1559033775
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options-theme-options"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1559036487
 }
