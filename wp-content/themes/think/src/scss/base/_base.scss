@@ -21,6 +21,7 @@ html {
 }
 
 body {
+    overflow-x: hidden;
     font: 1.8em / 1.6 $sofia;
     letter-spacing: -0.01em;
     background: $bg-color;
