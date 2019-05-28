@@ -27,28 +27,19 @@ const createNewEvent = eventName => {
     return e;
 };
 
-const dispatchLoaded = () => {
-    const loaderEvent = createNewEvent('loaderHidden');
-    document.dispatchEvent(loaderEvent);
-};
-
-const documentLoadedClass = () => {
-    document.documentElement.classList.add('loaded');
-};
-
 const endLoading = () => {
-    forEach(hiddenElts, elt => {
-        elt.style.opacity = 1;
-    });
+    const loaderEvent = createNewEvent('loaderHidden');
 
-    setTimeout(() => {
-        nav.style.opacity = 1;
-    }, 500);
+    logoLoader.style.opacity = 0;
+
+    setTimeout(() => { forEach(hiddenElts, elt => { elt.style.opacity = 1; })  }, 700);
+
+    setTimeout(() => { nav.style.opacity = 1; }, 1100);
 
     sessionStorage.setItem('loaded', 'true');
 
-    dispatchLoaded();
-    documentLoadedClass();
+    document.dispatchEvent(loaderEvent);
+    document.documentElement.classList.add('loaded');
 };
 
 const loaderAnimation = () => {
@@ -93,44 +84,32 @@ const loaderAnimation = () => {
     }, delayLong * 5 + delayShort * 5);
 
     if (state.loaded) {
-        setTimeout(() => {
-            logoLoader.style.opacity = 0;
-            setTimeout(() => {
-                endLoading();
-            }, 500);
-        }, delayLong * 5 + delayShort * 5);
+        setTimeout(endLoading, delayLong);
     } else {
         setTimeout(loaderAnimation, delayLong * 5 + delayShort * 5);
     }
 };
 
 const handleLoader = () => {
-    if (sessionStorage.getItem('loaded') || !logoLoader || !nav) {
+    /*if (sessionStorage.getItem('loaded') || !logoLoader || !nav) {
         state.loadedStorage = true;
         if (logoLoader) logoLoader.style.opacity = 0;
 
-        forEach(hiddenElts, elt => {
-            elt.style.opacity = 1;
-        });
+        forEach(hiddenElts, elt => { elt.style.opacity = 1; });
 
         if (nav) nav.style.opacity = 1;
 
-        documentLoadedClass();
-    } else {
+        document.documentElement.classList.add('loaded');
+    } else {*/
         if (logoLoader) logoLoader.style.opacity = 1;
         loaderAnimation();
-    }
+    //}
 };
 
 handleLoader();
 
-document.addEventListener(
-    'readystatechange',
-    () => {
-        const ready = document.readyState;
-        if (ready === 'complete' && !state.loadedStorage) {
-            state.loaded = true;
-        }
-    },
-    false
-);
+document.addEventListener( 'readystatechange', () => {
+    if (document.readyState === 'complete' /*&& !state.loadedStorage*/) {
+        state.loaded = true;
+    }
+}, false );

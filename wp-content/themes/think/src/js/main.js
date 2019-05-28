@@ -73,8 +73,8 @@ const preload = () => {
 };
 
 const animationHandler = () => {
-    drawBorders();
     minions();
+    drawBorders();
     learningAnim();
 };
 
@@ -84,9 +84,9 @@ const load = () => {
     state.loaded = true;
     makeBorders();
 
-    if( sessionStorage.getItem('loaded') ){
-        animationHandler();
-    }
+    // if( sessionStorage.getItem('loaded') ){
+    //     animationHandler();
+    // }
 
     // blog sticky share
     if( document.getElementById('article') ){

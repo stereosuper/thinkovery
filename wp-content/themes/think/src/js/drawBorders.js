@@ -31,8 +31,7 @@ const ioBorders = () => {
     /**
      * @description updates display state depending on borders style
      */
-    const handleDisplay = () =>
-        getComputedStyle(bordersWrapper).display !== 'none';
+    const handleDisplay = () => getComputedStyle(bordersWrapper).display !== 'none';
 
     /**
      * @description select borders children type
@@ -62,8 +61,7 @@ const ioBorders = () => {
      */
     const animateBorder = ({ type, borders, queueCallback }) => {
         const bordersElements = selectBordersElements({ type });
-        const [
-            {
+        const [{
                 position,
                 duration,
                 color,
@@ -71,9 +69,7 @@ const ioBorders = () => {
                 axis,
                 origin,
                 nestNext = true,
-            },
-            nextBorder,
-        ] = borders;
+            }, nextBorder] = borders;
 
         const isAll = position === 'all';
 
@@ -92,8 +88,7 @@ const ioBorders = () => {
         }
 
         const tweenParams = {
-            transformOrigin:
-                origin || (!isAll ? borderMapping[position].origin : ''),
+            transformOrigin: origin || (!isAll ? borderMapping[position].origin : ''),
             scaleX,
             scaleY,
             ease,
@@ -117,9 +112,7 @@ const ioBorders = () => {
         }
 
         TweenMax.to(
-            isAll
-                ? bordersElements
-                : bordersElements[borderMapping[position].index],
+            isAll ? bordersElements : bordersElements[borderMapping[position].index],
             duration,
             tweenParams
         );
@@ -408,13 +401,12 @@ const ioBorders = () => {
             e.stopPropagation();
 
             if (state.isMoving) return;
+
             if (state.scrollSpeed > 2) {
                 if (state.wheelTimeout) {
                     clearTimeout(state.wheelTimeout);
                 }
-                state.wheelTimeout = setTimeout(() => {
-                    processQueue();
-                }, 100);
+                state.wheelTimeout = setTimeout(processQueue, 100);
             }
         };
 
@@ -428,14 +420,9 @@ const ioBorders = () => {
                 const lastStartIndex = state.ends.start;
 
                 // Head
-                let delta =
-                    Math.abs(
-                        newEndIndex < lastEndIndex
-                            ? newEndIndex + 4 - lastEndIndex
-                            : newEndIndex - lastEndIndex
-                    ) + 1;
+                let delta = Math.abs( newEndIndex < lastEndIndex ? newEndIndex + 4 - lastEndIndex : newEndIndex - lastEndIndex ) + 1;
                 let index = 0;
-                for (index; index < delta; index += 1) {
+                for (index; index < delta; index ++) {
                     const borderIndex = (lastEndIndex + index) % 4;
 
                     returnBorders.borders[index] = {
@@ -449,13 +436,8 @@ const ioBorders = () => {
                 }
 
                 // Tail
-                delta =
-                    Math.abs(
-                        newStartIndex < lastStartIndex
-                            ? newStartIndex + 4 - lastStartIndex
-                            : newStartIndex - lastStartIndex
-                    ) + 1;
-                for (index = 0; index < delta; index += 1) {
+                delta = Math.abs( newStartIndex < lastStartIndex ? newStartIndex + 4 - lastStartIndex : newStartIndex - lastStartIndex ) + 1;
+                for (index = 0; index < delta; index ++) {
                     const borderIndex = (lastStartIndex + index) % 4;
 
                     let position = borderMapping.byIndex[borderIndex];
@@ -493,10 +475,8 @@ const ioBorders = () => {
                 });
             } else {
                 returnBorders = bordersAnimations[defaultAnim];
-                state.ends.start =
-                    borderMapping[returnBorders.borders[0].position].index;
-                state.ends.end =
-                    borderMapping[
+                state.ends.start = borderMapping[returnBorders.borders[0].position].index;
+                state.ends.end = borderMapping[
                         returnBorders.borders[
                             returnBorders.borders.length - 1
                         ].position
@@ -509,13 +489,7 @@ const ioBorders = () => {
          * @description border sections animation controller
          */
         const updateBorder = () => {
-            if (
-                state.isMoving ||
-                (state.currentSection &&
-                    state.nextSection &&
-                    state.currentSection === state.nextSection)
-            )
-                return;
+            if ( state.isMoving || (state.currentSection && state.nextSection && state.currentSection === state.nextSection) ) return;
 
             state.isMoving = true;
 
@@ -599,9 +573,7 @@ const ioBorders = () => {
         };
 
         const addToQueue = () => {
-            const borderNextSection = bordersWrapper.getAttribute(
-                'data-next-section'
-            );
+            const borderNextSection = bordersWrapper.getAttribute( 'data-next-section' );
 
             state.queue.push(borderNextSection);
 
@@ -609,7 +581,7 @@ const ioBorders = () => {
             processQueue();
             state.init = true;
         };
-
+        
         // animateBordersHome main calls
         state.display = handleDisplay();
 
@@ -750,10 +722,7 @@ const ioBorders = () => {
             const bordersElements = selectBordersElements({ type });
 
             const { ratio } = state;
-            const ratioFactor = borders.reduce(
-                (acc, current) => acc + current.maxScale,
-                0
-            );
+            const ratioFactor = borders.reduce( (acc, current) => acc + current.maxScale, 0 );
             let pathRatio = 0;
             let scale = 0;
 

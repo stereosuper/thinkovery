@@ -124,25 +124,20 @@ var createNewEvent = function createNewEvent(eventName) {
   return e;
 };
 
-var dispatchLoaded = function dispatchLoaded() {
-  var loaderEvent = createNewEvent('loaderHidden');
-  document.dispatchEvent(loaderEvent);
-};
-
-var documentLoadedClass = function documentLoadedClass() {
-  document.documentElement.classList.add('loaded');
-};
-
 var endLoading = function endLoading() {
-  forEach(hiddenElts, function (elt) {
-    elt.style.opacity = 1;
-  });
+  var loaderEvent = createNewEvent('loaderHidden');
+  logoLoader.style.opacity = 0;
+  setTimeout(function () {
+    forEach(hiddenElts, function (elt) {
+      elt.style.opacity = 1;
+    });
+  }, 700);
   setTimeout(function () {
     nav.style.opacity = 1;
-  }, 500);
+  }, 1100);
   sessionStorage.setItem('loaded', 'true');
-  dispatchLoaded();
-  documentLoadedClass();
+  document.dispatchEvent(loaderEvent);
+  document.documentElement.classList.add('loaded');
 };
 
 var loaderAnimation = function loaderAnimation() {
@@ -178,39 +173,31 @@ var loaderAnimation = function loaderAnimation() {
   }, delayLong * 5 + delayShort * 5);
 
   if (state.loaded) {
-    setTimeout(function () {
-      logoLoader.style.opacity = 0;
-      setTimeout(function () {
-        endLoading();
-      }, 500);
-    }, delayLong * 5 + delayShort * 5);
+    setTimeout(endLoading, delayLong);
   } else {
     setTimeout(loaderAnimation, delayLong * 5 + delayShort * 5);
   }
 };
 
 var handleLoader = function handleLoader() {
-  if (sessionStorage.getItem('loaded') || !logoLoader || !nav) {
-    state.loadedStorage = true;
-    if (logoLoader) logoLoader.style.opacity = 0;
-    forEach(hiddenElts, function (elt) {
-      elt.style.opacity = 1;
-    });
-    if (nav) nav.style.opacity = 1;
-    documentLoadedClass();
-  } else {
-    if (logoLoader) logoLoader.style.opacity = 1;
-    loaderAnimation();
-  }
+  /*if (sessionStorage.getItem('loaded') || !logoLoader || !nav) {
+      state.loadedStorage = true;
+      if (logoLoader) logoLoader.style.opacity = 0;
+       forEach(hiddenElts, elt => { elt.style.opacity = 1; });
+       if (nav) nav.style.opacity = 1;
+       document.documentElement.classList.add('loaded');
+  } else {*/
+  if (logoLoader) logoLoader.style.opacity = 1;
+  loaderAnimation(); //}
 };
 
 handleLoader();
 document.addEventListener('readystatechange', function () {
-  var ready = document.readyState;
-
-  if (ready === 'complete' && !state.loadedStorage) {
-    state.loaded = true;
-  }
+  if (document.readyState === 'complete'
+  /*&& !state.loadedStorage*/
+  ) {
+      state.loaded = true;
+    }
 }, false);
 
 /***/ })

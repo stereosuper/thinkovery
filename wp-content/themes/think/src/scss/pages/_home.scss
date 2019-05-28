@@ -125,7 +125,7 @@
     }
 
     @media (min-height: $desktop-v) {
-        .home-header {
+        .shapes {
             .shape {
                 width: 23px;
                 height: 23px;
@@ -137,6 +137,7 @@
                 opacity: 0;
                 transform-origin: 50% 50%;
                 transform: scale(0);
+                z-index: 10;
             }
         }
 
@@ -188,6 +189,7 @@
             position: absolute;
             bottom: 7em;
             right: 50%;
+            z-index: 20;
             .svg {
                 position: relative;
                 float: right;

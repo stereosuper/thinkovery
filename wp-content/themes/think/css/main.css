@@ -208,6 +208,7 @@ html {
     right: 0; }
 
 body {
+  overflow-x: hidden;
   font: 1.8em/1.6 "sofia-pro", sans-serif;
   letter-spacing: -0.01em;
   background: #f7f2ea;
@@ -1946,6 +1947,8 @@ label {
   text-decoration: underline;
   background: #1e5e32;
   color: #fff; }
+  .alm-load-more-btn.done {
+    display: none; }
 
 @media (min-width: 960px) {
   .btn-invert .top::before, .btn-invert .top::after,
@@ -2523,29 +2526,28 @@ label {
   background: rgba(0, 0, 0, 0.9);
   opacity: 0;
   visibility: hidden;
-  z-index: 4; }
+  z-index: 20; }
+
+.video .iframe, .video .cross {
+  position: fixed;
+  visibility: hidden;
+  z-index: 30; }
 
 .video .iframe {
   width: 80vw;
   height: calc(80vw / 16 * 9);
-  position: fixed;
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  opacity: 0 !important;
-  visibility: hidden;
-  z-index: 5; }
+  opacity: 0 !important; }
 
 .video .cross {
   width: 30px;
   height: 30px;
-  position: fixed;
   top: 44px;
   right: 44px;
-  opacity: 0;
-  visibility: hidden;
-  z-index: 5; }
+  opacity: 0; }
   .video .cross .cross-line {
     width: 100%;
     height: 3px;
@@ -2794,7 +2796,7 @@ label {
     width: 50%; } }
 
 @media (min-width: 960px) and (min-height: 630px) {
-  .home-header .shape {
+  .shapes .shape {
     width: 23px;
     height: 23px;
     top: 1px;
@@ -2806,7 +2808,8 @@ label {
     -webkit-transform-origin: 50% 50%;
             transform-origin: 50% 50%;
     -webkit-transform: scale(0);
-            transform: scale(0); }
+            transform: scale(0);
+    z-index: 10; }
   .home-section:nth-of-type(3) .shape {
     top: 0;
     left: 0;
@@ -2839,7 +2842,8 @@ label {
     height: 650px;
     position: absolute;
     bottom: 7em;
-    right: 50%; }
+    right: 50%;
+    z-index: 20; }
     .plane-path .svg {
       position: relative;
       float: right; }
@@ -3545,6 +3549,8 @@ label {
   .contact-infos a, .contact-infos .icon {
     line-height: 1;
     color: #fff; }
+  .contact-infos a:hover, .contact-infos a:focus {
+    opacity: 0.7; }
   .contact-infos .icon {
     width: 17px;
     height: 17px;
@@ -3807,7 +3813,7 @@ label {
     width: 50%;
     padding: 65px 45px;
     position: absolute;
-    top: 37%;
+    top: 33%;
     left: 0;
     right: 0;
     margin: auto;
@@ -3841,7 +3847,9 @@ label {
       height: 280px; }
     .card .icon {
       width: 75px;
-      height: 75px; } }
+      height: 75px; }
+  .memory-success {
+    top: 37%; } }
 
 /******* PRINT *******/
 @media print {

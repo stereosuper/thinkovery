@@ -100,28 +100,27 @@
         background: rgba($black, 0.9);
         opacity: 0;
         visibility: hidden;
-        z-index: 4;
+        z-index: 20;
+    }
+    .iframe, .cross{
+        position: fixed;
+        visibility: hidden;
+        z-index: 30;
     }
     .iframe {
         width: 80vw;
         height: calc(80vw / 16 * 9);
-        position: fixed;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         opacity: 0 !important;
-        visibility: hidden;
-        z-index: 5;
     }
     .cross {
         width: 30px;
         height: 30px;
-        position: fixed;
         top: $gutter;
         right: $gutter;
         opacity: 0;
-        visibility: hidden;
-        z-index: 5;
         .cross-line {
             width: 100%;
             height: 3px;

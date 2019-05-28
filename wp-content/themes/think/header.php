@@ -36,6 +36,14 @@
 
 		<?php get_template_part('img/logo-loader.svg'); ?>
 
+		<div id='shapes' class='shapes'>
+            <svg class="shape"><use xlink:href="#icon-drop"/></svg>
+            <svg class="shape"><use xlink:href="#icon-square"/></svg>
+            <svg class="shape"><use xlink:href="#icon-triangle"/></svg>
+            <svg class="shape"><use xlink:href="#icon-rectangle"/></svg>
+            <svg class="shape"><use xlink:href="#icon-circle"/></svg>
+        </div>
+
 		<header role='banner' class="main-header" id='header'>
 			<div class='container'>
 				<a href='<?php echo home_url('/'); ?>' class="logo js-load-hidden" title='<?php bloginfo( 'name' ); ?>' rel='home' style="opacity:0">
@@ -69,6 +77,8 @@
 				</nav>
 			</div>
 		</header>
+
+		<div id="borders" class="borders"></div>
 		
 		<main role='main' class='main js-load-hidden' style='opacity:0'>
-			<div id="borders" class="borders"></div>
+			

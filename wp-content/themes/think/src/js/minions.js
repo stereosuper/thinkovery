@@ -20,31 +20,20 @@ const minionsHandler = () => {
         document.getElementsByClassName('js-home-section')
     );
     const video = document.getElementById('home-video');
+    const shapes = document.getElementById('shapes');
 
-    if( !homeSections.length || !video ) return;
+    if( !homeSections.length || !video || !shapes ) return;
 
     // Intervals
     let scrollDowninterval = null;
 
-    // Easing functions
-    // In
-    const Pow1In = Power1.easeIn;
-    const SineIn = Sine.easeIn;
-
-    // Out
-    const Pow2Out = Power2.easeOut;
-
-    // In Out
-    const Pow1InOut = Power1.easeInOut;
-    const Pow4InOut = Power4.easeInOut;
-    const backInOut = Back.easeInOut;
-
-    const minions = homeSections[0].querySelectorAll('.shape');
+    const minions = shapes.querySelectorAll('.shape');
     let wh = window.innerHeight;
     let ww = window.innerWidth;
     const animsState = [];
-    let headerBottom = wh/2 - 80 - window.scrollY;
-    let videoBottom = wh - (video.getBoundingClientRect().top + video.offsetHeight / 2) - window.scrollY;
+    const initialShapeTop = minions[0].getBoundingClientRect().top;
+    let headerBottom = document.getElementById('home-learning-experience').getBoundingClientRect().top - initialShapeTop - 70;
+    let videoBottom = wh/2;
     let planePath = document.getElementById('plane-path');
     planePath = planePath ? planePath.querySelector('path') : undefined;
     let resizeTimer;
@@ -60,16 +49,18 @@ const minionsHandler = () => {
 
 
     const headerAnim = () => {
+        const player = minions[2].cloneNode(true);
+        
         const tlPlayer = new TimelineMax();
 
         const scrollDownAnimation = (duration = 0.7) => {
-            TweenMax.to(minions[2], duration, {
+            TweenMax.to(player, duration, {
                 x: -10,
                 y: videoBottom - 70,
                 rotation: 90,
                 ease: Power2.easeInOut,
                 onComplete: () => {
-                    TweenMax.to(minions[2], 0.3, {
+                    TweenMax.to(player, 0.3, {
                         y: videoBottom - 50,
                         ease: Back.easeOut.config(1.2),
                     });
@@ -81,16 +72,17 @@ const minionsHandler = () => {
             scrollDowninterval = setInterval(scrollDownAnimation, 2000);
         };
 
+        document.getElementById('shapes').appendChild(player);
+
         animsState['home-intro'].launched = true;
 
         tlPlayer
-            .to(minions[2], 0.3, {
+            .to(player, 0.3, {
                 scale: 4,
                 opacity: 1,
                 onComplete: () => {
                     if (video) {
-                        video.classList.add('player-on');
-                        video.classList.add('on');
+                        video.classList.add('player-on', 'on');
                         TweenMax.set(video.querySelector('.iframe'), {
                             opacity: 1,
                             delay: 0.7,
@@ -99,8 +91,8 @@ const minionsHandler = () => {
                 },
                 ease: Power4.easeIn,
             })
-            .to(minions[2], 0.2, { scale: 3, ease: Pow2Out })
-            .to(minions[2], 1, {
+            .to(player, 0.2, { scale: 3, ease: Power2.easeOut })
+            .to(player, 1, {
                 x: -10,
                 y: videoBottom - 50,
                 rotation: 90,
@@ -114,7 +106,7 @@ const minionsHandler = () => {
                             clearInterval(scrollDowninterval);
                         }
 
-                        TweenMax.to(minions[2], 0.2, {x: 0, y: 0, rotation: 0});
+                        TweenMax.to(player, 0.2, {x: 0, y: video.getBoundingClientRect().top - initialShapeTop + video.offsetHeight/2 + window.scrollY, rotation: 0});
                     }, false);
 
                     video.addEventListener('mouseleave', () => {
@@ -132,7 +124,7 @@ const minionsHandler = () => {
 
         TweenMax.to([minions[0], minions[1], minions[3], minions[4]], 0.5, {
             scale: 3,
-            ease: Pow1In,
+            ease: Power1.easeIn,
         });
 
         TweenMax.to(minions[0], 1.8, {
@@ -145,7 +137,7 @@ const minionsHandler = () => {
                 ],
             },
             delay: 0.15,
-            ease: Pow2Out,
+            ease: Power2.easeOut,
         });
 
         TweenMax.to(minions[1], 1.8, {
@@ -158,8 +150,10 @@ const minionsHandler = () => {
                 ],
             },
             delay: 0.15,
-            ease: Pow2Out,
+            ease: Power2.easeOut,
         });
+
+        TweenMax.set(minions[2], {opacity: 1, scale: 3, x: 0, y: headerBottom + 100});
 
         TweenMax.to(minions[3], 1.8, {
             bezier: {
@@ -171,7 +165,7 @@ const minionsHandler = () => {
                 ],
             },
             delay: 0.15,
-            ease: Pow2Out,
+            ease: Power2.easeOut,
         });
 
         TweenMax.to(minions[4], 1.8, {
@@ -184,7 +178,7 @@ const minionsHandler = () => {
                 ],
             },
             delay: 0.15,
-            ease: Pow2Out,
+            ease: Power2.easeOut,
         });
     };
 
@@ -200,13 +194,13 @@ const minionsHandler = () => {
                 x: 0,
                 y: headerBottom + 100,
                 rotation: 0,
-                ease: backInOut.config(2),
+                ease: Back.easeInOut.config(2),
                 onComplete: () => {
                     learningFirstPartDone = true;
                 }
             });
 
-        }else if( ratio > 0.75 && learningFirstPartDone ){
+        }else if( ratio > 0.71 && learningFirstPartDone ){
             animsState['home-learning-experience'].bis = true;
 
             const windowBottom = homeSections[1].offsetHeight + ww / 50;
@@ -242,7 +236,7 @@ const minionsHandler = () => {
                                 },
                             ],
                         },
-                        ease: backInOut.config(1)
+                        ease: Back.easeInOut.config(1)
                     });
 
                     TweenMax.to(minions[1], 1.2, {
@@ -253,7 +247,7 @@ const minionsHandler = () => {
                                 { x: '+=10', y: `+=${windowBottom - 60}` },
                             ],
                         },
-                        ease: Pow4InOut
+                        ease: Power4.easeInOut
                     });
 
                     TweenMax.to(minions[2], 1.4, {
@@ -265,7 +259,7 @@ const minionsHandler = () => {
                                 { y: `+=${windowBottom - 40}` },
                             ],
                         },
-                        ease: backInOut.config(1.1)
+                        ease: Back.easeInOut.config(1.1)
                     });
 
                     TweenMax.set(minions[3], {
@@ -295,7 +289,7 @@ const minionsHandler = () => {
                                 },
                             ],
                         },
-                        ease: Pow1InOut
+                        ease: Power1.easeInOut
                     });
 
                     TweenMax.to(minions[4], 1.5, {
@@ -343,21 +337,21 @@ const minionsHandler = () => {
                     { x: '-=200', y: `+=${dropBottom}` },
                 ],
             },
-            ease: backInOut.config(1),
+            ease: Back.easeInOut.config(1),
             delay,
         });
         TweenMax.to(minions[1], duration, {
             y: '+=60',
-            ease: Pow4InOut,
+            ease: Power4.easeInOut,
             delay: delay * 2,
         });
         TweenMax.to(minions[2], duration, {
             rotation: 360,
             y: '+=40',
-            ease: backInOut.config(1.5),
+            ease: Back.easeInOut.config(1.5),
             delay,
         });
-        TweenMax.to(minions[3], duration, { y: '+=20', ease: Pow1InOut });
+        TweenMax.to(minions[3], duration, { y: '+=20', ease: Power1.easeInOut });
     };
 
     const aboutAnim = () => {
@@ -379,7 +373,7 @@ const minionsHandler = () => {
                 TweenMax.to(minionsThirdSection[9], duration, {
                     y: windowBottom,
                     rotation: -470,
-                    ease: SineIn,
+                    ease: Sine.easeIn,
                     delay: delayFall,
                 });
             },
@@ -394,7 +388,7 @@ const minionsHandler = () => {
                 TweenMax.to(minionsThirdSection[3], duration, {
                     y: windowBottom,
                     rotation: -90,
-                    ease: SineIn,
+                    ease: Sine.easeIn,
                     delay: delayFall,
                 });
             },
@@ -409,7 +403,7 @@ const minionsHandler = () => {
             onComplete: () => {
                 TweenMax.to(minionsThirdSection[0], duration, {
                     y: windowBottom,
-                    ease: Pow1In,
+                    ease: Power1.easeIn,
                     delay: delayFall,
                 });
             },
@@ -425,7 +419,7 @@ const minionsHandler = () => {
                 TweenMax.to(minionsThirdSection[1], duration, {
                     y: windowBottom + 5,
                     rotation: 45,
-                    ease: SineIn,
+                    ease: Sine.easeIn,
                     delay: delayFall,
                 });
             },
@@ -441,7 +435,7 @@ const minionsHandler = () => {
             onComplete: () => {
                 TweenMax.to(minionsThirdSection[7], duration, {
                     y: windowBottom,
-                    ease: SineIn,
+                    ease: Sine.easeIn,
                     delay: delayFall,
                 });
             },
@@ -457,7 +451,7 @@ const minionsHandler = () => {
                 TweenMax.to(minionsThirdSection[5], duration, {
                     y: windowBottom,
                     rotation: -90,
-                    ease: SineIn,
+                    ease: Sine.easeIn,
                     delay: delayFall,
                 });
             },
@@ -473,7 +467,7 @@ const minionsHandler = () => {
                 TweenMax.to(minionsThirdSection[2], duration, {
                     y: windowBottom - 31,
                     rotation: -7,
-                    ease: SineIn,
+                    ease: Sine.easeIn,
                     delay: delayFall,
                 });
             },
@@ -489,7 +483,7 @@ const minionsHandler = () => {
             onComplete: () => {
                 TweenMax.to(minionsThirdSection[8], duration, {
                     y: windowBottom - 75,
-                    ease: SineIn,
+                    ease: Sine.easeIn,
                     delay: delayFall,
                 });
             },
@@ -505,7 +499,7 @@ const minionsHandler = () => {
                 TweenMax.to(minionsThirdSection[10], duration, {
                     y: windowBottom - 65,
                     rotation: -860,
-                    ease: SineIn,
+                    ease: Sine.easeIn,
                     delay: delayFall,
                 });
             },
@@ -521,7 +515,7 @@ const minionsHandler = () => {
                 TweenMax.to(minionsThirdSection[4], duration, {
                     y: windowBottom - 55,
                     rotation: -135,
-                    ease: SineIn,
+                    ease: Sine.easeIn,
                     delay: delayFall,
                 });
             },
@@ -537,7 +531,7 @@ const minionsHandler = () => {
             onComplete: () => {
                 TweenMax.to(minionsThirdSection[6], duration, {
                     y: windowBottom - 59,
-                    ease: SineIn,
+                    ease: Sine.easeIn,
                     delay: delayFall,
                 });
             },
@@ -561,30 +555,30 @@ const minionsHandler = () => {
         tl.to(minionsMorpion[1], duration, {
             scale: 1,
             opacity: 1,
-            ease: backInOut.config(0.5),
+            ease: Back.easeInOut.config(0.5),
         })
             .to(minionsMorpion[0], duration, {
                 scale: 1,
                 opacity: 1,
-                ease: backInOut.config(0.5),
+                ease: Back.easeInOut.config(0.5),
                 delay,
             })
             .to(minionsMorpion[2], duration, {
                 scale: 1,
                 opacity: 1,
-                ease: backInOut.config(0.5),
+                ease: Back.easeInOut.config(0.5),
                 delay,
             })
             .to(minionsMorpion[4], duration, {
                 scale: 1,
                 opacity: 1,
-                ease: backInOut.config(0.5),
+                ease: Back.easeInOut.config(0.5),
                 delay,
             })
             .to(minionsMorpion[3], duration, {
                 scale: 1,
                 opacity: 1,
-                ease: backInOut.config(0.5),
+                ease: Back.easeInOut.config(0.5),
                 delay,
                 onComplete: () => {
                     TweenMax.to(
@@ -597,7 +591,7 @@ const minionsHandler = () => {
                         {
                             rotation: 10,
                             scale: 1.1,
-                            ease: backInOut.config(0.5),
+                            ease: Back.easeInOut.config(0.5),
                             delay,
                             onComplete: () => {
                                 TweenMax.to(
@@ -610,7 +604,7 @@ const minionsHandler = () => {
                                     {
                                         rotation: 0,
                                         scale: 1,
-                                        ease: backInOut.config(2),
+                                        ease: Back.easeInOut.config(2),
                                     }
                                 );
                             },
@@ -668,46 +662,46 @@ const minionsHandler = () => {
         TweenMax.set(planePath, { drawSVG: 0 });
     };
 
-    const restartAnims = () => {
-        TweenMax.set(minions, {
-            opacity: 0,
-            scale: 0,
-            x: 0,
-            y: 0,
-            rotation: 0,
-        });
-        TweenMax.set(planePath, { drawSVG: 0 });
+    // const restartAnims = () => {
+    //     TweenMax.set(minions, {
+    //         opacity: 0,
+    //         scale: 0,
+    //         x: 0,
+    //         y: 0,
+    //         rotation: 0,
+    //     });
+    //     TweenMax.set(planePath, { drawSVG: 0 });
 
-        forEach(homeSections, section => {
-            animsState[section.id] = { launched: false, done: false };
-        });
-    };
+    //     forEach(homeSections, section => {
+    //         animsState[section.id] = { launched: false, done: false };
+    //     });
+    // };
 
     // launch anims if minions are visible (window width > 960)
     if( getComputedStyle(minions[0]).display !== 'none' ) initAnims();
 
-    win.addResizeFunction(() => {
-        wh = window.innerHeight;
-        ww = window.innerWidth;
-        headerBottom = wh - (video.getBoundingClientRect().top + video.offsetHeight / 2) - window.scrollY;
+    // win.addResizeFunction(() => {
+    //     wh = window.innerHeight;
+    //     ww = window.innerWidth;
+    //     headerBottom = wh - (video.getBoundingClientRect().top + video.offsetHeight / 2) - window.scrollY;
 
-        if( scrollDowninterval ){
-            clearInterval(scrollDowninterval);
-        }
+    //     if( scrollDowninterval ){
+    //         clearInterval(scrollDowninterval);
+    //     }
 
-        clearTimeout( resizeTimer );
-        resizeTimer = setTimeout(() => {
-            if( getComputedStyle(minions[0]).display === 'none' ) return;
+    //     clearTimeout( resizeTimer );
+    //     resizeTimer = setTimeout(() => {
+    //         if( getComputedStyle(minions[0]).display === 'none' ) return;
                 
-            if( !animsLaunched ){
-                // if you're not in mobile or tablet but you started with a small screen and now have a bigger one let's launch anims
-                initAnims();
-            }else{
-                // if anims were launched let's do it again so elements will be placed ok
-                restartAnims();
-            }
-        }, 500);
-    });
+    //         if( !animsLaunched ){
+    //             // if you're not in mobile or tablet but you started with a small screen and now have a bigger one let's launch anims
+    //             initAnims();
+    //         }else{
+    //             // if anims were launched let's do it again so elements will be placed ok
+    //             restartAnims();
+    //         }
+    //     }, 500);
+    // });
 };
 
 export default minionsHandler;
