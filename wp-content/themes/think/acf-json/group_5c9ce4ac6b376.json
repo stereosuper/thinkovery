@@ -1,6 +1,24 @@
 {
     "key": "group_5c9ce4ac6b376",
     "title": "[options] Footer",
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options-theme-options"
+            }
+        ]
+    ],
+    "menu_order": 100,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1559033776,
     "fields": [
         {
             "key": "field_5c9ce519417f5",
@@ -294,23 +312,5 @@
                 }
             ]
         }
-    ],
-    "location": [
-        [
-            {
-                "param": "options_page",
-                "operator": "==",
-                "value": "acf-options-theme-options"
-            }
-        ]
-    ],
-    "menu_order": 100,
-    "position": "normal",
-    "style": "default",
-    "label_placement": "top",
-    "instruction_placement": "label",
-    "hide_on_screen": "",
-    "active": 1,
-    "description": "",
-    "modified": 1555428359
+    ]
 }

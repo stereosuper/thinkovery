@@ -1,6 +1,23 @@
 {
     "key": "group_5cb5bf9583aa9",
     "title": "[post] Reference",
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "reference"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "side",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
     "fields": [
         {
             "key": "field_5cb5bfbe0e44c",
@@ -53,22 +70,5 @@
             "return_format": "object"
         }
     ],
-    "location": [
-        [
-            {
-                "param": "post_type",
-                "operator": "==",
-                "value": "reference"
-            }
-        ]
-    ],
-    "menu_order": 0,
-    "position": "side",
-    "style": "default",
-    "label_placement": "top",
-    "instruction_placement": "label",
-    "hide_on_screen": "",
-    "active": 1,
-    "description": "",
-    "modified": 1556797937
+    "modified": 1559033776
 }

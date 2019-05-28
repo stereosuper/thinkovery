@@ -1,6 +1,23 @@
 {
     "key": "group_5cb486168122a",
     "title": "[page] Learning experience",
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "learning.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
     "fields": [
         {
             "key": "field_5cb48f62b402e",
@@ -136,22 +153,5 @@
             "delay": 0
         }
     ],
-    "location": [
-        [
-            {
-                "param": "page_template",
-                "operator": "==",
-                "value": "learning.php"
-            }
-        ]
-    ],
-    "menu_order": 0,
-    "position": "normal",
-    "style": "default",
-    "label_placement": "top",
-    "instruction_placement": "label",
-    "hide_on_screen": "",
-    "active": 1,
-    "description": "",
-    "modified": 1558430614
+    "modified": 1559033775
 }
