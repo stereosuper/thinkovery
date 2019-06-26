@@ -1,8 +1,18 @@
 <?php get_header(); ?>
 
 <div class='container'>
+<?php 
+$single_cat_title = single_cat_title('', false);
+$post_count = 0;
+foreach (get_the_terms(get_the_ID(), 'category') as $term){
+	if ($single_cat_title === $term->name) {
+		$post_count = $term->count;
+	}
+}
+?>
 
-	<h1 class='blog-title'><?php single_cat_title(); ?></h1>
+	<h1 class='blog-title'><?php echo $single_cat_title; ?></h1>
+	<p><?php echo $post_count .' '. __('articles dans cette rubrique', 'think') ?></p>
 
 	<div class='blog-nav' id='blog-nav'>
 		<div class='blog-cats' id='blog-cats'>
@@ -95,7 +105,6 @@
 							$count = 0;
 							foreach( $tags as $tag ){
 								$count ++;
-								if( $count > 1 ) echo ' - ';
 								echo '<a href="' . get_tag_link( $tag->term_id ) . '">' . $tag->name . '</a>';
 							}
 						} ?>

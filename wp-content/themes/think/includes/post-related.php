@@ -66,7 +66,6 @@
 						$count = 0;
 						foreach( $tags as $tag ){
 							$count ++;
-							if( $count > 1 ) echo ' - ';
 							echo '<a href="' . get_tag_link( $tag->term_id ) . '">' . $tag->name . '</a>';
 						}
 					} ?>

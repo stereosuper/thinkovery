@@ -1,4 +1,17 @@
-<?php get_header(); ?>
+<?php get_header(); 
+
+$single_cat_title = single_cat_title('', false);
+$post_count = 0;
+foreach (get_the_terms(get_the_ID(), 'category') as $term){
+	if ($single_cat_title === $term->name) {
+		$post_count = $term->count;
+	}
+}
+
+global $wp_query;
+$found_number = $wp_query->found_posts;
+?>
+
 
 <div class='container'>
 
@@ -7,7 +20,7 @@
 		<?php global $wp_query;
 		$results = $wp_query->found_posts;
 		$results = $results > 1 ? $results . ' results' : $results . ' result'; ?>
-
+		<p><?php echo $found_number .' '. __('resultats pour') ?></p>
 		<h1 class='blog-title'><?php echo __('The search for', 'think') . ' "' . get_search_query() .'" ' . __('returned', 'think') . ' ' . $results; ?></h1>
 
 		<div class='blog-nav' id='blog-nav'>
@@ -99,7 +112,6 @@
 							$count = 0;
 							foreach( $tags as $tag ){
 								$count ++;
-								if( $count > 1 ) echo ' - ';
 								echo '<a href="' . get_tag_link( $tag->term_id ) . '">' . $tag->name . '</a>';
 							}
 						} ?>

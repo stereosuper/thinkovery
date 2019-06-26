@@ -290,8 +290,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return BezierPlugin; });
 /* harmony import */ var _TweenLite_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TweenLite.js */ "./node_modules/gsap/TweenLite.js");
 /*!
- * VERSION: 1.3.8
- * DATE: 2018-05-30
+ * VERSION: 1.3.9
+ * DATE: 2019-05-17
  * UPDATES AND DOCS AT: http://greensock.com
  *
  * @license Copyright (c) 2008-2019, GreenSock. All rights reserved.
@@ -603,7 +603,7 @@ __webpack_require__.r(__webpack_exports__);
 			BezierPlugin = _TweenLite_js__WEBPACK_IMPORTED_MODULE_0__["_gsScope"]._gsDefine.plugin({
 					propName: "bezier",
 					priority: -1,
-					version: "1.3.8",
+					version: "1.3.9",
 					API: 2,
 					global:true,
 
@@ -680,26 +680,26 @@ __webpack_require__.r(__webpack_exports__);
 							func = this._func,
 							target = this._target,
 							notStart = (v !== this._startRatio),
-							curIndex, inv, i, p, b, t, val, l, lengths, curSeg;
+							curIndex, inv, i, p, b, t, val, l, lengths, curSeg, v1;
 						if (!this._timeRes) {
 							curIndex = (v < 0) ? 0 : (v >= 1) ? segments - 1 : (segments * v) >> 0;
 							t = (v - (curIndex * (1 / segments))) * segments;
 						} else {
 							lengths = this._lengths;
 							curSeg = this._curSeg;
-							v *= this._length;
+							v1 = v * this._length;
 							i = this._li;
 							//find the appropriate segment (if the currently cached one isn't correct)
-							if (v > this._l2 && i < segments - 1) {
+							if (v1 > this._l2 && i < segments - 1) {
 								l = segments - 1;
-								while (i < l && (this._l2 = lengths[++i]) <= v) {	}
+								while (i < l && (this._l2 = lengths[++i]) <= v1) {	}
 								this._l1 = lengths[i-1];
 								this._li = i;
 								this._curSeg = curSeg = this._segments[i];
 								this._s2 = curSeg[(this._s1 = this._si = 0)];
-							} else if (v < this._l1 && i > 0) {
-								while (i > 0 && (this._l1 = lengths[--i]) >= v) { }
-								if (i === 0 && v < this._l1) {
+							} else if (v1 < this._l1 && i > 0) {
+								while (i > 0 && (this._l1 = lengths[--i]) >= v1) { }
+								if (i === 0 && v1 < this._l1) {
 									this._l1 = 0;
 								} else {
 									i++;
@@ -712,16 +712,16 @@ __webpack_require__.r(__webpack_exports__);
 							}
 							curIndex = i;
 							//now find the appropriate sub-segment (we split it into the number of pieces that was defined by "precision" and measured each one)
-							v -= this._l1;
+							v1 -= this._l1;
 							i = this._si;
-							if (v > this._s2 && i < curSeg.length - 1) {
+							if (v1 > this._s2 && i < curSeg.length - 1) {
 								l = curSeg.length - 1;
-								while (i < l && (this._s2 = curSeg[++i]) <= v) {	}
+								while (i < l && (this._s2 = curSeg[++i]) <= v1) {	}
 								this._s1 = curSeg[i-1];
 								this._si = i;
-							} else if (v < this._s1 && i > 0) {
-								while (i > 0 && (this._s1 = curSeg[--i]) >= v) {	}
-								if (i === 0 && v < this._s1) {
+							} else if (v1 < this._s1 && i > 0) {
+								while (i > 0 && (this._s1 = curSeg[--i]) >= v1) {	}
+								if (i === 0 && v1 < this._s1) {
 									this._s1 = 0;
 								} else {
 									i++;
@@ -729,7 +729,7 @@ __webpack_require__.r(__webpack_exports__);
 								this._s2 = curSeg[i];
 								this._si = i;
 							}
-							t = ((i + (v - this._s1) / (this._s2 - this._s1)) * this._prec) || 0;
+							t = (v === 1) ? 1 : ((i + (v1 - this._s1) / (this._s2 - this._s1)) * this._prec) || 0;
 						}
 						inv = 1 - t;
 
@@ -909,8 +909,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CSSPlugin; });
 /* harmony import */ var _TweenLite_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TweenLite.js */ "./node_modules/gsap/TweenLite.js");
 /*!
- * VERSION: 2.1.0
- * DATE: 2019-02-15
+ * VERSION: 2.1.3
+ * DATE: 2019-05-17
  * UPDATES AND DOCS AT: http://greensock.com
  *
  * @license Copyright (c) 2008-2019, GreenSock. All rights reserved.
@@ -940,7 +940,7 @@ __webpack_require__.r(__webpack_exports__);
 			p = CSSPlugin.prototype = new _TweenLite_js__WEBPACK_IMPORTED_MODULE_0__["TweenPlugin"]("css");
 
 		p.constructor = CSSPlugin;
-		CSSPlugin.version = "2.1.0";
+		CSSPlugin.version = "2.1.3";
 		CSSPlugin.API = 2;
 		CSSPlugin.defaultTransformPerspective = 0;
 		CSSPlugin.defaultSkewType = "compensated";
@@ -952,6 +952,7 @@ __webpack_require__.r(__webpack_exports__);
 		var _numExp = /(?:\-|\.|\b)(\d|\.|e\-)+/g,
 			_relNumExp = /(?:\d|\-\d|\.\d|\-\.\d|\+=\d|\-=\d|\+=.\d|\-=\.\d)+/g,
 			_valuesExp = /(?:\+=|\-=|\-|\b)[\d\-\.]+[a-zA-Z0-9]*(?:%|\b)/gi, //finds all the values that begin with numbers or += or -= and then a number. Includes suffixes. We use this to split complex values apart like "1px 5px 20px rgb(255,102,51)"
+			_valuesExpWithCommas = /(?:\+=|\-=|\-|\b)[\d\-\.]+[a-zA-Z0-9]*(?:%|\b),?/gi, //finds all the values that begin with numbers or += or -= and then a number. Includes suffixes. We use this to split complex values apart like "1px 5px 20px rgb(255,102,51)"
 			_NaNExp = /(?![+-]?\d*\.?\d+|[+-]|e[+-]\d+)[^0-9]/g, //also allows scientific notation and doesn't kill the leading -/+ in -= and +=
 			_suffixExp = /(?:\d|\-|\+|=|#|\.)*/g,
 			_opacityExp = /opacity *= *([^)]*)/i,
@@ -973,7 +974,8 @@ __webpack_require__.r(__webpack_exports__);
 			_dummyElement = {style:{}},
 			_doc = _TweenLite_js__WEBPACK_IMPORTED_MODULE_0__["_gsScope"].document || {createElement: function() {return _dummyElement;}},
 			_createElement = function(type, ns) {
-				return (ns && _doc.createElementNS) ? _doc.createElementNS(ns, type) : _doc.createElement(type);
+				var e = _doc.createElementNS ? _doc.createElementNS(ns || "http://www.w3.org/1999/xhtml", type) : _doc.createElement(type);
+				return e.style ? e : _doc.createElement(type); //some environments won't allow access to the element's style when created with a namespace in which case we default to the standard createElement() to work around the issue. Also note that when GSAP is embedded directly inside an SVG file, createElement() won't allow access to the style object in Firefox (see https://greensock.com/forums/topic/20215-problem-using-tweenmax-in-standalone-self-containing-svg-file-err-cannot-set-property-csstext-of-undefined/).
 			},
 			_tempDiv = _createElement("div"),
 			_tempImg = _createElement("img"),
@@ -1553,14 +1555,14 @@ __webpack_require__.r(__webpack_exports__);
 						}
 						return a.join(",");
 					}
-					vals = v.match(_valuesExp) || [];
+					vals = v.match(delim === "," ? _valuesExp : _valuesExpWithCommas) || [];
 					i = vals.length;
 					if (numVals > i--) {
 						while (++i < numVals) {
 							vals[i] = collapsible ? vals[(((i - 1) / 2) | 0)] : dVals[i];
 						}
 					}
-					return pfx + vals.join(delim) + sfx;
+					return ((pfx && v !== "none") ? v.substr(0, v.indexOf(vals[0])) || pfx : pfx) + vals.join(delim) + sfx; //note: prefix might be different, like for clipPath it could start with inset( or polygon(
 				};
 				return formatter;
 			},
@@ -2143,7 +2145,7 @@ __webpack_require__.r(__webpack_exports__);
 				//IE and Android stock don't support CSS transforms on SVG elements, so we must write them to the "transform" attribute. We populate this variable in the _parseTransform() method, and only if/when we come across an SVG element
 				var force = _ieVers || (/Android/i.test(_agent) && !_TweenLite_js__WEBPACK_IMPORTED_MODULE_0__["_gsScope"].chrome),
 					svg, rect, width;
-				if (_doc.createElementNS && !force) { //IE8 and earlier doesn't support SVG anyway
+				if (_doc.createElementNS && _docElement.appendChild && !force) { //IE8 and earlier doesn't support SVG anyway
 					svg = _createSVG("svg", _docElement);
 					rect = _createSVG("rect", svg, {width:100, height:50, x:100});
 					width = rect.getBoundingClientRect().width;
@@ -2261,7 +2263,7 @@ __webpack_require__.r(__webpack_exports__);
 					s = (s && s.length === 4) ? [s[0].substr(4), Number(s[2].substr(4)), Number(s[1].substr(4)), s[3].substr(4), (tm.x || 0), (tm.y || 0)].join(",") : "";
 				}
 				isDefault = (!s || s === "none" || s === "matrix(1, 0, 0, 1, 0, 0)");
-				if (_transformProp && isDefault && !e.offsetParent) { //note: if offsetParent is null, that means the element isn't in the normal document flow, like if it has display:none or one of its ancestors has display:none). Firefox returns null for getComputedStyle() if the element is in an iframe that has display:none. https://bugzilla.mozilla.org/show_bug.cgi?id=548397
+				if (_transformProp && isDefault && !e.offsetParent && e !== _docElement) { //note: if offsetParent is null, that means the element isn't in the normal document flow, like if it has display:none or one of its ancestors has display:none). Firefox returns null for getComputedStyle() if the element is in an iframe that has display:none. https://bugzilla.mozilla.org/show_bug.cgi?id=548397
 					//browsers don't report transforms accurately unless the element is in the DOM and has a display value that's not "none". Firefox and Microsoft browsers have a partial bug where they'll report transforms even if display:none BUT not any percentage-based values like translate(-50%, 8px) will be reported as if it's translate(0, 8px).
 					n = style.display;
 					style.display = "block";
@@ -3023,7 +3025,7 @@ __webpack_require__.r(__webpack_exports__);
 		}, allowFunc:true, prefix:true});
 
 		_registerComplexSpecialProp("boxShadow", {defaultValue:"0px 0px 0px 0px #999", prefix:true, color:true, multi:true, keyword:"inset"});
-		_registerComplexSpecialProp("clipPath", {defaultValue:"inset(0px)", prefix:true, multi:true, formatter:_getFormatter("inset(0px 0px 0px 0px)", false, true)});
+		_registerComplexSpecialProp("clipPath", {defaultValue:"inset(0%)", prefix:true, multi:true, formatter:_getFormatter("inset(0% 0% 0% 0%)", false, true)});
 
 		_registerComplexSpecialProp("borderRadius", {defaultValue:"0px", parser:function(t, e, p, cssp, pt, plugin) {
 			e = this.format(e);
@@ -3277,7 +3279,9 @@ __webpack_require__.r(__webpack_exports__);
 			difData = _cssDif(t, bs, _getAllStyles(t), vars, cnptLookup);
 			t.setAttribute("class", b);
 			pt.data = difData.firstMPT;
-			t.style.cssText = cssText; //we recorded cssText before we swapped classes and ran _getAllStyles() because in cases when a className tween is overwritten, we remove all the related tweening properties from that class change (otherwise class-specific stuff can't override properties we've directly set on the target's style object due to specificity).
+			if (t.style.cssText !== cssText) { //only apply if things change. Otherwise, in cases like a background-image that's pulled dynamically, it could cause a refresh. See https://greensock.com/forums/topic/20368-possible-gsap-bug-switching-classnames-in-chrome/.
+				t.style.cssText = cssText; //we recorded cssText before we swapped classes and ran _getAllStyles() because in cases when a className tween is overwritten, we remove all the related tweening properties from that class change (otherwise class-specific stuff can't override properties we've directly set on the target's style object due to specificity).
+			}
 			pt = pt.xfirst = cssp.parse(t, difData.difs, pt, plugin); //we record the CSSPropTween as the xfirst so that we can handle overwriting propertly (if "className" gets overwritten, we must kill all the properties associated with the className part of the tween, so we can loop through from xfirst to the pt itself)
 			return pt;
 		}});
@@ -4668,8 +4672,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return TimelineLite; });
 /* harmony import */ var _TweenLite_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TweenLite.js */ "./node_modules/gsap/TweenLite.js");
 /*!
- * VERSION: 2.1.2
- * DATE: 2019-03-01
+ * VERSION: 2.1.3
+ * DATE: 2019-05-17
  * UPDATES AND DOCS AT: http://greensock.com
  *
  * @license Copyright (c) 2008-2019, GreenSock. All rights reserved.
@@ -4785,7 +4789,7 @@ _TweenLite_js__WEBPACK_IMPORTED_MODULE_0__["_gsScope"]._gsDefine("TimelineLite",
 						}
 						distances.max = max - min;
 						distances.min = min;
-						distances.v = l = vars.amount || (vars.each * (wrap > l ? l : !axis ? Math.max(wrap, l / wrap) : axis === "y" ? l / wrap : wrap)) || 0;
+						distances.v = l = vars.amount || (vars.each * (wrap > l ? l - 1 : !axis ? Math.max(wrap, l / wrap) : axis === "y" ? l / wrap : wrap)) || 0;
 						distances.b = (l < 0) ? base - l : base;
 					}
 					l = (distances[i] - distances.min) / distances.max;
@@ -4794,7 +4798,7 @@ _TweenLite_js__WEBPACK_IMPORTED_MODULE_0__["_gsScope"]._gsDefine("TimelineLite",
 			},
 			p = TimelineLite.prototype = new _TweenLite_js__WEBPACK_IMPORTED_MODULE_0__["SimpleTimeline"]();
 
-		TimelineLite.version = "2.1.2";
+		TimelineLite.version = "2.1.3";
 		TimelineLite.distribute = _distribute;
 		p.constructor = TimelineLite;
 		p.kill()._gc = p._forcingPlayhead = p._hasPause = false;
@@ -5111,6 +5115,29 @@ _TweenLite_js__WEBPACK_IMPORTED_MODULE_0__["_gsScope"]._gsDefine("TimelineLite",
 			if (prevTime !== self._time) { //if totalDuration() finds a child with a negative startTime and smoothChildTiming is true, things get shifted around internally so we need to adjust the time accordingly. For example, if a tween starts at -30 we must shift EVERYTHING forward 30 seconds and move this timeline's startTime backward by 30 seconds so that things align with the playhead (no jump).
 				time += self._time - prevTime;
 			}
+			if (self._hasPause && !self._forcingPlayhead && !suppressEvents) {
+				if (time > prevTime) {
+					tween = self._first;
+					while (tween && tween._startTime <= time && !pauseTween) {
+						if (!tween._duration) if (tween.data === "isPause" && !tween.ratio && !(tween._startTime === 0 && self._rawPrevTime === 0)) {
+							pauseTween = tween;
+						}
+						tween = tween._next;
+					}
+				} else {
+					tween = self._last;
+					while (tween && tween._startTime >= time && !pauseTween) {
+						if (!tween._duration) if (tween.data === "isPause" && tween._rawPrevTime > 0) {
+							pauseTween = tween;
+						}
+						tween = tween._prev;
+					}
+				}
+				if (pauseTween) {
+					self._time = self._totalTime = time = pauseTween._startTime;
+					pauseTime = self._startTime + (self._reversed ? self._duration - time : time) / self._timeScale;
+				}
+			}
 			if (time >= totalDur - _tinyNum && time >= 0) { //to work around occasional floating point math artifacts.
 				self._totalTime = self._time = totalDur;
 				if (!self._reversed) if (!self._hasPausedChild()) {
@@ -5163,31 +5190,6 @@ _TweenLite_js__WEBPACK_IMPORTED_MODULE_0__["_gsScope"]._gsDefine("TimelineLite",
 				}
 
 			} else {
-
-				if (self._hasPause && !self._forcingPlayhead && !suppressEvents) {
-					if (time >= prevTime) {
-						tween = self._first;
-						while (tween && tween._startTime <= time && !pauseTween) {
-							if (!tween._duration) if (tween.data === "isPause" && !tween.ratio && !(tween._startTime === 0 && self._rawPrevTime === 0)) {
-								pauseTween = tween;
-							}
-							tween = tween._next;
-						}
-					} else {
-						tween = self._last;
-						while (tween && tween._startTime >= time && !pauseTween) {
-							if (!tween._duration) if (tween.data === "isPause" && tween._rawPrevTime > 0) {
-								pauseTween = tween;
-							}
-							tween = tween._prev;
-						}
-					}
-					if (pauseTween) {
-						self._time = self._totalTime = time = pauseTween._startTime;
-						pauseTime = self._startTime + (time / self._timeScale);
-					}
-				}
-
 				self._totalTime = self._time = self._rawPrevTime = time;
 			}
 			if ((self._time === prevTime || !self._first) && !force && !internalForce && !pauseTween) {
@@ -5532,8 +5534,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TimelineLite", function() { return _TimelineLite_js__WEBPACK_IMPORTED_MODULE_1__["default"]; });
 
 /*!
- * VERSION: 2.1.2
- * DATE: 2019-03-01
+ * VERSION: 2.1.3
+ * DATE: 2019-05-17
  * UPDATES AND DOCS AT: http://greensock.com
  *
  * @license Copyright (c) 2008-2019, GreenSock. All rights reserved.
@@ -5567,7 +5569,7 @@ _TweenLite_js__WEBPACK_IMPORTED_MODULE_0__["_gsScope"]._gsDefine("TimelineMax", 
 
 		p.constructor = TimelineMax;
 		p.kill()._gc = false;
-		TimelineMax.version = "2.1.2";
+		TimelineMax.version = "2.1.3";
 
 		p.invalidate = function() {
 			this._yoyo = !!this.vars.yoyo;
@@ -5743,35 +5745,34 @@ _TweenLite_js__WEBPACK_IMPORTED_MODULE_0__["_gsScope"]._gsDefine("TimelineMax", 
 						}
 					}
 				}
+			}
 
-				if (self._hasPause && !self._forcingPlayhead && !suppressEvents) {
-					time = self._time;
-					if (time >= prevTime || (self._repeat && prevCycle !== self._cycle)) {
-						tween = self._first;
-						while (tween && tween._startTime <= time && !pauseTween) {
-							if (!tween._duration) if (tween.data === "isPause" && !tween.ratio && !(tween._startTime === 0 && self._rawPrevTime === 0)) {
-								pauseTween = tween;
-							}
-							tween = tween._next;
+			if (self._hasPause && !self._forcingPlayhead && !suppressEvents) {
+				time = self._time;
+				if (time > prevTime || (self._repeat && prevCycle !== self._cycle)) {
+					tween = self._first;
+					while (tween && tween._startTime <= time && !pauseTween) {
+						if (!tween._duration) if (tween.data === "isPause" && !tween.ratio && !(tween._startTime === 0 && self._rawPrevTime === 0)) {
+							pauseTween = tween;
 						}
-					} else {
-						tween = self._last;
-						while (tween && tween._startTime >= time && !pauseTween) {
-							if (!tween._duration) if (tween.data === "isPause" && tween._rawPrevTime > 0) {
-								pauseTween = tween;
-							}
-							tween = tween._prev;
-						}
+						tween = tween._next;
 					}
-					if (pauseTween) {
-						pauseTime = self._startTime + (pauseTween._startTime / self._timeScale);
-						if (pauseTween._startTime < dur) {
-							self._time = self._rawPrevTime = time = pauseTween._startTime;
-							self._totalTime = time + (self._cycle * (self._totalDuration + self._repeatDelay));
+				} else {
+					tween = self._last;
+					while (tween && tween._startTime >= time && !pauseTween) {
+						if (!tween._duration) if (tween.data === "isPause" && tween._rawPrevTime > 0) {
+							pauseTween = tween;
 						}
+						tween = tween._prev;
 					}
 				}
-
+				if (pauseTween) {
+					pauseTime = self._startTime + (self._reversed ? self._duration - pauseTween._startTime : pauseTween._startTime) / self._timeScale;
+					if (pauseTween._startTime < dur) {
+						self._time = self._rawPrevTime = time = pauseTween._startTime;
+						self._totalTime = time + (self._cycle * (self._totalDuration + self._repeatDelay));
+					}
+				}
 			}
 
 			if (self._cycle !== prevCycle) if (!self._locked) {
@@ -6082,8 +6083,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TweenPlugin", function() { return TweenPlugin; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EventDispatcher", function() { return EventDispatcher; });
 /*!
- * VERSION: 2.1.2
- * DATE: 2019-03-01
+ * VERSION: 2.1.3
+ * DATE: 2019-05-17
  * UPDATES AND DOCS AT: http://greensock.com
  *
  * @license Copyright (c) 2008-2019, GreenSock. All rights reserved.
@@ -7055,7 +7056,7 @@ var TweenLite = (function(window) {
 		p._firstPT = p._targets = p._overwrittenProps = p._startAt = null;
 		p._notifyPluginsOfEnabled = p._lazy = false;
 
-		TweenLite.version = "2.1.2";
+		TweenLite.version = "2.1.3";
 		TweenLite.defaultEase = p._ease = new Ease(null, null, 1, 1);
 		TweenLite.defaultOverwrite = "auto";
 		TweenLite.ticker = _ticker;
@@ -8135,8 +8136,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ExpoScaleEase", function() { return _EasePack_js__WEBPACK_IMPORTED_MODULE_9__["ExpoScaleEase"]; });
 
 /*!
- * VERSION: 2.1.2
- * DATE: 2019-03-01
+ * VERSION: 2.1.3
+ * DATE: 2019-05-17
  * UPDATES AND DOCS AT: http://greensock.com
  *
  * @license Copyright (c) 2008-2019, GreenSock. All rights reserved.
@@ -8198,8 +8199,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Linear", function() { return _TweenLite_js__WEBPACK_IMPORTED_MODULE_0__["Linear"]; });
 
 /*!
- * VERSION: 2.1.2
- * DATE: 2019-03-01
+ * VERSION: 2.1.3
+ * DATE: 2019-05-17
  * UPDATES AND DOCS AT: http://greensock.com
  *
  * @license Copyright (c) 2008-2019, GreenSock. All rights reserved.
@@ -8273,7 +8274,7 @@ _TweenLite_js__WEBPACK_IMPORTED_MODULE_0__["_gsScope"]._gsDefine("TweenMax", ["c
 						}
 						distances.max = max - min;
 						distances.min = min;
-						distances.v = l = vars.amount || (vars.each * (wrap > l ? l : !axis ? Math.max(wrap, l / wrap) : axis === "y" ? l / wrap : wrap)) || 0;
+						distances.v = l = vars.amount || (vars.each * (wrap > l ? l - 1 : !axis ? Math.max(wrap, l / wrap) : axis === "y" ? l / wrap : wrap)) || 0;
 						distances.b = (l < 0) ? base - l : base;
 					}
 					l = (distances[i] - distances.min) / distances.max;
@@ -8298,7 +8299,7 @@ _TweenLite_js__WEBPACK_IMPORTED_MODULE_0__["_gsScope"]._gsDefine("TweenMax", ["c
 			p = TweenMax.prototype = _TweenLite_js__WEBPACK_IMPORTED_MODULE_0__["default"].to({}, 0.1, {}),
 			_blankArray = [];
 
-		TweenMax.version = "2.1.2";
+		TweenMax.version = "2.1.3";
 		p.constructor = TweenMax;
 		p.kill()._gc = false;
 		TweenMax.killTweensOf = TweenMax.killDelayedCallsTo = _TweenLite_js__WEBPACK_IMPORTED_MODULE_0__["default"].killTweensOf;
@@ -8794,7 +8795,7 @@ _TweenLite_js__WEBPACK_IMPORTED_MODULE_0__["_gsScope"]._gsDefine("TweenMax", ["c
 //---- GETTERS / SETTERS ----------------------------------------------------------------------------------------------------------
 
 		p.progress = function(value, suppressEvents) {
-			return (!arguments.length) ? this._time / this.duration() : this.totalTime( this.duration() * ((this._yoyo && (this._cycle & 1) !== 0) ? 1 - value : value) + (this._cycle * (this._duration + this._repeatDelay)), suppressEvents);
+			return (!arguments.length) ? (this.duration() ? this._time / this._duration : this.ratio) : this.totalTime( this.duration() * ((this._yoyo && (this._cycle & 1) !== 0) ? 1 - value : value) + (this._cycle * (this._duration + this._repeatDelay)), suppressEvents);
 		};
 
 		p.totalProgress = function(value, suppressEvents) {
@@ -8951,8 +8952,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ExpoScaleEase", function() { return _EasePack_js__WEBPACK_IMPORTED_MODULE_9__["ExpoScaleEase"]; });
 
 /*!
- * VERSION: 2.1.2
- * DATE: 2019-03-01
+ * VERSION: 2.1.3
+ * DATE: 2019-05-17
  * UPDATES AND DOCS AT: http://greensock.com
  *
  * @license Copyright (c) 2008-2019, GreenSock. All rights reserved.
@@ -14620,14 +14621,14 @@ MorphSVGPlugin.prototype._tweenRotation = function (start, end, i, linkedPT) {
       //length from starting origin to starting point
   sa = _atan2(dy, dx),
       angleDif,
-      short;
+      _short;
 
   dx = end[i] - eo.x;
   dy = end[i + 1] - eo.y;
   angleDif = _atan2(dy, dx) - sa;
-  short = _shortAngle(angleDif); //in the case of control points, we ALWAYS link them to their anchor so that they don't get torn apart and rotate the opposite direction. If it's not a control point, we look at the most recently linked point as long as they're within a certain rotational range of each other.
+  _short = _shortAngle(angleDif); //in the case of control points, we ALWAYS link them to their anchor so that they don't get torn apart and rotate the opposite direction. If it's not a control point, we look at the most recently linked point as long as they're within a certain rotational range of each other.
 
-  if (!linkedPT && _lastLinkedAnchor && Math.abs(short + _lastLinkedAnchor.ca) < _angleMin) {
+  if (!linkedPT && _lastLinkedAnchor && Math.abs(_short + _lastLinkedAnchor.ca) < _angleMin) {
     linkedPT = _lastLinkedAnchor;
   }
 
@@ -14636,7 +14637,7 @@ MorphSVGPlugin.prototype._tweenRotation = function (start, end, i, linkedPT) {
     t: start,
     sa: sa,
     //starting angle
-    ca: linkedPT && short * linkedPT.ca < 0 && Math.abs(short) > _angleMax ? angleDif : short,
+    ca: linkedPT && _short * linkedPT.ca < 0 && Math.abs(_short) > _angleMax ? angleDif : _short,
     //change in angle
     sl: d,
     //starting length

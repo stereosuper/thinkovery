@@ -56,8 +56,9 @@
                                         <span><?php echo $menus['footerMenu1Title']; ?></span>
                                         <ul>
                                             <?php while ( have_rows('footerMenu1', 'options') ) : the_row(); ?>
-                                                <?php $link = get_sub_field('link'); ?>
-                                                <li><a href='<?php echo $link['url'] ?>'><?php echo $link['title'] ?></a></li>
+                                                <?php if ($link = get_sub_field('link')) : ?>
+                                                    <li><a href='<?php echo $link['url'] ?>'><?php echo $link['title'] ?></a></li>
+                                                <?php endif; ?>
                                             <?php endwhile; ?>
                                         </ul>
                                     </div>
@@ -68,8 +69,9 @@
                                         <span><?php echo $menus['footerMenu2Title']; ?></span>
                                         <ul>
                                             <?php while ( have_rows('footerMenu2', 'options') ) : the_row(); ?>
-                                                <?php $link = get_sub_field('link'); ?>
-                                                <li><a href='<?php echo $link['url'] ?>'><?php echo $link['title'] ?></a></li>
+                                                <?php if ($link = get_sub_field('link')) : ?>
+                                                    <li><a href='<?php echo $link['url'] ?>'><?php echo $link['title'] ?></a></li>
+                                                <?php endif; ?>
                                             <?php endwhile; ?>
                                         </ul>
                                     </div>
