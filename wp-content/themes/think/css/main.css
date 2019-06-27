@@ -3612,7 +3612,8 @@ label {
 .offers-menu {
   display: none; }
 
-.offer-text h3, .offer-text2 h3 {
+.offer-text h3,
+.offer-text2 h3 {
   color: #1e5e32; }
 
 .offer {
@@ -3658,7 +3659,9 @@ label {
     .offers-menu li:before {
       content: none; }
     .offers-menu a {
-      color: #404040; }
+      color: #404040;
+      text-decoration: none;
+      font-weight: 500; }
     .offers-menu .icon {
       display: block;
       width: 50px;
@@ -3689,7 +3692,8 @@ label {
   .offer-col {
     width: 33%;
     padding: 0 44px; }
-  .offer-text, .offer-text2 {
+  .offer-text,
+  .offer-text2 {
     width: calc(50% - 26.50602px); }
   .offer {
     position: relative; }
@@ -3722,7 +3726,9 @@ label {
     .offer-5 img {
       top: 8%;
       right: 12%; }
-    .offer-2 .offer-text, .offer-2 .offer-cols, .offer-4 .offer-text, .offer-4 .offer-cols {
+    .offer-2 .offer-text,
+    .offer-2 .offer-cols, .offer-4 .offer-text,
+    .offer-4 .offer-cols {
       margin-left: auto; }
     .offer img {
       position: absolute; } }

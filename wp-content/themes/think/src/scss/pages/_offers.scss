@@ -1,35 +1,35 @@
-.offers-title{
+.offers-title {
     margin-bottom: 1.5em;
     font-size: 5.6rem;
     text-align: center;
 }
 
-.offers-menu{
+.offers-menu {
     display: none;
 }
 
-.offer-text, .offer-text2{
-    h3{
+.offer-text,
+.offer-text2 {
+    h3 {
         color: $primary;
     }
 }
 
-.offer{
+.offer {
     margin: 7em 0 0;
-    h4{
+    h4 {
         font-size: 2.6rem;
         font-weight: 600;
         line-height: 1.2;
     }
-    img{
+    img {
         display: block;
         margin: 2em 0 0 auto;
     }
 }
 
-
-@media (min-width: $tablet){
-    .offers-menu{
+@media (min-width: $tablet) {
+    .offers-menu {
         display: block;
         width: 100%;
         height: 135px;
@@ -38,30 +38,32 @@
         padding: 1em 0 0;
         z-index: 10;
         background: $bg-color;
-        &.collant{
-            > ul{
+        &.collant {
+            > ul {
                 transform: scale(0.65);
             }
-            a{
+            a {
                 text-decoration: none;
             }
         }
-        > .container{
+        > .container {
             display: flex;
             justify-content: space-around;
             align-items: flex-end;
             transform-origin: 50% 0;
             transition: transform $transition;
         }
-        li{
-            &:before{
+        li {
+            &:before {
                 content: none;
             }
         }
-        a{
+        a {
             color: $text-color;
+            text-decoration: none;
+            font-weight: 500;
         }
-        .icon{
+        .icon {
             display: block;
             width: 50px;
             height: 50px;
@@ -69,118 +71,121 @@
         }
     }
 
-    .offers{
+    .offers {
         padding: 6em 0 0;
     }
 
-    .offers-title{
+    .offers-title {
         width: 75%;
         margin-left: auto;
         margin-right: auto;
     }
 
-    .offer{
+    .offer {
         margin: 10em 0 0;
     }
 }
 
-@media (min-width: $desktop-small){
-    .offers-menu{
+@media (min-width: $desktop-small) {
+    .offers-menu {
         font-size: 2.4rem;
-        .icon{
+        .icon {
             width: 75px;
             height: 75px;
         }
     }
 
-    .offer-cols{
+    .offer-cols {
         display: flex;
-        margin: 0 $gutter*-1;
+        margin: 0 $gutter * -1;
         flex-wrap: wrap;
     }
-    .offer-col{
+    .offer-col {
         width: 33%;
         padding: 0 $gutter;
     }
 
-    .offer-text, .offer-text2{
+    .offer-text,
+    .offer-text2 {
         width: calc(50% - #{$gutter/1.66});
     }
-    
-    .offer{
+
+    .offer {
         position: relative;
-        &-1{
-            img{
+        &-1 {
+            img {
                 bottom: -15%;
                 right: 0;
             }
         }
-        &-2{
-            .offer-col{
-                &:first-of-type{
+        &-2 {
+            .offer-col {
+                &:first-of-type {
                     margin-left: 33%;
                 }
             }
-            img{
+            img {
                 top: 3%;
                 left: 0;
             }
         }
-        &-3{
-            img{
+        &-3 {
+            img {
                 top: 10%;
                 right: 12%;
             }
         }
-        &-4{
-            img{
+        &-4 {
+            img {
                 top: 12%;
                 left: 22%;
             }
         }
-        &-5{
-            .offers-text{
+        &-5 {
+            .offers-text {
                 display: flex;
                 align-items: flex-start;
                 justify-content: space-between;
             }
-            .offer-text2{
+            .offer-text2 {
                 margin: 15.9em 0 0;
             }
-            img{
+            img {
                 top: 8%;
                 right: 12%;
             }
         }
-        &-2, &-4{
-            .offer-text, .offer-cols{
+        &-2,
+        &-4 {
+            .offer-text,
+            .offer-cols {
                 margin-left: auto;
             }
         }
-        img{
+        img {
             position: absolute;
         }
     }
 }
 
-@media (min-width: $desktop){
-    .offers-title{
+@media (min-width: $desktop) {
+    .offers-title {
         width: 50%;
     }
 
-    .offer-cols{
-        width: calc(75% + #{$gutter*2});
+    .offer-cols {
+        width: calc(75% + #{$gutter * 2});
     }
 
-    .offer{
-        &-1{
-            img{
+    .offer {
+        &-1 {
+            img {
                 bottom: -8%;
                 right: 8%;
             }
         }
-        &-2{
-            img{
+        &-2 {
+            img {
                 top: 10%;
                 left: 8%;
             }
