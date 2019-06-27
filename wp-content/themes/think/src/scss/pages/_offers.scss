@@ -28,6 +28,36 @@
     }
 }
 
+.offer-1 {
+    h3 {
+        color: $secondary;
+    }
+}
+
+.offer-2 {
+    h3 {
+        color: $quaternary;
+    }
+}
+
+.offer-3 {
+    h3 {
+        color: $tertiary;
+    }
+}
+
+.offer-4 {
+    h3 {
+        color: $tertiary-light;
+    }
+}
+
+.offer-5 {
+    h3 {
+        color: $primary-light;
+    }
+}
+
 @media (min-width: $tablet) {
     .offers-menu {
         display: block;

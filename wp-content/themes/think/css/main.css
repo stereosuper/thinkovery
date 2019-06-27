@@ -3626,6 +3626,21 @@ label {
     display: block;
     margin: 2em 0 0 auto; }
 
+.offer-1 h3 {
+  color: #65a3da; }
+
+.offer-2 h3 {
+  color: #f8ba41; }
+
+.offer-3 h3 {
+  color: #df622d; }
+
+.offer-4 h3 {
+  color: #ec8d28; }
+
+.offer-5 h3 {
+  color: #4d917e; }
+
 @media (min-width: 780px) {
   .offers-menu {
     display: block;

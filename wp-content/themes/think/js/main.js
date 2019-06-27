@@ -12384,16 +12384,19 @@ var offersMenuHandler = function offersMenuHandler() {
       event.preventDefault();
       var sectionId = anchor.href.split('/').pop().slice(1);
       var section = document.getElementById(sectionId);
-      setTimeout(function () {
-        var offset = section.getBoundingClientRect().top + window.scrollY - menuHeight;
-        gsap__WEBPACK_IMPORTED_MODULE_2__["TweenMax"].to(window, 0.5, {
-          scrollTo: {
-            y: offset,
-            offsetY: _global__WEBPACK_IMPORTED_MODULE_3__["globalStyles"].lineHeight
-          },
-          ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].easeFade
-        });
-      }, 100);
+
+      if (section) {
+        setTimeout(function () {
+          var offset = section.getBoundingClientRect().top + window.scrollY - menuHeight;
+          gsap__WEBPACK_IMPORTED_MODULE_2__["TweenMax"].to(window, 0.5, {
+            scrollTo: {
+              y: offset,
+              offsetY: _global__WEBPACK_IMPORTED_MODULE_3__["globalStyles"].lineHeight
+            },
+            ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].easeFade
+          });
+        }, 100);
+      }
     }, false);
   });
 };

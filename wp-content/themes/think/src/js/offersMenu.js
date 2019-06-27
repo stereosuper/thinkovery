@@ -21,20 +21,21 @@ const offersMenuHandler = () => {
                     .pop()
                     .slice(1);
                 const section = document.getElementById(sectionId);
-
-                setTimeout(() => {
-                    const offset =
-                        section.getBoundingClientRect().top +
-                        window.scrollY -
-                        menuHeight;
-                    TweenMax.to(window, 0.5, {
-                        scrollTo: {
-                            y: offset,
-                            offsetY: globalStyles.lineHeight,
-                        },
-                        ease: easing.easeFade,
-                    });
-                }, 100);
+                if (section) {
+                    setTimeout(() => {
+                        const offset =
+                            section.getBoundingClientRect().top +
+                            window.scrollY -
+                            menuHeight;
+                        TweenMax.to(window, 0.5, {
+                            scrollTo: {
+                                y: offset,
+                                offsetY: globalStyles.lineHeight,
+                            },
+                            ease: easing.easeFade,
+                        });
+                    }, 100);
+                }
             },
             false
         );
