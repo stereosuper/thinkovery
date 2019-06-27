@@ -3,7 +3,7 @@ import { forEach } from './utils';
 import { TweenMax } from 'gsap';
 import { easing, globalStyles } from './global';
 
-const burgerHandler = () => {
+const accordionHandler = () => {
     const accordions = document.querySelectorAll(
         '.wp-block-stereoberg-question-answer'
     );
@@ -19,7 +19,9 @@ const burgerHandler = () => {
                 const parent = title.parentElement;
                 const answer = title.parentElement.querySelector('.js-answer');
                 const alreadyActivated = parent.classList.contains('activated');
-                let maxHeight = title.parentElement.querySelector('.answer-content').getBoundingClientRect().height;
+                const maxHeight = title.parentElement
+                    .querySelector('.answer-content')
+                    .getBoundingClientRect().height;
 
                 forEach(accordions, resetParent => {
                     resetParent.classList.remove('activated');
@@ -39,20 +41,21 @@ const burgerHandler = () => {
                 });
                 parent.classList.add('activated');
 
-                // setTimeout(() => {
-                //     const offset = title.getBoundingClientRect().top + window.scrollY;
-                //     TweenMax.to(window, 0.5, {
-                //         scrollTo: {
-                //             y: offset,
-                //             offsetY: globalStyles.lineHeight,
-                //         },
-                //         ease: easing.easeFade,
-                //     });
-                // }, 600);
+                setTimeout(() => {
+                    const offset =
+                        title.getBoundingClientRect().top + window.scrollY;
+                    TweenMax.to(window, 0.5, {
+                        scrollTo: {
+                            y: offset,
+                            offsetY: globalStyles.lineHeight,
+                        },
+                        ease: easing.easeFade,
+                    });
+                }, 600);
             },
             false
         );
     });
 };
 
-export default burgerHandler;
+export default accordionHandler;

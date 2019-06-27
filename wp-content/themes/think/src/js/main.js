@@ -1,3 +1,6 @@
+import collant from 'collant';
+import imagesLoaded from 'imagesloaded';
+
 import '../scss/main.scss';
 
 import win from './utils/Window';
@@ -7,6 +10,7 @@ import fallback from './utils/Fallback';
 
 import burger from './burger';
 import accordion from './accordion';
+import offersMenu from './offersMenu';
 import form from './form';
 import newsletter from './newsletter';
 import makeBorders from './makeBorders';
@@ -17,27 +21,25 @@ import learningAnim from './learningAnim';
 import search from './search';
 import memory from './memory';
 
-import collant from 'collant';
-import imagesLoaded from 'imagesloaded';
-
 // IE11 closest polyfill
 if (!Element.prototype.matches) {
-    Element.prototype.matches = Element.prototype.msMatchesSelector ||    Element.prototype.webkitMatchesSelector;
+    Element.prototype.matches =
+        Element.prototype.msMatchesSelector ||
+        Element.prototype.webkitMatchesSelector;
 }
 
 if (!Element.prototype.closest) {
-    Element.prototype.closest = function(s) {
-        var el = this;
+    Element.prototype.closest = function closestPolyfill(s) {
+        let el = this;
 
         do {
             if (el.matches(s)) return el;
             el = el.parentElement || el.parentNode;
         } while (el !== null && el.nodeType === 1);
-        
+
         return null;
     };
 }
-
 
 const state = {
     preloaded: false,
@@ -47,7 +49,7 @@ const state = {
 const preload = () => {
     const { readyState } = document;
 
-    if( readyState !== 'interactive' && readyState !== 'complete' ) return;
+    if (readyState !== 'interactive' && readyState !== 'complete') return;
 
     const noTransElem = [].slice.call(
         document.getElementsByClassName('element-without-transition-on-resize')
@@ -65,6 +67,7 @@ const preload = () => {
     // Custom scripts
     burger();
     accordion();
+    offersMenu();
     form();
     search();
     newsletter();
@@ -79,7 +82,7 @@ const animationHandler = () => {
 };
 
 const load = () => {
-    if( document.readyState !== 'complete' ) return;
+    if (document.readyState !== 'complete') return;
 
     state.loaded = true;
     makeBorders();
@@ -89,40 +92,41 @@ const load = () => {
     // }
 
     // blog sticky share
-    if( document.getElementById('article') ){
-        imagesLoaded( document.getElementById('article'), () => {
+    if (document.getElementById('article')) {
+        imagesLoaded(document.getElementById('article'), () => {
             collant(document.getElementById('share'), 0, {
-                minimumWidth: 1100
+                minimumWidth: 1100,
             });
-        } );
+        });
     }
 
-    if( document.getElementById('offers') ){
-        imagesLoaded( document.getElementById('offers'), () => {
-            collant(document.getElementById('menu'), 0, {
-                minimumWidth: 960
+    if (document.getElementById('offers')) {
+        imagesLoaded(document.getElementById('offers'), () => {
+            collant(document.getElementById('offers-menu'), 0, {
+                minimumWidth: 960,
             });
-        } );
+        });
     }
 
     // blog categories
     const cats = document.getElementById('blog-cats');
-    if( cats ){
+    if (cats) {
         cats.addEventListener('click', () => {
             cats.classList.toggle('on');
         });
     }
 };
 
-
 preload();
 load();
 
-document.addEventListener('readystatechange', () => {
-
-    if( !state.preloaded ) preload();
-    if( !state.loaded ) load();
-
-}, false);
+document.addEventListener(
+    'readystatechange',
+    () => {
+        if (!state.preloaded) preload();
+        if (!state.loaded) load();
+    },
+    false
+);
 
 document.addEventListener('loaderHidden', animationHandler, false);

@@ -13,8 +13,8 @@ get_header(); ?>
 		<?php the_content(); ?>
 
 		<?php if( have_rows('menu') ) : ?>
-			<div class='offers-menu sidebar' id='menu'>
-				<ul class='container'>
+			<div class="offers-menu sidebar" id="offers-menu">
+				<ul class="container">
 					<?php while( have_rows('menu') ) : the_row(); ?>
 						<li>
 							<a href='#<?php the_sub_field('anchor'); ?>'>
