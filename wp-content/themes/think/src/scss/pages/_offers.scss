@@ -74,7 +74,13 @@
             }
             a {
                 text-decoration: none;
-                opacity: 0.5;
+                opacity: 0.3;
+                transition: transition(
+                    (
+                        opacity: 0.3s
+                    ),
+                    $fade-easing
+                );
                 &.active {
                     opacity: 1;
                     .icon {
@@ -82,7 +88,13 @@
                     }
                 }
                 .icon {
-                    opacity: 0.5;
+                    opacity: 0.3;
+                    transition: transition(
+                        (
+                            opacity: 0.3s
+                        ),
+                        $fade-easing
+                    );
                 }
             }
         }

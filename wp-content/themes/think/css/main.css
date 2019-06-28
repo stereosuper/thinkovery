@@ -3652,13 +3652,17 @@ label {
               transform: scale(0.65); }
     .offers-menu.collant a {
       text-decoration: none;
-      opacity: 0.5; }
+      opacity: 0.3;
+      -webkit-transition:  opacity 0.3s ease-out;
+      transition:  opacity 0.3s ease-out; }
       .offers-menu.collant a.active {
         opacity: 1; }
         .offers-menu.collant a.active .icon {
           opacity: 1; }
       .offers-menu.collant a .icon {
-        opacity: 0.5; }
+        opacity: 0.3;
+        -webkit-transition:  opacity 0.3s ease-out;
+        transition:  opacity 0.3s ease-out; }
     .offers-menu > .container {
       display: -webkit-box;
       display: -ms-flexbox;
@@ -3902,4 +3906,4 @@ label {
     page-break-after: avoid; } }
 
 
-/*# sourceMappingURL=main.css.map?d40c7a27262d63cc81d416473cff7beb*/
+/*# sourceMappingURL=main.css.map?ebc165006bfc141786b71378cf5ceedb*/
