@@ -3651,7 +3651,14 @@ label {
       -webkit-transform: scale(0.65);
               transform: scale(0.65); }
     .offers-menu.collant a {
-      text-decoration: none; }
+      text-decoration: none;
+      opacity: 0.5; }
+      .offers-menu.collant a.active {
+        opacity: 1; }
+        .offers-menu.collant a.active .icon {
+          opacity: 1; }
+      .offers-menu.collant a .icon {
+        opacity: 0.5; }
     .offers-menu > .container {
       display: -webkit-box;
       display: -ms-flexbox;
@@ -3895,4 +3902,4 @@ label {
     page-break-after: avoid; } }
 
 
-/*# sourceMappingURL=main.css.map*/
+/*# sourceMappingURL=main.css.map?d40c7a27262d63cc81d416473cff7beb*/

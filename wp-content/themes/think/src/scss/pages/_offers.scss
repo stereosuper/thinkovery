@@ -74,6 +74,16 @@
             }
             a {
                 text-decoration: none;
+                opacity: 0.5;
+                &.active {
+                    opacity: 1;
+                    .icon {
+                        opacity: 1;
+                    }
+                }
+                .icon {
+                    opacity: 0.5;
+                }
             }
         }
         > .container {

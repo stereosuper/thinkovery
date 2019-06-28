@@ -17,7 +17,7 @@ get_header(); ?>
 				<ul class="container">
 					<?php while( have_rows('menu') ) : the_row(); ?>
 						<li>
-							<a href='#<?php the_sub_field('anchor'); ?>'>
+							<a id="anchor-<?php the_sub_field('anchor'); ?>" href='#<?php the_sub_field('anchor'); ?>'>
 								<svg class="icon"><use xlink:href="#icon-<?php the_sub_field('icon'); ?>"/></svg>
 								<?php the_sub_field('name'); ?>
 							</a>
@@ -30,7 +30,7 @@ get_header(); ?>
 		<?php if( have_rows('section') ) : $count = 0; ?>
 			<div class='offers'>
 				<?php while( have_rows('section') ) : the_row(); $count++; ?>
-					<div id='<?php the_sub_field('anchor'); ?>' class='offer offer-<?php echo $count; ?>'>
+					<div id='<?php the_sub_field('anchor'); ?>' class='offer offer-<?php echo $count; ?>' data-io="updateOffersMenu">
 						<div class='offers-text'>
 							<div class='offer-text'>
 								<?php the_sub_field('text'); ?>

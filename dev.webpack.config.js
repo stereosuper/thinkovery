@@ -12,6 +12,7 @@ const config = (env, options) => {
             path: path.resolve(__dirname),
             filename: './wp-content/themes/think/js/main.js',
             publicPath: '/wp-content/themes/think/js',
+            sourceMapFilename: "[file].map?[contenthash]"
         },
         watch: true,
         devtool: MODE === 'development' ? 'source-map' : '',
@@ -90,6 +91,7 @@ const config = (env, options) => {
 const loader = (env, options) => {
     const MODE = options.mode;
     return {
+        cache: false,
         entry: './wp-content/themes/think/src/js/loading-script.js',
         output: {
             path: path.resolve(__dirname),

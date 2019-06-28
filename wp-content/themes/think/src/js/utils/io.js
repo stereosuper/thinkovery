@@ -67,7 +67,19 @@ function Io() {
     // };
 
     this.updateOffersMenuIn = entry => {
+        const offersMenu = document.getElementById('offers-menu');
 
+        if (!offersMenu) return;
+        const anchors = [...offersMenu.getElementsByTagName('a')];
+
+        forEach(anchors, anchor => {
+            anchor.classList.remove('active');
+        });
+        forEach(anchors, anchor => {
+            if (anchor.id === `anchor-${entry.id}`) {
+                anchor.classList.add('active');
+            }
+        });
     };
 }
 

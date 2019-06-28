@@ -15342,6 +15342,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var intersection_observer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! intersection-observer */ "./node_modules/intersection-observer/intersection-observer.js");
 /* harmony import */ var intersection_observer__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(intersection_observer__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var ___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! . */ "./wp-content/themes/think/src/js/utils/index.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 
 
 
@@ -15394,7 +15402,21 @@ function Io() {
   // };
 
 
-  this.updateOffersMenuIn = function (entry) {};
+  this.updateOffersMenuIn = function (entry) {
+    var offersMenu = document.getElementById('offers-menu');
+    if (!offersMenu) return;
+
+    var anchors = _toConsumableArray(offersMenu.getElementsByTagName('a'));
+
+    Object(___WEBPACK_IMPORTED_MODULE_1__["forEach"])(anchors, function (anchor) {
+      anchor.classList.remove('active');
+    });
+    Object(___WEBPACK_IMPORTED_MODULE_1__["forEach"])(anchors, function (anchor) {
+      if (anchor.id === "anchor-".concat(entry.id)) {
+        anchor.classList.add('active');
+      }
+    });
+  };
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (new Io());
@@ -15489,4 +15511,4 @@ var videoHandler = function videoHandler() {
 /***/ })
 
 /******/ });
-//# sourceMappingURL=main.js.map
+//# sourceMappingURL=main.js.map?8b53d5d438449cc262ef91e72eb8307f
