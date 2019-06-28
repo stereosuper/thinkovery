@@ -35,6 +35,7 @@ get_header(); ?>
 							<div class='offer-text'>
 								<?php the_sub_field('text'); ?>
 							</div>
+							<?php echo wp_get_attachment_image(get_sub_field('img'), 'full'); ?>
 							<?php if( get_sub_field('text2') ) : ?>
 								<div class='offer-text2'>
 									<?php the_sub_field('text2'); ?>
@@ -52,7 +53,23 @@ get_header(); ?>
 							</div>
 						<?php endif; ?>
 
-						<?php echo wp_get_attachment_image(get_sub_field('img'), 'full'); ?>
+
+						<?php if($link = get_sub_field('link')): ?>
+							<div class='btn-container'>
+								<div class='wrapper-btn'>
+									<a href='<?php echo $link['url']; ?>' class='btn-invert btn-<?php echo ($count - 1) % 4 + 1; ?>'>
+										<?php echo $link['title']; ?>
+										<svg class="icon"><use xlink:href="#icon-arrow"></use></svg>
+										<div class="departure">
+											<div class='top'></div><div class='right'></div><div class='bot'></div><div class='left'></div>
+										</div>
+										<div class="arrival">
+											<div class='top'></div><div class='right'></div><div class='bot'></div><div class='left'></div>
+										</div>
+									</a>
+								</div>
+							</div>
+						<?php endif; ?>
 					</div>
 				<?php endwhile; ?>
 			</div>

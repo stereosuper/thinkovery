@@ -1853,7 +1853,8 @@ label {
       margin: 0 0 15px; } }
 
 /* Buttons */
-.btn, .wpcf7-submit {
+.btn,
+.wpcf7-submit {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -1862,7 +1863,9 @@ label {
   background: #df622d;
   color: #fff;
   text-decoration: none; }
-  .btn:hover, .btn:focus, .wpcf7-submit:hover, .wpcf7-submit:focus {
+  .btn:hover, .btn:focus,
+  .wpcf7-submit:hover,
+  .wpcf7-submit:focus {
     background: #f8ba41;
     color: #fff; }
 
@@ -3602,7 +3605,6 @@ label {
 
 .offers-title {
   margin-bottom: 1.5em;
-  font-size: 5.6rem;
   text-align: center; }
 
 .offers-menu {
@@ -3620,21 +3622,28 @@ label {
     line-height: 1.2; }
   .offer img {
     display: block;
-    margin: 2em 0 0 auto; }
+    margin: 2em auto 0 auto; }
+  .offer .btn-invert {
+    margin-top: 56px; }
 
-.offer-1 h3 {
+.offer-1 h3,
+.offer-1 .btn-invert {
   color: #65a3da; }
 
-.offer-2 h3 {
+.offer-2 h3,
+.offer-2 .btn-invert {
   color: #f8ba41; }
 
-.offer-3 h3 {
+.offer-3 h3,
+.offer-3 .btn-invert {
   color: #df622d; }
 
-.offer-4 h3 {
+.offer-4 h3,
+.offer-4 .btn-invert {
   color: #ec8d28; }
 
-.offer-5 h3 {
+.offer-5 h3,
+.offer-5 .btn-invert {
   color: #4d917e; }
 
 @media (min-width: 780px) {
@@ -3692,7 +3701,6 @@ label {
   .offers {
     padding: 6em 0 0; }
   .offers-title {
-    width: 75%;
     margin-left: auto;
     margin-right: auto; }
   .offer {
@@ -3752,12 +3760,37 @@ label {
     .offer-2 .offer-cols, .offer-4 .offer-text,
     .offer-4 .offer-cols {
       margin-left: auto; }
+    .offer-4 .offer-text2 {
+      margin-left: auto; }
     .offer img {
-      position: absolute; } }
+      position: absolute; }
+    .offer .btn-container {
+      margin: 0 -44px; }
+    .offer .wrapper-btn {
+      width: 100%;
+      padding-left: 44px; }
+    .offer.offer-2 .btn-container {
+      margin-left: auto; }
+    .offer.offer-2 .wrapper-btn, .offer.offer-3 .wrapper-btn {
+      width: 100%;
+      padding-left: 44px;
+      margin-left: 33%; }
+    .offer.offer-4 .btn-container {
+      margin: 0; }
+    .offer.offer-4 .wrapper-btn {
+      width: calc(50% - 26.50602px);
+      padding: 0;
+      margin-left: auto; }
+    .offer.offer-5 .btn-container {
+      margin: 0; }
+    .offer.offer-5 .wrapper-btn {
+      width: calc(50% - 26.50602px);
+      padding: 0;
+      margin-left: auto; } }
 
 @media (min-width: 1100px) {
   .offers-title {
-    width: 50%; }
+    width: 75%; }
   .offer-cols {
     width: calc(75% + 88px); }
   .offer-1 img {
@@ -3765,7 +3798,13 @@ label {
     right: 8%; }
   .offer-2 img {
     top: 10%;
-    left: 8%; } }
+    left: 8%; }
+  .offer .btn-container {
+    width: calc(75% + 88px); }
+  .offer.offer-1 .wrapper-btn {
+    margin-left: 33%; }
+  .offer.offer-4 .btn-container, .offer.offer-5 .btn-container {
+    width: 100%; } }
 
 .memory, .memory-success {
   display: none; }
@@ -3906,4 +3945,4 @@ label {
     page-break-after: avoid; } }
 
 
-/*# sourceMappingURL=main.css.map?ebc165006bfc141786b71378cf5ceedb*/
+/*# sourceMappingURL=main.css.map?39404bbcac1989de5b248960556c3390*/

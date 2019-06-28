@@ -37,7 +37,7 @@
                         <h2><?php the_sub_field('title'); ?></h2>
                         <?php the_sub_field('text'); ?>
 
-                        <?php $btn = get_sub_field('btn'); if( $btn ): ?>
+                        <?php if($btn = get_sub_field('btn')): ?>
                             <div class='wrapper-btn'>
                                 <a href='<?php echo $btn['url']; ?>' class='btn-invert btn-<?php echo $count; ?>'>
                                     <?php echo $btn['title']; ?>

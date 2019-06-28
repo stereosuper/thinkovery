@@ -1,23 +1,6 @@
 {
     "key": "group_5ce3cc7989378",
     "title": "[page] Offers",
-    "location": [
-        [
-            {
-                "param": "page_template",
-                "operator": "==",
-                "value": "offers.php"
-            }
-        ]
-    ],
-    "menu_order": 0,
-    "position": "normal",
-    "style": "default",
-    "label_placement": "top",
-    "instruction_placement": "label",
-    "hide_on_screen": "",
-    "active": 1,
-    "description": "",
     "fields": [
         {
             "key": "field_5ce3cc92981a8",
@@ -236,9 +219,41 @@
                             "delay": 0
                         }
                     ]
+                },
+                {
+                    "key": "field_5d16111fa80c7",
+                    "label": "Lien",
+                    "name": "link",
+                    "type": "link",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array"
                 }
             ]
         }
     ],
-    "modified": 1559033775
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "offers.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1561727313
 }

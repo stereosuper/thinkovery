@@ -1,6 +1,5 @@
 .offers-title {
     margin-bottom: 1.5em;
-    font-size: 5.6rem;
     text-align: center;
 }
 
@@ -24,36 +23,44 @@
     }
     img {
         display: block;
-        margin: 2em 0 0 auto;
+        margin: 2em auto 0 auto;
+    }
+    .btn-invert {
+        margin-top: $line-height * 2;
     }
 }
 
 .offer-1 {
-    h3 {
+    h3,
+    .btn-invert {
         color: $secondary;
     }
 }
 
 .offer-2 {
-    h3 {
+    h3,
+    .btn-invert {
         color: $quaternary;
     }
 }
 
 .offer-3 {
-    h3 {
+    h3,
+    .btn-invert {
         color: $tertiary;
     }
 }
 
 .offer-4 {
-    h3 {
+    h3,
+    .btn-invert {
         color: $tertiary-light;
     }
 }
 
 .offer-5 {
-    h3 {
+    h3,
+    .btn-invert {
         color: $primary-light;
     }
 }
@@ -128,7 +135,6 @@
     }
 
     .offers-title {
-        width: 75%;
         margin-left: auto;
         margin-right: auto;
     }
@@ -214,15 +220,60 @@
                 margin-left: auto;
             }
         }
+        &-4 {
+            .offer-text2 {
+                margin-left: auto;
+            }
+        }
         img {
             position: absolute;
+        }
+        .btn-container {
+            margin: 0 $gutter * -1;
+        }
+        .wrapper-btn {
+            width: 100%;
+            padding-left: $gutter;
+        }
+        &.offer-2 {
+            .btn-container {
+                margin-left: auto;
+            }
+        }
+        &.offer-2,
+        &.offer-3 {
+            .wrapper-btn {
+                width: 100%;
+                padding-left: $gutter;
+                margin-left: 33%;
+            }
+        }
+        &.offer-4 {
+            .btn-container {
+                margin: 0;
+            }
+            .wrapper-btn {
+                width: calc(50% - #{$gutter/1.66});
+                padding: 0;
+                margin-left: auto;
+            }
+        }
+        &.offer-5 {
+            .btn-container {
+                margin: 0;
+            }
+            .wrapper-btn {
+                width: calc(50% - #{$gutter/1.66});
+                padding: 0;
+                margin-left: auto;
+            }
         }
     }
 }
 
 @media (min-width: $desktop) {
     .offers-title {
-        width: 50%;
+        width: 75%;
     }
 
     .offer-cols {
@@ -240,6 +291,20 @@
             img {
                 top: 10%;
                 left: 8%;
+            }
+        }
+        .btn-container {
+            width: calc(75% + #{$gutter * 2});
+        }
+        &.offer-1 {
+            .wrapper-btn {
+                margin-left: 33%;
+            }
+        }
+        &.offer-4,
+        &.offer-5 {
+            .btn-container {
+                width: 100%;
             }
         }
     }
