@@ -65,6 +65,10 @@ function Io() {
     // this.updateBorderOut = entry => {
     // entry.classList.remove('reveal-minions');
     // };
+
+    this.updateOffersMenuIn = entry => {
+
+    };
 }
 
 export default new Io();
