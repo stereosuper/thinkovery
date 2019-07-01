@@ -12358,6 +12358,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils */ "./wp-content/themes/think/src/js/utils/index.js");
 /* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
 /* harmony import */ var _global__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./global */ "./wp-content/themes/think/src/js/global/index.js");
+/* harmony import */ var _utils_Window__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./utils/Window */ "./wp-content/themes/think/src/js/utils/Window.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
@@ -12365,6 +12366,7 @@ function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread n
 function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 
 
 
@@ -12397,6 +12399,9 @@ var offersMenuHandler = function offersMenuHandler() {
         }, 100);
       }
     }, false);
+  });
+  _utils_Window__WEBPACK_IMPORTED_MODULE_4__["default"].addResizeFunction(function () {
+    menuHeight = offersMenu.getBoundingClientRect().height;
   });
 };
 
@@ -15357,10 +15362,18 @@ function Io() {
   var _this = this;
 
   this.resized = true;
-  var minThreshold = 0.75;
+  var minThreshold = 0.15;
   var indexThreshold = 0;
   var thresholdsNumber = 10;
-  var thresholdSamples = [];
+  var thresholdSamples = []; // NOTE: offers menu part
+
+  var offersMenu = document.getElementById('offers-menu');
+
+  var offersAnchors = _toConsumableArray(offersMenu.getElementsByTagName('a'));
+
+  var menuOffersEntries = {
+    activeId: null
+  };
 
   for (indexThreshold; indexThreshold <= thresholdsNumber; indexThreshold += 1) {
     thresholdSamples[indexThreshold] = indexThreshold / thresholdsNumber;
@@ -15371,7 +15384,7 @@ function Io() {
     var observer = new IntersectionObserver(function (entries) {
       Object(___WEBPACK_IMPORTED_MODULE_1__["forEach"])(entries, function (entry) {
         if (entry.intersectionRatio > minThreshold) {
-          _this["".concat(entry.target.dataset.io, "In")](entry.target);
+          _this["".concat(entry.target.dataset.io, "In")](entry);
 
           if (entry.target.hasAttribute('data-io-single')) observer.unobserve(entry.target);
         } // else if (entry.intersectionRatio < threshold) {
@@ -15392,30 +15405,68 @@ function Io() {
 
 
   this.updateBorderIn = function (entry) {
+    var target = entry.target;
     var borders = document.getElementById('borders');
     if (!borders) return;
     var event = Object(___WEBPACK_IMPORTED_MODULE_1__["createNewEvent"])('updateBorders');
-    borders.setAttribute('data-next-section', entry.getAttribute('data-section-name'));
+    borders.setAttribute('data-next-section', target.getAttribute('data-section-name'));
     borders.dispatchEvent(event);
-  }; // this.updateBorderOut = entry => {
-  // entry.classList.remove('reveal-minions');
-  // };
-
+  };
 
   this.updateOffersMenuIn = function (entry) {
-    var offersMenu = document.getElementById('offers-menu');
+    var target = entry.target;
+
+    if (!offersMenu) {
+      offersMenu = document.getElementById('offers-menu');
+    }
+
+    if (!offersAnchors.length) {
+      offersAnchors = _toConsumableArray(offersMenu.getElementsByTagName('a'));
+    }
+
     if (!offersMenu) return;
 
-    var anchors = _toConsumableArray(offersMenu.getElementsByTagName('a'));
+    if (!menuOffersEntries[target.id]) {
+      menuOffersEntries[target.id] = {
+        ratio: 0,
 
-    Object(___WEBPACK_IMPORTED_MODULE_1__["forEach"])(anchors, function (anchor) {
-      anchor.classList.remove('active');
-    });
-    Object(___WEBPACK_IMPORTED_MODULE_1__["forEach"])(anchors, function (anchor) {
-      if (anchor.id === "anchor-".concat(entry.id)) {
-        anchor.classList.add('active');
-      }
-    });
+        set setRatio(value) {
+          this.ratio = value;
+
+          if (!menuOffersEntries.activeId) {
+            menuOffersEntries.activeId = {
+              id: this.target.id,
+              ratio: this.ratio
+            };
+            document.getElementById("anchor-".concat(this.target.id)).classList.add('active');
+          } else {
+            if (this.target.id === menuOffersEntries.activeId.id) {
+              menuOffersEntries.activeId.ratio = this.ratio;
+            }
+
+            if (this.ratio > menuOffersEntries.activeId.ratio) {
+              console.log(this.target.id);
+              menuOffersEntries.activeId = {
+                id: this.target.id,
+                ratio: this.ratio
+              };
+            }
+
+            Object(___WEBPACK_IMPORTED_MODULE_1__["forEach"])(offersAnchors, function (anchor) {
+              if (anchor.id === "anchor-".concat(menuOffersEntries.activeId.id)) {
+                anchor.classList.add('active');
+              } else {
+                anchor.classList.remove('active');
+              }
+            });
+          }
+        }
+
+      };
+    }
+
+    menuOffersEntries[target.id].target = target;
+    menuOffersEntries[target.id].setRatio = entry.intersectionRatio;
   };
 }
 
@@ -15511,4 +15562,4 @@ var videoHandler = function videoHandler() {
 /***/ })
 
 /******/ });
-//# sourceMappingURL=main.js.map?8b53d5d438449cc262ef91e72eb8307f
+//# sourceMappingURL=main.js.map?78593c2a8fb7dd83666a2f1aebf54bff

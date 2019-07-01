@@ -3,10 +3,17 @@ import { forEach, createNewEvent } from '.';
 
 function Io() {
     this.resized = true;
-    const minThreshold = 0.75;
+    const minThreshold = 0.15;
     let indexThreshold = 0;
     const thresholdsNumber = 10;
     const thresholdSamples = [];
+
+    // NOTE: offers menu part
+    let offersMenu = document.getElementById('offers-menu');
+    let offersAnchors = [...offersMenu.getElementsByTagName('a')];
+    const menuOffersEntries = {
+        activeId: null,
+    };
 
     for (
         indexThreshold;
@@ -24,7 +31,7 @@ function Io() {
             entries => {
                 forEach(entries, entry => {
                     if (entry.intersectionRatio > minThreshold) {
-                        this[`${entry.target.dataset.io}In`](entry.target);
+                        this[`${entry.target.dataset.io}In`](entry);
                         if (entry.target.hasAttribute('data-io-single'))
                             observer.unobserve(entry.target);
                     }
@@ -49,6 +56,7 @@ function Io() {
 
     // Reveal minions
     this.updateBorderIn = entry => {
+        const { target } = entry;
         const borders = document.getElementById('borders');
 
         if (!borders) return;
@@ -57,29 +65,63 @@ function Io() {
 
         borders.setAttribute(
             'data-next-section',
-            entry.getAttribute('data-section-name')
+            target.getAttribute('data-section-name')
         );
         borders.dispatchEvent(event);
     };
 
-    // this.updateBorderOut = entry => {
-    // entry.classList.remove('reveal-minions');
-    // };
-
     this.updateOffersMenuIn = entry => {
-        const offersMenu = document.getElementById('offers-menu');
+        const { target } = entry;
+
+        if (!offersMenu) {
+            offersMenu = document.getElementById('offers-menu');
+        }
+        if (!offersAnchors.length) {
+            offersAnchors = [...offersMenu.getElementsByTagName('a')];
+        }
 
         if (!offersMenu) return;
-        const anchors = [...offersMenu.getElementsByTagName('a')];
 
-        forEach(anchors, anchor => {
-            anchor.classList.remove('active');
-        });
-        forEach(anchors, anchor => {
-            if (anchor.id === `anchor-${entry.id}`) {
-                anchor.classList.add('active');
-            }
-        });
+        if (!menuOffersEntries[target.id]) {
+            menuOffersEntries[target.id] = {
+                ratio: 0,
+                set setRatio(value) {
+                    this.ratio = value;
+
+                    if (!menuOffersEntries.activeId) {
+                        menuOffersEntries.activeId = {
+                            id: this.target.id,
+                            ratio: this.ratio
+                        };
+
+                        document.getElementById(`anchor-${this.target.id}`).classList.add('active');
+                    } else {
+                        if (this.target.id === menuOffersEntries.activeId.id) {
+                            menuOffersEntries.activeId.ratio = this.ratio;
+                        }
+
+                        if (this.ratio > menuOffersEntries.activeId.ratio) {
+                            console.log(this.target.id);
+                            
+                            menuOffersEntries.activeId = {
+                                id: this.target.id,
+                                ratio: this.ratio
+                            };
+                        }
+
+                        forEach(offersAnchors, anchor => {
+                            if (anchor.id === `anchor-${menuOffersEntries.activeId.id}`) {
+                                anchor.classList.add('active');
+                            } else {
+                                anchor.classList.remove('active');
+                            }
+                        });
+                    }
+                }
+            };
+        }
+        menuOffersEntries[target.id].target = target;
+        menuOffersEntries[target.id].setRatio = entry.intersectionRatio;
     };
 }
 

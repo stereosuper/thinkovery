@@ -2,12 +2,13 @@ import 'gsap/ScrollToPlugin';
 import { forEach } from './utils';
 import { TweenMax } from 'gsap';
 import { easing, globalStyles } from './global';
+import win from './utils/Window';
 
 const offersMenuHandler = () => {
     const offersMenu = document.getElementById('offers-menu');
 
     if (!offersMenu) return;
-    const menuHeight = offersMenu.getBoundingClientRect().height;
+    let menuHeight = offersMenu.getBoundingClientRect().height;
     const anchors = [...offersMenu.getElementsByTagName('a')];
 
     forEach(anchors, anchor => {
@@ -39,6 +40,10 @@ const offersMenuHandler = () => {
             },
             false
         );
+    });
+
+    win.addResizeFunction(() => {
+        menuHeight = offersMenu.getBoundingClientRect().height;
     });
 };
 
