@@ -89,9 +89,9 @@ const load = () => {
     state.loaded = true;
     makeBorders();
 
-    // if( sessionStorage.getItem('loaded') ){
-    //     animationHandler();
-    // }
+    if( sessionStorage.getItem('loaded') ){
+        animationHandler();
+    }
 
     // blog sticky share
     if (document.getElementById('article')) {

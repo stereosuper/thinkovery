@@ -14027,10 +14027,12 @@ var animationHandler = function animationHandler() {
 var load = function load() {
   if (document.readyState !== 'complete') return;
   state.loaded = true;
-  Object(_makeBorders__WEBPACK_IMPORTED_MODULE_12__["default"])(); // if( sessionStorage.getItem('loaded') ){
-  //     animationHandler();
-  // }
-  // blog sticky share
+  Object(_makeBorders__WEBPACK_IMPORTED_MODULE_12__["default"])();
+
+  if (sessionStorage.getItem('loaded')) {
+    animationHandler();
+  } // blog sticky share
+
 
   if (document.getElementById('article')) {
     imagesloaded__WEBPACK_IMPORTED_MODULE_1___default()(document.getElementById('article'), function () {
@@ -18263,4 +18265,4 @@ var videoHandler = function videoHandler() {
 /***/ })
 
 /******/ });
-//# sourceMappingURL=main.js.map?61bfc19372c7ea40dbd4c179f1593c03
+//# sourceMappingURL=main.js.map?8f9dff7545053cd8dac793ca5c998c4b

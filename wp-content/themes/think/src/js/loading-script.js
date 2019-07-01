@@ -91,7 +91,7 @@ const loaderAnimation = () => {
 };
 
 const handleLoader = () => {
-    /*if (sessionStorage.getItem('loaded') || !logoLoader || !nav) {
+    if (sessionStorage.getItem('loaded') || !logoLoader || !nav) {
         state.loadedStorage = true;
         if (logoLoader) logoLoader.style.opacity = 0;
 
@@ -100,10 +100,10 @@ const handleLoader = () => {
         if (nav) nav.style.opacity = 1;
 
         document.documentElement.classList.add('loaded');
-    } else {*/
+    } else {
         if (logoLoader) logoLoader.style.opacity = 1;
         loaderAnimation();
-    //}
+    }
 };
 
 handleLoader();

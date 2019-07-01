@@ -180,15 +180,18 @@ var loaderAnimation = function loaderAnimation() {
 };
 
 var handleLoader = function handleLoader() {
-  /*if (sessionStorage.getItem('loaded') || !logoLoader || !nav) {
-      state.loadedStorage = true;
-      if (logoLoader) logoLoader.style.opacity = 0;
-       forEach(hiddenElts, elt => { elt.style.opacity = 1; });
-       if (nav) nav.style.opacity = 1;
-       document.documentElement.classList.add('loaded');
-  } else {*/
-  if (logoLoader) logoLoader.style.opacity = 1;
-  loaderAnimation(); //}
+  if (sessionStorage.getItem('loaded') || !logoLoader || !nav) {
+    state.loadedStorage = true;
+    if (logoLoader) logoLoader.style.opacity = 0;
+    forEach(hiddenElts, function (elt) {
+      elt.style.opacity = 1;
+    });
+    if (nav) nav.style.opacity = 1;
+    document.documentElement.classList.add('loaded');
+  } else {
+    if (logoLoader) logoLoader.style.opacity = 1;
+    loaderAnimation();
+  }
 };
 
 handleLoader();
