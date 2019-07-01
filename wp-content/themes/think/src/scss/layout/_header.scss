@@ -6,7 +6,12 @@ $header-height: 84px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    transition: transition((opacity: "#{$fade-duration}s"), $fade-easing);
+    transition: transition(
+        (
+            opacity: "#{$fade-duration}s"
+        ),
+        $fade-easing
+    );
 }
 
 .main-header {
@@ -16,7 +21,7 @@ $header-height: 84px;
         justify-content: space-between;
     }
     .logo {
-        z-index: 3;
+        z-index: 4;
     }
 }
 
@@ -32,7 +37,7 @@ $header-height: 84px;
         ),
         $cat-mouse-easing-out
     );
-    z-index: 2;
+    z-index: 3;
     .no-js & {
         opacity: 1 !important;
     }
@@ -378,7 +383,7 @@ $header-height: 84px;
     width: 30px;
     height: 30px;
     position: relative;
-    z-index: 3;
+    z-index: 4;
     > span {
         width: 25px;
         height: 2px;
@@ -536,7 +541,6 @@ $header-height: 84px;
         }
     }
 }
-
 
 @media (min-width: 1160px) {
     .main-header {

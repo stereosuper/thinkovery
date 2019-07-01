@@ -101,8 +101,6 @@ function Io() {
                         }
 
                         if (this.ratio > menuOffersEntries.activeId.ratio) {
-                            console.log(this.target.id);
-                            
                             menuOffersEntries.activeId = {
                                 id: this.target.id,
                                 ratio: this.ratio

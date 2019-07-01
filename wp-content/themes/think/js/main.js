@@ -15445,7 +15445,6 @@ function Io() {
             }
 
             if (this.ratio > menuOffersEntries.activeId.ratio) {
-              console.log(this.target.id);
               menuOffersEntries.activeId = {
                 id: this.target.id,
                 ratio: this.ratio
@@ -15562,4 +15561,4 @@ var videoHandler = function videoHandler() {
 /***/ })
 
 /******/ });
-//# sourceMappingURL=main.js.map?78593c2a8fb7dd83666a2f1aebf54bff
+//# sourceMappingURL=main.js.map?ecb252e1026044a0a0aa2434261d5e63

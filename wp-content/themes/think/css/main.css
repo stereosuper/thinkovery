@@ -645,7 +645,7 @@ label {
         -ms-flex-pack: justify;
             justify-content: space-between; }
   .main-header .logo {
-    z-index: 3; }
+    z-index: 4; }
 
 .main-navigation {
   position: fixed;
@@ -657,7 +657,7 @@ label {
   transition:  -webkit-transform 0.23s 1.3s cubic-bezier(0.26, 1.09, 0.28, 0.99);
   transition:  transform 0.23s 1.3s cubic-bezier(0.26, 1.09, 0.28, 0.99);
   transition:  transform 0.23s 1.3s cubic-bezier(0.26, 1.09, 0.28, 0.99), -webkit-transform 0.23s 1.3s cubic-bezier(0.26, 1.09, 0.28, 0.99);
-  z-index: 2; }
+  z-index: 3; }
   .no-js .main-navigation {
     opacity: 1 !important; }
   .main-navigation > .line-opening {
@@ -901,7 +901,7 @@ label {
   width: 30px;
   height: 30px;
   position: relative;
-  z-index: 3; }
+  z-index: 4; }
   .burger > span {
     width: 25px;
     height: 2px;
@@ -3654,7 +3654,7 @@ label {
     position: absolute;
     left: 0;
     padding: 1em 0 0;
-    z-index: 10;
+    z-index: 2;
     background: #f7f2ea; }
     .offers-menu.collant > ul {
       -webkit-transform: scale(0.65);
@@ -3945,4 +3945,4 @@ label {
     page-break-after: avoid; } }
 
 
-/*# sourceMappingURL=main.css.map?39404bbcac1989de5b248960556c3390*/
+/*# sourceMappingURL=main.css.map?2cd1cff9040fbb3276ed18b0bd091021*/
