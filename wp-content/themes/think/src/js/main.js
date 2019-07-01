@@ -16,6 +16,7 @@ import newsletter from './newsletter';
 import makeBorders from './makeBorders';
 import drawBorders from './drawBorders';
 import video from './video';
+import videoVimeo from './videoVimeo';
 import minions from './minions';
 import learningAnim from './learningAnim';
 import search from './search';
@@ -72,6 +73,7 @@ const preload = () => {
     search();
     newsletter();
     video();
+    videoVimeo();
     memory();
 };
 

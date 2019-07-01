@@ -3,6 +3,7 @@
     "version": "0.0.0",
     "main": "index.js",
     "dependencies": {
+        "@vimeo/player": "^2.9.1",
         "collant": "^1.2.1",
         "gsap": "^2.1.2",
         "imagesloaded": "^4.1.4",

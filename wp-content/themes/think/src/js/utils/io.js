@@ -10,7 +10,7 @@ function Io() {
 
     // NOTE: offers menu part
     let offersMenu = document.getElementById('offers-menu');
-    let offersAnchors = [...offersMenu.getElementsByTagName('a')];
+    let offersAnchors = offersMenu ? [...offersMenu.getElementsByTagName('a')] : null;
     const menuOffersEntries = {
         activeId: null,
     };

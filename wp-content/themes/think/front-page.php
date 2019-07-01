@@ -6,12 +6,12 @@
     
 		<header id="home-intro" class="home-header js-home-section" data-io="updateBorder" data-section-name="home-intro">
             <?php $video = get_field('video'); if( $video['id'] ) : ?>
-                <div class='js-video video' data-id='<?php echo $video['id']; ?>' id='home-video'>
+                <div class='js-video-vimeo video' data-id='<?php echo $video['id']; ?>' id='home-video'>
                     <?php $title = get_field('title'); ?>
                     <h1 class='video-title'>
                         <?php echo $title['green'] ? $title['green'] . '<span>' . $title['black'] . '</span>' : get_the_title(); ?>
                     </h1>
-                    <div class="iframe"></div>
+                    <div id="vimeo-id-<?php echo $video['id']; ?>" class="iframe"></div>
                     <button class="cross js-cross" type="button">
                         <span class="cross-line first-cross-line"></span>
                         <span class="cross-line second-cross-line"></span>
