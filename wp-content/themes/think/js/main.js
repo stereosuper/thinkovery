@@ -14795,7 +14795,7 @@ var minionsHandler = function minionsHandler() {
 
   var intersectionCallback = function intersectionCallback(entries) {
     Object(_utils__WEBPACK_IMPORTED_MODULE_3__["forEach"])(entries, function (entry) {
-      if (entry.intersectionRatio < 0.7) return;
+      if (entry.intersectionRatio < 0.25) return;
 
       switch (entry.target.id) {
         case 'home-intro':
@@ -18263,4 +18263,4 @@ var videoHandler = function videoHandler() {
 /***/ })
 
 /******/ });
-//# sourceMappingURL=main.js.map?a6742341e6b8c54ffec31b0d4ff7e507
+//# sourceMappingURL=main.js.map?61bfc19372c7ea40dbd4c179f1593c03

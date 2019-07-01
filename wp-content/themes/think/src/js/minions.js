@@ -617,7 +617,7 @@ const minionsHandler = () => {
     const intersectionCallback = entries => {
         forEach(entries, entry => {
 
-            if( entry.intersectionRatio < 0.7 ) return;
+            if(entry.intersectionRatio < 0.25) return;
 
             switch (entry.target.id) {
                 case 'home-intro':
