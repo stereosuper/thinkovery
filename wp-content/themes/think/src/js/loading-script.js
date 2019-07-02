@@ -32,9 +32,15 @@ const endLoading = () => {
 
     logoLoader.style.opacity = 0;
 
-    setTimeout(() => { forEach(hiddenElts, elt => { elt.style.opacity = 1; })  }, 700);
+    setTimeout(() => {
+        forEach(hiddenElts, elt => {
+            elt.style.opacity = 1;
+        });
+    }, 700);
 
-    setTimeout(() => { nav.style.opacity = 1; }, 1100);
+    setTimeout(() => {
+        nav.style.opacity = 1;
+    }, 1100);
 
     sessionStorage.setItem('loaded', 'true');
 
@@ -95,7 +101,9 @@ const handleLoader = () => {
         state.loadedStorage = true;
         if (logoLoader) logoLoader.style.opacity = 0;
 
-        forEach(hiddenElts, elt => { elt.style.opacity = 1; });
+        forEach(hiddenElts, elt => {
+            elt.style.opacity = 1;
+        });
 
         if (nav) nav.style.opacity = 1;
 
@@ -108,8 +116,12 @@ const handleLoader = () => {
 
 handleLoader();
 
-document.addEventListener( 'readystatechange', () => {
-    if (document.readyState === 'complete' /*&& !state.loadedStorage*/) {
-        state.loaded = true;
-    }
-}, false );
+document.addEventListener(
+    'readystatechange',
+    () => {
+        if (document.readyState === 'complete' /* && !state.loadedStorage */) {
+            state.loaded = true;
+        }
+    },
+    false
+);

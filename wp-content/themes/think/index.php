@@ -74,17 +74,16 @@
 
 					<h2><a href='<?php the_permalink(); ?>'><?php the_title(); ?></a></h2>
 
-					<?php if( get_field('duration') ){ ?>
 					<span class='post-duration'>
 						<svg class="icon"><use href="#icon-clock"/></svg>
-						<?php the_field('duration'); ?>
+						<?php echo estimated_time_to_read_post(get_the_content(), true); ?>
 					</span>
-					<?php } ?>
 
 					<p>
 						<a href='<?php the_permalink(); ?>'>
 							<?php
-								$content = get_the_content();
+								$excerpt = get_the_excerpt();
+								$content = !ctype_space($excerpt) && $excerpt !== '' ? $excerpt : get_the_content();
 								echo wp_trim_words( $content , '30' );
 							?>
 						</a>

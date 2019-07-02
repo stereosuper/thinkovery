@@ -22,7 +22,6 @@
     position: absolute;
     top: 30px;
     left: $gutter;
-    z-index: 1;
     font-size: 1.2rem;
     font-weight: 500;
     letter-spacing: 0.06em;
@@ -30,6 +29,7 @@
     background: #fff;
     cursor: pointer;
     transition: $transition;
+    @include z-index("blog-cats");
     &.on {
         height: auto;
         a {
@@ -417,7 +417,7 @@
     }
 
     .blog-search {
-        z-index: 2;
+        @include z-index("blog-search");
         &.on {
             input {
                 display: block;
@@ -467,12 +467,15 @@
     .share {
         top: auto;
         bottom: auto;
-        margin: 35px 0 0;
     }
     .share-list {
         display: block;
+        margin-top: 40px;
         > li {
             margin: 0 0 15px;
+            &:last-child {
+                margin-bottom: 0;
+            }
         }
     }
 }

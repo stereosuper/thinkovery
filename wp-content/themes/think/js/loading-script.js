@@ -197,7 +197,7 @@ var handleLoader = function handleLoader() {
 handleLoader();
 document.addEventListener('readystatechange', function () {
   if (document.readyState === 'complete'
-  /*&& !state.loadedStorage*/
+  /* && !state.loadedStorage */
   ) {
       state.loaded = true;
     }

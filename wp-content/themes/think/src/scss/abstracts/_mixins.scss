@@ -3,16 +3,16 @@
 /// Helper to clear inner floats
 /// @author Nicolas Gallagher
 /// @link http://nicolasgallagher.com/micro-clearfix-hack/ Micro Clearfix
-@mixin clearfix{
-    &:after{
-        content: '';
+@mixin clearfix {
+    &:after {
+        content: "";
         display: table;
         clear: both;
     }
 }
 
 /// Helper to cut text with an ellipse
-@mixin ellipsis{
+@mixin ellipsis {
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -22,7 +22,7 @@
 /// @author Hugo Giraudel
 /// @param {Length} $width
 /// @param {Length} $height
-@mixin size($width, $height: $width){
+@mixin size($width, $height: $width) {
     width: $width;
     height: $height;
 }
@@ -34,28 +34,25 @@
 // @param [color] $color (inherit): arrow color
 // @param [number] $size (1em): arrow size
 // ---
-@mixin triangle($direction, $position, $color: currentColor, $size: 1em){
+@mixin triangle($direction, $position, $color: currentColor, $size: 1em) {
     // Make sure the direction is valid
-    @if not index(top right bottom left, $direction){
+    @if not index(top right bottom left, $direction) {
         @warn "Direction must be one of top, right, bottom or left.";
-    }
-    @else {
+    } @else {
         @include absolute($position); // Position
         @include size(0); // Size
-        content: '';
+        content: "";
         z-index: 2;
 
         border-#{opposite-position($direction)}: $size * 1.5 solid $color;
         $perpendicular-borders: $size solid transparent;
 
         @if $direction == top or $direction == bottom {
-            border-left:   $perpendicular-borders;
-            border-right:  $perpendicular-borders;
-        }
-
-        @else if $direction == right or $direction == left {
+            border-left: $perpendicular-borders;
+            border-right: $perpendicular-borders;
+        } @else if $direction == right or $direction == left {
             border-bottom: $perpendicular-borders;
-            border-top:    $perpendicular-borders;
+            border-top: $perpendicular-borders;
         }
     }
 }
@@ -65,3 +62,30 @@
 //     font-family: $font;
 //     font-size: $size;
 // }
+
+@mixin z-index($element) {
+    $z-index: 0;
+
+    @if $element == "logo" {
+        $z-index: 5;
+    } @else if $element == "burger" {
+        $z-index: 5;
+    } @else if $element == "main-navigation" {
+        $z-index: 4;
+    } @else if $element == "borders" {
+        $z-index: 3;
+    } @else if $element == "offers-menu" {
+        $z-index: 2;
+    } @else if $element == "shapes" {
+        $z-index: 2;
+    } @else if $element == "plane-path" {
+        $z-index: 2;
+    } @else if $element == "blog-cats" {
+        $z-index: 1;
+    } @else if $element == "blog-search" {
+        $z-index: 1;
+    } @else if $element == "home-header-h1" {
+        $z-index: 1;
+    }
+    z-index: $z-index;
+}

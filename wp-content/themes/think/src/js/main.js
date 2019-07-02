@@ -11,6 +11,7 @@ import fallback from './utils/Fallback';
 import burger from './burger';
 import accordion from './accordion';
 import offersMenu from './offersMenu';
+import shareSidebar from './shareSidebar';
 import form from './form';
 import newsletter from './newsletter';
 import makeBorders from './makeBorders';
@@ -69,6 +70,7 @@ const preload = () => {
     burger();
     accordion();
     offersMenu();
+    shareSidebar();
     form();
     search();
     newsletter();
@@ -89,25 +91,8 @@ const load = () => {
     state.loaded = true;
     makeBorders();
 
-    if( sessionStorage.getItem('loaded') ){
+    if (sessionStorage.getItem('loaded')) {
         animationHandler();
-    }
-
-    // blog sticky share
-    if (document.getElementById('article')) {
-        imagesLoaded(document.getElementById('article'), () => {
-            collant(document.getElementById('share'), 0, {
-                minimumWidth: 1100,
-            });
-        });
-    }
-
-    if (document.getElementById('offers')) {
-        imagesLoaded(document.getElementById('offers'), () => {
-            collant(document.getElementById('offers-menu'), 0, {
-                minimumWidth: 960,
-            });
-        });
     }
 
     // blog categories

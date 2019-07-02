@@ -21,7 +21,7 @@ $header-height: 84px;
         justify-content: space-between;
     }
     .logo {
-        z-index: 4;
+        @include z-index("logo");
     }
 }
 
@@ -37,7 +37,7 @@ $header-height: 84px;
         ),
         $cat-mouse-easing-out
     );
-    z-index: 3;
+    @include z-index("main-navigation");
     .no-js & {
         opacity: 1 !important;
     }
@@ -383,7 +383,7 @@ $header-height: 84px;
     width: 30px;
     height: 30px;
     position: relative;
-    z-index: 4;
+    @include z-index("burger");
     > span {
         width: 25px;
         height: 2px;

@@ -22,7 +22,7 @@ const videoHandler = () => {
             'click',
             () => {
                 videoElementsOpacity({ opacity: 0 });
-                
+
                 players[id].play();
                 videoElement.classList.add('playing');
             },
@@ -49,10 +49,10 @@ const videoHandler = () => {
 
         players[id] = new VimeoPlayer(`vimeo-id-${id}`, {
             id,
-            width: playerWidth ? playerWidth : 1920
+            width: playerWidth || 1920,
         });
         players[id].on('loaded', () => {
-            onPlayerReady({id, videoElement});
+            onPlayerReady({ id, videoElement });
         });
     });
 };

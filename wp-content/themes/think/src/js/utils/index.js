@@ -19,7 +19,7 @@ export const reverseString = str =>
         .join('');
 
 let newEvent;
-if ( typeof window.CustomEvent === "function" ){
+if (typeof window.CustomEvent === 'function') {
     newEvent = eventName => {
         let e = new Event(eventName);
         if (typeof Event !== 'function') {
@@ -30,10 +30,19 @@ if ( typeof window.CustomEvent === "function" ){
     };
 } else {
     // ie 11
-    newEvent  = ( event, params ) => {
-        params = params || { bubbles: false, cancelable: false, detail: undefined };
-        var evt = document.createEvent( 'CustomEvent' );
-        evt.initCustomEvent( event, params.bubbles, params.cancelable, params.detail );
+    newEvent = (event, params) => {
+        params = params || {
+            bubbles: false,
+            cancelable: false,
+            detail: undefined,
+        };
+        const evt = document.createEvent('CustomEvent');
+        evt.initCustomEvent(
+            event,
+            params.bubbles,
+            params.cancelable,
+            params.detail
+        );
         return evt;
     };
 
@@ -75,8 +84,10 @@ export const throttle = (callback, delay) => {
     };
 };
 
-export const query = (selector, context) => {
-    context = context || document;
+export const query = (selector, ctx) => {
+    const classes = selector.substr(1).replace(/\./g, ' ');
+
+    const context = ctx || document;
     // Redirect simple selectors to the more performant function
     if (/^(#?[\w-]+|\.[\w-.]+)$/.test(selector)) {
         switch (selector.charAt(0)) {
@@ -85,9 +96,8 @@ export const query = (selector, context) => {
                 return [context.getElementById(selector.substr(1))];
             case '.':
                 // Handle class-based selectors
-                // Query by multiple classes by converting the selector 
+                // Query by multiple classes by converting the selector
                 // string into single spaced class names
-                const classes = selector.substr(1).replace(/\./g, ' ');
                 return [...context.getElementsByClassName(classes)];
             default:
                 // Handle tag-based selectors
@@ -96,7 +106,7 @@ export const query = (selector, context) => {
     }
     // Default to `querySelectorAll`
     return [...context.querySelectorAll(selector)];
-}
+};
 
 export default {
     roundNumbers,
@@ -105,5 +115,5 @@ export default {
     createNewEvent,
     requestAnimFrame,
     throttle,
-    query
+    query,
 };

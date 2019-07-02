@@ -179,6 +179,15 @@ function think_search_filter( $query ){
 }
 if( !is_admin() ) add_filter('pre_get_posts', 'think_search_filter');
 
+function estimated_time_to_read_post($content, $format = false) {
+	$word_count = str_word_count($content);
+
+	// 250 words a minute)
+    $time_to_read = round($word_count * ( 1/250 ));
+    $time = $format ? $time_to_read . ' min' : $time_to_read;
+	return $time;
+}
+
 
 /*-----------------------------------------------------------------------------------*/
 /* Menus

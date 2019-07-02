@@ -12,7 +12,7 @@ const config = (env, options) => {
             path: path.resolve(__dirname),
             filename: './wp-content/themes/think/js/main.js',
             publicPath: '/wp-content/themes/think/js',
-            sourceMapFilename: "[file].map?[contenthash]"
+            sourceMapFilename: '[file].map?[contenthash]',
         },
         watch: true,
         devtool: MODE === 'development' ? 'source-map' : '',

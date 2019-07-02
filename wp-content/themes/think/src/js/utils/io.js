@@ -10,7 +10,9 @@ function Io() {
 
     // NOTE: offers menu part
     let offersMenu = document.getElementById('offers-menu');
-    let offersAnchors = offersMenu ? [...offersMenu.getElementsByTagName('a')] : null;
+    let offersAnchors = offersMenu
+        ? [...offersMenu.getElementsByTagName('a')]
+        : null;
     const menuOffersEntries = {
         activeId: null,
     };
@@ -91,10 +93,12 @@ function Io() {
                     if (!menuOffersEntries.activeId) {
                         menuOffersEntries.activeId = {
                             id: this.target.id,
-                            ratio: this.ratio
+                            ratio: this.ratio,
                         };
 
-                        document.getElementById(`anchor-${this.target.id}`).classList.add('active');
+                        document
+                            .getElementById(`anchor-${this.target.id}`)
+                            .classList.add('active');
                     } else {
                         if (this.target.id === menuOffersEntries.activeId.id) {
                             menuOffersEntries.activeId.ratio = this.ratio;
@@ -103,19 +107,22 @@ function Io() {
                         if (this.ratio > menuOffersEntries.activeId.ratio) {
                             menuOffersEntries.activeId = {
                                 id: this.target.id,
-                                ratio: this.ratio
+                                ratio: this.ratio,
                             };
                         }
 
                         forEach(offersAnchors, anchor => {
-                            if (anchor.id === `anchor-${menuOffersEntries.activeId.id}`) {
+                            if (
+                                anchor.id ===
+                                `anchor-${menuOffersEntries.activeId.id}`
+                            ) {
                                 anchor.classList.add('active');
                             } else {
                                 anchor.classList.remove('active');
                             }
                         });
                     }
-                }
+                },
             };
         }
         menuOffersEntries[target.id].target = target;
