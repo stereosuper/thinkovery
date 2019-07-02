@@ -4,9 +4,13 @@
 <?php 
 $single_cat_title = single_cat_title('', false);
 $post_count = 0;
-foreach (get_the_terms(get_the_ID(), 'category') as $term){
-	if ($single_cat_title === $term->name) {
-		$post_count = $term->count;
+$terms = get_the_terms(get_the_ID(), 'category');
+
+if ($terms) {
+	foreach ($terms as $term){
+		if ($single_cat_title === $term->name) {
+			$post_count = $term->count;
+		}
 	}
 }
 ?>

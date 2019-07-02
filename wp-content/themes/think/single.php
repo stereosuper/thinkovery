@@ -56,7 +56,7 @@
 					} ?>
 				</div>
 
-				<h1><?php the_title(); ?></h1>
+				<h1 class="blog-title"><?php the_title(); ?></h1>
 				
 				<div class='editor'>
 					<?php the_content(); ?>

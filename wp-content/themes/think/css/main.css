@@ -1469,9 +1469,11 @@ label {
     margin-left: -44px; } }
 
 .blog-title {
-  margin-bottom: 56px; }
+  margin-bottom: 56px;
+  line-height: 1.25; }
 
-.blog-list, .alm-reveal {
+.blog-list,
+.alm-reveal {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1564,10 +1566,12 @@ label {
   padding: 45px 30px;
   margin: 0 0 28px;
   background: #fff; }
-  .post h2, .post h3 {
+  .post h2,
+  .post h3 {
     margin: 28px 0 0;
     font-size: 2.6rem; }
-    .post h2 > a, .post h3 > a {
+    .post h2 > a,
+    .post h3 > a {
       text-decoration: none; }
   .post p > a {
     font-weight: inherit;
@@ -1577,7 +1581,8 @@ label {
 .blog-list > .post:first-child {
   background: #df622d;
   color: #fff; }
-  .blog-list > .post:first-child a, .blog-list > .post:first-child .post-duration {
+  .blog-list > .post:first-child a,
+  .blog-list > .post:first-child .post-duration {
     color: #fff; }
   .blog-list > .post:first-child a:hover, .blog-list > .post:first-child a:focus {
     opacity: 0.7; }
@@ -1685,7 +1690,8 @@ label {
   font-size: 1.6rem; }
   .single-post .tags {
     margin-top: 56px; }
-  .tags > span, .tags > a {
+  .tags > span,
+  .tags > a {
     display: block;
     padding: 1px 10px 3px;
     margin: 0 10px 10px 0;
@@ -1718,7 +1724,7 @@ label {
   .comments-list > li:before {
     content: none; }
   .comments-list > li:after {
-    content: '';
+    content: "";
     display: block;
     width: 330px;
     height: 1px;
@@ -1783,6 +1789,8 @@ label {
             align-items: center; } }
 
 @media (min-width: 780px) {
+  .blog-title {
+    font-size: 7rem; }
   .blog-list > .post:first-child {
     width: 100%;
     padding-left: 60px;
@@ -1831,9 +1839,9 @@ label {
       display: none; } }
 
 @media (min-width: 1100px) {
-  .blog-list > .post:nth-child(5), .blog-list > .post:nth-child(6), .blog-list > .post:nth-child(5n+14), .blog-list > .post:nth-child(5n+15) {
+  .blog-list > .post:nth-child(5), .blog-list > .post:nth-child(6), .blog-list > .post:nth-child(5n + 14), .blog-list > .post:nth-child(5n + 15) {
     width: 48.5%; }
-  .alm-reveal > .post:nth-child(5n+1), .alm-reveal > .post:nth-child(5n+2) {
+  .alm-reveal > .post:nth-child(5n + 1), .alm-reveal > .post:nth-child(5n + 2) {
     width: 48.5%; }
   .post {
     width: 31.5%; }
@@ -3945,4 +3953,4 @@ label {
     page-break-after: avoid; } }
 
 
-/*# sourceMappingURL=main.css.map?2cd1cff9040fbb3276ed18b0bd091021*/
+/*# sourceMappingURL=main.css.map?1f00c120ede7a2435adb70dd6fb8d2d3*/

@@ -2,9 +2,13 @@
 
 $single_cat_title = single_cat_title('', false);
 $post_count = 0;
-foreach (get_the_terms(get_the_ID(), 'category') as $term){
-	if ($single_cat_title === $term->name) {
-		$post_count = $term->count;
+$terms = get_the_terms(get_the_ID(), 'category');
+
+if ($terms) {
+	foreach ($terms as $term){
+		if ($single_cat_title === $term->name) {
+			$post_count = $term->count;
+		}
 	}
 }
 
@@ -123,15 +127,14 @@ $found_number = $wp_query->found_posts;
 		</div>
 
 		<?php
-			if( $countPosts > 16) :
+			if($countPosts > 16) :
 				$moreText = __('Load more posts', 'think');
 				echo do_shortcode('[ajax_load_more container_type="div" post_type="post" pause="true" scroll="false" posts_per_page="15" offset="17" button_label="' . $moreText . '" search="'. get_search_query() .'"]');
 			endif;
 		?>
 	
 	<?php else : ?>
-				
-		<h1><?php echo __('The search for', 'think') . ' "' . get_search_query() .'" ' . __("didn't return any results", 'think'); ?></h1>
+		<h1 class="blog-title"><?php echo __('The search for', 'think') . ' "' . get_search_query() .'" ' . __("didn't return any results", 'think'); ?></h1>
 
 		<div class='blog-nav' id='blog-nav'>
 			<ul class='blog-cats'><?php wp_list_categories( array('title_li' => '') ); ?></ul>

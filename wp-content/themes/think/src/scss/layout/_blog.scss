@@ -1,20 +1,22 @@
-.blog-title{
-    margin-bottom: $line-height*2;
+.blog-title {
+    margin-bottom: $line-height * 2;
+    line-height: 1.25;
 }
 
-.blog-list, .alm-reveal{
+.blog-list,
+.alm-reveal {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
 }
 
-.blog-nav{
+.blog-nav {
     position: relative;
-    margin: 0 $gutter*-1;
+    margin: 0 $gutter * -1;
     padding: 30px $gutter 26px;
     background: #fff;
 }
-.blog-cats{
+.blog-cats {
     height: 30px;
     overflow: hidden;
     position: absolute;
@@ -28,37 +30,38 @@
     background: #fff;
     cursor: pointer;
     transition: $transition;
-    &.on{
+    &.on {
         height: auto;
-        a{
+        a {
             pointer-events: auto;
         }
     }
-    .off &{
+    .off & {
         opacity: 0.4;
     }
-    > ul{
+    > ul {
         margin: 0;
     }
-    li{
+    li {
         margin: 0 $gutter/2 10px $gutter/2;
-        &:before{
+        &:before {
             content: none;
         }
     }
-    .current-cat{
+    .current-cat {
         font-weight: 700;
     }
-    a{
+    a {
         pointer-events: none;
         font-weight: inherit;
         text-decoration: none;
         color: inherit;
-        &:hover, &:focus{
+        &:hover,
+        &:focus {
             color: $primary;
         }
     }
-    .icon{
+    .icon {
         width: 10px;
         height: 10px;
         position: absolute;
@@ -66,12 +69,12 @@
         right: 9px;
     }
 }
-.blog-search{
+.blog-search {
     display: flex;
     position: relative;
     justify-content: flex-end;
     margin: 70px 0 10px auto;
-    input{
+    input {
         width: 100%;
         max-width: none;
         padding-top: 10px;
@@ -82,33 +85,34 @@
         top: -16px;
         background: $bg-color;
     }
-    button{
+    button {
         width: 15px;
         height: 15px;
         position: relative;
         margin: 0 10px 0 0;
         line-height: 0;
     }
-    .icon{
+    .icon {
         width: 100%;
         height: 100%;
     }
 }
 
-.post{
+.post {
     width: 100%;
     padding: 45px 30px;
     margin: 0 0 $line-height;
     background: #fff;
-    h2, h3{
+    h2,
+    h3 {
         margin: $line-height 0 0;
         font-size: 2.6rem;
-        > a{
+        > a {
             text-decoration: none;
         }
     }
-    p{
-        > a{
+    p {
+        > a {
             font-weight: inherit;
             color: inherit;
             text-decoration: none;
@@ -116,131 +120,135 @@
     }
 }
 
-.blog-list{
-    > .post:first-child{
+.blog-list {
+    > .post:first-child {
         background: $tertiary;
         color: #fff;
-        a, .post-duration{
+        a,
+        .post-duration {
             color: #fff;
         }
-        a{
-            &:hover, &:focus{
+        a {
+            &:hover,
+            &:focus {
                 opacity: 0.7;
             }
         }
-        .tags{
-            > a{
+        .tags {
+            > a {
                 background: #fff;
                 color: $text-color;
             }
         }
     }
-    .newsletter{
+    .newsletter {
         width: 100%;
         margin: 0 0 $line-height;
     }
 }
 
-.post-cats{
+.post-cats {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    .icons{
+    .icons {
         white-space: nowrap;
     }
-    .icon{
+    .icon {
         width: 22px;
         height: 22px;
         margin: 0 0 0 12px;
     }
 }
-.cats{
+.cats {
     font-size: 1.6rem;
-    > a{
+    > a {
         font-weight: 400;
     }
 }
-.post-duration{
+.post-duration {
     display: flex;
     align-items: center;
     font-size: 1.6rem;
     font-style: italic;
     color: $grey;
-    > .icon{
+    > .icon {
         width: 17px;
         height: 17px;
         margin: 0 5px 0 0;
     }
 }
 
-.article{
-    padding-top: $line-height*2;
-    h1{
+.article {
+    padding-top: $line-height * 2;
+    h1 {
         margin: 0;
     }
-    .col-3-desk{
+    .col-3-desk {
         margin: 0 auto;
     }
 }
 
-.wrapper-collant{
+.wrapper-collant {
     padding-bottom: 80px;
     position: relative;
 }
-.collant{
+.collant {
     position: fixed !important;
 }
-.collant-stuck{
+.collant-stuck {
     position: absolute;
 }
 
-.single-meta{
+.single-meta {
     margin: 0 0 10px;
-    .icon{
+    .icon {
         width: 28px;
         height: 28px;
         margin: 0 10px 0 0;
     }
-    .icons{
+    .icons {
         margin: 0 30px 0 0;
     }
 }
 
-.share{
+.share {
     position: absolute;
     bottom: 0;
 }
-.share-list{
+.share-list {
     display: flex;
     text-align: center;
-    > li{
+    > li {
         margin: 0 14px 0 0;
-        &:before{
+        &:before {
             content: none;
         }
     }
-    a{
+    a {
         display: block;
         width: 44px;
         height: 44px;
         line-height: 42px;
         background: $tertiary;
         color: #fff;
-        &:hover, &:focus{
+        &:hover,
+        &:focus {
             background: $quaternary;
         }
     }
 }
 
-.tags{
+.tags {
     display: flex;
     margin: $line-height 0 0;
     flex-wrap: wrap;
     font-size: 1.6rem;
-    .single-post &{
-        margin-top: $line-height*2;
+    .single-post & {
+        margin-top: $line-height * 2;
     }
-    > span, > a{
+    > span,
+    > a {
         display: block;
         padding: 1px 10px 3px;
         margin: 0 10px 10px 0;
@@ -249,65 +257,66 @@
         color: #fff;
         background: $text-color;
     }
-    > a{
-        &:hover, &:focus{
+    > a {
+        &:hover,
+        &:focus {
             opacity: 0.7;
         }
     }
 }
 
-.related-posts{
-    h2{
+.related-posts {
+    h2 {
         text-align: center;
     }
-    > div{
+    > div {
         display: flex;
         justify-content: space-between;
-        margin: $line-height*2 0 0;
+        margin: $line-height * 2 0 0;
         flex-wrap: wrap;
     }
 }
 
-.comments{
-    h3{
-        margin: 3.5em 0 $line-height*1.5;
+.comments {
+    h3 {
+        margin: 3.5em 0 $line-height * 1.5;
     }
 }
-.comments-list{
-    > li{
-        padding: $line-height*1.5 0 0;
-        &:before{
+.comments-list {
+    > li {
+        padding: $line-height * 1.5 0 0;
+        &:before {
             content: none;
         }
-        &:after{
-            content: '';
+        &:after {
+            content: "";
             display: block;
             width: 330px;
             height: 1px;
-            margin: $line-height*1.5 auto 0;
+            margin: $line-height * 1.5 auto 0;
             background: $text-color;
             opacity: 0.5;
         }
     }
 }
-.comment-author{
+.comment-author {
     font-size: 2rem;
     font-weight: 700;
     color: $primary;
 }
-.comment-date{
+.comment-date {
     display: block;
     font-size: 1.6rem;
     font-style: italic;
     color: $grey;
 }
 
-.author-wrapper{
-    p{
+.author-wrapper {
+    p {
         margin-top: 0;
     }
 }
-.author-img{
+.author-img {
     width: 85px;
     height: 85px;
     min-width: 85px;
@@ -315,148 +324,154 @@
     overflow: hidden;
     margin: 0 25px 0 0;
 }
-.author-title{
+.author-title {
     margin: 2em 0 $line-height;
     font-size: 2.6rem;
 }
-.author-name{
+.author-name {
     font-size: 2rem;
     font-weight: 700;
     color: $primary;
 }
 
-
-@media (min-width: $phone){
-    .blog-nav{
+@media (min-width: $phone) {
+    .blog-nav {
         display: flex;
         padding: 30px $gutter 16px $gutter/2;
         align-items: center;
         justify-content: space-between;
     }
 
-    .blog-search{
+    .blog-search {
         margin-top: 0;
-        input{
+        input {
             width: 220px;
             left: auto;
         }
     }
 
-    .single-meta{
+    .single-meta {
         display: flex;
         align-items: center;
     }
 }
 
-@media (min-width: $tablet){
-    .blog-list{
-        > .post{
-            &:first-child{
+@media (min-width: $tablet) {
+    .blog-title {
+        font-size: 7rem;
+    }
+    .blog-list {
+        > .post {
+            &:first-child {
                 width: 100%;
                 padding-left: 60px;
                 padding-right: 60px;
-                h2{
+                h2 {
                     font-size: 4rem;
                 }
             }
         }
     }
 
-    .post{
+    .post {
         width: 48.5%;
     }
 
-    .author-wrapper{
+    .author-wrapper {
         display: flex;
         align-items: center;
     }
-    
-    .author-title{
+
+    .author-title {
         margin-left: 110px;
     }
 }
 
-@media (min-width: $desktop-small){
-    .blog-list{
-        > .post:first-child{
-            p{
+@media (min-width: $desktop-small) {
+    .blog-list {
+        > .post:first-child {
+            p {
                 width: 75%;
             }
-            h2{
+            h2 {
                 font-size: 5.6rem;
             }
         }
     }
 
-    .blog-cats{
+    .blog-cats {
         height: auto;
         position: static;
         cursor: auto;
-        > ul{
+        > ul {
             display: flex;
             align-items: center;
             flex-wrap: wrap;
         }
-        .icon{
+        .icon {
             display: none;
         }
-        a{
+        a {
             pointer-events: auto;
         }
     }
 
-    .blog-search{
+    .blog-search {
         z-index: 2;
-        &.on{
-            input{
+        &.on {
+            input {
                 display: block;
             }
         }
-        input{
+        input {
             display: none;
         }
     }
 }
 
-@media (min-width: $desktop){
-    .blog-list{
-        > .post{
-            &:nth-child(5), &:nth-child(6), &:nth-child(5n+14), &:nth-child(5n+15){
+@media (min-width: $desktop) {
+    .blog-list {
+        > .post {
+            &:nth-child(5),
+            &:nth-child(6),
+            &:nth-child(5n + 14),
+            &:nth-child(5n + 15) {
                 width: 48.5%;
             }
         }
     }
 
-    .alm-reveal{
-        > .post{
-            &:nth-child(5n+1), &:nth-child(5n+2){
+    .alm-reveal {
+        > .post {
+            &:nth-child(5n + 1),
+            &:nth-child(5n + 2) {
                 width: 48.5%;
             }
         }
     }
 
-    .post{
+    .post {
         width: 31.5%;
-        &:first-child{
+        &:first-child {
             width: 31.5%;
         }
-        .related-posts &{
+        .related-posts & {
             width: 48.5%;
         }
     }
 
-    .wrapper-collant{
+    .wrapper-collant {
         padding-bottom: 0;
     }
 
-    .share{
+    .share {
         top: auto;
         bottom: auto;
         margin: 35px 0 0;
     }
-    .share-list{
+    .share-list {
         display: block;
-        > li{
+        > li {
             margin: 0 0 15px;
         }
     }

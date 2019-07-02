@@ -41,8 +41,8 @@ get_header(); ?>
                     <?php echo $section3['text']; ?>
                 </div>
                 <?php if( $section3['video'] ) : ?>
-                    <div class='wp-block-stereoberg-video js-video video' data-id='<?php echo $section3['video']; ?>'>
-                        <div class="iframe"></div>
+                    <div class='wp-block-stereoberg-video js-video-vimeo video' data-id='<?php echo $section3['video']; ?>'>
+                        <div id="vimeo-id-<?php echo $section3['video']; ?>" class="iframe"></div>
                         <button class="cross js-cross" type="button">
                             <span class="cross-line first-cross-line"></span>
                             <span class="cross-line second-cross-line"></span>
