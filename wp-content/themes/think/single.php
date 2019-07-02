@@ -7,6 +7,7 @@
 		<div class='wrapper-collant' id='article'>
 
 			<div class='share sidebar' id='share'>
+				<span>Partager cet article :</span>
 				<ul class='share-list'>
 					<li>
 						<a href='https://twitter.com/share?url=<?php the_permalink(); ?>&text=<?php the_title(); ?>&via=<?php bloginfo("name"); ?>' rel='nofollow' target='_blank' title='Share on Twitter'><svg class="icon"><use xlink:href="#icon-twitter"/></svg></a>

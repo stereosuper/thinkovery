@@ -190,6 +190,8 @@
 }
 
 .wrapper-collant {
+    display: flex;
+    flex-direction: column-reverse;
     padding-bottom: 80px;
     position: relative;
 }
@@ -213,12 +215,19 @@
 }
 
 .share {
-    position: absolute;
-    bottom: 0;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: $line-height;
+    > span {
+        margin: 0 $gutter $line-height * 0.5 0;
+    }
 }
+
 .share-list {
     display: flex;
     text-align: center;
+    margin-top: 0;
     > li {
         margin: 0 14px 0 0;
         &:before {
@@ -465,8 +474,13 @@
     }
 
     .share {
+        margin-top: auto;
+        position: absolute;
         top: auto;
         bottom: auto;
+        > span {
+            display: none;
+        }
     }
     .share-list {
         display: block;
