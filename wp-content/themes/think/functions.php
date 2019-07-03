@@ -415,8 +415,6 @@ function language_translation_setup(){
     if ( is_readable( $locale_file ) ) {
         require_once( $locale_file );
     }
-
-    var_dump('test');
 }
 
 ?>
