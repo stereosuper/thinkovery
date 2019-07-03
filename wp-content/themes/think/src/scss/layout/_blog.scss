@@ -261,6 +261,12 @@
         &:hover {
             & + .icon-name {
                 opacity: 1;
+                transition: transition(
+                    (
+                        opacity: "#{$fade-duration}s #{$fade-duration - 0.1}s"
+                    ),
+                    $fade-easing
+                );
             }
         }
     }
