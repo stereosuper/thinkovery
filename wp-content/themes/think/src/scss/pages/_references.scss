@@ -39,28 +39,34 @@ $references-offset-grid: 8px;
         align-items: center;
         z-index: 1;
         background: $bg-color;
-        &:hover, &:focus{
-            .icons{
+        &:hover,
+        &:focus {
+            .icons {
                 opacity: 1;
             }
-            .top, .bot{
-                &:before, &:after{
+            .top,
+            .bot {
+                &:before,
+                &:after {
                     transform: scaleX(1);
                 }
             }
-            .left{
-                &:before, &:after{
+            .left {
+                &:before,
+                &:after {
                     transform: scaleY(1);
                 }
             }
-            .top{
-                &:before, &:after{
+            .top {
+                &:before,
+                &:after {
                     transition-delay: 0s;
                 }
             }
-            .bot{
-                &:before, &:after{
-                    transition-delay: $btn-invert-delay*2;
+            .bot {
+                &:before,
+                &:after {
+                    transition-delay: $btn-invert-delay * 2;
                 }
             }
         }
@@ -104,9 +110,10 @@ $references-offset-grid: 8px;
         }
         .top {
             top: 0;
-            &:before, &:after{
+            &:before,
+            &:after {
                 transform-origin: 100% 0;
-                transition-delay: $btn-invert-delay*2;
+                transition-delay: $btn-invert-delay * 2;
             }
         }
         .bot {
@@ -118,20 +125,26 @@ $references-offset-grid: 8px;
             top: 0;
             bottom: 0;
             left: 0;
-            &:before, &:after{
+            &:before,
+            &:after {
                 transform: scaleY(0);
                 transition-delay: $btn-invert-delay;
             }
         }
     }
-    .icons{
+    .icons {
         position: absolute;
         bottom: 10px;
         right: 15px;
         opacity: 0;
-        transition: $transition;
+        transition: transition(
+            (
+                opacity: "#{$fade-duration}s"
+            ),
+            $fade-easing
+        );
     }
-    .icon{
+    .icon {
         margin: 5px;
     }
 }

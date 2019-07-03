@@ -23,38 +23,58 @@
 
 			<div class='col-3-desk'>
 				<div class='single-meta'>
+					<div class="single-info">
+						<span><?php echo get_the_date(); ?></span>
+						<?php 
+						$cats = get_the_category(); 
+						if($cats):
+							foreach($cats as $cat):
+								echo '&nbsp;-&nbsp;<a href="' . get_category_link( $cat->term_id ) . '">' . $cat->cat_name . '</a>';
+							endforeach;
+						endif; ?>
+					</div>
 					<?php
 						$sectors = get_the_terms($post, 'sector');
 						if( $sectors ) : ?>
 							<div class='icons'>
-								<?php foreach( $sectors as $sector ) :
-									switch( $sector->slug ){
+								<?php foreach( $sectors as $sector ) : ?>
+									<div class="icon-wrapper">
+									<?php 
+									switch( $sector->slug ) :
 										case 'communication':
-											echo '<svg class="icon"><use href="#icon-rectangle"/></svg>';
+											?>
+											<svg class="icon"><use href="#icon-rectangle"/></svg>
+											<?php 
 											break;
 										case 'conseil':
-											echo '<svg class="icon"><use href="#icon-drop"/></svg>';
+											?>
+											<svg class="icon"><use href="#icon-drop"/></svg>
+											<?php 
 											break;
 										case 'conception':
-											echo '<svg class="icon"><use href="#icon-square"/></svg>';
+											?>
+											<svg class="icon"><use href="#icon-square"/></svg>
+											<?php 
 											break;
 										case 'evaluation':
-											echo '<svg class="icon"><use href="#icon-circle"/></svg>';
+											?>
+											<svg class="icon"><use href="#icon-circle"/></svg>
+											<?php 
 											break;
 										case 'realisation':
-											echo '<svg class="icon"><use href="#icon-triangle"/></svg>';
+											?>
+											<svg class="icon"><use href="#icon-triangle"/></svg>
+											<?php 
 											break;
-									}
+									endswitch;
+									?>
+									<span class="icon-name"><?php echo $sector->name ?></span>
+									</div>
+									<?php 
 								endforeach; ?>
 							</div>
 						<?php endif;
 					?>
-					<span><?php echo get_the_date(); ?></span>
-					<?php $cats = get_the_category(); if( $cats ){
-						foreach( $cats as $cat ){
-							echo '&nbsp;-&nbsp;<a href="' . get_category_link( $cat->term_id ) . '">' . $cat->cat_name . '</a>';
-						}
-					} ?>
 				</div>
 
 				<h1 class="blog-title"><?php the_title(); ?></h1>

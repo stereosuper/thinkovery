@@ -211,9 +211,7 @@
     padding-top: $line-height * 2;
     h1 {
         margin: 0;
-    }
-    .col-3-desk {
-        margin: 0 auto;
+        word-break: break-word;
     }
 }
 .single {
@@ -225,14 +223,30 @@
 }
 
 .single-meta {
-    margin: 0 0 10px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 $line-height;
+    .single-info {
+        margin-bottom: $line-height * 0.5;
+    }
+    .icon-wrapper {
+        &:last-child {
+            .icon {
+                margin-right: 0;
+            }
+        }
+    }
     .icon {
         width: 28px;
         height: 28px;
         margin: 0 10px 0 0;
     }
     .icons {
-        margin: 0 30px 0 0;
+        display: flex;
+        margin: 0;
+    }
+    .icon-name {
+        display: none;
     }
 }
 
@@ -372,7 +386,6 @@
         align-items: center;
         justify-content: space-between;
     }
-
     .blog-search {
         margin-top: 0;
         input {
@@ -380,10 +393,14 @@
             left: auto;
         }
     }
-
     .single-meta {
         display: flex;
+        flex-direction: row;
+        justify-content: space-between;
         align-items: center;
+        .single-info {
+            margin-bottom: 0;
+        }
     }
 }
 
@@ -414,16 +431,54 @@
             }
         }
     }
-
+    .single-meta {
+        .icons {
+            position: relative;
+            &:hover {
+                .icon {
+                    opacity: 0.5;
+                    &:hover {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+        .icon {
+            transition: transition(
+                (
+                    opacity: "#{$fade-duration}s"
+                ),
+                $fade-easing
+            );
+            &:hover {
+                & + .icon-name {
+                    opacity: 1;
+                }
+            }
+        }
+        .icon-name {
+            display: block;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: transition(
+                (
+                    opacity: "#{$fade-duration}s"
+                ),
+                $fade-easing
+            );
+            pointer-events: none;
+        }
+    }
     .post {
         width: 48.5%;
     }
-
     .author-wrapper {
         display: flex;
         align-items: center;
     }
-
     .author-title {
         margin-left: 110px;
     }
@@ -472,6 +527,11 @@
 }
 
 @media (min-width: $desktop) {
+    .article {
+        .col-3-desk {
+            margin: 0 auto;
+        }
+    }
     .blog-list {
         > .post {
             &:nth-child(5),

@@ -1676,9 +1676,8 @@ label {
 .article {
   padding-top: 56px; }
   .article h1 {
-    margin: 0; }
-  .article .col-3-desk {
-    margin: 0 auto; }
+    margin: 0;
+    word-break: break-word; }
 
 .single .wrapper-collant {
   display: -webkit-box;
@@ -1691,13 +1690,29 @@ label {
   padding-bottom: 80px; }
 
 .single-meta {
-  margin: 0 0 10px; }
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 0 0 28px; }
+  .single-meta .single-info {
+    margin-bottom: 14px; }
+  .single-meta .icon-wrapper:last-child .icon {
+    margin-right: 0; }
   .single-meta .icon {
     width: 28px;
     height: 28px;
     margin: 0 10px 0 0; }
   .single-meta .icons {
-    margin: 0 30px 0 0; }
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin: 0; }
+  .single-meta .icon-name {
+    display: none; }
 
 .share {
   display: -webkit-box;
@@ -1836,9 +1851,18 @@ label {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
     -webkit-box-align: center;
         -ms-flex-align: center;
-            align-items: center; } }
+            align-items: center; }
+    .single-meta .single-info {
+      margin-bottom: 0; } }
 
 @media (min-width: 780px) {
   .blog-title {
@@ -1854,6 +1878,28 @@ label {
     padding-right: 60px; }
     .blog-list > .post:first-child h2 {
       font-size: 4rem; }
+  .single-meta .icons {
+    position: relative; }
+    .single-meta .icons:hover .icon {
+      opacity: 0.5; }
+      .single-meta .icons:hover .icon:hover {
+        opacity: 1; }
+  .single-meta .icon {
+    -webkit-transition:  opacity 0.3s ease-out;
+    transition:  opacity 0.3s ease-out; }
+    .single-meta .icon:hover + .icon-name {
+      opacity: 1; }
+  .single-meta .icon-name {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+    opacity: 0;
+    -webkit-transition:  opacity 0.3s ease-out;
+    transition:  opacity 0.3s ease-out;
+    pointer-events: none; }
   .post {
     width: 48.5%; }
   .author-wrapper {
@@ -1896,6 +1942,8 @@ label {
       display: none; } }
 
 @media (min-width: 1100px) {
+  .article .col-3-desk {
+    margin: 0 auto; }
   .blog-list > .post:nth-child(5), .blog-list > .post:nth-child(6), .blog-list > .post:nth-child(5n + 14), .blog-list > .post:nth-child(5n + 15) {
     width: 48.5%; }
   .alm-reveal > .post:nth-child(5n + 1), .alm-reveal > .post:nth-child(5n + 2) {
@@ -3147,7 +3195,11 @@ label {
     background: #f7f2ea; }
     .references-item > a:hover .icons, .references-item > a:focus .icons {
       opacity: 1; }
-    .references-item > a:hover .top:before, .references-item > a:hover .top:after, .references-item > a:hover .bot:before, .references-item > a:hover .bot:after, .references-item > a:focus .top:before, .references-item > a:focus .top:after, .references-item > a:focus .bot:before, .references-item > a:focus .bot:after {
+    .references-item > a:hover .top:before, .references-item > a:hover .top:after,
+    .references-item > a:hover .bot:before,
+    .references-item > a:hover .bot:after, .references-item > a:focus .top:before, .references-item > a:focus .top:after,
+    .references-item > a:focus .bot:before,
+    .references-item > a:focus .bot:after {
       -webkit-transform: scaleX(1);
               transform: scaleX(1); }
     .references-item > a:hover .left:before, .references-item > a:hover .left:after, .references-item > a:focus .left:before, .references-item > a:focus .left:after {
@@ -3229,8 +3281,8 @@ label {
     bottom: 10px;
     right: 15px;
     opacity: 0;
-    -webkit-transition: 0.05s ease-in-out;
-    transition: 0.05s ease-in-out; }
+    -webkit-transition:  opacity 0.3s ease-out;
+    transition:  opacity 0.3s ease-out; }
   .references-item .icon {
     margin: 5px; }
 
@@ -4020,4 +4072,4 @@ label {
     page-break-after: avoid; } }
 
 
-/*# sourceMappingURL=main.css.map?d832ebaebb95002f4050eeed3aa209ee*/
+/*# sourceMappingURL=main.css.map?c3a6b39004c5c6b1cf6acceb6630d455*/
