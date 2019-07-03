@@ -1,8 +1,23 @@
-<?php get_header(); ?>
+<?php 
+get_header();
+
+$single_tag_title = single_tag_title('', false);
+$post_count = 0;
+$tags = get_the_tags(get_the_ID());
+
+if ($tags) {
+	foreach ($tags as $tag){
+		if ($single_tag_title === $tag->name) {
+			$post_count = $tag->count;
+		}
+	}
+}
+?>
 
 <div class='container'>
 
 	<h1 class='blog-title'><?php single_tag_title(); ?></h1>
+	<p class="section-results"><?php echo $post_count .' '. ($post_count === 1 ? __('post in this section', 'think') : __('posts in this section', 'think')) ?></p>
 
 	<div class='blog-nav' id='blog-nav'>
 		<div class='blog-cats' id='blog-cats'>
@@ -34,16 +49,10 @@
 				
 				<div class='post'>
 					<div class='post-cats'>
-						<div class='cats'>
-							<?php $cats = get_the_category(); if( $cats ){
-								$count = 0;
-								foreach( $cats as $cat ){
-									$count ++;
-									if( $count > 1 ) echo ' <br>';
-									echo '<a href="' . get_category_link( $cat->term_id ) . '">' . $cat->cat_name . '</a>';
-								}
-							} ?>
-						</div>
+						<span class='post-duration'>
+							<svg class="icon"><use href="#icon-clock"/></svg>
+							<?php echo estimated_time_to_read_post(get_the_content(), true); ?>
+						</span>
 						<?php
 							$sectors = get_the_terms($post, 'sector');
 							if( $sectors && $countPosts > 1 ) : ?>
@@ -73,13 +82,6 @@
 					</div>
 
 					<h2><a href='<?php the_permalink(); ?>'><?php the_title(); ?></a></h2>
-
-					<?php if( get_field('duration') ){ ?>
-					<span class='post-duration'>
-						<svg class="icon"><use href="#icon-clock"/></svg>
-						<?php the_field('duration'); ?>
-					</span>
-					<?php } ?>
 
 					<p>
 						<a href='<?php the_permalink(); ?>'>

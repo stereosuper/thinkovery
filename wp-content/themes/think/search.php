@@ -24,8 +24,8 @@ $found_number = $wp_query->found_posts;
 		<?php global $wp_query;
 		$results = $wp_query->found_posts;
 		$results = $results > 1 ? $results . ' results' : $results . ' result'; ?>
-		<p><?php echo $found_number .' '. __('resultats pour') ?></p>
-		<h1 class='blog-title'><?php echo __('The search for', 'think') . ' "' . get_search_query() .'" ' . __('returned', 'think') . ' ' . $results; ?></h1>
+		<p class="search-number"><?php echo $found_number .' '. __('results for') ?></p>
+		<h1 class='blog-title'><?php echo '"' . get_search_query() .'"'; ?></h1>
 
 		<div class='blog-nav' id='blog-nav'>
 			<div class='blog-cats' id='blog-cats'>
@@ -55,16 +55,10 @@ $found_number = $wp_query->found_posts;
 				
 				<div class='post'>
 					<div class='post-cats'>
-						<div class='cats'>
-							<?php $cats = get_the_category(); if( $cats ){
-								$count = 0;
-								foreach( $cats as $cat ){
-									$count ++;
-									if( $count > 1 ) echo ' <br>';
-									echo '<a href="' . get_category_link( $cat->term_id ) . '">' . $cat->cat_name . '</a>';
-								}
-							} ?>
-						</div>
+						<span class='post-duration'>
+							<svg class="icon"><use href="#icon-clock"/></svg>
+							<?php echo estimated_time_to_read_post(get_the_content(), true); ?>
+						</span>
 						<?php
 							$sectors = get_the_terms($post, 'sector');
 							if( $sectors && $countPosts > 1 ) : ?>
@@ -94,13 +88,6 @@ $found_number = $wp_query->found_posts;
 					</div>
 
 					<h2><a href='<?php the_permalink(); ?>'><?php the_title(); ?></a></h2>
-
-					<?php if( get_field('duration') ){ ?>
-					<span class='post-duration'>
-						<svg class="icon"><use href="#icon-clock"/></svg>
-						<?php the_field('duration'); ?>
-					</span>
-					<?php } ?>
 
 					<p>
 						<a href='<?php the_permalink(); ?>'>

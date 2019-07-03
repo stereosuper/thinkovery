@@ -1,0 +1,147 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-07-03 08:56+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco - https://localise.biz/"
+
+#: category.php:19
+msgid "post in this category"
+msgstr ""
+
+#: category.php:19
+msgid "posts in this category"
+msgstr ""
+
+#: category.php:24 index.php:10 tag.php:25 search.php:33
+msgid "All posts"
+msgstr ""
+
+#: category.php:111 index.php:97 tag.php:112 search.php:118
+msgid "Load more posts"
+msgstr ""
+
+#. Name of the template
+msgid "Learning Experience"
+msgstr ""
+
+#: comments.php:12
+msgid "Comments"
+msgstr ""
+
+#: comments.php:23
+msgid "Your comment is being verified"
+msgstr ""
+
+#: comments.php:36
+msgid "Leave a comment"
+msgstr ""
+
+#: comments.php:61
+msgid "Name"
+msgstr ""
+
+#: comments.php:68
+msgid "Email"
+msgstr ""
+
+#: comments.php:74
+msgid "Website"
+msgstr ""
+
+#: comments.php:74
+msgid "optionnal"
+msgstr ""
+
+#: comments.php:84
+msgid "Comment"
+msgstr ""
+
+#: comments.php:89
+msgid "Send"
+msgstr ""
+
+#: tag.php:20
+msgid "post in this section"
+msgstr ""
+
+#: tag.php:20
+msgid "posts in this section"
+msgstr ""
+
+#: search.php:124
+msgid "The search for"
+msgstr ""
+
+#: search.php:124
+msgid "didn't return any results"
+msgstr ""
+
+#. Name of the template
+msgid "Contact"
+msgstr ""
+
+#: single-reference.php:30
+msgid "Share this post"
+msgstr ""
+
+#: single-reference.php:47
+msgid "Similar study cases"
+msgstr ""
+
+#. Name of the template
+msgid "References"
+msgstr ""
+
+#. Name of the template
+msgid "Sitemap"
+msgstr ""
+
+#: single.php:82
+msgid "About the author"
+msgstr ""
+
+#. Name of the template
+msgid "Recrutement"
+msgstr ""
+
+#: recrutement.php:19
+msgid "Job offers"
+msgstr ""
+
+#. Name of the template
+msgid "Qui sommes-nous"
+msgstr ""
+
+#. Name of the template
+msgid "Offers"
+msgstr ""
+
+#: includes/post-related.php:42
+msgid "Related Posts"
+msgstr ""
+
+#. Name of the theme
+msgid "think"
+msgstr ""
+
+#. Description of the theme
+msgid "Think theme"
+msgstr ""
+
+#. Author of the theme
+msgid "Stéréosuper"
+msgstr ""
+
+#. Author URI of the theme
+msgid "http://stereosuper.fr"
+msgstr ""

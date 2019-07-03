@@ -1,9 +1,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: think\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-27 15:25+0000\n"
+"POT-Creation-Date: 2019-07-03 08:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -12,14 +12,21 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.2.2; wp-5.2.1"
+"X-Generator: Loco https://localise.biz/"
 
-#: category.php:10 index.php:10 tag.php:10 search.php:16
+#: category.php:19
+msgid "post in this category"
+msgstr ""
+
+#: category.php:19
+msgid "posts in this category"
+msgstr ""
+
+#: category.php:24 index.php:10 tag.php:25 search.php:33
 msgid "All posts"
 msgstr ""
 
-#: category.php:111 index.php:110 tag.php:111 search.php:115
+#: category.php:111 index.php:97 tag.php:112 search.php:118
 msgid "Load more posts"
 msgstr ""
 
@@ -63,15 +70,19 @@ msgstr ""
 msgid "Send"
 msgstr ""
 
-#: search.php:11 search.php:122
+#: tag.php:20
+msgid "post in this section"
+msgstr ""
+
+#: tag.php:20
+msgid "posts in this section"
+msgstr ""
+
+#: search.php:124
 msgid "The search for"
 msgstr ""
 
-#: search.php:11
-msgid "returned"
-msgstr ""
-
-#: search.php:122
+#: search.php:124
 msgid "didn't return any results"
 msgstr ""
 

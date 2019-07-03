@@ -16,7 +16,7 @@ if ($terms) {
 ?>
 
 	<h1 class='blog-title'><?php echo $single_cat_title; ?></h1>
-	<p><?php echo $post_count .' '. __('articles dans cette rubrique', 'think') ?></p>
+	<p class="section-results"><?php echo $post_count .' '. ($post_count === 1 ? __('post in this category', 'think') : __('posts in this category', 'think')) ?></p>
 
 	<div class='blog-nav' id='blog-nav'>
 		<div class='blog-cats' id='blog-cats'>
@@ -48,16 +48,10 @@ if ($terms) {
 				
 				<div class='post'>
 					<div class='post-cats'>
-						<div class='cats'>
-							<?php $cats = get_the_category(); if( $cats ){
-								$count = 0;
-								foreach( $cats as $cat ){
-									$count ++;
-									if( $count > 1 ) echo ' <br>';
-									echo '<a href="' . get_category_link( $cat->term_id ) . '">' . $cat->cat_name . '</a>';
-								}
-							} ?>
-						</div>
+						<span class='post-duration'>
+							<svg class="icon"><use href="#icon-clock"/></svg>
+							<?php echo estimated_time_to_read_post(get_the_content(), true); ?>
+						</span>
 						<?php
 							$sectors = get_the_terms($post, 'sector');
 							if( $sectors && $countPosts > 1 ) : ?>
@@ -87,13 +81,6 @@ if ($terms) {
 					</div>
 
 					<h2><a href='<?php the_permalink(); ?>'><?php the_title(); ?></a></h2>
-
-					<?php if( get_field('duration') ){ ?>
-					<span class='post-duration'>
-						<svg class="icon"><use href="#icon-clock"/></svg>
-						<?php the_field('duration'); ?>
-					</span>
-					<?php } ?>
 
 					<p>
 						<a href='<?php the_permalink(); ?>'>

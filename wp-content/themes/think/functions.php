@@ -401,4 +401,22 @@ function think_register_required_plugins(){
 }
 add_action( 'tgmpa_register', 'think_register_required_plugins' );
 
+/*-----------------------------------------------------------------------------------*/
+/* I18n
+/*-----------------------------------------------------------------------------------*/
+
+add_action( 'after_setup_theme', 'language_translation_setup' );
+function language_translation_setup(){
+    load_theme_textdomain( 'think', get_template_directory() . '/languages' );
+
+    $locale = get_locale();
+    $locale_file = get_template_directory() . "/languages/$locale.php";
+
+    if ( is_readable( $locale_file ) ) {
+        require_once( $locale_file );
+    }
+
+    var_dump('test');
+}
+
 ?>

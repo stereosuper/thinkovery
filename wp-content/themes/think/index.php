@@ -34,16 +34,10 @@
 				
 				<div class='post'>
 					<div class='post-cats'>
-						<div class='cats'>
-							<?php $cats = get_the_category(); if( $cats ){
-								$count = 0;
-								foreach( $cats as $cat ){
-									$count ++;
-									if( $count > 1 ) echo ' <br>';
-									echo '<a href="' . get_category_link( $cat->term_id ) . '">' . $cat->cat_name . '</a>';
-								}
-							} ?>
-						</div>
+						<span class='post-duration'>
+							<svg class="icon"><use href="#icon-clock"/></svg>
+							<?php echo estimated_time_to_read_post(get_the_content(), true); ?>
+						</span>
 						<?php
 							$sectors = get_the_terms($post, 'sector');
 							if( $sectors && $countPosts > 1 ) : ?>
@@ -73,11 +67,6 @@
 					</div>
 
 					<h2><a href='<?php the_permalink(); ?>'><?php the_title(); ?></a></h2>
-
-					<span class='post-duration'>
-						<svg class="icon"><use href="#icon-clock"/></svg>
-						<?php echo estimated_time_to_read_post(get_the_content(), true); ?>
-					</span>
 
 					<p>
 						<a href='<?php the_permalink(); ?>'>
