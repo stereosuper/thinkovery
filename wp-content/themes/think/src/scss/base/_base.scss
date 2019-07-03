@@ -354,7 +354,7 @@ a {
 
 @media (min-width: $desktop-small) {
     h1 {
-        font-size: 8.6rem;
+        font-size: 7rem;
     }
 
     .intro-big {
@@ -372,6 +372,11 @@ a {
             height: 75px;
             position: absolute;
             pointer-events: none;
+        }
+    }
+    @media (min-height: 720px) {
+        h1 {
+            font-size: 8.6rem;
         }
     }
 }
