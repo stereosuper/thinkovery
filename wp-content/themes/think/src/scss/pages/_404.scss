@@ -1,27 +1,31 @@
-.memory, .memory-success{
-    display: none
+.memory,
+.memory-success {
+    display: none;
 }
 
-
-@media (min-width: $desktop-small){
-    .memory-wrapper{
+@media (min-width: $desktop-small) {
+    .container-404 {
+        > p {
+            width: grid-column-percent($container, 3, 4);
+            padding-right: $gutter;
+        }
+    }
+    .memory-wrapper {
         position: relative;
     }
-
-    .memory{
+    .memory {
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
         perspective: 1000px;
-        &.off{
+        &.off {
             pointer-events: none;
         }
     }
-
-    .card{
+    .card {
         width: 18%;
         position: relative;
-        margin: $gutter*2 0 0;
+        margin: $gutter * 2 0 0;
         z-index: 1;
         box-shadow: 0 29px 35px rgba(64, 64, 64, 0.07);
         background: $bg-color;
@@ -30,8 +34,8 @@
         transform: rotate3d(0, 1, 0, -180deg);
         transition: 0.3s ease-in-out;
         cursor: pointer;
-        &:after{
-            content: '';
+        &:after {
+            content: "";
             position: absolute;
             top: 0;
             left: 0;
@@ -42,31 +46,33 @@
             backface-visibility: hidden;
             transform: rotate3d(0, 1, 0, 180deg);
         }
-        &:hover{
+        &:hover {
             transform: rotate3d(0, 1, 0, -180deg) translate3d(0, -20px, 0);
             transition: 0.2s ease-in-out;
         }
-        &.on, &.first, &.done{
+        &.on,
+        &.first,
+        &.done {
             transform: rotate3d(0, 1, 0, 0) translate3d(0, -30px, 0);
             cursor: auto;
         }
-        &.done{
+        &.done {
             box-shadow: none;
         }
-        .front{
+        .front {
             display: flex;
             height: 240px;
             justify-content: center;
             align-items: center;
             backface-visibility: hidden;
         }
-        .icon{
+        .icon {
             width: 60px;
             height: 60px;
         }
     }
 
-    .memory-success{
+    .memory-success {
         display: block;
         width: 50%;
         padding: 65px 45px;
@@ -80,42 +86,43 @@
         background: $bg-color;
         opacity: 0;
         transition: 0.3s ease-in-out;
-        &.on{
+        &.on {
             pointer-events: auto;
             opacity: 1;
         }
-        > h2{
+        > h2 {
             margin: 0 0 5px;
             font-size: 2.6rem;
             color: $text-color;
         }
-        p{
+        p {
             margin: 0;
         }
-        a{
+        a {
             color: $tertiary-light;
-            &:hover, &:focus{
+            &:hover,
+            &:focus {
                 color: $quaternary;
             }
         }
     }
 }
 
-@media (min-width: $desktop){
-    .card{
+@media (min-width: $desktop) {
+    .card {
         width: 15%;
         margin-left: 2.5%;
         margin-right: 2.5%;
-        .front{
+        .front {
             height: 280px;
         }
-        .icon{
+        .icon {
             width: 75px;
             height: 75px;
         }
     }
 
-    .memory-success{
+    .memory-success {
         top: 37%;
     }
 }

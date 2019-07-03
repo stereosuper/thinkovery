@@ -3875,10 +3875,14 @@ label {
   .offer.offer-4 .btn-container, .offer.offer-5 .btn-container {
     width: 100%; } }
 
-.memory, .memory-success {
+.memory,
+.memory-success {
   display: none; }
 
 @media (min-width: 960px) {
+  .container-404 > p {
+    width: 75%;
+    padding-right: 44px; }
   .memory-wrapper {
     position: relative; }
   .memory {
@@ -3912,7 +3916,7 @@ label {
     transition: 0.3s ease-in-out;
     cursor: pointer; }
     .card:after {
-      content: '';
+      content: "";
       position: absolute;
       top: 0;
       left: 0;
@@ -4014,4 +4018,4 @@ label {
     page-break-after: avoid; } }
 
 
-/*# sourceMappingURL=main.css.map?047ac9b5129bb13d9acfcef4435710fe*/
+/*# sourceMappingURL=main.css.map?1aacc5ebeea98b2b22442270df72043b*/

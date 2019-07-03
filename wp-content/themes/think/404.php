@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<div class='container'>
+<div class='container-404 container'>
 
 	<h1><?php the_field('404title', 'options'); ?></h1>
 	<?php the_field('404text', 'options'); ?>
