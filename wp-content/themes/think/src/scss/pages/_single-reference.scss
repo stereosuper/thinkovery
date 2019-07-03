@@ -4,15 +4,69 @@
     }
 }
 
-.ref-cover{
+.ref-cover {
     position: relative;
-    margin: 0 $gutter*-1;
-    > img{
+    margin: 0 $gutter * -1;
+    > img {
         width: 100%;
     }
 }
 
-.ref-logo{
+.ref-info {
+    margin: $line-height 0 $line-height * 0.5;
+}
+
+.ref-categories {
+    display: flex;
+    .icons {
+        display: flex;
+        position: relative;
+        &:hover {
+            .icon {
+                opacity: 0.5;
+                &:hover {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+    .icon-wrapper {
+        margin: 0 10px 0 0;
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+    .icon {
+        width: 2.8rem;
+        height: 2.8rem;
+        transition: transition(
+            (
+                opacity: "#{$fade-duration}s"
+            ),
+            $fade-easing
+        );
+        &:hover {
+            & + .icon-name {
+                opacity: 1;
+            }
+        }
+    }
+    .icon-name {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0;
+        transition: transition(
+            (
+                opacity: "#{$fade-duration}s"
+            ),
+            $fade-easing
+        );
+    }
+}
+
+.ref-logo {
     width: calc(#{$col/2} + #{$gutter});
     padding: $line-height 0;
     position: absolute;
@@ -20,26 +74,26 @@
     bottom: 0;
     text-align: center;
     background: $bg-color;
-    > img{
+    > img {
         max-width: 62%;
     }
 }
 
-.ref-title{
+.ref-title {
     margin: $line-height 0;
 }
 
-.ref-similar{
+.ref-similar {
     display: flex;
     justify-content: space-between;
-    margin: $line-height*3 0 0;
+    margin: $line-height * 3 0 0;
     flex-wrap: wrap;
-    > .h3{
+    > .h3 {
         width: 100%;
         margin: 0 0 $line-height;
         text-align: center;
     }
-    > a{
+    > a {
         display: flex;
         width: 100%;
         padding: 20px;
@@ -49,28 +103,28 @@
         background: $bg-color;
         box-shadow: 0 29px 35px rgba(64, 64, 64, 0.07);
     }
-    img{
+    img {
         max-width: 50%;
     }
 }
 
-.ref-share{
+.ref-share {
     max-width: 490px;
     padding: 30px 42px;
-    margin: $line-height*3 auto 0;
+    margin: $line-height * 3 auto 0;
     clear: both;
     background: $primary;
     color: #fff;
-    li{
+    li {
         margin: 0 0 0 7px;
-        &:before{
+        &:before {
             content: none;
         }
-        &:first-child{
+        &:first-child {
             margin: 0;
         }
     }
-    a{
+    a {
         display: flex;
         width: 44px;
         height: 44px;
@@ -84,68 +138,77 @@
         }
     }
 }
-.ref-share-list{
+.ref-share-list {
     display: flex;
     max-width: 150px;
     justify-content: space-between;
     margin: 20px 0 0;
 }
-.ref-share-title{
+.ref-share-title {
     margin: 0;
     font-size: 2.6rem;
     font-weight: 600;
 }
 
-
-@media (min-width: $phone){
-    .ref-similar{
-        > a{
+@media (min-width: $phone) {
+    .ref-info {
+        display: flex;
+        justify-content: space-between;
+    }
+    .ref-tags {
+        margin-right: $gutter * 0.5;
+    }
+    .ref-similar {
+        > a {
             width: 46%;
         }
     }
-
-    .ref-share{
+    .ref-share {
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
-    .ref-share-list{
+    .ref-share-list {
         margin: 0;
     }
 }
 
-@media (min-width: $tablet){
-    .ref-share{
+@media (min-width: $tablet) {
+    .ref-share {
         width: 75%;
     }
 }
 
-@media (min-width: $desktop-small){
-    .ref-tags{
-        padding: 0 0 0 $border-size;
-        margin-left:  $col/2;
+@media (min-width: $desktop-small) {
+    .ref-info {
+        margin-left: -$gutter;
+        margin-right: -$gutter;
+        padding: 0 12.5%;
     }
-
-    .ref-title{
-        padding: 0 0 0 $border-size/2;
+    .ref-tags {
+        margin-left: $gutter;
+    }
+    .ref-categories {
+        margin-right: $gutter;
+    }
+    .ref-title {
         margin-left: $col/2;
     }
-
-    .ref-similar{
-        width: calc(#{$col*3} + #{$gutter});
-        > .h3{
+    .ref-similar {
+        width: calc(#{$col * 3} + #{$gutter});
+        > .h3 {
             width: 30%;
             margin: 0;
             text-align: right;
         }
-        > a{
+        > a {
             width: 30%;
         }
     }
 }
 
-@media (min-width: $desktop){
-    .ref-share{
+@media (min-width: $desktop) {
+    .ref-share {
         width: 50%;
         margin-left: 50%;
         margin-right: 0;

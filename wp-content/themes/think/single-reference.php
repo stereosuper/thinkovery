@@ -1,4 +1,8 @@
-<?php get_header(); ?>
+<?php
+get_header(); 
+
+$ref_id = get_the_ID();
+?>
 
 <article class='container'>
 
@@ -11,14 +15,60 @@
 			</div>
 		</div>
 
-		<div class='tags ref-tags'>
+		<div class="ref-info">
+			<div class='tags ref-tags'>
+				<?php
+					$tags = wp_get_object_terms($ref_id, 'reference_tag');
+					foreach( $tags as $tag ){
+						echo '<span>' . $tag->name . '</span>';
+					}
+				?>
+			</div>
 			<?php
-				$tags = wp_get_object_terms( get_the_ID(), 'reference_tag' );
-				foreach( $tags as $tag ){
-					echo '<span>' . $tag->name . '</span>';
-				}
-			?>
+				$categories = get_the_terms($ref_id, 'reference_cat');
+				if( $categories ) : ?>
+				<div class="ref-categories">
+					<div class='icons'>
+						<?php foreach( $categories as $category ) : ?>
+							<div class="icon-wrapper">
+							<?php 
+							switch( $category->slug ) :
+								case 'communication':
+									?>
+									<svg class="icon"><use href="#icon-rectangle"/></svg>
+									<?php 
+									break;
+								case 'conseil':
+									?>
+									<svg class="icon"><use href="#icon-drop"/></svg>
+									<?php 
+									break;
+								case 'conception':
+									?>
+									<svg class="icon"><use href="#icon-square"/></svg>
+									<?php 
+									break;
+								case 'evaluation':
+									?>
+									<svg class="icon"><use href="#icon-circle"/></svg>
+									<?php 
+									break;
+								case 'realisation':
+									?>
+									<svg class="icon"><use href="#icon-triangle"/></svg>
+									<?php 
+									break;
+							endswitch;
+							?>
+							<span class="icon-name"><?php echo $category->name ?></span>
+							</div>
+							<?php 
+						endforeach; ?>
+					</div>
+				</div>
+			<?php endif; ?>
 		</div>
+
 
 		<h1 class='ref-title'><?php the_title(); ?></h1>
 

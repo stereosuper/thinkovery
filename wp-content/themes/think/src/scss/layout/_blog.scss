@@ -225,28 +225,59 @@
 .single-meta {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     margin: 0 0 $line-height;
     .single-info {
         margin-bottom: $line-height * 0.5;
     }
-    .icon-wrapper {
-        &:last-child {
+    .icons {
+        display: flex;
+        margin: 0;
+        position: relative;
+        &:hover {
             .icon {
-                margin-right: 0;
+                opacity: 0.5;
+                &:hover {
+                    opacity: 1;
+                }
             }
+        }
+    }
+    .icon-wrapper {
+        margin: 0 10px 0 0;
+        &:last-child {
+            margin-right: 0;
         }
     }
     .icon {
         width: 28px;
         height: 28px;
-        margin: 0 10px 0 0;
-    }
-    .icons {
-        display: flex;
-        margin: 0;
+        transition: transition(
+            (
+                opacity: "#{$fade-duration}s"
+            ),
+            $fade-easing
+        );
+        &:hover {
+            & + .icon-name {
+                opacity: 1;
+            }
+        }
     }
     .icon-name {
-        display: none;
+        display: block;
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0;
+        transition: transition(
+            (
+                opacity: "#{$fade-duration}s"
+            ),
+            $fade-easing
+        );
+        pointer-events: none;
     }
 }
 
@@ -301,6 +332,9 @@
         text-decoration: none;
         color: #fff;
         background: $text-color;
+        &:last-child {
+            margin-right: 0;
+        }
     }
     > a {
         &:hover,
@@ -429,47 +463,6 @@
                     font-size: 4rem;
                 }
             }
-        }
-    }
-    .single-meta {
-        .icons {
-            position: relative;
-            &:hover {
-                .icon {
-                    opacity: 0.5;
-                    &:hover {
-                        opacity: 1;
-                    }
-                }
-            }
-        }
-        .icon {
-            transition: transition(
-                (
-                    opacity: "#{$fade-duration}s"
-                ),
-                $fade-easing
-            );
-            &:hover {
-                & + .icon-name {
-                    opacity: 1;
-                }
-            }
-        }
-        .icon-name {
-            display: block;
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            opacity: 0;
-            transition: transition(
-                (
-                    opacity: "#{$fade-duration}s"
-                ),
-                $fade-easing
-            );
-            pointer-events: none;
         }
     }
     .post {
