@@ -317,6 +317,18 @@ a {
     display: none;
 }
 
+.wrapper-collant {
+    position: relative;
+}
+
+.collant {
+    position: fixed !important;
+}
+
+.collant-stuck {
+    position: absolute;
+}
+
 @media (min-width: $phone) {
     h1 {
         font-size: 6rem;
