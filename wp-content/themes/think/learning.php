@@ -34,10 +34,6 @@ get_header(); ?>
 			</div>
 		<?php endif; ?>
 
-		<div class='learning-middle'>
-			<div><?php the_field('middleText'); ?></div>
-		</div>
-		
 		<div class='learning-anim-container'>
 			<div class='learning-anim-wrapper'>
 				<div class='learning-anim' id='learning-anim'>
@@ -59,6 +55,10 @@ get_header(); ?>
 				</div>
 			</div>
 			<div><?php the_field('animationText'); ?></div>
+		</div>
+
+		<div class='learning-middle'>
+			<div><?php the_field('middleText'); ?></div>
 		</div>
 	
 	<?php endif; ?>

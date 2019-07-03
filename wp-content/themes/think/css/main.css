@@ -1090,7 +1090,8 @@ label {
   opacity: 1 !important; }
 
 .main-footer a:not(.btn) {
-  color: inherit; }
+  color: inherit;
+  text-decoration: none; }
   .main-footer a:not(.btn):hover, .main-footer a:not(.btn):focus {
     opacity: 0.6; }
 
@@ -4120,4 +4121,4 @@ label {
     page-break-after: avoid; } }
 
 
-/*# sourceMappingURL=main.css.map?49c3df9b31a8894db4ae992cdd5c5a5b*/
+/*# sourceMappingURL=main.css.map?a30214cb8116620c73ce39e83ac06d8a*/
