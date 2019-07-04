@@ -17,6 +17,40 @@
         @include z-index("home-header-h1");
         pointer-events: none;
     }
+    .video {
+        &.playing,
+        &:hover {
+            .video-title {
+                transform: translate3d(0, 0, 0);
+                opacity: 0.5;
+                transition: transition(
+                    (
+                        transform: "#{$fade-duration}s #{$fade-duration * 0.5}s",
+                        opacity: "#{$fade-duration}s"
+                    ),
+                    $cat-mouse-easing-out
+                );
+            }
+        }
+        .video-title {
+            opacity: 1;
+            transition: transition(
+                (
+                    transform: "#{$fade-duration}s",
+                    opacity: "#{$fade-duration}s"
+                ),
+                $cat-mouse-easing-out
+            );
+        }
+        .cover {
+            transition: transition(
+                (
+                    opacity: "#{$fade-duration}s"
+                ),
+                $fade-easing
+            );
+        }
+    }
 }
 
 .home-section {
@@ -89,6 +123,12 @@
         }
         .video {
             width: 50%;
+            &.playing,
+            &:hover {
+                .video-title {
+                    transform: translate3d(-50%, 0, 0);
+                }
+            }
         }
     }
 

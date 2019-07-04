@@ -3,7 +3,7 @@
     background: $white;
 }
 
-.newsletter{
+.newsletter {
     p {
         margin-top: 0;
     }
@@ -18,14 +18,14 @@
     color: $primary;
 }
 
-.newsletter-fields{
+.newsletter-fields {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     label {
         pointer-events: none;
     }
-    input{
+    input {
         width: 100%;
     }
     .field {
@@ -38,111 +38,112 @@
     display: none;
     padding: 10px 0 0;
     line-height: 1.2;
-    &.visible{
+    &.visible {
         display: block;
     }
-    label{
+    label {
         font-size: 1.2rem;
     }
 }
 
-.newsletter-post{
+.newsletter-post {
     padding: $line-height 40px 40px;
     margin: 5em 0 0;
-    background: $primary;
-    color: #fff;
-    .newsletter-title{
+    background: $white;
+    label {
+        color: $text-color;
+        opacity: 0.4;
+    }
+    input {
+        background: $bg-color;
+    }
+    .newsletter-title {
         font-size: 3rem;
         font-weight: 700;
         line-height: 1.1;
-        color: #fff;
+        color: $primary;
     }
-    .mc4wp-form{
-        margin: $line-height*1.5 0 0;
+    .mc4wp-form {
+        margin: $line-height * 1.5 0 0;
     }
     .newsletter-input-hidden {
         max-width: 100%;
-        label{
+        label {
             color: #fff;
             opacity: 1;
         }
     }
-    label{
-        color: $text-color;
-        opacity: 0.4;
-    }
 }
 
-.newsletter-footer{
-    input{
+.newsletter-footer {
+    input {
         background: $bg-color;
-        &:focus{
+        &:focus {
             background: rgba($bg-color, 0.7);
         }
     }
 }
 
-.mc4wp-response{
+.mc4wp-response {
     font-size: 1.4rem;
     padding: 5px 0 0;
 }
 
-
-@media (min-width: $phone-small){
-    .newsletter-footer{
-        .newsletter-fields{
-            .field{
+@media (min-width: $phone-small) {
+    .newsletter-footer {
+        .newsletter-fields {
+            .field {
                 width: calc(50% - 3px);
             }
         }
     }
 }
 
-@media (min-width: $phone){
-    .newsletter-post{
+@media (min-width: $phone) {
+    .newsletter-post {
         padding: $line-height 60px 40px;
         margin-top: 10em;
     }
 
-    .newsletter-fields{
-        .field{
+    .newsletter-fields {
+        .field {
             width: calc(50% - 3px);
         }
     }
 }
 
-@media (min-width: $tablet){
-    .newsletter-fields{
+@media (min-width: $tablet) {
+    .newsletter-fields {
         justify-content: flex-start;
-        .field{
+        .field {
             width: auto;
             margin: 0 6px 0 0;
-            .newsletter-footer &{
+            .newsletter-footer & {
                 width: auto;
             }
         }
     }
 
-    .newsletter-post{
-        .newsletter-title{
+    .newsletter-post {
+        .newsletter-title {
             font-size: 5.5rem;
         }
     }
 }
 
-@media (min-width: $desktop-small){
-    .newsletter-fields{
-        input{
+@media (min-width: $desktop-small) {
+    .newsletter-fields {
+        input {
             width: 205px;
-            &[type=email]{
+            &[type="email"] {
                 width: 290px;
             }
         }
     }
 }
 
-@media (min-width: $desktop){
-    .newsletter-input-hidden{
+@media (min-width: $desktop) {
+    .newsletter-input-hidden {
         max-width: 55%;
     }
 }
