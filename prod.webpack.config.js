@@ -7,9 +7,10 @@ const config = (env, options) => {
     return {
         entry: './wp-content/themes/think/src/js/main.js',
         output: {
-            path: path.resolve(__dirname),
-            filename: './wp-content/themes/think/js/main.js',
-            publicPath: '/wp-content/themes/think/js',
+            path: path.resolve(__dirname, 'wp-content/themes/think'),
+            filename: './js/main.js',
+            publicPath: '/wp-content/themes/think/',
+            chunkFilename: 'js/[name].bundle.js',
         },
         devtool: '',
         module: {
@@ -27,19 +28,9 @@ const config = (env, options) => {
                             loader: 'css-loader',
                             options: {
                                 importLoaders: 1,
-                                // minimize: true,
                             },
                         },
-                        {
-                            loader: 'postcss-loader',
-                            options: {
-                                plugins: () => [
-                                    require('autoprefixer')({
-                                        browsers: ['last 2 versions'],
-                                    }),
-                                ],
-                            },
-                        },
+                        'postcss-loader',
                         {
                             loader: 'sass-loader',
                         },
@@ -66,7 +57,7 @@ const config = (env, options) => {
 
         plugins: [
             new MiniCssExtractPlugin({
-                filename: 'wp-content/themes/think/css/main.css',
+                filename: './css/main.css',
             }),
         ],
     };

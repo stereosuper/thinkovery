@@ -123,10 +123,9 @@
             }
         }
     }
-
     .newsletter-post {
         .newsletter-title {
-            font-size: 5.5rem;
+            font-size: 4.9rem;
         }
     }
 }
@@ -145,5 +144,10 @@
 @media (min-width: $desktop) {
     .newsletter-input-hidden {
         max-width: 55%;
+    }
+    .newsletter-post {
+        .newsletter-title {
+            font-size: 5.5rem;
+        }
     }
 }

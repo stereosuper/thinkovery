@@ -1,6 +1,3 @@
-import collant from 'collant';
-import imagesLoaded from 'imagesloaded';
-
 import '../scss/main.scss';
 
 import win from './utils/Window';
@@ -8,7 +5,6 @@ import io from './utils/io';
 import scroll from './utils/Scroll';
 import fallback from './utils/Fallback';
 
-import burger from './burger';
 import accordion from './accordion';
 import offersMenu from './offersMenu';
 import shareSidebar from './shareSidebar';
@@ -22,6 +18,10 @@ import minions from './minions';
 import learningAnim from './learningAnim';
 import search from './search';
 import memory from './memory';
+import burger from './burger';
+
+// Dynamic imports
+// const burger = () => import('./burger');
 
 // IE11 closest polyfill
 if (!Element.prototype.matches) {

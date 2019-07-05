@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const config = (env, options) => {
     const MODE = options.mode;
@@ -9,10 +10,11 @@ const config = (env, options) => {
         cache: false,
         entry: './wp-content/themes/think/src/js/main.js',
         output: {
-            path: path.resolve(__dirname),
-            filename: './wp-content/themes/think/js/main.js',
-            publicPath: '/wp-content/themes/think/js',
+            path: path.resolve(__dirname, 'wp-content/themes/think'),
+            filename: './js/main.js',
+            publicPath: '/wp-content/themes/think/',
             sourceMapFilename: '[file].map?[contenthash]',
+            chunkFilename: 'js/[name].bundle.js',
         },
         watch: true,
         devtool: MODE === 'development' ? 'source-map' : '',
@@ -34,16 +36,7 @@ const config = (env, options) => {
                                 sourceMap: true,
                             },
                         },
-                        {
-                            loader: 'postcss-loader',
-                            options: {
-                                plugins: () => [
-                                    require('autoprefixer')({
-                                        browsers: ['last 2 versions'],
-                                    }),
-                                ],
-                            },
-                        },
+                        'postcss-loader',
                         {
                             loader: 'sass-loader',
                             options: {
@@ -71,8 +64,9 @@ const config = (env, options) => {
             fs: 'empty', // avoids error messages
         },
         plugins: [
+            // new BundleAnalyzerPlugin(),
             new MiniCssExtractPlugin({
-                filename: './wp-content/themes/think/css/main.css',
+                filename: './css/main.css',
             }),
             new BrowserSyncPlugin({
                 host: 'localhost',

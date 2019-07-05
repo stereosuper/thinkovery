@@ -377,7 +377,7 @@ a {
         }
     }
 
-    @media (min-height: 630px) {
+    @media (min-height: $desktop-v) {
         .shape {
             display: block;
             width: 75px;
