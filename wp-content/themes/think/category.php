@@ -37,11 +37,16 @@ if ($terms) {
 
 				<?php if( $countPosts == 10) : ?>
 					<?php $news = get_field('newsletter', 'options'); if( $news['newsletterTitle'] ):  ?>
-						<div class='newsletter newsletter-post' id='newsletter-post'>
+						<div id="newsletter-post" class="newsletter newsletter-post" data-io="revealNewsletter">
 							<p class='newsletter-title'><?php echo $news['newsletterTitle']; ?></p>
 							<p><?php echo $news['newsletterSubtitle']; ?></p>
 
 							<?php echo do_shortcode('[mc4wp_form id="2057048" element_id="newsletter-post-form"]'); ?>
+							<div class="newsletter-borders">
+								<span class="border first"></span>
+								<span class="border second"></span>
+								<span class="border third"></span>
+							</div>
 						</div>
 					<?php endif; ?>
 				<?php endif; ?>

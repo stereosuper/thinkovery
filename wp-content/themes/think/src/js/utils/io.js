@@ -128,6 +128,10 @@ function Io() {
         menuOffersEntries[target.id].target = target;
         menuOffersEntries[target.id].setRatio = entry.intersectionRatio;
     };
+
+    this.revealNewsletterIn = ({ target }) => {
+        target.classList.add('activated');
+    };
 }
 
 export default new Io();

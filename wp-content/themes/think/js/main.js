@@ -14258,6 +14258,12 @@ var minionsHandler = function minionsHandler() {
       _query6 = _slicedToArray(_query5, 1),
       plane = _query6[0];
 
+  var _query7 = Object(_utils__WEBPACK_IMPORTED_MODULE_5__["query"])({
+    selector: '#morpion'
+  }),
+      _query8 = _slicedToArray(_query7, 1),
+      morpion = _query8[0];
+
   var player = null;
   var newDrop = null;
   var animsState = {
@@ -14807,12 +14813,6 @@ var minionsHandler = function minionsHandler() {
   };
 
   var experiencesAnim = function experiencesAnim() {
-    var _query7 = Object(_utils__WEBPACK_IMPORTED_MODULE_5__["query"])({
-      selector: '#morpion'
-    }),
-        _query8 = _slicedToArray(_query7, 1),
-        morpion = _query8[0];
-
     if (!morpion) return;
     var minionsMorpion = Object(_utils__WEBPACK_IMPORTED_MODULE_5__["query"])({
       selector: '.shape',
@@ -14899,7 +14899,6 @@ var minionsHandler = function minionsHandler() {
   };
 
   var initAnims = function initAnims() {
-    // animsState.animsLaunched = true;
     for (index; index <= samplesNumber; index += 1) {
       thresholdSamples[index] = index / samplesNumber;
     }
@@ -18260,6 +18259,11 @@ function Io() {
     menuOffersEntries[target.id].target = target;
     menuOffersEntries[target.id].setRatio = entry.intersectionRatio;
   };
+
+  this.revealNewsletterIn = function (_ref) {
+    var target = _ref.target;
+    target.classList.add('activated');
+  };
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (new Io());
@@ -18451,4 +18455,4 @@ var videoHandler = function videoHandler() {
 /***/ })
 
 /******/ });
-//# sourceMappingURL=main.js.map?a671b443e8f44a2bed70041b079a7d6e
+//# sourceMappingURL=main.js.map?881dd347894312561aa3969312aa3ace

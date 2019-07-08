@@ -23,6 +23,7 @@ const minionsHandler = () => {
     if (!homeSections.length || !video || !minions.length) return;
     const [planePath] = query({ selector: '#plane-path path' });
     const [plane] = query({ selector: '#plane' });
+    const [morpion] = query({ selector: '#morpion' });
     let player = null;
     let newDrop = null;
 
@@ -601,8 +602,6 @@ const minionsHandler = () => {
     };
 
     const experiencesAnim = () => {
-        const [morpion] = query({ selector: '#morpion' });
-
         if (!morpion) return;
 
         const minionsMorpion = query({ selector: '.shape', ctx: morpion });
@@ -711,8 +710,6 @@ const minionsHandler = () => {
     };
 
     const initAnims = () => {
-        // animsState.animsLaunched = true;
-
         for (index; index <= samplesNumber; index += 1) {
             thresholdSamples[index] = index / samplesNumber;
         }
