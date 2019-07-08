@@ -11,7 +11,7 @@ const offersMenuHandler = () => {
     const offersMenu = document.getElementById('offers-menu');
 
     if (!offersMenu) return;
-    const [offers] = query('#offers');
+    const [offers] = query({ selector: '#offers' });
     let menuHeight = offersMenu.getBoundingClientRect().height;
     const anchors = [...offersMenu.getElementsByTagName('a')];
 

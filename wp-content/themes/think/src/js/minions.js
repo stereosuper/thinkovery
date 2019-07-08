@@ -11,38 +11,54 @@ import {
 } from 'gsap';
 import { MorphSVGPlugin } from './plugins/MorphSVGPlugin';
 import './plugins/DrawSVGPlugin';
-import { forEach } from './utils';
 import win from './utils/Window';
 import { easing } from './global';
+import { forEach, query, isDisplayed } from './utils';
 
 const minionsHandler = () => {
-    const homeSections = [].slice.call(
-        document.getElementsByClassName('js-home-section')
-    );
-    const video = document.getElementById('home-video');
-    const shapes = document.getElementById('shapes');
+    const homeSections = query({ selector: '.js-home-section' });
+    const [video] = query({ selector: '#home-video' });
+    let minions = query({ selector: '.shape' });
 
-    if (!homeSections.length || !video || !shapes) return;
+    if (!homeSections.length || !video || !minions.length) return;
+    const [planePath] = query({ selector: '#plane-path path' });
+    const [plane] = query({ selector: '#plane' });
+    let player = null;
+    let newDrop = null;
+
+    const animsState = {
+        'home-intro': { launched: false, done: false },
+        'home-learning-experience': { launched: false, done: false },
+        'home-offers': { launched: false, done: false },
+        'home-about-us': { launched: false, done: false },
+        'home-experiences': { launched: false, done: false },
+        get animsLaunched() {
+            return Object.keys(this)
+                .filter(section => section !== 'animsLaunched')
+                .reduce(
+                    (accumulator, val) => accumulator || this[val].launched,
+                    false
+                );
+        },
+    };
 
     // Intervals
-    let scrollDowninterval = null;
+    let promptScrollDownInterval = null;
 
-    const minions = shapes.querySelectorAll('.shape');
-    const wh = window.innerHeight;
-    const ww = window.innerWidth;
-    const animsState = [];
-    const initialShapeTop = minions[0].getBoundingClientRect().top;
-    const headerBottom =
-        document
-            .getElementById('home-learning-experience')
-            .getBoundingClientRect().top -
-        initialShapeTop -
-        70;
-    const videoBottom = wh / 2;
-    let planePath = document.getElementById('plane-path');
-    planePath = planePath ? planePath.querySelector('path') : undefined;
-    let resizeTimer;
-    let animsLaunched = false;
+    let wh = window.innerHeight;
+    let ww = window.innerWidth;
+
+    let initialShapeTop = minions[0].getBoundingClientRect().top;
+
+    let introBottom =
+        homeSections[1].getBoundingClientRect().top - initialShapeTop - 70;
+
+    let videoBottom = wh / 2;
+
+    let playerCenterY =
+        video.getBoundingClientRect().top -
+        initialShapeTop +
+        video.offsetHeight / 2;
 
     // Constants used to create the intersection observer threshold array
     const samplesNumber = 10;
@@ -53,11 +69,15 @@ const minionsHandler = () => {
     let learningFirstPartDone = false;
 
     const headerAnim = () => {
-        const player = minions[2].cloneNode(true);
+        if (player) {
+            player.remove();
+        }
+        player = minions[2].cloneNode(true);
+        minions[2].parentElement.appendChild(player);
 
         const tlPlayer = new TimelineMax();
 
-        const scrollDownAnimation = (duration = 0.7) => {
+        const promptScrollDownAnimation = (duration = 0.7) => {
             TweenMax.to(player, duration, {
                 x: -10,
                 y: videoBottom - 70,
@@ -72,11 +92,12 @@ const minionsHandler = () => {
             });
         };
 
-        const scrollDownLoop = () => {
-            scrollDowninterval = setInterval(scrollDownAnimation, 2000);
+        const promptScrollDownLoop = () => {
+            promptScrollDownInterval = setInterval(
+                promptScrollDownAnimation,
+                2000
+            );
         };
-
-        document.getElementById('shapes').appendChild(player);
 
         animsState['home-intro'].launched = true;
 
@@ -87,10 +108,13 @@ const minionsHandler = () => {
                 onComplete: () => {
                     if (video) {
                         video.classList.add('player-on', 'on');
-                        TweenMax.set(video.querySelector('.iframe'), {
-                            opacity: 1,
-                            delay: 0.7,
-                        });
+                        TweenMax.set(
+                            query({ selector: '.iframe', ctx: video }),
+                            {
+                                opacity: 1,
+                                delay: 0.7,
+                            }
+                        );
                     }
                 },
                 ease: Power4.easeIn,
@@ -108,17 +132,13 @@ const minionsHandler = () => {
                     video.addEventListener(
                         'mouseover',
                         () => {
-                            if (scrollDowninterval) {
-                                clearInterval(scrollDowninterval);
+                            if (promptScrollDownInterval) {
+                                clearInterval(promptScrollDownInterval);
                             }
 
                             TweenMax.to(player, 0.2, {
                                 x: 0,
-                                y:
-                                    video.getBoundingClientRect().top -
-                                    initialShapeTop +
-                                    video.offsetHeight / 2 +
-                                    window.scrollY,
+                                y: playerCenterY,
                                 rotation: 0,
                             });
                         },
@@ -128,13 +148,13 @@ const minionsHandler = () => {
                     video.addEventListener(
                         'mouseleave',
                         () => {
-                            scrollDownAnimation(0.3);
-                            scrollDownLoop();
+                            promptScrollDownAnimation(0.3);
+                            promptScrollDownLoop();
                         },
                         false
                     );
 
-                    scrollDownLoop();
+                    promptScrollDownLoop();
                 },
             });
 
@@ -153,7 +173,7 @@ const minionsHandler = () => {
                 values: [
                     { x: -100, y: -30 },
                     { x: -200, y: 0 },
-                    { x: -240, y: headerBottom + 100 },
+                    { x: -240, y: introBottom + 100 },
                 ],
             },
             delay: 0.15,
@@ -166,7 +186,7 @@ const minionsHandler = () => {
                 values: [
                     { x: -50, y: -70 },
                     { x: -100, y: -50 },
-                    { x: -130, y: headerBottom + 100 },
+                    { x: -130, y: introBottom + 100 },
                 ],
             },
             delay: 0.15,
@@ -177,7 +197,7 @@ const minionsHandler = () => {
             opacity: 1,
             scale: 3,
             x: 0,
-            y: headerBottom + 100,
+            y: introBottom + 100,
         });
 
         TweenMax.to(minions[3], 1.8, {
@@ -186,7 +206,7 @@ const minionsHandler = () => {
                 values: [
                     { x: 50, y: -60 },
                     { x: 100, y: -40 },
-                    { x: 130, y: headerBottom + 100 },
+                    { x: 130, y: introBottom + 100 },
                 ],
             },
             delay: 0.15,
@@ -199,7 +219,7 @@ const minionsHandler = () => {
                 values: [
                     { x: 100, y: -10 },
                     { x: 190, y: 10 },
-                    { x: 240, y: headerBottom + 100 },
+                    { x: 240, y: introBottom + 100 },
                 ],
             },
             delay: 0.15,
@@ -211,13 +231,13 @@ const minionsHandler = () => {
         if (!animsState['home-learning-experience'].launched) {
             animsState['home-learning-experience'].launched = true;
 
-            if (scrollDowninterval) {
-                clearInterval(scrollDowninterval);
+            if (promptScrollDownInterval) {
+                clearInterval(promptScrollDownInterval);
             }
 
             TweenMax.to(minions[2], 0.7, {
                 x: 0,
-                y: headerBottom + 100,
+                y: introBottom + 100,
                 rotation: 0,
                 ease: Back.easeInOut.config(2),
                 onComplete: () => {
@@ -227,18 +247,17 @@ const minionsHandler = () => {
         } else if (ratio > 0.71 && learningFirstPartDone) {
             animsState['home-learning-experience'].bis = true;
 
-            const windowBottom = homeSections[1].offsetHeight + ww / 50;
+            const secondSectionBottom = homeSections[1].offsetHeight + ww / 50;
             const planePathBezier = planePath
                 ? MorphSVGPlugin.pathDataToBezier(planePath)
                 : '';
-            const plane = document.getElementById('plane');
 
             const planeBottom =
                 planePath.getBoundingClientRect().bottom -
                 minions[0].getBoundingClientRect().bottom;
 
-            if (scrollDowninterval) {
-                clearInterval(scrollDowninterval);
+            if (promptScrollDownInterval) {
+                clearInterval(promptScrollDownInterval);
             }
 
             TweenMax.to(planePath, 1.5, { drawSVG: '100%' });
@@ -256,7 +275,7 @@ const minionsHandler = () => {
                             values: [
                                 {
                                     x: '+=60',
-                                    y: `+=${windowBottom / 2}`,
+                                    y: `+=${secondSectionBottom / 2}`,
                                 },
                                 {
                                     x: '+=200',
@@ -271,8 +290,11 @@ const minionsHandler = () => {
                         bezier: {
                             curviness: 1,
                             values: [
-                                { y: `+=${windowBottom / 2}` },
-                                { x: '+=10', y: `+=${windowBottom - 60}` },
+                                { y: `+=${secondSectionBottom / 2}` },
+                                {
+                                    x: '+=10',
+                                    y: `+=${secondSectionBottom - 60}`,
+                                },
                             ],
                         },
                         ease: Power4.easeInOut,
@@ -283,8 +305,8 @@ const minionsHandler = () => {
                         bezier: {
                             curviness: 1,
                             values: [
-                                { y: `+=${windowBottom / 2}` },
-                                { y: `+=${windowBottom - 40}` },
+                                { y: `+=${secondSectionBottom / 2}` },
+                                { y: `+=${secondSectionBottom - 40}` },
                             ],
                         },
                         ease: Back.easeInOut.config(1.1),
@@ -292,7 +314,7 @@ const minionsHandler = () => {
 
                     TweenMax.set(minions[3], {
                         x: 153,
-                        y: headerBottom + 123,
+                        y: introBottom + 123,
                         transformOrigin: '100% 100%',
                     });
 
@@ -302,17 +324,17 @@ const minionsHandler = () => {
                             values: [
                                 {
                                     x: '+=80',
-                                    y: `+=${windowBottom / 2}`,
+                                    y: `+=${secondSectionBottom / 2}`,
                                     rotation: 0,
                                 },
                                 {
                                     x: '+=20',
-                                    y: `+=${windowBottom - 20}`,
+                                    y: `+=${secondSectionBottom - 20}`,
                                     rotation: 30,
                                 },
                                 {
                                     x: '-=20',
-                                    y: `+=${windowBottom - 18}`,
+                                    y: `+=${secondSectionBottom - 18}`,
                                     rotation: 0,
                                 },
                             ],
@@ -326,12 +348,12 @@ const minionsHandler = () => {
                             values: [
                                 {
                                     x: '+=80',
-                                    y: `+=${windowBottom / 2}`,
+                                    y: `+=${secondSectionBottom / 2}`,
                                     rotation: -180,
                                 },
                                 {
                                     x: '-=20',
-                                    y: `+=${windowBottom}`,
+                                    y: `+=${secondSectionBottom}`,
                                     rotation: -720,
                                 },
                             ],
@@ -347,15 +369,18 @@ const minionsHandler = () => {
     };
 
     const offersAnim = () => {
+        if (newDrop) {
+            newDrop.remove();
+        }
+        newDrop = minions[0].cloneNode(true);
+        minions[0].parentElement.appendChild(newDrop);
+
         const duration = 0.5;
         const delay = 0.05;
 
         const dropBottom =
             minions[4].getBoundingClientRect().bottom -
             minions[0].getBoundingClientRect().bottom;
-
-        const newDrop = minions[0].cloneNode(true);
-        document.getElementById('shapes').appendChild(newDrop);
 
         animsState['home-offers'].launched = true;
 
@@ -388,8 +413,11 @@ const minionsHandler = () => {
     };
 
     const aboutAnim = () => {
-        const minionsThirdSection = homeSections[3].querySelectorAll('.shape');
-        const windowBottom = homeSections[3].offsetHeight - 300;
+        const minionsFourthSection = query({
+            selector: '.shape',
+            ctx: homeSections[3],
+        });
+        const fourthSectionBottom = homeSections[3].offsetHeight - 300;
         const duration = 0.8;
         const durationSmall = 0.25;
         const delay = 0.25;
@@ -398,13 +426,13 @@ const minionsHandler = () => {
         animsState['home-about-us'].launched = true;
 
         // arrow  1
-        TweenMax.to(minionsThirdSection[9], durationSmall, {
+        TweenMax.to(minionsFourthSection[9], durationSmall, {
             scale: 1,
             opacity: 1,
             ease: easing.easePop,
             onComplete: () => {
-                TweenMax.to(minionsThirdSection[9], duration, {
-                    y: windowBottom,
+                TweenMax.to(minionsFourthSection[9], duration, {
+                    y: fourthSectionBottom,
                     rotation: -470,
                     ease: Sine.easeIn,
                     delay: delayFall,
@@ -413,13 +441,13 @@ const minionsHandler = () => {
         });
 
         // triangle 1
-        TweenMax.to(minionsThirdSection[3], durationSmall, {
+        TweenMax.to(minionsFourthSection[3], durationSmall, {
             scale: 1,
             opacity: 1,
             ease: easing.easePop,
             onComplete: () => {
-                TweenMax.to(minionsThirdSection[3], duration, {
-                    y: windowBottom,
+                TweenMax.to(minionsFourthSection[3], duration, {
+                    y: fourthSectionBottom,
                     rotation: -90,
                     ease: Sine.easeIn,
                     delay: delayFall,
@@ -429,13 +457,13 @@ const minionsHandler = () => {
         });
 
         // drop
-        TweenMax.to(minionsThirdSection[0], durationSmall, {
+        TweenMax.to(minionsFourthSection[0], durationSmall, {
             scale: 1,
             opacity: 1,
             ease: easing.easePop,
             onComplete: () => {
-                TweenMax.to(minionsThirdSection[0], duration, {
-                    y: windowBottom,
+                TweenMax.to(minionsFourthSection[0], duration, {
+                    y: fourthSectionBottom,
                     ease: Power1.easeIn,
                     delay: delayFall,
                 });
@@ -444,13 +472,13 @@ const minionsHandler = () => {
         });
 
         // square 1
-        TweenMax.to(minionsThirdSection[1], durationSmall, {
+        TweenMax.to(minionsFourthSection[1], durationSmall, {
             scale: 1,
             opacity: 1,
             ease: easing.easePop,
             onComplete: () => {
-                TweenMax.to(minionsThirdSection[1], duration, {
-                    y: windowBottom + 5,
+                TweenMax.to(minionsFourthSection[1], duration, {
+                    y: fourthSectionBottom + 5,
                     rotation: 45,
                     ease: Sine.easeIn,
                     delay: delayFall,
@@ -460,14 +488,14 @@ const minionsHandler = () => {
         });
 
         // rectangle 1
-        TweenMax.to(minionsThirdSection[7], durationSmall, {
+        TweenMax.to(minionsFourthSection[7], durationSmall, {
             scale: 1,
             opacity: 1,
             scaleX: -1,
             ease: easing.easePop,
             onComplete: () => {
-                TweenMax.to(minionsThirdSection[7], duration, {
-                    y: windowBottom,
+                TweenMax.to(minionsFourthSection[7], duration, {
+                    y: fourthSectionBottom,
                     ease: Sine.easeIn,
                     delay: delayFall,
                 });
@@ -476,13 +504,13 @@ const minionsHandler = () => {
         });
 
         // triangle 2
-        TweenMax.to(minionsThirdSection[5], durationSmall, {
+        TweenMax.to(minionsFourthSection[5], durationSmall, {
             scale: 1,
             opacity: 1,
             ease: easing.easePop,
             onComplete: () => {
-                TweenMax.to(minionsThirdSection[5], duration, {
-                    y: windowBottom,
+                TweenMax.to(minionsFourthSection[5], duration, {
+                    y: fourthSectionBottom,
                     rotation: -90,
                     ease: Sine.easeIn,
                     delay: delayFall,
@@ -492,13 +520,13 @@ const minionsHandler = () => {
         });
 
         // square 2
-        TweenMax.to(minionsThirdSection[2], durationSmall, {
+        TweenMax.to(minionsFourthSection[2], durationSmall, {
             scale: 1,
             opacity: 1,
             ease: easing.easePop,
             onComplete: () => {
-                TweenMax.to(minionsThirdSection[2], duration, {
-                    y: windowBottom - 31,
+                TweenMax.to(minionsFourthSection[2], duration, {
+                    y: fourthSectionBottom - 31,
                     rotation: -7,
                     ease: Sine.easeIn,
                     delay: delayFall,
@@ -508,14 +536,14 @@ const minionsHandler = () => {
         });
 
         // rectangle 2
-        TweenMax.to(minionsThirdSection[8], durationSmall, {
+        TweenMax.to(minionsFourthSection[8], durationSmall, {
             scale: 1,
             opacity: 1,
             scaleX: -1,
             ease: easing.easePop,
             onComplete: () => {
-                TweenMax.to(minionsThirdSection[8], duration, {
-                    y: windowBottom - 75,
+                TweenMax.to(minionsFourthSection[8], duration, {
+                    y: fourthSectionBottom - 75,
                     ease: Sine.easeIn,
                     delay: delayFall,
                 });
@@ -524,13 +552,13 @@ const minionsHandler = () => {
         });
 
         // arrow  2
-        TweenMax.to(minionsThirdSection[10], durationSmall, {
+        TweenMax.to(minionsFourthSection[10], durationSmall, {
             scale: 1,
             opacity: 1,
             ease: easing.easePop,
             onComplete: () => {
-                TweenMax.to(minionsThirdSection[10], duration, {
-                    y: windowBottom - 65,
+                TweenMax.to(minionsFourthSection[10], duration, {
+                    y: fourthSectionBottom - 65,
                     rotation: -860,
                     ease: Sine.easeIn,
                     delay: delayFall,
@@ -540,13 +568,13 @@ const minionsHandler = () => {
         });
 
         // triangle 3
-        TweenMax.to(minionsThirdSection[4], durationSmall, {
+        TweenMax.to(minionsFourthSection[4], durationSmall, {
             scale: 1,
             opacity: 1,
             ease: easing.easePop,
             onComplete: () => {
-                TweenMax.to(minionsThirdSection[4], duration, {
-                    y: windowBottom - 55,
+                TweenMax.to(minionsFourthSection[4], duration, {
+                    y: fourthSectionBottom - 55,
                     rotation: -135,
                     ease: Sine.easeIn,
                     delay: delayFall,
@@ -556,14 +584,14 @@ const minionsHandler = () => {
         });
 
         // rectangle 3
-        TweenMax.to(minionsThirdSection[6], durationSmall, {
+        TweenMax.to(minionsFourthSection[6], durationSmall, {
             scale: 1,
             opacity: 1,
             scaleX: -1,
             ease: easing.easePop,
             onComplete: () => {
-                TweenMax.to(minionsThirdSection[6], duration, {
-                    y: windowBottom - 59,
+                TweenMax.to(minionsFourthSection[6], duration, {
+                    y: fourthSectionBottom - 59,
                     ease: Sine.easeIn,
                     delay: delayFall,
                 });
@@ -573,11 +601,11 @@ const minionsHandler = () => {
     };
 
     const experiencesAnim = () => {
-        const morpion = document.getElementById('morpion');
+        const [morpion] = query({ selector: '#morpion' });
 
         if (!morpion) return;
 
-        const minionsMorpion = morpion.querySelectorAll('.shape');
+        const minionsMorpion = query({ selector: '.shape', ctx: morpion });
         const duration = 0.15;
         const delay = 0.5;
         const tl = new TimelineMax({ delay: 0.8 });
@@ -683,9 +711,9 @@ const minionsHandler = () => {
     };
 
     const initAnims = () => {
-        animsLaunched = true;
+        // animsState.animsLaunched = true;
 
-        for (index; index <= samplesNumber; index++) {
+        for (index; index <= samplesNumber; index += 1) {
             thresholdSamples[index] = index / samplesNumber;
         }
 
@@ -707,46 +735,57 @@ const minionsHandler = () => {
         TweenMax.set(planePath, { drawSVG: 0 });
     };
 
-    // const restartAnims = () => {
-    //     TweenMax.set(minions, {
-    //         opacity: 0,
-    //         scale: 0,
-    //         x: 0,
-    //         y: 0,
-    //         rotation: 0,
-    //     });
-    //     TweenMax.set(planePath, { drawSVG: 0 });
+    const resetAnims = () => {
+        minions = query({ selector: '.shape' });
 
-    //     forEach(homeSections, section => {
-    //         animsState[section.id] = { launched: false, done: false };
-    //     });
-    // };
+        TweenMax.set(minions, {
+            opacity: 0,
+            scale: 0,
+            x: 0,
+            y: 0,
+            rotation: 0,
+        });
+        TweenMax.set(planePath, { drawSVG: 0 });
+        TweenMax.set(plane, {
+            x: 0,
+            y: 0,
+            rotation: 0,
+        });
+
+        forEach(homeSections, section => {
+            animsState[section.id] = { launched: false, done: false };
+        });
+    };
 
     // launch anims if minions are visible (window width > 960)
-    if (getComputedStyle(minions[0]).display !== 'none') initAnims();
 
-    // win.addResizeFunction(() => {
-    //     wh = window.innerHeight;
-    //     ww = window.innerWidth;
-    //     headerBottom = wh - (video.getBoundingClientRect().top + video.offsetHeight / 2) - window.scrollY;
+    if (isDisplayed(minions[0])) initAnims();
 
-    //     if( scrollDowninterval ){
-    //         clearInterval(scrollDowninterval);
-    //     }
+    // Resize part
+    win.addResizeEndFunction(() => {
+        if (!isDisplayed(minions[0])) return;
+        // If anims were launched restart them
+        if (animsState.animsLaunched) resetAnims();
 
-    //     clearTimeout( resizeTimer );
-    //     resizeTimer = setTimeout(() => {
-    //         if( getComputedStyle(minions[0]).display === 'none' ) return;
+        wh = window.innerHeight;
+        ww = window.innerWidth;
+        videoBottom = wh / 2;
+        initialShapeTop = minions[0].getBoundingClientRect().top;
+        introBottom =
+            homeSections[1].getBoundingClientRect().top - initialShapeTop - 70;
 
-    //         if( !animsLaunched ){
-    //             // if you're not in mobile or tablet but you started with a small screen and now have a bigger one let's launch anims
-    //             initAnims();
-    //         }else{
-    //             // if anims were launched let's do it again so elements will be placed ok
-    //             restartAnims();
-    //         }
-    //     }, 500);
-    // });
+        playerCenterY =
+            video.getBoundingClientRect().top -
+            initialShapeTop +
+            video.offsetHeight / 2;
+
+        if (promptScrollDownInterval) {
+            clearInterval(promptScrollDownInterval);
+        }
+
+        // If you're not in mobile or tablet but you started with a small screen and now have a bigger one let's launch anims
+        if (!animsState.animsLaunched) initAnims();
+    });
 };
 
 export default minionsHandler;

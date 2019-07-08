@@ -1,23 +1,19 @@
 import { requestAnimFrame, forEach } from '.';
 
-if (!Object.entries){ // IE 11
-    Object.entries = function( obj ){
-        var ownProps = Object.keys( obj ), i = ownProps.length, resArray = new Array(i);
-        
+if (!Object.entries) {
+    // IE 11
+    Object.entries = function entries(obj) {
+        const ownProps = Object.keys(obj);
+        let i = ownProps.length;
+        const resArray = new Array(i);
+
         while (i--) resArray[i] = [ownProps[i], obj[ownProps[i]]];
         return resArray;
     };
 }
-  
 
 function Window() {
-    this.w = null;
-    this.h = null;
-    this.resizeFunctions = [];
-    this.rtime = null;
-    this.timeoutWindow = false;
-    this.delta = 200;
-    this.noTransitionElts = [];
+    this.currentBreakpoint = '';
     this.breakpoints = {
         xs: 0,
         s: 400,
@@ -26,7 +22,14 @@ function Window() {
         xl: 960,
         xxl: 1100,
     };
-    this.currentBreakpoint = '';
+    this.w = null;
+    this.h = null;
+    this.rtime = null;
+    this.timeoutWindow = false;
+    this.delta = 500;
+    this.resizeFunctions = [];
+    this.resizeEndFunctions = [];
+    this.noTransitionElts = [];
 }
 
 Window.prototype.setNoTransitionElts = function setNoTransitionElts(elements) {
@@ -44,6 +47,9 @@ Window.prototype.resizeend = function resizeend() {
             el.classList.remove('no-transition');
             return el;
         });
+        forEach(this.resizeEndFunctions, f => {
+            f();
+        });
     }
 };
 
@@ -57,6 +63,7 @@ Window.prototype.noTransition = function noTransition() {
 
     if (this.timeoutWindow === false) {
         this.timeoutWindow = true;
+
         setTimeout(() => {
             this.resizeend();
         }, this.delta);
@@ -102,6 +109,10 @@ Window.prototype.resizeHandler = function resizeHandler() {
 
 Window.prototype.addResizeFunction = function addResizeFunction(f) {
     this.resizeFunctions.push(f);
+};
+
+Window.prototype.addResizeEndFunction = function addResizeFunction(f) {
+    this.resizeEndFunctions.push(f);
 };
 
 Window.prototype.toggleNoScroll = function toggleNoScroll({

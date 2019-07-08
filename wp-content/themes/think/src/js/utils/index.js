@@ -84,7 +84,7 @@ export const throttle = (callback, delay) => {
     };
 };
 
-export const query = (selector, ctx) => {
+export const query = ({ selector, ctx }) => {
     const classes = selector.substr(1).replace(/\./g, ' ');
 
     const context = ctx || document;
@@ -108,6 +108,12 @@ export const query = (selector, ctx) => {
     return [...context.querySelectorAll(selector)];
 };
 
+/**
+ * @description get display state of one element
+ */
+export const isDisplayed = element =>
+    getComputedStyle(element).display !== 'none';
+
 export default {
     roundNumbers,
     forEach,
@@ -116,4 +122,5 @@ export default {
     requestAnimFrame,
     throttle,
     query,
+    isDisplayed,
 };

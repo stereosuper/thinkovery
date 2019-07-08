@@ -12933,18 +12933,10 @@ var ioBorders = function ioBorders() {
     byIndex: ['top', 'right', 'bottom', 'left']
   };
   /**
-   * @description updates display state depending on borders style
-   */
-
-  var handleDisplay = function handleDisplay() {
-    return getComputedStyle(bordersWrapper).display !== 'none';
-  };
-  /**
    * @description select borders children type
    * @param {object} { type }
    * @returns {array}
    */
-
 
   var selectBordersElements = function selectBordersElements(_ref) {
     var type = _ref.type;
@@ -13313,7 +13305,7 @@ var ioBorders = function ioBorders() {
         var delta = Math.abs(newEndIndex < lastEndIndex ? newEndIndex + 4 - lastEndIndex : newEndIndex - lastEndIndex) + 1;
         var index = 0;
 
-        for (index; index < delta; index++) {
+        for (index; index < delta; index += 1) {
           var borderIndex = (lastEndIndex + index) % 4;
           returnBorders.borders[index] = {
             position: borderMapping.byIndex[borderIndex],
@@ -13328,7 +13320,7 @@ var ioBorders = function ioBorders() {
 
         delta = Math.abs(newStartIndex < lastStartIndex ? newStartIndex + 4 - lastStartIndex : newStartIndex - lastStartIndex) + 1;
 
-        for (index = 0; index < delta; index++) {
+        for (index = 0; index < delta; index += 1) {
           var _borderIndex = (lastStartIndex + index) % 4;
 
           var position = borderMapping.byIndex[_borderIndex];
@@ -13508,13 +13500,13 @@ var ioBorders = function ioBorders() {
     }; // animateBordersHome main calls
 
 
-    state.display = handleDisplay();
+    state.display = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["isDisplayed"])(bordersWrapper);
     window.addEventListener('wheel', handleWheel, false);
     bordersWrapper.addEventListener('updateBorders', addToQueue, false);
     bordersWrapper.addEventListener('updateQueue', updateBorder, false);
     addToQueue();
     _utils_Window__WEBPACK_IMPORTED_MODULE_3__["default"].addResizeFunction(function () {
-      state.display = handleDisplay();
+      state.display = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["isDisplayed"])(bordersWrapper);
 
       if (state.resizeTimeout) {
         clearTimeout(state.resizeTimeout);
@@ -13675,10 +13667,10 @@ var ioBorders = function ioBorders() {
     }; // animateProgressBorders main calls
 
 
-    state.display = handleDisplay();
+    state.display = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["isDisplayed"])(bordersWrapper);
     drawProgress();
     _utils_Window__WEBPACK_IMPORTED_MODULE_3__["default"].addResizeFunction(function () {
-      state.display = handleDisplay();
+      state.display = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["isDisplayed"])(bordersWrapper);
       drawProgress();
     });
   }; // Main calls
@@ -14093,13 +14085,13 @@ var makeBorders = function makeBorders() {
   var wrappersClasses = ['mouse', 'cat'];
   var bordersClasses = ['first', 'second', 'third', 'fourth']; // Borders wrappers' loop
 
-  for (indexWrappers; indexWrappers < wrappersNumber; indexWrappers++) {
+  for (indexWrappers; indexWrappers < wrappersNumber; indexWrappers += 1) {
     wrapper = document.createElement('div');
     wrapper.classList.add(wrappersClasses[indexWrappers]); // Borders' loop
 
     indexBorders = 0;
 
-    for (indexBorders; indexBorders < bordersNumber; indexBorders++) {
+    for (indexBorders; indexBorders < bordersNumber; indexBorders += 1) {
       border = document.createElement('span');
       border.classList.add('border', bordersClasses[indexBorders]);
       wrapper.appendChild(border);
@@ -14220,9 +14212,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
 /* harmony import */ var _plugins_MorphSVGPlugin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./plugins/MorphSVGPlugin */ "./wp-content/themes/think/src/js/plugins/MorphSVGPlugin.js");
 /* harmony import */ var _plugins_DrawSVGPlugin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./plugins/DrawSVGPlugin */ "./wp-content/themes/think/src/js/plugins/DrawSVGPlugin.js");
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils */ "./wp-content/themes/think/src/js/utils/index.js");
-/* harmony import */ var _utils_Window__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./utils/Window */ "./wp-content/themes/think/src/js/utils/Window.js");
-/* harmony import */ var _global__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./global */ "./wp-content/themes/think/src/js/global/index.js");
+/* harmony import */ var _utils_Window__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils/Window */ "./wp-content/themes/think/src/js/utils/Window.js");
+/* harmony import */ var _global__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./global */ "./wp-content/themes/think/src/js/global/index.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./utils */ "./wp-content/themes/think/src/js/utils/index.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -14231,23 +14231,76 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var minionsHandler = function minionsHandler() {
-  var homeSections = [].slice.call(document.getElementsByClassName('js-home-section'));
-  var video = document.getElementById('home-video');
-  var shapes = document.getElementById('shapes');
-  if (!homeSections.length || !video || !shapes) return; // Intervals
+  var homeSections = Object(_utils__WEBPACK_IMPORTED_MODULE_5__["query"])({
+    selector: '.js-home-section'
+  });
 
-  var scrollDowninterval = null;
-  var minions = shapes.querySelectorAll('.shape');
+  var _query = Object(_utils__WEBPACK_IMPORTED_MODULE_5__["query"])({
+    selector: '#home-video'
+  }),
+      _query2 = _slicedToArray(_query, 1),
+      video = _query2[0];
+
+  var minions = Object(_utils__WEBPACK_IMPORTED_MODULE_5__["query"])({
+    selector: '.shape'
+  });
+  if (!homeSections.length || !video || !minions.length) return;
+
+  var _query3 = Object(_utils__WEBPACK_IMPORTED_MODULE_5__["query"])({
+    selector: '#plane-path path'
+  }),
+      _query4 = _slicedToArray(_query3, 1),
+      planePath = _query4[0];
+
+  var _query5 = Object(_utils__WEBPACK_IMPORTED_MODULE_5__["query"])({
+    selector: '#plane'
+  }),
+      _query6 = _slicedToArray(_query5, 1),
+      plane = _query6[0];
+
+  var player = null;
+  var newDrop = null;
+  var animsState = {
+    'home-intro': {
+      launched: false,
+      done: false
+    },
+    'home-learning-experience': {
+      launched: false,
+      done: false
+    },
+    'home-offers': {
+      launched: false,
+      done: false
+    },
+    'home-about-us': {
+      launched: false,
+      done: false
+    },
+    'home-experiences': {
+      launched: false,
+      done: false
+    },
+
+    get animsLaunched() {
+      var _this = this;
+
+      return Object.keys(this).filter(function (section) {
+        return section !== 'animsLaunched';
+      }).reduce(function (accumulator, val) {
+        return accumulator || _this[val].launched;
+      }, false);
+    }
+
+  }; // Intervals
+
+  var promptScrollDownInterval = null;
   var wh = window.innerHeight;
   var ww = window.innerWidth;
-  var animsState = [];
   var initialShapeTop = minions[0].getBoundingClientRect().top;
-  var headerBottom = document.getElementById('home-learning-experience').getBoundingClientRect().top - initialShapeTop - 70;
+  var introBottom = homeSections[1].getBoundingClientRect().top - initialShapeTop - 70;
   var videoBottom = wh / 2;
-  var planePath = document.getElementById('plane-path');
-  planePath = planePath ? planePath.querySelector('path') : undefined;
-  var resizeTimer;
-  var animsLaunched = false; // Constants used to create the intersection observer threshold array
+  var playerCenterY = video.getBoundingClientRect().top - initialShapeTop + video.offsetHeight / 2; // Constants used to create the intersection observer threshold array
 
   var samplesNumber = 10;
   var thresholdSamples = [];
@@ -14256,10 +14309,15 @@ var minionsHandler = function minionsHandler() {
   var learningFirstPartDone = false;
 
   var headerAnim = function headerAnim() {
-    var player = minions[2].cloneNode(true);
+    if (player) {
+      player.remove();
+    }
+
+    player = minions[2].cloneNode(true);
+    minions[2].parentElement.appendChild(player);
     var tlPlayer = new gsap__WEBPACK_IMPORTED_MODULE_0__["TimelineMax"]();
 
-    var scrollDownAnimation = function scrollDownAnimation() {
+    var promptScrollDownAnimation = function promptScrollDownAnimation() {
       var duration = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0.7;
       gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(player, duration, {
         x: -10,
@@ -14275,11 +14333,10 @@ var minionsHandler = function minionsHandler() {
       });
     };
 
-    var scrollDownLoop = function scrollDownLoop() {
-      scrollDowninterval = setInterval(scrollDownAnimation, 2000);
+    var promptScrollDownLoop = function promptScrollDownLoop() {
+      promptScrollDownInterval = setInterval(promptScrollDownAnimation, 2000);
     };
 
-    document.getElementById('shapes').appendChild(player);
     animsState['home-intro'].launched = true;
     tlPlayer.to(player, 0.3, {
       scale: 4,
@@ -14287,7 +14344,10 @@ var minionsHandler = function minionsHandler() {
       onComplete: function onComplete() {
         if (video) {
           video.classList.add('player-on', 'on');
-          gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set(video.querySelector('.iframe'), {
+          gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set(Object(_utils__WEBPACK_IMPORTED_MODULE_5__["query"])({
+            selector: '.iframe',
+            ctx: video
+          }), {
             opacity: 1,
             delay: 0.7
           });
@@ -14306,21 +14366,21 @@ var minionsHandler = function minionsHandler() {
       onStart: function onStart() {
         animsState['home-intro'].done = true;
         video.addEventListener('mouseover', function () {
-          if (scrollDowninterval) {
-            clearInterval(scrollDowninterval);
+          if (promptScrollDownInterval) {
+            clearInterval(promptScrollDownInterval);
           }
 
           gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(player, 0.2, {
             x: 0,
-            y: video.getBoundingClientRect().top - initialShapeTop + video.offsetHeight / 2 + window.scrollY,
+            y: playerCenterY,
             rotation: 0
           });
         }, false);
         video.addEventListener('mouseleave', function () {
-          scrollDownAnimation(0.3);
-          scrollDownLoop();
+          promptScrollDownAnimation(0.3);
+          promptScrollDownLoop();
         }, false);
-        scrollDownLoop();
+        promptScrollDownLoop();
       }
     });
     gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set([minions[0], minions[1], minions[3], minions[4]], {
@@ -14341,7 +14401,7 @@ var minionsHandler = function minionsHandler() {
           y: 0
         }, {
           x: -240,
-          y: headerBottom + 100
+          y: introBottom + 100
         }]
       },
       delay: 0.15,
@@ -14358,7 +14418,7 @@ var minionsHandler = function minionsHandler() {
           y: -50
         }, {
           x: -130,
-          y: headerBottom + 100
+          y: introBottom + 100
         }]
       },
       delay: 0.15,
@@ -14368,7 +14428,7 @@ var minionsHandler = function minionsHandler() {
       opacity: 1,
       scale: 3,
       x: 0,
-      y: headerBottom + 100
+      y: introBottom + 100
     });
     gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[3], 1.8, {
       bezier: {
@@ -14381,7 +14441,7 @@ var minionsHandler = function minionsHandler() {
           y: -40
         }, {
           x: 130,
-          y: headerBottom + 100
+          y: introBottom + 100
         }]
       },
       delay: 0.15,
@@ -14398,7 +14458,7 @@ var minionsHandler = function minionsHandler() {
           y: 10
         }, {
           x: 240,
-          y: headerBottom + 100
+          y: introBottom + 100
         }]
       },
       delay: 0.15,
@@ -14410,13 +14470,13 @@ var minionsHandler = function minionsHandler() {
     if (!animsState['home-learning-experience'].launched) {
       animsState['home-learning-experience'].launched = true;
 
-      if (scrollDowninterval) {
-        clearInterval(scrollDowninterval);
+      if (promptScrollDownInterval) {
+        clearInterval(promptScrollDownInterval);
       }
 
       gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[2], 0.7, {
         x: 0,
-        y: headerBottom + 100,
+        y: introBottom + 100,
         rotation: 0,
         ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Back"].easeInOut.config(2),
         onComplete: function onComplete() {
@@ -14425,13 +14485,12 @@ var minionsHandler = function minionsHandler() {
       });
     } else if (ratio > 0.71 && learningFirstPartDone) {
       animsState['home-learning-experience'].bis = true;
-      var windowBottom = homeSections[1].offsetHeight + ww / 50;
+      var secondSectionBottom = homeSections[1].offsetHeight + ww / 50;
       var planePathBezier = planePath ? _plugins_MorphSVGPlugin__WEBPACK_IMPORTED_MODULE_1__["MorphSVGPlugin"].pathDataToBezier(planePath) : '';
-      var plane = document.getElementById('plane');
       var planeBottom = planePath.getBoundingClientRect().bottom - minions[0].getBoundingClientRect().bottom;
 
-      if (scrollDowninterval) {
-        clearInterval(scrollDowninterval);
+      if (promptScrollDownInterval) {
+        clearInterval(promptScrollDownInterval);
       }
 
       gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(planePath, 1.5, {
@@ -14450,7 +14509,7 @@ var minionsHandler = function minionsHandler() {
               curviness: 1,
               values: [{
                 x: '+=60',
-                y: "+=".concat(windowBottom / 2)
+                y: "+=".concat(secondSectionBottom / 2)
               }, {
                 x: '+=200',
                 y: "+=".concat(planeBottom)
@@ -14462,10 +14521,10 @@ var minionsHandler = function minionsHandler() {
             bezier: {
               curviness: 1,
               values: [{
-                y: "+=".concat(windowBottom / 2)
+                y: "+=".concat(secondSectionBottom / 2)
               }, {
                 x: '+=10',
-                y: "+=".concat(windowBottom - 60)
+                y: "+=".concat(secondSectionBottom - 60)
               }]
             },
             ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Power4"].easeInOut
@@ -14475,16 +14534,16 @@ var minionsHandler = function minionsHandler() {
             bezier: {
               curviness: 1,
               values: [{
-                y: "+=".concat(windowBottom / 2)
+                y: "+=".concat(secondSectionBottom / 2)
               }, {
-                y: "+=".concat(windowBottom - 40)
+                y: "+=".concat(secondSectionBottom - 40)
               }]
             },
             ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Back"].easeInOut.config(1.1)
           });
           gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set(minions[3], {
             x: 153,
-            y: headerBottom + 123,
+            y: introBottom + 123,
             transformOrigin: '100% 100%'
           });
           gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[3], 1.2, {
@@ -14492,15 +14551,15 @@ var minionsHandler = function minionsHandler() {
               curviness: 1,
               values: [{
                 x: '+=80',
-                y: "+=".concat(windowBottom / 2),
+                y: "+=".concat(secondSectionBottom / 2),
                 rotation: 0
               }, {
                 x: '+=20',
-                y: "+=".concat(windowBottom - 20),
+                y: "+=".concat(secondSectionBottom - 20),
                 rotation: 30
               }, {
                 x: '-=20',
-                y: "+=".concat(windowBottom - 18),
+                y: "+=".concat(secondSectionBottom - 18),
                 rotation: 0
               }]
             },
@@ -14511,11 +14570,11 @@ var minionsHandler = function minionsHandler() {
               curviness: 1,
               values: [{
                 x: '+=80',
-                y: "+=".concat(windowBottom / 2),
+                y: "+=".concat(secondSectionBottom / 2),
                 rotation: -180
               }, {
                 x: '-=20',
-                y: "+=".concat(windowBottom),
+                y: "+=".concat(secondSectionBottom),
                 rotation: -720
               }]
             },
@@ -14530,11 +14589,15 @@ var minionsHandler = function minionsHandler() {
   };
 
   var offersAnim = function offersAnim() {
+    if (newDrop) {
+      newDrop.remove();
+    }
+
+    newDrop = minions[0].cloneNode(true);
+    minions[0].parentElement.appendChild(newDrop);
     var duration = 0.5;
     var delay = 0.05;
     var dropBottom = minions[4].getBoundingClientRect().bottom - minions[0].getBoundingClientRect().bottom;
-    var newDrop = minions[0].cloneNode(true);
-    document.getElementById('shapes').appendChild(newDrop);
     animsState['home-offers'].launched = true;
     gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(newDrop, duration, {
       bezier: {
@@ -14568,21 +14631,24 @@ var minionsHandler = function minionsHandler() {
   };
 
   var aboutAnim = function aboutAnim() {
-    var minionsThirdSection = homeSections[3].querySelectorAll('.shape');
-    var windowBottom = homeSections[3].offsetHeight - 300;
+    var minionsFourthSection = Object(_utils__WEBPACK_IMPORTED_MODULE_5__["query"])({
+      selector: '.shape',
+      ctx: homeSections[3]
+    });
+    var fourthSectionBottom = homeSections[3].offsetHeight - 300;
     var duration = 0.8;
     var durationSmall = 0.25;
     var delay = 0.25;
     var delayFall = 0.07;
     animsState['home-about-us'].launched = true; // arrow  1
 
-    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsThirdSection[9], durationSmall, {
+    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsFourthSection[9], durationSmall, {
       scale: 1,
       opacity: 1,
-      ease: _global__WEBPACK_IMPORTED_MODULE_5__["easing"].easePop,
+      ease: _global__WEBPACK_IMPORTED_MODULE_4__["easing"].easePop,
       onComplete: function onComplete() {
-        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsThirdSection[9], duration, {
-          y: windowBottom,
+        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsFourthSection[9], duration, {
+          y: fourthSectionBottom,
           rotation: -470,
           ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Sine"].easeIn,
           delay: delayFall
@@ -14590,13 +14656,13 @@ var minionsHandler = function minionsHandler() {
       }
     }); // triangle 1
 
-    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsThirdSection[3], durationSmall, {
+    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsFourthSection[3], durationSmall, {
       scale: 1,
       opacity: 1,
-      ease: _global__WEBPACK_IMPORTED_MODULE_5__["easing"].easePop,
+      ease: _global__WEBPACK_IMPORTED_MODULE_4__["easing"].easePop,
       onComplete: function onComplete() {
-        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsThirdSection[3], duration, {
-          y: windowBottom,
+        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsFourthSection[3], duration, {
+          y: fourthSectionBottom,
           rotation: -90,
           ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Sine"].easeIn,
           delay: delayFall
@@ -14605,13 +14671,13 @@ var minionsHandler = function minionsHandler() {
       delay: delay
     }); // drop
 
-    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsThirdSection[0], durationSmall, {
+    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsFourthSection[0], durationSmall, {
       scale: 1,
       opacity: 1,
-      ease: _global__WEBPACK_IMPORTED_MODULE_5__["easing"].easePop,
+      ease: _global__WEBPACK_IMPORTED_MODULE_4__["easing"].easePop,
       onComplete: function onComplete() {
-        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsThirdSection[0], duration, {
-          y: windowBottom,
+        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsFourthSection[0], duration, {
+          y: fourthSectionBottom,
           ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Power1"].easeIn,
           delay: delayFall
         });
@@ -14619,13 +14685,13 @@ var minionsHandler = function minionsHandler() {
       delay: delay * 2
     }); // square 1
 
-    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsThirdSection[1], durationSmall, {
+    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsFourthSection[1], durationSmall, {
       scale: 1,
       opacity: 1,
-      ease: _global__WEBPACK_IMPORTED_MODULE_5__["easing"].easePop,
+      ease: _global__WEBPACK_IMPORTED_MODULE_4__["easing"].easePop,
       onComplete: function onComplete() {
-        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsThirdSection[1], duration, {
-          y: windowBottom + 5,
+        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsFourthSection[1], duration, {
+          y: fourthSectionBottom + 5,
           rotation: 45,
           ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Sine"].easeIn,
           delay: delayFall
@@ -14634,14 +14700,14 @@ var minionsHandler = function minionsHandler() {
       delay: delay * 3
     }); // rectangle 1
 
-    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsThirdSection[7], durationSmall, {
+    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsFourthSection[7], durationSmall, {
       scale: 1,
       opacity: 1,
       scaleX: -1,
-      ease: _global__WEBPACK_IMPORTED_MODULE_5__["easing"].easePop,
+      ease: _global__WEBPACK_IMPORTED_MODULE_4__["easing"].easePop,
       onComplete: function onComplete() {
-        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsThirdSection[7], duration, {
-          y: windowBottom,
+        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsFourthSection[7], duration, {
+          y: fourthSectionBottom,
           ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Sine"].easeIn,
           delay: delayFall
         });
@@ -14649,13 +14715,13 @@ var minionsHandler = function minionsHandler() {
       delay: delay * 4
     }); // triangle 2
 
-    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsThirdSection[5], durationSmall, {
+    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsFourthSection[5], durationSmall, {
       scale: 1,
       opacity: 1,
-      ease: _global__WEBPACK_IMPORTED_MODULE_5__["easing"].easePop,
+      ease: _global__WEBPACK_IMPORTED_MODULE_4__["easing"].easePop,
       onComplete: function onComplete() {
-        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsThirdSection[5], duration, {
-          y: windowBottom,
+        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsFourthSection[5], duration, {
+          y: fourthSectionBottom,
           rotation: -90,
           ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Sine"].easeIn,
           delay: delayFall
@@ -14664,13 +14730,13 @@ var minionsHandler = function minionsHandler() {
       delay: delay * 4.5
     }); // square 2
 
-    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsThirdSection[2], durationSmall, {
+    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsFourthSection[2], durationSmall, {
       scale: 1,
       opacity: 1,
-      ease: _global__WEBPACK_IMPORTED_MODULE_5__["easing"].easePop,
+      ease: _global__WEBPACK_IMPORTED_MODULE_4__["easing"].easePop,
       onComplete: function onComplete() {
-        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsThirdSection[2], duration, {
-          y: windowBottom - 31,
+        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsFourthSection[2], duration, {
+          y: fourthSectionBottom - 31,
           rotation: -7,
           ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Sine"].easeIn,
           delay: delayFall
@@ -14679,14 +14745,14 @@ var minionsHandler = function minionsHandler() {
       delay: delay * 6.5
     }); // rectangle 2
 
-    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsThirdSection[8], durationSmall, {
+    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsFourthSection[8], durationSmall, {
       scale: 1,
       opacity: 1,
       scaleX: -1,
-      ease: _global__WEBPACK_IMPORTED_MODULE_5__["easing"].easePop,
+      ease: _global__WEBPACK_IMPORTED_MODULE_4__["easing"].easePop,
       onComplete: function onComplete() {
-        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsThirdSection[8], duration, {
-          y: windowBottom - 75,
+        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsFourthSection[8], duration, {
+          y: fourthSectionBottom - 75,
           ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Sine"].easeIn,
           delay: delayFall
         });
@@ -14694,13 +14760,13 @@ var minionsHandler = function minionsHandler() {
       delay: delay * 7.5
     }); // arrow  2
 
-    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsThirdSection[10], durationSmall, {
+    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsFourthSection[10], durationSmall, {
       scale: 1,
       opacity: 1,
-      ease: _global__WEBPACK_IMPORTED_MODULE_5__["easing"].easePop,
+      ease: _global__WEBPACK_IMPORTED_MODULE_4__["easing"].easePop,
       onComplete: function onComplete() {
-        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsThirdSection[10], duration, {
-          y: windowBottom - 65,
+        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsFourthSection[10], duration, {
+          y: fourthSectionBottom - 65,
           rotation: -860,
           ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Sine"].easeIn,
           delay: delayFall
@@ -14709,13 +14775,13 @@ var minionsHandler = function minionsHandler() {
       delay: delay * 8
     }); // triangle 3
 
-    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsThirdSection[4], durationSmall, {
+    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsFourthSection[4], durationSmall, {
       scale: 1,
       opacity: 1,
-      ease: _global__WEBPACK_IMPORTED_MODULE_5__["easing"].easePop,
+      ease: _global__WEBPACK_IMPORTED_MODULE_4__["easing"].easePop,
       onComplete: function onComplete() {
-        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsThirdSection[4], duration, {
-          y: windowBottom - 55,
+        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsFourthSection[4], duration, {
+          y: fourthSectionBottom - 55,
           rotation: -135,
           ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Sine"].easeIn,
           delay: delayFall
@@ -14724,14 +14790,14 @@ var minionsHandler = function minionsHandler() {
       delay: delay * 9
     }); // rectangle 3
 
-    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsThirdSection[6], durationSmall, {
+    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsFourthSection[6], durationSmall, {
       scale: 1,
       opacity: 1,
       scaleX: -1,
-      ease: _global__WEBPACK_IMPORTED_MODULE_5__["easing"].easePop,
+      ease: _global__WEBPACK_IMPORTED_MODULE_4__["easing"].easePop,
       onComplete: function onComplete() {
-        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsThirdSection[6], duration, {
-          y: windowBottom - 59,
+        gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsFourthSection[6], duration, {
+          y: fourthSectionBottom - 59,
           ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Sine"].easeIn,
           delay: delayFall
         });
@@ -14741,9 +14807,17 @@ var minionsHandler = function minionsHandler() {
   };
 
   var experiencesAnim = function experiencesAnim() {
-    var morpion = document.getElementById('morpion');
+    var _query7 = Object(_utils__WEBPACK_IMPORTED_MODULE_5__["query"])({
+      selector: '#morpion'
+    }),
+        _query8 = _slicedToArray(_query7, 1),
+        morpion = _query8[0];
+
     if (!morpion) return;
-    var minionsMorpion = morpion.querySelectorAll('.shape');
+    var minionsMorpion = Object(_utils__WEBPACK_IMPORTED_MODULE_5__["query"])({
+      selector: '.shape',
+      ctx: morpion
+    });
     var duration = 0.15;
     var delay = 0.5;
     var tl = new gsap__WEBPACK_IMPORTED_MODULE_0__["TimelineMax"]({
@@ -14794,7 +14868,7 @@ var minionsHandler = function minionsHandler() {
   };
 
   var intersectionCallback = function intersectionCallback(entries) {
-    Object(_utils__WEBPACK_IMPORTED_MODULE_3__["forEach"])(entries, function (entry) {
+    Object(_utils__WEBPACK_IMPORTED_MODULE_5__["forEach"])(entries, function (entry) {
       if (entry.intersectionRatio < 0.25) return;
 
       switch (entry.target.id) {
@@ -14825,9 +14899,8 @@ var minionsHandler = function minionsHandler() {
   };
 
   var initAnims = function initAnims() {
-    animsLaunched = true;
-
-    for (index; index <= samplesNumber; index++) {
+    // animsState.animsLaunched = true;
+    for (index; index <= samplesNumber; index += 1) {
       thresholdSamples[index] = index / samplesNumber;
     }
 
@@ -14836,7 +14909,7 @@ var minionsHandler = function minionsHandler() {
       rootMargin: '0px',
       threshold: thresholdSamples
     });
-    Object(_utils__WEBPACK_IMPORTED_MODULE_3__["forEach"])(homeSections, function (section) {
+    Object(_utils__WEBPACK_IMPORTED_MODULE_5__["forEach"])(homeSections, function (section) {
       observer.observe(section);
       animsState[section.id] = {
         launched: false,
@@ -14847,41 +14920,56 @@ var minionsHandler = function minionsHandler() {
     gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set(planePath, {
       drawSVG: 0
     });
-  }; // const restartAnims = () => {
-  //     TweenMax.set(minions, {
-  //         opacity: 0,
-  //         scale: 0,
-  //         x: 0,
-  //         y: 0,
-  //         rotation: 0,
-  //     });
-  //     TweenMax.set(planePath, { drawSVG: 0 });
-  //     forEach(homeSections, section => {
-  //         animsState[section.id] = { launched: false, done: false };
-  //     });
-  // };
-  // launch anims if minions are visible (window width > 960)
+  };
+
+  var resetAnims = function resetAnims() {
+    minions = Object(_utils__WEBPACK_IMPORTED_MODULE_5__["query"])({
+      selector: '.shape'
+    });
+    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set(minions, {
+      opacity: 0,
+      scale: 0,
+      x: 0,
+      y: 0,
+      rotation: 0
+    });
+    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set(planePath, {
+      drawSVG: 0
+    });
+    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set(plane, {
+      x: 0,
+      y: 0,
+      rotation: 0
+    });
+    Object(_utils__WEBPACK_IMPORTED_MODULE_5__["forEach"])(homeSections, function (section) {
+      animsState[section.id] = {
+        launched: false,
+        done: false
+      };
+    });
+  }; // launch anims if minions are visible (window width > 960)
 
 
-  if (getComputedStyle(minions[0]).display !== 'none') initAnims(); // win.addResizeFunction(() => {
-  //     wh = window.innerHeight;
-  //     ww = window.innerWidth;
-  //     headerBottom = wh - (video.getBoundingClientRect().top + video.offsetHeight / 2) - window.scrollY;
-  //     if( scrollDowninterval ){
-  //         clearInterval(scrollDowninterval);
-  //     }
-  //     clearTimeout( resizeTimer );
-  //     resizeTimer = setTimeout(() => {
-  //         if( getComputedStyle(minions[0]).display === 'none' ) return;
-  //         if( !animsLaunched ){
-  //             // if you're not in mobile or tablet but you started with a small screen and now have a bigger one let's launch anims
-  //             initAnims();
-  //         }else{
-  //             // if anims were launched let's do it again so elements will be placed ok
-  //             restartAnims();
-  //         }
-  //     }, 500);
-  // });
+  if (Object(_utils__WEBPACK_IMPORTED_MODULE_5__["isDisplayed"])(minions[0])) initAnims(); // Resize part
+
+  _utils_Window__WEBPACK_IMPORTED_MODULE_3__["default"].addResizeEndFunction(function () {
+    if (!Object(_utils__WEBPACK_IMPORTED_MODULE_5__["isDisplayed"])(minions[0])) return; // If anims were launched restart them
+
+    if (animsState.animsLaunched) resetAnims();
+    wh = window.innerHeight;
+    ww = window.innerWidth;
+    videoBottom = wh / 2;
+    initialShapeTop = minions[0].getBoundingClientRect().top;
+    introBottom = homeSections[1].getBoundingClientRect().top - initialShapeTop - 70;
+    playerCenterY = video.getBoundingClientRect().top - initialShapeTop + video.offsetHeight / 2;
+
+    if (promptScrollDownInterval) {
+      clearInterval(promptScrollDownInterval);
+    } // If you're not in mobile or tablet but you started with a small screen and now have a bigger one let's launch anims
+
+
+    if (!animsState.animsLaunched) initAnims();
+  });
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (minionsHandler);
@@ -14972,7 +15060,9 @@ var offersMenuHandler = function offersMenuHandler() {
   var offersMenu = document.getElementById('offers-menu');
   if (!offersMenu) return;
 
-  var _query = Object(_utils__WEBPACK_IMPORTED_MODULE_6__["query"])('#offers'),
+  var _query = Object(_utils__WEBPACK_IMPORTED_MODULE_6__["query"])({
+    selector: '#offers'
+  }),
       _query2 = _slicedToArray(_query, 1),
       offers = _query2[0];
 
@@ -17479,7 +17569,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var shareSidebarHandler = function shareSidebarHandler() {
-  var _query = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["query"])('#article'),
+  var _query = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["query"])({
+    selector: '#article'
+  }),
       _query2 = _slicedToArray(_query, 1),
       article = _query2[0];
 
@@ -17714,10 +17806,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 if (!Object.entries) {
   // IE 11
-  Object.entries = function (obj) {
-    var ownProps = Object.keys(obj),
-        i = ownProps.length,
-        resArray = new Array(i);
+  Object.entries = function entries(obj) {
+    var ownProps = Object.keys(obj);
+    var i = ownProps.length;
+    var resArray = new Array(i);
 
     while (i--) {
       resArray[i] = [ownProps[i], obj[ownProps[i]]];
@@ -17728,13 +17820,7 @@ if (!Object.entries) {
 }
 
 function Window() {
-  this.w = null;
-  this.h = null;
-  this.resizeFunctions = [];
-  this.rtime = null;
-  this.timeoutWindow = false;
-  this.delta = 200;
-  this.noTransitionElts = [];
+  this.currentBreakpoint = '';
   this.breakpoints = {
     xs: 0,
     s: 400,
@@ -17743,7 +17829,14 @@ function Window() {
     xl: 960,
     xxl: 1100
   };
-  this.currentBreakpoint = '';
+  this.w = null;
+  this.h = null;
+  this.rtime = null;
+  this.timeoutWindow = false;
+  this.delta = 500;
+  this.resizeFunctions = [];
+  this.resizeEndFunctions = [];
+  this.noTransitionElts = [];
 }
 
 Window.prototype.setNoTransitionElts = function setNoTransitionElts(elements) {
@@ -17763,6 +17856,10 @@ Window.prototype.resizeend = function resizeend() {
     _toConsumableArray(this.noTransitionElts).map(function (el) {
       el.classList.remove('no-transition');
       return el;
+    });
+
+    Object(___WEBPACK_IMPORTED_MODULE_0__["forEach"])(this.resizeEndFunctions, function (f) {
+      f();
     });
   }
 };
@@ -17829,6 +17926,10 @@ Window.prototype.addResizeFunction = function addResizeFunction(f) {
   this.resizeFunctions.push(f);
 };
 
+Window.prototype.addResizeEndFunction = function addResizeFunction(f) {
+  this.resizeEndFunctions.push(f);
+};
+
 Window.prototype.toggleNoScroll = function toggleNoScroll(_ref3) {
   var transitionElement = _ref3.transitionElement,
       noScroll = _ref3.noScroll;
@@ -17884,7 +17985,7 @@ Window.prototype.destroyWindow = function destroyWindow() {
 /*!*******************************************************!*\
   !*** ./wp-content/themes/think/src/js/utils/index.js ***!
   \*******************************************************/
-/*! exports provided: forEach, roundNumbers, reverseString, createNewEvent, requestAnimFrame, throttle, query, default */
+/*! exports provided: forEach, roundNumbers, reverseString, createNewEvent, requestAnimFrame, throttle, query, isDisplayed, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -17896,6 +17997,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "requestAnimFrame", function() { return requestAnimFrame; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "throttle", function() { return throttle; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "query", function() { return query; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isDisplayed", function() { return isDisplayed; });
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
@@ -17981,7 +18083,9 @@ var throttle = function throttle(callback, delay) {
     }
   };
 };
-var query = function query(selector, ctx) {
+var query = function query(_ref) {
+  var selector = _ref.selector,
+      ctx = _ref.ctx;
   var classes = selector.substr(1).replace(/\./g, ' ');
   var context = ctx || document; // Redirect simple selectors to the more performant function
 
@@ -18006,6 +18110,13 @@ var query = function query(selector, ctx) {
 
   return _toConsumableArray(context.querySelectorAll(selector));
 };
+/**
+ * @description get display state of one element
+ */
+
+var isDisplayed = function isDisplayed(element) {
+  return getComputedStyle(element).display !== 'none';
+};
 /* harmony default export */ __webpack_exports__["default"] = ({
   roundNumbers: roundNumbers,
   forEach: forEach,
@@ -18013,7 +18124,8 @@ var query = function query(selector, ctx) {
   createNewEvent: createNewEvent,
   requestAnimFrame: requestAnimFrame,
   throttle: throttle,
-  query: query
+  query: query,
+  isDisplayed: isDisplayed
 });
 
 /***/ }),
@@ -18239,9 +18351,9 @@ var videoHandler = function videoHandler() {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils */ "./wp-content/themes/think/src/js/utils/index.js");
-/* harmony import */ var _vimeo_player__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @vimeo/player */ "./node_modules/@vimeo/player/dist/player.es.js");
+/* harmony import */ var _vimeo_player__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @vimeo/player */ "./node_modules/@vimeo/player/dist/player.es.js");
+/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils */ "./wp-content/themes/think/src/js/utils/index.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -18263,19 +18375,28 @@ var videoHandler = function videoHandler() {
     var id = _ref.id,
         videoElement = _ref.videoElement;
 
-    var _query = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["query"])('.cover', videoElement),
+    var _query = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["query"])({
+      selector: '.cover',
+      ctx: videoElement
+    }),
         _query2 = _slicedToArray(_query, 1),
         cover = _query2[0];
 
-    var _query3 = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["query"])('.wrapper-player', videoElement),
+    var _query3 = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["query"])({
+      selector: '.wrapper-player',
+      ctx: videoElement
+    }),
         _query4 = _slicedToArray(_query3, 1),
         wrapperPlayer = _query4[0];
 
-    var crosses = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["query"])('.js-cross', videoElement);
+    var crosses = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["query"])({
+      selector: '.js-cross',
+      ctx: videoElement
+    });
 
     var videoElementsOpacity = function videoElementsOpacity(_ref2) {
       var opacity = _ref2.opacity;
-      gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to([cover, wrapperPlayer], 0.3, {
+      gsap__WEBPACK_IMPORTED_MODULE_1__["TweenMax"].to([cover, wrapperPlayer], 0.3, {
         opacity: opacity
       });
     };
@@ -18287,7 +18408,7 @@ var videoHandler = function videoHandler() {
       players[id].play();
       videoElement.classList.add('playing');
     }, false);
-    Object(_utils__WEBPACK_IMPORTED_MODULE_1__["forEach"])(crosses, function (cross) {
+    Object(_utils__WEBPACK_IMPORTED_MODULE_2__["forEach"])(crosses, function (cross) {
       cross.addEventListener('click', function () {
         players[id].pause();
         videoElement.classList.remove('playing');
@@ -18298,10 +18419,10 @@ var videoHandler = function videoHandler() {
     });
   };
 
-  Object(_utils__WEBPACK_IMPORTED_MODULE_1__["forEach"])(videos, function (videoElement) {
+  Object(_utils__WEBPACK_IMPORTED_MODULE_2__["forEach"])(videos, function (videoElement) {
     var id = videoElement.getAttribute('data-id');
     var playerWidth = videoElement.getAttribute('data-width');
-    players[id] = new _vimeo_player__WEBPACK_IMPORTED_MODULE_2__["default"]("vimeo-id-".concat(id), {
+    players[id] = new _vimeo_player__WEBPACK_IMPORTED_MODULE_0__["default"]("vimeo-id-".concat(id), {
       id: id,
       width: playerWidth || 1920
     });
@@ -18330,4 +18451,4 @@ var videoHandler = function videoHandler() {
 /***/ })
 
 /******/ });
-//# sourceMappingURL=main.js.map?881198b43cd86d728a3e0d2678173aa6
+//# sourceMappingURL=main.js.map?a671b443e8f44a2bed70041b079a7d6e

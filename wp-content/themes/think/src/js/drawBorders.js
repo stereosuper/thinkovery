@@ -1,5 +1,5 @@
 import { TweenMax } from 'gsap';
-import { createNewEvent, forEach } from './utils';
+import { createNewEvent, forEach, isDisplayed } from './utils';
 import scroll from './utils/Scroll';
 import win from './utils/Window';
 import { colors, easing } from './global';
@@ -29,11 +29,6 @@ const ioBorders = () => {
     };
 
     /**
-     * @description updates display state depending on borders style
-     */
-    const handleDisplay = () => getComputedStyle(bordersWrapper).display !== 'none';
-
-    /**
      * @description select borders children type
      * @param {object} { type }
      * @returns {array}
@@ -61,7 +56,8 @@ const ioBorders = () => {
      */
     const animateBorder = ({ type, borders, queueCallback }) => {
         const bordersElements = selectBordersElements({ type });
-        const [{
+        const [
+            {
                 position,
                 duration,
                 color,
@@ -69,7 +65,9 @@ const ioBorders = () => {
                 axis,
                 origin,
                 nestNext = true,
-            }, nextBorder] = borders;
+            },
+            nextBorder,
+        ] = borders;
 
         const isAll = position === 'all';
 
@@ -88,7 +86,8 @@ const ioBorders = () => {
         }
 
         const tweenParams = {
-            transformOrigin: origin || (!isAll ? borderMapping[position].origin : ''),
+            transformOrigin:
+                origin || (!isAll ? borderMapping[position].origin : ''),
             scaleX,
             scaleY,
             ease,
@@ -112,7 +111,9 @@ const ioBorders = () => {
         }
 
         TweenMax.to(
-            isAll ? bordersElements : bordersElements[borderMapping[position].index],
+            isAll
+                ? bordersElements
+                : bordersElements[borderMapping[position].index],
             duration,
             tweenParams
         );
@@ -420,9 +421,14 @@ const ioBorders = () => {
                 const lastStartIndex = state.ends.start;
 
                 // Head
-                let delta = Math.abs( newEndIndex < lastEndIndex ? newEndIndex + 4 - lastEndIndex : newEndIndex - lastEndIndex ) + 1;
+                let delta =
+                    Math.abs(
+                        newEndIndex < lastEndIndex
+                            ? newEndIndex + 4 - lastEndIndex
+                            : newEndIndex - lastEndIndex
+                    ) + 1;
                 let index = 0;
-                for (index; index < delta; index ++) {
+                for (index; index < delta; index += 1) {
                     const borderIndex = (lastEndIndex + index) % 4;
 
                     returnBorders.borders[index] = {
@@ -436,8 +442,13 @@ const ioBorders = () => {
                 }
 
                 // Tail
-                delta = Math.abs( newStartIndex < lastStartIndex ? newStartIndex + 4 - lastStartIndex : newStartIndex - lastStartIndex ) + 1;
-                for (index = 0; index < delta; index ++) {
+                delta =
+                    Math.abs(
+                        newStartIndex < lastStartIndex
+                            ? newStartIndex + 4 - lastStartIndex
+                            : newStartIndex - lastStartIndex
+                    ) + 1;
+                for (index = 0; index < delta; index += 1) {
                     const borderIndex = (lastStartIndex + index) % 4;
 
                     let position = borderMapping.byIndex[borderIndex];
@@ -475,8 +486,10 @@ const ioBorders = () => {
                 });
             } else {
                 returnBorders = bordersAnimations[defaultAnim];
-                state.ends.start = borderMapping[returnBorders.borders[0].position].index;
-                state.ends.end = borderMapping[
+                state.ends.start =
+                    borderMapping[returnBorders.borders[0].position].index;
+                state.ends.end =
+                    borderMapping[
                         returnBorders.borders[
                             returnBorders.borders.length - 1
                         ].position
@@ -489,7 +502,13 @@ const ioBorders = () => {
          * @description border sections animation controller
          */
         const updateBorder = () => {
-            if ( state.isMoving || (state.currentSection && state.nextSection && state.currentSection === state.nextSection) ) return;
+            if (
+                state.isMoving ||
+                (state.currentSection &&
+                    state.nextSection &&
+                    state.currentSection === state.nextSection)
+            )
+                return;
 
             state.isMoving = true;
 
@@ -573,7 +592,9 @@ const ioBorders = () => {
         };
 
         const addToQueue = () => {
-            const borderNextSection = bordersWrapper.getAttribute( 'data-next-section' );
+            const borderNextSection = bordersWrapper.getAttribute(
+                'data-next-section'
+            );
 
             state.queue.push(borderNextSection);
 
@@ -581,9 +602,9 @@ const ioBorders = () => {
             processQueue();
             state.init = true;
         };
-        
+
         // animateBordersHome main calls
-        state.display = handleDisplay();
+        state.display = isDisplayed(bordersWrapper);
 
         window.addEventListener('wheel', handleWheel, false);
 
@@ -594,7 +615,7 @@ const ioBorders = () => {
         addToQueue();
 
         win.addResizeFunction(() => {
-            state.display = handleDisplay();
+            state.display = isDisplayed(bordersWrapper);
 
             if (state.resizeTimeout) {
                 clearTimeout(state.resizeTimeout);
@@ -722,7 +743,10 @@ const ioBorders = () => {
             const bordersElements = selectBordersElements({ type });
 
             const { ratio } = state;
-            const ratioFactor = borders.reduce( (acc, current) => acc + current.maxScale, 0 );
+            const ratioFactor = borders.reduce(
+                (acc, current) => acc + current.maxScale,
+                0
+            );
             let pathRatio = 0;
             let scale = 0;
 
@@ -799,12 +823,12 @@ const ioBorders = () => {
         };
 
         // animateProgressBorders main calls
-        state.display = handleDisplay();
+        state.display = isDisplayed(bordersWrapper);
 
         drawProgress();
 
         win.addResizeFunction(() => {
-            state.display = handleDisplay();
+            state.display = isDisplayed(bordersWrapper);
             drawProgress();
         });
     };

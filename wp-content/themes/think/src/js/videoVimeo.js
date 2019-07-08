@@ -1,6 +1,6 @@
+import VimeoPlayer from '@vimeo/player';
 import { TweenMax } from 'gsap';
 import { forEach, query } from './utils';
-import VimeoPlayer from '@vimeo/player';
 
 const videoHandler = () => {
     const videos = document.querySelectorAll('.js-video-vimeo');
@@ -10,9 +10,12 @@ const videoHandler = () => {
     const players = [];
 
     const onPlayerReady = ({ id, videoElement }) => {
-        const [cover] = query('.cover', videoElement);
-        const [wrapperPlayer] = query('.wrapper-player', videoElement);
-        const crosses = query('.js-cross', videoElement);
+        const [cover] = query({ selector: '.cover', ctx: videoElement });
+        const [wrapperPlayer] = query({
+            selector: '.wrapper-player',
+            ctx: videoElement,
+        });
+        const crosses = query({ selector: '.js-cross', ctx: videoElement });
 
         const videoElementsOpacity = ({ opacity }) => {
             TweenMax.to([cover, wrapperPlayer], 0.3, { opacity });

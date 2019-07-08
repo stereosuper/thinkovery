@@ -3,7 +3,7 @@ import imagesLoaded from 'imagesloaded';
 import { query } from './utils';
 
 const shareSidebarHandler = () => {
-    const [article] = query('#article');
+    const [article] = query({ selector: '#article' });
     if (!article) return;
 
     imagesLoaded(article, () => {
