@@ -742,6 +742,13 @@ const minionsHandler = () => {
             y: 0,
             rotation: 0,
         });
+
+        TweenMax.set(minions[3], {
+            x: 153,
+            y: introBottom + 123,
+            transformOrigin: '50% 50%',
+        });
+
         TweenMax.set(planePath, { drawSVG: 0 });
         TweenMax.set(plane, {
             x: 0,

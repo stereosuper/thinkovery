@@ -14932,6 +14932,11 @@ var minionsHandler = function minionsHandler() {
       y: 0,
       rotation: 0
     });
+    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set(minions[3], {
+      x: 153,
+      y: introBottom + 123,
+      transformOrigin: '50% 50%'
+    });
     gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set(planePath, {
       drawSVG: 0
     });
@@ -18455,4 +18460,4 @@ var videoHandler = function videoHandler() {
 /***/ })
 
 /******/ });
-//# sourceMappingURL=main.js.map?881dd347894312561aa3969312aa3ace
+//# sourceMappingURL=main.js.map?6bb57f3a9b4cfc85e34a69c4e85b92c5
