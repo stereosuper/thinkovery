@@ -74,7 +74,7 @@
                 backface-visibility: visible;
             }
             &::after {
-                animation: wizz 1.5s linear 0.5s infinite;
+                animation: wizz 1.5s $minions-easing 0.5s infinite;
             }
         }
         .front {

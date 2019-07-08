@@ -62,7 +62,7 @@ const memoryHandler = () => {
         createCard(shape);
     });
 
-    cards = memory.querySelectorAll('.card');
+    cards = query({ selector: '.card', ctx: memory });
     cardsArray = [...cards];
 
     const randomCardIndex = Math.floor(Math.random() * cards.length * 0.5);
@@ -80,7 +80,7 @@ const memoryHandler = () => {
                 memory.classList.add('clicked');
             }
 
-            active = memory.querySelector('.on');
+            [active] = query({ selector: '.on', ctx: memory });
             if (active) {
                 active.classList.add('first');
                 active.classList.remove('on');

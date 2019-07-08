@@ -1,35 +1,44 @@
 import 'gsap/ScrollToPlugin';
-import { forEach } from './utils';
+import { forEach, query } from './utils';
 import { TweenMax } from 'gsap';
 import { easing, globalStyles } from './global';
 
 const accordionHandler = () => {
-    const accordions = document.querySelectorAll(
-        '.wp-block-stereoberg-question-answer'
-    );
+    const accordions = query({
+        selector: '.wp-block-stereoberg-question-answer',
+    });
 
     if (!accordions.length) return;
 
     forEach(accordions, accordion => {
-        const title = accordion.querySelector('h3');
+        const [title] = query({ selector: 'h3', ctx: accordion });
 
         title.addEventListener(
             'click',
             () => {
                 const parent = title.parentElement;
-                const answer = title.parentElement.querySelector('.js-answer');
+                const answer = query({
+                    selector: '.js-answer',
+                    ctx: title.parentElement,
+                });
                 const alreadyActivated = parent.classList.contains('activated');
-                const maxHeight = title.parentElement
-                    .querySelector('.answer-content')
-                    .getBoundingClientRect().height;
+                const [answerContent] = query({
+                    selector: '.answer-content',
+                    ctx: title.parentElement,
+                });
+                const maxHeight = answerContent.getBoundingClientRect().height;
 
                 forEach(accordions, resetParent => {
                     resetParent.classList.remove('activated');
-                    TweenMax.to(resetParent.querySelector('.js-answer'), 0.3, {
-                        maxHeight: 0,
-                        opacity: 0,
-                        ease: easing.easeFade,
-                    });
+                    TweenMax.to(
+                        query({ selector: '.js-answer', ctx: resetParent }),
+                        0.3,
+                        {
+                            maxHeight: 0,
+                            opacity: 0,
+                            ease: easing.easeFade,
+                        }
+                    );
                 });
 
                 if (alreadyActivated) return;

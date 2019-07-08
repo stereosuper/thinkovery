@@ -3932,8 +3932,8 @@ label a {
       -webkit-backface-visibility: visible;
               backface-visibility: visible; }
     .card.blink::after {
-      -webkit-animation: wizz 1.5s linear 0.5s infinite;
-              animation: wizz 1.5s linear 0.5s infinite; }
+      -webkit-animation: wizz 1.5s cubic-bezier(0.25, 0.46, 0.25, 1) 0.5s infinite;
+              animation: wizz 1.5s cubic-bezier(0.25, 0.46, 0.25, 1) 0.5s infinite; }
     .card .front {
       display: -webkit-box;
       display: -ms-flexbox;
@@ -4010,4 +4010,4 @@ label a {
     page-break-after: avoid; } }
 
 
-/*# sourceMappingURL=main.css.map?277ea0ce03cfa908cd6a36c813867097*/
+/*# sourceMappingURL=main.css.map?3de6d12f9c488deb3a095bffe29c9929*/

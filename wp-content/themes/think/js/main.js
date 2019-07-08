@@ -12766,24 +12766,54 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils */ "./wp-content/themes/think/src/js/utils/index.js");
 /* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
 /* harmony import */ var _global__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./global */ "./wp-content/themes/think/src/js/global/index.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
 
 
 var accordionHandler = function accordionHandler() {
-  var accordions = document.querySelectorAll('.wp-block-stereoberg-question-answer');
+  var accordions = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["query"])({
+    selector: '.wp-block-stereoberg-question-answer'
+  });
   if (!accordions.length) return;
   Object(_utils__WEBPACK_IMPORTED_MODULE_1__["forEach"])(accordions, function (accordion) {
-    var title = accordion.querySelector('h3');
+    var _query = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["query"])({
+      selector: 'h3',
+      ctx: accordion
+    }),
+        _query2 = _slicedToArray(_query, 1),
+        title = _query2[0];
+
     title.addEventListener('click', function () {
       var parent = title.parentElement;
-      var answer = title.parentElement.querySelector('.js-answer');
+      var answer = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["query"])({
+        selector: '.js-answer',
+        ctx: title.parentElement
+      });
       var alreadyActivated = parent.classList.contains('activated');
-      var maxHeight = title.parentElement.querySelector('.answer-content').getBoundingClientRect().height;
+
+      var _query3 = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["query"])({
+        selector: '.answer-content',
+        ctx: title.parentElement
+      }),
+          _query4 = _slicedToArray(_query3, 1),
+          answerContent = _query4[0];
+
+      var maxHeight = answerContent.getBoundingClientRect().height;
       Object(_utils__WEBPACK_IMPORTED_MODULE_1__["forEach"])(accordions, function (resetParent) {
         resetParent.classList.remove('activated');
-        gsap__WEBPACK_IMPORTED_MODULE_2__["TweenMax"].to(resetParent.querySelector('.js-answer'), 0.3, {
+        gsap__WEBPACK_IMPORTED_MODULE_2__["TweenMax"].to(Object(_utils__WEBPACK_IMPORTED_MODULE_1__["query"])({
+          selector: '.js-answer',
+          ctx: resetParent
+        }), 0.3, {
           maxHeight: 0,
           opacity: 0,
           ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].easeFade
@@ -14179,7 +14209,10 @@ var memoryHandler = function memoryHandler() {
   Object(_utils__WEBPACK_IMPORTED_MODULE_0__["forEach"])(shapes, function (shape) {
     createCard(shape);
   });
-  cards = memory.querySelectorAll('.card');
+  cards = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["query"])({
+    selector: '.card',
+    ctx: memory
+  });
   cardsArray = _toConsumableArray(cards);
   var randomCardIndex = Math.floor(Math.random() * cards.length * 0.5);
   Object(_utils__WEBPACK_IMPORTED_MODULE_0__["forEach"])(cards, function (card, index) {
@@ -14195,7 +14228,14 @@ var memoryHandler = function memoryHandler() {
         memory.classList.add('clicked');
       }
 
-      active = memory.querySelector('.on');
+      var _query5 = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["query"])({
+        selector: '.on',
+        ctx: memory
+      });
+
+      var _query6 = _slicedToArray(_query5, 1);
+
+      active = _query6[0];
 
       if (active) {
         active.classList.add('first');
@@ -18493,4 +18533,4 @@ var videoHandler = function videoHandler() {
 /***/ })
 
 /******/ });
-//# sourceMappingURL=main.js.map?a63a5c8a1a060617ff1d4fbd33c1441e
+//# sourceMappingURL=main.js.map?ed617c1fb337dad1464156271a143c4d
