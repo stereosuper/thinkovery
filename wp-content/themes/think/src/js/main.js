@@ -1,4 +1,7 @@
+import '@babel/polyfill';
 import '../scss/main.scss';
+
+import { query } from './utils';
 
 import win from './utils/Window';
 import io from './utils/io';
@@ -10,38 +13,23 @@ import offersMenu from './offersMenu';
 import shareSidebar from './shareSidebar';
 import form from './form';
 import newsletter from './newsletter';
+import minions from './minions';
 import makeBorders from './makeBorders';
 import drawBorders from './drawBorders';
 import video from './video';
 import videoVimeo from './videoVimeo';
-import minions from './minions';
 import learningAnim from './learningAnim';
 import search from './search';
 import memory from './memory';
 import burger from './burger';
 
 // Dynamic imports
-// const burger = () => import('./burger');
+// const dynamicLoading = importPath => async () => {
+//     const { default: defaultFunction } = await import(`./${importPath}`);
+//     defaultFunction();
+// };
 
-// IE11 closest polyfill
-if (!Element.prototype.matches) {
-    Element.prototype.matches =
-        Element.prototype.msMatchesSelector ||
-        Element.prototype.webkitMatchesSelector;
-}
-
-if (!Element.prototype.closest) {
-    Element.prototype.closest = function closestPolyfill(s) {
-        let el = this;
-
-        do {
-            if (el.matches(s)) return el;
-            el = el.parentElement || el.parentNode;
-        } while (el !== null && el.nodeType === 1);
-
-        return null;
-    };
-}
+// const minions = dynamicLoading('minions');
 
 const state = {
     preloaded: false,
@@ -53,9 +41,9 @@ const preload = () => {
 
     if (readyState !== 'interactive' && readyState !== 'complete') return;
 
-    const noTransElem = [].slice.call(
-        document.getElementsByClassName('element-without-transition-on-resize')
-    );
+    const noTransElem = query({
+        selector: '.element-without-transition-on-resize',
+    });
 
     state.preloaded = true;
 
@@ -96,7 +84,7 @@ const load = () => {
     }
 
     // blog categories
-    const cats = document.getElementById('blog-cats');
+    const [cats] = query({ selector: '#blog-cats' });
     if (cats) {
         cats.addEventListener('click', () => {
             cats.classList.toggle('on');
