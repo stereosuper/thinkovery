@@ -21,6 +21,16 @@
         &.off {
             pointer-events: none;
         }
+        &.clicked {
+            .card {
+                .front {
+                    backface-visibility: hidden;
+                }
+                &::after {
+                    animation: none;
+                }
+            }
+        }
     }
     .card {
         width: 18%;
@@ -41,7 +51,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            z-index: -1;
+            z-index: 1;
             background: $bg-color;
             backface-visibility: hidden;
             transform: rotate3d(0, 1, 0, 180deg);
@@ -58,6 +68,14 @@
         }
         &.done {
             box-shadow: none;
+        }
+        &.blink {
+            .front {
+                backface-visibility: visible;
+            }
+            &::after {
+                animation: wizz 1.5s linear 0.5s infinite;
+            }
         }
         .front {
             display: flex;

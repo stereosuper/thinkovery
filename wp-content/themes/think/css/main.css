@@ -1,6 +1,24 @@
 @charset "UTF-8";
 /* Functions */
 /* Mixins */
+@-webkit-keyframes wizz {
+  0% {
+    opacity: 1; }
+  25% {
+    opacity: 0.5; }
+  50% {
+    opacity: 1; }
+  100% {
+    opacity: 1; } }
+@keyframes wizz {
+  0% {
+    opacity: 1; }
+  25% {
+    opacity: 0.5; }
+  50% {
+    opacity: 1; }
+  100% {
+    opacity: 1; } }
 article,
 aside,
 details,
@@ -3862,6 +3880,12 @@ label a {
             perspective: 1000px; }
     .memory.off {
       pointer-events: none; }
+    .memory.clicked .card .front {
+      -webkit-backface-visibility: hidden;
+              backface-visibility: hidden; }
+    .memory.clicked .card::after {
+      -webkit-animation: none;
+              animation: none; }
   .card {
     width: 18%;
     position: relative;
@@ -3886,7 +3910,7 @@ label a {
       left: 0;
       right: 0;
       bottom: 0;
-      z-index: -1;
+      z-index: 1;
       background: #f7f2ea;
       -webkit-backface-visibility: hidden;
               backface-visibility: hidden;
@@ -3904,6 +3928,12 @@ label a {
     .card.done {
       -webkit-box-shadow: none;
               box-shadow: none; }
+    .card.blink .front {
+      -webkit-backface-visibility: visible;
+              backface-visibility: visible; }
+    .card.blink::after {
+      -webkit-animation: wizz 1.5s linear 0.5s infinite;
+              animation: wizz 1.5s linear 0.5s infinite; }
     .card .front {
       display: -webkit-box;
       display: -ms-flexbox;
@@ -3980,4 +4010,4 @@ label a {
     page-break-after: avoid; } }
 
 
-/*# sourceMappingURL=main.css.map?1b6f5f2f78af2e6b38c35960ec2dd6da*/
+/*# sourceMappingURL=main.css.map?277ea0ce03cfa908cd6a36c813867097*/

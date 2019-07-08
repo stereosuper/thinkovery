@@ -1,11 +1,11 @@
-import { forEach } from './utils';
+import { forEach, query } from './utils';
 
 const memoryHandler = () => {
-    const memory = document.getElementById('memory');
+    const [memory] = query({ selector: '#memory' });
 
     if (!memory) return;
+    const [successElement] = query({ selector: '#memory-success' });
 
-    const success = document.getElementById('memory-success');
     const shapes = [
         'rectangle',
         'rectangle',
@@ -21,7 +21,10 @@ const memoryHandler = () => {
     let cards = null;
     let cardsArray = [];
     let active = null;
-    let done = false;
+    const state = {
+        clicked: false,
+        done: false,
+    };
 
     const createCard = shape => {
         const card = document.createElement('div');
@@ -45,7 +48,7 @@ const memoryHandler = () => {
         use.setAttributeNS(
             'http://www.w3.org/1999/xlink',
             'xlink:href',
-            '#icon-' + shape
+            `#icon-${shape}`
         );
 
         svg.appendChild(use);
@@ -54,9 +57,7 @@ const memoryHandler = () => {
         memory.appendChild(card);
     };
 
-    shapes.sort(() => {
-        return 0.5 - Math.random();
-    });
+    shapes.sort(() => 0.5 - Math.random());
     forEach(shapes, shape => {
         createCard(shape);
     });
@@ -64,39 +65,52 @@ const memoryHandler = () => {
     cards = memory.querySelectorAll('.card');
     cardsArray = [...cards];
 
-    forEach(cards, elt => {
-        elt.addEventListener('click', () => {
+    const randomCardIndex = Math.floor(Math.random() * cards.length * 0.5);
+
+    forEach(cards, (card, index) => {
+        if (index === randomCardIndex) {
+            card.classList.add('blink');
+        }
+
+        card.addEventListener('click', () => {
             if (memory.classList.contains('off')) return;
+
+            if (!state.clicked) {
+                state.clicked = true;
+                memory.classList.add('clicked');
+            }
 
             active = memory.querySelector('.on');
             if (active) {
                 active.classList.add('first');
                 active.classList.remove('on');
-                elt.classList.add('on');
+                card.classList.add('on');
 
                 if (
-                    elt.getAttribute('data-shape') ===
+                    card.getAttribute('data-shape') ===
                     active.getAttribute('data-shape')
                 ) {
-                    elt.classList.add('done');
-                    elt.classList.remove('on');
+                    card.classList.add('done');
+                    card.classList.remove('on');
                     active.classList.add('done');
                     active.classList.remove('first');
 
-                    done = cardsArray.every(el => el.classList.contains('done'));
-                    if (done) {
-                        success.classList.add('on');
+                    state.done = cardsArray.every(el =>
+                        el.classList.contains('done')
+                    );
+                    if (state.done) {
+                        successElement.classList.add('on');
                     }
                 } else {
                     memory.classList.add('off');
                     setTimeout(() => {
-                        elt.classList.remove('on');
+                        card.classList.remove('on');
                         active.classList.remove('first');
                         memory.classList.remove('off');
                     }, 1000);
                 }
             } else {
-                elt.classList.add('on');
+                card.classList.add('on');
             }
         });
     });
