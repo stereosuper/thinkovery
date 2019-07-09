@@ -1,85 +1,127 @@
-.page-template-contact{
-    .main{
-        padding-bottom: 0;
-    }
-
-    .col-3-desk{
-        margin: 0 auto;
-    }
-}
-
-.contact-infos{
-    padding: 20px 0;
-    margin: $line-height*2 0 0;
-    font-size: 1.4rem;
-    background: $tertiary;
-    span{
-        display: flex;
-        margin: 10px 0;
-        align-items: center;
-    }
-    a, .icon{
-        line-height: 1;
-        color: #fff;
-    }
-    a{
-        &:hover, &:focus{
-            opacity: 0.7;
-        }
-    }
-    .icon{
-        width: 17px;
-        height: 17px;
-        margin: 0 20px 0 0;
-    }
-}
-
-.contact-form{
-    padding: $line-height*3 0 $line-height*4;
-    overflow: hidden;
+.contact-sidebar {
+    padding-top: $line-height * 2;
+    padding-bottom: $line-height * 2;
+    color: $white;
     background: $primary;
-    input{
-        &[type=email]{
-            width: 380px;
-        }
-    }
-    form{
-        max-width: 650px;
-    }
-    .wpcf7-submit{
-        float: right;
-    }
-    .wpcf7-response-output{
-        padding: 0;
-        border: 0;
-        margin-left: 0;
-        margin-right: 0;
-        clear: both;
-        color: #fff;
-    }
-    span.wpcf7-not-valid-tip{
-        color: #fff;
+    .title {
+        margin: 0 0 $line-height;
+        color: $white;
     }
 }
 
-
-@media (min-width: $phone){
-    .contact-infos{
-        .col-3-desk{
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    .info {
+        margin-bottom: $line-height * 0.5;
+        &:last-child {
+            margin-bottom: 0;
         }
+    }
+    .icon {
+        margin-right: 5px;
+    }
+    .info-link {
+        text-decoration: none;
+        color: $white;
     }
 }
 
-@media (min-width: $tablet){
-    .contact-infos{
-        .col-3-desk{
-            justify-content: flex-start;
-        }
-        span{
-            width: 50%;
+.contact-form {
+    .content {
+        margin-bottom: $line-height;
+        h2 {
+            &:first-child {
+                margin-top: $line-height * 3;
+                margin-bottom: $line-height;
+            }
         }
     }
+    .form {
+    }
 }
+
+// .page-template-contact{
+//     .main{
+//         padding-bottom: 0;
+//     }
+
+//     .col-3-desk{
+//         margin: 0 auto;
+//     }
+// }
+
+// .contact-infos{
+//     padding: 20px 0;
+//     margin: $line-height*2 0 0;
+//     font-size: 1.4rem;
+//     background: $tertiary;
+//     span{
+//         display: flex;
+//         margin: 10px 0;
+//         align-items: center;
+//     }
+//     a, .icon{
+//         line-height: 1;
+//         color: #fff;
+//     }
+//     a{
+//         &:hover, &:focus{
+//             opacity: 0.7;
+//         }
+//     }
+//     .icon{
+//         width: 17px;
+//         height: 17px;
+//         margin: 0 20px 0 0;
+//     }
+// }
+
+// .contact-form{
+//     padding: $line-height*3 0 $line-height*4;
+//     overflow: hidden;
+//     background: $primary;
+//     input{
+//         &[type=email]{
+//             width: 380px;
+//         }
+//     }
+//     form{
+//         max-width: 650px;
+//     }
+//     .wpcf7-submit{
+//         float: right;
+//     }
+//     .wpcf7-response-output{
+//         padding: 0;
+//         border: 0;
+//         margin-left: 0;
+//         margin-right: 0;
+//         clear: both;
+//         color: #fff;
+//     }
+//     span.wpcf7-not-valid-tip{
+//         color: #fff;
+//     }
+// }
+
+// @media (min-width: $phone){
+//     .contact-infos{
+//         .col-3-desk{
+//             display: flex;
+//             align-items: center;
+//             justify-content: space-between;
+//         }
+//     }
+// }
+
+// @media (min-width: $tablet){
+//     .contact-infos{
+//         .col-3-desk{
+//             justify-content: flex-start;
+//         }
+//         span{
+//             width: 50%;
+//         }
+//     }
+// }

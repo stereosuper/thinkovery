@@ -440,7 +440,7 @@ a:active {
     font-size: 4rem; }
     .intro-big .h2 {
       margin: 1.1em 0 0; } }
-@media (min-width: 960px) and (min-height: 630px) {
+@media (min-width: 960px) and (min-height: 500px) {
   .shape {
     display: block;
     width: 75px;
@@ -2852,7 +2852,7 @@ label a {
       display: none; }
   .section-content {
     width: 50%; } }
-@media (min-width: 960px) and (min-height: 630px) {
+@media (min-width: 960px) and (min-height: 500px) {
   .shapes .shape {
     width: 23px;
     height: 23px;
@@ -3602,70 +3602,36 @@ label a {
     width: 65%; }
   .about-section3 > .content, .about-section4 > .content {
     width: 50%; } }
-.page-template-contact .main {
-  padding-bottom: 0; }
-.page-template-contact .col-3-desk {
-  margin: 0 auto; }
-.contact-infos {
-  padding: 20px 0;
-  margin: 56px 0 0;
-  font-size: 14px;
-  font-size: 1.4rem;
-  background: #df622d; }
-.contact-infos span {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    margin: 10px 0;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center; }
-.contact-infos a, .contact-infos .icon {
-    line-height: 1;
-    color: #fff; }
-.contact-infos a:hover, .contact-infos a:focus {
-    opacity: 0.7; }
-.contact-infos .icon {
-    width: 17px;
-    height: 17px;
-    margin: 0 20px 0 0; }
-.contact-form {
-  padding: 84px 0 112px;
-  overflow: hidden;
+.contact-sidebar {
+  padding-top: 56px;
+  padding-bottom: 56px;
+  color: #fff;
   background: #1e5e32; }
-.contact-form input[type=email] {
-    width: 380px; }
-.contact-form form {
-    max-width: 650px; }
-.contact-form .wpcf7-submit {
-    float: right; }
-.contact-form .wpcf7-response-output {
-    padding: 0;
-    border: 0;
-    margin-left: 0;
-    margin-right: 0;
-    clear: both;
+.contact-sidebar .title {
+    margin: 0 0 28px;
     color: #fff; }
-.contact-form span.wpcf7-not-valid-tip {
+.contact-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column; }
+.contact-info .info {
+    margin-bottom: 14px; }
+.contact-info .info:last-child {
+      margin-bottom: 0; }
+.contact-info .icon {
+    margin-right: 5px; }
+.contact-info .info-link {
+    text-decoration: none;
     color: #fff; }
-@media (min-width: 580px) {
-  .contact-infos .col-3-desk {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between; } }
-@media (min-width: 780px) {
-  .contact-infos .col-3-desk {
-    -webkit-box-pack: start;
-        -ms-flex-pack: start;
-            justify-content: flex-start; }
-  .contact-infos span {
-    width: 50%; } }
+.contact-form .content {
+  margin-bottom: 28px; }
+.contact-form .content h2:first-child {
+    margin-top: 84px;
+    margin-bottom: 28px; }
 .offers-title {
   margin-bottom: 1.5em;
   text-align: center; }
@@ -4010,4 +3976,4 @@ label a {
     page-break-after: avoid; } }
 
 
-/*# sourceMappingURL=main.css.map?3de6d12f9c488deb3a095bffe29c9929*/
+/*# sourceMappingURL=main.css.map?761292f49c62074134cd09b6329c8a25*/
