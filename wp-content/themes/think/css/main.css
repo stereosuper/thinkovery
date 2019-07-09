@@ -3683,6 +3683,25 @@ label a {
 @media (min-width: 580px) {
   .contact-form .form select {
     width: 395px; } }
+@media (min-width: 960px) {
+  .page-template-contact > .main {
+    padding-top: 0; }
+  .contact-section {
+    margin-top: 112px; }
+  .contact-sidebar {
+    width: calc(50% - 88px);
+    position: absolute;
+    top: 35vh;
+    bottom: auto; }
+    .contact-sidebar .col-2-desk {
+      width: 100%; }
+  .contact-form .col-2-desk {
+    margin-left: auto; }
+  .contact-form .content h2:first-child {
+    margin-top: 0; } }
+@media (min-width: 1400px) {
+  .contact-sidebar {
+    width: 532px; } }
 .offers-title {
   margin-bottom: 1.5em;
   text-align: center; }
@@ -4027,4 +4046,4 @@ label a {
     page-break-after: avoid; } }
 
 
-/*# sourceMappingURL=main.css.map?d91572aecadc3ea9301723d5450fb192*/
+/*# sourceMappingURL=main.css.map?14ac0584f3dc935f1c253a929d809e03*/

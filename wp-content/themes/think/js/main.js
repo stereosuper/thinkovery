@@ -23051,6 +23051,49 @@ var burgerHandler = function burgerHandler() {
 
 /***/ }),
 
+/***/ "./wp-content/themes/think/src/js/contactSidebar.js":
+/*!**********************************************************!*\
+  !*** ./wp-content/themes/think/src/js/contactSidebar.js ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var collant__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! collant */ "./node_modules/collant/dist/index.js");
+/* harmony import */ var collant__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(collant__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils */ "./wp-content/themes/think/src/js/utils/index.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+var contactSidebarHandler = function contactSidebarHandler() {
+  var _query = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["query"])({
+    selector: '.js-contact-sidebar'
+  }),
+      _query2 = _slicedToArray(_query, 1),
+      contactSidebar = _query2[0];
+
+  if (!contactSidebar) return;
+  var halfWindow = window.innerHeight / 2;
+  var halfSidebar = contactSidebar.getBoundingClientRect().height / 2;
+  var offsetSidebar = halfWindow - halfSidebar;
+  collant__WEBPACK_IMPORTED_MODULE_0___default()(contactSidebar, offsetSidebar, {
+    minimumWidth: 960
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (contactSidebarHandler);
+
+/***/ }),
+
 /***/ "./wp-content/themes/think/src/js/customCheckbox.js":
 /*!**********************************************************!*\
   !*** ./wp-content/themes/think/src/js/customCheckbox.js ***!
@@ -24194,19 +24237,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_Fallback__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./utils/Fallback */ "./wp-content/themes/think/src/js/utils/Fallback.js");
 /* harmony import */ var _accordion__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./accordion */ "./wp-content/themes/think/src/js/accordion.js");
 /* harmony import */ var _offersMenu__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./offersMenu */ "./wp-content/themes/think/src/js/offersMenu.js");
-/* harmony import */ var _shareSidebar__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./shareSidebar */ "./wp-content/themes/think/src/js/shareSidebar.js");
-/* harmony import */ var _form__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./form */ "./wp-content/themes/think/src/js/form.js");
-/* harmony import */ var _newsletter__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./newsletter */ "./wp-content/themes/think/src/js/newsletter.js");
-/* harmony import */ var _minions__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./minions */ "./wp-content/themes/think/src/js/minions.js");
-/* harmony import */ var _makeBorders__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./makeBorders */ "./wp-content/themes/think/src/js/makeBorders.js");
-/* harmony import */ var _drawBorders__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./drawBorders */ "./wp-content/themes/think/src/js/drawBorders.js");
-/* harmony import */ var _video__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./video */ "./wp-content/themes/think/src/js/video.js");
-/* harmony import */ var _videoVimeo__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./videoVimeo */ "./wp-content/themes/think/src/js/videoVimeo.js");
-/* harmony import */ var _learningAnim__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./learningAnim */ "./wp-content/themes/think/src/js/learningAnim.js");
-/* harmony import */ var _search__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./search */ "./wp-content/themes/think/src/js/search.js");
-/* harmony import */ var _memory__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./memory */ "./wp-content/themes/think/src/js/memory.js");
-/* harmony import */ var _burger__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./burger */ "./wp-content/themes/think/src/js/burger.js");
-/* harmony import */ var _customCheckbox__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./customCheckbox */ "./wp-content/themes/think/src/js/customCheckbox.js");
+/* harmony import */ var _contactSidebar__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./contactSidebar */ "./wp-content/themes/think/src/js/contactSidebar.js");
+/* harmony import */ var _shareSidebar__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./shareSidebar */ "./wp-content/themes/think/src/js/shareSidebar.js");
+/* harmony import */ var _form__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./form */ "./wp-content/themes/think/src/js/form.js");
+/* harmony import */ var _newsletter__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./newsletter */ "./wp-content/themes/think/src/js/newsletter.js");
+/* harmony import */ var _minions__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./minions */ "./wp-content/themes/think/src/js/minions.js");
+/* harmony import */ var _makeBorders__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./makeBorders */ "./wp-content/themes/think/src/js/makeBorders.js");
+/* harmony import */ var _drawBorders__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./drawBorders */ "./wp-content/themes/think/src/js/drawBorders.js");
+/* harmony import */ var _video__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./video */ "./wp-content/themes/think/src/js/video.js");
+/* harmony import */ var _videoVimeo__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./videoVimeo */ "./wp-content/themes/think/src/js/videoVimeo.js");
+/* harmony import */ var _learningAnim__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./learningAnim */ "./wp-content/themes/think/src/js/learningAnim.js");
+/* harmony import */ var _search__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./search */ "./wp-content/themes/think/src/js/search.js");
+/* harmony import */ var _memory__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./memory */ "./wp-content/themes/think/src/js/memory.js");
+/* harmony import */ var _burger__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./burger */ "./wp-content/themes/think/src/js/burger.js");
+/* harmony import */ var _customCheckbox__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./customCheckbox */ "./wp-content/themes/think/src/js/customCheckbox.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -24214,6 +24258,7 @@ function _nonIterableRest() { throw new TypeError("Invalid attempt to destructur
 function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -24263,29 +24308,30 @@ var preload = function preload() {
   _utils_io__WEBPACK_IMPORTED_MODULE_4__["default"].init();
   _utils_Fallback__WEBPACK_IMPORTED_MODULE_6__["default"].init(); // Custom scripts
 
-  Object(_burger__WEBPACK_IMPORTED_MODULE_20__["default"])();
-  Object(_customCheckbox__WEBPACK_IMPORTED_MODULE_21__["default"])();
+  Object(_burger__WEBPACK_IMPORTED_MODULE_21__["default"])();
+  Object(_customCheckbox__WEBPACK_IMPORTED_MODULE_22__["default"])();
   Object(_accordion__WEBPACK_IMPORTED_MODULE_7__["default"])();
   Object(_offersMenu__WEBPACK_IMPORTED_MODULE_8__["default"])();
-  Object(_shareSidebar__WEBPACK_IMPORTED_MODULE_9__["default"])();
-  Object(_form__WEBPACK_IMPORTED_MODULE_10__["default"])();
-  Object(_search__WEBPACK_IMPORTED_MODULE_18__["default"])();
-  Object(_newsletter__WEBPACK_IMPORTED_MODULE_11__["default"])();
-  Object(_video__WEBPACK_IMPORTED_MODULE_15__["default"])();
-  Object(_videoVimeo__WEBPACK_IMPORTED_MODULE_16__["default"])();
-  Object(_memory__WEBPACK_IMPORTED_MODULE_19__["default"])();
+  Object(_shareSidebar__WEBPACK_IMPORTED_MODULE_10__["default"])();
+  Object(_form__WEBPACK_IMPORTED_MODULE_11__["default"])();
+  Object(_search__WEBPACK_IMPORTED_MODULE_19__["default"])();
+  Object(_newsletter__WEBPACK_IMPORTED_MODULE_12__["default"])();
+  Object(_video__WEBPACK_IMPORTED_MODULE_16__["default"])();
+  Object(_videoVimeo__WEBPACK_IMPORTED_MODULE_17__["default"])();
+  Object(_memory__WEBPACK_IMPORTED_MODULE_20__["default"])();
+  Object(_contactSidebar__WEBPACK_IMPORTED_MODULE_9__["default"])();
 };
 
 var animationHandler = function animationHandler() {
-  Object(_minions__WEBPACK_IMPORTED_MODULE_12__["default"])();
-  Object(_drawBorders__WEBPACK_IMPORTED_MODULE_14__["default"])();
-  Object(_learningAnim__WEBPACK_IMPORTED_MODULE_17__["default"])();
+  Object(_minions__WEBPACK_IMPORTED_MODULE_13__["default"])();
+  Object(_drawBorders__WEBPACK_IMPORTED_MODULE_15__["default"])();
+  Object(_learningAnim__WEBPACK_IMPORTED_MODULE_18__["default"])();
 };
 
 var load = function load() {
   if (document.readyState !== 'complete') return;
   state.loaded = true;
-  Object(_makeBorders__WEBPACK_IMPORTED_MODULE_13__["default"])();
+  Object(_makeBorders__WEBPACK_IMPORTED_MODULE_14__["default"])();
 
   if (sessionStorage.getItem('loaded')) {
     animationHandler();
@@ -25359,14 +25405,19 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var offersMenuHandler = function offersMenuHandler() {
-  var offersMenu = document.getElementById('offers-menu');
-  if (!offersMenu) return;
-
   var _query = Object(_utils__WEBPACK_IMPORTED_MODULE_6__["query"])({
-    selector: '#offers'
+    selector: '#offers-menu'
   }),
       _query2 = _slicedToArray(_query, 1),
-      offers = _query2[0];
+      offersMenu = _query2[0];
+
+  if (!offersMenu) return;
+
+  var _query3 = Object(_utils__WEBPACK_IMPORTED_MODULE_6__["query"])({
+    selector: '#offers'
+  }),
+      _query4 = _slicedToArray(_query3, 1),
+      offers = _query4[0];
 
   var menuHeight = offersMenu.getBoundingClientRect().height;
 
@@ -28775,4 +28826,4 @@ var videoHandler = function videoHandler() {
 /***/ })
 
 /******/ });
-//# sourceMappingURL=main.js.map?a4a9885ca5ddec81bb841fd16b5ff263
+//# sourceMappingURL=main.js.map?98e7a0833a9ce576c22899061fa43e5d

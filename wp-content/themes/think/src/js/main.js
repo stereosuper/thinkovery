@@ -10,6 +10,7 @@ import fallback from './utils/Fallback';
 
 import accordion from './accordion';
 import offersMenu from './offersMenu';
+import contactSidebar from './contactSidebar';
 import shareSidebar from './shareSidebar';
 import form from './form';
 import newsletter from './newsletter';
@@ -67,6 +68,7 @@ const preload = () => {
     video();
     videoVimeo();
     memory();
+    contactSidebar();
 };
 
 const animationHandler = () => {

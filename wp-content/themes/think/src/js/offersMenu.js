@@ -8,7 +8,7 @@ import win from './utils/Window';
 import { forEach, query } from './utils';
 
 const offersMenuHandler = () => {
-    const offersMenu = document.getElementById('offers-menu');
+    const [offersMenu] = query({ selector: '#offers-menu' });
 
     if (!offersMenu) return;
     const [offers] = query({ selector: '#offers' });
