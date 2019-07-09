@@ -3632,6 +3632,57 @@ label a {
 .contact-form .content h2:first-child {
     margin-top: 84px;
     margin-bottom: 28px; }
+.contact-form .form input[type="text"], .contact-form .form input[type="email"] {
+  width: 100%;
+  max-width: 330px; }
+.contact-form .form input[type="tel"] {
+  width: 100%;
+  max-width: 175px; }
+.contact-form .form input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0; }
+.contact-form .form select {
+  width: 100%; }
+.contact-form .form textarea {
+  width: 100%;
+  max-width: 570px; }
+.contact-form .form label {
+  pointer-events: none; }
+.js .contact-form .form .is-checkbox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative; }
+.js .contact-form .form span.wpcf7-list-item {
+  margin-left: 20px; }
+.js .contact-form .form .custom-checkbox {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  width: 13px;
+  width: 1.3rem;
+  height: 13px;
+  height: 1.3rem;
+  position: absolute;
+  top: 8px;
+  left: 0;
+  border: 1px solid #404040;
+  z-index: 1; }
+.js .contact-form .form .custom-checkbox::after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px; }
+.js .contact-form .form .custom-checkbox.activated::after {
+    background: #df622d; }
+@media (min-width: 580px) {
+  .contact-form .form select {
+    width: 395px; } }
 .offers-title {
   margin-bottom: 1.5em;
   text-align: center; }
@@ -3976,4 +4027,4 @@ label a {
     page-break-after: avoid; } }
 
 
-/*# sourceMappingURL=main.css.map?761292f49c62074134cd09b6329c8a25*/
+/*# sourceMappingURL=main.css.map?d91572aecadc3ea9301723d5450fb192*/

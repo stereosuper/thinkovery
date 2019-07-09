@@ -22,6 +22,7 @@ import learningAnim from './learningAnim';
 import search from './search';
 import memory from './memory';
 import burger from './burger';
+import customCheckbox from './customCheckbox';
 
 // Dynamic imports
 // const dynamicLoading = importPath => async () => {
@@ -56,6 +57,7 @@ const preload = () => {
 
     // Custom scripts
     burger();
+    customCheckbox();
     accordion();
     offersMenu();
     shareSidebar();

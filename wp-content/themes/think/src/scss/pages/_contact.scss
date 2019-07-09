@@ -38,6 +38,78 @@
         }
     }
     .form {
+        input {
+            &[type="text"],
+            &[type="email"] {
+                width: 100%;
+                max-width: 330px;
+            }
+            &[type="tel"] {
+                width: 100%;
+                max-width: 175px;
+            }
+            &[type="checkbox"] {
+                position: absolute;
+                opacity: 0;
+                cursor: pointer;
+                height: 0;
+                width: 0;
+            }
+        }
+        select {
+            width: 100%;
+        }
+        textarea {
+            width: 100%;
+            max-width: 570px;
+        }
+        label {
+            pointer-events: none;
+        }
+        .js & {
+            .is-checkbox {
+                display: flex;
+                position: relative;
+            }
+            span {
+                &.wpcf7-list-item {
+                    margin-left: 20px;
+                }
+            }
+            .custom-checkbox {
+                display: inline-flex;
+                width: 1.3rem;
+                height: 1.3rem;
+                position: absolute;
+                top: 8px;
+                left: 0;
+                border: 1px solid $text-color;
+                z-index: 1;
+                &::after {
+                    content: "";
+                    position: absolute;
+                    top: 2px;
+                    left: 2px;
+                    right: 2px;
+                    bottom: 2px;
+                }
+                &.activated {
+                    &::after {
+                        background: $tertiary;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: $phone) {
+    .contact-form {
+        .form {
+            select {
+                width: 395px;
+            }
+        }
     }
 }
 

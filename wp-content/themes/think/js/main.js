@@ -23051,6 +23051,62 @@ var burgerHandler = function burgerHandler() {
 
 /***/ }),
 
+/***/ "./wp-content/themes/think/src/js/customCheckbox.js":
+/*!**********************************************************!*\
+  !*** ./wp-content/themes/think/src/js/customCheckbox.js ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./wp-content/themes/think/src/js/utils/index.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+var checkboxHandler = function checkboxHandler() {
+  var customCheckboxes = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["query"])({
+    selector: '.js-custom-checkbox'
+  });
+  if (!customCheckboxes.length) return;
+
+  var checkboxClickHandler = function checkboxClickHandler(checkbox) {
+    var _query = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["query"])({
+      selector: 'input',
+      ctx: checkbox.parentElement
+    }),
+        _query2 = _slicedToArray(_query, 1),
+        realCheckbox = _query2[0];
+
+    var isActive = realCheckbox.getAttribute('checked');
+
+    if (isActive !== '') {
+      realCheckbox.setAttribute('checked', '');
+      checkbox.classList.add('activated');
+    } else {
+      realCheckbox.removeAttribute('checked');
+      checkbox.classList.remove('activated');
+    }
+  };
+
+  Object(_utils__WEBPACK_IMPORTED_MODULE_0__["forEach"])(customCheckboxes, function (customCheckbox) {
+    customCheckbox.addEventListener('click', function () {
+      checkboxClickHandler(customCheckbox);
+    }, false);
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (checkboxHandler);
+
+/***/ }),
+
 /***/ "./wp-content/themes/think/src/js/drawBorders.js":
 /*!*******************************************************!*\
   !*** ./wp-content/themes/think/src/js/drawBorders.js ***!
@@ -24150,6 +24206,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _search__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./search */ "./wp-content/themes/think/src/js/search.js");
 /* harmony import */ var _memory__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./memory */ "./wp-content/themes/think/src/js/memory.js");
 /* harmony import */ var _burger__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./burger */ "./wp-content/themes/think/src/js/burger.js");
+/* harmony import */ var _customCheckbox__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./customCheckbox */ "./wp-content/themes/think/src/js/customCheckbox.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -24157,6 +24214,7 @@ function _nonIterableRest() { throw new TypeError("Invalid attempt to destructur
 function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -24206,6 +24264,7 @@ var preload = function preload() {
   _utils_Fallback__WEBPACK_IMPORTED_MODULE_6__["default"].init(); // Custom scripts
 
   Object(_burger__WEBPACK_IMPORTED_MODULE_20__["default"])();
+  Object(_customCheckbox__WEBPACK_IMPORTED_MODULE_21__["default"])();
   Object(_accordion__WEBPACK_IMPORTED_MODULE_7__["default"])();
   Object(_offersMenu__WEBPACK_IMPORTED_MODULE_8__["default"])();
   Object(_shareSidebar__WEBPACK_IMPORTED_MODULE_9__["default"])();
@@ -28716,4 +28775,4 @@ var videoHandler = function videoHandler() {
 /***/ })
 
 /******/ });
-//# sourceMappingURL=main.js.map?8dfcc6002fca100489b119925b1fa5ca
+//# sourceMappingURL=main.js.map?a4a9885ca5ddec81bb841fd16b5ff263
