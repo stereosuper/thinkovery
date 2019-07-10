@@ -20,25 +20,6 @@
             "prepend": "",
             "append": "",
             "maxlength": ""
-        },
-        {
-            "key": "field_5d24622da370a",
-            "label": "Texte RGPD",
-            "name": "gdpr_text",
-            "type": "textarea",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "maxlength": "",
-            "rows": 3,
-            "new_lines": ""
         }
     ],
     "location": [
@@ -58,5 +39,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1562665580
+    "modified": 1562698974
 }
