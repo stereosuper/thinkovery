@@ -1,6 +1,6 @@
 import collant from 'collant';
 import imagesLoaded from 'imagesloaded';
-import { query } from './utils';
+import { query } from '../utils';
 
 const shareSidebarHandler = () => {
     const [article] = query({ selector: '#article' });

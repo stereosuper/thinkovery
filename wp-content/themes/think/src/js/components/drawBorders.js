@@ -1,8 +1,8 @@
 import { TweenMax } from 'gsap';
-import { createNewEvent, forEach, isDisplayed } from './utils';
-import scroll from './utils/Scroll';
-import win from './utils/Window';
-import { colors, easing } from './global';
+import { createNewEvent, forEach, isDisplayed } from '../utils';
+import scroll from '../utils/Scroll';
+import win from '../utils/Window';
+import { colors, easing } from '../global';
 
 const ioBorders = () => {
     const bordersWrapper = document.getElementById('borders');

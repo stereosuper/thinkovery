@@ -1,21 +1,25 @@
-import { forEach } from './utils';
+import { forEach, query } from '../utils';
 
 const newsletterHandler = () => {
-    const forms = document.querySelectorAll('form');
+    const forms = query({ selector: 'form' });
 
-    if( !forms.length ) return;
+    if (!forms.length) return;
 
     forEach(forms, form => {
         const hiddenInput = form.querySelector('.gdpr');
 
-        if( !hiddenInput ) return;
+        if (!hiddenInput) return;
 
         const displayHiddenInput = () => {
             hiddenInput.classList.add('visible');
         };
 
-        const hideHiddenInput = (e) => {
-            if( !e.target.closest('form') && !hiddenInput.querySelector('input').checked ) hiddenInput.classList.remove('visible');
+        const hideHiddenInput = e => {
+            if (
+                !e.target.closest('form') &&
+                !hiddenInput.querySelector('input').checked
+            )
+                hiddenInput.classList.remove('visible');
         };
 
         forEach(form.querySelectorAll('input'), input => {

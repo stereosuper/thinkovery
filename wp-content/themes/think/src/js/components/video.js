@@ -1,5 +1,5 @@
 import { TweenMax } from 'gsap';
-import { forEach } from './utils';
+import { forEach } from '../utils';
 
 const videoHandler = () => {
     const tag = document.createElement('script');

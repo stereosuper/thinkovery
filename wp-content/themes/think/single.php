@@ -1,16 +1,16 @@
 <?php get_header(); ?>
 
-<article class='container article'>
+<article class="container article">
 
 	<?php if ( have_posts() ) : the_post(); ?>
 
-		<div class='wrapper-collant' id='article'>
+		<div class="wrapper-collant" id="article">
 
-			<div class='share sidebar' id='share'>
+			<div class="share sidebar" id="share">
 				<span>Partager cet article :</span>
-				<ul class='share-list'>
+				<ul class="share-list">
 					<li>
-						<a href='https://twitter.com/share?url=<?php the_permalink(); ?>&text=<?php the_title(); ?>&via=<?php bloginfo("name"); ?>' rel='nofollow' target='_blank' title='Share on Twitter'><svg class="icon"><use xlink:href="#icon-twitter"/></svg></a>
+						<a href="https://twitter.com/share?url=<?php the_permalink(); ?>&text=<?php the_title(); ?>&via=<?php bloginfo("name"); ?>" rel="nofollow" target="_blank" title="Share on Twitter"><svg class="icon"><use xlink:href="#icon-twitter"/></svg></a>
 					</li>
 					<li>
 						<a href='https://www.linkedin.com/shareArticle?mini=true&url=<?php the_permalink(); ?>&title=<?php the_title(); ?>' rel='nofollow' target='_blank' title='Share on Linkedin'><svg class="icon"><use xlink:href="#icon-linkedin"/></svg></a>

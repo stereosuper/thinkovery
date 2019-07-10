@@ -1,7 +1,7 @@
 import 'gsap/ScrollToPlugin';
-import { forEach, query } from './utils';
+import { forEach, query } from '../utils';
 import { TweenMax } from 'gsap';
-import { easing, globalStyles } from './global';
+import { easing, globalStyles } from '../global';
 
 const accordionHandler = () => {
     const accordions = query({

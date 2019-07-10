@@ -1,4 +1,4 @@
-import { query, forEach } from './utils';
+import { query, forEach } from '../utils';
 
 const checkboxHandler = () => {
     const customCheckboxes = query({

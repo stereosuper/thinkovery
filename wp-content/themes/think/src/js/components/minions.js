@@ -9,13 +9,13 @@ import {
     Expo,
     Sine,
 } from 'gsap';
-import { MorphSVGPlugin } from './plugins/MorphSVGPlugin';
-import './plugins/DrawSVGPlugin';
+import { MorphSVGPlugin } from '../plugins/MorphSVGPlugin';
+import '../plugins/DrawSVGPlugin';
 
-import { easing } from './global';
-import { forEach, query, isDisplayed } from './utils';
-import win from './utils/Window';
-import snif from './utils/Snif';
+import { easing } from '../global';
+import { forEach, query, isDisplayed } from '../utils';
+import win from '../utils/Window';
+import snif from '../utils/Snif';
 
 const minionsHandler = () => {
     const homeSections = query({ selector: '.js-home-section' });

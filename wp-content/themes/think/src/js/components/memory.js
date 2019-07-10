@@ -1,4 +1,4 @@
-import { forEach, query } from './utils';
+import { forEach, query } from '../utils';
 
 const memoryHandler = () => {
     const [memory] = query({ selector: '#memory' });

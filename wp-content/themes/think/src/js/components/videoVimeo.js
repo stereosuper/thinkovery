@@ -1,6 +1,6 @@
 import VimeoPlayer from '@vimeo/player';
 import { TweenMax } from 'gsap';
-import { forEach, query } from './utils';
+import { forEach, query } from '../utils';
 
 const videoHandler = () => {
     const videos = document.querySelectorAll('.js-video-vimeo');

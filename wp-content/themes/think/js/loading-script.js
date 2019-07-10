@@ -81,15 +81,15 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./wp-content/themes/think/src/js/loading-script.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./wp-content/themes/think/src/js/load/loading-script.js");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./wp-content/themes/think/src/js/loading-script.js":
-/*!**********************************************************!*\
-  !*** ./wp-content/themes/think/src/js/loading-script.js ***!
-  \**********************************************************/
+/***/ "./wp-content/themes/think/src/js/load/loading-script.js":
+/*!***************************************************************!*\
+  !*** ./wp-content/themes/think/src/js/load/loading-script.js ***!
+  \***************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 

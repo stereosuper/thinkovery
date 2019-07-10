@@ -1,4 +1,4 @@
-import win from './utils/Window';
+import win from '../utils/Window';
 
 const burgerHandler = () => {
     const state = {

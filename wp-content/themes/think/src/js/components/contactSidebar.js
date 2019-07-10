@@ -1,6 +1,6 @@
 import collant from 'collant';
 
-import { query } from './utils';
+import { query } from '../utils';
 
 const contactSidebarHandler = () => {
     const [contactSidebar] = query({ selector: '.js-contact-sidebar' });

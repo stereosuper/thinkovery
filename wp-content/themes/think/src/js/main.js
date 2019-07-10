@@ -1,37 +1,42 @@
 import '@babel/polyfill';
 import '../scss/main.scss';
 
-import { query } from './utils';
+import { query, bodyRouter } from './utils';
 
 import win from './utils/Window';
 import io from './utils/io';
 import scroll from './utils/Scroll';
 import fallback from './utils/Fallback';
 
-import accordion from './accordion';
-import offersMenu from './offersMenu';
-import contactSidebar from './contactSidebar';
-import shareSidebar from './shareSidebar';
-import form from './form';
-import newsletter from './newsletter';
-import minions from './minions';
-import makeBorders from './makeBorders';
-import drawBorders from './drawBorders';
-import video from './video';
-import videoVimeo from './videoVimeo';
-import learningAnim from './learningAnim';
-import search from './search';
-import memory from './memory';
-import burger from './burger';
-import customCheckbox from './customCheckbox';
+import accordion from './components/accordion';
+import form from './components/form';
+import newsletter from './components/newsletter';
+import makeBorders from './components/makeBorders';
+import video from './components/video';
+import videoVimeo from './components/videoVimeo';
+import burger from './components/burger';
+import customCheckbox from './components/customCheckbox';
+import drawBorders from './components/drawBorders';
+
+// ⚠️ DO NOT REMOVE ⚠️
+// Dynamic imports function
+const dynamicLoading = ({ name }) => async () => {
+    // Do not use multiple variables for the import path, otherwise the chunck name will be composed of all the variables (and not the last one)
+    const {
+        default: defaultFunction,
+    } = await import(/* webpackChunkName: "[request]" */ `./components/${name}`);
+    defaultFunction();
+};
+// ⚠️ DO NOT REMOVE ⚠️
 
 // Dynamic imports
-// const dynamicLoading = importPath => async () => {
-//     const { default: defaultFunction } = await import(`./${importPath}`);
-//     defaultFunction();
-// };
-
-// const minions = dynamicLoading('minions');
+const offersMenu = dynamicLoading({ name: 'offersMenu' });
+const shareSidebar = dynamicLoading({ name: 'shareSidebar' });
+const search = dynamicLoading({ name: 'search' });
+const contactSidebar = dynamicLoading({ name: 'contactSidebar' });
+const memory = dynamicLoading({ name: 'memory' });
+const minions = dynamicLoading({ name: 'minions' });
+const learningAnim = dynamicLoading({ name: 'learningAnim' });
 
 const state = {
     preloaded: false,
@@ -56,25 +61,48 @@ const preload = () => {
     io.init();
     fallback.init();
 
-    // Custom scripts
+    // Components with global use
     burger();
     customCheckbox();
     accordion();
-    offersMenu();
-    shareSidebar();
-    form();
-    search();
-    newsletter();
     video();
     videoVimeo();
-    memory();
-    contactSidebar();
+    newsletter();
+    form();
+
+    // Offers template route
+    bodyRouter({ identifier: '.page-template-offers', callback: offersMenu });
+
+    // Single post template route
+    bodyRouter({ identifier: '.single-post', callback: shareSidebar });
+
+    // Blog search template route
+    bodyRouter({ identifier: '#searchform', callback: search });
+
+    // Contact template route
+    bodyRouter({
+        identifier: '.page-template-contact',
+        callback: contactSidebar,
+    });
+
+    // 404 template route
+    bodyRouter({ identifier: '.error404', callback: memory });
 };
 
 const animationHandler = () => {
-    minions();
     drawBorders();
-    learningAnim();
+
+    // Home route
+    bodyRouter({
+        identifier: '.home',
+        callback: minions,
+    });
+
+    // Learning template route
+    bodyRouter({
+        identifier: '.page-template-learning',
+        callback: learningAnim,
+    });
 };
 
 const load = () => {
@@ -88,12 +116,14 @@ const load = () => {
     }
 
     // blog categories
-    const [cats] = query({ selector: '#blog-cats' });
-    if (cats) {
-        cats.addEventListener('click', () => {
-            cats.classList.toggle('on');
-        });
-    }
+    bodyRouter({ identifier: '#blog-cats' }, () => {
+        const [cats] = query({ selector: '#blog-cats' });
+        if (cats) {
+            cats.addEventListener('click', () => {
+                cats.classList.toggle('on');
+            });
+        }
+    });
 };
 
 preload();

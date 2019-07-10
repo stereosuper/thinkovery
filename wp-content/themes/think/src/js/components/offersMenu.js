@@ -3,9 +3,9 @@ import imagesLoaded from 'imagesloaded';
 import { TweenMax } from 'gsap';
 import 'gsap/ScrollToPlugin';
 
-import { easing, globalStyles } from './global';
-import win from './utils/Window';
-import { forEach, query } from './utils';
+import { easing, globalStyles } from '../global';
+import win from '../utils/Window';
+import { forEach, query } from '../utils';
 
 const offersMenuHandler = () => {
     const [offersMenu] = query({ selector: '#offers-menu' });

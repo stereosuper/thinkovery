@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
-// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const config = (env, options) => {
     const MODE = options.mode;
@@ -10,11 +10,12 @@ const config = (env, options) => {
         cache: false,
         entry: './wp-content/themes/think/src/js/main.js',
         output: {
-            path: path.resolve(__dirname, 'wp-content/themes/think'),
-            filename: './js/main.js',
-            publicPath: '/wp-content/themes/think/',
+            path: path.resolve(__dirname, 'wp-content/themes/think/js'),
+            filename: '[name].js',
+            // Public path is important for dynamic imports. It'll help webpack to retrieve bundles by name and not by ids
+            publicPath: '/wp-content/themes/think/js/',
             sourceMapFilename: '[file].map?[contenthash]',
-            chunkFilename: 'js/[name].bundle.js',
+            chunkFilename: '[name].js',
         },
         watch: true,
         devtool: MODE === 'development' ? 'source-map' : '',
@@ -64,9 +65,9 @@ const config = (env, options) => {
             fs: 'empty', // avoids error messages
         },
         plugins: [
-            // new BundleAnalyzerPlugin(),
+            new BundleAnalyzerPlugin(),
             new MiniCssExtractPlugin({
-                filename: './css/main.css',
+                filename: '../css/[name].css',
             }),
             new BrowserSyncPlugin({
                 host: 'localhost',
@@ -86,7 +87,7 @@ const loader = (env, options) => {
     const MODE = options.mode;
     return {
         cache: false,
-        entry: './wp-content/themes/think/src/js/loading-script.js',
+        entry: './wp-content/themes/think/src/js/load/loading-script.js',
         output: {
             path: path.resolve(__dirname),
             filename: './wp-content/themes/think/js/loading-script.js',
