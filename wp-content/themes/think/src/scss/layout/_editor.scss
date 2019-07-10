@@ -1,21 +1,21 @@
-.editor{
-    > *{
+.editor {
+    > * {
         clear: both;
     }
 
-    h3{
+    h3 {
         font-size: 2.6rem;
     }
 
-    .center{
+    .center {
         margin-left: auto;
         margin-right: auto;
     }
-    .right{
+    .right {
         float: right;
     }
 
-    .job{
+    .job {
         margin-top: 0;
         font-size: 1.6rem;
         font-style: italic;
@@ -25,7 +25,8 @@
 .wp-block-image {
     max-width: none;
     margin: 2.5em 0 0;
-    .alignright, .alignleft {
+    .alignright,
+    .alignleft {
         margin: 0;
         float: none;
     }
@@ -34,7 +35,7 @@
     //     width: 100%;
     //     table-layout: fixed;
     // }
-    figcaption{
+    figcaption {
         padding: 5px 0 0 $gutter;
         font-size: 1.8rem;
         font-style: italic;
@@ -43,23 +44,23 @@
     }
 }
 
-.wp-block-columns{
-    .wp-block-image{
-        .alignleft{
+.wp-block-columns {
+    .wp-block-image {
+        .alignleft {
             margin-left: 0;
             margin-right: 31px;
         }
-        .alignright{
+        .alignright {
             margin-right: 0;
             margin-left: 31px;
         }
     }
 }
 
-.wp-block-columns{
-    &.col-2-3{
+.wp-block-columns {
+    &.col-2-3 {
         display: block;
-        .wp-block-column{
+        .wp-block-column {
             margin-right: 0;
             margin-left: 0;
             clear: both;
@@ -67,126 +68,161 @@
     }
 }
 
-.wp-block-stereoberg-blockquote{
+.wp-block-quote,
+.wp-block-stereoberg-blockquote {
     max-width: 570px;
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
     text-align: center;
-    .quote{
+}
+
+.wp-block-stereoberg-blockquote {
+    .quote {
         margin-left: 0;
-        margin-right: 0; 
+        margin-right: 0;
         font-size: 2.6rem;
-        &:before{
+        &:before {
             display: block;
             width: 38px;
             height: 30px;
             position: static;
             margin: 0 auto;
         }
-        &:after{
+        &:after {
             content: none;
         }
-        p{
+        p {
             margin-top: 1.25em;
         }
     }
-    .name{
+    .name {
         display: block;
         margin: $line-height 0 0;
         font-size: 2rem;
         font-style: normal;
         color: $primary;
     }
-    .position{
+    .position {
         font-size: 1.6rem;
         font-weight: 400;
     }
 }
 
-.wp-block-media-text{
+.wp-block-quote {
+    &:before {
+        display: block;
+        width: 38px;
+        height: 30px;
+        position: static;
+        margin: 0 auto;
+    }
+    &:after {
+        content: none;
+    }
+    > p {
+        font-size: 2.6rem;
+    }
+    > cite {
+        display: block;
+        margin: $line-height 0 0;
+        font-size: 2rem;
+        font-style: normal;
+        color: $primary;
+    }
+}
+
+.wp-block-media-text {
     display: block;
-    margin: $line-height*2 0;
-    .wp-block-media-text__content{
+    margin: $line-height * 2 0;
+    .wp-block-media-text__content {
         padding-right: 0;
         padding-left: $gutter;
     }
 }
 
-.wp-block-columns{
+.wp-block-columns {
     display: block;
 }
-.wp-block-column{
-    &:not(:first-child), &:nth-child(2n){
+.wp-block-column {
+    &:not(:first-child),
+    &:nth-child(2n) {
         margin-left: 0;
     }
-    &:not(:last-child), &:nth-child(odd){
+    &:not(:last-child),
+    &:nth-child(odd) {
         margin-right: 0;
     }
 }
 
-.wp-block-stereoberg-step{
+.wp-block-stereoberg-step {
     width: 25%;
     padding: 0 $gutter;
     float: right;
     clear: none;
 }
 
-
-@media (min-width: $tablet){
-    .wp-block-columns{
+@media (min-width: $tablet) {
+    .wp-block-columns {
         display: flex;
-        &.steps, .steps &{
+        &.steps,
+        .steps & {
             display: block;
         }
     }
-    .wp-block-column{
-        &:not(:first-child), &:nth-child(2n){
+    .wp-block-column {
+        &:not(:first-child),
+        &:nth-child(2n) {
             margin-left: $gutter;
         }
-        &:not(:last-child), &:nth-child(odd){
+        &:not(:last-child),
+        &:nth-child(odd) {
             margin-right: $gutter;
         }
-        .steps &{
-            max-width: $col*3;
+        .steps & {
+            max-width: $col * 3;
             margin-left: auto;
             margin-right: auto;
-            &:not(:first-child), &:nth-child(2n){
+            &:not(:first-child),
+            &:nth-child(2n) {
                 margin-left: auto;
             }
-            &:not(:last-child), &:nth-child(odd){
+            &:not(:last-child),
+            &:nth-child(odd) {
                 margin-right: auto;
             }
-            .wp-block-column{
+            .wp-block-column {
                 max-width: 100%;
             }
         }
     }
 
-    .wp-block-stereoberg-checklist{
-        > h2{
+    .wp-block-stereoberg-checklist {
+        > h2 {
             width: 75%;
         }
-        > ul{
+        > ul {
             margin-left: 35%;
         }
     }
 }
 
 @media (min-width: $desktop-small) {
-    .editor{
-        .big{
-            width: $col*3.5;
+    .editor {
+        .big {
+            width: $col * 3.5;
             padding-left: $gutter;
             padding-right: $border-size/2;
         }
-        .medium, .small{
+        .medium,
+        .small {
             padding-left: $border-size/2;
             padding-right: $border-size/2;
         }
-        .medium{
-            width: $col*3;
+        .medium {
+            width: $col * 3;
         }
-        .small{
-            width: $col*2;
+        .small {
+            width: $col * 2;
         }
     }
 
@@ -201,24 +237,24 @@
         }
     }
 
-    .wp-block-media-text{
+    .wp-block-media-text {
         display: grid;
-        &.alignwide{
-            width: calc(#{$col*3} + #{$gutter});
+        &.alignwide {
+            width: calc(#{$col * 3} + #{$gutter});
             grid-template-columns: 70% auto;
-            &.has-media-on-the-right{
+            &.has-media-on-the-right {
                 grid-template-columns: auto 70%;
             }
         }
-        &.alignfull{
+        &.alignfull {
             margin-left: -$gutter;
-            &.has-media-on-the-right{
+            &.has-media-on-the-right {
                 margin-left: 0;
                 margin-right: -$gutter;
             }
         }
-        &.has-media-on-the-right{
-            .wp-block-media-text__content{
+        &.has-media-on-the-right {
+            .wp-block-media-text__content {
                 padding-left: 0;
                 padding-right: $gutter;
             }
@@ -227,41 +263,44 @@
 }
 
 @media (min-width: $desktop) {
-    .wp-block-columns{
-        &.steps, .steps &{
+    .wp-block-columns {
+        &.steps,
+        .steps & {
             display: flex;
         }
     }
-    .wp-block-column{
-        .steps &{
-            &:not(:first-child), &:nth-child(2n){
+    .wp-block-column {
+        .steps & {
+            &:not(:first-child),
+            &:nth-child(2n) {
                 margin-left: $gutter;
             }
-            &:not(:last-child), &:nth-child(odd){
+            &:not(:last-child),
+            &:nth-child(odd) {
                 margin-right: $gutter;
             }
         }
     }
 
     .wp-block-image {
-        .col-3-desk &{
+        .col-3-desk & {
             width: calc(129% + #{$gutter});
         }
-        .single-post &{
-            width: calc(100% + #{$gutter*2});
+        .single-post & {
+            width: calc(100% + #{$gutter * 2});
             margin-left: -$gutter;
         }
     }
 
-    .wp-block-columns{
-        &.col-2-3{
+    .wp-block-columns {
+        &.col-2-3 {
             display: flex;
-            .wp-block-column{
-                &:first-child{
+            .wp-block-column {
+                &:first-child {
                     flex-basis: 35%;
                     margin-right: $gutter;
                 }
-                &:last-child{
+                &:last-child {
                     flex-basis: 55%;
                     margin-left: $gutter;
                 }
@@ -272,14 +311,14 @@
 
 @media (min-width: $desktop-huge) {
     .wp-block-image {
-        .col-3-desk &{
-            width: calc(133.33% + #{$gutter*2});
+        .col-3-desk & {
+            width: calc(133.33% + #{$gutter * 2});
         }
-        .single-post &{
-            width: calc(100% + #{$gutter*2});
+        .single-post & {
+            width: calc(100% + #{$gutter * 2});
             margin-left: -$gutter;
         }
-        &.alignwide{
+        &.alignwide {
             margin-left: -$gutter;
         }
     }
