@@ -3656,6 +3656,8 @@ label a {
   display: -ms-flexbox;
   display: flex;
   position: relative; }
+.js .contact-form .form .is-checkbox .wpcf7-list-item-label {
+    cursor: pointer; }
 .js .contact-form .form span.wpcf7-list-item {
   margin-left: 20px; }
 .js .contact-form .form .custom-checkbox {
@@ -3670,7 +3672,8 @@ label a {
   top: 8px;
   left: 0;
   border: 1px solid #404040;
-  z-index: 1; }
+  z-index: 1;
+  cursor: pointer; }
 .js .contact-form .form .custom-checkbox::after {
     content: "";
     position: absolute;
@@ -4046,4 +4049,4 @@ label a {
     page-break-after: avoid; } }
 
 
-/*# sourceMappingURL=main.css.map?14ac0584f3dc935f1c253a929d809e03*/
+/*# sourceMappingURL=main.css.map?78d15fb0918edee001b4a56d9739dbba*/

@@ -23118,6 +23118,9 @@ var checkboxHandler = function checkboxHandler() {
   var customCheckboxes = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["query"])({
     selector: '.js-custom-checkbox'
   });
+  var checkboxFields = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["query"])({
+    selector: '.is-checkbox'
+  });
   if (!customCheckboxes.length) return;
 
   var checkboxClickHandler = function checkboxClickHandler(checkbox) {
@@ -23142,6 +23145,42 @@ var checkboxHandler = function checkboxHandler() {
   Object(_utils__WEBPACK_IMPORTED_MODULE_0__["forEach"])(customCheckboxes, function (customCheckbox) {
     customCheckbox.addEventListener('click', function () {
       checkboxClickHandler(customCheckbox);
+    }, false);
+  });
+
+  var labelClickHandler = function labelClickHandler(checkboxField) {
+    var _query3 = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["query"])({
+      selector: 'input',
+      ctx: checkboxField
+    }),
+        _query4 = _slicedToArray(_query3, 1),
+        realCheckbox = _query4[0];
+
+    var _query5 = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["query"])({
+      selector: '.js-custom-checkbox',
+      ctx: checkboxField
+    }),
+        _query6 = _slicedToArray(_query5, 1),
+        customCheckbox = _query6[0];
+
+    var isActive = realCheckbox.getAttribute('checked');
+
+    if (isActive !== '') {
+      realCheckbox.setAttribute('checked', '');
+      customCheckbox.classList.add('activated');
+    } else {
+      realCheckbox.removeAttribute('checked');
+      customCheckbox.classList.remove('activated');
+    }
+  };
+
+  Object(_utils__WEBPACK_IMPORTED_MODULE_0__["forEach"])(checkboxFields, function (checkboxField) {
+    checkboxField.addEventListener('click', function (_ref) {
+      var target = _ref.target;
+
+      if (target.classList.contains('wpcf7-list-item-label')) {
+        labelClickHandler(checkboxField);
+      }
     }, false);
   });
 };
@@ -28826,4 +28865,4 @@ var videoHandler = function videoHandler() {
 /***/ })
 
 /******/ });
-//# sourceMappingURL=main.js.map?98e7a0833a9ce576c22899061fa43e5d
+//# sourceMappingURL=main.js.map?05c67a7237301f99616a9c79cc34cbca

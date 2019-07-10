@@ -1,7 +1,12 @@
 import { query, forEach } from './utils';
 
 const checkboxHandler = () => {
-    const customCheckboxes = query({ selector: '.js-custom-checkbox' });
+    const customCheckboxes = query({
+        selector: '.js-custom-checkbox',
+    });
+    const checkboxFields = query({
+        selector: '.is-checkbox',
+    });
 
     if (!customCheckboxes.length) return;
 
@@ -26,6 +31,39 @@ const checkboxHandler = () => {
             'click',
             () => {
                 checkboxClickHandler(customCheckbox);
+            },
+            false
+        );
+    });
+
+    const labelClickHandler = checkboxField => {
+        const [realCheckbox] = query({
+            selector: 'input',
+            ctx: checkboxField,
+        });
+        const [customCheckbox] = query({
+            selector: '.js-custom-checkbox',
+            ctx: checkboxField,
+        });
+
+        const isActive = realCheckbox.getAttribute('checked');
+
+        if (isActive !== '') {
+            realCheckbox.setAttribute('checked', '');
+            customCheckbox.classList.add('activated');
+        } else {
+            realCheckbox.removeAttribute('checked');
+            customCheckbox.classList.remove('activated');
+        }
+    };
+
+    forEach(checkboxFields, checkboxField => {
+        checkboxField.addEventListener(
+            'click',
+            ({ target }) => {
+                if (target.classList.contains('wpcf7-list-item-label')) {
+                    labelClickHandler(checkboxField);
+                }
             },
             false
         );

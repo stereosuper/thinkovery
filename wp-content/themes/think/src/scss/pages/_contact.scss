@@ -70,6 +70,9 @@
             .is-checkbox {
                 display: flex;
                 position: relative;
+                .wpcf7-list-item-label {
+                    cursor: pointer;
+                }
             }
             span {
                 &.wpcf7-list-item {
@@ -85,6 +88,7 @@
                 left: 0;
                 border: 1px solid $text-color;
                 z-index: 1;
+                cursor: pointer;
                 &::after {
                     content: "";
                     position: absolute;
