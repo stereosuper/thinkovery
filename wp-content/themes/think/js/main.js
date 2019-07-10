@@ -24595,9 +24595,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
 /* harmony import */ var _plugins_MorphSVGPlugin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./plugins/MorphSVGPlugin */ "./wp-content/themes/think/src/js/plugins/MorphSVGPlugin.js");
 /* harmony import */ var _plugins_DrawSVGPlugin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./plugins/DrawSVGPlugin */ "./wp-content/themes/think/src/js/plugins/DrawSVGPlugin.js");
-/* harmony import */ var _utils_Window__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils/Window */ "./wp-content/themes/think/src/js/utils/Window.js");
-/* harmony import */ var _global__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./global */ "./wp-content/themes/think/src/js/global/index.js");
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./utils */ "./wp-content/themes/think/src/js/utils/index.js");
+/* harmony import */ var _global__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./global */ "./wp-content/themes/think/src/js/global/index.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./utils */ "./wp-content/themes/think/src/js/utils/index.js");
+/* harmony import */ var _utils_Window__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./utils/Window */ "./wp-content/themes/think/src/js/utils/Window.js");
+/* harmony import */ var _utils_Snif__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./utils/Snif */ "./wp-content/themes/think/src/js/utils/Snif.js");
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { if (i % 2) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } else { Object.defineProperties(target, Object.getOwnPropertyDescriptors(arguments[i])); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -24613,35 +24618,40 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var minionsHandler = function minionsHandler() {
-  var homeSections = Object(_utils__WEBPACK_IMPORTED_MODULE_5__["query"])({
+  var homeSections = Object(_utils__WEBPACK_IMPORTED_MODULE_4__["query"])({
     selector: '.js-home-section'
   });
 
-  var _query = Object(_utils__WEBPACK_IMPORTED_MODULE_5__["query"])({
+  var _query = Object(_utils__WEBPACK_IMPORTED_MODULE_4__["query"])({
     selector: '#home-video'
   }),
       _query2 = _slicedToArray(_query, 1),
       video = _query2[0];
 
-  var minions = Object(_utils__WEBPACK_IMPORTED_MODULE_5__["query"])({
+  var minions = Object(_utils__WEBPACK_IMPORTED_MODULE_4__["query"])({
     selector: '.shape'
   });
   if (!homeSections.length || !video || !minions.length) return;
+  var isSafari = _utils_Snif__WEBPACK_IMPORTED_MODULE_6__["default"].isSafari();
+  var tweenOptimizations = isSafari ? {
+    force3D: false
+  } : {};
 
-  var _query3 = Object(_utils__WEBPACK_IMPORTED_MODULE_5__["query"])({
+  var _query3 = Object(_utils__WEBPACK_IMPORTED_MODULE_4__["query"])({
     selector: '#plane-path path'
   }),
       _query4 = _slicedToArray(_query3, 1),
       planePath = _query4[0];
 
-  var _query5 = Object(_utils__WEBPACK_IMPORTED_MODULE_5__["query"])({
+  var _query5 = Object(_utils__WEBPACK_IMPORTED_MODULE_4__["query"])({
     selector: '#plane'
   }),
       _query6 = _slicedToArray(_query5, 1),
       plane = _query6[0];
 
-  var _query7 = Object(_utils__WEBPACK_IMPORTED_MODULE_5__["query"])({
+  var _query7 = Object(_utils__WEBPACK_IMPORTED_MODULE_4__["query"])({
     selector: '#morpion'
   }),
       _query8 = _slicedToArray(_query7, 1),
@@ -24727,13 +24737,15 @@ var minionsHandler = function minionsHandler() {
     };
 
     animsState['home-intro'].launched = true;
-    tlPlayer.to(player, 0.3, {
+    tlPlayer.to(player, 0.3, _objectSpread({
       scale: 4,
-      opacity: 1,
+      opacity: 1
+    }, tweenOptimizations, {
+      ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Power4"].easeIn,
       onComplete: function onComplete() {
         if (video) {
           video.classList.add('player-on', 'on');
-          gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set(Object(_utils__WEBPACK_IMPORTED_MODULE_5__["query"])({
+          gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set(Object(_utils__WEBPACK_IMPORTED_MODULE_4__["query"])({
             selector: '.iframe',
             ctx: video
           }), {
@@ -24741,12 +24753,12 @@ var minionsHandler = function minionsHandler() {
             delay: 0.7
           });
         }
-      },
-      ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Power4"].easeIn
-    }).to(player, 0.2, {
-      scale: 3,
+      }
+    })).to(player, 0.2, _objectSpread({
+      scale: 3
+    }, tweenOptimizations, {
       ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Power2"].easeOut
-    }).to(player, 1, {
+    })).to(player, 1, {
       x: -10,
       y: videoBottom - 50,
       rotation: 90,
@@ -24775,10 +24787,11 @@ var minionsHandler = function minionsHandler() {
     gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set([minions[0], minions[1], minions[3], minions[4]], {
       opacity: 1
     });
-    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to([minions[0], minions[1], minions[3], minions[4]], 0.5, {
-      scale: 3,
+    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to([minions[0], minions[1], minions[3], minions[4]], 0.5, _objectSpread({
+      scale: 3
+    }, tweenOptimizations, {
       ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Power1"].easeIn
-    });
+    }));
     gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[0], 1.8, {
       bezier: {
         curviness: 1,
@@ -24793,10 +24806,10 @@ var minionsHandler = function minionsHandler() {
           y: introBottom + 100
         }]
       },
-      delay: 0.15,
-      ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Power2"].easeOut
+      ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Power2"].easeOut,
+      delay: 0.15
     });
-    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[1], 1.8, {
+    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[1], 1.8, _objectSpread({
       bezier: {
         curviness: 1,
         values: [{
@@ -24809,16 +24822,17 @@ var minionsHandler = function minionsHandler() {
           x: -130,
           y: introBottom + 100
         }]
-      },
-      delay: 0.15,
-      ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Power2"].easeOut
-    });
-    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set(minions[2], {
-      opacity: 1,
-      scale: 3,
+      }
+    }, tweenOptimizations, {
+      ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Power2"].easeOut,
+      delay: 0.15
+    }));
+    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set(minions[2], _objectSpread({
       x: 0,
-      y: introBottom + 100
-    });
+      y: introBottom + 100,
+      scale: 3,
+      opacity: 1
+    }, tweenOptimizations));
     gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minions[3], 1.8, {
       bezier: {
         curviness: 1,
@@ -25020,7 +25034,7 @@ var minionsHandler = function minionsHandler() {
   };
 
   var aboutAnim = function aboutAnim() {
-    var minionsFourthSection = Object(_utils__WEBPACK_IMPORTED_MODULE_5__["query"])({
+    var minionsFourthSection = Object(_utils__WEBPACK_IMPORTED_MODULE_4__["query"])({
       selector: '.shape',
       ctx: homeSections[3]
     });
@@ -25034,7 +25048,7 @@ var minionsHandler = function minionsHandler() {
     gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsFourthSection[9], durationSmall, {
       scale: 1,
       opacity: 1,
-      ease: _global__WEBPACK_IMPORTED_MODULE_4__["easing"].easePop,
+      ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].easePop,
       onComplete: function onComplete() {
         gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsFourthSection[9], duration, {
           y: fourthSectionBottom,
@@ -25048,7 +25062,7 @@ var minionsHandler = function minionsHandler() {
     gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsFourthSection[3], durationSmall, {
       scale: 1,
       opacity: 1,
-      ease: _global__WEBPACK_IMPORTED_MODULE_4__["easing"].easePop,
+      ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].easePop,
       onComplete: function onComplete() {
         gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsFourthSection[3], duration, {
           y: fourthSectionBottom,
@@ -25063,7 +25077,7 @@ var minionsHandler = function minionsHandler() {
     gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsFourthSection[0], durationSmall, {
       scale: 1,
       opacity: 1,
-      ease: _global__WEBPACK_IMPORTED_MODULE_4__["easing"].easePop,
+      ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].easePop,
       onComplete: function onComplete() {
         gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsFourthSection[0], duration, {
           y: fourthSectionBottom,
@@ -25077,7 +25091,7 @@ var minionsHandler = function minionsHandler() {
     gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsFourthSection[1], durationSmall, {
       scale: 1,
       opacity: 1,
-      ease: _global__WEBPACK_IMPORTED_MODULE_4__["easing"].easePop,
+      ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].easePop,
       onComplete: function onComplete() {
         gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsFourthSection[1], duration, {
           y: fourthSectionBottom + 5,
@@ -25093,7 +25107,7 @@ var minionsHandler = function minionsHandler() {
       scale: 1,
       opacity: 1,
       scaleX: -1,
-      ease: _global__WEBPACK_IMPORTED_MODULE_4__["easing"].easePop,
+      ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].easePop,
       onComplete: function onComplete() {
         gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsFourthSection[7], duration, {
           y: fourthSectionBottom,
@@ -25107,7 +25121,7 @@ var minionsHandler = function minionsHandler() {
     gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsFourthSection[5], durationSmall, {
       scale: 1,
       opacity: 1,
-      ease: _global__WEBPACK_IMPORTED_MODULE_4__["easing"].easePop,
+      ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].easePop,
       onComplete: function onComplete() {
         gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsFourthSection[5], duration, {
           y: fourthSectionBottom,
@@ -25122,7 +25136,7 @@ var minionsHandler = function minionsHandler() {
     gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsFourthSection[2], durationSmall, {
       scale: 1,
       opacity: 1,
-      ease: _global__WEBPACK_IMPORTED_MODULE_4__["easing"].easePop,
+      ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].easePop,
       onComplete: function onComplete() {
         gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsFourthSection[2], duration, {
           y: fourthSectionBottom - 31,
@@ -25138,7 +25152,7 @@ var minionsHandler = function minionsHandler() {
       scale: 1,
       opacity: 1,
       scaleX: -1,
-      ease: _global__WEBPACK_IMPORTED_MODULE_4__["easing"].easePop,
+      ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].easePop,
       onComplete: function onComplete() {
         gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsFourthSection[8], duration, {
           y: fourthSectionBottom - 75,
@@ -25152,7 +25166,7 @@ var minionsHandler = function minionsHandler() {
     gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsFourthSection[10], durationSmall, {
       scale: 1,
       opacity: 1,
-      ease: _global__WEBPACK_IMPORTED_MODULE_4__["easing"].easePop,
+      ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].easePop,
       onComplete: function onComplete() {
         gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsFourthSection[10], duration, {
           y: fourthSectionBottom - 65,
@@ -25167,7 +25181,7 @@ var minionsHandler = function minionsHandler() {
     gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsFourthSection[4], durationSmall, {
       scale: 1,
       opacity: 1,
-      ease: _global__WEBPACK_IMPORTED_MODULE_4__["easing"].easePop,
+      ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].easePop,
       onComplete: function onComplete() {
         gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsFourthSection[4], duration, {
           y: fourthSectionBottom - 55,
@@ -25183,7 +25197,7 @@ var minionsHandler = function minionsHandler() {
       scale: 1,
       opacity: 1,
       scaleX: -1,
-      ease: _global__WEBPACK_IMPORTED_MODULE_4__["easing"].easePop,
+      ease: _global__WEBPACK_IMPORTED_MODULE_3__["easing"].easePop,
       onComplete: function onComplete() {
         gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(minionsFourthSection[6], duration, {
           y: fourthSectionBottom - 59,
@@ -25197,7 +25211,7 @@ var minionsHandler = function minionsHandler() {
 
   var experiencesAnim = function experiencesAnim() {
     if (!morpion) return;
-    var minionsMorpion = Object(_utils__WEBPACK_IMPORTED_MODULE_5__["query"])({
+    var minionsMorpion = Object(_utils__WEBPACK_IMPORTED_MODULE_4__["query"])({
       selector: '.shape',
       ctx: morpion
     });
@@ -25251,7 +25265,7 @@ var minionsHandler = function minionsHandler() {
   };
 
   var intersectionCallback = function intersectionCallback(entries) {
-    Object(_utils__WEBPACK_IMPORTED_MODULE_5__["forEach"])(entries, function (entry) {
+    Object(_utils__WEBPACK_IMPORTED_MODULE_4__["forEach"])(entries, function (entry) {
       if (entry.intersectionRatio < 0.25) return;
 
       switch (entry.target.id) {
@@ -25291,7 +25305,7 @@ var minionsHandler = function minionsHandler() {
       rootMargin: '0px',
       threshold: thresholdSamples
     });
-    Object(_utils__WEBPACK_IMPORTED_MODULE_5__["forEach"])(homeSections, function (section) {
+    Object(_utils__WEBPACK_IMPORTED_MODULE_4__["forEach"])(homeSections, function (section) {
       observer.observe(section);
       animsState[section.id] = {
         launched: false,
@@ -25305,7 +25319,7 @@ var minionsHandler = function minionsHandler() {
   };
 
   var resetAnims = function resetAnims() {
-    minions = Object(_utils__WEBPACK_IMPORTED_MODULE_5__["query"])({
+    minions = Object(_utils__WEBPACK_IMPORTED_MODULE_4__["query"])({
       selector: '.shape'
     });
     gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set(minions, {
@@ -25328,7 +25342,7 @@ var minionsHandler = function minionsHandler() {
       y: 0,
       rotation: 0
     });
-    Object(_utils__WEBPACK_IMPORTED_MODULE_5__["forEach"])(homeSections, function (section) {
+    Object(_utils__WEBPACK_IMPORTED_MODULE_4__["forEach"])(homeSections, function (section) {
       animsState[section.id] = {
         launched: false,
         done: false
@@ -25337,10 +25351,10 @@ var minionsHandler = function minionsHandler() {
   }; // launch anims if minions are visible (window width > 960)
 
 
-  if (Object(_utils__WEBPACK_IMPORTED_MODULE_5__["isDisplayed"])(minions[0])) initAnims(); // Resize part
+  if (Object(_utils__WEBPACK_IMPORTED_MODULE_4__["isDisplayed"])(minions[0])) initAnims(); // Resize part
 
-  _utils_Window__WEBPACK_IMPORTED_MODULE_3__["default"].addResizeEndFunction(function () {
-    if (!Object(_utils__WEBPACK_IMPORTED_MODULE_5__["isDisplayed"])(minions[0])) return; // If anims were launched restart them
+  _utils_Window__WEBPACK_IMPORTED_MODULE_5__["default"].addResizeEndFunction(function () {
+    if (!Object(_utils__WEBPACK_IMPORTED_MODULE_4__["isDisplayed"])(minions[0])) return; // If anims were launched restart them
 
     if (animsState.animsLaunched) resetAnims();
     wh = window.innerHeight;
@@ -28865,4 +28879,4 @@ var videoHandler = function videoHandler() {
 /***/ })
 
 /******/ });
-//# sourceMappingURL=main.js.map?05c67a7237301f99616a9c79cc34cbca
+//# sourceMappingURL=main.js.map?4de2bcc399b7ec7b2f56da6bc86489ac

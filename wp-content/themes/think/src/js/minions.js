@@ -11,9 +11,11 @@ import {
 } from 'gsap';
 import { MorphSVGPlugin } from './plugins/MorphSVGPlugin';
 import './plugins/DrawSVGPlugin';
-import win from './utils/Window';
+
 import { easing } from './global';
 import { forEach, query, isDisplayed } from './utils';
+import win from './utils/Window';
+import snif from './utils/Snif';
 
 const minionsHandler = () => {
     const homeSections = query({ selector: '.js-home-section' });
@@ -21,6 +23,9 @@ const minionsHandler = () => {
     let minions = query({ selector: '.shape' });
 
     if (!homeSections.length || !video || !minions.length) return;
+    const isSafari = snif.isSafari();
+    const tweenOptimizations = isSafari ? { force3D: false } : {};
+
     const [planePath] = query({ selector: '#plane-path path' });
     const [plane] = query({ selector: '#plane' });
     const [morpion] = query({ selector: '#morpion' });
@@ -106,6 +111,8 @@ const minionsHandler = () => {
             .to(player, 0.3, {
                 scale: 4,
                 opacity: 1,
+                ...tweenOptimizations,
+                ease: Power4.easeIn,
                 onComplete: () => {
                     if (video) {
                         video.classList.add('player-on', 'on');
@@ -118,9 +125,12 @@ const minionsHandler = () => {
                         );
                     }
                 },
-                ease: Power4.easeIn,
             })
-            .to(player, 0.2, { scale: 3, ease: Power2.easeOut })
+            .to(player, 0.2, {
+                scale: 3,
+                ...tweenOptimizations,
+                ease: Power2.easeOut,
+            })
             .to(player, 1, {
                 x: -10,
                 y: videoBottom - 50,
@@ -165,6 +175,7 @@ const minionsHandler = () => {
 
         TweenMax.to([minions[0], minions[1], minions[3], minions[4]], 0.5, {
             scale: 3,
+            ...tweenOptimizations,
             ease: Power1.easeIn,
         });
 
@@ -177,8 +188,8 @@ const minionsHandler = () => {
                     { x: -240, y: introBottom + 100 },
                 ],
             },
-            delay: 0.15,
             ease: Power2.easeOut,
+            delay: 0.15,
         });
 
         TweenMax.to(minions[1], 1.8, {
@@ -190,15 +201,17 @@ const minionsHandler = () => {
                     { x: -130, y: introBottom + 100 },
                 ],
             },
-            delay: 0.15,
+            ...tweenOptimizations,
             ease: Power2.easeOut,
+            delay: 0.15,
         });
 
         TweenMax.set(minions[2], {
-            opacity: 1,
-            scale: 3,
             x: 0,
             y: introBottom + 100,
+            scale: 3,
+            opacity: 1,
+            ...tweenOptimizations,
         });
 
         TweenMax.to(minions[3], 1.8, {
