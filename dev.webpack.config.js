@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const config = (env, options) => {
     const MODE = options.mode;
@@ -65,7 +65,7 @@ const config = (env, options) => {
             fs: 'empty', // avoids error messages
         },
         plugins: [
-            new BundleAnalyzerPlugin(),
+            // new BundleAnalyzerPlugin(),
             new MiniCssExtractPlugin({
                 filename: '../css/[name].css',
             }),

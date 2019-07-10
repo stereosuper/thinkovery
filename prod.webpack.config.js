@@ -2,17 +2,21 @@ const webpack = require('webpack');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
+const TerserJSPlugin = require('terser-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+
 const config = (env, options) => {
     const MODE = options.mode;
     return {
         entry: './wp-content/themes/think/src/js/main.js',
         output: {
-            path: path.resolve(__dirname, 'wp-content/themes/think'),
-            filename: './js/main.js',
-            publicPath: '/wp-content/themes/think/',
-            chunkFilename: 'js/[name].bundle.js',
+            path: path.resolve(__dirname, 'wp-content/themes/think/js'),
+            filename: '[name].js',
+            // Public path is important for dynamic imports. It'll help webpack to retrieve bundles by name and not by ids
+            publicPath: '/wp-content/themes/think/js/',
+            chunkFilename: '[name].js',
         },
-        devtool: '',
+        devtool: MODE === 'development' ? 'source-map' : '',
         module: {
             rules: [
                 {
@@ -57,16 +61,22 @@ const config = (env, options) => {
 
         plugins: [
             new MiniCssExtractPlugin({
-                filename: './css/main.css',
+                filename: '../css/[name].css',
             }),
         ],
+        optimization: {
+            minimizer: [
+                new TerserJSPlugin({}),
+                new OptimizeCSSAssetsPlugin({}),
+            ],
+        },
     };
 };
 
 const loader = (env, options) => {
     const MODE = options.mode;
     return {
-        entry: './wp-content/themes/think/src/js/loading-script.js',
+        entry: './wp-content/themes/think/src/js/load/loading-script.js',
         output: {
             path: path.resolve(__dirname),
             filename: './wp-content/themes/think/js/loading-script.js',
