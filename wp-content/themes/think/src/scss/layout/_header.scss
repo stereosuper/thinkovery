@@ -326,7 +326,7 @@ $header-height: 84px;
 
 .mlp-language-box {
     position: absolute;
-    right: $border-size;
+    left: $border-size;
     bottom: $border-size;
     opacity: 0;
     transition: transition(
@@ -626,7 +626,9 @@ $header-height: 84px;
     }
     .mlp-language-box {
         top: $border-size;
+        right: $border-size;
         bottom: auto;
+        left: auto;
         opacity: 1;
     }
     .menu-borders {

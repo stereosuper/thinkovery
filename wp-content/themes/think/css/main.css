@@ -805,7 +805,7 @@ label a {
     text-decoration: none; }
 .mlp-language-box {
   position: absolute;
-  right: 12px;
+  left: 12px;
   bottom: 12px;
   opacity: 0;
   -webkit-transition:  opacity 0.3s ease-out;
@@ -1011,7 +1011,9 @@ label a {
         transition:  transform 0.4s 0.115s cubic-bezier(0.26, 1.09, 0.28, 0.99), -webkit-transform 0.4s 0.115s cubic-bezier(0.26, 1.09, 0.28, 0.99); }
   .mlp-language-box {
     top: 12px;
+    right: 12px;
     bottom: auto;
+    left: auto;
     opacity: 1; }
   .menu-borders {
     display: none; }
@@ -4159,4 +4161,4 @@ label a {
     page-break-after: avoid; } }
 
 
-/*# sourceMappingURL=main.css.map?cccfd5751eed9361fa033e636c81b16d*/
+/*# sourceMappingURL=main.css.map?c845a19267375992818e6b2da38540f6*/
