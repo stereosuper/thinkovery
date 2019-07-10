@@ -5,9 +5,9 @@
 }
 
 .learning-elts {
-    //padding: 30px 0 0;
     text-align: right;
 }
+
 .learning-elts-container {
     text-align: left;
     h3 {
@@ -15,9 +15,9 @@
         color: $primary;
     }
 }
+
 .elts-svg {
     width: 95%;
-    max-width: 1112px;
 }
 
 @media (min-width: $tablet) {
@@ -29,19 +29,27 @@
 }
 
 @media (min-width: $desktop-small) {
+    .learning-elts-container {
+        width: 75%;
+    }
+}
+
+@media (min-width: $desktop) {
     .learning-elts-title {
+        max-width: 75%;
         padding-right: $gutter * 2;
     }
-
-    .learning-elts-container {
-        display: flex;
-        justify-content: flex-end;
-        > div {
-            width: 25%;
-            padding: 0 0 0 30px;
-        }
+    .elts-svg-wrapper {
+        margin-left: -$gutter;
+        margin-right: -$gutter;
     }
-
+    .elts-svg {
+        width: calc(100% - #{$gutter} - 100% / 8);
+        margin-right: $gutter;
+    }
+    .learning-elts-container {
+        margin-left: auto;
+    }
     .learning-anim-container {
         display: flex;
         align-items: center;
@@ -53,7 +61,6 @@
             margin-top: 0;
         }
     }
-
     .learning-anim {
         display: block;
         width: 370px;
@@ -87,30 +94,24 @@
             opacity: 0.2;
         }
     }
-
-    .learning-middle {
-        > div {
-            padding: 0 0 0 $gutter * 2;
-        }
-    }
-}
-
-@media (min-width: $desktop) {
-    .learning-elts-title {
-        max-width: 75%;
-    }
-
-    .learning-elts-container {
-        > div {
-            padding: 0 0 0 $gutter * 2;
-        }
-    }
-
     .learning-middle {
         display: flex;
         justify-content: flex-end;
         > div {
             width: 75%;
+            padding: 0 0 0 $gutter * 2;
+        }
+    }
+}
+
+@media (min-width: $desktop-big) {
+    .learning-elts-container {
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+        > div {
+            width: 25%;
+            padding: 0 $gutter;
         }
     }
 }

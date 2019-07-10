@@ -2990,24 +2990,25 @@ label a {
     font-size: 2.4rem;
     color: #1e5e32; }
 .elts-svg {
-  width: 95%;
-  max-width: 1112px; }
+  width: 95%; }
 @media (min-width: 780px) {
   .learning-elts-container h3 {
     font-size: 2.6rem; } }
 @media (min-width: 960px) {
-  .learning-elts-title {
-    padding-right: 88px; }
   .learning-elts-container {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: end;
-        -ms-flex-pack: end;
-            justify-content: flex-end; }
-    .learning-elts-container > div {
-      width: 25%;
-      padding: 0 0 0 30px; }
+    width: 75%; } }
+@media (min-width: 1100px) {
+  .learning-elts-title {
+    max-width: 75%;
+    padding-right: 88px; }
+  .elts-svg-wrapper {
+    margin-left: -44px;
+    margin-right: -44px; }
+  .elts-svg {
+    width: calc(87.5% - 44px);
+    margin-right: 44px; }
+  .learning-elts-container {
+    margin-left: auto; }
   .learning-anim-container {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -3049,13 +3050,6 @@ label a {
       bottom: 0;
       margin: auto 0 auto -328px;
       opacity: 0.2; }
-  .learning-middle > div {
-    padding: 0 0 0 88px; } }
-@media (min-width: 1100px) {
-  .learning-elts-title {
-    max-width: 75%; }
-  .learning-elts-container > div {
-    padding: 0 0 0 88px; }
   .learning-middle {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -3064,7 +3058,20 @@ label a {
         -ms-flex-pack: end;
             justify-content: flex-end; }
     .learning-middle > div {
-      width: 75%; } }
+      width: 75%;
+      padding: 0 0 0 88px; } }
+@media (min-width: 1280px) {
+  .learning-elts-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    width: 100%; }
+    .learning-elts-container > div {
+      width: 25%;
+      padding: 0 44px; } }
 /* References specific style */
 .references-list {
   display: -webkit-box;
@@ -4049,4 +4056,4 @@ label a {
     page-break-after: avoid; } }
 
 
-/*# sourceMappingURL=main.css.map?78d15fb0918edee001b4a56d9739dbba*/
+/*# sourceMappingURL=main.css.map?9b55fccb4a96ad4cfb12721dbbf279b0*/

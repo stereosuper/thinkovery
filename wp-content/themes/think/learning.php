@@ -8,19 +8,18 @@ get_header(); ?>
 <div class='container'>
 
 	<?php if ( have_posts() ) : the_post(); ?>
-
 		<div class='intro-big'>
 			<p><?php the_field('intro'); ?></p>
 			<h1><?php the_title(); ?></h1>
 			<?php the_content(); ?>
 		</div>
-
 		<?php if( have_rows('elements') ): ?>
 			<div class='learning-elts' id='learning-elts'>
 				<?php while ( have_rows('elements') ): the_row(); ?>
 					<?php if( have_rows('items') ): ?>
-						<?php get_template_part('img/learning-visual.svg'); ?>
-						
+						<div class="elts-svg-wrapper">
+							<?php get_template_part('img/learning-visual.svg'); ?>
+						</div>
 						<div class='learning-elts-container'>
 							<?php while ( have_rows('items') ) : the_row(); ?>
 								<div>
@@ -33,7 +32,6 @@ get_header(); ?>
 				<?php endwhile; ?>
 			</div>
 		<?php endif; ?>
-
 		<div class='learning-anim-container'>
 			<div class='learning-anim-wrapper'>
 				<div class='learning-anim' id='learning-anim'>
@@ -42,7 +40,6 @@ get_header(); ?>
 					<svg class='shape'><use xlink:href='#icon-triangle'/></svg>
 					<svg class='shape'><use xlink:href='#icon-rectangle'/></svg>
 					<svg class='shape'><use xlink:href='#icon-circle'/></svg>
-
 					<svg class='border' viewBox="0 0 372 372" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<circle cx="185.771" cy="186.186" r="184.955" stroke="#AEAEAE" stroke-dasharray="10 10"/>
 					</svg>
@@ -56,13 +53,10 @@ get_header(); ?>
 			</div>
 			<div><?php the_field('animationText'); ?></div>
 		</div>
-
 		<div class='learning-middle'>
 			<div><?php the_field('middleText'); ?></div>
 		</div>
-	
 	<?php endif; ?>
-
 </div>
 
 <?php get_footer(); ?>
