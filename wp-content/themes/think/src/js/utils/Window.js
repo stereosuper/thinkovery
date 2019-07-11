@@ -15,12 +15,18 @@ if (!Object.entries) {
 function Window() {
     this.currentBreakpoint = '';
     this.breakpoints = {
-        xs: 0,
-        s: 400,
-        m: 580,
-        l: 780,
-        xl: 960,
-        xxl: 1100,
+        horizontal: {
+            xs: 0,
+            s: 400,
+            m: 580,
+            l: 780,
+            xl: 960,
+            xxl: 1100,
+        },
+        vertical: {
+            xs: 550,
+            xxl: 960,
+        },
     };
     this.w = null;
     this.h = null;
@@ -76,7 +82,7 @@ Window.prototype.ioResize = function ioResize() {
 
 Window.prototype.setBreakpoints = function setBreakpoints() {
     let currentBreakpoint = '';
-    forEach(Object.entries(this.breakpoints), breakpoint => {
+    forEach(Object.entries(this.breakpoints.horizontal), breakpoint => {
         const [name, value] = breakpoint;
         if (this.w > value) {
             currentBreakpoint = name;
@@ -84,7 +90,7 @@ Window.prototype.setBreakpoints = function setBreakpoints() {
     });
 
     if (this.currentBreakpoint !== currentBreakpoint) {
-        forEach(Object.entries(this.breakpoints), ([name]) => {
+        forEach(Object.entries(this.breakpoints.horizontal), ([name]) => {
             document.documentElement.classList.remove(`breakpoint-${name}`);
         });
         this.currentBreakpoint = currentBreakpoint;

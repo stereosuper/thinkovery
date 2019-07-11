@@ -25070,12 +25070,18 @@ if (!Object.entries) {
 function Window() {
   this.currentBreakpoint = '';
   this.breakpoints = {
-    xs: 0,
-    s: 400,
-    m: 580,
-    l: 780,
-    xl: 960,
-    xxl: 1100
+    horizontal: {
+      xs: 0,
+      s: 400,
+      m: 580,
+      l: 780,
+      xl: 960,
+      xxl: 1100
+    },
+    vertical: {
+      xs: 550,
+      xxl: 960
+    }
   };
   this.w = null;
   this.h = null;
@@ -25138,7 +25144,7 @@ Window.prototype.setBreakpoints = function setBreakpoints() {
   var _this3 = this;
 
   var currentBreakpoint = '';
-  Object(___WEBPACK_IMPORTED_MODULE_0__["forEach"])(Object.entries(this.breakpoints), function (breakpoint) {
+  Object(___WEBPACK_IMPORTED_MODULE_0__["forEach"])(Object.entries(this.breakpoints.horizontal), function (breakpoint) {
     var _breakpoint = _slicedToArray(breakpoint, 2),
         name = _breakpoint[0],
         value = _breakpoint[1];
@@ -25149,7 +25155,7 @@ Window.prototype.setBreakpoints = function setBreakpoints() {
   });
 
   if (this.currentBreakpoint !== currentBreakpoint) {
-    Object(___WEBPACK_IMPORTED_MODULE_0__["forEach"])(Object.entries(this.breakpoints), function (_ref) {
+    Object(___WEBPACK_IMPORTED_MODULE_0__["forEach"])(Object.entries(this.breakpoints.horizontal), function (_ref) {
       var _ref2 = _slicedToArray(_ref, 1),
           name = _ref2[0];
 
@@ -25413,6 +25419,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var intersection_observer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! intersection-observer */ "./node_modules/intersection-observer/intersection-observer.js");
 /* harmony import */ var intersection_observer__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(intersection_observer__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var ___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! . */ "./wp-content/themes/think/src/js/utils/index.js");
+/* harmony import */ var _Window__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Window */ "./wp-content/themes/think/src/js/utils/Window.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
@@ -25424,11 +25431,12 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
 
+
 function Io() {
   var _this = this;
 
   this.resized = true;
-  var minThreshold = 0.15;
+  var minThreshold = _Window__WEBPACK_IMPORTED_MODULE_2__["default"].h > _Window__WEBPACK_IMPORTED_MODULE_2__["default"].breakpoints.vertical.xs ? 0.15 : 0.1;
   var indexThreshold = 0;
   var thresholdsNumber = 10;
   var thresholdSamples = []; // NOTE: offers menu part
@@ -25554,4 +25562,4 @@ function Io() {
 /***/ })
 
 /******/ });
-//# sourceMappingURL=main.js.map?762969a1644fe352a83e1ff2253d1ca6
+//# sourceMappingURL=main.js.map?576b90efc1f1240cfc35b06513bcadaa

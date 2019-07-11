@@ -440,7 +440,7 @@ a:active {
     font-size: 4rem; }
     .intro-big .h2 {
       margin: 1.1em 0 0; } }
-@media (min-width: 960px) and (min-height: 500px) {
+@media (min-width: 960px) and (min-height: 550px) {
   .shape {
     display: block;
     width: 75px;
@@ -2957,7 +2957,7 @@ label a {
       display: none; }
   .section-content {
     width: 50%; } }
-@media (min-width: 960px) and (min-height: 500px) {
+@media (min-width: 960px) and (min-height: 550px) {
   .shapes .shape {
     width: 23px;
     height: 23px;
@@ -4161,4 +4161,4 @@ label a {
     page-break-after: avoid; } }
 
 
-/*# sourceMappingURL=main.css.map?8e5a619431566e014862d23c20d91a59*/
+/*# sourceMappingURL=main.css.map?8987f2b84c3f601032522c67a87fcaef*/

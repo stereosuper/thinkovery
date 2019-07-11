@@ -1,9 +1,10 @@
 import 'intersection-observer';
 import { forEach, createNewEvent } from '.';
+import win from './Window';
 
 function Io() {
     this.resized = true;
-    const minThreshold = 0.15;
+    const minThreshold = win.h > win.breakpoints.vertical.xs ? 0.15 : 0.1;
     let indexThreshold = 0;
     const thresholdsNumber = 10;
     const thresholdSamples = [];

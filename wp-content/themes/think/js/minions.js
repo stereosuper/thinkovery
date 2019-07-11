@@ -110,6 +110,10 @@ var minionsHandler = function minionsHandler() {
       }, false);
     }
 
+  };
+  var videoFunctions = {
+    mouseover: null,
+    mouseleave: null
   }; // Intervals
 
   var promptScrollDownInterval = null;
@@ -185,21 +189,31 @@ var minionsHandler = function minionsHandler() {
       delay: 0.3,
       onStart: function onStart() {
         animsState['home-intro'].done = true;
-        video.addEventListener('mouseover', function () {
-          if (promptScrollDownInterval) {
-            clearInterval(promptScrollDownInterval);
-          }
 
-          gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(player, 0.2, {
-            x: 0,
-            y: playerCenterY,
-            rotation: 0
-          });
-        }, false);
-        video.addEventListener('mouseleave', function () {
-          promptScrollDownAnimation(0.3);
-          promptScrollDownLoop();
-        }, false);
+        if (!videoFunctions.mouseover) {
+          videoFunctions.mouseover = function () {
+            if (promptScrollDownInterval) {
+              clearInterval(promptScrollDownInterval);
+            }
+
+            gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(player, 0.2, {
+              x: 0,
+              y: playerCenterY,
+              rotation: 0
+            });
+          };
+        }
+
+        video.addEventListener('mouseover', videoFunctions.mouseover, false);
+
+        if (!videoFunctions.mouseleave) {
+          videoFunctions.mouseleave = function () {
+            promptScrollDownAnimation(0.3);
+            promptScrollDownLoop();
+          };
+        }
+
+        video.addEventListener('mouseleave', videoFunctions.mouseleave, false);
         promptScrollDownLoop();
       }
     });
@@ -749,10 +763,17 @@ var minionsHandler = function minionsHandler() {
       rotation: 0
     });
     gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set(minions[3], {
-      x: 153,
-      y: introBottom + 123,
       transformOrigin: '50% 50%'
     });
+
+    if (videoFunctions.mouseover) {
+      video.removeEventListener('mouseover', videoFunctions.mouseover);
+    }
+
+    if (videoFunctions.mouseleave) {
+      video.removeEventListener('mouseover', videoFunctions.mouseleave);
+    }
+
     gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set(planePath, {
       drawSVG: 0
     });
@@ -797,4 +818,4 @@ var minionsHandler = function minionsHandler() {
 /***/ })
 
 }]);
-//# sourceMappingURL=minions.js.map?d4d51ee937f38c5e61b0ef201a1adc1f
+//# sourceMappingURL=minions.js.map?702e6aae1a1126aa91430197d43aac45

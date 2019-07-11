@@ -48,6 +48,11 @@ const minionsHandler = () => {
         },
     };
 
+    const videoFunctions = {
+        mouseover: null,
+        mouseleave: null,
+    };
+
     // Intervals
     let promptScrollDownInterval = null;
 
@@ -140,9 +145,8 @@ const minionsHandler = () => {
                 onStart: () => {
                     animsState['home-intro'].done = true;
 
-                    video.addEventListener(
-                        'mouseover',
-                        () => {
+                    if (!videoFunctions.mouseover) {
+                        videoFunctions.mouseover = () => {
                             if (promptScrollDownInterval) {
                                 clearInterval(promptScrollDownInterval);
                             }
@@ -152,16 +156,25 @@ const minionsHandler = () => {
                                 y: playerCenterY,
                                 rotation: 0,
                             });
-                        },
+                        };
+                    }
+
+                    video.addEventListener(
+                        'mouseover',
+                        videoFunctions.mouseover,
                         false
                     );
 
-                    video.addEventListener(
-                        'mouseleave',
-                        () => {
+                    if (!videoFunctions.mouseleave) {
+                        videoFunctions.mouseleave = () => {
                             promptScrollDownAnimation(0.3);
                             promptScrollDownLoop();
-                        },
+                        };
+                    }
+
+                    video.addEventListener(
+                        'mouseleave',
+                        videoFunctions.mouseleave,
                         false
                     );
 
@@ -757,10 +770,15 @@ const minionsHandler = () => {
         });
 
         TweenMax.set(minions[3], {
-            x: 153,
-            y: introBottom + 123,
             transformOrigin: '50% 50%',
         });
+
+        if (videoFunctions.mouseover) {
+            video.removeEventListener('mouseover', videoFunctions.mouseover);
+        }
+        if (videoFunctions.mouseleave) {
+            video.removeEventListener('mouseover', videoFunctions.mouseleave);
+        }
 
         TweenMax.set(planePath, { drawSVG: 0 });
         TweenMax.set(plane, {
