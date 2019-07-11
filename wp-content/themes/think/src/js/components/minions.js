@@ -72,6 +72,7 @@ const minionsHandler = () => {
         video.offsetHeight / 2;
 
     // Constants used to create the intersection observer threshold array
+    const sectionsIntersectionRatio = 0.25;
     const samplesNumber = 10;
     const thresholdSamples = [];
     let index = 0;
@@ -271,7 +272,7 @@ const minionsHandler = () => {
                     learningFirstPartDone = true;
                 },
             });
-        } else if (ratio > 0.71 && learningFirstPartDone) {
+        } else if (ratio > sectionsIntersectionRatio && learningFirstPartDone) {
             animsState['home-learning-experience'].bis = true;
 
             const secondSectionBottom = homeSections[1].offsetHeight + ww / 50;
@@ -702,7 +703,7 @@ const minionsHandler = () => {
 
     const intersectionCallback = entries => {
         forEach(entries, entry => {
-            if (entry.intersectionRatio < 0.25) return;
+            if (entry.intersectionRatio < sectionsIntersectionRatio) return;
 
             switch (entry.target.id) {
                 case 'home-intro':

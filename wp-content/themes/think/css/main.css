@@ -2905,15 +2905,10 @@ label a {
 .plane {
   display: none; }
 @media (min-width: 960px) {
-  .home-header,
-  .home-section {
+  .home-header {
     display: -webkit-box;
     display: -ms-flexbox;
-    display: flex;
-    min-height: 85vh;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center; }
+    display: flex; }
   .home-header {
     padding-top: 11em;
     -webkit-box-pack: center;
@@ -2933,7 +2928,31 @@ label a {
       width: 50%; }
       .home-header .video.playing .video-title, .home-header .video:hover .video-title {
         -webkit-transform: translate3d(-50%, 0, 0);
-                transform: translate3d(-50%, 0, 0); }
+                transform: translate3d(-50%, 0, 0); } }
+@media (min-width: 960px) and (min-height: 550px) {
+  .shapes .shape {
+    width: 23px;
+    height: 23px;
+    top: 1px;
+    left: 20px;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    opacity: 0;
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    z-index: 2; }
+  .home-header,
+  .home-section {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    min-height: 85vh;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center; }
   .home-section {
     text-align: left; }
     .home-section:nth-of-type(1), .home-section:nth-of-type(3) {
@@ -2956,22 +2975,10 @@ label a {
     .home-section .wrapper-img {
       display: none; }
   .section-content {
-    width: 50%; } }
-@media (min-width: 960px) and (min-height: 550px) {
-  .shapes .shape {
-    width: 23px;
-    height: 23px;
-    top: 1px;
-    left: 20px;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-    opacity: 0;
-    -webkit-transform-origin: 50% 50%;
-            transform-origin: 50% 50%;
-    -webkit-transform: scale(0);
-            transform: scale(0);
-    z-index: 2; }
+    width: 50%;
+    margin-top: 112px; }
+    .section-content > h2 {
+      margin-top: 0; }
   .home-section:nth-of-type(3) .shape {
     top: 0;
     left: 0;
@@ -3079,7 +3086,7 @@ label a {
     .morpion .s5 {
       top: 33.3%;
       left: 66.6%; } }
-@media (min-width: 960px) and (max-height: 960px) {
+@media (max-height: 960px) {
   .home-header {
     margin-top: -4em;
     margin-bottom: 4em; } }
@@ -4161,4 +4168,4 @@ label a {
     page-break-after: avoid; } }
 
 
-/*# sourceMappingURL=main.css.map?8987f2b84c3f601032522c67a87fcaef*/
+/*# sourceMappingURL=main.css.map?e596c2ab87e588499e558629f6efd62c*/

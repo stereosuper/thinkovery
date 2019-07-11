@@ -124,6 +124,7 @@ var minionsHandler = function minionsHandler() {
   var videoBottom = wh / 2;
   var playerCenterY = video.getBoundingClientRect().top - initialShapeTop + video.offsetHeight / 2; // Constants used to create the intersection observer threshold array
 
+  var sectionsIntersectionRatio = 0.25;
   var samplesNumber = 10;
   var thresholdSamples = [];
   var index = 0;
@@ -319,7 +320,7 @@ var minionsHandler = function minionsHandler() {
           learningFirstPartDone = true;
         }
       });
-    } else if (ratio > 0.71 && learningFirstPartDone) {
+    } else if (ratio > sectionsIntersectionRatio && learningFirstPartDone) {
       animsState['home-learning-experience'].bis = true;
       var secondSectionBottom = homeSections[1].offsetHeight + ww / 50;
       var planePathBezier = planePath ? _plugins_MorphSVGPlugin__WEBPACK_IMPORTED_MODULE_1__["MorphSVGPlugin"].pathDataToBezier(planePath) : '';
@@ -699,7 +700,7 @@ var minionsHandler = function minionsHandler() {
 
   var intersectionCallback = function intersectionCallback(entries) {
     Object(_utils__WEBPACK_IMPORTED_MODULE_4__["forEach"])(entries, function (entry) {
-      if (entry.intersectionRatio < 0.25) return;
+      if (entry.intersectionRatio < sectionsIntersectionRatio) return;
 
       switch (entry.target.id) {
         case 'home-intro':
@@ -818,4 +819,4 @@ var minionsHandler = function minionsHandler() {
 /***/ })
 
 }]);
-//# sourceMappingURL=minions.js.map?702e6aae1a1126aa91430197d43aac45
+//# sourceMappingURL=minions.js.map?bc23f8d7c8739a080f90f62bf7ed0613

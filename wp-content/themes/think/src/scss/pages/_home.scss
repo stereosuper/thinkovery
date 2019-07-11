@@ -102,11 +102,8 @@
 }
 
 @media (min-width: $desktop-small) {
-    .home-header,
-    .home-section {
+    .home-header {
         display: flex;
-        min-height: 85vh;
-        align-items: center;
     }
 
     .home-header {
@@ -132,37 +129,6 @@
         }
     }
 
-    .home-section {
-        text-align: left;
-        &:nth-of-type(1),
-        &:nth-of-type(3) {
-            justify-content: flex-end;
-        }
-        &:nth-of-type(1) {
-            padding-bottom: 10em;
-        }
-        &:nth-of-type(2) {
-            justify-content: center;
-            text-align: center;
-            .wrapper-btn {
-                text-align: center;
-            }
-        }
-        h2 {
-            font-size: 4.9rem;
-        }
-        .wrapper-btn {
-            text-align: right;
-        }
-        .wrapper-img {
-            display: none;
-        }
-    }
-
-    .section-content {
-        width: 50%;
-    }
-
     @media (min-height: $desktop-v) {
         .shapes {
             .shape {
@@ -177,6 +143,48 @@
                 transform-origin: 50% 50%;
                 transform: scale(0);
                 @include z-index("shapes");
+            }
+        }
+
+        .home-header,
+        .home-section {
+            display: flex;
+            min-height: 85vh;
+            align-items: center;
+        }
+
+        .home-section {
+            text-align: left;
+            &:nth-of-type(1),
+            &:nth-of-type(3) {
+                justify-content: flex-end;
+            }
+            &:nth-of-type(1) {
+                padding-bottom: 10em;
+            }
+            &:nth-of-type(2) {
+                justify-content: center;
+                text-align: center;
+                .wrapper-btn {
+                    text-align: center;
+                }
+            }
+            h2 {
+                font-size: 4.9rem;
+            }
+            .wrapper-btn {
+                text-align: right;
+            }
+            .wrapper-img {
+                display: none;
+            }
+        }
+
+        .section-content {
+            width: 50%;
+            margin-top: $line-height * 4;
+            > h2 {
+                margin-top: 0;
             }
         }
 
@@ -332,12 +340,12 @@
             }
         }
     }
+}
 
-    @media (max-height: $desktop-big-v) {
-        .home-header {
-            margin-top: -4em;
-            margin-bottom: 4em;
-        }
+@media (max-height: $desktop-big-v) {
+    .home-header {
+        margin-top: -4em;
+        margin-bottom: 4em;
     }
 }
 
