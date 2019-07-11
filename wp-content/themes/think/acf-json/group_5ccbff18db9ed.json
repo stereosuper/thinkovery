@@ -1,23 +1,6 @@
 {
     "key": "group_5ccbff18db9ed",
     "title": "[page] About",
-    "location": [
-        [
-            {
-                "param": "page_template",
-                "operator": "==",
-                "value": "about.php"
-            }
-        ]
-    ],
-    "menu_order": 0,
-    "position": "normal",
-    "style": "default",
-    "label_placement": "top",
-    "instruction_placement": "label",
-    "hide_on_screen": "",
-    "active": 1,
-    "description": "",
     "fields": [
         {
             "key": "field_5ccbff262b65d",
@@ -255,13 +238,72 @@
                     "delay": 0
                 },
                 {
+                    "key": "field_5d26f3f5f3322",
+                    "label": "Image ou video",
+                    "name": "image_or_video",
+                    "type": "true_false",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "Afficher une image ou une vidéo",
+                    "default_value": 0,
+                    "ui": 1,
+                    "ui_on_text": "Vidéo",
+                    "ui_off_text": "Image"
+                },
+                {
+                    "key": "field_5d26f47cf3323",
+                    "label": "Image",
+                    "name": "img",
+                    "type": "image",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_5d26f3f5f3322",
+                                "operator": "!=",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "preview_size": "thumbnail",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": ""
+                },
+                {
                     "key": "field_5cdc363cd2521",
                     "label": "ID de la video",
                     "name": "video",
                     "type": "text",
                     "instructions": "",
                     "required": 0,
-                    "conditional_logic": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_5d26f3f5f3322",
+                                "operator": "==",
+                                "value": "1"
+                            }
+                        ]
+                    ],
                     "wrapper": {
                         "width": "50",
                         "class": "",
@@ -276,17 +318,25 @@
                 {
                     "key": "field_5cdc37b2d0ca1",
                     "label": "Cover",
-                    "name": "img",
+                    "name": "video_cover",
                     "type": "image",
                     "instructions": "",
                     "required": 0,
-                    "conditional_logic": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_5d26f3f5f3322",
+                                "operator": "==",
+                                "value": "1"
+                            }
+                        ]
+                    ],
                     "wrapper": {
                         "width": "50",
                         "class": "",
                         "id": ""
                     },
-                    "return_format": "url",
+                    "return_format": "array",
                     "preview_size": "thumbnail",
                     "library": "all",
                     "min_width": "",
@@ -370,5 +420,22 @@
             ]
         }
     ],
-    "modified": 1559033775
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "about.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1562834256
 }

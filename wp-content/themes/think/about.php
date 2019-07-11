@@ -40,17 +40,27 @@ get_header(); ?>
                     <h2><?php echo $section3['title']; ?></h2>
                     <?php echo $section3['text']; ?>
                 </div>
-                <?php if( $section3['video'] ) : ?>
+                <?php 
+                $is_video = $section3['image_or_video'];
+                ?>
+                <?php if( $is_video && $section3['video'] ) : ?>
                     <div class='wp-block-stereoberg-video js-video-vimeo video' data-id='<?php echo $section3['video']; ?>'>
                         <div id="vimeo-id-<?php echo $section3['video']; ?>" class="iframe"></div>
                         <button class="cross js-cross" type="button">
                             <span class="cross-line first-cross-line"></span>
                             <span class="cross-line second-cross-line"></span>
                         </button>
-                        <div class="cover" style="background-image:url(<?php echo $section3['img']; ?>)"></div>
+                        <div class="cover" style="background-image:url(<?php echo $section3['video_cover']['url']; ?>)"></div>
                         <div class="play"></div>
                         <button class="cross js-cross" type="button"><span class="cross-line first-cross-line"></span><span class="cross-line second-cross-line"></span></button>
                         <div class="player-background js-cross"></div>
+                    </div>
+                <?php endif; ?>
+                <?php if( !$is_video && $section3['img'] ) : ?>
+                    <div class="wp-block-image">
+                        <figure class="aligncenter">
+                            <?php echo wp_get_attachment_image($section3['img']['ID'], 'large'); ?>
+                        </figure>
                     </div>
                 <?php endif; ?>
             </section>

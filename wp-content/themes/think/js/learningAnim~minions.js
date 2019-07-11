@@ -1,4 +1,17 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[0],{344:function(t,e,r){"use strict";var i,n=r(0),o=n.h.document,s="undefined"!=typeof window?window:o.defaultView||{getComputedStyle:function(){}},a=function(t){return s.getComputedStyle(t)},h=/(?:(-|-=|\+=)?\d*\.?\d*(?:e[\-+]?\d+)?)[0-9]/gi,l=-1!==((n.h.navigator||{}).userAgent||"").indexOf("Edge"),f={rect:["width","height"],circle:["r","r"],ellipse:["rx","ry"],line:["x2","y2"]};
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["learningAnim~minions"],{
+
+/***/ "./wp-content/themes/think/src/js/plugins/DrawSVGPlugin.js":
+/*!*****************************************************************!*\
+  !*** ./wp-content/themes/think/src/js/plugins/DrawSVGPlugin.js ***!
+  \*****************************************************************/
+/*! exports provided: DrawSVGPlugin, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DrawSVGPlugin", function() { return DrawSVGPlugin; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return DrawSVGPlugin; });
+/* harmony import */ var gsap_TweenLite_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap/TweenLite.js */ "./node_modules/gsap/TweenLite.js");
 /*!
  * VERSION: 0.2.1
  * DATE: 2019-02-07
@@ -10,7 +23,299 @@
  * This work is subject to the software agreement that was issued with your membership.
  * 
  * @author: Jack Doyle, jack@greensock.com
- */function p(t,e,r,i,n,o){return r=(parseFloat(r||0)-parseFloat(t||0))*n,i=(parseFloat(i||0)-parseFloat(e||0))*o,Math.sqrt(r*r+i*i)}function c(t){return"string"!=typeof t&&t.nodeType||(t=n.h.TweenLite.selector(t)).length&&(t=t[0]),t}function g(t){if(!t)return 0;var e,r,i,n,o,s,a,l=(t=c(t)).tagName.toLowerCase(),g=1,u=1;"non-scaling-stroke"===t.getAttribute("vector-effect")&&(u=t.getScreenCTM(),g=Math.sqrt(u.a*u.a+u.b*u.b),u=Math.sqrt(u.d*u.d+u.c*u.c));try{r=t.getBBox()}catch(t){console.log("Error: Some browsers like Firefox won't report measurements of invisible elements (like display:none or masks inside defs).")}if(r&&(r.width||r.height)||!f[l]||(r={width:parseFloat(t.getAttribute(f[l][0])),height:parseFloat(t.getAttribute(f[l][1]))},"rect"!==l&&"line"!==l&&(r.width*=2,r.height*=2),"line"===l&&(r.x=parseFloat(t.getAttribute("x1")),r.y=parseFloat(t.getAttribute("y1")),r.width=Math.abs(r.width-r.x),r.height=Math.abs(r.height-r.y))),"path"===l)n=t.style.strokeDasharray,t.style.strokeDasharray="none",e=t.getTotalLength()||0,g!==u&&console.log("Warning: <path> length cannot be measured accurately when vector-effect is non-scaling-stroke and the element isn't proportionally scaled."),e*=(g+u)/2,t.style.strokeDasharray=n;else if("rect"===l)e=2*r.width*g+2*r.height*u;else if("line"===l)e=p(r.x,r.y,r.x+r.width,r.y+r.height,g,u);else if("polyline"===l||"polygon"===l)for(i=t.getAttribute("points").match(h)||[],"polygon"===l&&i.push(i[0],i[1]),e=0,o=2;o<i.length;o+=2)e+=p(i[o-2],i[o-1],i[o],i[o+1],g,u)||0;else"circle"!==l&&"ellipse"!==l||(s=r.width/2*g,a=r.height/2*u,e=Math.PI*(3*(s+a)-Math.sqrt((3*s+a)*(s+3*a))));return e||0}function u(t,e){if(!t)return[0,0];t=c(t),e=e||g(t)+1;var r=a(t),i=r.strokeDasharray||"",n=parseFloat(r.strokeDashoffset),o=i.indexOf(",");return o<0&&(o=i.indexOf(" ")),(i=o<0?e:parseFloat(i.substr(0,o))||1e-5)>e&&(i=e),[Math.max(0,-n),Math.max(0,i-n)]}(i=n.h._gsDefine.plugin({propName:"drawSVG",API:2,version:"0.2.1",global:!0,overwriteProps:["drawSVG"],init:function(t,e,r,i){if(!t.getBBox)return!1;var n,o,s,h,f=g(t)+1;return this._style=t.style,this._target=t,"function"==typeof e&&(e=e(i,t)),!0===e||"true"===e?e="0 100%":e?-1===(e+"").indexOf(" ")&&(e="0 "+e):e="0 0",o=function(t,e,r){var i,n,o=t.indexOf(" ");return-1===o?(i=void 0!==r?r+"":t,n=t):(i=t.substr(0,o),n=t.substr(o+1)),(i=-1!==i.indexOf("%")?parseFloat(i)/100*e:parseFloat(i))>(n=-1!==n.indexOf("%")?parseFloat(n)/100*e:parseFloat(n))?[n,i]:[i,n]}(e,f,(n=u(t,f))[0]),this._length=f+10,0===n[0]&&0===o[0]?(s=Math.max(1e-5,o[1]-f),this._dash=f+s,this._offset=f-n[1]+s,this._offsetPT=this._addTween(this,"_offset",this._offset,f-o[1]+s,"drawSVG")):(this._dash=n[1]-n[0]||1e-6,this._offset=-n[0],this._dashPT=this._addTween(this,"_dash",this._dash,o[1]-o[0]||1e-5,"drawSVG"),this._offsetPT=this._addTween(this,"_offset",this._offset,-o[0],"drawSVG")),l&&(h=a(t)).strokeLinecap!==h.strokeLinejoin&&(o=parseFloat(h.strokeMiterlimit),this._addTween(t.style,"strokeMiterlimit",o,o+1e-4,"strokeMiterlimit")),this._live="non-scaling-stroke"===t.getAttribute("vector-effect")||-1!==(e+"").indexOf("live"),!0},set:function(t){if(this._firstPT){if(this._live){var e,r=g(this._target)+11;r!==this._length&&(e=r/this._length,this._length=r,this._offsetPT.s*=e,this._offsetPT.c*=e,this._dashPT?(this._dashPT.s*=e,this._dashPT.c*=e):this._dash*=e)}this._super.setRatio.call(this,t),this._style.strokeDashoffset=this._offset,this._style.strokeDasharray=1===t||0===t?this._offset<.001&&this._length-this._dash<=10?"none":this._offset===this._dash?"0px, 999999px":this._dash+"px,"+this._length+"px":this._dash+"px,"+this._length+"px"}}})).getLength=g,i.getPosition=u},345:function(t,e,r){"use strict";r.d(e,"a",function(){return E});var i=r(0);function n(t){return(n="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t})(t)}
+ */
+
+/* eslint-disable */
+
+
+var _doc = gsap_TweenLite_js__WEBPACK_IMPORTED_MODULE_0__["_gsScope"].document,
+    _computedStyleScope = typeof window !== "undefined" ? window : _doc.defaultView || {
+  getComputedStyle: function getComputedStyle() {}
+},
+    _getComputedStyle = function _getComputedStyle(e) {
+  return _computedStyleScope.getComputedStyle(e); //to avoid errors in Microsoft Edge, we need to call getComputedStyle() from a specific scope, typically window.
+},
+    _numbersExp = /(?:(-|-=|\+=)?\d*\.?\d*(?:e[\-+]?\d+)?)[0-9]/ig,
+    _isEdge = ((gsap_TweenLite_js__WEBPACK_IMPORTED_MODULE_0__["_gsScope"].navigator || {}).userAgent || "").indexOf("Edge") !== -1,
+    //Microsoft Edge has a bug that causes it not to redraw the path correctly if the stroke-linecap is anything other than "butt" (like "round") and it doesn't match the stroke-linejoin. A way to trigger it is to change the stroke-miterlimit, so we'll only do that if/when we have to (to maximize performance)
+_types = {
+  rect: ["width", "height"],
+  circle: ["r", "r"],
+  ellipse: ["rx", "ry"],
+  line: ["x2", "y2"]
+},
+    DrawSVGPlugin;
+
+function getDistance(x1, y1, x2, y2, scaleX, scaleY) {
+  x2 = (parseFloat(x2 || 0) - parseFloat(x1 || 0)) * scaleX;
+  y2 = (parseFloat(y2 || 0) - parseFloat(y1 || 0)) * scaleY;
+  return Math.sqrt(x2 * x2 + y2 * y2);
+}
+
+function unwrap(element) {
+  if (typeof element === "string" || !element.nodeType) {
+    element = gsap_TweenLite_js__WEBPACK_IMPORTED_MODULE_0__["_gsScope"].TweenLite.selector(element);
+
+    if (element.length) {
+      element = element[0];
+    }
+  }
+
+  return element;
+} //accepts values like "100%" or "20% 80%" or "20 50" and parses it into an absolute start and end position on the line/stroke based on its length. Returns an an array with the start and end values, like [0, 243]
+
+
+function parse(value, length, defaultStart) {
+  var i = value.indexOf(" "),
+      s,
+      e;
+
+  if (i === -1) {
+    s = defaultStart !== undefined ? defaultStart + "" : value;
+    e = value;
+  } else {
+    s = value.substr(0, i);
+    e = value.substr(i + 1);
+  }
+
+  s = s.indexOf("%") !== -1 ? parseFloat(s) / 100 * length : parseFloat(s);
+  e = e.indexOf("%") !== -1 ? parseFloat(e) / 100 * length : parseFloat(e);
+  return s > e ? [e, s] : [s, e];
+}
+
+function getLength(element) {
+  if (!element) {
+    return 0;
+  }
+
+  element = unwrap(element);
+  var type = element.tagName.toLowerCase(),
+      scaleX = 1,
+      scaleY = 1,
+      length,
+      bbox,
+      points,
+      prevPoint,
+      i,
+      rx,
+      ry;
+
+  if (element.getAttribute("vector-effect") === "non-scaling-stroke") {
+    //non-scaling-stroke basically scales the shape and then strokes it at the screen-level (after transforms), thus we need to adjust the length accordingly.
+    scaleY = element.getScreenCTM();
+    scaleX = Math.sqrt(scaleY.a * scaleY.a + scaleY.b * scaleY.b);
+    scaleY = Math.sqrt(scaleY.d * scaleY.d + scaleY.c * scaleY.c);
+  }
+
+  try {
+    //IE bug: calling <path>.getTotalLength() locks the repaint area of the stroke to whatever its current dimensions are on that frame/tick. To work around that, we must call getBBox() to force IE to recalculate things.
+    bbox = element.getBBox(); //solely for fixing bug in IE - we don't actually use the bbox.
+  } catch (e) {
+    //firefox has a bug that throws an error if the element isn't visible.
+    console.log("Error: Some browsers like Firefox won't report measurements of invisible elements (like display:none or masks inside defs).");
+  }
+
+  if ((!bbox || !bbox.width && !bbox.height) && _types[type]) {
+    //if the element isn't visible, try to discern width/height using its attributes.
+    bbox = {
+      width: parseFloat(element.getAttribute(_types[type][0])),
+      height: parseFloat(element.getAttribute(_types[type][1]))
+    };
+
+    if (type !== "rect" && type !== "line") {
+      //double the radius for circles and ellipses
+      bbox.width *= 2;
+      bbox.height *= 2;
+    }
+
+    if (type === "line") {
+      bbox.x = parseFloat(element.getAttribute("x1"));
+      bbox.y = parseFloat(element.getAttribute("y1"));
+      bbox.width = Math.abs(bbox.width - bbox.x);
+      bbox.height = Math.abs(bbox.height - bbox.y);
+    }
+  }
+
+  if (type === "path") {
+    prevPoint = element.style.strokeDasharray;
+    element.style.strokeDasharray = "none";
+    length = element.getTotalLength() || 0;
+
+    if (scaleX !== scaleY) {
+      console.log("Warning: <path> length cannot be measured accurately when vector-effect is non-scaling-stroke and the element isn't proportionally scaled.");
+    }
+
+    length *= (scaleX + scaleY) / 2;
+    element.style.strokeDasharray = prevPoint;
+  } else if (type === "rect") {
+    length = bbox.width * 2 * scaleX + bbox.height * 2 * scaleY;
+  } else if (type === "line") {
+    length = getDistance(bbox.x, bbox.y, bbox.x + bbox.width, bbox.y + bbox.height, scaleX, scaleY);
+  } else if (type === "polyline" || type === "polygon") {
+    points = element.getAttribute("points").match(_numbersExp) || [];
+
+    if (type === "polygon") {
+      points.push(points[0], points[1]);
+    }
+
+    length = 0;
+
+    for (i = 2; i < points.length; i += 2) {
+      length += getDistance(points[i - 2], points[i - 1], points[i], points[i + 1], scaleX, scaleY) || 0;
+    }
+  } else if (type === "circle" || type === "ellipse") {
+    rx = bbox.width / 2 * scaleX;
+    ry = bbox.height / 2 * scaleY;
+    length = Math.PI * (3 * (rx + ry) - Math.sqrt((3 * rx + ry) * (rx + 3 * ry)));
+  }
+
+  return length || 0;
+}
+
+function getPosition(element, length) {
+  if (!element) {
+    return [0, 0];
+  }
+
+  element = unwrap(element);
+  length = length || getLength(element) + 1;
+
+  var cs = _getComputedStyle(element),
+      dash = cs.strokeDasharray || "",
+      offset = parseFloat(cs.strokeDashoffset),
+      i = dash.indexOf(",");
+
+  if (i < 0) {
+    i = dash.indexOf(" ");
+  }
+
+  dash = i < 0 ? length : parseFloat(dash.substr(0, i)) || 0.00001;
+
+  if (dash > length) {
+    dash = length;
+  }
+
+  return [Math.max(0, -offset), Math.max(0, dash - offset)];
+}
+
+DrawSVGPlugin = gsap_TweenLite_js__WEBPACK_IMPORTED_MODULE_0__["_gsScope"]._gsDefine.plugin({
+  propName: "drawSVG",
+  API: 2,
+  version: "0.2.1",
+  global: true,
+  overwriteProps: ["drawSVG"],
+  init: function init(target, value, tween, index) {
+    if (!target.getBBox) {
+      return false;
+    }
+
+    var length = getLength(target) + 1,
+        start,
+        end,
+        overage,
+        cs;
+    this._style = target.style;
+    this._target = target;
+
+    if (typeof value === "function") {
+      value = value(index, target);
+    }
+
+    if (value === true || value === "true") {
+      value = "0 100%";
+    } else if (!value) {
+      value = "0 0";
+    } else if ((value + "").indexOf(" ") === -1) {
+      value = "0 " + value;
+    }
+
+    start = getPosition(target, length);
+    end = parse(value, length, start[0]);
+    this._length = length + 10;
+
+    if (start[0] === 0 && end[0] === 0) {
+      overage = Math.max(0.00001, end[1] - length); //allow people to go past the end, like values of 105% because for some paths, Firefox doesn't return an accurate getTotalLength(), so it could end up coming up short.
+
+      this._dash = length + overage;
+      this._offset = length - start[1] + overage;
+      this._offsetPT = this._addTween(this, "_offset", this._offset, length - end[1] + overage, "drawSVG");
+    } else {
+      this._dash = start[1] - start[0] || 0.000001; //some browsers render artifacts if dash is 0, so we use a very small number in that case.
+
+      this._offset = -start[0];
+      this._dashPT = this._addTween(this, "_dash", this._dash, end[1] - end[0] || 0.00001, "drawSVG");
+      this._offsetPT = this._addTween(this, "_offset", this._offset, -end[0], "drawSVG");
+    }
+
+    if (_isEdge) {
+      //to work around a bug in Microsoft Edge, animate the stroke-miterlimit by 0.0001 just to trigger the repaint (unnecessary if it's "round" and stroke-linejoin is also "round"). Imperceptible, relatively high-performance, and effective. Another option was to set the "d" <path> attribute to its current value on every tick, but that seems like it'd be much less performant.
+      cs = _getComputedStyle(target);
+
+      if (cs.strokeLinecap !== cs.strokeLinejoin) {
+        end = parseFloat(cs.strokeMiterlimit);
+
+        this._addTween(target.style, "strokeMiterlimit", end, end + 0.0001, "strokeMiterlimit");
+      }
+    }
+
+    this._live = target.getAttribute("vector-effect") === "non-scaling-stroke" || (value + "").indexOf("live") !== -1;
+    return true;
+  },
+  //called each time the values should be updated, and the ratio gets passed as the only parameter (typically it's a value between 0 and 1, but it can exceed those when using an ease like Elastic.easeOut or Back.easeOut, etc.)
+  set: function set(ratio) {
+    if (this._firstPT) {
+      //when the element has vector-effect="non-scaling-stroke" and the SVG is resized (like on a window resize), it actually changes the length of the stroke! So we must sense that and make the proper adjustments.
+      if (this._live) {
+        var length = getLength(this._target) + 11,
+            lengthRatio;
+
+        if (length !== this._length) {
+          lengthRatio = length / this._length;
+          this._length = length;
+          this._offsetPT.s *= lengthRatio;
+          this._offsetPT.c *= lengthRatio;
+
+          if (this._dashPT) {
+            this._dashPT.s *= lengthRatio;
+            this._dashPT.c *= lengthRatio;
+          } else {
+            this._dash *= lengthRatio;
+          }
+        }
+      }
+
+      this._super.setRatio.call(this, ratio);
+
+      this._style.strokeDashoffset = this._offset;
+
+      if (ratio === 1 || ratio === 0) {
+        this._style.strokeDasharray = this._offset < 0.001 && this._length - this._dash <= 10 ? "none" : this._offset === this._dash ? "0px, 999999px" : this._dash + "px," + this._length + "px";
+      } else {
+        this._style.strokeDasharray = this._dash + "px," + this._length + "px";
+      }
+    }
+  }
+});
+DrawSVGPlugin.getLength = getLength;
+DrawSVGPlugin.getPosition = getPosition;
+
+
+/***/ }),
+
+/***/ "./wp-content/themes/think/src/js/plugins/MorphSVGPlugin.js":
+/*!******************************************************************!*\
+  !*** ./wp-content/themes/think/src/js/plugins/MorphSVGPlugin.js ***!
+  \******************************************************************/
+/*! exports provided: MorphSVGPlugin, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MorphSVGPlugin", function() { return MorphSVGPlugin; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return MorphSVGPlugin; });
+/* harmony import */ var gsap_TweenLite_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap/TweenLite.js */ "./node_modules/gsap/TweenLite.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 /*!
  * VERSION: 0.9.1
  * DATE: 2019-02-21
@@ -22,4 +327,1568 @@
  * This work is subject to the software agreement that was issued with your membership.
  * 
  * @author: Jack Doyle, jack@greensock.com
- */var o,s=Math.PI,a=s/180,h=/[achlmqstvz]|(-?\d*\.?\d*(?:e[\-+]?\d+)?)[0-9]/gi,l=/(?:(-|-=|\+=)?\d*\.?\d*(?:e[\-+]?\d+)?)[0-9]/gi,f=/(^[#\.][a-z]|[a-y][a-z])/gi,p=/[achlmqstvz]/gi,c=/[\+\-]?\d*\.?\d+e[\+\-]?\d+/gi,g=Math.atan2,u=Math.cos,d=Math.sin,_=Math.sqrt,y=2*s,x=.3*s,m=.7*s,v=i.h._gsDefine.globals.TweenLite,w=function(t){i.h.console&&console.log(t)},b=function(t,e,r,i,n,o,s,h,l){if(t!==h||e!==l){r=Math.abs(r),i=Math.abs(i);var f=n%360*a,p=u(f),c=d(f),g=(t-h)/2,x=(e-l)/2,m=p*g+c*x,v=-c*g+p*x,w=m*m,b=v*v,M=w/(r*r)+b/(i*i);M>1&&(r=_(M)*r,i=_(M)*i);var T=r*r,P=i*i,N=(T*P-T*b-P*w)/(T*b+P*w);N<0&&(N=0);var A=(o===s?-1:1)*_(N),S=A*(r*v/i),F=A*(-i*m/r),z=(t+h)/2+(p*S-c*F),O=(e+l)/2+(c*S+p*F),R=(m-S)/r,k=(v-F)/i,L=(-m-S)/r,C=(-v-F)/i,D=R*R+k*k,I=(k<0?-1:1)*Math.acos(R/_(D)),B=(R*C-k*L<0?-1:1)*Math.acos((R*L+k*C)/_(D*(L*L+C*C)));!s&&B>0?B-=y:s&&B<0&&(B+=y),I%=y,B%=y;var G,V=Math.ceil(Math.abs(B)/(y/4)),Y=[],j=B/V,X=4/3*d(j/2)/(1+u(j/2)),q=p*r,H=c*r,U=c*-i,E=p*i;for(G=0;G<V;G++)m=u(n=I+G*j),v=d(n),R=u(n+=j),k=d(n),Y.push(m-X*v,v+X*m,R+X*k,k-X*R,R,k);for(G=0;G<Y.length;G+=2)m=Y[G],v=Y[G+1],Y[G]=m*q+v*U+z,Y[G+1]=m*H+v*E+O;return Y[G-2]=h,Y[G-1]=l,Y}},M=function(t){var e,r,i,n,o,s,a,l,f,p,g,u,d,_=(t+"").replace(c,function(t){var e=+t;return e<1e-4&&e>-1e-4?0:e}).match(h)||[],y=[],x=0,m=0,v=_.length,M=0,T="ERROR: malformed path: "+t,P=function(t,e,r,i){p=(r-t)/3,g=(i-e)/3,a.push(t+p,e+g,r-p,i-g,r,i)};if(!t||!isNaN(_[0])||isNaN(_[1]))return w(T),y;for(e=0;e<v;e++)if(d=o,isNaN(_[e])?s=(o=_[e].toUpperCase())!==_[e]:e--,i=+_[e+1],n=+_[e+2],s&&(i+=x,n+=m),e||(l=i,f=n),"M"===o)a&&(a.length<8?y.length-=1:M+=a.length),x=l=i,m=f=n,a=[i,n],y.push(a),e+=2,o="L";else if("C"===o)a||(a=[0,0]),s||(x=m=0),a.push(i,n,x+1*_[e+3],m+1*_[e+4],x+=1*_[e+5],m+=1*_[e+6]),e+=6;else if("S"===o)p=x,g=m,"C"!==d&&"S"!==d||(p+=x-a[a.length-4],g+=m-a[a.length-3]),s||(x=m=0),a.push(p,g,i,n,x+=1*_[e+3],m+=1*_[e+4]),e+=4;else if("Q"===o)p=x+2/3*(i-x),g=m+2/3*(n-m),s||(x=m=0),x+=1*_[e+3],m+=1*_[e+4],a.push(p,g,x+2/3*(i-x),m+2/3*(n-m),x,m),e+=4;else if("T"===o)p=x-a[a.length-4],g=m-a[a.length-3],a.push(x+p,m+g,i+2/3*(x+1.5*p-i),n+2/3*(m+1.5*g-n),x=i,m=n),e+=2;else if("H"===o)P(x,m,x=i,m),e+=1;else if("V"===o)P(x,m,x,m=i+(s?m-x:0)),e+=1;else if("L"===o||"Z"===o)"Z"===o&&(i=l,n=f,a.closed=!0),("L"===o||Math.abs(x-i)>.5||Math.abs(m-n)>.5)&&(P(x,m,i,n),"L"===o&&(e+=2)),x=i,m=n;else if("A"===o){if(u=b(x,m,+_[e+1],+_[e+2],+_[e+3],+_[e+4],+_[e+5],(s?x:0)+1*_[e+6],(s?m:0)+1*_[e+7]))for(r=0;r<u.length;r++)a.push(u[r]);x=a[a.length-2],m=a[a.length-1],e+=7}else w(T);return e=a.length,a[0]===a[e-2]&&a[1]===a[e-1]&&(a.closed=!0),y.totalPoints=M+e,y},T=function(t,e){var r,i,n,o,s,a,h,l,f,p,c,g,u,d,_=0,y=t.length,x=e/((y-2)/6);for(u=2;u<y;u+=6)for(_+=x;_>.999999;)r=t[u-2],i=t[u-1],n=t[u],o=t[u+1],s=t[u+2],a=t[u+3],h=t[u+4],l=t[u+5],f=r+(n-r)*(d=1/((Math.floor(_)||1)+1)),f+=((c=n+(s-n)*d)-f)*d,c+=(s+(h-s)*d-c)*d,p=i+(o-i)*d,p+=((g=o+(a-o)*d)-p)*d,g+=(a+(l-a)*d-g)*d,t.splice(u,4,r+(n-r)*d,i+(o-i)*d,f,p,f+(c-f)*d,p+(g-p)*d,c,g,s+(h-s)*d,a+(l-a)*d),u+=6,y+=6,_--;return t},P=function(t,e){var r,i,n,o="",s=t.length,a=Math.pow(10,e||2);for(i=0;i<t.length;i++){for(s=(n=t[i]).length,o+="M"+(n[0]*a|0)/a+" "+(n[1]*a|0)/a+" C",r=2;r<s;r++)o+=(n[r]*a|0)/a+" ";n.closed&&(o+="z")}return o},N=function(t){for(var e=[],r=t.length-1,i=0;--r>-1;)e[i++]=t[r],e[i++]=t[r+1],r--;for(r=0;r<i;r++)t[r]=e[r];t.reversed=!t.reversed},A=function(t){var e,r=t.length,i=0,n=0;for(e=0;e<r;e++)i+=t[e++],n+=t[e];return[i/(r/2),n/(r/2)]},S=function(t){var e,r,i,n=t.length,o=t[0],s=o,a=t[1],h=a;for(i=6;i<n;i+=6)(e=t[i])>o?o=e:e<s&&(s=e),(r=t[i+1])>a?a=r:r<h&&(h=r);return t.centerX=(o+s)/2,t.centerY=(a+h)/2,t.size=(o-s)*(a-h)},F=function(t,e){e=e||3;for(var r,i,n,o,s,a,h,l,f,p,c,g,u,d,_,y,x=t.length,m=t[0][0],v=m,w=t[0][1],b=w,M=1/e;--x>-1;)for(r=(s=t[x]).length,o=6;o<r;o+=6)for(f=s[o],p=s[o+1],c=s[o+2]-f,d=s[o+3]-p,g=s[o+4]-f,_=s[o+5]-p,u=s[o+6]-f,y=s[o+7]-p,a=e;--a>-1;)(i=((h=M*a)*h*u+3*(l=1-h)*(h*g+l*c))*h+f)>m?m=i:i<v&&(v=i),(n=(h*h*y+3*l*(h*_+l*d))*h+p)>w?w=n:n<b&&(b=n);return t.centerX=(m+v)/2,t.centerY=(w+b)/2,t.left=v,t.width=m-v,t.top=b,t.height=w-b,t.size=(m-v)*(w-b)},z=function(t,e){return e.length-t.length},O=function(t,e){var r=t.size||S(t),i=e.size||S(e);return Math.abs(i-r)<(r+i)/20?e.centerX-t.centerX||e.centerY-t.centerY:i-r},R=function(t,e){var r,i,n=t.slice(0),o=t.length,s=o-2;for(e|=0,r=0;r<o;r++)i=(r+e)%s,t[r++]=n[i],t[r]=n[i+1]},k=function(t,e,r,i,n){var o,s,a,h,l=t.length,f=0,p=l-2;for(r*=6,s=0;s<l;s+=6)h=t[o=(s+r)%p]-(e[s]-i),a=t[o+1]-(e[s+1]-n),f+=_(a*a+h*h);return f},L=function(t,e,r){var i,n,o,s=t.length,a=A(t),h=A(e),l=h[0]-a[0],f=h[1]-a[1],p=k(t,e,0,l,f),c=0;for(o=6;o<s;o+=6)(n=k(t,e,o/6,l,f))<p&&(p=n,c=o);if(r)for(i=t.slice(0),N(i),o=6;o<s;o+=6)(n=k(i,e,o/6,l,f))<p&&(p=n,c=-o);return c/6},C=function(t,e,r){for(var i,n,o,s,a,h,l=t.length,f=99999999999,p=0,c=0;--l>-1;)for(h=(i=t[l]).length,a=0;a<h;a+=6)n=i[a]-e,o=i[a+1]-r,(s=_(n*n+o*o))<f&&(f=s,p=i[a],c=i[a+1]);return[p,c]},D=function(t,e,r,i,n,o){var s,a,h,l,f=e.length,p=0,c=Math.min(t.size||S(t),e[r].size||S(e[r]))*i,g=999999999999,u=t.centerX+n,d=t.centerY+o;for(s=r;s<f&&!((e[s].size||S(e[s]))<c);s++)a=e[s].centerX-u,h=e[s].centerY-d,(l=_(a*a+h*h))<g&&(p=s,g=l);return l=e[p],e.splice(p,1),l},I=function(t,e,r,i,o){var s,a,h,l,f,p,c,g=e.length-t.length,u=g>0?e:t,d=g>0?t:e,_=0,y="complexity"===i?z:O,x="position"===i?0:"number"==typeof i?i:.8,m=d.length,v="object"===n(r)&&r.push?r.slice(0):[r],b="reverse"===v[0]||v[0]<0,M="log"===r;if(d[0]){if(u.length>1&&(t.sort(y),e.sort(y),u.size||F(u),d.size||F(d),p=u.centerX-d.centerX,c=u.centerY-d.centerY,y===O))for(m=0;m<d.length;m++)u.splice(m,0,D(d[m],u,m,x,p,c));if(g)for(g<0&&(g=-g),u[0].length>d[0].length&&T(d[0],(u[0].length-d[0].length)/6|0),m=d.length;_<g;)u[m].size||S(u[m]),l=(h=C(d,u[m].centerX,u[m].centerY))[0],f=h[1],d[m++]=[l,f,l,f,l,f,l,f],d.totalPoints+=8,_++;for(m=0;m<t.length;m++)s=e[m],a=t[m],(g=s.length-a.length)<0?T(s,-g/6|0):g>0&&T(a,g/6|0),b&&!1!==o&&!a.reversed&&N(a),(r=v[m]||0===v[m]?v[m]:"auto")&&(a.closed||Math.abs(a[0]-a[a.length-2])<.5&&Math.abs(a[1]-a[a.length-1])<.5?"auto"===r||"log"===r?(v[m]=r=L(a,s,!m||!1===o),r<0&&(b=!0,N(a),r=-r),R(a,6*r)):"reverse"!==r&&(m&&r<0&&N(a),R(a,6*(r<0?-r:r))):!b&&("auto"===r&&Math.abs(s[0]-a[0])+Math.abs(s[1]-a[1])+Math.abs(s[s.length-2]-a[a.length-2])+Math.abs(s[s.length-1]-a[a.length-1])>Math.abs(s[0]-a[a.length-2])+Math.abs(s[1]-a[a.length-1])+Math.abs(s[s.length-2]-a[0])+Math.abs(s[s.length-1]-a[1])||r%2)?(N(a),v[m]=-1,b=!0):"auto"===r?v[m]=0:"reverse"===r&&(v[m]=-1),a.closed!==s.closed&&(a.closed=s.closed=!1));return M&&w("shapeIndex:["+v.join(",")+"]"),t.shapeIndex=v,v}},B=function(t,e){var r,i,n,o,s,a,h,l=0,f=parseFloat(t[0]),p=parseFloat(t[1]),c=f+","+p+" ";for(r=.5*e/(.5*(n=t.length)-1),i=0;i<n-2;i+=2){if(l+=r,a=parseFloat(t[i+2]),h=parseFloat(t[i+3]),l>.999999)for(s=1/(Math.floor(l)+1),o=1;l>.999999;)c+=(f+(a-f)*s*o).toFixed(2)+","+(p+(h-p)*s*o).toFixed(2)+" ",l--,o++;c+=a+","+h+" ",f=a,p=h}return c},G=function(t){var e=t[0].match(l)||[],r=t[1].match(l)||[],i=r.length-e.length;i>0?t[0]=B(e,i):t[1]=B(r,-i)},V=function(t){return isNaN(t)?G:function(e){G(e),e[1]=function(t,e){if(!e)return t;var r,i,n,o=t.match(l)||[],s=o.length,a="";for("reverse"===e?(i=s-1,r=-2):(i=(2*(parseInt(e,10)||0)+1+100*s)%s,r=2),n=0;n<s;n+=2)a+=o[i-1]+","+o[i]+" ",i=(i+r)%s;return a}(e[1],parseInt(t,10))}},Y={rect:"rx,ry,x,y,width,height",circle:"r,cx,cy",ellipse:"rx,ry,cx,cy",line:"x1,x2,y1,y2"},j=function(t,e){var r,n,o,s,a,h,f,p,c,g,u,d,_,y,x,m,v,w,b,T,N,A,S=t.tagName.toLowerCase(),F=.552284749831;return"path"!==S&&t.getBBox?(h=function(t,e){var r,n=i.h.document.createElementNS("http://www.w3.org/2000/svg","path"),o=Array.prototype.slice.call(t.attributes),s=o.length;for(e=","+e+",";--s>-1;)r=o[s].nodeName.toLowerCase(),-1===e.indexOf(","+r+",")&&n.setAttributeNS(null,r,o[s].nodeValue);return n}(t,"x,y,width,height,cx,cy,rx,ry,r,x1,x2,y1,y2,points"),A=function(t,e){for(var r=e?e.split(","):[],i={},n=r.length;--n>-1;)i[r[n]]=+t.getAttribute(r[n])||0;return i}(t,Y[S]),"rect"===S?(s=A.rx,a=A.ry,n=A.x,o=A.y,g=A.width-2*s,u=A.height-2*a,r=s||a?"M"+(m=(y=(_=n+s)+g)+s)+","+(w=o+a)+" V"+(b=w+u)+" C"+[m,T=b+a*F,x=y+s*F,N=b+a,y,N,y-(y-_)/3,N,_+(y-_)/3,N,_,N,d=n+s*(1-F),N,n,T,n,b,n,b-(b-w)/3,n,w+(b-w)/3,n,w,n,v=o+a*(1-F),d,o,_,o,_+(y-_)/3,o,y-(y-_)/3,o,y,o,x,o,m,v,m,w].join(",")+"z":"M"+(n+g)+","+o+" v"+u+" h"+-g+" v"+-u+" h"+g+"z"):"circle"===S||"ellipse"===S?("circle"===S?p=(s=a=A.r)*F:(s=A.rx,p=(a=A.ry)*F),r="M"+((n=A.cx)+s)+","+(o=A.cy)+" C"+[n+s,o+p,n+(f=s*F),o+a,n,o+a,n-f,o+a,n-s,o+p,n-s,o,n-s,o-p,n-f,o-a,n,o-a,n+f,o-a,n+s,o-p,n+s,o].join(",")+"z"):"line"===S?r="M"+A.x1+","+A.y1+" L"+A.x2+","+A.y2:"polyline"!==S&&"polygon"!==S||(r="M"+(n=(c=(t.getAttribute("points")+"").match(l)||[]).shift())+","+(o=c.shift())+" L"+c.join(","),"polygon"===S&&(r+=","+n+","+o+"z")),h.setAttribute("d",P(h._gsRawPath=M(r))),e&&t.parentNode&&(t.parentNode.insertBefore(h,t),t.parentNode.removeChild(t)),h):t},X=function(t,e,r){var i,n,o="string"==typeof t;return(!o||f.test(t)||(t.match(l)||[]).length<3)&&((i=o?v.selector(t):t&&t[0]?t:[t])&&i[0]?(n=((i=i[0]).nodeName+"").toUpperCase(),e&&"PATH"!==n&&(i=j(i,!1),n="PATH"),t=i.getAttribute("PATH"===n?"d":"points")||"",i===r&&(t=i.getAttributeNS(null,"data-original")||t)):(w("WARNING: invalid morph to: "+t),t=!1)),t},q=function(t,e){for(var r,i,n,o,s,a,h,l,f,p,c,u,d=t.length,y=.2*(e||1);--d>-1;){for(c=(i=t[d]).isSmooth=i.isSmooth||[0,0,0,0],u=i.smoothData=i.smoothData||[0,0,0,0],c.length=4,l=i.length-2,h=6;h<l;h+=6)n=i[h]-i[h-2],o=i[h+1]-i[h-1],s=i[h+2]-i[h],a=i[h+3]-i[h+1],f=g(o,n),p=g(a,s),(r=Math.abs(f-p)<y)&&(u[h-2]=f,u[h+2]=p,u[h-1]=_(n*n+o*o),u[h+3]=_(s*s+a*a)),c.push(r,r,0,0,r,r);i[l]===i[0]&&i[l+1]===i[1]&&(n=i[0]-i[l-2],o=i[1]-i[l-1],s=i[2]-i[0],a=i[3]-i[1],f=g(o,n),p=g(a,s),Math.abs(f-p)<y&&(u[l-2]=f,u[2]=p,u[l-1]=_(n*n+o*o),u[3]=_(s*s+a*a),c[l-2]=c[l-1]=!0))}return t},H=function(t){var e=t.trim().split(" ");return{x:(t.indexOf("left")>=0?0:t.indexOf("right")>=0?100:isNaN(parseFloat(e[0]))?50:parseFloat(e[0]))/100,y:(t.indexOf("top")>=0?0:t.indexOf("bottom")>=0?100:isNaN(parseFloat(e[1]))?50:parseFloat(e[1]))/100}},U="Use MorphSVGPlugin.convertToPath(elementOrSelectorText) to convert to a path before morphing.",E=i.h._gsDefine.plugin({propName:"morphSVG",API:2,global:!0,version:"0.9.1",init:function(t,e,r,i){var s,a,h,f,c,g,u,d,_,y,x,m,v,b,T,N,A,S,z,O,R,k,L=t.nodeType?window.getComputedStyle(t):{},C=L.fill+"",D=!("none"===C||"0"===(C.match(l)||[])[3]||"evenodd"===L.fillRule),B=(e.origin||"50 50").split(",");if("function"==typeof e&&(e=e(i,t)),c="POLYLINE"===(s=(t.nodeName+"").toUpperCase())||"POLYGON"===s,"PATH"!==s&&!c&&!e.prop)return w("WARNING: cannot morph a <"+s+"> element. "+U),!1;if(a="PATH"===s?"d":"points",("string"==typeof e||e.getBBox||e[0])&&(e={shape:e}),!e.prop&&"function"!=typeof t.setAttribute)return!1;if(f=X(e.shape||e.d||e.points||"","d"===a,t),c&&p.test(f))return w("WARNING: a <"+s+"> cannot accept path data. "+U),!1;if(g=e.shapeIndex||0===e.shapeIndex?e.shapeIndex:"auto",u=e.map||E.defaultMap,this._prop=e.prop,this._render=e.render||E.defaultRender,this._apply="updateTarget"in e?e.updateTarget:E.defaultUpdateTarget,this._rnd=Math.pow(10,isNaN(e.precision)?2:+e.precision),this._tween=r,f){if(this._target=t,A="object"===n(e.precompile),y=this._prop?t[this._prop]:t.getAttribute(a),this._prop||t.getAttributeNS(null,"data-original")||t.setAttributeNS(null,"data-original",y),"d"===a||this._prop){if(y=M(A?e.precompile[0]:y),x=M(A?e.precompile[1]:f),!A&&!I(y,x,g,u,D))return!1;for("log"!==e.precompile&&!0!==e.precompile||w('precompile:["'+P(y)+'","'+P(x)+'"]'),(R="linear"!==(e.type||E.defaultType))&&(y=q(y,e.smoothTolerance),x=q(x,e.smoothTolerance),y.size||F(y),x.size||F(x),O=H(B[0]),this._origin=y.origin={x:y.left+O.x*y.width,y:y.top+O.y*y.height},B[1]&&(O=H(B[1])),this._eOrigin={x:x.left+O.x*x.width,y:x.top+O.y*x.height}),this._rawPath=t._gsRawPath=y,v=y.length;--v>-1;)for(T=y[v],N=x[v],d=T.isSmooth||[],_=N.isSmooth||[],b=T.length,o=0,m=0;m<b;m+=2)N[m]===T[m]&&N[m+1]===T[m+1]||(R?d[m]&&_[m]?(S=T.smoothData,z=N.smoothData,k=m+(m===b-4?7-b:5),this._controlPT={_next:this._controlPT,i:m,j:v,l1s:S[m+1],l1c:z[m+1]-S[m+1],l2s:S[k],l2c:z[k]-S[k]},h=this._tweenRotation(T,N,m+2),this._tweenRotation(T,N,m,h),this._tweenRotation(T,N,k-1,h),m+=4):this._tweenRotation(T,N,m):(this._addTween(T,m,T[m],N[m]),h=this._addTween(T,m+1,T[m+1],N[m+1])))}else h=this._addTween(t,"setAttribute",t.getAttribute(a)+"",f+"","morphSVG",!1,a,V(g));R&&(this._addTween(this._origin,"x",this._origin.x,this._eOrigin.x),h=this._addTween(this._origin,"y",this._origin.y,this._eOrigin.y)),h&&(this._overwriteProps.push("morphSVG"),h.end=f,h.endProp=a)}return!0},set:function(t){var e,r,i,n,o,s,a,h,l,f,p,c,_,y=this._rawPath,x=this._controlPT,m=this._anchorPT,v=this._rnd,w=this._target;if(this._super.setRatio.call(this,t),1===t&&this._apply)for(i=this._firstPT;i;)i.end&&(this._prop?w[this._prop]=i.end:w.setAttribute(i.endProp,i.end)),i=i._next;else if(y){for(;m;)s=m.sa+t*m.ca,o=m.sl+t*m.cl,m.t[m.i]=this._origin.x+u(s)*o,m.t[m.i+1]=this._origin.y+d(s)*o,m=m._next;for(r=t<.5?2*t*t:(4-2*t)*t-1;x;)_=(a=x.i)+(a===(n=y[x.j]).length-4?7-n.length:5),s=g(n[_]-n[a+1],n[_-1]-n[a]),p=d(s),c=u(s),l=n[a+2],f=n[a+3],o=x.l1s+r*x.l1c,n[a]=l-c*o,n[a+1]=f-p*o,o=x.l2s+r*x.l2c,n[_-1]=l+c*o,n[_]=f+p*o,x=x._next;if(w._gsRawPath=y,this._apply){for(e=""," ",h=0;h<y.length;h++)for(o=(n=y[h]).length,e+="M"+(n[0]*v|0)/v+" "+(n[1]*v|0)/v+" C",a=2;a<o;a++)e+=(n[a]*v|0)/v+" ";this._prop?w[this._prop]=e:w.setAttribute("d",e)}}this._render&&y&&this._render.call(this._tween,y,w)}});E.prototype._tweenRotation=function(t,e,r,i){var n,a,h,l=this._origin,f=this._eOrigin,p=t[r]-l.x,c=t[r+1]-l.y,u=_(p*p+c*c),d=g(c,p);return p=e[r]-f.x,c=e[r+1]-f.y,n=g(c,p)-d,a=(h=n)!==h%s?h+(h<0?y:-y):h,!i&&o&&Math.abs(a+o.ca)<x&&(i=o),this._anchorPT=o={_next:this._anchorPT,t:t,sa:d,ca:i&&a*i.ca<0&&Math.abs(a)>m?n:a,sl:u,cl:_(p*p+c*c)-u,i:r}},E.pathFilter=function(t,e,r,i,n){var o=M(t[0]),s=M(t[1]);I(o,s,e||0===e?e:"auto",r,n)&&(t[0]=P(o),t[1]=P(s),"log"!==i&&!0!==i||w('precompile:["'+t[0]+'","'+t[1]+'"]'))},E.pointsFilter=G,E.getTotalSize=F,E.subdivideRawBezier=E.subdivideSegment=T,E.rawPathToString=P,E.defaultType="linear",E.defaultUpdateTarget=!0,E.defaultMap="size",E.stringToRawPath=E.pathDataToRawBezier=function(t){return M(X(t,!0))},E.equalizeSegmentQuantity=I,E.convertToPath=function(t,e){"string"==typeof t&&(t=v.selector(t));for(var r=t&&0!==t.length?t.length&&t[0]&&t[0].nodeType?Array.prototype.slice.call(t,0):[t]:[],i=r.length;--i>-1;)r[i]=j(r[i],!1!==e);return r},E.pathDataToBezier=function(t,e){var r,i,n,o,s,a,h,l,f=M(X(t,!0))[0]||[],p=0;if(l=(e=e||{}).align||e.relative,o=e.matrix||[1,0,0,1,0,0],s=e.offsetX||0,a=e.offsetY||0,"relative"===l||!0===l?(s-=f[0]*o[0]+f[1]*o[2],a-=f[0]*o[1]+f[1]*o[3],p="+="):(s+=o[4],a+=o[5],l&&(l="string"==typeof l?v.selector(l):l&&l[0]?l:[l])&&l[0]&&(s-=(h=l[0].getBBox()||{x:0,y:0}).x,a-=h.y)),r=[],n=f.length,o&&"1,0,0,1,0,0"!==o.join(","))for(i=0;i<n;i+=2)r.push({x:p+(f[i]*o[0]+f[i+1]*o[2]+s),y:p+(f[i]*o[1]+f[i+1]*o[3]+a)});else for(i=0;i<n;i+=2)r.push({x:p+(f[i]+s),y:p+(f[i+1]+a)});return r}}}]);
+ */
+
+/* eslint-disable */
+
+
+var _PI = Math.PI,
+    _DEG2RAD = _PI / 180,
+    _svgPathExp = /[achlmqstvz]|(-?\d*\.?\d*(?:e[\-+]?\d+)?)[0-9]/ig,
+    _numbersExp = /(?:(-|-=|\+=)?\d*\.?\d*(?:e[\-+]?\d+)?)[0-9]/ig,
+    _selectorExp = /(^[#\.][a-z]|[a-y][a-z])/gi,
+    _commands = /[achlmqstvz]/ig,
+    _scientific = /[\+\-]?\d*\.?\d+e[\+\-]?\d+/ig,
+    _atan2 = Math.atan2,
+    _cos = Math.cos,
+    _sin = Math.sin,
+    _sqrt = Math.sqrt,
+    _2PI = _PI * 2,
+    _angleMin = _PI * 0.3,
+    _angleMax = _PI * 0.7,
+    _lastLinkedAnchor,
+    TweenLite = gsap_TweenLite_js__WEBPACK_IMPORTED_MODULE_0__["_gsScope"]._gsDefine.globals.TweenLite,
+    _log = function _log(message) {
+  if (gsap_TweenLite_js__WEBPACK_IMPORTED_MODULE_0__["_gsScope"].console) {
+    console.log(message);
+  }
+},
+    // translates SVG arc data into an array of cubic beziers
+_arcToBeziers = function _arcToBeziers(lastX, lastY, rx, ry, angle, largeArcFlag, sweepFlag, x, y) {
+  if (lastX === x && lastY === y) {
+    return;
+  }
+
+  rx = Math.abs(rx);
+  ry = Math.abs(ry);
+
+  var angleRad = angle % 360 * _DEG2RAD,
+      cosAngle = _cos(angleRad),
+      sinAngle = _sin(angleRad),
+      dx2 = (lastX - x) / 2,
+      dy2 = (lastY - y) / 2,
+      x1 = cosAngle * dx2 + sinAngle * dy2,
+      y1 = -sinAngle * dx2 + cosAngle * dy2,
+      x1_sq = x1 * x1,
+      y1_sq = y1 * y1,
+      radiiCheck = x1_sq / (rx * rx) + y1_sq / (ry * ry);
+
+  if (radiiCheck > 1) {
+    rx = _sqrt(radiiCheck) * rx;
+    ry = _sqrt(radiiCheck) * ry;
+  }
+
+  var rx_sq = rx * rx,
+      ry_sq = ry * ry,
+      sq = (rx_sq * ry_sq - rx_sq * y1_sq - ry_sq * x1_sq) / (rx_sq * y1_sq + ry_sq * x1_sq);
+
+  if (sq < 0) {
+    sq = 0;
+  }
+
+  var coef = (largeArcFlag === sweepFlag ? -1 : 1) * _sqrt(sq),
+      cx1 = coef * (rx * y1 / ry),
+      cy1 = coef * -(ry * x1 / rx),
+      sx2 = (lastX + x) / 2,
+      sy2 = (lastY + y) / 2,
+      cx = sx2 + (cosAngle * cx1 - sinAngle * cy1),
+      cy = sy2 + (sinAngle * cx1 + cosAngle * cy1),
+      ux = (x1 - cx1) / rx,
+      uy = (y1 - cy1) / ry,
+      vx = (-x1 - cx1) / rx,
+      vy = (-y1 - cy1) / ry,
+      temp = ux * ux + uy * uy,
+      angleStart = (uy < 0 ? -1 : 1) * Math.acos(ux / _sqrt(temp)),
+      angleExtent = (ux * vy - uy * vx < 0 ? -1 : 1) * Math.acos((ux * vx + uy * vy) / _sqrt(temp * (vx * vx + vy * vy)));
+
+  if (!sweepFlag && angleExtent > 0) {
+    angleExtent -= _2PI;
+  } else if (sweepFlag && angleExtent < 0) {
+    angleExtent += _2PI;
+  }
+
+  angleStart %= _2PI;
+  angleExtent %= _2PI;
+
+  var segments = Math.ceil(Math.abs(angleExtent) / (_2PI / 4)),
+      rawPath = [],
+      angleIncrement = angleExtent / segments,
+      controlLength = 4 / 3 * _sin(angleIncrement / 2) / (1 + _cos(angleIncrement / 2)),
+      ma = cosAngle * rx,
+      mb = sinAngle * rx,
+      mc = sinAngle * -ry,
+      md = cosAngle * ry,
+      i;
+
+  for (i = 0; i < segments; i++) {
+    angle = angleStart + i * angleIncrement;
+    x1 = _cos(angle);
+    y1 = _sin(angle);
+    ux = _cos(angle += angleIncrement);
+    uy = _sin(angle);
+    rawPath.push(x1 - controlLength * y1, y1 + controlLength * x1, ux + controlLength * uy, uy - controlLength * ux, ux, uy);
+  } //now transform according to the actual size of the ellipse/arc (the beziers were noramlized, between 0 and 1 on a circle).
+
+
+  for (i = 0; i < rawPath.length; i += 2) {
+    x1 = rawPath[i];
+    y1 = rawPath[i + 1];
+    rawPath[i] = x1 * ma + y1 * mc + cx;
+    rawPath[i + 1] = x1 * mb + y1 * md + cy;
+  }
+
+  rawPath[i - 2] = x; //always set the end to exactly where it's supposed to be
+
+  rawPath[i - 1] = y;
+  return rawPath;
+},
+    //Spits back an array of cubic Bezier segments that use absolute coordinates. Each segment starts with a "moveTo" command (x coordinate, then y) and then 2 control points (x, y, x, y), then anchor. The goal is to minimize memory and maximize speed.
+_stringToRawPath = function _stringToRawPath(d) {
+  var a = (d + "").replace(_scientific, function (m) {
+    var n = +m;
+    return n < 0.0001 && n > -0.0001 ? 0 : n;
+  }).match(_svgPathExp) || [],
+      //some authoring programs spit out very small numbers in scientific notation like "1e-5", so make sure we round that down to 0 first.
+  path = [],
+      relativeX = 0,
+      relativeY = 0,
+      twoThirds = 2 / 3,
+      elements = a.length,
+      points = 0,
+      errorMessage = "ERROR: malformed path: " + d,
+      line = function line(sx, sy, ex, ey) {
+    difX = (ex - sx) / 3;
+    difY = (ey - sy) / 3;
+    segment.push(sx + difX, sy + difY, ex - difX, ey - difY, ex, ey);
+  },
+      i,
+      j,
+      x,
+      y,
+      command,
+      isRelative,
+      segment,
+      startX,
+      startY,
+      difX,
+      difY,
+      beziers,
+      prevCommand;
+
+  if (!d || !isNaN(a[0]) || isNaN(a[1])) {
+    _log(errorMessage);
+
+    return path;
+  }
+
+  for (i = 0; i < elements; i++) {
+    prevCommand = command;
+
+    if (isNaN(a[i])) {
+      command = a[i].toUpperCase();
+      isRelative = command !== a[i]; //lower case means relative
+    } else {
+      //commands like "C" can be strung together without any new command characters between.
+      i--;
+    }
+
+    x = +a[i + 1];
+    y = +a[i + 2];
+
+    if (isRelative) {
+      x += relativeX;
+      y += relativeY;
+    }
+
+    if (!i) {
+      startX = x;
+      startY = y;
+    } // "M" (move)
+
+
+    if (command === "M") {
+      if (segment) {
+        if (segment.length < 8) {
+          //if the path data was funky and just had a M with no actual drawing anywhere, skip it.
+          path.length -= 1;
+        } else {
+          points += segment.length;
+        }
+      }
+
+      relativeX = startX = x;
+      relativeY = startY = y;
+      segment = [x, y];
+      path.push(segment);
+      i += 2;
+      command = "L"; //an "M" with more than 2 values gets interpreted as "lineTo" commands ("L").
+      // "C" (cubic bezier)
+    } else if (command === "C") {
+      if (!segment) {
+        segment = [0, 0];
+      }
+
+      if (!isRelative) {
+        relativeX = relativeY = 0;
+      } //note: "*1" is just a fast/short way to cast the value as a Number. WAAAY faster in Chrome, slightly slower in Firefox.
+
+
+      segment.push(x, y, relativeX + a[i + 3] * 1, relativeY + a[i + 4] * 1, relativeX += a[i + 5] * 1, relativeY += a[i + 6] * 1);
+      i += 6; // "S" (continuation of cubic bezier)
+    } else if (command === "S") {
+      difX = relativeX;
+      difY = relativeY;
+
+      if (prevCommand === "C" || prevCommand === "S") {
+        difX += relativeX - segment[segment.length - 4];
+        difY += relativeY - segment[segment.length - 3];
+      }
+
+      if (!isRelative) {
+        relativeX = relativeY = 0;
+      }
+
+      segment.push(difX, difY, x, y, relativeX += a[i + 3] * 1, relativeY += a[i + 4] * 1);
+      i += 4; // "Q" (quadratic bezier)
+    } else if (command === "Q") {
+      difX = relativeX + (x - relativeX) * twoThirds;
+      difY = relativeY + (y - relativeY) * twoThirds;
+
+      if (!isRelative) {
+        relativeX = relativeY = 0;
+      }
+
+      relativeX += a[i + 3] * 1;
+      relativeY += a[i + 4] * 1;
+      segment.push(difX, difY, relativeX + (x - relativeX) * twoThirds, relativeY + (y - relativeY) * twoThirds, relativeX, relativeY);
+      i += 4; // "T" (continuation of quadratic bezier)
+    } else if (command === "T") {
+      difX = relativeX - segment[segment.length - 4];
+      difY = relativeY - segment[segment.length - 3];
+      segment.push(relativeX + difX, relativeY + difY, x + (relativeX + difX * 1.5 - x) * twoThirds, y + (relativeY + difY * 1.5 - y) * twoThirds, relativeX = x, relativeY = y);
+      i += 2; // "H" (horizontal line)
+    } else if (command === "H") {
+      line(relativeX, relativeY, relativeX = x, relativeY);
+      i += 1; // "V" (vertical line)
+    } else if (command === "V") {
+      //adjust values because the first (and only one) isn't x in this case, it's y.
+      line(relativeX, relativeY, relativeX, relativeY = x + (isRelative ? relativeY - relativeX : 0));
+      i += 1; // "L" (line) or "Z" (close)
+    } else if (command === "L" || command === "Z") {
+      if (command === "Z") {
+        x = startX;
+        y = startY;
+        segment.closed = true;
+      }
+
+      if (command === "L" || Math.abs(relativeX - x) > 0.5 || Math.abs(relativeY - y) > 0.5) {
+        line(relativeX, relativeY, x, y);
+
+        if (command === "L") {
+          i += 2;
+        }
+      }
+
+      relativeX = x;
+      relativeY = y; // "A" (arc)
+    } else if (command === "A") {
+      beziers = _arcToBeziers(relativeX, relativeY, +a[i + 1], +a[i + 2], +a[i + 3], +a[i + 4], +a[i + 5], (isRelative ? relativeX : 0) + a[i + 6] * 1, (isRelative ? relativeY : 0) + a[i + 7] * 1);
+
+      if (beziers) {
+        for (j = 0; j < beziers.length; j++) {
+          segment.push(beziers[j]);
+        }
+      }
+
+      relativeX = segment[segment.length - 2];
+      relativeY = segment[segment.length - 1];
+      i += 7;
+    } else {
+      _log(errorMessage);
+    }
+  }
+
+  i = segment.length;
+
+  if (segment[0] === segment[i - 2] && segment[1] === segment[i - 1]) {
+    segment.closed = true;
+  }
+
+  path.totalPoints = points + i;
+  return path;
+},
+    //adds a certain number of Beziers while maintaining the path shape (so that the start/end values can have a matching quantity of points to animate). Only pass in ONE segment of the Bezier at a time. Format: [xAnchor, yAnchor, xControlPoint1, yControlPoint1, xControlPoint2, yControlPoint2, xAnchor, yAnchor, xControlPoint1, etc...]
+_subdivideSegment = function _subdivideSegment(segment, quantity) {
+  var tally = 0,
+      max = 0.999999,
+      l = segment.length,
+      newPointsPerSegment = quantity / ((l - 2) / 6),
+      ax,
+      ay,
+      cp1x,
+      cp1y,
+      cp2x,
+      cp2y,
+      bx,
+      by,
+      x1,
+      y1,
+      x2,
+      y2,
+      i,
+      t;
+
+  for (i = 2; i < l; i += 6) {
+    tally += newPointsPerSegment;
+
+    while (tally > max) {
+      //compare with 0.99999 instead of 1 in order to prevent rounding errors
+      ax = segment[i - 2];
+      ay = segment[i - 1];
+      cp1x = segment[i];
+      cp1y = segment[i + 1];
+      cp2x = segment[i + 2];
+      cp2y = segment[i + 3];
+      bx = segment[i + 4];
+      by = segment[i + 5];
+      t = 1 / ((Math.floor(tally) || 1) + 1); //progress along the bezier (value between 0 and 1)
+
+      x1 = ax + (cp1x - ax) * t;
+      x2 = cp1x + (cp2x - cp1x) * t;
+      x1 += (x2 - x1) * t;
+      x2 += (cp2x + (bx - cp2x) * t - x2) * t;
+      y1 = ay + (cp1y - ay) * t;
+      y2 = cp1y + (cp2y - cp1y) * t;
+      y1 += (y2 - y1) * t;
+      y2 += (cp2y + (by - cp2y) * t - y2) * t;
+      segment.splice(i, 4, ax + (cp1x - ax) * t, //first control point
+      ay + (cp1y - ay) * t, x1, //second control point
+      y1, x1 + (x2 - x1) * t, //new fabricated anchor on line
+      y1 + (y2 - y1) * t, x2, //third control point
+      y2, cp2x + (bx - cp2x) * t, //fourth control point
+      cp2y + (by - cp2y) * t);
+      i += 6;
+      l += 6;
+      tally--;
+    }
+  }
+
+  return segment;
+},
+    _rawPathToString = function _rawPathToString(rawPath, precision) {
+  var s = "",
+      space = " ",
+      l = rawPath.length,
+      rnd = Math.pow(10, precision || 2),
+      i,
+      j,
+      segment;
+
+  for (j = 0; j < rawPath.length; j++) {
+    segment = rawPath[j];
+    l = segment.length;
+    s += "M" + (segment[0] * rnd | 0) / rnd + space + (segment[1] * rnd | 0) / rnd + " C";
+
+    for (i = 2; i < l; i++) {
+      //this is actually faster than just doing a join() on the array, possibly because the numbers have so many decimal places
+      s += (segment[i] * rnd | 0) / rnd + space;
+    }
+
+    if (segment.closed) {
+      s += "z";
+    }
+  }
+
+  return s;
+},
+    _reverseBezier = function _reverseBezier(segment) {
+  var a = [],
+      i = segment.length - 1,
+      l = 0;
+
+  while (--i > -1) {
+    a[l++] = segment[i];
+    a[l++] = segment[i + 1];
+    i--;
+  }
+
+  for (i = 0; i < l; i++) {
+    segment[i] = a[i];
+  }
+
+  segment.reversed = !segment.reversed;
+},
+    _getAverageXY = function _getAverageXY(segment) {
+  var l = segment.length,
+      x = 0,
+      y = 0,
+      i;
+
+  for (i = 0; i < l; i++) {
+    x += segment[i++];
+    y += segment[i];
+  }
+
+  return [x / (l / 2), y / (l / 2)];
+},
+    _getSize = function _getSize(segment) {
+  //rough estimate of the bounding box (based solely on the anchors) of a single segment. sets "size", "centerX", and "centerY" properties on the bezier array itself, and returns the size (width * height)
+  var l = segment.length,
+      xMax = segment[0],
+      xMin = xMax,
+      yMax = segment[1],
+      yMin = yMax,
+      x,
+      y,
+      i;
+
+  for (i = 6; i < l; i += 6) {
+    x = segment[i];
+    y = segment[i + 1];
+
+    if (x > xMax) {
+      xMax = x;
+    } else if (x < xMin) {
+      xMin = x;
+    }
+
+    if (y > yMax) {
+      yMax = y;
+    } else if (y < yMin) {
+      yMin = y;
+    }
+  }
+
+  segment.centerX = (xMax + xMin) / 2;
+  segment.centerY = (yMax + yMin) / 2;
+  return segment.size = (xMax - xMin) * (yMax - yMin);
+},
+    _getTotalSize = function _getTotalSize(rawPath, samplesPerBezier) {
+  //rough estimate of the bounding box of the entire list of Bezier segments (based solely on the anchors). sets "size", "centerX", and "centerY" properties on the bezier array itself, and returns the size (width * height)
+  samplesPerBezier = samplesPerBezier || 3;
+  var j = rawPath.length,
+      xMax = rawPath[0][0],
+      xMin = xMax,
+      yMax = rawPath[0][1],
+      yMin = yMax,
+      inc = 1 / samplesPerBezier,
+      l,
+      x,
+      y,
+      i,
+      segment,
+      k,
+      t,
+      inv,
+      x1,
+      y1,
+      x2,
+      x3,
+      x4,
+      y2,
+      y3,
+      y4;
+
+  while (--j > -1) {
+    segment = rawPath[j];
+    l = segment.length;
+
+    for (i = 6; i < l; i += 6) {
+      x1 = segment[i];
+      y1 = segment[i + 1];
+      x2 = segment[i + 2] - x1;
+      y2 = segment[i + 3] - y1;
+      x3 = segment[i + 4] - x1;
+      y3 = segment[i + 5] - y1;
+      x4 = segment[i + 6] - x1;
+      y4 = segment[i + 7] - y1;
+      k = samplesPerBezier;
+
+      while (--k > -1) {
+        t = inc * k;
+        inv = 1 - t;
+        x = (t * t * x4 + 3 * inv * (t * x3 + inv * x2)) * t + x1;
+        y = (t * t * y4 + 3 * inv * (t * y3 + inv * y2)) * t + y1;
+
+        if (x > xMax) {
+          xMax = x;
+        } else if (x < xMin) {
+          xMin = x;
+        }
+
+        if (y > yMax) {
+          yMax = y;
+        } else if (y < yMin) {
+          yMin = y;
+        }
+      }
+    }
+  }
+
+  rawPath.centerX = (xMax + xMin) / 2;
+  rawPath.centerY = (yMax + yMin) / 2;
+  rawPath.left = xMin;
+  rawPath.width = xMax - xMin;
+  rawPath.top = yMin;
+  rawPath.height = yMax - yMin;
+  return rawPath.size = (xMax - xMin) * (yMax - yMin);
+},
+    _sortByComplexity = function _sortByComplexity(a, b) {
+  return b.length - a.length;
+},
+    _sortBySize = function _sortBySize(a, b) {
+  var sizeA = a.size || _getSize(a),
+      sizeB = b.size || _getSize(b);
+
+  return Math.abs(sizeB - sizeA) < (sizeA + sizeB) / 20 ? b.centerX - a.centerX || b.centerY - a.centerY : sizeB - sizeA; //if the size is within 10% of each other, prioritize position from left to right, then top to bottom.
+},
+    _offsetSegment = function _offsetSegment(segment, shapeIndex) {
+  var a = segment.slice(0),
+      l = segment.length,
+      wrap = l - 2,
+      i,
+      index;
+  shapeIndex = shapeIndex | 0;
+
+  for (i = 0; i < l; i++) {
+    index = (i + shapeIndex) % wrap;
+    segment[i++] = a[index];
+    segment[i] = a[index + 1];
+  }
+},
+    _getTotalMovement = function _getTotalMovement(sb, eb, shapeIndex, offsetX, offsetY) {
+  var l = sb.length,
+      d = 0,
+      wrap = l - 2,
+      index,
+      i,
+      x,
+      y;
+  shapeIndex *= 6;
+
+  for (i = 0; i < l; i += 6) {
+    index = (i + shapeIndex) % wrap;
+    y = sb[index] - (eb[i] - offsetX);
+    x = sb[index + 1] - (eb[i + 1] - offsetY);
+    d += _sqrt(x * x + y * y);
+  }
+
+  return d;
+},
+    _getClosestShapeIndex = function _getClosestShapeIndex(sb, eb, checkReverse) {
+  //finds the index in a closed cubic bezier array that's closest to the angle provided (angle measured from the center or average x/y).
+  var l = sb.length,
+      sCenter = _getAverageXY(sb),
+      //when comparing distances, adjust the coordinates as if the shapes are centered with each other.
+  eCenter = _getAverageXY(eb),
+      offsetX = eCenter[0] - sCenter[0],
+      offsetY = eCenter[1] - sCenter[1],
+      min = _getTotalMovement(sb, eb, 0, offsetX, offsetY),
+      minIndex = 0,
+      copy,
+      d,
+      i;
+
+  for (i = 6; i < l; i += 6) {
+    d = _getTotalMovement(sb, eb, i / 6, offsetX, offsetY);
+
+    if (d < min) {
+      min = d;
+      minIndex = i;
+    }
+  }
+
+  if (checkReverse) {
+    copy = sb.slice(0);
+
+    _reverseBezier(copy);
+
+    for (i = 6; i < l; i += 6) {
+      d = _getTotalMovement(copy, eb, i / 6, offsetX, offsetY);
+
+      if (d < min) {
+        min = d;
+        minIndex = -i;
+      }
+    }
+  }
+
+  return minIndex / 6;
+},
+    _getClosestAnchor = function _getClosestAnchor(bezier, x, y) {
+  //finds the x/y of the anchor that's closest to the provided x/y coordinate (returns an array, like [x, y]). The bezier should be the top-level type that contains an array for each segment.
+  var j = bezier.length,
+      closestDistance = 99999999999,
+      closestX = 0,
+      closestY = 0,
+      b,
+      dx,
+      dy,
+      d,
+      i,
+      l;
+
+  while (--j > -1) {
+    b = bezier[j];
+    l = b.length;
+
+    for (i = 0; i < l; i += 6) {
+      dx = b[i] - x;
+      dy = b[i + 1] - y;
+      d = _sqrt(dx * dx + dy * dy);
+
+      if (d < closestDistance) {
+        closestDistance = d;
+        closestX = b[i];
+        closestY = b[i + 1];
+      }
+    }
+  }
+
+  return [closestX, closestY];
+},
+    _getClosestSegment = function _getClosestSegment(bezier, pool, startIndex, sortRatio, offsetX, offsetY) {
+  //matches the bezier to the closest one in a pool (array) of beziers, assuming they are in order of size and we shouldn't drop more than 20% of the size, otherwise prioritizing location (total distance to the center). Extracts the segment out of the pool array and returns it.
+  var l = pool.length,
+      index = 0,
+      minSize = Math.min(bezier.size || _getSize(bezier), pool[startIndex].size || _getSize(pool[startIndex])) * sortRatio,
+      //limit things based on a percentage of the size of either the bezier or the next element in the array, whichever is smaller.
+  min = 999999999999,
+      cx = bezier.centerX + offsetX,
+      cy = bezier.centerY + offsetY,
+      size,
+      i,
+      dx,
+      dy,
+      d;
+
+  for (i = startIndex; i < l; i++) {
+    size = pool[i].size || _getSize(pool[i]);
+
+    if (size < minSize) {
+      break;
+    }
+
+    dx = pool[i].centerX - cx;
+    dy = pool[i].centerY - cy;
+    d = _sqrt(dx * dx + dy * dy);
+
+    if (d < min) {
+      index = i;
+      min = d;
+    }
+  }
+
+  d = pool[index];
+  pool.splice(index, 1);
+  return d;
+},
+    _equalizeSegmentQuantity = function _equalizeSegmentQuantity(start, end, shapeIndex, map, fillSafe) {
+  //returns an array of shape indexes, 1 for each segment.
+  var dif = end.length - start.length,
+      longer = dif > 0 ? end : start,
+      shorter = dif > 0 ? start : end,
+      added = 0,
+      sortMethod = map === "complexity" ? _sortByComplexity : _sortBySize,
+      sortRatio = map === "position" ? 0 : typeof map === "number" ? map : 0.8,
+      i = shorter.length,
+      shapeIndices = _typeof(shapeIndex) === "object" && shapeIndex.push ? shapeIndex.slice(0) : [shapeIndex],
+      reverse = shapeIndices[0] === "reverse" || shapeIndices[0] < 0,
+      log = shapeIndex === "log",
+      eb,
+      sb,
+      b,
+      x,
+      y,
+      offsetX,
+      offsetY;
+
+  if (!shorter[0]) {
+    return;
+  }
+
+  if (longer.length > 1) {
+    start.sort(sortMethod);
+    end.sort(sortMethod);
+    offsetX = longer.size || _getTotalSize(longer); //ensures centerX and centerY are defined (used below).
+
+    offsetX = shorter.size || _getTotalSize(shorter);
+    offsetX = longer.centerX - shorter.centerX;
+    offsetY = longer.centerY - shorter.centerY;
+
+    if (sortMethod === _sortBySize) {
+      for (i = 0; i < shorter.length; i++) {
+        longer.splice(i, 0, _getClosestSegment(shorter[i], longer, i, sortRatio, offsetX, offsetY));
+      }
+    }
+  }
+
+  if (dif) {
+    if (dif < 0) {
+      dif = -dif;
+    }
+
+    if (longer[0].length > shorter[0].length) {
+      //since we use shorter[0] as the one to map the origination point of any brand new fabricated segments, do any subdividing first so that there are more points to choose from (if necessary)
+      _subdivideSegment(shorter[0], (longer[0].length - shorter[0].length) / 6 | 0);
+    }
+
+    i = shorter.length;
+
+    while (added < dif) {
+      x = longer[i].size || _getSize(longer[i]); //just to ensure centerX and centerY are calculated which we use on the next line.
+
+      b = _getClosestAnchor(shorter, longer[i].centerX, longer[i].centerY);
+      x = b[0];
+      y = b[1];
+      shorter[i++] = [x, y, x, y, x, y, x, y];
+      shorter.totalPoints += 8;
+      added++;
+    }
+  }
+
+  for (i = 0; i < start.length; i++) {
+    eb = end[i];
+    sb = start[i];
+    dif = eb.length - sb.length;
+
+    if (dif < 0) {
+      _subdivideSegment(eb, -dif / 6 | 0);
+    } else if (dif > 0) {
+      _subdivideSegment(sb, dif / 6 | 0);
+    }
+
+    if (reverse && fillSafe !== false && !sb.reversed) {
+      _reverseBezier(sb);
+    }
+
+    shapeIndex = shapeIndices[i] || shapeIndices[i] === 0 ? shapeIndices[i] : "auto";
+
+    if (shapeIndex) {
+      //if start shape is closed, find the closest point to the start/end, and re-organize the bezier points accordingly so that the shape morphs in a more intuitive way.
+      if (sb.closed || Math.abs(sb[0] - sb[sb.length - 2]) < 0.5 && Math.abs(sb[1] - sb[sb.length - 1]) < 0.5) {
+        if (shapeIndex === "auto" || shapeIndex === "log") {
+          shapeIndices[i] = shapeIndex = _getClosestShapeIndex(sb, eb, !i || fillSafe === false);
+
+          if (shapeIndex < 0) {
+            reverse = true;
+
+            _reverseBezier(sb);
+
+            shapeIndex = -shapeIndex;
+          }
+
+          _offsetSegment(sb, shapeIndex * 6);
+        } else if (shapeIndex !== "reverse") {
+          if (i && shapeIndex < 0) {
+            //only happens if an array is passed as shapeIndex and a negative value is defined for an index beyond 0. Very rare, but helpful sometimes.
+            _reverseBezier(sb);
+          }
+
+          _offsetSegment(sb, (shapeIndex < 0 ? -shapeIndex : shapeIndex) * 6);
+        } //otherwise, if it's not a closed shape, consider reversing it if that would make the overall travel less
+
+      } else if (!reverse && (shapeIndex === "auto" && Math.abs(eb[0] - sb[0]) + Math.abs(eb[1] - sb[1]) + Math.abs(eb[eb.length - 2] - sb[sb.length - 2]) + Math.abs(eb[eb.length - 1] - sb[sb.length - 1]) > Math.abs(eb[0] - sb[sb.length - 2]) + Math.abs(eb[1] - sb[sb.length - 1]) + Math.abs(eb[eb.length - 2] - sb[0]) + Math.abs(eb[eb.length - 1] - sb[1]) || shapeIndex % 2)) {
+        _reverseBezier(sb);
+
+        shapeIndices[i] = -1;
+        reverse = true;
+      } else if (shapeIndex === "auto") {
+        shapeIndices[i] = 0;
+      } else if (shapeIndex === "reverse") {
+        shapeIndices[i] = -1;
+      }
+
+      if (sb.closed !== eb.closed) {
+        //if one is closed and one isn't, don't close either one otherwise the tweening will look weird (but remember, the beginning and final states will honor the actual values, so this only affects the inbetween state)
+        sb.closed = eb.closed = false;
+      }
+    }
+  }
+
+  if (log) {
+    _log("shapeIndex:[" + shapeIndices.join(",") + "]");
+  }
+
+  start.shapeIndex = shapeIndices;
+  return shapeIndices;
+},
+    _pathFilter = function _pathFilter(a, shapeIndex, map, precompile, fillSafe) {
+  var start = _stringToRawPath(a[0]),
+      end = _stringToRawPath(a[1]);
+
+  if (!_equalizeSegmentQuantity(start, end, shapeIndex || shapeIndex === 0 ? shapeIndex : "auto", map, fillSafe)) {
+    return; //malformed path data or null target
+  }
+
+  a[0] = _rawPathToString(start);
+  a[1] = _rawPathToString(end);
+
+  if (precompile === "log" || precompile === true) {
+    _log('precompile:["' + a[0] + '","' + a[1] + '"]');
+  }
+},
+
+/*
+_buildPathFilter = function(shapeIndex, map, precompile) {
+	return (map || precompile || shapeIndex || shapeIndex === 0) ? function(a) {
+		_pathFilter(a, shapeIndex, map, precompile);
+	} : _pathFilter;
+},
+*/
+_offsetPoints = function _offsetPoints(text, offset) {
+  if (!offset) {
+    return text;
+  }
+
+  var a = text.match(_numbersExp) || [],
+      l = a.length,
+      s = "",
+      inc,
+      i,
+      j;
+
+  if (offset === "reverse") {
+    i = l - 1;
+    inc = -2;
+  } else {
+    i = ((parseInt(offset, 10) || 0) * 2 + 1 + l * 100) % l;
+    inc = 2;
+  }
+
+  for (j = 0; j < l; j += 2) {
+    s += a[i - 1] + "," + a[i] + " ";
+    i = (i + inc) % l;
+  }
+
+  return s;
+},
+    //adds a certain number of points while maintaining the polygon/polyline shape (so that the start/end values can have a matching quantity of points to animate). Returns the revised string.
+_equalizePointQuantity = function _equalizePointQuantity(a, quantity) {
+  var tally = 0,
+      x = parseFloat(a[0]),
+      y = parseFloat(a[1]),
+      s = x + "," + y + " ",
+      max = 0.999999,
+      newPointsPerSegment,
+      i,
+      l,
+      j,
+      factor,
+      nextX,
+      nextY;
+  l = a.length;
+  newPointsPerSegment = quantity * 0.5 / (l * 0.5 - 1);
+
+  for (i = 0; i < l - 2; i += 2) {
+    tally += newPointsPerSegment;
+    nextX = parseFloat(a[i + 2]);
+    nextY = parseFloat(a[i + 3]);
+
+    if (tally > max) {
+      //compare with 0.99999 instead of 1 in order to prevent rounding errors
+      factor = 1 / (Math.floor(tally) + 1);
+      j = 1;
+
+      while (tally > max) {
+        s += (x + (nextX - x) * factor * j).toFixed(2) + "," + (y + (nextY - y) * factor * j).toFixed(2) + " ";
+        tally--;
+        j++;
+      }
+    }
+
+    s += nextX + "," + nextY + " ";
+    x = nextX;
+    y = nextY;
+  }
+
+  return s;
+},
+    _pointsFilter = function _pointsFilter(a) {
+  var startNums = a[0].match(_numbersExp) || [],
+      endNums = a[1].match(_numbersExp) || [],
+      dif = endNums.length - startNums.length;
+
+  if (dif > 0) {
+    a[0] = _equalizePointQuantity(startNums, dif);
+  } else {
+    a[1] = _equalizePointQuantity(endNums, -dif);
+  }
+},
+    _buildPointsFilter = function _buildPointsFilter(shapeIndex) {
+  return !isNaN(shapeIndex) ? function (a) {
+    _pointsFilter(a);
+
+    a[1] = _offsetPoints(a[1], parseInt(shapeIndex, 10));
+  } : _pointsFilter;
+},
+    _createPath = function _createPath(e, ignore) {
+  var path = gsap_TweenLite_js__WEBPACK_IMPORTED_MODULE_0__["_gsScope"].document.createElementNS("http://www.w3.org/2000/svg", "path"),
+      attr = Array.prototype.slice.call(e.attributes),
+      i = attr.length,
+      name;
+
+  ignore = "," + ignore + ",";
+
+  while (--i > -1) {
+    name = attr[i].nodeName.toLowerCase(); //in Microsoft Edge, if you don't set the attribute with a lowercase name, it doesn't render correctly! Super weird.
+
+    if (ignore.indexOf("," + name + ",") === -1) {
+      path.setAttributeNS(null, name, attr[i].nodeValue);
+    }
+  }
+
+  return path;
+},
+    _typeAttrs = {
+  rect: "rx,ry,x,y,width,height",
+  circle: "r,cx,cy",
+  ellipse: "rx,ry,cx,cy",
+  line: "x1,x2,y1,y2"
+},
+    _attrToObj = function _attrToObj(e, attrs) {
+  var props = attrs ? attrs.split(",") : [],
+      obj = {},
+      i = props.length;
+
+  while (--i > -1) {
+    obj[props[i]] = +e.getAttribute(props[i]) || 0;
+  }
+
+  return obj;
+},
+    _convertToPath = function _convertToPath(e, swap) {
+  var type = e.tagName.toLowerCase(),
+      circ = 0.552284749831,
+      data,
+      x,
+      y,
+      r,
+      ry,
+      path,
+      rcirc,
+      rycirc,
+      points,
+      w,
+      h,
+      x2,
+      x3,
+      x4,
+      x5,
+      x6,
+      y2,
+      y3,
+      y4,
+      y5,
+      y6,
+      attr;
+
+  if (type === "path" || !e.getBBox) {
+    return e;
+  }
+
+  path = _createPath(e, "x,y,width,height,cx,cy,rx,ry,r,x1,x2,y1,y2,points");
+  attr = _attrToObj(e, _typeAttrs[type]);
+
+  if (type === "rect") {
+    r = attr.rx;
+    ry = attr.ry;
+    x = attr.x;
+    y = attr.y;
+    w = attr.width - r * 2;
+    h = attr.height - ry * 2;
+
+    if (r || ry) {
+      //if there are rounded corners, render cubic beziers
+      x2 = x + r * (1 - circ);
+      x3 = x + r;
+      x4 = x3 + w;
+      x5 = x4 + r * circ;
+      x6 = x4 + r;
+      y2 = y + ry * (1 - circ);
+      y3 = y + ry;
+      y4 = y3 + h;
+      y5 = y4 + ry * circ;
+      y6 = y4 + ry;
+      data = "M" + x6 + "," + y3 + " V" + y4 + " C" + [x6, y5, x5, y6, x4, y6, x4 - (x4 - x3) / 3, y6, x3 + (x4 - x3) / 3, y6, x3, y6, x2, y6, x, y5, x, y4, x, y4 - (y4 - y3) / 3, x, y3 + (y4 - y3) / 3, x, y3, x, y2, x2, y, x3, y, x3 + (x4 - x3) / 3, y, x4 - (x4 - x3) / 3, y, x4, y, x5, y, x6, y2, x6, y3].join(",") + "z";
+    } else {
+      data = "M" + (x + w) + "," + y + " v" + h + " h" + -w + " v" + -h + " h" + w + "z";
+    }
+  } else if (type === "circle" || type === "ellipse") {
+    if (type === "circle") {
+      r = ry = attr.r;
+      rycirc = r * circ;
+    } else {
+      r = attr.rx;
+      ry = attr.ry;
+      rycirc = ry * circ;
+    }
+
+    x = attr.cx;
+    y = attr.cy;
+    rcirc = r * circ;
+    data = "M" + (x + r) + "," + y + " C" + [x + r, y + rycirc, x + rcirc, y + ry, x, y + ry, x - rcirc, y + ry, x - r, y + rycirc, x - r, y, x - r, y - rycirc, x - rcirc, y - ry, x, y - ry, x + rcirc, y - ry, x + r, y - rycirc, x + r, y].join(",") + "z";
+  } else if (type === "line") {
+    data = "M" + attr.x1 + "," + attr.y1 + " L" + attr.x2 + "," + attr.y2; //previously, we just converted to "Mx,y Lx,y" but Safari has bugs that cause that not to render properly when using a stroke-dasharray that's not fully visible! Using a cubic bezier fixes that issue.
+  } else if (type === "polyline" || type === "polygon") {
+    points = (e.getAttribute("points") + "").match(_numbersExp) || [];
+    x = points.shift();
+    y = points.shift();
+    data = "M" + x + "," + y + " L" + points.join(",");
+
+    if (type === "polygon") {
+      data += "," + x + "," + y + "z";
+    }
+  }
+
+  path.setAttribute("d", _rawPathToString(path._gsRawPath = _stringToRawPath(data)));
+
+  if (swap && e.parentNode) {
+    e.parentNode.insertBefore(path, e);
+    e.parentNode.removeChild(e);
+  }
+
+  return path;
+},
+    _parseShape = function _parseShape(shape, forcePath, target) {
+  var isString = typeof shape === "string",
+      e,
+      type;
+
+  if (!isString || _selectorExp.test(shape) || (shape.match(_numbersExp) || []).length < 3) {
+    e = isString ? TweenLite.selector(shape) : shape && shape[0] ? shape : [shape]; //allow array-like objects like jQuery objects.
+
+    if (e && e[0]) {
+      e = e[0];
+      type = (e.nodeName + "").toUpperCase();
+
+      if (forcePath && type !== "PATH") {
+        //if we were passed an element (or selector text for an element) that isn't a path, convert it.
+        e = _convertToPath(e, false);
+        type = "PATH";
+      }
+
+      shape = e.getAttribute(type === "PATH" ? "d" : "points") || "";
+
+      if (e === target) {
+        //if the shape matches the target element, the user wants to revert to the original which should have been stored in the data-original attribute
+        shape = e.getAttributeNS(null, "data-original") || shape;
+      }
+    } else {
+      _log("WARNING: invalid morph to: " + shape);
+
+      shape = false;
+    }
+  }
+
+  return shape;
+},
+    //adds an "isSmooth" array to each segment and populates it with a boolean value indicating whether or not it's smooth (the control points have basically the same slope). For any smooth control points, it converts the coordinates into angle (x, in radians) and length (y) and puts them into the same index value in a smoothData array.
+_populateSmoothData = function _populateSmoothData(rawPath, tolerance) {
+  var j = rawPath.length,
+      limit = 0.2 * (tolerance || 1),
+      smooth,
+      segment,
+      x,
+      y,
+      x2,
+      y2,
+      i,
+      l,
+      a,
+      a2,
+      isSmooth,
+      smoothData;
+
+  while (--j > -1) {
+    segment = rawPath[j];
+    isSmooth = segment.isSmooth = segment.isSmooth || [0, 0, 0, 0];
+    smoothData = segment.smoothData = segment.smoothData || [0, 0, 0, 0];
+    isSmooth.length = 4;
+    l = segment.length - 2;
+
+    for (i = 6; i < l; i += 6) {
+      x = segment[i] - segment[i - 2];
+      y = segment[i + 1] - segment[i - 1];
+      x2 = segment[i + 2] - segment[i];
+      y2 = segment[i + 3] - segment[i + 1];
+      a = _atan2(y, x);
+      a2 = _atan2(y2, x2);
+      smooth = Math.abs(a - a2) < limit;
+
+      if (smooth) {
+        smoothData[i - 2] = a;
+        smoothData[i + 2] = a2;
+        smoothData[i - 1] = _sqrt(x * x + y * y);
+        smoothData[i + 3] = _sqrt(x2 * x2 + y2 * y2);
+      }
+
+      isSmooth.push(smooth, smooth, 0, 0, smooth, smooth);
+    } //if the first and last points are identical, check to see if there's a smooth transition. We must handle this a bit differently due to their positions in the array.
+
+
+    if (segment[l] === segment[0] && segment[l + 1] === segment[1]) {
+      x = segment[0] - segment[l - 2];
+      y = segment[1] - segment[l - 1];
+      x2 = segment[2] - segment[0];
+      y2 = segment[3] - segment[1];
+      a = _atan2(y, x);
+      a2 = _atan2(y2, x2);
+
+      if (Math.abs(a - a2) < limit) {
+        smoothData[l - 2] = a;
+        smoothData[2] = a2;
+        smoothData[l - 1] = _sqrt(x * x + y * y);
+        smoothData[3] = _sqrt(x2 * x2 + y2 * y2);
+        isSmooth[l - 2] = isSmooth[l - 1] = true; //don't change indexes 2 and 3 because we'll trigger everything from the END, and this will optimize file size a bit.
+      }
+    }
+  }
+
+  return rawPath;
+},
+    _parseOriginFactors = function _parseOriginFactors(v) {
+  var a = v.trim().split(" "),
+      x = v.indexOf("left") >= 0 ? 0 : v.indexOf("right") >= 0 ? 100 : isNaN(parseFloat(a[0])) ? 50 : parseFloat(a[0]),
+      y = v.indexOf("top") >= 0 ? 0 : v.indexOf("bottom") >= 0 ? 100 : isNaN(parseFloat(a[1])) ? 50 : parseFloat(a[1]);
+  return {
+    x: x / 100,
+    y: y / 100
+  };
+},
+    _shortAngle = function _shortAngle(dif) {
+  return dif !== dif % _PI ? dif + (dif < 0 ? _2PI : -_2PI) : dif;
+},
+    _morphMessage = "Use MorphSVGPlugin.convertToPath(elementOrSelectorText) to convert to a path before morphing.",
+    MorphSVGPlugin = gsap_TweenLite_js__WEBPACK_IMPORTED_MODULE_0__["_gsScope"]._gsDefine.plugin({
+  propName: "morphSVG",
+  API: 2,
+  global: true,
+  version: "0.9.1",
+  //called when the tween renders for the first time. This is where initial values should be recorded and any setup routines should run.
+  init: function init(target, value, tween, index) {
+    var cs = target.nodeType ? window.getComputedStyle(target) : {},
+        fill = cs.fill + "",
+        fillSafe = !(fill === "none" || (fill.match(_numbersExp) || [])[3] === "0" || cs.fillRule === "evenodd"),
+        origins = (value.origin || "50 50").split(","),
+        type,
+        p,
+        pt,
+        shape,
+        isPoly,
+        shapeIndex,
+        map,
+        startSmooth,
+        endSmooth,
+        start,
+        end,
+        i,
+        j,
+        l,
+        startSeg,
+        endSeg,
+        precompiled,
+        sData,
+        eData,
+        originFactors,
+        useRotation,
+        offset;
+
+    if (typeof value === "function") {
+      value = value(index, target);
+    }
+
+    type = (target.nodeName + "").toUpperCase();
+    isPoly = type === "POLYLINE" || type === "POLYGON";
+
+    if (type !== "PATH" && !isPoly && !value.prop) {
+      _log("WARNING: cannot morph a <" + type + "> element. " + _morphMessage);
+
+      return false;
+    }
+
+    p = type === "PATH" ? "d" : "points";
+
+    if (typeof value === "string" || value.getBBox || value[0]) {
+      value = {
+        shape: value
+      };
+    }
+
+    if (!value.prop && typeof target.setAttribute !== "function") {
+      return false;
+    }
+
+    shape = _parseShape(value.shape || value.d || value.points || "", p === "d", target);
+
+    if (isPoly && _commands.test(shape)) {
+      _log("WARNING: a <" + type + "> cannot accept path data. " + _morphMessage);
+
+      return false;
+    }
+
+    shapeIndex = value.shapeIndex || value.shapeIndex === 0 ? value.shapeIndex : "auto";
+    map = value.map || MorphSVGPlugin.defaultMap;
+    this._prop = value.prop;
+    this._render = value.render || MorphSVGPlugin.defaultRender;
+    this._apply = "updateTarget" in value ? value.updateTarget : MorphSVGPlugin.defaultUpdateTarget;
+    this._rnd = Math.pow(10, isNaN(value.precision) ? 2 : +value.precision);
+    this._tween = tween;
+
+    if (shape) {
+      this._target = target;
+      precompiled = _typeof(value.precompile) === "object";
+      start = this._prop ? target[this._prop] : target.getAttribute(p);
+
+      if (!this._prop && !target.getAttributeNS(null, "data-original")) {
+        target.setAttributeNS(null, "data-original", start); //record the original state in a data-original attribute so that we can revert to it later.
+      }
+
+      if (p === "d" || this._prop) {
+        start = _stringToRawPath(precompiled ? value.precompile[0] : start);
+        end = _stringToRawPath(precompiled ? value.precompile[1] : shape);
+
+        if (!precompiled && !_equalizeSegmentQuantity(start, end, shapeIndex, map, fillSafe)) {
+          return false; //malformed path data or null target
+        }
+
+        if (value.precompile === "log" || value.precompile === true) {
+          _log('precompile:["' + _rawPathToString(start) + '","' + _rawPathToString(end) + '"]');
+        }
+
+        useRotation = (value.type || MorphSVGPlugin.defaultType) !== "linear";
+
+        if (useRotation) {
+          start = _populateSmoothData(start, value.smoothTolerance);
+          end = _populateSmoothData(end, value.smoothTolerance);
+
+          if (!start.size) {
+            _getTotalSize(start); //adds top/left/width/height values
+
+          }
+
+          if (!end.size) {
+            _getTotalSize(end);
+          }
+
+          originFactors = _parseOriginFactors(origins[0]);
+          this._origin = start.origin = {
+            x: start.left + originFactors.x * start.width,
+            y: start.top + originFactors.y * start.height
+          };
+
+          if (origins[1]) {
+            originFactors = _parseOriginFactors(origins[1]);
+          }
+
+          this._eOrigin = {
+            x: end.left + originFactors.x * end.width,
+            y: end.top + originFactors.y * end.height
+          };
+        }
+
+        this._rawPath = target._gsRawPath = start;
+        j = start.length;
+
+        while (--j > -1) {
+          startSeg = start[j];
+          endSeg = end[j];
+          startSmooth = startSeg.isSmooth || [];
+          endSmooth = endSeg.isSmooth || [];
+          l = startSeg.length;
+          _lastLinkedAnchor = 0; //reset; we use _lastLinkedAnchor in the _tweenRotation() method to help make sure that close points don't get ripped apart and rotate opposite directions. Typically we want to go the shortest direction, but if the previous anchor is going a different direction, we override this logic (within certain thresholds)
+
+          for (i = 0; i < l; i += 2) {
+            if (endSeg[i] !== startSeg[i] || endSeg[i + 1] !== startSeg[i + 1]) {
+              if (useRotation) {
+                if (startSmooth[i] && endSmooth[i]) {
+                  //if BOTH starting and ending values are smooth (meaning control points have basically the same slope), interpolate the rotation and length instead of the coordinates (this is what makes things smooth).
+                  sData = startSeg.smoothData;
+                  eData = endSeg.smoothData;
+                  offset = i + (i === l - 4 ? 7 - l : 5); //helps us accommodate wrapping (like if the end and start anchors are identical and the control points are smooth).
+
+                  this._controlPT = {
+                    _next: this._controlPT,
+                    i: i,
+                    j: j,
+                    l1s: sData[i + 1],
+                    l1c: eData[i + 1] - sData[i + 1],
+                    l2s: sData[offset],
+                    l2c: eData[offset] - sData[offset]
+                  };
+                  pt = this._tweenRotation(startSeg, endSeg, i + 2);
+
+                  this._tweenRotation(startSeg, endSeg, i, pt);
+
+                  this._tweenRotation(startSeg, endSeg, offset - 1, pt);
+
+                  i += 4;
+                } else {
+                  this._tweenRotation(startSeg, endSeg, i);
+                }
+              } else {
+                this._addTween(startSeg, i, startSeg[i], endSeg[i]);
+
+                pt = this._addTween(startSeg, i + 1, startSeg[i + 1], endSeg[i + 1]);
+              }
+            }
+          }
+        }
+      } else {
+        pt = this._addTween(target, "setAttribute", target.getAttribute(p) + "", shape + "", "morphSVG", false, p, _buildPointsFilter(shapeIndex));
+      }
+
+      if (useRotation) {
+        this._addTween(this._origin, "x", this._origin.x, this._eOrigin.x);
+
+        pt = this._addTween(this._origin, "y", this._origin.y, this._eOrigin.y);
+      }
+
+      if (pt) {
+        this._overwriteProps.push("morphSVG");
+
+        pt.end = shape;
+        pt.endProp = p;
+      }
+    }
+
+    return true;
+  },
+  set: function set(ratio) {
+    var rawPath = this._rawPath,
+        controlPT = this._controlPT,
+        anchorPT = this._anchorPT,
+        rnd = this._rnd,
+        target = this._target,
+        s,
+        space,
+        easeInOut,
+        pt,
+        segment,
+        l,
+        angle,
+        i,
+        j,
+        x,
+        y,
+        sin,
+        cos,
+        offset;
+
+    this._super.setRatio.call(this, ratio);
+
+    if (ratio === 1 && this._apply) {
+      pt = this._firstPT;
+
+      while (pt) {
+        if (pt.end) {
+          if (this._prop) {
+            target[this._prop] = pt.end;
+          } else {
+            target.setAttribute(pt.endProp, pt.end); //make sure the end value is exactly as specified (in case we had to add fabricated points during the tween)
+          }
+        }
+
+        pt = pt._next;
+      }
+    } else if (rawPath) {
+      //rotationally position the anchors
+      while (anchorPT) {
+        angle = anchorPT.sa + ratio * anchorPT.ca;
+        l = anchorPT.sl + ratio * anchorPT.cl; //length
+
+        anchorPT.t[anchorPT.i] = this._origin.x + _cos(angle) * l;
+        anchorPT.t[anchorPT.i + 1] = this._origin.y + _sin(angle) * l;
+        anchorPT = anchorPT._next;
+      } //smooth out the control points
+
+
+      easeInOut = ratio < 0.5 ? 2 * ratio * ratio : (4 - 2 * ratio) * ratio - 1;
+
+      while (controlPT) {
+        i = controlPT.i;
+        segment = rawPath[controlPT.j];
+        offset = i + (i === segment.length - 4 ? 7 - segment.length : 5); //accommodates wrapping around of smooth points, like if the start and end anchors are on top of each other and their handles are smooth.
+
+        angle = _atan2(segment[offset] - segment[i + 1], segment[offset - 1] - segment[i]); //average the angles
+
+        sin = _sin(angle);
+        cos = _cos(angle);
+        x = segment[i + 2];
+        y = segment[i + 3];
+        l = controlPT.l1s + easeInOut * controlPT.l1c; //length
+
+        segment[i] = x - cos * l;
+        segment[i + 1] = y - sin * l;
+        l = controlPT.l2s + easeInOut * controlPT.l2c;
+        segment[offset - 1] = x + cos * l;
+        segment[offset] = y + sin * l;
+        controlPT = controlPT._next;
+      }
+
+      target._gsRawPath = rawPath;
+
+      if (this._apply) {
+        s = "";
+        space = " ";
+
+        for (j = 0; j < rawPath.length; j++) {
+          segment = rawPath[j];
+          l = segment.length;
+          s += "M" + (segment[0] * rnd | 0) / rnd + space + (segment[1] * rnd | 0) / rnd + " C";
+
+          for (i = 2; i < l; i++) {
+            //this is actually faster than just doing a join() on the array, possibly because the numbers have so many decimal places
+            s += (segment[i] * rnd | 0) / rnd + space;
+          }
+        }
+
+        if (this._prop) {
+          target[this._prop] = s;
+        } else {
+          target.setAttribute("d", s);
+        }
+      }
+    }
+
+    if (this._render && rawPath) {
+      this._render.call(this._tween, rawPath, target);
+    }
+  }
+});
+
+MorphSVGPlugin.prototype._tweenRotation = function (start, end, i, linkedPT) {
+  var so = this._origin,
+      //starting origin
+  eo = this._eOrigin,
+      //ending origin
+  dx = start[i] - so.x,
+      dy = start[i + 1] - so.y,
+      d = _sqrt(dx * dx + dy * dy),
+      //length from starting origin to starting point
+  sa = _atan2(dy, dx),
+      angleDif,
+      short;
+
+  dx = end[i] - eo.x;
+  dy = end[i + 1] - eo.y;
+  angleDif = _atan2(dy, dx) - sa;
+  short = _shortAngle(angleDif); //in the case of control points, we ALWAYS link them to their anchor so that they don't get torn apart and rotate the opposite direction. If it's not a control point, we look at the most recently linked point as long as they're within a certain rotational range of each other.
+
+  if (!linkedPT && _lastLinkedAnchor && Math.abs(short + _lastLinkedAnchor.ca) < _angleMin) {
+    linkedPT = _lastLinkedAnchor;
+  }
+
+  return this._anchorPT = _lastLinkedAnchor = {
+    _next: this._anchorPT,
+    t: start,
+    sa: sa,
+    //starting angle
+    ca: linkedPT && short * linkedPT.ca < 0 && Math.abs(short) > _angleMax ? angleDif : short,
+    //change in angle
+    sl: d,
+    //starting length
+    cl: _sqrt(dx * dx + dy * dy) - d,
+    //change in length
+    i: i
+  };
+};
+
+MorphSVGPlugin.pathFilter = _pathFilter;
+MorphSVGPlugin.pointsFilter = _pointsFilter;
+MorphSVGPlugin.getTotalSize = _getTotalSize;
+MorphSVGPlugin.subdivideRawBezier = MorphSVGPlugin.subdivideSegment = _subdivideSegment;
+MorphSVGPlugin.rawPathToString = _rawPathToString;
+MorphSVGPlugin.defaultType = "linear";
+MorphSVGPlugin.defaultUpdateTarget = true;
+MorphSVGPlugin.defaultMap = "size";
+
+MorphSVGPlugin.stringToRawPath = MorphSVGPlugin.pathDataToRawBezier = function (data) {
+  return _stringToRawPath(_parseShape(data, true));
+};
+
+MorphSVGPlugin.equalizeSegmentQuantity = _equalizeSegmentQuantity;
+
+MorphSVGPlugin.convertToPath = function (targets, swap) {
+  if (typeof targets === "string") {
+    targets = TweenLite.selector(targets);
+  }
+
+  var a = !targets || targets.length === 0 ? [] : targets.length && targets[0] && targets[0].nodeType ? Array.prototype.slice.call(targets, 0) : [targets],
+      i = a.length;
+
+  while (--i > -1) {
+    a[i] = _convertToPath(a[i], swap !== false);
+  }
+
+  return a;
+};
+
+MorphSVGPlugin.pathDataToBezier = function (data, vars) {
+  //converts SVG path data into an array of {x, y} objects that can be plugged directly into a bezier tween. You can optionally pass in a 2D matrix like [a, b, c, d, tx, ty] containing numbers that should transform each point.
+  var bezier = _stringToRawPath(_parseShape(data, true))[0] || [],
+      prefix = 0,
+      a,
+      i,
+      l,
+      matrix,
+      offsetX,
+      offsetY,
+      bbox,
+      e;
+  vars = vars || {};
+  e = vars.align || vars.relative;
+  matrix = vars.matrix || [1, 0, 0, 1, 0, 0];
+  offsetX = vars.offsetX || 0;
+  offsetY = vars.offsetY || 0;
+
+  if (e === "relative" || e === true) {
+    offsetX -= bezier[0] * matrix[0] + bezier[1] * matrix[2];
+    offsetY -= bezier[0] * matrix[1] + bezier[1] * matrix[3];
+    prefix = "+=";
+  } else {
+    offsetX += matrix[4];
+    offsetY += matrix[5];
+
+    if (e) {
+      e = typeof e === "string" ? TweenLite.selector(e) : e && e[0] ? e : [e]; //allow array-like objects like jQuery objects.
+
+      if (e && e[0]) {
+        bbox = e[0].getBBox() || {
+          x: 0,
+          y: 0
+        };
+        offsetX -= bbox.x;
+        offsetY -= bbox.y;
+      }
+    }
+  }
+
+  a = [];
+  l = bezier.length;
+
+  if (matrix && matrix.join(",") !== "1,0,0,1,0,0") {
+    for (i = 0; i < l; i += 2) {
+      a.push({
+        x: prefix + (bezier[i] * matrix[0] + bezier[i + 1] * matrix[2] + offsetX),
+        y: prefix + (bezier[i] * matrix[1] + bezier[i + 1] * matrix[3] + offsetY)
+      });
+    }
+  } else {
+    for (i = 0; i < l; i += 2) {
+      a.push({
+        x: prefix + (bezier[i] + offsetX),
+        y: prefix + (bezier[i + 1] + offsetY)
+      });
+    }
+  }
+
+  return a;
+};
+
+
+
+/***/ })
+
+}]);
+//# sourceMappingURL=learningAnim~minions.js.map?02c2165573246f71e2b1542b03b16af6
