@@ -782,6 +782,7 @@ const minionsHandler = () => {
             transformOrigin: '50% 50%',
         });
 
+        videoFunctions.state.initiated = false;
         if (videoFunctions.mouseover) {
             video.removeEventListener('mouseover', videoFunctions.mouseover);
         }

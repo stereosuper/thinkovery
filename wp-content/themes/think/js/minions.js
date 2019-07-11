@@ -775,6 +775,7 @@ var minionsHandler = function minionsHandler() {
     gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].set(minions[3], {
       transformOrigin: '50% 50%'
     });
+    videoFunctions.state.initiated = false;
 
     if (videoFunctions.mouseover) {
       video.removeEventListener('mouseover', videoFunctions.mouseover);
@@ -828,4 +829,4 @@ var minionsHandler = function minionsHandler() {
 /***/ })
 
 }]);
-//# sourceMappingURL=minions.js.map?987aeac0397d0bef15b013c424f9985c
+//# sourceMappingURL=minions.js.map?398d5f5b5ab699c53adfd6841e7a64b4

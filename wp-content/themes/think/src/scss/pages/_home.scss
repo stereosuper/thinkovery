@@ -9,9 +9,11 @@
 
 .home-header {
     padding-top: 7em;
-    h1 {
+    .video-title {
         position: absolute;
         top: 0;
+        left: 0;
+        right: 0;
         margin: 0;
         transform: translateY(-78%);
         @include z-index("home-header-h1");
@@ -21,11 +23,9 @@
         &.playing,
         &:hover {
             .video-title {
-                transform: translate3d(0, 0, 0);
                 opacity: 0.5;
                 transition: transition(
                     (
-                        transform: "#{$fade-duration}s #{$fade-duration * 0.5}s",
                         opacity: "#{$fade-duration}s"
                     ),
                     $cat-mouse-easing-out
@@ -36,7 +36,6 @@
             opacity: 1;
             transition: transition(
                 (
-                    transform: "#{$fade-duration}s",
                     opacity: "#{$fade-duration}s"
                 ),
                 $cat-mouse-easing-out
@@ -101,16 +100,29 @@
     display: none;
 }
 
+@media (min-width: $phone) {
+    .home-header {
+        .video-title {
+            font-size: 4.6rem;
+        }
+    }
+}
+
+@media (min-width: $tablet) {
+    .home-header {
+        .video-title {
+            font-size: 7rem;
+        }
+    }
+}
+
 @media (min-width: $desktop-small) {
     .home-header {
         display: flex;
-    }
-
-    .home-header {
-        padding-top: 11em;
         justify-content: center;
         flex-wrap: wrap;
-        h1 {
+        padding-top: 11em;
+        .video-title {
             width: 95.9vw;
             max-width: $container;
             padding: 0 $gutter;
@@ -120,12 +132,6 @@
         }
         .video {
             width: 50%;
-            &.playing,
-            &:hover {
-                .video-title {
-                    transform: translate3d(-50%, 0, 0);
-                }
-            }
         }
     }
 
@@ -344,15 +350,7 @@
 
 @media (max-height: $desktop-big-v) {
     .home-header {
-        margin-top: -4em;
-        margin-bottom: 4em;
+        margin-top: -2em;
+        margin-bottom: 2em;
     }
 }
-
-// @media (min-width: $desktop-big) {
-//     .home-header {
-//         h1 {
-//             transform: translate(-50%, -110%);
-//         }
-//     }
-// }

@@ -2851,28 +2851,24 @@ label a {
   text-align: center; }
 .home-header {
   padding-top: 7em; }
-.home-header h1 {
+.home-header .video-title {
     position: absolute;
     top: 0;
+    left: 0;
+    right: 0;
     margin: 0;
     -webkit-transform: translateY(-78%);
             transform: translateY(-78%);
     z-index: -1;
     pointer-events: none; }
 .home-header .video.playing .video-title, .home-header .video:hover .video-title {
-    -webkit-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0);
     opacity: 0.5;
-    -webkit-transition:  opacity 0.3s cubic-bezier(0.26, 1.09, 0.28, 0.99), -webkit-transform 0.3s 0.15s cubic-bezier(0.26, 1.09, 0.28, 0.99);
-    transition:  opacity 0.3s cubic-bezier(0.26, 1.09, 0.28, 0.99), -webkit-transform 0.3s 0.15s cubic-bezier(0.26, 1.09, 0.28, 0.99);
-    transition:  transform 0.3s 0.15s cubic-bezier(0.26, 1.09, 0.28, 0.99), opacity 0.3s cubic-bezier(0.26, 1.09, 0.28, 0.99);
-    transition:  transform 0.3s 0.15s cubic-bezier(0.26, 1.09, 0.28, 0.99), opacity 0.3s cubic-bezier(0.26, 1.09, 0.28, 0.99), -webkit-transform 0.3s 0.15s cubic-bezier(0.26, 1.09, 0.28, 0.99); }
+    -webkit-transition:  opacity 0.3s cubic-bezier(0.26, 1.09, 0.28, 0.99);
+    transition:  opacity 0.3s cubic-bezier(0.26, 1.09, 0.28, 0.99); }
 .home-header .video .video-title {
     opacity: 1;
-    -webkit-transition:  opacity 0.3s cubic-bezier(0.26, 1.09, 0.28, 0.99), -webkit-transform 0.3s cubic-bezier(0.26, 1.09, 0.28, 0.99);
-    transition:  opacity 0.3s cubic-bezier(0.26, 1.09, 0.28, 0.99), -webkit-transform 0.3s cubic-bezier(0.26, 1.09, 0.28, 0.99);
-    transition:  transform 0.3s cubic-bezier(0.26, 1.09, 0.28, 0.99), opacity 0.3s cubic-bezier(0.26, 1.09, 0.28, 0.99);
-    transition:  transform 0.3s cubic-bezier(0.26, 1.09, 0.28, 0.99), opacity 0.3s cubic-bezier(0.26, 1.09, 0.28, 0.99), -webkit-transform 0.3s cubic-bezier(0.26, 1.09, 0.28, 0.99); }
+    -webkit-transition:  opacity 0.3s cubic-bezier(0.26, 1.09, 0.28, 0.99);
+    transition:  opacity 0.3s cubic-bezier(0.26, 1.09, 0.28, 0.99); }
 .home-header .video .cover {
     -webkit-transition:  opacity 0.3s ease-out;
     transition:  opacity 0.3s ease-out; }
@@ -2904,19 +2900,24 @@ label a {
 .plane-path,
 .plane {
   display: none; }
+@media (min-width: 580px) {
+  .home-header .video-title {
+    font-size: 4.6rem; } }
+@media (min-width: 780px) {
+  .home-header .video-title {
+    font-size: 7rem; } }
 @media (min-width: 960px) {
   .home-header {
     display: -webkit-box;
     display: -ms-flexbox;
-    display: flex; }
-  .home-header {
-    padding-top: 11em;
+    display: flex;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
     -ms-flex-wrap: wrap;
-        flex-wrap: wrap; }
-    .home-header h1 {
+        flex-wrap: wrap;
+    padding-top: 11em; }
+    .home-header .video-title {
       width: 95.9vw;
       max-width: 1400px;
       padding: 0 44px;
@@ -2925,10 +2926,7 @@ label a {
       -webkit-transform: translate(-50%, -70%);
               transform: translate(-50%, -70%); }
     .home-header .video {
-      width: 50%; }
-      .home-header .video.playing .video-title, .home-header .video:hover .video-title {
-        -webkit-transform: translate3d(-50%, 0, 0);
-                transform: translate3d(-50%, 0, 0); } }
+      width: 50%; } }
 @media (min-width: 960px) and (min-height: 550px) {
   .shapes .shape {
     width: 23px;
@@ -3088,8 +3086,8 @@ label a {
       left: 66.6%; } }
 @media (max-height: 960px) {
   .home-header {
-    margin-top: -4em;
-    margin-bottom: 4em; } }
+    margin-top: -2em;
+    margin-bottom: 2em; } }
 /* Learning experience specific style */
 .learning-anim {
   display: none; }
@@ -4168,4 +4166,4 @@ label a {
     page-break-after: avoid; } }
 
 
-/*# sourceMappingURL=main.css.map?e596c2ab87e588499e558629f6efd62c*/
+/*# sourceMappingURL=main.css.map?5171645d0a27933c54aa8aefaac24e22*/
