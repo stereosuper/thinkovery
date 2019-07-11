@@ -49,6 +49,9 @@ const minionsHandler = () => {
     };
 
     const videoFunctions = {
+        state: {
+            initiated: false,
+        },
         mouseover: null,
         mouseleave: null,
     };
@@ -148,6 +151,9 @@ const minionsHandler = () => {
 
                     if (!videoFunctions.mouseover) {
                         videoFunctions.mouseover = () => {
+                            if (!videoFunctions.state.initiated) {
+                                videoFunctions.state.initiated = true;
+                            }
                             if (promptScrollDownInterval) {
                                 clearInterval(promptScrollDownInterval);
                             }
@@ -168,8 +174,10 @@ const minionsHandler = () => {
 
                     if (!videoFunctions.mouseleave) {
                         videoFunctions.mouseleave = () => {
-                            promptScrollDownAnimation(0.3);
-                            promptScrollDownLoop();
+                            if (videoFunctions.state.initiated) {
+                                promptScrollDownAnimation(0.3);
+                                promptScrollDownLoop();
+                            }
                         };
                     }
 

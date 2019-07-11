@@ -23995,7 +23995,7 @@ var videoHandler = function videoHandler() {
         cover = _query2[0];
 
     var _query3 = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["query"])({
-      selector: '.wrapper-player',
+      selector: '.wrapper-player, .play',
       ctx: videoElement
     }),
         _query4 = _slicedToArray(_query3, 1),
@@ -24008,7 +24008,7 @@ var videoHandler = function videoHandler() {
 
     var videoElementsOpacity = function videoElementsOpacity(_ref2) {
       var opacity = _ref2.opacity;
-      gsap__WEBPACK_IMPORTED_MODULE_1__["TweenMax"].to([cover, wrapperPlayer], 0.3, {
+      gsap__WEBPACK_IMPORTED_MODULE_1__["TweenMax"].to(wrapperPlayer, 0.3, {
         opacity: opacity
       });
     };
@@ -25562,4 +25562,4 @@ function Io() {
 /***/ })
 
 /******/ });
-//# sourceMappingURL=main.js.map?576b90efc1f1240cfc35b06513bcadaa
+//# sourceMappingURL=main.js.map?eb2a35dde598d484d54264547758e28d

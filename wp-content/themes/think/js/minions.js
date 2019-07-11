@@ -112,6 +112,9 @@ var minionsHandler = function minionsHandler() {
 
   };
   var videoFunctions = {
+    state: {
+      initiated: false
+    },
     mouseover: null,
     mouseleave: null
   }; // Intervals
@@ -193,6 +196,10 @@ var minionsHandler = function minionsHandler() {
 
         if (!videoFunctions.mouseover) {
           videoFunctions.mouseover = function () {
+            if (!videoFunctions.state.initiated) {
+              videoFunctions.state.initiated = true;
+            }
+
             if (promptScrollDownInterval) {
               clearInterval(promptScrollDownInterval);
             }
@@ -209,8 +216,10 @@ var minionsHandler = function minionsHandler() {
 
         if (!videoFunctions.mouseleave) {
           videoFunctions.mouseleave = function () {
-            promptScrollDownAnimation(0.3);
-            promptScrollDownLoop();
+            if (videoFunctions.state.initiated) {
+              promptScrollDownAnimation(0.3);
+              promptScrollDownLoop();
+            }
           };
         }
 
@@ -819,4 +828,4 @@ var minionsHandler = function minionsHandler() {
 /***/ })
 
 }]);
-//# sourceMappingURL=minions.js.map?bc23f8d7c8739a080f90f62bf7ed0613
+//# sourceMappingURL=minions.js.map?987aeac0397d0bef15b013c424f9985c

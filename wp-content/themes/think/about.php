@@ -52,7 +52,6 @@ get_header(); ?>
                         </button>
                         <div class="cover" style="background-image:url(<?php echo $section3['video_cover']['url']; ?>)"></div>
                         <div class="play"></div>
-                        <button class="cross js-cross" type="button"><span class="cross-line first-cross-line"></span><span class="cross-line second-cross-line"></span></button>
                         <div class="player-background js-cross"></div>
                     </div>
                 <?php endif; ?>

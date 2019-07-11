@@ -12,13 +12,13 @@ const videoHandler = () => {
     const onPlayerReady = ({ id, videoElement }) => {
         const [cover] = query({ selector: '.cover', ctx: videoElement });
         const [wrapperPlayer] = query({
-            selector: '.wrapper-player',
+            selector: '.wrapper-player, .play',
             ctx: videoElement,
         });
         const crosses = query({ selector: '.js-cross', ctx: videoElement });
 
         const videoElementsOpacity = ({ opacity }) => {
-            TweenMax.to([cover, wrapperPlayer], 0.3, { opacity });
+            TweenMax.to(wrapperPlayer, 0.3, { opacity });
         };
 
         cover.addEventListener(
