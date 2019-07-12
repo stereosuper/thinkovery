@@ -1899,6 +1899,7 @@ label a {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  margin-top: 28px;
   margin-bottom: 0;
   position: relative;
   color: #1e5e32;
@@ -2850,15 +2851,15 @@ label a {
   position: relative;
   text-align: center; }
 .home-header {
-  padding-top: 7em; }
+  padding-top: 10em; }
 .home-header .video-title {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     margin: 0;
-    -webkit-transform: translateY(-78%);
-            transform: translateY(-78%);
+    -webkit-transform: translateY(-110%);
+            transform: translateY(-110%);
     z-index: -1;
     pointer-events: none; }
 .home-header .video.playing .video-title, .home-header .video:hover .video-title {
@@ -2923,8 +2924,8 @@ label a {
       padding: 0 44px;
       left: 50%;
       line-height: 1;
-      -webkit-transform: translate(-50%, -70%);
-              transform: translate(-50%, -70%); }
+      -webkit-transform: translate(-50%, -120%);
+              transform: translate(-50%, -120%); }
     .home-header .video {
       width: 50%; } }
 @media (min-width: 960px) and (min-height: 550px) {
@@ -3084,6 +3085,10 @@ label a {
     .morpion .s5 {
       top: 33.3%;
       left: 66.6%; } }
+@media (min-width: 1100px) {
+  .home-header .video .video-title {
+    -webkit-transform: translate(-50%, -130%);
+            transform: translate(-50%, -130%); } }
 @media (max-height: 960px) {
   .home-header {
     margin-top: -2em;
@@ -4166,4 +4171,4 @@ label a {
     page-break-after: avoid; } }
 
 
-/*# sourceMappingURL=main.css.map?5171645d0a27933c54aa8aefaac24e22*/
+/*# sourceMappingURL=main.css.map?e35a629093db197785760cc1cd262e21*/
