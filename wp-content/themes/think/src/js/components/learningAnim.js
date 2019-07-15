@@ -1,6 +1,6 @@
 import { TweenMax, TimelineMax } from 'gsap';
+import { superWindow } from '@stereorepo/sac';
 import { forEach } from '../utils';
-import win from '../utils/Window';
 import '../plugins/DrawSVGPlugin';
 import '../plugins/MorphSVGPlugin';
 
@@ -35,14 +35,12 @@ const learningAnimHandler = () => {
         // launch anim if schema is visible (window width > 960)
         if (getComputedStyle(schema).display !== 'none') init();
 
-        win.addResizeFunction(() => {
+        superWindow.addResizeFunction(() => {
             clearTimeout(resizeTimer);
             resizeTimer = setTimeout(() => {
-
-                if( getComputedStyle(schema).display !== 'none' ){
+                if (getComputedStyle(schema).display !== 'none') {
                     init();
                 }
-
             }, 500);
         });
     };

@@ -1,3 +1,4 @@
+import { superWindow, superSnif } from '@stereorepo/sac';
 import {
     TimelineMax,
     TweenMax,
@@ -14,8 +15,6 @@ import '../plugins/DrawSVGPlugin';
 
 import { easing } from '../global';
 import { forEach, query, isDisplayed } from '../utils';
-import win from '../utils/Window';
-import snif from '../utils/Snif';
 
 const minionsHandler = () => {
     const homeSections = query({ selector: '.js-home-section' });
@@ -23,7 +22,7 @@ const minionsHandler = () => {
     let minions = query({ selector: '.shape' });
 
     if (!homeSections.length || !video || !minions.length) return;
-    const isSafari = snif.isSafari();
+    const isSafari = superSnif.isSafari();
     const tweenOptimizations = isSafari ? { force3D: false } : {};
 
     const [planePath] = query({ selector: '#plane-path path' });
@@ -807,7 +806,7 @@ const minionsHandler = () => {
     if (isDisplayed(minions[0])) initAnims();
 
     // Resize part
-    win.addResizeEndFunction(() => {
+    superWindow.addResizeEndFunction(() => {
         if (!isDisplayed(minions[0])) return;
         // If anims were launched restart them
         if (animsState.animsLaunched) resetAnims();

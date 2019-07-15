@@ -1,7 +1,6 @@
+import { superWindow, superScroll } from '@stereorepo/sac';
 import { TweenMax } from 'gsap';
 import { createNewEvent, forEach, isDisplayed } from '../utils';
-import scroll from '../utils/Scroll';
-import win from '../utils/Window';
 import { colors, easing } from '../global';
 
 const ioBorders = () => {
@@ -614,7 +613,7 @@ const ioBorders = () => {
 
         addToQueue();
 
-        win.addResizeFunction(() => {
+        superWindow.addResizeFunction(() => {
             state.display = isDisplayed(bordersWrapper);
 
             if (state.resizeTimeout) {
@@ -797,7 +796,8 @@ const ioBorders = () => {
         };
 
         const computeRatioThenSelectPath = () => {
-            state.ratio = scroll.scrollTop / (pageHeight - window.innerHeight);
+            state.ratio =
+                superScroll.scrollTop / (pageHeight - window.innerHeight);
             if (!state.display) return;
             selectPath();
         };
@@ -816,7 +816,7 @@ const ioBorders = () => {
                 borders: state.randomBorder,
             });
 
-            scroll.addScrollFunction(computeRatioThenSelectPath);
+            superScroll.addScrollFunction(computeRatioThenSelectPath);
 
             if (state.init) return;
             computeRatioThenSelectPath();
@@ -827,7 +827,7 @@ const ioBorders = () => {
 
         drawProgress();
 
-        win.addResizeFunction(() => {
+        superWindow.addResizeFunction(() => {
             state.display = isDisplayed(bordersWrapper);
             drawProgress();
         });

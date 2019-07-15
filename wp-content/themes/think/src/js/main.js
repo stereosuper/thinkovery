@@ -1,14 +1,14 @@
+// @babel/polyfill is necessary for async imports
 import '@babel/polyfill';
+import { query, bodyRouter, superLoad } from '@stereorepo/sac';
+
+import { Accordion } from '@stereorepo/accordion';
+
 import '../scss/main.scss';
+import { globalStyles, easing } from './global';
 
-import { query, bodyRouter } from './utils';
-
-import win from './utils/Window';
 import io from './utils/io';
-import scroll from './utils/Scroll';
-import fallback from './utils/Fallback';
 
-import accordion from './components/accordion';
 import form from './components/form';
 import newsletter from './components/newsletter';
 import makeBorders from './components/makeBorders';
@@ -38,33 +38,26 @@ const memory = dynamicLoading({ name: 'memory' });
 const minions = dynamicLoading({ name: 'minions' });
 const learningAnim = dynamicLoading({ name: 'learningAnim' });
 
-const state = {
-    preloaded: false,
-    loaded: false,
-};
+const preloadCallback = () => {
+    // Stéréosuper js library init
+    io.init();
 
-const preload = () => {
-    const { readyState } = document;
-
-    if (readyState !== 'interactive' && readyState !== 'complete') return;
-
-    const noTransElem = query({
-        selector: '.element-without-transition-on-resize',
+    // Stereorepo components init
+    const accordion = new Accordion({
+        containerSelector: '.wp-block-stereoberg-question-answer',
+        clickedSelector: 'h3',
+        contentSelector: '.answer-content',
+        contentWrapperSelector: '.js-answer',
+        offsetY: globalStyles.lineHeight,
+        ease: easing.easeFade,
+        scrollDelay: 600,
     });
 
-    state.preloaded = true;
-
-    // Stéréosuper js library init
-    scroll.init();
-    win.setNoTransitionElts(noTransElem);
-    win.init();
-    io.init();
-    fallback.init();
+    accordion.initializeAccordions();
 
     // Components with global use
     burger();
     customCheckbox();
-    accordion();
     video();
     videoVimeo();
     newsletter();
@@ -89,7 +82,7 @@ const preload = () => {
     bodyRouter({ identifier: '.error404', callback: memory });
 };
 
-const animationHandler = () => {
+const animationsHandler = () => {
     drawBorders();
 
     // Home route
@@ -105,14 +98,11 @@ const animationHandler = () => {
     });
 };
 
-const load = () => {
-    if (document.readyState !== 'complete') return;
-
-    state.loaded = true;
+const loadCallback = () => {
     makeBorders();
 
     if (sessionStorage.getItem('loaded')) {
-        animationHandler();
+        animationsHandler();
     }
 
     // blog categories
@@ -126,16 +116,10 @@ const load = () => {
     });
 };
 
-preload();
-load();
+document.addEventListener('loaderHidden', animationsHandler, false);
 
-document.addEventListener(
-    'readystatechange',
-    () => {
-        if (!state.preloaded) preload();
-        if (!state.loaded) load();
-    },
-    false
-);
-
-document.addEventListener('loaderHidden', animationHandler, false);
+superLoad.initializeLoadingShit({
+    preloadCallback,
+    loadCallback,
+    noTransElementsClass: '.element-without-transition-on-resize',
+});

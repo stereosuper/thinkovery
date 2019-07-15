@@ -10,8 +10,8 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils */ "./wp-content/themes/think/src/js/utils/index.js");
-/* harmony import */ var _utils_Window__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/Window */ "./wp-content/themes/think/src/js/utils/Window.js");
+/* harmony import */ var _stereorepo_sac__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @stereorepo/sac */ "./node_modules/@stereorepo/sac/src/index.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils */ "./wp-content/themes/think/src/js/utils/index.js");
 /* harmony import */ var _plugins_DrawSVGPlugin__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../plugins/DrawSVGPlugin */ "./wp-content/themes/think/src/js/plugins/DrawSVGPlugin.js");
 /* harmony import */ var _plugins_MorphSVGPlugin__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../plugins/MorphSVGPlugin */ "./wp-content/themes/think/src/js/plugins/MorphSVGPlugin.js");
 
@@ -30,7 +30,7 @@ var learningAnimHandler = function learningAnimHandler() {
     var resizeTimer;
 
     var init = function init() {
-      Object(_utils__WEBPACK_IMPORTED_MODULE_1__["forEach"])(minions, function (minion, i) {
+      Object(_utils__WEBPACK_IMPORTED_MODULE_2__["forEach"])(minions, function (minion, i) {
         tls[i] = new gsap__WEBPACK_IMPORTED_MODULE_0__["TimelineMax"]({
           paused: true,
           repeat: -1
@@ -52,7 +52,7 @@ var learningAnimHandler = function learningAnimHandler() {
 
 
     if (getComputedStyle(schema).display !== 'none') init();
-    _utils_Window__WEBPACK_IMPORTED_MODULE_2__["default"].addResizeFunction(function () {
+    _stereorepo_sac__WEBPACK_IMPORTED_MODULE_1__["superWindow"].addResizeFunction(function () {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(function () {
         if (getComputedStyle(schema).display !== 'none') {
@@ -122,7 +122,7 @@ var learningAnimHandler = function learningAnimHandler() {
     };
 
     var intersectionCallback = function intersectionCallback(entries) {
-      Object(_utils__WEBPACK_IMPORTED_MODULE_1__["forEach"])(entries, function (entry) {
+      Object(_utils__WEBPACK_IMPORTED_MODULE_2__["forEach"])(entries, function (entry) {
         if (entry.intersectionRatio < 0.5 || animLaunched) return;
         init();
       });
@@ -159,4 +159,4 @@ var learningAnimHandler = function learningAnimHandler() {
 /***/ })
 
 }]);
-//# sourceMappingURL=learningAnim.js.map?e74ad8633d82d3360314d1a62b2cff67
+//# sourceMappingURL=learningAnim.js.map?03fbd0471841ce7da7a3285af20fea66

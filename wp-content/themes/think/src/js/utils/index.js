@@ -131,4 +131,5 @@ export default {
     throttle,
     query,
     isDisplayed,
+    bodyRouter,
 };

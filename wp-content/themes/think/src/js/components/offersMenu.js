@@ -1,10 +1,10 @@
+import { superWindow } from '@stereorepo/sac';
 import collant from 'collant';
 import imagesLoaded from 'imagesloaded';
 import { TweenMax } from 'gsap';
 import 'gsap/ScrollToPlugin';
 
 import { easing, globalStyles } from '../global';
-import win from '../utils/Window';
 import { forEach, query } from '../utils';
 
 const offersMenuHandler = () => {
@@ -52,7 +52,7 @@ const offersMenuHandler = () => {
         );
     });
 
-    win.addResizeFunction(() => {
+    superWindow.addResizeFunction(() => {
         menuHeight = offersMenu.getBoundingClientRect().height;
     });
 };

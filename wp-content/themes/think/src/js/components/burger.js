@@ -1,4 +1,4 @@
-import win from '../utils/Window';
+import { superWindow } from '@stereorepo/sac';
 
 const burgerHandler = () => {
     const state = {
@@ -16,7 +16,7 @@ const burgerHandler = () => {
         mainNav.classList.toggle('activated');
 
         mainNav.setAttribute('aria-expanded', state.burgerActivated);
-        win.toggleNoScroll({
+        superWindow.toggleNoScroll({
             transitionElement: mainNav,
             noScroll: state.burgerActivated,
         });
@@ -24,12 +24,12 @@ const burgerHandler = () => {
     burger.addEventListener('click', navigationToggle, false);
 
     const resizeHandler = () => {
-        if (win.currentBreakpoint === 'xl' && state.burgerActivated) {
+        if (superWindow.currentBreakpoint === 'xl' && state.burgerActivated) {
             navigationToggle();
         }
     };
 
-    win.addResizeFunction(resizeHandler);
+    superWindow.addResizeFunction(resizeHandler);
 };
 
 export default burgerHandler;
