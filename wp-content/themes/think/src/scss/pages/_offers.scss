@@ -177,13 +177,8 @@
             }
         }
         &-2 {
-            .offer-col {
-                &:first-of-type {
-                    margin-left: 33%;
-                }
-            }
             img {
-                top: 3%;
+                top: -5%;
                 left: 0;
             }
         }
@@ -195,8 +190,13 @@
         }
         &-4 {
             img {
-                top: 12%;
+                top: -5%;
                 left: 22%;
+            }
+            .offer-col {
+                &:last-of-type {
+                    width: 66%;
+                }
             }
         }
         &-5 {
@@ -209,8 +209,13 @@
                 margin: 15.9em 0 0;
             }
             img {
-                top: 8%;
+                top: 5%;
                 right: 12%;
+            }
+            .offer-col {
+                &:last-of-type {
+                    width: 66%;
+                }
             }
         }
         &-2,
@@ -281,30 +286,64 @@
     }
 
     .offer {
-        &-1 {
-            img {
-                bottom: -8%;
-                right: 8%;
-            }
-        }
-        &-2 {
-            img {
-                top: 10%;
-                left: 8%;
-            }
-        }
         .btn-container {
             width: calc(75% + #{$gutter * 2});
         }
-        &.offer-1 {
+        &:nth-child(2n + 1) {
+            .offers-text {
+                margin-left: -$gutter;
+                margin-right: -$gutter;
+            }
+            .offer-text {
+                margin-left: calc(25% + #{$gutter});
+            }
+        }
+        &-4,
+        &-5 {
+            .btn-container {
+                width: 100%;
+            }
+        }
+        &-1 {
+            img {
+                max-width: 280px;
+                top: 15%;
+                right: 0;
+            }
             .wrapper-btn {
                 margin-left: 33%;
             }
         }
-        &.offer-4,
+        &-2 {
+            img {
+                max-width: 283px;
+                top: 20%;
+                left: -$gutter;
+            }
+        }
+        &-3 {
+            img {
+                max-width: 314px;
+                top: 20%;
+                left: auto;
+                right: $gutter;
+            }
+        }
+        &-4 {
+            img {
+                max-width: 201px;
+                top: 30%;
+                left: 7.5%;
+            }
+        }
         &.offer-5 {
-            .btn-container {
-                width: 100%;
+            img {
+                max-width: 208px;
+                top: 20%;
+                right: $gutter;
+            }
+            .wrapper-btn {
+                width: calc(75% - #{$gutter/1.66});
             }
         }
     }

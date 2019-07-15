@@ -3945,17 +3945,17 @@ label a {
     .offer-1 img {
       bottom: -15%;
       right: 0; }
-    .offer-2 .offer-col:first-of-type {
-      margin-left: 33%; }
     .offer-2 img {
-      top: 3%;
+      top: -5%;
       left: 0; }
     .offer-3 img {
       top: 10%;
       right: 12%; }
     .offer-4 img {
-      top: 12%;
+      top: -5%;
       left: 22%; }
+    .offer-4 .offer-col:last-of-type {
+      width: 66%; }
     .offer-5 .offers-text {
       display: -webkit-box;
       display: -ms-flexbox;
@@ -3969,8 +3969,10 @@ label a {
     .offer-5 .offer-text2 {
       margin: 15.9em 0 0; }
     .offer-5 img {
-      top: 8%;
+      top: 5%;
       right: 12%; }
+    .offer-5 .offer-col:last-of-type {
+      width: 66%; }
     .offer-2 .offer-text,
     .offer-2 .offer-cols, .offer-4 .offer-text,
     .offer-4 .offer-cols {
@@ -4007,18 +4009,40 @@ label a {
     width: 75%; }
   .offer-cols {
     width: calc(75% + 88px); }
-  .offer-1 img {
-    bottom: -8%;
-    right: 8%; }
-  .offer-2 img {
-    top: 10%;
-    left: 8%; }
   .offer .btn-container {
     width: calc(75% + 88px); }
-  .offer.offer-1 .wrapper-btn {
+  .offer:nth-child(2n + 1) .offers-text {
+    margin-left: -44px;
+    margin-right: -44px; }
+  .offer:nth-child(2n + 1) .offer-text {
+    margin-left: calc(25% + 44px); }
+  .offer-4 .btn-container, .offer-5 .btn-container {
+    width: 100%; }
+  .offer-1 img {
+    max-width: 280px;
+    top: 15%;
+    right: 0; }
+  .offer-1 .wrapper-btn {
     margin-left: 33%; }
-  .offer.offer-4 .btn-container, .offer.offer-5 .btn-container {
-    width: 100%; } }
+  .offer-2 img {
+    max-width: 283px;
+    top: 20%;
+    left: -44px; }
+  .offer-3 img {
+    max-width: 314px;
+    top: 20%;
+    left: auto;
+    right: 44px; }
+  .offer-4 img {
+    max-width: 201px;
+    top: 30%;
+    left: 7.5%; }
+  .offer.offer-5 img {
+    max-width: 208px;
+    top: 20%;
+    right: 44px; }
+  .offer.offer-5 .wrapper-btn {
+    width: calc(75% - 26.50602px); } }
 .memory,
 .memory-success {
   display: none; }
@@ -4171,4 +4195,4 @@ label a {
     page-break-after: avoid; } }
 
 
-/*# sourceMappingURL=main.css.map?e35a629093db197785760cc1cd262e21*/
+/*# sourceMappingURL=main.css.map?20934483ce18682cc2d34df5cedb0bbf*/
