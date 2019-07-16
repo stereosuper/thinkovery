@@ -28,6 +28,7 @@ function Window() {
             xxl: 960,
         },
     };
+
     this.w = null;
     this.h = null;
     this.rtime = null;

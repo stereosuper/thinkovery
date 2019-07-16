@@ -170,9 +170,12 @@
 
     .offer {
         position: relative;
+        img {
+            margin-top: 0;
+        }
         &-1 {
             img {
-                bottom: -15%;
+                bottom: -12.5%;
                 right: 0;
             }
         }
@@ -184,14 +187,14 @@
         }
         &-3 {
             img {
-                top: 10%;
+                top: 7.5%;
                 right: 12%;
             }
         }
         &-4 {
             img {
-                top: -5%;
-                left: 22%;
+                top: -10%;
+                left: 17.5%;
             }
             .offer-col {
                 &:last-of-type {
@@ -310,7 +313,7 @@
             }
             img {
                 max-width: 280px;
-                top: 15%;
+                top: 20%;
                 right: 0;
             }
             .wrapper-btn {
@@ -320,14 +323,14 @@
         &-2 {
             img {
                 max-width: 283px;
-                top: 20%;
+                top: 25%;
                 left: -$gutter;
             }
         }
         &-3 {
             img {
                 max-width: 314px;
-                top: 20%;
+                top: 25%;
                 left: auto;
                 right: $gutter;
             }
@@ -335,14 +338,14 @@
         &-4 {
             img {
                 max-width: 201px;
-                top: 30%;
-                left: 7.5%;
+                top: 35%;
+                left: 0%;
             }
         }
         &.offer-5 {
             img {
                 max-width: 208px;
-                top: 20%;
+                top: 25%;
                 right: $gutter;
             }
             .wrapper-btn {

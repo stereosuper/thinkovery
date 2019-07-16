@@ -4,8 +4,7 @@ import { forEach, createNewEvent } from '.';
 
 function Io() {
     this.resized = true;
-    const minThreshold =
-        superWindow.h > superWindow.breakpoints.vertical.xs ? 0.15 : 0.1;
+    let minThreshold = 0.1;
     let indexThreshold = 0;
     const thresholdsNumber = 10;
     const thresholdSamples = [];
@@ -30,6 +29,9 @@ function Io() {
         const objectsToIO = [].slice.call(
             document.querySelectorAll('[data-io]')
         );
+
+        minThreshold =
+            superWindow.h > superWindow.breakpoints.vertical.xs ? 0.15 : 0.1;
 
         const observer = new IntersectionObserver(
             entries => {

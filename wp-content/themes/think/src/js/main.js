@@ -1,6 +1,6 @@
 // @babel/polyfill is necessary for async imports
 import '@babel/polyfill';
-import { query, bodyRouter, superLoad } from '@stereorepo/sac';
+import { query, bodyRouter, superLoad, superWindow } from '@stereorepo/sac';
 
 import { Accordion } from '@stereorepo/accordion';
 
@@ -39,6 +39,21 @@ const minions = dynamicLoading({ name: 'minions' });
 const learningAnim = dynamicLoading({ name: 'learningAnim' });
 
 const preloadCallback = () => {
+    superWindow.setBreakpoints({
+        horizontal: {
+            xs: 0,
+            s: 400,
+            m: 580,
+            l: 780,
+            xl: 960,
+            xxl: 1100,
+        },
+        vertical: {
+            xs: 550,
+            xxl: 960,
+        },
+    });
+
     // Stéréosuper js library init
     io.init();
 
