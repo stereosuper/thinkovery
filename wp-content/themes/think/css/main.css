@@ -3805,6 +3805,11 @@ label a {
     bottom: 2px; }
 .js .contact-form .form .custom-checkbox.activated::after {
     background: #df622d; }
+.contact-form span.wpcf7-not-valid-tip {
+  margin-top: 10px;
+  margin-left: 15px;
+  font-size: 16px;
+  font-size: 1.6rem; }
 @media (min-width: 580px) {
   .contact-form .form select {
     width: 395px; } }
@@ -4199,4 +4204,4 @@ label a {
     page-break-after: avoid; } }
 
 
-/*# sourceMappingURL=main.css.map?0056466cc025c438d2b6844a044db615*/
+/*# sourceMappingURL=main.css.map?e3a91c377f95ba0443a68e098fb69e20*/
