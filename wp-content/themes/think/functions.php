@@ -168,6 +168,18 @@ function think_mod_newsletter( $atts, $content = '' ) {
 add_shortcode( 'mod_newsletter', 'think_mod_newsletter' );
 
 
+add_filter( 'wpcf7_form_elements', 'disable_first_select_element' );
+function disable_first_select_element( $content ) {
+	// global $wpcf7_contact_form;
+	
+	$find = '<option value="">';
+	$replace = '<option value="" disabled selected>';
+    $content = str_replace($find, $replace, $content);
+    
+	return $content;	
+}
+
+
 /*-----------------------------------------------------------------------------------*/
 /* Blog
 /*-----------------------------------------------------------------------------------*/
