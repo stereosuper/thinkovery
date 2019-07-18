@@ -3810,6 +3810,12 @@ label a {
   margin-left: 15px;
   font-size: 16px;
   font-size: 1.6rem; }
+.contact-form .wpcf7-validation-errors {
+  display: none; }
+.contact-form .wpcf7-mail-sent-ok {
+  margin-left: 15px;
+  padding: 0;
+  border: 0; }
 @media (min-width: 580px) {
   .contact-form .form select {
     width: 395px; } }
@@ -4204,4 +4210,4 @@ label a {
     page-break-after: avoid; } }
 
 
-/*# sourceMappingURL=main.css.map?e3a91c377f95ba0443a68e098fb69e20*/
+/*# sourceMappingURL=main.css.map?43d0f08c0c2f6e06a37152c5bcf1b029*/
