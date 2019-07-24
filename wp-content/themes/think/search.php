@@ -23,8 +23,8 @@ $found_number = $wp_query->found_posts;
 
 		<?php global $wp_query;
 		$results = $wp_query->found_posts;
-		$results = $results > 1 ? $results . ' results' : $results . ' result'; ?>
-		<p class="search-number"><?php echo $found_number .' '. __('results for') ?></p>
+		$results = $results > 1 ? $results .' '. __('results for', 'think') : $results .' '. __('result for', 'think'); ?>
+		<p class="search-number"><?php echo $results ?></p>
 		<h1 class='blog-title'><?php echo '"' . get_search_query() .'"'; ?></h1>
 
 		<div class='blog-nav' id='blog-nav'>
