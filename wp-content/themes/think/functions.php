@@ -200,6 +200,18 @@ function estimated_time_to_read_post($content, $format = false) {
 	return $time;
 }
 
+function sort_sectors($sorting_array, $array_to_sort) {
+	$result = array();
+	foreach($sorting_array as $sorting_array_value) {
+		foreach ($array_to_sort as $array_to_sort_value) {
+			if ($array_to_sort_value->slug === $sorting_array_value) {
+				$result[] = $array_to_sort_value;
+			}
+		}
+	}
+	return $result;
+}
+
 
 /*-----------------------------------------------------------------------------------*/
 /* Menus

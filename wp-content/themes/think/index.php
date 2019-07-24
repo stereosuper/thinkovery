@@ -45,9 +45,16 @@
 						</span>
 						<?php
 							$sectors = get_the_terms($post, 'sector');
-							if( $sectors && $countPosts > 1 ) : ?>
+							$sorting_keys = array('conseil', 'conception', 'realisation', 'communication', 'evaluation');
+							
+							$sorted_sectors = [];
+							if ($sectors) {
+								$sorted_sectors = sort_sectors($sorting_keys, $sectors);
+							}
+
+							if( $sorted_sectors && $countPosts > 1 ) : ?>
 								<div class='icons'>
-									<?php foreach( $sectors as $sector ) :
+									<?php foreach( $sorted_sectors as $sector ) :
 										switch( $sector->slug ){
 											case 'communication':
 												echo '<svg class="icon"><use href="#icon-rectangle"/></svg>';

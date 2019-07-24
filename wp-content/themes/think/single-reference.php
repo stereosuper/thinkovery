@@ -26,10 +26,16 @@ $ref_id = get_the_ID();
 			</div>
 			<?php
 				$categories = get_the_terms($ref_id, 'reference_cat');
-				if( $categories ) : ?>
+				$sorting_keys = array('conseil', 'conception', 'realisation', 'communication', 'evaluation');
+				
+				$sorted_categories = [];
+				if ($categories) {
+					$sorted_categories = sort_sectors($sorting_keys, $categories);
+				}
+				if( $sorted_categories ) : ?>
 				<div class="ref-categories">
 					<div class='icons'>
-						<?php foreach( $categories as $category ) : ?>
+						<?php foreach( $sorted_categories as $category ) : ?>
 							<div class="icon-wrapper">
 							<?php 
 							switch( $category->slug ) :

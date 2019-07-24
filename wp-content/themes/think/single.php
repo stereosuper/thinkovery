@@ -35,9 +35,15 @@
 					</div>
 					<?php
 						$sectors = get_the_terms($post, 'sector');
-						if( $sectors ) : ?>
+						$sorting_keys = array('conseil', 'conception', 'realisation', 'communication', 'evaluation');
+						
+						$sorted_sectors = [];
+						if ($sectors) {
+							$sorted_sectors = sort_sectors($sorting_keys, $sectors);
+						}
+						if( $sorted_sectors ) : ?>
 							<div class='icons'>
-								<?php foreach( $sectors as $sector ) : ?>
+								<?php foreach( $sorted_sectors as $sector ) : ?>
 									<div class="icon-wrapper">
 									<?php 
 									switch( $sector->slug ) :

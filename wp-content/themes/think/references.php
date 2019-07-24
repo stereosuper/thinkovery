@@ -30,9 +30,15 @@ $source_company = get_field('references_source_company');
                             <?php echo wp_get_attachment_image(get_field('logo'), 'full'); ?>
                             <?php
                                 $cats = get_the_terms($post, 'reference_cat');
-                                if( $cats ) : ?>
+                                $sorting_keys = array('conseil', 'conception', 'realisation', 'communication', 'evaluation');
+                                
+                                $sorted_cats = [];
+                                if ($cats) {
+                                    $sorted_cats = sort_sectors($sorting_keys, $cats);
+                                }
+                                if( $sorted_cats ) : ?>
                                     <div class='icons'>
-                                    <?php foreach( $cats as $cat ) :
+                                    <?php foreach( $sorted_cats as $cat ) :
                                         switch( $cat->slug ){
                                             case 'communication':
                                                 echo '<svg class="icon"><use href="#icon-rectangle"/></svg>';
