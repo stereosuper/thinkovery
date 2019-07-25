@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-24 15:28+0000\n"
+"POT-Creation-Date: 2019-07-24 15:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -76,6 +76,14 @@ msgstr ""
 
 #: tag.php:20
 msgid "posts in this section"
+msgstr ""
+
+#: search.php:26
+msgid "results for"
+msgstr ""
+
+#: search.php:26
+msgid "result for"
 msgstr ""
 
 #: search.php:135

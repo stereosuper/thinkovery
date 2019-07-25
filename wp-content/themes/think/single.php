@@ -102,7 +102,35 @@
 		
 		</div>
 
-		<?php get_template_part('includes/post-related'); ?>
+		<?php 
+		$is_white_paper = get_field('is_white_paper');
+
+		if ($is_white_paper):
+			?>
+			<div class="white-paper">
+				<?php if ($has_image = get_field('white_paper_has_image') && $image = get_field('white_paper_image')): ?>
+					<?php echo wp_get_attachment_image($image['ID'], 'full', false, array('class' => 'media')); ?>
+				<?php endif; ?>
+				<div class="content">
+					<div class="white-paper-title">
+						<?php if ($title_first_part = get_field('white_paper_title_first_part')): ?>
+							<p class="first-part"><?php echo $title_first_part ?></p>
+						<?php endif; ?>
+						<?php if ($title_second_part = get_field('white_paper_title_second_part')): ?>
+							<p class="second-part"><?php echo $title_second_part ?></p>
+						<?php endif; ?>
+					</div>
+					<?php if ($pdf = get_field('white_paper_pdf')): ?>
+						<a class="btn" href="<?php echo $pdf['url'] ?>" download><?php _e('Download this white paper', 'think') ?></a>
+					<?php endif; ?>
+				</div>
+			</div>
+			<?php
+		endif;
+		
+		get_template_part('includes/post-related');
+		
+		?>
 		
 		<div class='col-3-desk'>
 			<h4 class='author-title'><?php _e('About the author', 'think'); ?></h4>
@@ -115,6 +143,12 @@
 					<?php endif; ?>
 				</div>
 			</div>
+			
+			<?php 
+			if (!$is_white_paper && $newsletter_shortcode = get_field('newsletter_shortcode')) {
+				echo do_shortcode($newsletter_shortcode);
+			}
+			?>
 			
 			<div class='comments'><?php comments_template(); ?></div>
 		</div>

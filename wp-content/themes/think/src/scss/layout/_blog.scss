@@ -409,14 +409,49 @@
     overflow: hidden;
     margin: 0 25px 0 0;
 }
+
 .author-title {
     margin: 2em 0 $line-height;
     font-size: 2.6rem;
 }
+
 .author-name {
     font-size: 2rem;
     font-weight: 700;
     color: $primary;
+}
+
+.white-paper {
+    max-width: $phone;
+    padding: $line-height $gutter;
+    background: $white;
+    margin: 0 auto;
+    > .media {
+        display: block;
+        margin: 0 auto;
+    }
+    > .content {
+        margin-top: $line-height;
+        > .btn {
+            margin-top: $line-height;
+        }
+    }
+}
+
+.white-paper-title {
+    letter-spacing: -0.03em;
+    line-height: 1;
+    > .first-part {
+        margin-top: 0;
+        font-size: 2.8rem;
+        font-weight: 700;
+    }
+    > .second-part {
+        margin-top: $line-height * 0.5;
+        font-size: 5.5rem;
+        font-weight: 700;
+        color: $primary;
+    }
 }
 
 @media (min-width: $phone) {
@@ -523,6 +558,26 @@
             display: none;
         }
     }
+    .white-paper {
+        display: flex;
+        align-items: center;
+        max-width: none;
+        width: 75%;
+        padding: $line-height * 2 $gutter * 2;
+        > .media {
+            justify-content: flex-start;
+            max-width: 150px;
+            margin-left: 0;
+            margin-right: $gutter;
+        }
+        > .content {
+            margin-top: 0;
+            > .btn {
+                margin-top: $line-height * 2;
+                text-align: center;
+            }
+        }
+    }
 }
 
 @media (min-width: $desktop) {
@@ -582,6 +637,11 @@
             &:last-child {
                 margin-bottom: 0;
             }
+        }
+    }
+    .white-paper {
+        > .media {
+            margin-right: $gutter * 2;
         }
     }
 }
