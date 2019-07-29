@@ -1961,30 +1961,16 @@ label a {
 .wp-block-button {
   margin-top: 28px; }
 .wp-block-button:not(.is-style-squared) {
-    display: -webkit-inline-box;
-    display: -ms-inline-flexbox;
-    display: inline-flex;
-    margin-bottom: 0;
-    position: relative;
-    color: #1e5e32;
-    -webkit-transition:  opacity 0.3s ease-out;
-    transition:  opacity 0.3s ease-out; }
-.wp-block-button:not(.is-style-squared)::before {
-      content: "";
-      position: absolute;
-      height: 3px;
-      top: 0;
-      left: 75%;
-      right: 0;
-      background: #1e5e32;
-      -webkit-transition:  -webkit-transform 0.15s cubic-bezier(0.72, 0.01, 0.74, -0.09);
-      transition:  -webkit-transform 0.15s cubic-bezier(0.72, 0.01, 0.74, -0.09);
-      transition:  transform 0.15s cubic-bezier(0.72, 0.01, 0.74, -0.09);
-      transition:  transform 0.15s cubic-bezier(0.72, 0.01, 0.74, -0.09), -webkit-transform 0.15s cubic-bezier(0.72, 0.01, 0.74, -0.09);
-      -webkit-transform-origin: 0% 50%;
-              transform-origin: 0% 50%; }
+    margin-bottom: 0; }
 .wp-block-button:not(.is-style-squared) .wp-block-button__link {
-      background: transparent; }
+      display: -webkit-inline-box;
+      display: -ms-inline-flexbox;
+      display: inline-flex;
+      position: relative;
+      color: #1e5e32;
+      background: transparent;
+      -webkit-transition:  opacity 0.3s ease-out;
+      transition:  opacity 0.3s ease-out; }
 .wp-block-button:not(.is-style-squared) .wp-block-button__link::before, .wp-block-button:not(.is-style-squared) .wp-block-button__link::after {
         content: "";
         position: absolute;
@@ -1994,38 +1980,31 @@ label a {
 .wp-block-button:not(.is-style-squared) .wp-block-button__link::before {
         width: 3px;
         top: 0;
-        -webkit-transition:  -webkit-transform 0.15s 0.15s cubic-bezier(0.26, 1.09, 0.28, 0.99);
-        transition:  -webkit-transform 0.15s 0.15s cubic-bezier(0.26, 1.09, 0.28, 0.99);
-        transition:  transform 0.15s 0.15s cubic-bezier(0.26, 1.09, 0.28, 0.99);
-        transition:  transform 0.15s 0.15s cubic-bezier(0.26, 1.09, 0.28, 0.99), -webkit-transform 0.15s 0.15s cubic-bezier(0.26, 1.09, 0.28, 0.99);
+        -webkit-transition:  -webkit-transform 0.15s cubic-bezier(0.72, 0.01, 0.74, -0.09);
+        transition:  -webkit-transform 0.15s cubic-bezier(0.72, 0.01, 0.74, -0.09);
+        transition:  transform 0.15s cubic-bezier(0.72, 0.01, 0.74, -0.09);
+        transition:  transform 0.15s cubic-bezier(0.72, 0.01, 0.74, -0.09), -webkit-transform 0.15s cubic-bezier(0.72, 0.01, 0.74, -0.09);
         -webkit-transform-origin: 50% 0%;
                 transform-origin: 50% 0%; }
 .wp-block-button:not(.is-style-squared) .wp-block-button__link::after {
         height: 3px;
         left: 25%;
-        -webkit-transition:  -webkit-transform 0.15s 0.225s cubic-bezier(0.26, 1.09, 0.28, 0.99);
-        transition:  -webkit-transform 0.15s 0.225s cubic-bezier(0.26, 1.09, 0.28, 0.99);
-        transition:  transform 0.15s 0.225s cubic-bezier(0.26, 1.09, 0.28, 0.99);
-        transition:  transform 0.15s 0.225s cubic-bezier(0.26, 1.09, 0.28, 0.99), -webkit-transform 0.15s 0.225s cubic-bezier(0.26, 1.09, 0.28, 0.99);
+        -webkit-transition:  -webkit-transform 0.15s 0.15s cubic-bezier(0.26, 1.09, 0.28, 0.99);
+        transition:  -webkit-transform 0.15s 0.15s cubic-bezier(0.26, 1.09, 0.28, 0.99);
+        transition:  transform 0.15s 0.15s cubic-bezier(0.26, 1.09, 0.28, 0.99);
+        transition:  transform 0.15s 0.15s cubic-bezier(0.26, 1.09, 0.28, 0.99), -webkit-transform 0.15s 0.15s cubic-bezier(0.26, 1.09, 0.28, 0.99);
         -webkit-transform-origin: 100% 50%;
                 transform-origin: 100% 50%; }
-.wp-block-button:not(.is-style-squared):hover, .wp-block-button:not(.is-style-squared):focus {
+.wp-block-button:not(.is-style-squared) .wp-block-button__link:hover, .wp-block-button:not(.is-style-squared) .wp-block-button__link:focus {
       opacity: 0.8; }
-.wp-block-button:not(.is-style-squared):hover::before, .wp-block-button:not(.is-style-squared):focus::before {
-        -webkit-transform: scale3d(0, 1, 1);
-                transform: scale3d(0, 1, 1);
-        -webkit-transition:  -webkit-transform 0.15s 0.15s cubic-bezier(0.72, 0.01, 0.74, -0.09);
-        transition:  -webkit-transform 0.15s 0.15s cubic-bezier(0.72, 0.01, 0.74, -0.09);
-        transition:  transform 0.15s 0.15s cubic-bezier(0.72, 0.01, 0.74, -0.09);
-        transition:  transform 0.15s 0.15s cubic-bezier(0.72, 0.01, 0.74, -0.09), -webkit-transform 0.15s 0.15s cubic-bezier(0.72, 0.01, 0.74, -0.09); }
-.wp-block-button:not(.is-style-squared):hover .wp-block-button__link::before, .wp-block-button:not(.is-style-squared):focus .wp-block-button__link::before {
+.wp-block-button:not(.is-style-squared) .wp-block-button__link:hover::before, .wp-block-button:not(.is-style-squared) .wp-block-button__link:focus::before {
         -webkit-transform: scale3d(1, 0, 1);
                 transform: scale3d(1, 0, 1);
         -webkit-transition:  -webkit-transform 0.15s 0.15s cubic-bezier(0.26, 1.09, 0.28, 0.99);
         transition:  -webkit-transform 0.15s 0.15s cubic-bezier(0.26, 1.09, 0.28, 0.99);
         transition:  transform 0.15s 0.15s cubic-bezier(0.26, 1.09, 0.28, 0.99);
         transition:  transform 0.15s 0.15s cubic-bezier(0.26, 1.09, 0.28, 0.99), -webkit-transform 0.15s 0.15s cubic-bezier(0.26, 1.09, 0.28, 0.99); }
-.wp-block-button:not(.is-style-squared):hover .wp-block-button__link::after, .wp-block-button:not(.is-style-squared):focus .wp-block-button__link::after {
+.wp-block-button:not(.is-style-squared) .wp-block-button__link:hover::after, .wp-block-button:not(.is-style-squared) .wp-block-button__link:focus::after {
         -webkit-transform: scale3d(0, 1, 1);
                 transform: scale3d(0, 1, 1);
         -webkit-transition:  -webkit-transform 0.15s cubic-bezier(0.26, 1.09, 0.28, 0.99);
@@ -4274,4 +4253,4 @@ label a {
     page-break-after: avoid; } }
 
 
-/*# sourceMappingURL=main.css.map?3ea3ba7905ce406e31a27a0c2fb6d331*/
+/*# sourceMappingURL=main.css.map?0502b22f31f7630961e51ae0e014a0da*/
