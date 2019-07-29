@@ -96,6 +96,7 @@ const minionsHandler = () => {
                 x: -10,
                 y: videoBottom - 70,
                 rotation: 90,
+                ...tweenOptimizations,
                 ease: Power2.easeInOut,
                 onComplete: () => {
                     TweenMax.to(player, 0.3, {
@@ -161,6 +162,7 @@ const minionsHandler = () => {
                                 x: 0,
                                 y: playerCenterY,
                                 rotation: 0,
+                                ...tweenOptimizations,
                             });
                         };
                     }
@@ -816,7 +818,7 @@ const minionsHandler = () => {
         videoBottom = wh / 2;
         initialShapeTop = minions[0].getBoundingClientRect().top;
         introBottom =
-            homeSections[1].getBoundingClientRect().top - initialShapeTop - 70;
+            homeSections[1].getBoundingClientRect().top - initialShapeTop - 35;
 
         playerCenterY =
             video.getBoundingClientRect().top -

@@ -143,10 +143,11 @@ var minionsHandler = function minionsHandler() {
 
     var promptScrollDownAnimation = function promptScrollDownAnimation() {
       var duration = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0.7;
-      gsap__WEBPACK_IMPORTED_MODULE_1__["TweenMax"].to(player, duration, {
+      gsap__WEBPACK_IMPORTED_MODULE_1__["TweenMax"].to(player, duration, _objectSpread({
         x: -10,
         y: videoBottom - 70,
-        rotation: 90,
+        rotation: 90
+      }, tweenOptimizations, {
         ease: gsap__WEBPACK_IMPORTED_MODULE_1__["Power2"].easeInOut,
         onComplete: function onComplete() {
           gsap__WEBPACK_IMPORTED_MODULE_1__["TweenMax"].to(player, 0.3, {
@@ -154,7 +155,7 @@ var minionsHandler = function minionsHandler() {
             ease: gsap__WEBPACK_IMPORTED_MODULE_1__["Back"].easeOut.config(1.2)
           });
         }
-      });
+      }));
     };
 
     var promptScrollDownLoop = function promptScrollDownLoop() {
@@ -202,11 +203,11 @@ var minionsHandler = function minionsHandler() {
               clearInterval(promptScrollDownInterval);
             }
 
-            gsap__WEBPACK_IMPORTED_MODULE_1__["TweenMax"].to(player, 0.2, {
+            gsap__WEBPACK_IMPORTED_MODULE_1__["TweenMax"].to(player, 0.2, _objectSpread({
               x: 0,
               y: playerCenterY,
               rotation: 0
-            });
+            }, tweenOptimizations));
           };
         }
 
@@ -810,7 +811,7 @@ var minionsHandler = function minionsHandler() {
     ww = window.innerWidth;
     videoBottom = wh / 2;
     initialShapeTop = minions[0].getBoundingClientRect().top;
-    introBottom = homeSections[1].getBoundingClientRect().top - initialShapeTop - 70;
+    introBottom = homeSections[1].getBoundingClientRect().top - initialShapeTop - 35;
     playerCenterY = video.getBoundingClientRect().top - initialShapeTop + video.offsetHeight / 2;
 
     if (promptScrollDownInterval) {
@@ -827,4 +828,4 @@ var minionsHandler = function minionsHandler() {
 /***/ })
 
 }]);
-//# sourceMappingURL=minions.js.map?160bf6a8830b666abc0f65ed9706b6c1
+//# sourceMappingURL=minions.js.map?d7457be492885c5d85cfba737546af1b

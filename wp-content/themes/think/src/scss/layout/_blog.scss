@@ -192,6 +192,7 @@
     font-size: 1.6rem;
     > a {
         font-weight: 400;
+        text-decoration: none;
     }
 }
 .post-duration {
@@ -229,6 +230,9 @@
     margin: 0 0 $line-height;
     .single-info {
         margin-bottom: $line-height * 0.5;
+        > a {
+            text-decoration: none;
+        }
     }
     .icons {
         display: flex;
@@ -364,7 +368,7 @@
 
 .comments {
     h3 {
-        margin: 3.5em 0 $line-height * 1.5;
+        margin: 3.5em 0 $line-height;
     }
 }
 .comments-list {

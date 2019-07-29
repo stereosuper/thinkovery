@@ -1586,7 +1586,8 @@ label a {
   font-size: 16px;
   font-size: 1.6rem; }
 .cats > a {
-    font-weight: 400; }
+    font-weight: 400;
+    text-decoration: none; }
 .post-duration {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1630,6 +1631,8 @@ label a {
   margin: 0 0 28px; }
 .single-meta .single-info {
     margin-bottom: 14px; }
+.single-meta .single-info > a {
+      text-decoration: none; }
 .single-meta .icons {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -1733,7 +1736,7 @@ label a {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap; }
 .comments h3 {
-  margin: 3.5em 0 42px; }
+  margin: 3.5em 0 28px; }
 .comments-list > li {
   padding: 42px 0 0; }
 .comments-list > li:before {
@@ -2919,8 +2922,8 @@ label a {
     left: 0;
     right: 0;
     margin: 0;
-    -webkit-transform: translateY(-110%);
-            transform: translateY(-110%);
+    -webkit-transform: translate3d(0, -110%, 0);
+            transform: translate3d(0, -110%, 0);
     z-index: -1;
     pointer-events: none; }
 .home-header .video.playing .video-title, .home-header .video:hover .video-title {
@@ -2985,8 +2988,8 @@ label a {
       padding: 0 44px;
       left: 50%;
       line-height: 1;
-      -webkit-transform: translate(-50%, -120%);
-              transform: translate(-50%, -120%); }
+      -webkit-transform: translate3d(-50%, -120%, 0);
+              transform: translate3d(-50%, -120%, 0); }
     .home-header .video {
       width: 50%; } }
 @media (min-width: 960px) and (min-height: 550px) {
@@ -3148,8 +3151,8 @@ label a {
       left: 66.6%; } }
 @media (min-width: 1100px) {
   .home-header .video .video-title {
-    -webkit-transform: translate(-50%, -130%);
-            transform: translate(-50%, -130%); } }
+    -webkit-transform: translate3d(-50%, -130%, 0);
+            transform: translate3d(-50%, -130%, 0); } }
 @media (max-height: 960px) {
   .home-header {
     margin-top: -2em;
@@ -4271,4 +4274,4 @@ label a {
     page-break-after: avoid; } }
 
 
-/*# sourceMappingURL=main.css.map?2cdd23743ad03941f8177f9883681fe2*/
+/*# sourceMappingURL=main.css.map?142917b08a5cf24090ae08a005cddf76*/

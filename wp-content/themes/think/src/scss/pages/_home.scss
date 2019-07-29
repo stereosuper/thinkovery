@@ -15,7 +15,7 @@
         left: 0;
         right: 0;
         margin: 0;
-        transform: translateY(-110%);
+        transform: translate3d(0, -110%, 0);
         @include z-index("home-header-h1");
         pointer-events: none;
     }
@@ -128,7 +128,7 @@
             padding: 0 $gutter;
             left: 50%;
             line-height: 1;
-            transform: translate(-50%, -120%);
+            transform: translate3d(-50%, -120%, 0);
         }
         .video {
             width: 50%;
@@ -352,7 +352,7 @@
     .home-header {
         .video {
             .video-title {
-                transform: translate(-50%, -130%);
+                transform: translate3d(-50%, -130%, 0);
             }
         }
     }
