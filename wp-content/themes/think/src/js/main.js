@@ -137,4 +137,5 @@ superLoad.initializeLoadingShit({
     preloadCallback,
     loadCallback,
     noTransElementsClass: '.element-without-transition-on-resize',
+    initFallbacks: true,
 });
