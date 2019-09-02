@@ -31,7 +31,9 @@ function Io() {
         );
 
         minThreshold =
-            superWindow.h > superWindow.breakpoints.vertical.xs ? 0.15 : 0.1;
+            superWindow.windowHeight > superWindow.breakpoints.vertical.xs
+                ? 0.15
+                : 0.1;
 
         const observer = new IntersectionObserver(
             entries => {

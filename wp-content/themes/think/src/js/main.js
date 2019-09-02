@@ -66,6 +66,7 @@ const preloadCallback = () => {
         offsetY: globalStyles.lineHeight,
         ease: easing.easeFade,
         scrollDelay: 600,
+        silent: true,
     });
 
     accordion.initializeAccordions();
