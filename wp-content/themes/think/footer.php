@@ -112,7 +112,7 @@
                                 <ul class='social'>
                                     <?php while ( have_rows('social', 'options') ) : the_row(); ?>
                                         <li>
-                                            <a href='<?php the_sub_field('link'); ?>' target='_blank' title='<?php the_sub_field('network'); ?>'>
+                                            <a href='<?php the_sub_field('link'); ?>' target='_blank' title='<?php the_sub_field('network'); ?>' rel="noreferrer noopener">
                                                 <svg class='icon'><use xlink:href='#icon-<?php the_sub_field('icon'); ?>'/></svg>
                                             </a>
                                         </li>

@@ -10,10 +10,10 @@
 				<span>Partager cet article :</span>
 				<ul class="share-list">
 					<li>
-						<a href="https://twitter.com/share?url=<?php the_permalink(); ?>&text=<?php the_title(); ?>&via=<?php bloginfo("name"); ?>" rel="nofollow" target="_blank" title="Share on Twitter"><svg class="icon"><use xlink:href="#icon-twitter"/></svg></a>
+						<a href="https://twitter.com/share?url=<?php the_permalink(); ?>&text=<?php the_title(); ?>&via=<?php bloginfo("name"); ?>" rel="nofollow noreferrer noopener" target="_blank" title="Share on Twitter"><svg class="icon"><use xlink:href="#icon-twitter"/></svg></a>
 					</li>
 					<li>
-						<a href='https://www.linkedin.com/shareArticle?mini=true&url=<?php the_permalink(); ?>&title=<?php the_title(); ?>' rel='nofollow' target='_blank' title='Share on Linkedin'><svg class="icon"><use xlink:href="#icon-linkedin"/></svg></a>
+						<a href='https://www.linkedin.com/shareArticle?mini=true&url=<?php the_permalink(); ?>&title=<?php the_title(); ?>' rel='nofollow noreferrer noopener' target='_blank' title='Share on Linkedin'><svg class="icon"><use xlink:href="#icon-linkedin"/></svg></a>
 					</li>
 					<li>
 						<a href='https://www.facebook.com/sharer.php?u=<?php the_permalink(); ?>&t=<?php the_title(); ?>' rel='nofollow' target='blank' title='Share on Facebook'><svg class="icon"><use xlink:href="#icon-facebook"/></svg></a>

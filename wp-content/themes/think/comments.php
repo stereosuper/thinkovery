@@ -15,7 +15,7 @@
 		<?php foreach($comments as $comment) : ?>
 
 			<li id='comment-<?php comment_ID(); ?>'>
-				<?php $author = $comment->comment_author_url ? "<a href='". $comment->comment_author_url ."' target='_blank' class='comment-author'>". $comment->comment_author ."</a>" : "<span class='comment-author'>" . $comment->comment_author . "</span>"; ?>
+				<?php $author = $comment->comment_author_url ? "<a href='". $comment->comment_author_url ."' target='_blank' rel='noreferrer noopener' class='comment-author'>". $comment->comment_author ."</a>" : "<span class='comment-author'>" . $comment->comment_author . "</span>"; ?>
 				<?php echo $author; ?>
 				<time datetime='<?php comment_date('Y-m-d') ?>' class='comment-date'><?php comment_date('j F Y') ?></time>
 				<i><?php edit_comment_link('Edit Comment', '', ''); ?></i>
