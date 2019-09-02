@@ -4,11 +4,12 @@
 <?php 
 $single_cat_title = single_cat_title('', false);
 $post_count = 0;
-$terms = get_the_terms(get_the_ID(), 'category');
+$terms = get_the_category();
+$current_term = get_queried_object();
 
 if ($terms) {
 	foreach ($terms as $term){
-		if ($single_cat_title === $term->name) {
+		if ($current_term->slug === $term->slug) {
 			$post_count = $term->count;
 		}
 	}
