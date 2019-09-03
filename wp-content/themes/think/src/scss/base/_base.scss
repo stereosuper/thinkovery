@@ -234,9 +234,6 @@ a {
     &:hover {
         color: $secondary;
     }
-    &:focus {
-        outline: 0;
-    }
     &:active {
         color: $primary-light;
     }

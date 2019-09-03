@@ -13,7 +13,7 @@ select,
 button {
     transition: $transition;
     &:focus {
-        outline: 0;
+        outline: thin dotted;
     }
 }
 
