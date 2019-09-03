@@ -86,7 +86,7 @@ $ref_id = get_the_ID();
 			<p class='ref-share-title'><?php _e('Share this post', 'think'); ?></p>
 			<ul class='ref-share-list'>
 				<li>
-					<a href='https://www.facebook.com/sharer.php?u=<?php the_permalink(); ?>&t=<?php the_title(); ?>' rel='nofollow' target='blank' title='Share on Facebook'><svg class="icon"><use xlink:href="#icon-facebook"/></svg></a>
+					<a href='https://www.facebook.com/sharer.php?u=<?php the_permalink(); ?>&t=<?php the_title(); ?>' rel='nofollow noreferrer noopener' target='_blank' title='Share on Facebook'><svg class="icon"><use xlink:href="#icon-facebook"/></svg></a>
 				</li>
 				<li>
 					<a href='https://twitter.com/share?url=<?php the_permalink(); ?>&text=<?php the_title(); ?>&via=<?php bloginfo("name"); ?>' rel='nofollow noreferrer noopener' target='_blank' title='Share on Twitter'><svg class="icon"><use xlink:href="#icon-twitter"/></svg></a>

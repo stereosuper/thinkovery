@@ -112,7 +112,7 @@
                                 <ul class='social'>
                                     <?php while ( have_rows('social', 'options') ) : the_row(); ?>
                                         <li>
-                                            <a href='<?php the_sub_field('link'); ?>' target='_blank' title='<?php the_sub_field('network'); ?>' rel="noreferrer noopener">
+                                            <a href='<?php the_sub_field('link'); ?>' target='_blank' title='<?php the_sub_field('network'); ?>' rel="noreferrer noopener nofollow">
                                                 <svg class='icon'><use xlink:href='#icon-<?php the_sub_field('icon'); ?>'/></svg>
                                             </a>
                                         </li>
@@ -125,7 +125,7 @@
                             $phone = get_field('tel', 'options');
                             if( $phone['num'] ):
                         ?>
-                            <a href='tel:<?php echo $phone['num']; ?>'>
+                            <a href='tel:<?php echo $phone['num']; ?>' rel="nofollow">
                                 <?php echo $phone['displayNum'] ? $phone['displayNum'] : $phone['num']; ?>
                             </a>
                         <?php endif; ?>

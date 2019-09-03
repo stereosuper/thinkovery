@@ -26,7 +26,7 @@ get_header(); ?>
                     ?>
                         <span class="info">
                             <svg class='icon'><use xlink:href='#icon-phone'/></svg>
-                            <a href="tel:<?php echo $phone['num']; ?>" class="info-link">
+                            <a href="tel:<?php echo $phone['num']; ?>" rel="nofollow" class="info-link">
                                 <?php echo $phone['displayNum'] ? $phone['displayNum'] : $phone['num']; ?>
                             </a>
                         </span>
