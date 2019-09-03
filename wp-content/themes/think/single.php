@@ -101,11 +101,20 @@
 			</div>
 		
 		</div>
-
+		<div class='col-3-desk'>
+			<h4 class='author-title'><?php _e('About the author', 'think'); ?></h4>
+			<div class='author-wrapper'>
+				<div class='author-img'><?php echo get_avatar(get_the_author_meta('user_email'), '100'); ?></div>
+				<div>
+					<p class='author-name'><?php esc_html(the_author_meta('display_name')); ?></p>
+					<?php if (get_the_author_meta('description')) : ?>
+						<p class='author-desc'><?php esc_textarea(the_author_meta('description')); ?></p>
+					<?php endif; ?>
+				</div>
+			</div>
+		</div>
 		<?php 
-		$is_white_paper = get_field('is_white_paper');
-
-		if ($is_white_paper):
+		if ($is_white_paper = get_field('is_white_paper')):
 			?>
 			<div class="white-paper">
 				<?php if ($has_image = get_field('white_paper_has_image') && $image = get_field('white_paper_image')): ?>
@@ -120,8 +129,8 @@
 							<p class="second-part"><?php echo $title_second_part ?></p>
 						<?php endif; ?>
 					</div>
-					<?php if ($pdf = get_field('white_paper_pdf')): ?>
-						<a class="btn" href="<?php echo $pdf['url'] ?>" download><?php _e('Download this white paper', 'think') ?></a>
+					<?php if ($link = get_field('white_paper_link')): ?>
+						<a class="btn" href="<?php echo $link['url'] ?>" target="<?php echo $link['target'] ?>" <?php echo $link['target'] === '_blank' ? 'rel="noopener noreferrer"' : '' ?>><?php _e('Download this white paper', 'think') ?></a>
 					<?php endif; ?>
 				</div>
 			</div>
@@ -133,23 +142,12 @@
 		?>
 		
 		<div class='col-3-desk'>
-			<h4 class='author-title'><?php _e('About the author', 'think'); ?></h4>
-			<div class='author-wrapper'>
-				<div class='author-img'><?php echo get_avatar(get_the_author_meta('user_email'), '100'); ?></div>
-				<div>
-					<p class='author-name'><?php esc_html(the_author_meta('display_name')); ?></p>
-					<?php if (get_the_author_meta('description')) : ?>
-						<p class='author-desc'><?php esc_textarea(the_author_meta('description')); ?></p>
-					<?php endif; ?>
-				</div>
-			</div>
-			
 			<?php 
-			if (!$is_white_paper && $newsletter_shortcode = get_field('newsletter_shortcode')) {
+			if ($is_newsletter = get_field('is_newsletter')) {
+				$newsletter_shortcode = get_field('newsletter_shortcode');
 				echo do_shortcode($newsletter_shortcode);
 			}
 			?>
-			
 			<div class='comments'><?php comments_template(); ?></div>
 		</div>
 	

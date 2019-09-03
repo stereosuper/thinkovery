@@ -330,9 +330,6 @@
     flex-wrap: wrap;
     margin: auto 0 0;
     font-size: 1.6rem;
-    .single-post & {
-        margin-top: $line-height * 2;
-    }
     > span,
     > a {
         display: block;
@@ -364,11 +361,15 @@
         margin: $line-height * 2 0 0;
         flex-wrap: wrap;
     }
+    p {
+        margin-top: $line-height * 0.5;
+    }
 }
 
 .comments {
     h3 {
         margin: 3.5em 0 $line-height;
+        line-height: 1;
     }
 }
 .comments-list {
@@ -429,7 +430,7 @@
     max-width: $phone;
     padding: $line-height $gutter;
     background: $white;
-    margin: 0 auto;
+    margin: 5em auto 0;
     > .media {
         display: block;
         margin: 0 auto;

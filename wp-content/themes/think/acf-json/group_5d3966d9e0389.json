@@ -3,8 +3,27 @@
     "title": "[post] Specific posts blocs",
     "fields": [
         {
+            "key": "field_5d6e5e75c5f74",
+            "label": "Newsletter toggle",
+            "name": "is_newsletter",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "Active",
+            "ui_off_text": "Inactive"
+        },
+        {
             "key": "field_5d3979c62acbe",
-            "label": "Bloc toggle",
+            "label": "White paper toggle",
             "name": "is_white_paper",
             "type": "true_false",
             "instructions": "",
@@ -18,8 +37,8 @@
             "message": "",
             "default_value": 0,
             "ui": 1,
-            "ui_on_text": "White paper",
-            "ui_off_text": "Newsletter"
+            "ui_on_text": "Active",
+            "ui_off_text": "Inactive"
         },
         {
             "key": "field_5d39689efe078",
@@ -31,8 +50,8 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_5d3979c62acbe",
-                        "operator": "!=",
+                        "field": "field_5d6e5e75c5f74",
+                        "operator": "==",
                         "value": "1"
                     }
                 ]
@@ -181,9 +200,9 @@
         },
         {
             "key": "field_5d3978c882675",
-            "label": "PDF",
-            "name": "white_paper_pdf",
-            "type": "file",
+            "label": "Link",
+            "name": "white_paper_link",
+            "type": "link",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -192,11 +211,7 @@
                 "class": "",
                 "id": ""
             },
-            "return_format": "array",
-            "library": "all",
-            "min_size": 0,
-            "max_size": 0,
-            "mime_types": ""
+            "return_format": "array"
         }
     ],
     "location": [
@@ -216,5 +231,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1564048035
+    "modified": 1567514576
 }

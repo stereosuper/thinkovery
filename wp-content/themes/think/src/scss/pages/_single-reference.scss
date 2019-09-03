@@ -73,7 +73,7 @@
 }
 
 .ref-logo {
-    width: calc(#{$col/2} + #{$gutter});
+    width: calc(#{percentage(1/8)} + #{$gutter});
     padding: $line-height 0;
     position: absolute;
     left: 0;
@@ -189,13 +189,14 @@
     .ref-info {
         margin-left: -$gutter;
         margin-right: -$gutter;
-        padding: 0 12.5%;
     }
     .ref-tags {
-        margin-left: $gutter;
+        padding-left: $gutter;
+        margin-left: percentage(1/8);
     }
     .ref-categories {
-        margin-right: $gutter;
+        padding-right: $gutter;
+        margin-right: percentage(1/8);
     }
     .ref-title {
         margin-left: $col/2;
