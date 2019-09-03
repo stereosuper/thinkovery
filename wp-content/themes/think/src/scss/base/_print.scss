@@ -1,29 +1,54 @@
 /******* PRINT *******/
 
 @media print {
-    *, *:before{
+    *,
+    *:before {
         color: #000 !important;
     }
-    a{
+    a {
         text-decoration: underline;
         // &[href]:after{
         //     content: ' (' attr(href) ')';
         // }
-        &[href^="#"]:after{
-            content: '';
+        &[href^="#"]:after {
+            content: "";
         }
     }
-    img{
+    img {
         page-break-inside: avoid;
     }
-    @page{
-        margin: .5cm;
+    @page {
+        margin: 0.5cm;
     }
-    p, h2, h3{
+    p,
+    h2,
+    h3 {
         orphans: 3;
         widows: 3;
     }
-    h2, h3{
+    h2,
+    h3 {
         page-break-after: avoid;
+    }
+    .learning-anim,
+    .comments {
+        display: none;
+    }
+    .single-post {
+        .share {
+            display: none;
+        }
+    }
+    .contact-sidebar {
+        position: relative;
+    }
+    .main-footer-top {
+        display: none;
+    }
+    .main-footer {
+        .newsletter-container,
+        .footer-contact {
+            display: none;
+        }
     }
 }

@@ -22,6 +22,9 @@ $header-height: 84px;
     }
     .logo {
         @include z-index("logo");
+        .no-js & {
+            opacity: 1 !important;
+        }
     }
 }
 

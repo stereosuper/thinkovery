@@ -1,5 +1,5 @@
-.editor{
-    .wp-block-stereoberg-question-answer{
+.editor {
+    .wp-block-stereoberg-question-answer {
         padding: 10px 20px 15px;
     }
 }
@@ -34,6 +34,9 @@
             right: 0;
             background: $grey;
             transform: translateY(-50%);
+            .no-js & {
+                opacity: 0;
+            }
         }
         &::before {
             transform: translateY(-50%) rotateZ(90deg);
@@ -51,6 +54,10 @@
         font-size: 1.6rem;
         opacity: 0;
         overflow: hidden;
+        .no-js & {
+            max-height: none;
+            opacity: 1;
+        }
         > p {
             margin: 0;
         }
@@ -63,28 +70,27 @@
         right: 0;
         transform: translateY(-50%);
     }
-    .answer-content{
+    .answer-content {
         padding: 1px 0 $line-height;
     }
 }
 
-.job-accordion-title{
-    margin-bottom: $line-height*2;
+.job-accordion-title {
+    margin-bottom: $line-height * 2;
 }
-.job-accordion{
-    h4{
+.job-accordion {
+    h4 {
         font-size: 1.8rem;
     }
-    ul{
+    ul {
         padding-left: 80px;
     }
-    > .answer{
-        > p{
+    > .answer {
+        > p {
             margin: 1.65em 0 0;
         }
     }
 }
-
 
 @media (min-width: $desktop-small) {
     .wp-block-stereoberg-question-answer {

@@ -243,6 +243,9 @@
             bottom: 7em;
             right: 50%;
             @include z-index("plane-path");
+            .no-js & {
+                display: none;
+            }
             .svg {
                 position: relative;
                 float: right;
