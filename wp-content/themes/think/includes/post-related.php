@@ -61,7 +61,7 @@
 						?>
 					</a>
 				</p>
-				<div class='tags'>
+				<div class='tags tags-related'>
 					<?php $tags = get_the_tags(); if( $tags ){
 						$count = 0;
 						foreach( $tags as $tag ){

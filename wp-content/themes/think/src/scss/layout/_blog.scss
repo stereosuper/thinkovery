@@ -330,6 +330,9 @@
     flex-wrap: wrap;
     margin: auto 0 0;
     font-size: 1.6rem;
+    .single-post &:not(.tags-related) {
+        margin-top: $line-height * 2;
+    }
     > span,
     > a {
         display: block;
