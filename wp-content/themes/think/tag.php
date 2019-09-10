@@ -42,7 +42,10 @@ if ($tags) {
 							<p class='newsletter-title'><?php echo $news['newsletterTitle']; ?></p>
 							<p><?php echo $news['newsletterSubtitle']; ?></p>
 
-							<?php echo do_shortcode('[mc4wp_form id="2057048" element_id="newsletter-post-form"]'); ?>
+							<?php 
+							$newsletter_id = $news['newsletter_id'];
+							echo do_shortcode('[mc4wp_form id="'. $newsletter_id .'" element_id="newsletter-post-form"]');
+							?>
 							<div class="newsletter-borders">
 								<span class="border first"></span>
 								<span class="border second"></span>

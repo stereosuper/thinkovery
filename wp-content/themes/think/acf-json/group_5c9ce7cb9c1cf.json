@@ -15,7 +15,7 @@
                 "class": "",
                 "id": ""
             },
-            "message": "small: largeur du bloc à 50%\r\nmedium: largeur du bloc à 75%\r\ncenter: bloc centré\r\nright: bloc ferré à droite\r\nsteps: à ajouter sur les blocs de colonne des catégories, pour un affichage responsive optimal\r\n\r\nshortcode newsletter: [mod_newsletter id=\"2057048\"]",
+            "message": "small: largeur du bloc à 50%\r\nmedium: largeur du bloc à 75%\r\ncenter: bloc centré\r\nright: bloc ferré à droite\r\nsteps: à ajouter sur les blocs de colonne des catégories, pour un affichage responsive optimal\r\n\r\nshortcode newsletter: [mod_newsletter id=\"your_mailchimp_id\"]",
             "new_lines": "wpautop",
             "esc_html": 0
         },
@@ -219,5 +219,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1559036487
+    "modified": 1568101820
 }

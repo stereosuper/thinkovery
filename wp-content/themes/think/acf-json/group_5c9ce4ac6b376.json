@@ -1,24 +1,6 @@
 {
     "key": "group_5c9ce4ac6b376",
     "title": "[options] Footer",
-    "location": [
-        [
-            {
-                "param": "options_page",
-                "operator": "==",
-                "value": "acf-options-theme-options"
-            }
-        ]
-    ],
-    "menu_order": 100,
-    "position": "normal",
-    "style": "default",
-    "label_placement": "top",
-    "instruction_placement": "label",
-    "hide_on_screen": "",
-    "active": 1,
-    "description": "",
-    "modified": 1559033776,
     "fields": [
         {
             "key": "field_5c9ce519417f5",
@@ -64,6 +46,25 @@
                     "conditional_logic": 0,
                     "wrapper": {
                         "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_5d7753c8b36f0",
+                    "label": "Newsletter id",
+                    "name": "newsletter_id",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
                         "class": "",
                         "id": ""
                     },
@@ -312,5 +313,23 @@
                 }
             ]
         }
-    ]
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options-theme-options"
+            }
+        ]
+    ],
+    "menu_order": 100,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1568101433
 }
