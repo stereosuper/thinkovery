@@ -69,10 +69,6 @@
     }
     .newsletter-input-hidden {
         max-width: 100%;
-        label {
-            color: #fff;
-            opacity: 1;
-        }
     }
     &.activated {
         .newsletter-borders {
@@ -86,7 +82,7 @@
                 &::before {
                     transition: transition(
                         (
-                            transform: "#{$big-mouse-duration}s"
+                            transform: '#{$big-mouse-duration}s',
                         ),
                         $cat-mouse-easing-in
                     );
@@ -94,7 +90,7 @@
                 &::after {
                     transition: transition(
                         (
-                            transform: "#{$big-cat-duration}s"
+                            transform: '#{$big-cat-duration}s',
                         ),
                         $cat-mouse-easing-in
                     );
@@ -104,7 +100,8 @@
                 &::before {
                     transition: transition(
                         (
-                            transform: "#{$mouse-duration}s #{$big-mouse-duration}s"
+                            transform:
+                                '#{$mouse-duration}s #{$big-mouse-duration}s',
                         ),
                         $cat-mouse-easing-out
                     );
@@ -112,7 +109,7 @@
                 &::after {
                     transition: transition(
                         (
-                            transform: "#{$cat-duration}s #{$big-cat-duration}s"
+                            transform: '#{$cat-duration}s #{$big-cat-duration}s',
                         ),
                         $cat-mouse-easing-out
                     );
@@ -123,7 +120,7 @@
                     transition: transition(
                         (
                             transform:
-                                "#{$mouse-duration}s #{$big-mouse-duration + $mouse-duration}s"
+                                '#{$mouse-duration}s #{$big-mouse-duration + $mouse-duration}s',
                         ),
                         $cat-mouse-easing-out
                     );
@@ -131,7 +128,8 @@
                 &::after {
                     transition: transition(
                         (
-                            transform: "#{$cat-duration}s #{$big-cat-duration + $cat-duration}s"
+                            transform:
+                                '#{$cat-duration}s #{$big-cat-duration + $cat-duration}s',
                         ),
                         $cat-mouse-easing-out
                     );
@@ -153,7 +151,7 @@
         position: absolute;
         &::before,
         &::after {
-            content: "";
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
@@ -268,7 +266,7 @@
     .newsletter-fields {
         input {
             width: 205px;
-            &[type="email"] {
+            &[type='email'] {
                 width: 290px;
             }
         }
