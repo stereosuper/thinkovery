@@ -24,7 +24,7 @@
 
 		<link rel="preload" href="https://use.typekit.net/ovy5fzp.js" as="script">
 		<script src='https://use.typekit.net/ovy5fzp.js'></script>
-		<script>try{Typekit.load({ async: false });}catch(e){}</script>
+		<script async>try{Typekit.load({ async: false });}catch(e){}</script>
 
 		<!-- Google Tag Manager -->
 		<script>
