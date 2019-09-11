@@ -8,6 +8,8 @@
     background: $tertiary;
     color: $white;
     text-decoration: none;
+    text-align: center;
+    hyphens: auto;
     &:hover,
     &:focus {
         background: $quaternary;
@@ -26,13 +28,13 @@
             background: transparent;
             transition: transition(
                 (
-                    opacity: "#{$fade-duration}s"
+                    opacity: '#{$fade-duration}s',
                 ),
                 $fade-easing
             );
             &::before,
             &::after {
-                content: "";
+                content: '';
                 position: absolute;
                 bottom: 0;
                 right: 0;
@@ -43,7 +45,7 @@
                 top: 0;
                 transition: transition(
                     (
-                        transform: "#{$btn-invert-duration}s"
+                        transform: '#{$btn-invert-duration}s',
                     ),
                     $cat-mouse-easing-in
                 );
@@ -54,7 +56,8 @@
                 left: 25%;
                 transition: transition(
                     (
-                        transform: "#{$btn-invert-duration}s #{$btn-invert-duration}s"
+                        transform:
+                            '#{$btn-invert-duration}s #{$btn-invert-duration}s',
                     ),
                     $cat-mouse-easing-out
                 );
@@ -69,7 +72,8 @@
                     transform: scale3d(1, 0, 1);
                     transition: transition(
                         (
-                            transform: "#{$btn-invert-duration}s #{$btn-invert-duration}s"
+                            transform:
+                                '#{$btn-invert-duration}s #{$btn-invert-duration}s',
                         ),
                         $cat-mouse-easing-out
                     );
@@ -78,7 +82,7 @@
                     transform: scale3d(0, 1, 1);
                     transition: transition(
                         (
-                            transform: "#{$btn-invert-duration}s"
+                            transform: '#{$btn-invert-duration}s',
                         ),
                         $cat-mouse-easing-out
                     );
@@ -124,7 +128,7 @@
         z-index: -1;
         &::before,
         &::after {
-            content: "";
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
@@ -133,7 +137,7 @@
             transform-origin: 0 0;
             transition: transition(
                 (
-                    transform: "#{$btn-invert-duration}s"
+                    transform: '#{$btn-invert-duration}s',
                 ),
                 $cat-mouse-easing-in
             );
