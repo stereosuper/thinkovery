@@ -54,7 +54,7 @@
     background: #fff;
     cursor: pointer;
     transition: $transition;
-    @include z-index("blog-cats");
+    @include z-index('blog-cats');
     &.on {
         height: auto;
         a {
@@ -144,6 +144,8 @@
             font-weight: inherit;
             color: inherit;
             text-decoration: none;
+            word-break: inherit;
+            hyphens: auto;
         }
     }
 }
@@ -179,6 +181,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
     .icons {
         white-space: nowrap;
     }
@@ -186,6 +189,9 @@
         width: 22px;
         height: 22px;
         margin: 0 0 0 12px;
+        &:first-child {
+            margin-left: 0;
+        }
     }
 }
 .cats {
@@ -258,7 +264,7 @@
         height: 28px;
         transition: transition(
             (
-                opacity: "#{$fade-duration}s"
+                opacity: '#{$fade-duration}s',
             ),
             $fade-easing
         );
@@ -267,7 +273,7 @@
                 opacity: 1;
                 transition: transition(
                     (
-                        opacity: "#{$fade-duration}s #{$fade-duration - 0.1}s"
+                        opacity: '#{$fade-duration}s #{$fade-duration - 0.1}s',
                     ),
                     $fade-easing
                 );
@@ -283,7 +289,7 @@
         opacity: 0;
         transition: transition(
             (
-                opacity: "#{$fade-duration}s"
+                opacity: '#{$fade-duration}s',
             ),
             $fade-easing
         );
@@ -382,7 +388,7 @@
             content: none;
         }
         &:after {
-            content: "";
+            content: '';
             display: block;
             width: 330px;
             height: 1px;
@@ -556,7 +562,7 @@
     }
 
     .blog-search {
-        @include z-index("blog-search");
+        @include z-index('blog-search');
         &.on {
             input {
                 display: block;
