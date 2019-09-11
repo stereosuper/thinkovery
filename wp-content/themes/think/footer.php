@@ -140,7 +140,7 @@
 
         <?php get_template_part('includes/icons'); ?>
         
-        <script>
+        <script defer>
             <?php echo file_get_contents(get_template_directory_uri() . '/js/loading-script.js'); ?>
         </script>
 

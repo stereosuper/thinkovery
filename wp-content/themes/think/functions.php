@@ -326,11 +326,27 @@ function think_scripts(){
     
 	// footer
 	wp_deregister_script('jquery');
-	wp_enqueue_script( 'think-scripts', get_template_directory_uri() . '/js/main.js', array(), THINK_VERSION, true );
+	wp_enqueue_script( 'think-scripts', get_template_directory_uri() . '/js/main.js#deferload', array(), THINK_VERSION, true );
 
     wp_deregister_script( 'wp-embed' );
 }
 add_action( 'wp_enqueue_scripts', 'think_scripts' );
+
+function add_async_defer_forscript($url) {
+    if (strpos( $url, '.js' ) !== false) { 
+        if (is_admin()) {
+            $clean_url = str_replace('#asyncload', '', $url);
+            $clean_url = str_replace('#deferload', '', $clean_url);
+            return $clean_url;
+        } else if (strpos($url, '#asyncload') !== false) {
+            return str_replace('#asyncload', '', $url)."' async='true"; 
+        } else if (strpos($url, '#deferload') !== false) {
+            return str_replace('#deferload', '', $url)."' defer='true"; 
+        }
+    }
+    return $url;
+}
+add_filter('clean_url', 'add_async_defer_forscript', 11, 1);
 
 /*-----------------------------------------------------------------------------------*/
 /* TGMPA
