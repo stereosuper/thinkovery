@@ -37,22 +37,22 @@ input {
     width: 380px;
     max-width: 100%;
     // hide the symbols of input search
-    &[type="email"] {
+    &[type='email'] {
         width: 330px;
     }
-    &[type="tel"] {
+    &[type='tel'] {
         width: 180px;
     }
-    &[type="search"] {
+    &[type='search'] {
         width: 220px;
         &::-webkit-search-cancel-button,
         &::-webkit-search-decoration {
             display: none;
         }
     }
-    &[type="checkbox"],
-    &[type="radio"],
-    &[type="submit"] {
+    &[type='checkbox'],
+    &[type='radio'],
+    &[type='submit'] {
         width: auto;
     }
 }
@@ -139,18 +139,43 @@ label {
     input {
         background: $white !important;
         border: 0 !important;
-        &[type="text"],
-        &[type="email"] {
+        &[type='text'],
+        &[type='email'] {
             max-width: 330px !important;
         }
-        &[type="tel"] {
+        &[type='tel'] {
             max-width: 175px !important;
         }
     }
-    button[type="submit"] {
+    button[type='submit'] {
         width: auto;
     }
     textarea {
         max-width: 570px !important;
+    }
+}
+
+.custom-checkbox {
+    display: inline-flex;
+    width: 1.3rem;
+    height: 1.3rem;
+    position: absolute;
+    top: 8px;
+    left: 0;
+    border: 1px solid $text-color;
+    z-index: 1;
+    cursor: pointer;
+    &::after {
+        content: '';
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        right: 2px;
+        bottom: 2px;
+    }
+    &.activated {
+        &::after {
+            background: $tertiary;
+        }
     }
 }

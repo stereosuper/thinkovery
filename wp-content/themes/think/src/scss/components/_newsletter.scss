@@ -36,7 +36,7 @@
 
 .newsletter-input-hidden {
     display: none;
-    padding: 10px 0 0;
+    margin-top: 10px;
     line-height: 1.2;
     &.visible {
         display: block;
@@ -54,6 +54,9 @@
     label {
         color: $text-color;
         opacity: 0.4;
+        &.label-checkbox {
+            opacity: 1;
+        }
     }
     input {
         background: $bg-color;
@@ -135,6 +138,22 @@
                     );
                 }
             }
+        }
+    }
+}
+
+.newsletter,
+.newsletter-post {
+    .gdpr {
+        position: relative;
+        > input {
+            position: absolute;
+            width: 0;
+            height: 0;
+            opacity: 0;
+        }
+        > label {
+            margin-left: 20px;
         }
     }
 }
