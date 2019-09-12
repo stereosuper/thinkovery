@@ -1,5 +1,3 @@
-// @babel/polyfill is necessary for async imports
-import '@babel/polyfill';
 import { query, bodyRouter, superLoad, superWindow } from '@stereorepo/sac';
 
 import { Accordion } from '@stereorepo/accordion';

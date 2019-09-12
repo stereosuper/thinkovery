@@ -1,6 +1,6 @@
 <?php
 
-define( 'THINK_VERSION', '3.0.0' );
+define( 'THINK_VERSION', '3.0.1' );
 
 require_once(WPMU_PLUGIN_DIR . '/class-tgm-plugin-activation.php');
 

@@ -1,3 +1,7 @@
+// @babel/polyfill is necessary for async imports
+import '@babel/polyfill';
+import { query } from '@stereorepo/sac';
+
 const logoLoader = document.getElementById('logo-loader');
 const nav = document.getElementById('main-navigation');
 const hiddenElts = document.getElementsByClassName('js-load-hidden');
@@ -19,12 +23,14 @@ const forEach = (arr, callback) => {
 };
 
 const createNewEvent = eventName => {
-    let e = new Event(eventName);
-    if (typeof Event !== 'function') {
-        e = document.createEvent('Event');
-        e.initEvent(eventName, true, true);
+    let event;
+    if (typeof Event === 'function') {
+        event = new Event(eventName);
+    } else {
+        event = document.createEvent('Event');
+        event.initEvent(eventName, true, true);
     }
-    return e;
+    return event;
 };
 
 const endLoading = () => {
@@ -50,43 +56,53 @@ const endLoading = () => {
 
 const loaderAnimation = () => {
     setTimeout(() => {
-        logoLoader.querySelector('.circle').classList.add('hidden');
+        const [shape] = logoLoader.getElementsByClassName('circle');
+        shape.classList.add('hidden');
     }, delayLong);
 
     setTimeout(() => {
-        logoLoader.querySelector('.square').classList.remove('hidden');
+        const [shape] = logoLoader.getElementsByClassName('square');
+        shape.classList.remove('hidden');
     }, delayLong + delayShort);
 
     setTimeout(() => {
-        logoLoader.querySelector('.square').classList.add('hidden');
+        const [shape] = logoLoader.getElementsByClassName('square');
+        shape.classList.add('hidden');
     }, delayLong * 2 + delayShort);
-
+    
     setTimeout(() => {
-        logoLoader.querySelector('.triangle').classList.remove('hidden');
+        const [shape] = logoLoader.getElementsByClassName('triangle');
+        shape.classList.remove('hidden');
     }, delayLong * 2 + delayShort * 2);
-
+    
     setTimeout(() => {
-        logoLoader.querySelector('.triangle').classList.add('hidden');
+        const [shape] = logoLoader.getElementsByClassName('triangle');
+        shape.classList.add('hidden');
     }, delayLong * 3 + delayShort * 2);
-
+    
     setTimeout(() => {
-        logoLoader.querySelector('.rectangle').classList.remove('hidden');
+        const [shape] = logoLoader.getElementsByClassName('rectangle');
+        shape.classList.remove('hidden');
     }, delayLong * 3 + delayShort * 3);
-
+    
     setTimeout(() => {
-        logoLoader.querySelector('.rectangle').classList.add('hidden');
+        const [shape] = logoLoader.getElementsByClassName('rectangle');
+        shape.classList.add('hidden');
     }, delayLong * 4 + delayShort * 3);
-
+    
     setTimeout(() => {
-        logoLoader.querySelector('.drop').classList.remove('hidden');
+        const [shape] = logoLoader.getElementsByClassName('drop');
+        shape.classList.remove('hidden');
     }, delayLong * 4 + delayShort * 4);
-
+    
     setTimeout(() => {
-        logoLoader.querySelector('.drop').classList.add('hidden');
+        const [shape] = logoLoader.getElementsByClassName('drop');
+        shape.classList.add('hidden');
     }, delayLong * 5 + delayShort * 4);
-
+    
     setTimeout(() => {
-        logoLoader.querySelector('.circle').classList.remove('hidden');
+        const [shape] = logoLoader.getElementsByClassName('circle');
+        shape.classList.remove('hidden');
     }, delayLong * 5 + delayShort * 5);
 
     if (state.loaded) {
@@ -113,6 +129,42 @@ const handleLoader = () => {
         loaderAnimation();
     }
 };
+
+if (SVGElement.prototype.getElementsByClassName === undefined) {
+    SVGElement.prototype.getElementsByClassName = function(className) {
+        return this.querySelectorAll('.' + className);
+    };
+}
+
+if (!('classList' in SVGElement.prototype)) {
+    Object.defineProperty(SVGElement.prototype, 'classList', {
+        get() {
+            return {
+                contains: className => {
+                    return (
+                        this.className.baseVal.split(' ').indexOf(className) !==
+                        -1
+                    );
+                },
+                add: className => {
+                    return this.setAttribute(
+                        'class',
+                        this.getAttribute('class') + ' ' + className
+                    );
+                },
+                remove: className => {
+                    var removedClass = this.getAttribute('class').replace(
+                        new RegExp('(\\s|^)' + className + '(\\s|$)', 'g'),
+                        '$2'
+                    );
+                    if (this.classList.contains(className)) {
+                        this.setAttribute('class', removedClass);
+                    }
+                },
+            };
+        },
+    });
+}
 
 handleLoader();
 
