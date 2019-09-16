@@ -1,22 +1,25 @@
 @charset 'utf-8';
 
-@import "abstracts/variables", "abstracts/functions", "abstracts/mixins", "abstracts/animations";
+@import 'abstracts/variables', 'abstracts/functions', 'abstracts/mixins',
+    'abstracts/animations';
 
-@import "base/reset", "base/fonts", "base/base";
+@import 'base/reset', 'base/fonts', 'base/base';
 
 //@import
 //  'vendors/';
 
-@import "abstracts/placeholders";
+@import 'abstracts/placeholders';
 
-@import "layout/grid", "layout/forms", "layout/header", "layout/footer", "layout/borders",
-    "layout/editor", "layout/blog";
+@import 'layout/grid', 'layout/forms', 'layout/header', 'layout/footer',
+    'layout/borders', 'layout/editor', 'layout/blog';
 
-@import "components/buttons", "components/accordion", "components/quote", "components/checklist",
-    "components/image-gallery", "components/text-image-gallery", "components/process",
-    "components/gallery", "components/video", "components/newsletter";
+@import 'components/buttons', 'components/accordion', 'components/quote',
+    'components/checklist', 'components/image-gallery',
+    'components/text-image-gallery', 'components/process', 'components/gallery',
+    'components/video', 'components/newsletter', 'components/cookies';
 
-@import "pages/home", "pages/learning", "pages/references", "pages/single-reference", "pages/about",
-    "pages/contact", "pages/offers", "pages/404";
+@import 'pages/home', 'pages/learning', 'pages/references',
+    'pages/single-reference', 'pages/about', 'pages/contact', 'pages/offers',
+    'pages/404';
 
-@import "base/print";
+@import 'base/print';

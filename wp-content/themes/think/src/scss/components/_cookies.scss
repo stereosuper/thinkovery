@@ -1,0 +1,24 @@
+.cc-window {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: $line-height $gutter;
+    background: $white;
+    z-index: 20;
+}
+
+.cc-compliance {
+    margin-left: auto;
+    > .cc-dismiss {
+        margin-left: $gutter * 0.5;
+        @extend .btn;
+        cursor: pointer;
+    }
+}
+
+.cc-revoke {
+    display: none;
+}

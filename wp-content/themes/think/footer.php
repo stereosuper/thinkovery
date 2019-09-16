@@ -149,5 +149,15 @@
         <!-- Start of HubSpot Embed Code -->
         <script id='hs-script-loader' async defer src='//js.hs-scripts.com/4019924.js'></script>
         <!-- End of HubSpot Embed Code -->
+        <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+        <script>
+        window.cookieconsent.initialise({
+            "showLink": false,
+            "content": {
+                "message": '<?php _e('This website uses cookies to ensure you get the best from it.' , 'think') ?>',
+                "dismiss": '<?php _e('Got it!', 'think') ?>',
+            },
+        });
+        </script>
         </body>
     </html>
