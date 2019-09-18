@@ -154,8 +154,8 @@
         window.cookieconsent.initialise({
             "showLink": false,
             "content": {
-                "message": '<?php _e('This website uses cookies to ensure you get the best from it.' , 'think') ?>',
-                "dismiss": '<?php _e('Got it!', 'think') ?>',
+                "message": '<?php the_field('cookie_banner_message', 'options') ?>',
+                "dismiss": '<?php the_field('cookie_banner_button', 'options') ?>',
             },
         });
         </script>
