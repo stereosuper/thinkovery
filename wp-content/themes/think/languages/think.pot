@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-25 13:49+0000\n"
+"POT-Creation-Date: 2019-09-16 15:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -14,19 +14,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/"
 
-#: category.php:19
+#: category.php:20
 msgid "post in this category"
 msgstr ""
 
-#: category.php:19
+#: category.php:20
 msgid "posts in this category"
 msgstr ""
 
-#: category.php:24 index.php:10 tag.php:25 search.php:33
+#: category.php:25 index.php:10 tag.php:25 search.php:33
 msgid "All posts"
 msgstr ""
 
-#: category.php:122 index.php:109 tag.php:123 search.php:129
+#: category.php:126 index.php:112 tag.php:126 search.php:132
 msgid "Load more posts"
 msgstr ""
 
@@ -86,11 +86,11 @@ msgstr ""
 msgid "result for"
 msgstr ""
 
-#: search.php:135
+#: search.php:138
 msgid "The search for"
 msgstr ""
 
-#: search.php:135
+#: search.php:138
 msgid "didn't return any results"
 msgstr ""
 
@@ -110,16 +110,24 @@ msgstr ""
 msgid "References"
 msgstr ""
 
+#: footer.php:157
+msgid "This website uses cookies to ensure you get the best from it."
+msgstr ""
+
+#: footer.php:158
+msgid "Got it!"
+msgstr ""
+
 #. Name of the template
 msgid "Sitemap"
 msgstr ""
 
-#: single.php:124
-msgid "Download this white paper"
+#: single.php:105
+msgid "About the author"
 msgstr ""
 
-#: single.php:136
-msgid "About the author"
+#: single.php:133
+msgid "Download this white paper"
 msgstr ""
 
 #. Name of the template
