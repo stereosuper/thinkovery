@@ -3,8 +3,8 @@
     left: $gutter;
     right: $gutter;
     bottom: $gutter;
-    padding: $line-height $gutter;
-    font-size: 1.4rem;
+    padding: $line-height * 0.5 $gutter * 0.5;
+    font-size: 1.2rem;
     background: $white;
     z-index: 20;
 }

@@ -64,7 +64,7 @@ const minionsHandler = () => {
     let initialShapeTop = minions[0].getBoundingClientRect().top;
 
     let introBottom =
-        homeSections[1].getBoundingClientRect().top - initialShapeTop - 70;
+            homeSections[1].getBoundingClientRect().top - initialShapeTop - 35;
 
     let videoBottom = wh / 2;
 
