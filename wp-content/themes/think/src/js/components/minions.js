@@ -87,7 +87,7 @@ const minionsHandler = () => {
             player.remove();
         }
         player = minions[2].cloneNode(true);
-        minions[2].parentElement.appendChild(player);
+        minions[2].parentNode.appendChild(player);
 
         const tlPlayer = new TimelineMax();
 
