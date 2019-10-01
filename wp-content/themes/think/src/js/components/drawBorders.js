@@ -1,7 +1,8 @@
-import { superWindow, superScroll } from '@stereorepo/sac';
+import { superWindow, superScroll, superSnif } from '@stereorepo/sac';
 import { TweenMax } from 'gsap';
 import { createNewEvent, forEach, isDisplayed } from '../utils';
 import { colors, easing } from '../global';
+import { wheelListener } from '../utils/Wheel';
 
 const ioBorders = () => {
     const bordersWrapper = document.getElementById('borders');
@@ -92,7 +93,7 @@ const ioBorders = () => {
             ease,
             onComplete: () => {
                 if (!nestNext && nextBorder) return;
-
+                
                 if (nextBorder) {
                     animateBorder({
                         type,
@@ -605,7 +606,8 @@ const ioBorders = () => {
         // animateBordersHome main calls
         state.display = isDisplayed(bordersWrapper);
 
-        window.addEventListener('wheel', handleWheel, false);
+        wheelListener();
+        window.addWheelListener(window, handleWheel, false);
 
         bordersWrapper.addEventListener('updateBorders', addToQueue, false);
 
@@ -835,7 +837,9 @@ const ioBorders = () => {
 
     // Main calls
     if (document.body.classList.contains('home')) {
-        animateBordersHome();
+        if (!superSnif.isMS()) {
+            animateBordersHome();
+        }
     } else {
         animateProgressBorders();
     }

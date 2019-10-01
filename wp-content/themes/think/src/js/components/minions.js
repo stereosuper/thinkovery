@@ -410,7 +410,7 @@ const minionsHandler = () => {
             newDrop.remove();
         }
         newDrop = minions[0].cloneNode(true);
-        minions[0].parentElement.appendChild(newDrop);
+        minions[0].parentNode.appendChild(newDrop);
 
         const duration = 0.5;
         const delay = 0.05;

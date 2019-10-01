@@ -27,7 +27,14 @@ const makeBorders = () => {
         indexBorders = 0;
         for (indexBorders; indexBorders < bordersNumber; indexBorders += 1) {
             border = document.createElement('span');
-            border.classList.add('border', bordersClasses[indexBorders]);
+
+            // HACK: for ie11 compatibility you need to call classList.add twice 
+            // Old way:
+            // border.classList.add('border', bordersClasses[indexBorders]);
+
+            // New way
+            border.classList.add('border');
+            border.classList.add(bordersClasses[indexBorders]);
 
             wrapper.appendChild(border);
         }
