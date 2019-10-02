@@ -23,7 +23,10 @@ const config = (env, options) => {
             rules: [
                 {
                     test: /\.js$/,
-                    exclude: /node_modules/,
+                    include: [
+                        /node_modules\/@stereorepo/,
+                        path.resolve(__dirname, 'wp-content', 'themes', 'think', 'src', 'js'),
+                    ],
                     loader: 'babel-loader',
                 },
                 {
@@ -99,7 +102,10 @@ const loader = (env, options) => {
             rules: [
                 {
                     test: /\.js$/,
-                    exclude: /node_modules/,
+                    include: [
+                        /node_modules\/@stereorepo/,
+                        path.resolve(__dirname, 'wp-content', 'themes', 'think', 'src', 'js'),
+                    ],
                     loader: 'babel-loader',
                 },
             ],

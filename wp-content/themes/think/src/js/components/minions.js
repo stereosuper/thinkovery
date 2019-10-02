@@ -208,7 +208,7 @@ const minionsHandler = () => {
                 values: [
                     { x: -100, y: -30 },
                     { x: -200, y: 0 },
-                    { x: -240, y: introBottom + 100 },
+                    { x: -240, y: introBottom + 75 },
                 ],
             },
             ease: Power2.easeOut,
@@ -221,7 +221,7 @@ const minionsHandler = () => {
                 values: [
                     { x: -50, y: -70 },
                     { x: -100, y: -50 },
-                    { x: -130, y: introBottom + 100 },
+                    { x: -130, y: introBottom + 75 },
                 ],
             },
             ...tweenOptimizations,
@@ -231,7 +231,7 @@ const minionsHandler = () => {
 
         TweenMax.set(minions[2], {
             x: 0,
-            y: introBottom + 100,
+            y: introBottom + 75,
             scale: 3,
             opacity: 1,
             ...tweenOptimizations,
@@ -243,7 +243,7 @@ const minionsHandler = () => {
                 values: [
                     { x: 50, y: -60 },
                     { x: 100, y: -40 },
-                    { x: 130, y: introBottom + 100 },
+                    { x: 130, y: introBottom + 75 },
                 ],
             },
             delay: 0.15,
@@ -256,7 +256,7 @@ const minionsHandler = () => {
                 values: [
                     { x: 100, y: -10 },
                     { x: 190, y: 10 },
-                    { x: 240, y: introBottom + 100 },
+                    { x: 240, y: introBottom + 75 },
                 ],
             },
             delay: 0.15,
@@ -274,7 +274,7 @@ const minionsHandler = () => {
 
             TweenMax.to(minions[2], 0.7, {
                 x: 0,
-                y: introBottom + 100,
+                y: introBottom + 75,
                 rotation: 0,
                 ease: Back.easeInOut.config(2),
                 onComplete: () => {
@@ -284,7 +284,7 @@ const minionsHandler = () => {
         } else if (ratio > sectionsIntersectionRatio && learningFirstPartDone) {
             animsState['home-learning-experience'].bis = true;
 
-            const secondSectionBottom = homeSections[1].offsetHeight + ww / 50;
+            const secondSectionBottom = homeSections[1].offsetHeight;
             const planePathBezier = planePath
                 ? MorphSVGPlugin.pathDataToBezier(planePath)
                 : '';
@@ -366,12 +366,12 @@ const minionsHandler = () => {
                                 },
                                 {
                                     x: '+=20',
-                                    y: `+=${secondSectionBottom - 20}`,
+                                    y: `+=${secondSectionBottom - 45}`,
                                     rotation: 30,
                                 },
                                 {
                                     x: '-=20',
-                                    y: `+=${secondSectionBottom - 18}`,
+                                    y: `+=${secondSectionBottom - 43}`,
                                     rotation: 0,
                                 },
                             ],

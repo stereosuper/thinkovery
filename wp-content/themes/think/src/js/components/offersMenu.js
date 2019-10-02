@@ -1,5 +1,5 @@
 import { superWindow } from '@stereorepo/sac';
-import collant from 'collant';
+import { Collant } from '@stereorepo/collant';
 import imagesLoaded from 'imagesloaded';
 import { TweenMax } from 'gsap';
 import 'gsap/ScrollToPlugin';
@@ -11,15 +11,22 @@ const offersMenuHandler = () => {
     const [offersMenu] = query({ selector: '#offers-menu' });
 
     if (!offersMenu) return;
+    const state = {
+        collant: false
+    };
+
     const [offers] = query({ selector: '#offers' });
     let menuHeight = offersMenu.getBoundingClientRect().height;
     const anchors = [...offersMenu.getElementsByTagName('a')];
 
-    imagesLoaded(offers, () => {
-        collant(offersMenu, 0, {
-            minimumWidth: 960,
-        });
+
+    const collant = new Collant({
+        selector: '#offers-menu',
+        box: '#offers',
+        offsetTop: '0px',
     });
+    collant.stickIt();
+    state.collant = true;
 
     forEach(anchors, anchor => {
         anchor.addEventListener(
@@ -54,6 +61,13 @@ const offersMenuHandler = () => {
 
     superWindow.addResizeFunction(() => {
         menuHeight = offersMenu.getBoundingClientRect().height;
+        if (!state.collant && superWindow.windowWidth < 960) {
+            collant.ripIt();
+            state.collant = false;
+        } else if (state.collant) {
+            collant.stickIt();
+            state.collant = true;
+        }
     });
 };
 
