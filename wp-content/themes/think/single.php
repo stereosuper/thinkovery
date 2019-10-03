@@ -4,7 +4,7 @@
 
 	<?php if ( have_posts() ) : the_post(); ?>
 
-		<div class="wrapper-collant" id="article">
+		<div id="article" class="single-article">
 
 			<div class="share sidebar" id="share">
 				<span>Partager cet article :</span>

@@ -5,7 +5,7 @@ Template Name: Offers
 
 get_header(); ?>
 
-<div class='container wrapper-collant' id='offers'>
+<div class='container' id='offers'>
 
 	<?php if ( have_posts() ) : the_post(); ?>
 

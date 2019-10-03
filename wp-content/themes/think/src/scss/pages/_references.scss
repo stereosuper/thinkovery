@@ -23,7 +23,7 @@ $references-offset-grid: 8px;
 .references-item {
     position: relative;
     &::after {
-        content: "";
+        content: '';
         display: block;
         height: 0;
         padding: 0 0 76%;
@@ -81,7 +81,7 @@ $references-offset-grid: 8px;
             z-index: -1;
             &:before,
             &:after {
-                content: "";
+                content: '';
                 position: absolute;
                 top: 0;
                 left: 0;
@@ -89,7 +89,12 @@ $references-offset-grid: 8px;
                 bottom: 0;
                 transform-origin: 0 0;
                 transform: scaleX(0);
-                transition: $btn-invert-duration $cat-mouse-easing-in;
+                transition: transition(
+                    (
+                        transform: '#{$btn-invert-duration}s',
+                    ),
+                    $cat-mouse-easing-in
+                );
             }
             &:before {
                 background: $light-grey;
@@ -232,7 +237,7 @@ $references-offset-grid: 8px;
         position: relative;
         margin-top: -13em;
         &::after {
-            content: "";
+            content: '';
             display: block;
             height: 0;
             padding: 0 0 76%;
@@ -243,7 +248,7 @@ $references-offset-grid: 8px;
             left: 0;
             right: 0;
             &::after {
-                content: "";
+                content: '';
                 display: block;
                 height: 0;
                 padding: 0;

@@ -6,7 +6,7 @@ Template Name: Contact
 get_header(); ?>
     
 <?php if( have_posts() ): the_post(); ?>
-    <div class="contact-section wrapper-collant">
+    <div class="contact-section js-contact-section">
         <div class="container contact-sidebar js-contact-sidebar">
             <div class="col-2-desk">
                 <h1 class="title"><?php the_title(); ?></h1>

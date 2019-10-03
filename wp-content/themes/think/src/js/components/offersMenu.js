@@ -25,8 +25,16 @@ const offersMenuHandler = () => {
         box: '#offers',
         offsetTop: '0px',
     });
-    collant.stickIt();
-    state.collant = true;
+    
+    const handleWindowSizeCollant = () => {
+        if (state.collant && superWindow.windowWidth < 960) {
+            collant.ripIt();
+            state.collant = false;
+        } else if (!state.collant && superWindow.windowWidth >= 960) {
+            collant.stickIt();
+            state.collant = true;
+        }
+    }
 
     forEach(anchors, anchor => {
         anchor.addEventListener(
@@ -41,9 +49,10 @@ const offersMenuHandler = () => {
                 const section = document.getElementById(sectionId);
                 if (section) {
                     setTimeout(() => {
+                        const scrollY = window.scrollY || window.pageYOffset;
                         const offset =
                             section.getBoundingClientRect().top +
-                            window.scrollY -
+                            scrollY -
                             menuHeight;
                         TweenMax.to(window, 0.5, {
                             scrollTo: {
@@ -59,15 +68,10 @@ const offersMenuHandler = () => {
         );
     });
 
+    handleWindowSizeCollant();
     superWindow.addResizeFunction(() => {
         menuHeight = offersMenu.getBoundingClientRect().height;
-        if (!state.collant && superWindow.windowWidth < 960) {
-            collant.ripIt();
-            state.collant = false;
-        } else if (state.collant) {
-            collant.stickIt();
-            state.collant = true;
-        }
+        handleWindowSizeCollant();
     });
 };
 

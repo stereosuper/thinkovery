@@ -1,3 +1,10 @@
+.single-article {
+    position: relative;
+    display: flex;
+    flex-direction: column-reverse;
+    padding-bottom: 80px;
+}
+
 .blog-title {
     margin-bottom: $line-height * 2;
     line-height: 1.25;
@@ -217,13 +224,6 @@
     h1 {
         margin: 0;
         word-break: break-word;
-    }
-}
-.single {
-    .wrapper-collant {
-        display: flex;
-        flex-direction: column-reverse;
-        padding-bottom: 80px;
     }
 }
 
