@@ -51,8 +51,9 @@ const accordionHandler = () => {
                 parent.classList.add('activated');
 
                 setTimeout(() => {
+                    const scrollY = window.scrollY || window.pageYOffset;
                     const offset =
-                        title.getBoundingClientRect().top + window.scrollY;
+                        title.getBoundingClientRect().top + scrollY;
                     TweenMax.to(window, 0.5, {
                         scrollTo: {
                             y: offset,

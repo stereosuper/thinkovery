@@ -10,7 +10,7 @@ function Scroll() {
 }
 
 Scroll.prototype.scrollHandler = function scrollHandler() {
-    this.scrollTop = window.pageYOffset || window.scrollY;
+    this.scrollTop = window.scrollY || window.pageYOffset;
 
     if (this.scrollEnd) {
         this.scrollEnd = false;
