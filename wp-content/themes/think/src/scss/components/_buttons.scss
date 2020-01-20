@@ -19,16 +19,17 @@
 
 .wp-block-button {
     margin-top: $line-height;
-    &:not(.is-style-squared) {
+    &.is-style-outline {
         margin-bottom: 0;
         .wp-block-button__link {
+            border: 0;
             display: inline-flex;
             position: relative;
             color: $primary;
             background: transparent;
             transition: transition(
                 (
-                    opacity: '#{$fade-duration}s',
+                    opacity: '#{$fade-duration}s'
                 ),
                 $fade-easing
             );
@@ -38,14 +39,14 @@
                 position: absolute;
                 bottom: 0;
                 right: 0;
-                background: $primary;
+                background: currentColor;
             }
             &::before {
                 width: 3px;
                 top: 0;
                 transition: transition(
                     (
-                        transform: '#{$btn-invert-duration}s',
+                        transform: '#{$btn-invert-duration}s'
                     ),
                     $cat-mouse-easing-in
                 );
@@ -56,15 +57,12 @@
                 left: 25%;
                 transition: transition(
                     (
-                        transform:
-                            '#{$btn-invert-duration}s #{$btn-invert-duration}s',
+                        transform: '#{$btn-invert-duration}s #{$btn-invert-duration}s'
                     ),
                     $cat-mouse-easing-out
                 );
                 transform-origin: 100% 50%;
             }
-        }
-        .wp-block-button__link {
             &:hover,
             &:focus {
                 opacity: 0.8;
@@ -72,8 +70,7 @@
                     transform: scale3d(1, 0, 1);
                     transition: transition(
                         (
-                            transform:
-                                '#{$btn-invert-duration}s #{$btn-invert-duration}s',
+                            transform: '#{$btn-invert-duration}s #{$btn-invert-duration}s'
                         ),
                         $cat-mouse-easing-out
                     );
@@ -82,7 +79,7 @@
                     transform: scale3d(0, 1, 1);
                     transition: transition(
                         (
-                            transform: '#{$btn-invert-duration}s',
+                            transform: '#{$btn-invert-duration}s'
                         ),
                         $cat-mouse-easing-out
                     );
@@ -90,13 +87,9 @@
             }
         }
     }
-    &.is-style-outline {
+    &.is-style-fill {
         .wp-block-button__link {
-            border: 0;
-        }
-    }
-    &.is-style-squared {
-        .wp-block-button__link {
+            border-radius: 0;
             @extend .btn;
         }
     }
@@ -137,7 +130,7 @@
             transform-origin: 0 0;
             transition: transition(
                 (
-                    transform: '#{$btn-invert-duration}s',
+                    transform: '#{$btn-invert-duration}s'
                 ),
                 $cat-mouse-easing-in
             );
